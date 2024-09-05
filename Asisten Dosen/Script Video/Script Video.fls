@@ -1,6 +1,6 @@
-PWD c:\Users\teoso\OneDrive\Documents\Latex\Asisten Dosen\Script Video
+PWD c:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\Script Video
 INPUT C:\Users\teoso\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\teoso\OneDrive\Documents\Latex\Asisten Dosen\Script Video\Script Video.tex
+INPUT c:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\Script Video\Script Video.tex
 OUTPUT Script Video.log
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
