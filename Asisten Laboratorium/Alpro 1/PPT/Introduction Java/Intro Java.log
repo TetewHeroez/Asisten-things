@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.28)  9 SEP 2024 14:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.28)  9 SEP 2024 18:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1684,7 +1684,7 @@ LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
 LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
 (Font)              scaled to size 7.19995pt on input line 124.
 <C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium/Alp
-ro 1/PPT/Graphicx/M.png, id=38, 2370.8575pt x 2370.8575pt>
+ro 1/PPT/Graphicx/M.png, id=42, 2370.8575pt x 2370.8575pt>
 File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratoriu
 m/Alpro 1/PPT/Graphicx/M.png Graphic file (type png)
 <use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium
@@ -1711,7 +1711,7 @@ LaTeX Font Info:    Trying to load font information for U+rsfs on input line 12
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 <C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium/Alp
-ro 1/PPT/Graphicx/Provicom.png, id=40, 279.0425pt x 247.17343pt>
+ro 1/PPT/Graphicx/Provicom.png, id=44, 279.0425pt x 247.17343pt>
 File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratoriu
 m/Alpro 1/PPT/Graphicx/Provicom.png Graphic file (type png)
 <use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium
@@ -1721,7 +1721,7 @@ Asisten Laboratorium/Alpro 1/PPT/Graphicx/Provicom.png  used on input line 124.
 
 (pdftex.def)             Requested size: 55.8075pt x 49.4338pt.
 <C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium/Alp
-ro 1/PPT/Graphicx/Java bg.jpg, id=41, 1204.5pt x 803.0pt>
+ro 1/PPT/Graphicx/Java bg.jpg, id=45, 1204.5pt x 803.0pt>
 File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratoriu
 m/Alpro 1/PPT/Graphicx/Java bg.jpg Graphic file (type jpg)
 <use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium
@@ -1742,7 +1742,7 @@ oratorium/Alpro 1/PPT/Graphicx/M.png> <C:/Users/teoso/OneDrive/Documents/Asiste
 n Dosen & Lab/Asisten Laboratorium/Alpro 1/PPT/Graphicx/Provicom.png>]
 (Intro Java.toc)
 <C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium/Alp
-ro 1/PPT/Graphicx/Java code.jpg, id=81, 770.88pt x 512.91624pt>
+ro 1/PPT/Graphicx/Java code.jpg, id=86, 770.88pt x 512.91624pt>
 File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratoriu
 m/Alpro 1/PPT/Graphicx/Java code.jpg Graphic file (type jpg)
 <use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium
@@ -1758,7 +1758,7 @@ pro 1/PPT/Graphicx/Java code.jpg>]
 LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
 (Font)              scaled to size 10.79993pt on input line 145.
 <C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium/Alp
-ro 1/PPT/Graphicx/Java logo.png, id=123, 803.0pt x 1472.50125pt>
+ro 1/PPT/Graphicx/Java logo.png, id=130, 803.0pt x 1472.50125pt>
 File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratoriu
 m/Alpro 1/PPT/Graphicx/Java logo.png Graphic file (type png)
 <use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium
@@ -1770,7 +1770,7 @@ Asisten Laboratorium/Alpro 1/PPT/Graphicx/Java logo.png  used on input line 145
 LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
 (Font)              scaled to size 8.99994pt on input line 145.
 <C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium/Alp
-ro 1/PPT/Graphicx/plana class.jpg, id=125, 1084.05pt x 761.84625pt>
+ro 1/PPT/Graphicx/plana class.jpg, id=132, 1084.05pt x 761.84625pt>
 File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratoriu
 m/Alpro 1/PPT/Graphicx/plana class.jpg Graphic file (type jpg)
 <use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium
@@ -1821,7 +1821,7 @@ Asisten Laboratorium/Alpro 1/PPT/Graphicx/plana class.jpg  used on input line 1
  [6
 
 ]
-<Data Bahasa Pemrograman.jpg, id=298, 215.1293pt x 109.24535pt>
+<Data Bahasa Pemrograman.jpg, id=305, 215.1293pt x 109.24535pt>
 File: Data Bahasa Pemrograman.jpg Graphic file (type jpg)
 <use Data Bahasa Pemrograman.jpg>
 Package pdftex.def Info: Data Bahasa Pemrograman.jpg  used on input line 179.
@@ -1875,9 +1875,45 @@ m/Alpro 1/PPT/Graphicx/plana class.jpg Graphic file (type jpg)
 /Alpro 1/PPT/Graphicx/plana class.jpg>
 Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
 Asisten Laboratorium/Alpro 1/PPT/Graphicx/plana class.jpg  used on input line 2
-06.
+03.
 (pdftex.def)             Requested size: 455.24408pt x 319.93837pt.
  [10
+
+]
+File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratoriu
+m/Alpro 1/PPT/Graphicx/plana class.jpg Graphic file (type jpg)
+<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium
+/Alpro 1/PPT/Graphicx/plana class.jpg>
+Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
+Asisten Laboratorium/Alpro 1/PPT/Graphicx/plana class.jpg  used on input line 2
+16.
+(pdftex.def)             Requested size: 455.24408pt x 319.93837pt.
+ [11
+
+]
+\openout4 = `"Intro Java.vrb"'.
+
+ (Intro Java.vrb)
+File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratoriu
+m/Alpro 1/PPT/Graphicx/plana class.jpg Graphic file (type jpg)
+<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium
+/Alpro 1/PPT/Graphicx/plana class.jpg>
+Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
+Asisten Laboratorium/Alpro 1/PPT/Graphicx/plana class.jpg  used on input line 2
+33.
+(pdftex.def)             Requested size: 455.24408pt x 319.93837pt.
+ [12
+
+]
+File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratoriu
+m/Alpro 1/PPT/Graphicx/plana class.jpg Graphic file (type jpg)
+<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium
+/Alpro 1/PPT/Graphicx/plana class.jpg>
+Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
+Asisten Laboratorium/Alpro 1/PPT/Graphicx/plana class.jpg  used on input line 2
+40.
+(pdftex.def)             Requested size: 455.24408pt x 319.93837pt.
+ [13
 
 ]
 \tf@nav=\write7
@@ -1895,13 +1931,13 @@ LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2020/03/25>
  ***********
 Package rerunfilecheck Info: File `"Intro Java".out' has not changed.
-(rerunfilecheck)             Checksum: 175133A11BE0DC2EC3251EBDBB4300B0;349.
+(rerunfilecheck)             Checksum: E92A2FFE92DAD9A39946FF2B01E63A4C;505.
  ) 
 Here is how much of TeX's memory you used:
- 44514 strings out of 475248
- 1059144 string characters out of 5757812
+ 44565 strings out of 475248
+ 1060487 string characters out of 5757812
  1957785 words of memory out of 5000000
- 65050 multiletter control sequences out of 15000+600000
+ 65092 multiletter control sequences out of 15000+600000
  611757 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,15n,123p,1314b,1312s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1911,9 +1947,9 @@ ts/cm/cmsy10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/bera
 /fvsbo8a.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvs
 r8a.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvsro8a.
 pfb>
-Output written on "Intro Java.pdf" (10 pages, 764669 bytes).
+Output written on "Intro Java.pdf" (13 pages, 802859 bytes).
 PDF statistics:
- 522 PDF objects out of 1000 (max. 8388607)
- 24 named destinations out of 1000 (max. 500000)
- 546 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 681 PDF objects out of 1000 (max. 8388607)
+ 31 named destinations out of 1000 (max. 500000)
+ 698 words of extra memory for PDF output out of 10000 (max. 10000000)
 

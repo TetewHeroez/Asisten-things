@@ -1,6 +1,6 @@
-PWD c:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\Week 1\Tugas
+PWD c:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\Week 1 Assigment
 INPUT C:\Users\teoso\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\Week 1\Tugas\Tugas 1.tex
+INPUT c:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\Week 1 Assigment\Tugas 1.tex
 OUTPUT Tugas 1.log
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
@@ -455,12 +455,9 @@ INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\base\t1cmtt.fd
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ectt1000.tfm
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecrm0900.tfm
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ectt0900.tfm
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecti1000.tfm
 OUTPUT Tugas 1.pdf
 INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT Tugas 1.aux
-INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1000.pk
-INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1000.pk
 INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt0900.pk
 INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt0900.pk
 INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1000.pk

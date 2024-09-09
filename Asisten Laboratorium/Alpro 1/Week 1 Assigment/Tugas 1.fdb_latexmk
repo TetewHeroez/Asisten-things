@@ -1,11 +1,10 @@
 # Fdb version 4
-["pdflatex"] 1725806559 "c:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium/Alpro 1/Week 1/Tugas/Tugas 1.tex" "Tugas 1.pdf" "Tugas 1" 1725806561 0
-  "C:/Users/teoso/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1725422698 84288 fde73e64a605d98418aa761104845610 ""
+["pdflatex"] 1725879139 "c:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium/Alpro 1/Week 1 Assigment/Tugas 1.tex" "Tugas 1.pdf" "Tugas 1" 1725879143 0
+  "C:/Users/teoso/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1725874157 84288 fde73e64a605d98418aa761104845610 ""
   "C:/Users/teoso/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx1440.pk" 1725778598 40136 901526c9691bbf3bddc8ecae2d3130aa ""
   "C:/Users/teoso/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx1728.pk" 1725777902 49100 498d926055925719c44611379d48dfce ""
   "C:/Users/teoso/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecrm1000.pk" 1714542935 23808 6026274f45b397b56727b72e40fa8833 ""
   "C:/Users/teoso/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecrm1200.pk" 1725777901 28440 339b689605f19dd74ea781fc17203583 ""
-  "C:/Users/teoso/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecti1000.pk" 1714555417 31892 d6b176f4128d99f54d49a2e06856334c ""
   "C:/Users/teoso/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ectt0900.pk" 1714556635 17512 3d8b10175c7d8bcaced9fe7852a3d207 ""
   "C:/Users/teoso/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ectt1000.pk" 1714547983 20028 82acd8783b2b214d1f95cc3fd2fb2ba4 ""
   "C:/Users/teoso/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1700108174 11548 1d6f8dddb69af0672de13df14be54107 ""
@@ -17,7 +16,6 @@
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/tfm/jknappen/ec/ecrm1200.tfm" 993062126 3152 4850ff0163852b7fab34bd55e1197f28 ""
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/tfm/jknappen/ec/ecrm1440.tfm" 993062128 3168 3bd7b08ba4330af81521911744311212 ""
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/tfm/jknappen/ec/ecrm1728.tfm" 993062128 3168 11457c8185ce67fb79662ba8b03d6db1 ""
-  "C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/tfm/jknappen/ec/ecti1000.tfm" 993062320 2840 5606e1a681c23005308de9d61c09a8ff ""
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/tfm/jknappen/ec/ectt0900.tfm" 993062338 1348 c9911882a95d2c1b82f0cccb2c651de8 ""
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/tfm/jknappen/ec/ectt1000.tfm" 993062340 1348 d70ddf2d5d512b838e50a335e385e919 ""
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/tfm/jknappen/ec/tcrm1000.tfm" 993062508 1436 c7f957a372ef2fbe93c0982f96625e12 ""
@@ -249,9 +247,9 @@
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/tex/latex/tools/multicol.sty" 1686255640 32515 51caec75eda9c8890135f12f1a4eddc3 ""
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1656236890 56148 51a9a8571c07b9921892ae11063ae853 ""
   "C:/Users/teoso/AppData/Local/Programs/MiKTeX/tex/latex/xpatch/xpatch.sty" 1585221260 8510 7803f78066c4f9d008405191a4b43073 ""
-  "Tugas 1.aux" 1725806560 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
-  "Tugas 1.tex" 1725806558 4207 e9e6eeede5a8d3848d215066dd6eecfd ""
-  "c:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium/Alpro 1/Week 1/Tugas/Tugas 1.tex" 1725806558 4207 e9e6eeede5a8d3848d215066dd6eecfd ""
+  "Tugas 1.aux" 1725879142 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "Tugas 1.tex" 1725879137 4071 182c8bdfb1b8ac8d630c810828f4e803 ""
+  "c:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium/Alpro 1/Week 1 Assigment/Tugas 1.tex" 1725879137 4071 182c8bdfb1b8ac8d630c810828f4e803 ""
   (generated)
   "Tugas 1.aux"
   "Tugas 1.log"

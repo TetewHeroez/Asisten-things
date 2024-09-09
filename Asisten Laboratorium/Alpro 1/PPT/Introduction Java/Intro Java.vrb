@@ -1,10 +1,11 @@
 \frametitle{\insertsection}
-        \begin{alertblock}{Kenapa bukan Python?}
-            Bahasa seperti C atau Java memerlukan pemahaman yang lebih mendalam tentang konsep seperti manajemen memori dan tipe data. kurangnya aturan sintaksis yang ketat pada Python dapat menyebabkan kebiasaan pengkodean yang buruk jika tidak dipelajari dengan benar.
-        \end{alertblock}
-        \onslide<2->\begin{lstlisting}[caption={Masalah dalam deklarasi variabel}]
-    // Eror di java namun tidak di Python
-    x = 5;
-    // Tidak eror di Java maupun Python
-    int x = 5;
+        \begin{block}{Hello, World!}
+            Program pertama yang biasanya dibuat oleh programmer ketika belajar bahasa pemrograman baru adalah program "Hello, World!".
+        \end{block}
+        \begin{lstlisting}
+    public class Main {
+        public static void main(String[] args) {
+            System.out.println("Hello, World!");
+        }
+    }
         \end{lstlisting}

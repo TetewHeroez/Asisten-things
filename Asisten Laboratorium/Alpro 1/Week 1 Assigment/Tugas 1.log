@@ -1,13 +1,13 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.28)  8 SEP 2024 21:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.28)  9 SEP 2024 17:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
 **"c:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium/A
-lpro 1/Week 1/Tugas/Tugas 1.tex"
+lpro 1/Week 1 Assigment/Tugas 1.tex"
 
 (c:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium/Alp
-ro 1/Week 1/Tugas/Tugas 1.tex
+ro 1/Week 1 Assigment/Tugas 1.tex
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
 (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -1159,25 +1159,24 @@ L3 programming layer <2020/03/25>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 31342 strings out of 475248
- 786451 string characters out of 5757812
+ 31340 strings out of 475248
+ 786457 string characters out of 5757812
  2014785 words of memory out of 5000000
- 52242 multiletter control sequences out of 15000+600000
- 569741 words of font info for 65 fonts, out of 8000000 for 9000
+ 52241 multiletter control sequences out of 15000+600000
+ 569055 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 102i,6n,107p,1305b,1448s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\teoso\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti
-1000.pk> <C:\Users\teoso\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
-0\ectt0900.pk> <C:\Users\teoso\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
-/dpi600\ectt1000.pk> <C:\Users\teoso\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
-pen/ec/dpi600\tcrm1000.pk> <C:\Users\teoso\AppData\Local\MiKTeX\fonts/pk/ljfour
-/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\teoso\AppData\Local\MiKTeX\fonts/pk/
-ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\teoso\AppData\Local\MiKTeX\fon
-ts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\teoso\AppData\Local\MiKT
-eX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk>
-Output written on "Tugas 1.pdf" (1 page, 59571 bytes).
+ 102i,6n,107p,1309b,1448s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\teoso\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt
+0900.pk> <C:\Users\teoso\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
+0\ectt1000.pk> <C:\Users\teoso\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
+/dpi600\tcrm1000.pk> <C:\Users\teoso\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
+pen/ec/dpi600\ecrm1000.pk> <C:\Users\teoso\AppData\Local\MiKTeX\fonts/pk/ljfour
+/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\teoso\AppData\Local\MiKTeX\fonts/pk/
+ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\teoso\AppData\Local\MiKTeX\fon
+ts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk>
+Output written on "Tugas 1.pdf" (1 page, 56894 bytes).
 PDF statistics:
- 203 PDF objects out of 1000 (max. 8388607)
+ 192 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
