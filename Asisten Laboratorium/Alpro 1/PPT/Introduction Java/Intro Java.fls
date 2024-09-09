@@ -1,7 +1,7 @@
-PWD c:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Kalkulus 1\Bab 1
+PWD c:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Introduction Java
 INPUT C:\Users\teoso\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Kalkulus 1\Bab 1\PPT Kalkulus 1 Bab1.tex
-OUTPUT PPT Kalkulus 1 Bab1.log
+INPUT c:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Introduction Java\Intro Java.tex
+OUTPUT Intro Java.log
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\beamer\beamer.cls
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\beamer\beamer.cls
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\beamer\beamerbasemodes.sty
@@ -266,7 +266,7 @@ INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\beamer\beamercolort
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\beamer\beamerinnerthemedefault.sty
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\beamer\beamerinnerthemedefault.sty
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\beamer\beamericonbook.pdf
-OUTPUT PPT Kalkulus 1 Bab1.pdf
+OUTPUT Intro Java.pdf
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\beamer\beamericonbook.pdf
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\beamer\beamericonbook.pdf
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\beamer\beamericonbook.20.pdf
@@ -598,14 +598,17 @@ INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\psnfss\upsy.fd
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\psnfss\upsy.fd
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\psnfss\upsy.fd
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\symbol\psyr.tfm
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\arial\uarial.sty
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\arial\uarial.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\bera\berasans.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\bera\berasans.sty
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\base\fontenc.sty
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\base\fontenc.sty
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\arial\t1ua1.fd
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\arial\t1ua1.fd
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\arial\t1ua1.fd
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\urw\arial\ua1r8t.tfm
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\bera\t1fvs.fd
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\bera\t1fvs.fd
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\bera\t1fvs.fd
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsr8t.tfm
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.sty
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.sty
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\beamer\beamerthemeMadrid.sty
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\beamer\beamerthemeMadrid.sty
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\beamer\beamercolorthemewhale.sty
@@ -618,10 +621,10 @@ INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\beamer\beameroutert
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\beamer\beamerouterthemeinfolines.sty
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\beamer\beamerfontthemeprofessionalfonts.sty
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\beamer\beamerfontthemeprofessionalfonts.sty
-INPUT .\PPT Kalkulus 1 Bab1.aux
-INPUT .\PPT Kalkulus 1 Bab1.aux
-INPUT PPT Kalkulus 1 Bab1.aux
-OUTPUT PPT Kalkulus 1 Bab1.aux
+INPUT .\Intro Java.aux
+INPUT .\Intro Java.aux
+INPUT Intro Java.aux
+OUTPUT Intro Java.aux
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
@@ -630,13 +633,13 @@ INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\epstopdf-pkg\epstop
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
-INPUT .\PPT Kalkulus 1 Bab1.out
-INPUT .\PPT Kalkulus 1 Bab1.out
-INPUT PPT Kalkulus 1 Bab1.out
-INPUT PPT Kalkulus 1 Bab1.out
-INPUT .\PPT Kalkulus 1 Bab1.out
-INPUT .\PPT Kalkulus 1 Bab1.out
-OUTPUT PPT Kalkulus 1 Bab1.out
+INPUT .\Intro Java.out
+INPUT .\Intro Java.out
+INPUT Intro Java.out
+INPUT Intro Java.out
+INPUT .\Intro Java.out
+INPUT .\Intro Java.out
+OUTPUT Intro Java.out
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\translator\translator-basic-dictionary-English.dict
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\translator\translator-basic-dictionary-English.dict
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\translator\translator-basic-dictionary-English.dict
@@ -655,18 +658,18 @@ INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\translator\translat
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\translator\translator-theorem-dictionary-English.dict
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\translator\translator-theorem-dictionary-English.dict
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\translator\translator-theorem-dictionary-English.dict
-INPUT .\PPT Kalkulus 1 Bab1.nav
-INPUT .\PPT Kalkulus 1 Bab1.nav
-INPUT PPT Kalkulus 1 Bab1.nav
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\urw\arial\ua1r8t.tfm
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\urw\arial\ua1r8t.tfm
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\urw\arial\ua1r8t.tfm
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\ITS.png
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\ITS.png
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\ITS.png
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\ITS.png
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\ITS.png
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\ITS.png
+INPUT .\Intro Java.nav
+INPUT .\Intro Java.nav
+INPUT Intro Java.nav
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsr8t.tfm
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsr8t.tfm
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsr8t.tfm
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\M.png
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\M.png
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\M.png
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\M.png
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\M.png
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\M.png
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr8.tfm
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr6.tfm
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi10.tfm
@@ -696,157 +699,113 @@ INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\jknappen\ursfs.fd
 INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\tfm\public\rsfs\rsfs10.tfm
 INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\tfm\public\rsfs\rsfs10.tfm
 INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\tfm\public\rsfs\rsfs5.tfm
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\M.png
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\M.png
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\M.png
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\M.png
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\M.png
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\M.png
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\yuuka s.jpeg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\yuuka s.jpeg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\yuuka s.jpeg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\yuuka s.jpeg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\yuuka s.jpeg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\yuuka s.jpeg
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\urw\arial\ua1r8t.tfm
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\vf\urw\arial\ua1r8t.vf
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\urw\arial\ua1r8r.tfm
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Provicom.png
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Provicom.png
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Provicom.png
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Provicom.png
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Provicom.png
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Provicom.png
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java bg.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java bg.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java bg.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java bg.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java bg.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java bg.jpg
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsr8t.tfm
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\vf\public\bera\fvsr8t.vf
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsr8r.tfm
 INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\base\8r.enc
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\vf\urw\arial\ua1r8t.vf
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\urw\arial\ua1r8r.tfm
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\vf\urw\arial\ua1r8t.vf
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\urw\arial\ua1r8r.tfm
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\vf\urw\arial\ua1r8t.vf
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\urw\arial\ua1r8r.tfm
-INPUT .\PPT Kalkulus 1 Bab1.toc
-INPUT .\PPT Kalkulus 1 Bab1.toc
-INPUT PPT Kalkulus 1 Bab1.toc
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\urw\arial\ua1r8t.tfm
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\urw\arial\ua1ri8t.tfm
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\motivated.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\motivated.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\motivated.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\motivated.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\motivated.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\motivated.jpg
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\vf\urw\arial\ua1r8t.vf
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\urw\arial\ua1r8r.tfm
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\vf\urw\arial\ua1ri8t.vf
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\urw\arial\ua1ri8r.tfm
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\motivated.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\motivated.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\motivated.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\urw\arial\ua1ri8t.tfm
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\urw\arial\ua1ri8t.tfm
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam5.tfm
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm5.tfm
-INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\tfm\public\rsfs\rsfs5.tfm
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\arona class.jpg
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\urw\arial\ua1r8t.tfm
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\sudah saatnya.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\sudah saatnya.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\sudah saatnya.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\sudah saatnya.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\sudah saatnya.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Dosen\PPT Kalkulus\Gambar & Logo\sudah saatnya.jpg
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\vf\urw\arial\ua1r8t.vf
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\urw\arial\ua1r8r.tfm
-OUTPUT PPT Kalkulus 1 Bab1.nav
-OUTPUT PPT Kalkulus 1 Bab1.toc
-OUTPUT PPT Kalkulus 1 Bab1.snm
-INPUT PPT Kalkulus 1 Bab1.aux
-INPUT .\PPT Kalkulus 1 Bab1.out
-INPUT .\PPT Kalkulus 1 Bab1.out
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmex10.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmex10.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi6.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi6.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr5.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr5.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr6.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr6.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr8.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr8.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\vf\public\bera\fvsr8t.vf
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsr8r.tfm
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\vf\public\bera\fvsr8t.vf
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsr8r.tfm
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\vf\public\bera\fvsr8t.vf
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsr8r.tfm
+INPUT .\Intro Java.toc
+INPUT .\Intro Java.toc
+INPUT Intro Java.toc
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java code.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java code.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java code.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java code.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java code.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java code.jpg
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsr8t.tfm
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java logo.png
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java logo.png
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java logo.png
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java logo.png
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java logo.png
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java logo.png
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsr8t.tfm
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\vf\public\bera\fvsr8t.vf
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsr8r.tfm
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\vf\public\bera\fvsr8t.vf
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsr8r.tfm
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsro8t.tfm
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsbo8t.tfm
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\vf\public\bera\fvsro8t.vf
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsro8r.tfm
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\vf\public\bera\fvsbo8t.vf
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsbo8r.tfm
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT .\Data Bahasa Pemrograman.jpg
+INPUT .\Data Bahasa Pemrograman.jpg
+INPUT .\Data Bahasa Pemrograman.jpg
+INPUT .\Data Bahasa Pemrograman.jpg
+INPUT .\Data Bahasa Pemrograman.jpg
+INPUT .\Data Bahasa Pemrograman.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+OUTPUT Intro Java.vrb
+INPUT .\Intro Java.vrb
+INPUT .\Intro Java.vrb
+INPUT Intro Java.vrb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\base\t1cmtt.fd
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\base\t1cmtt.fd
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\base\t1cmtt.fd
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ectt1000.tfm
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT .\Intro Java.vrb
+INPUT .\Intro Java.vrb
+INPUT Intro Java.vrb
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+OUTPUT Intro Java.nav
+OUTPUT Intro Java.toc
+OUTPUT Intro Java.snm
+INPUT Intro Java.aux
+INPUT .\Intro Java.out
+INPUT .\Intro Java.out
+INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1000.pk
+INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1000.pk
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy6.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy6.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\symbols\msbm10.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\symbols\msbm10.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\urw\arial\ua1r8a.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\urw\arial\ua1r8a.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\urw\arial\ua1ri8a.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\urw\arial\ua1ri8a.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\urw\zapfding\uzdr.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\urw\zapfding\uzdr.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\bera\fvsbo8a.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\bera\fvsbo8a.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\bera\fvsr8a.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\bera\fvsr8a.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\bera\fvsro8a.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\bera\fvsro8a.pfb

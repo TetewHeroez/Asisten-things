@@ -1,13 +1,13 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.28)  9 SEP 2024 09:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.28)  9 SEP 2024 14:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Kalk
-ulus/Kalkulus 1/Bab 1/PPT Kalkulus 1 Bab1.tex"
+**"c:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium/A
+lpro 1/PPT/Introduction Java/Intro Java.tex"
 
-(c:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Kalkul
-us/Kalkulus 1/Bab 1/PPT Kalkulus 1 Bab1.tex
+(c:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium/Alp
+ro 1/PPT/Introduction Java/Intro Java.tex
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
 (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamer.cls
@@ -1516,19 +1516,22 @@ LaTeX Font Info:    Trying to load font information for U+psy on input line 64.
 (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\upsy.fd
 File: upsy.fd 2001/06/04 font definitions for U/psy.
 ))
-(C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/arial\uarial.sty
-Package: uarial 2006/03/21 1.0 (WaS)
+(C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/bera\berasans.sty
+Package: berasans 2004/01/30 (WaS)
 )
 (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
-LaTeX Font Info:    Trying to load font information for T1+ua1 on input line 11
+LaTeX Font Info:    Trying to load font information for T1+fvs on input line 11
 2.
 
-(C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/arial\t1ua1.fd
-File: t1ua1.fd 2006/03/21 Fontinst v1.928 font definitions for T1/ua1.
+(C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/bera\t1fvs.fd
+File: t1fvs.fd 2004/09/07 scalable font definitions for T1/fvs.
 )
-LaTeX Font Info:    Font shape `T1/ua1/m/n' will be
-(Font)              scaled to size 10.40245pt on input line 112.
+LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
+(Font)              scaled to size 9.85492pt on input line 112.
+)
+(C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2023/02/27 1.9 listings language file
 )
 (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerthemeMadri
 d.sty
@@ -1543,29 +1546,33 @@ infolines.sty))
 (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerfontthemep
 rofessionalfonts.sty)
 \c@latihan=\count385
-\c@definisi=\count386
-\c@teorema=\count387
- (PPT Kalkulus 1 Bab1.aux)
-\openout1 = `"PPT Kalkulus 1 Bab1.aux"'.
+\c@teorema=\count386
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 82.
-LaTeX Font Info:    ... okay on input line 82.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 82.
-LaTeX Font Info:    ... okay on input line 82.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 82.
-LaTeX Font Info:    ... okay on input line 82.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 82.
-LaTeX Font Info:    ... okay on input line 82.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 82.
-LaTeX Font Info:    ... okay on input line 82.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 82.
-LaTeX Font Info:    ... okay on input line 82.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 82.
-LaTeX Font Info:    ... okay on input line 82.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 82.
-LaTeX Font Info:    ... okay on input line 82.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 82.
-LaTeX Font Info:    ... okay on input line 82.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\\' on input line 113.
+
+(Intro Java.aux)
+\openout1 = `"Intro Java.aux"'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1575,14 +1582,14 @@ LaTeX Font Info:    ... okay on input line 82.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: includehead includefoot 
-* h-part:(L,W,R)=(10.40245pt, 434.43918pt, 10.40245pt)
+* h-part:(L,W,R)=(9.85492pt, 435.53424pt, 9.85492pt)
 * v-part:(T,H,B)=(0.0pt, 256.0748pt, 0.0pt)
 * \paperwidth=455.24408pt
 * \paperheight=256.0748pt
-* \textwidth=434.43918pt
+* \textwidth=435.53424pt
 * \textheight=227.62207pt
-* \oddsidemargin=-61.86754pt
-* \evensidemargin=-61.86754pt
+* \oddsidemargin=-62.41507pt
+* \evensidemargin=-62.41507pt
 * \topmargin=-72.26999pt
 * \headheight=14.22636pt
 * \headsep=0.0pt
@@ -1605,16 +1612,16 @@ LaTeX Font Info:    ... okay on input line 82.
 (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count388
+\scratchcounter=\count387
 \scratchdimen=\dimen373
 \scratchbox=\box141
-\nofMPsegments=\count389
-\nofMParguments=\count390
+\nofMPsegments=\count388
+\nofMParguments=\count389
 \everyMPshowfont=\toks66
-\MPscratchCnt=\count391
+\MPscratchCnt=\count390
 \MPscratchDim=\dimen374
-\MPnumerator=\count392
-\makeMPintoPDFobject=\count393
+\MPnumerator=\count391
+\makeMPintoPDFobject=\count392
 \everyMPtoPDFconversion=\toks67
 )
 (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
@@ -1627,10 +1634,10 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package hyperref Info: Link coloring OFF on input line 82.
- (PPT Kalkulus 1 Bab1.out) (PPT Kalkulus 1 Bab1.out)
+Package hyperref Info: Link coloring OFF on input line 119.
+ (Intro Java.out) (Intro Java.out)
 \@outlinefile=\write6
-\openout6 = `"PPT Kalkulus 1 Bab1.out"'.
+\openout6 = `"Intro Java.out"'.
 
 
 (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/translator\translator-b
@@ -1666,400 +1673,247 @@ Package caption Info: End \AtBeginDocument code.
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into 
 your preamble.
- on input line 82.
+ on input line 119.
 
-\c@lstlisting=\count394
-(PPT Kalkulus 1 Bab1.nav)
-LaTeX Font Info:    Font shape `T1/ua1/m/n' will be
-(Font)              scaled to size 5.69998pt on input line 82.
-LaTeX Font Info:    Font shape `T1/ua1/m/n' will be
-(Font)              scaled to size 13.67995pt on input line 87.
-LaTeX Font Info:    Font shape `T1/ua1/m/n' will be
-(Font)              scaled to size 7.59998pt on input line 87.
-<C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Kalkul
-us/Gambar & Logo/ITS.png, id=46, 150.5625pt x 150.5625pt>
-File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT K
-alkulus/Gambar & Logo/ITS.png Graphic file (type png)
-<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Ka
-lkulus/Gambar & Logo/ITS.png>
+\c@lstlisting=\count393
+(Intro Java.nav)
+LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
+(Font)              scaled to size 5.39996pt on input line 119.
+LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
+(Font)              scaled to size 12.9599pt on input line 124.
+LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
+(Font)              scaled to size 7.19995pt on input line 124.
+<C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium/Alp
+ro 1/PPT/Graphicx/M.png, id=38, 2370.8575pt x 2370.8575pt>
+File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratoriu
+m/Alpro 1/PPT/Graphicx/M.png Graphic file (type png)
+<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium
+/Alpro 1/PPT/Graphicx/M.png>
 Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
-Asisten Dosen/PPT Kalkulus/Gambar & Logo/ITS.png  used on input line 87.
-(pdftex.def)             Requested size: 45.16908pt x 45.16908pt.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 87.
-
+Asisten Laboratorium/Alpro 1/PPT/Graphicx/M.png  used on input line 124.
+(pdftex.def)             Requested size: 47.42715pt x 47.42715pt.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 124
+.
 
 (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 87.
-
+LaTeX Font Info:    Trying to load font information for U+msb on input line 124
+.
 
 (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 87
-.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 12
+4.
 
 (C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-<C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Kalkul
-us/Gambar & Logo/M.png, id=48, 2370.8575pt x 2370.8575pt>
-File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT K
-alkulus/Gambar & Logo/M.png Graphic file (type png)
-<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Ka
-lkulus/Gambar & Logo/M.png>
+<C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium/Alp
+ro 1/PPT/Graphicx/Provicom.png, id=40, 279.0425pt x 247.17343pt>
+File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratoriu
+m/Alpro 1/PPT/Graphicx/Provicom.png Graphic file (type png)
+<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium
+/Alpro 1/PPT/Graphicx/Provicom.png>
 Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
-Asisten Dosen/PPT Kalkulus/Gambar & Logo/M.png  used on input line 87.
-(pdftex.def)             Requested size: 47.42715pt x 47.42715pt.
-<C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Kalkul
-us/Gambar & Logo/yuuka s.jpeg, id=49, 639.38875pt x 359.3425pt>
-File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT K
-alkulus/Gambar & Logo/yuuka s.jpeg Graphic file (type jpg)
-<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Ka
-lkulus/Gambar & Logo/yuuka s.jpeg>
+Asisten Laboratorium/Alpro 1/PPT/Graphicx/Provicom.png  used on input line 124.
+
+(pdftex.def)             Requested size: 55.8075pt x 49.4338pt.
+<C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium/Alp
+ro 1/PPT/Graphicx/Java bg.jpg, id=41, 1204.5pt x 803.0pt>
+File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratoriu
+m/Alpro 1/PPT/Graphicx/Java bg.jpg Graphic file (type jpg)
+<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium
+/Alpro 1/PPT/Graphicx/Java bg.jpg>
 Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
-Asisten Dosen/PPT Kalkulus/Gambar & Logo/yuuka s.jpeg  used on input line 87.
-(pdftex.def)             Requested size: 455.24408pt x 255.85324pt.
-LaTeX Font Info:    Font shape `T1/ua1/m/n' will be
-(Font)              scaled to size 3.79999pt on input line 87.
+Asisten Laboratorium/Alpro 1/PPT/Graphicx/Java bg.jpg  used on input line 124.
+(pdftex.def)             Requested size: 455.24408pt x 303.5013pt.
+LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
+(Font)              scaled to size 3.59998pt on input line 124.
 
 [1
 
 {C:/Users/teoso/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/teos
 o/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc} <C:/Users/teoso/On
-eDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Kalkulus/Gambar & Logo/y
-uuka s.jpeg> <C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dos
-en/PPT Kalkulus/Gambar & Logo/ITS.png> <C:/Users/teoso/OneDrive/Documents/Asist
-en Dosen & Lab/Asisten Dosen/PPT Kalkulus/Gambar & Logo/M.png>]
-(PPT Kalkulus 1 Bab1.toc)
-<C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Kalkul
-us/Gambar & Logo/arona class.jpg, id=91, 1084.05pt x 761.84625pt>
-File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT K
-alkulus/Gambar & Logo/arona class.jpg Graphic file (type jpg)
-<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Ka
-lkulus/Gambar & Logo/arona class.jpg>
+eDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium/Alpro 1/PPT/Graphicx/
+Java bg.jpg> <C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Lab
+oratorium/Alpro 1/PPT/Graphicx/M.png> <C:/Users/teoso/OneDrive/Documents/Asiste
+n Dosen & Lab/Asisten Laboratorium/Alpro 1/PPT/Graphicx/Provicom.png>]
+(Intro Java.toc)
+<C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium/Alp
+ro 1/PPT/Graphicx/Java code.jpg, id=81, 770.88pt x 512.91624pt>
+File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratoriu
+m/Alpro 1/PPT/Graphicx/Java code.jpg Graphic file (type jpg)
+<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium
+/Alpro 1/PPT/Graphicx/Java code.jpg>
 Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
-Asisten Dosen/PPT Kalkulus/Gambar & Logo/arona class.jpg  used on input line 92
+Asisten Laboratorium/Alpro 1/PPT/Graphicx/Java code.jpg  used on input line 131
 .
-(pdftex.def)             Requested size: 455.24408pt x 319.93837pt.
+(pdftex.def)             Requested size: 455.24408pt x 302.89972pt.
  [2
 
- <C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Kalku
-lus/Gambar & Logo/arona class.jpg>]
-LaTeX Font Info:    Font shape `T1/ua1/m/n' will be
-(Font)              scaled to size 11.39996pt on input line 111.
-LaTeX Font Info:    Font shape `T1/ua1/m/it' will be
-(Font)              scaled to size 10.40245pt on input line 111.
-<C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Kalkul
-us/Gambar & Logo/motivated.jpg, id=151, 1895.08pt x 1114.1625pt>
-File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT K
-alkulus/Gambar & Logo/motivated.jpg Graphic file (type jpg)
-<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Ka
-lkulus/Gambar & Logo/motivated.jpg>
+ <C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium/Al
+pro 1/PPT/Graphicx/Java code.jpg>]
+LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
+(Font)              scaled to size 10.79993pt on input line 145.
+<C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium/Alp
+ro 1/PPT/Graphicx/Java logo.png, id=123, 803.0pt x 1472.50125pt>
+File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratoriu
+m/Alpro 1/PPT/Graphicx/Java logo.png Graphic file (type png)
+<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium
+/Alpro 1/PPT/Graphicx/Java logo.png>
 Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
-Asisten Dosen/PPT Kalkulus/Gambar & Logo/motivated.jpg  used on input line 111.
-
-(pdftex.def)             Requested size: 455.24408pt x 267.64247pt.
+Asisten Laboratorium/Alpro 1/PPT/Graphicx/Java logo.png  used on input line 145
+.
+(pdftex.def)             Requested size: 43.55608pt x 79.85315pt.
+LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
+(Font)              scaled to size 8.99994pt on input line 145.
+<C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium/Alp
+ro 1/PPT/Graphicx/plana class.jpg, id=125, 1084.05pt x 761.84625pt>
+File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratoriu
+m/Alpro 1/PPT/Graphicx/plana class.jpg Graphic file (type jpg)
+<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium
+/Alpro 1/PPT/Graphicx/plana class.jpg>
+Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
+Asisten Laboratorium/Alpro 1/PPT/Graphicx/plana class.jpg  used on input line 1
+45.
+(pdftex.def)             Requested size: 455.24408pt x 319.93837pt.
  [3
 
- <C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Kalku
-lus/Gambar & Logo/motivated.jpg>]
-File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT K
-alkulus/Gambar & Logo/motivated.jpg Graphic file (type jpg)
-<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Ka
-lkulus/Gambar & Logo/motivated.jpg>
+ <C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium/Al
+pro 1/PPT/Graphicx/plana class.jpg> <C:/Users/teoso/OneDrive/Documents/Asisten 
+Dosen & Lab/Asisten Laboratorium/Alpro 1/PPT/Graphicx/Java logo.png>]
+LaTeX Font Info:    Font shape `T1/fvs/m/it' will be
+(Font)              scaled to size 9.85492pt on input line 157.
+LaTeX Font Info:    Font shape `T1/fvs/b/it' will be
+(Font)              scaled to size 9.85492pt on input line 157.
+File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratoriu
+m/Alpro 1/PPT/Graphicx/plana class.jpg Graphic file (type jpg)
+<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium
+/Alpro 1/PPT/Graphicx/plana class.jpg>
 Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
-Asisten Dosen/PPT Kalkulus/Gambar & Logo/motivated.jpg  used on input line 111.
-
-(pdftex.def)             Requested size: 455.24408pt x 267.64247pt.
+Asisten Laboratorium/Alpro 1/PPT/Graphicx/plana class.jpg  used on input line 1
+57.
+(pdftex.def)             Requested size: 455.24408pt x 319.93837pt.
  [4
 
 ]
-File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT K
-alkulus/Gambar & Logo/arona class.jpg Graphic file (type jpg)
-<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Ka
-lkulus/Gambar & Logo/arona class.jpg>
+File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratoriu
+m/Alpro 1/PPT/Graphicx/plana class.jpg Graphic file (type jpg)
+<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium
+/Alpro 1/PPT/Graphicx/plana class.jpg>
 Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
-Asisten Dosen/PPT Kalkulus/Gambar & Logo/arona class.jpg  used on input line 13
-0.
+Asisten Laboratorium/Alpro 1/PPT/Graphicx/plana class.jpg  used on input line 1
+57.
 (pdftex.def)             Requested size: 455.24408pt x 319.93837pt.
  [5
 
 ]
-File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT K
-alkulus/Gambar & Logo/arona class.jpg Graphic file (type jpg)
-<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Ka
-lkulus/Gambar & Logo/arona class.jpg>
+File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratoriu
+m/Alpro 1/PPT/Graphicx/plana class.jpg Graphic file (type jpg)
+<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium
+/Alpro 1/PPT/Graphicx/plana class.jpg>
 Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
-Asisten Dosen/PPT Kalkulus/Gambar & Logo/arona class.jpg  used on input line 13
-0.
+Asisten Laboratorium/Alpro 1/PPT/Graphicx/plana class.jpg  used on input line 1
+69.
 (pdftex.def)             Requested size: 455.24408pt x 319.93837pt.
  [6
 
 ]
-File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT K
-alkulus/Gambar & Logo/arona class.jpg Graphic file (type jpg)
-<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Ka
-lkulus/Gambar & Logo/arona class.jpg>
+<Data Bahasa Pemrograman.jpg, id=298, 215.1293pt x 109.24535pt>
+File: Data Bahasa Pemrograman.jpg Graphic file (type jpg)
+<use Data Bahasa Pemrograman.jpg>
+Package pdftex.def Info: Data Bahasa Pemrograman.jpg  used on input line 179.
+(pdftex.def)             Requested size: 304.87263pt x 154.81938pt.
+File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratoriu
+m/Alpro 1/PPT/Graphicx/plana class.jpg Graphic file (type jpg)
+<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium
+/Alpro 1/PPT/Graphicx/plana class.jpg>
 Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
-Asisten Dosen/PPT Kalkulus/Gambar & Logo/arona class.jpg  used on input line 14
-6.
+Asisten Laboratorium/Alpro 1/PPT/Graphicx/plana class.jpg  used on input line 1
+79.
 (pdftex.def)             Requested size: 455.24408pt x 319.93837pt.
  [7
 
-]
-File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT K
-alkulus/Gambar & Logo/arona class.jpg Graphic file (type jpg)
-<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Ka
-lkulus/Gambar & Logo/arona class.jpg>
-Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
-Asisten Dosen/PPT Kalkulus/Gambar & Logo/arona class.jpg  used on input line 14
-6.
-(pdftex.def)             Requested size: 455.24408pt x 319.93837pt.
- [8
+ <./Data Bahasa Pemrograman.jpg>]
+\openout4 = `"Intro Java.vrb"'.
 
-]
-File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT K
-alkulus/Gambar & Logo/arona class.jpg Graphic file (type jpg)
-<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Ka
-lkulus/Gambar & Logo/arona class.jpg>
+ (Intro Java.vrb
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 5
+.
+
+(C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmtt.fd
+File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+))
+File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratoriu
+m/Alpro 1/PPT/Graphicx/plana class.jpg Graphic file (type jpg)
+<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium
+/Alpro 1/PPT/Graphicx/plana class.jpg>
 Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
-Asisten Dosen/PPT Kalkulus/Gambar & Logo/arona class.jpg  used on input line 17
-3.
+Asisten Laboratorium/Alpro 1/PPT/Graphicx/plana class.jpg  used on input line 1
+92.
+(pdftex.def)             Requested size: 455.24408pt x 319.93837pt.
+
+[8
+
+] (Intro Java.vrb)
+File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratoriu
+m/Alpro 1/PPT/Graphicx/plana class.jpg Graphic file (type jpg)
+<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium
+/Alpro 1/PPT/Graphicx/plana class.jpg>
+Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
+Asisten Laboratorium/Alpro 1/PPT/Graphicx/plana class.jpg  used on input line 1
+92.
 (pdftex.def)             Requested size: 455.24408pt x 319.93837pt.
  [9
 
 ]
-File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT K
-alkulus/Gambar & Logo/arona class.jpg Graphic file (type jpg)
-<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Ka
-lkulus/Gambar & Logo/arona class.jpg>
+File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratoriu
+m/Alpro 1/PPT/Graphicx/plana class.jpg Graphic file (type jpg)
+<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium
+/Alpro 1/PPT/Graphicx/plana class.jpg>
 Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
-Asisten Dosen/PPT Kalkulus/Gambar & Logo/arona class.jpg  used on input line 20
-0.
+Asisten Laboratorium/Alpro 1/PPT/Graphicx/plana class.jpg  used on input line 2
+06.
 (pdftex.def)             Requested size: 455.24408pt x 319.93837pt.
  [10
 
 ]
-File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT K
-alkulus/Gambar & Logo/arona class.jpg Graphic file (type jpg)
-<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Ka
-lkulus/Gambar & Logo/arona class.jpg>
-Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
-Asisten Dosen/PPT Kalkulus/Gambar & Logo/arona class.jpg  used on input line 21
-2.
-(pdftex.def)             Requested size: 455.24408pt x 319.93837pt.
- [11
-
-]
-LaTeX Font Info:    Font shape `T1/ua1/m/it' will be
-(Font)              scaled to size 7.59998pt on input line 236.
-LaTeX Font Info:    Font shape `T1/ua1/m/it' will be
-(Font)              scaled to size 5.69998pt on input line 236.
-File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT K
-alkulus/Gambar & Logo/arona class.jpg Graphic file (type jpg)
-<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Ka
-lkulus/Gambar & Logo/arona class.jpg>
-Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
-Asisten Dosen/PPT Kalkulus/Gambar & Logo/arona class.jpg  used on input line 23
-6.
-(pdftex.def)             Requested size: 455.24408pt x 319.93837pt.
- [12
-
-]
-File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT K
-alkulus/Gambar & Logo/arona class.jpg Graphic file (type jpg)
-<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Ka
-lkulus/Gambar & Logo/arona class.jpg>
-Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
-Asisten Dosen/PPT Kalkulus/Gambar & Logo/arona class.jpg  used on input line 23
-6.
-(pdftex.def)             Requested size: 455.24408pt x 319.93837pt.
- [13
-
-]
-File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT K
-alkulus/Gambar & Logo/arona class.jpg Graphic file (type jpg)
-<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Ka
-lkulus/Gambar & Logo/arona class.jpg>
-Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
-Asisten Dosen/PPT Kalkulus/Gambar & Logo/arona class.jpg  used on input line 24
-8.
-(pdftex.def)             Requested size: 455.24408pt x 319.93837pt.
- [14
-
-]
-File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT K
-alkulus/Gambar & Logo/arona class.jpg Graphic file (type jpg)
-<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Ka
-lkulus/Gambar & Logo/arona class.jpg>
-Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
-Asisten Dosen/PPT Kalkulus/Gambar & Logo/arona class.jpg  used on input line 29
-6.
-(pdftex.def)             Requested size: 455.24408pt x 319.93837pt.
- [15
-
-]
-File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT K
-alkulus/Gambar & Logo/arona class.jpg Graphic file (type jpg)
-<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Ka
-lkulus/Gambar & Logo/arona class.jpg>
-Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
-Asisten Dosen/PPT Kalkulus/Gambar & Logo/arona class.jpg  used on input line 31
-3.
-(pdftex.def)             Requested size: 455.24408pt x 319.93837pt.
-
-[16
-
-]
-File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT K
-alkulus/Gambar & Logo/arona class.jpg Graphic file (type jpg)
-<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Ka
-lkulus/Gambar & Logo/arona class.jpg>
-Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
-Asisten Dosen/PPT Kalkulus/Gambar & Logo/arona class.jpg  used on input line 32
-5.
-(pdftex.def)             Requested size: 455.24408pt x 319.93837pt.
- [17
-
-]
-File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT K
-alkulus/Gambar & Logo/arona class.jpg Graphic file (type jpg)
-<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Ka
-lkulus/Gambar & Logo/arona class.jpg>
-Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
-Asisten Dosen/PPT Kalkulus/Gambar & Logo/arona class.jpg  used on input line 34
-4.
-(pdftex.def)             Requested size: 455.24408pt x 319.93837pt.
- [18
-
-]
-File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT K
-alkulus/Gambar & Logo/arona class.jpg Graphic file (type jpg)
-<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Ka
-lkulus/Gambar & Logo/arona class.jpg>
-Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
-Asisten Dosen/PPT Kalkulus/Gambar & Logo/arona class.jpg  used on input line 35
-8.
-(pdftex.def)             Requested size: 455.24408pt x 319.93837pt.
- [19
-
-]
-File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT K
-alkulus/Gambar & Logo/arona class.jpg Graphic file (type jpg)
-<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Ka
-lkulus/Gambar & Logo/arona class.jpg>
-Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
-Asisten Dosen/PPT Kalkulus/Gambar & Logo/arona class.jpg  used on input line 35
-8.
-(pdftex.def)             Requested size: 455.24408pt x 319.93837pt.
- [20
-
-]
-File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT K
-alkulus/Gambar & Logo/arona class.jpg Graphic file (type jpg)
-<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Ka
-lkulus/Gambar & Logo/arona class.jpg>
-Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
-Asisten Dosen/PPT Kalkulus/Gambar & Logo/arona class.jpg  used on input line 36
-9.
-(pdftex.def)             Requested size: 455.24408pt x 319.93837pt.
- [21
-
-]
-File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT K
-alkulus/Gambar & Logo/arona class.jpg Graphic file (type jpg)
-<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Ka
-lkulus/Gambar & Logo/arona class.jpg>
-Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
-Asisten Dosen/PPT Kalkulus/Gambar & Logo/arona class.jpg  used on input line 38
-7.
-(pdftex.def)             Requested size: 455.24408pt x 319.93837pt.
- [22
-
-]
-File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT K
-alkulus/Gambar & Logo/arona class.jpg Graphic file (type jpg)
-<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Ka
-lkulus/Gambar & Logo/arona class.jpg>
-Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
-Asisten Dosen/PPT Kalkulus/Gambar & Logo/arona class.jpg  used on input line 40
-3.
-(pdftex.def)             Requested size: 455.24408pt x 319.93837pt.
- [23
-
-]
-File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT K
-alkulus/Gambar & Logo/arona class.jpg Graphic file (type jpg)
-<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Ka
-lkulus/Gambar & Logo/arona class.jpg>
-Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
-Asisten Dosen/PPT Kalkulus/Gambar & Logo/arona class.jpg  used on input line 41
-4.
-(pdftex.def)             Requested size: 455.24408pt x 319.93837pt.
- [24
-
-]
-LaTeX Font Info:    Font shape `T1/ua1/m/n' will be
-(Font)              scaled to size 19.70294pt on input line 426.
-<C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Kalkul
-us/Gambar & Logo/sudah saatnya.jpg, id=1066, 236.885pt x 231.86626pt>
-File: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT K
-alkulus/Gambar & Logo/sudah saatnya.jpg Graphic file (type jpg)
-<use C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Ka
-lkulus/Gambar & Logo/sudah saatnya.jpg>
-Package pdftex.def Info: C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/
-Asisten Dosen/PPT Kalkulus/Gambar & Logo/sudah saatnya.jpg  used on input line 
-426.
-(pdftex.def)             Requested size: 455.24408pt x 445.6133pt.
- [25
-
- <C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Kalku
-lus/Gambar & Logo/sudah saatnya.jpg>]
 \tf@nav=\write7
-\openout7 = `"PPT Kalkulus 1 Bab1.nav"'.
+\openout7 = `"Intro Java.nav"'.
 
 \tf@toc=\write8
-\openout8 = `"PPT Kalkulus 1 Bab1.toc"'.
+\openout8 = `"Intro Java.toc"'.
 
 \tf@snm=\write9
-\openout9 = `"PPT Kalkulus 1 Bab1.snm"'.
+\openout9 = `"Intro Java.snm"'.
 
- (PPT Kalkulus 1 Bab1.aux)
+ (Intro Java.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2020/03/25>
  ***********
-Package rerunfilecheck Info: File `"PPT Kalkulus 1 Bab1".out' has not changed.
-(rerunfilecheck)             Checksum: 92277C7A9DC06A5FFB95DE51E9DDA0DA;732.
+Package rerunfilecheck Info: File `"Intro Java".out' has not changed.
+(rerunfilecheck)             Checksum: 175133A11BE0DC2EC3251EBDBB4300B0;349.
  ) 
 Here is how much of TeX's memory you used:
- 45422 strings out of 475248
- 1082897 string characters out of 5757812
- 1949785 words of memory out of 5000000
- 65938 multiletter control sequences out of 15000+600000
- 620730 words of font info for 81 fonts, out of 8000000 for 9000
+ 44514 strings out of 475248
+ 1059144 string characters out of 5757812
+ 1957785 words of memory out of 5000000
+ 65050 multiletter control sequences out of 15000+600000
+ 611757 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,16n,123p,1316b,944s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmex10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmmi10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmmi6.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/teoso/AppData/Local/Progra
-ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/teoso/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/teoso/AppDat
-a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/teo
-so/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/U
-sers/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/ms
-bm10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/urw/arial/ua
-1r8a.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/urw/arial/ua
-1ri8a.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/urw/zapfdin
-g/uzdr.pfb>
-Output written on "PPT Kalkulus 1 Bab1.pdf" (25 pages, 903020 bytes).
+ 128i,15n,123p,1314b,1312s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\teoso\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt
+1000.pk><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmsy10.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/bera
+/fvsbo8a.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvs
+r8a.pfb><C:/Users/teoso/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvsro8a.
+pfb>
+Output written on "Intro Java.pdf" (10 pages, 764669 bytes).
 PDF statistics:
- 1163 PDF objects out of 1200 (max. 8388607)
- 56 named destinations out of 1000 (max. 500000)
- 1153 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 522 PDF objects out of 1000 (max. 8388607)
+ 24 named destinations out of 1000 (max. 500000)
+ 546 words of extra memory for PDF output out of 10000 (max. 10000000)
 
