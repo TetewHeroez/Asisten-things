@@ -144,11 +144,12 @@
     \end{frame}
     }
 
-    \AtBeginSection{\usebackgroundtemplate{
+    \AtBeginSection{
+    {\usebackgroundtemplate{
      \tikz[overlay,remember picture] \node[opacity=0.1, at=(current page.center)]{\includegraphics[width=\paperwidth]{Java code}};}
     \begin{frame}{Daftar isi}
         \tableofcontents[currentsection]
-    \end{frame}
+    \end{frame}}
     }
 
     \section{Variabel}

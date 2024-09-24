@@ -1,6 +1,2 @@
-| p | q | !p | !p ^ q | p <=> (!p ^ q) |
-|---|---|----|--------|----------------|
-| T | T | F  | F      | F              |
-| T | F | F  | F      | F              |
-| F | T | T  | T      | F              |
-| F | F | T  | F      | T              |
+Ekspektasi dari variabel acak X adalah 5.8
+Varians dari variabel acak X adalah 5.359999999999999

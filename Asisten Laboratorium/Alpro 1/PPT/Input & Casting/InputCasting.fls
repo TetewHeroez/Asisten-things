@@ -1,7 +1,7 @@
-PWD c:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Variable
+PWD c:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Input & Casting
 INPUT C:\Users\teoso\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Variable\Variable.tex
-OUTPUT Variable.log
+INPUT c:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Input & Casting\InputCasting.tex
+OUTPUT InputCasting.log
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\beamer\beamer.cls
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\beamer\beamer.cls
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\beamer\beamerbasemodes.sty
@@ -266,7 +266,7 @@ INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\beamer\beamercolort
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\beamer\beamerinnerthemedefault.sty
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\beamer\beamerinnerthemedefault.sty
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\beamer\beamericonbook.pdf
-OUTPUT Variable.pdf
+OUTPUT InputCasting.pdf
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\beamer\beamericonbook.pdf
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\beamer\beamericonbook.pdf
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\beamer\beamericonbook.20.pdf
@@ -625,10 +625,10 @@ INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\beamer\beamerfontth
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.sty
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.sty
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.sty
-INPUT .\Variable.aux
-INPUT .\Variable.aux
-INPUT Variable.aux
-OUTPUT Variable.aux
+INPUT .\InputCasting.aux
+INPUT .\InputCasting.aux
+INPUT InputCasting.aux
+OUTPUT InputCasting.aux
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
@@ -637,13 +637,13 @@ INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\epstopdf-pkg\epstop
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
-INPUT .\Variable.out
-INPUT .\Variable.out
-INPUT Variable.out
-INPUT Variable.out
-INPUT .\Variable.out
-INPUT .\Variable.out
-OUTPUT Variable.out
+INPUT .\InputCasting.out
+INPUT .\InputCasting.out
+INPUT InputCasting.out
+INPUT InputCasting.out
+INPUT .\InputCasting.out
+INPUT .\InputCasting.out
+OUTPUT InputCasting.out
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\translator\translator-basic-dictionary-English.dict
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\translator\translator-basic-dictionary-English.dict
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\translator\translator-basic-dictionary-English.dict
@@ -662,9 +662,9 @@ INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\translator\translat
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\translator\translator-theorem-dictionary-English.dict
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\translator\translator-theorem-dictionary-English.dict
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\translator\translator-theorem-dictionary-English.dict
-INPUT .\Variable.nav
-INPUT .\Variable.nav
-INPUT Variable.nav
+INPUT .\InputCasting.nav
+INPUT .\InputCasting.nav
+INPUT InputCasting.nav
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsr8t.tfm
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsr8t.tfm
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsr8t.tfm
@@ -726,9 +726,9 @@ INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\vf\public\bera\fvsr8t.v
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsr8r.tfm
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\vf\public\bera\fvsr8t.vf
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsr8r.tfm
-INPUT .\Variable.toc
-INPUT .\Variable.toc
-INPUT Variable.toc
+INPUT .\InputCasting.toc
+INPUT .\InputCasting.toc
+INPUT InputCasting.toc
 INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java code.jpg
 INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java code.jpg
 INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java code.jpg
@@ -736,35 +736,16 @@ INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium
 INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java code.jpg
 INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java code.jpg
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsr8t.tfm
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\motivated.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\motivated.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\motivated.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\motivated.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\motivated.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\motivated.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\vf\public\bera\fvsr8t.vf
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsr8r.tfm
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\motivated.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\motivated.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\motivated.jpg
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsro8t.tfm
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\vf\public\bera\fvsro8t.vf
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsro8r.tfm
-INPUT .\Variable.toc
-INPUT .\Variable.toc
-INPUT Variable.toc
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java code.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java code.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java code.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsbo8t.tfm
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\base\t1cmtt.fd
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\base\t1cmtt.fd
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\tex\latex\base\t1cmtt.fd
@@ -772,101 +753,123 @@ INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ectt109
 INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
 INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
 INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\vf\public\bera\fvsbo8t.vf
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsbo8r.tfm
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\vf\public\bera\fvsro8t.vf
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsro8r.tfm
 INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
 INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
 INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsb8t.tfm
+OUTPUT InputCasting.vrb
+INPUT .\InputCasting.vrb
+INPUT .\InputCasting.vrb
+INPUT InputCasting.vrb
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsr8t.tfm
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsr8t.tfm
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsb8t.tfm
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\vf\public\bera\fvsb8t.vf
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsb8r.tfm
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\vf\public\bera\fvsr8t.vf
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsr8r.tfm
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\vf\public\bera\fvsb8t.vf
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsb8r.tfm
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\vf\public\bera\fvsr8t.vf
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsr8r.tfm
-INPUT .\genshin.mp4
-INPUT .\genshin.mp4
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\genshin showcase.png
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\genshin showcase.png
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\genshin showcase.png
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\genshin showcase.png
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\genshin showcase.png
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\genshin showcase.png
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-INPUT .\Variable.toc
-INPUT .\Variable.toc
-INPUT Variable.toc
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java code.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java code.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java code.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-INPUT .\Variable.toc
-INPUT .\Variable.toc
-INPUT Variable.toc
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java code.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java code.jpg
-INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java code.jpg
-OUTPUT Variable.vrb
-INPUT .\Variable.vrb
-INPUT .\Variable.vrb
-INPUT Variable.vrb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecit1095.tfm
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ectt0900.tfm
 INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
 INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
 INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-OUTPUT Variable.vrb
-INPUT .\Variable.vrb
-INPUT .\Variable.vrb
-INPUT Variable.vrb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ectt1000.tfm
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\vf\public\bera\fvsr8t.vf
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsr8r.tfm
+OUTPUT InputCasting.vrb
+INPUT .\InputCasting.vrb
+INPUT .\InputCasting.vrb
+INPUT InputCasting.vrb
 INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
 INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
 INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
-OUTPUT Variable.nav
-OUTPUT Variable.toc
-OUTPUT Variable.snm
-INPUT Variable.aux
-INPUT .\Variable.out
-INPUT .\Variable.out
-INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1000.pk
-INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1000.pk
-INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt0900.pk
-INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt0900.pk
+INPUT .\InputCasting.vrb
+INPUT .\InputCasting.vrb
+INPUT InputCasting.vrb
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsb8t.tfm
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\vf\public\bera\fvsb8t.vf
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\public\bera\fvsb8r.tfm
+INPUT .\InputCasting.toc
+INPUT .\InputCasting.toc
+INPUT InputCasting.toc
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java code.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java code.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java code.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ectt0800.tfm
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ectt0800.tfm
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+OUTPUT InputCasting.vrb
+INPUT .\InputCasting.vrb
+INPUT .\InputCasting.vrb
+INPUT InputCasting.vrb
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+OUTPUT InputCasting.vrb
+INPUT .\InputCasting.vrb
+INPUT .\InputCasting.vrb
+INPUT InputCasting.vrb
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+OUTPUT InputCasting.vrb
+INPUT .\InputCasting.vrb
+INPUT .\InputCasting.vrb
+INPUT InputCasting.vrb
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT .\InputCasting.toc
+INPUT .\InputCasting.toc
+INPUT InputCasting.toc
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java code.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java code.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\Java code.jpg
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecit1095.tfm
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+INPUT C:\Users\teoso\OneDrive\Documents\Asisten Dosen & Lab\Asisten Laboratorium\Alpro 1\PPT\Graphicx\plana class.jpg
+OUTPUT InputCasting.nav
+OUTPUT InputCasting.toc
+OUTPUT InputCasting.snm
+INPUT InputCasting.aux
+INPUT .\InputCasting.out
+INPUT .\InputCasting.out
 INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecit1095.pk
 INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecit1095.pk
+INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt0900.pk
+INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt0900.pk
 INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1095.pk
 INPUT C:\Users\teoso\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1095.pk
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi8.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi8.pfb
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\bera\fvsb8a.pfb
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\bera\fvsb8a.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\bera\fvsbo8a.pfb
+INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\bera\fvsbo8a.pfb
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\bera\fvsr8a.pfb
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\bera\fvsr8a.pfb
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\bera\fvsro8a.pfb
 INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\bera\fvsro8a.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\symbols\msam10.pfb
-INPUT C:\Users\teoso\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\symbols\msam10.pfb
