@@ -1,0 +1,12 @@
+\frametitle{\insertsection}
+        \begin{definisi}
+            Ternary Operator merupakan operator yang digunakan untuk menggantikan struktur If-Else yang sederhana. Ternary Operator terdiri dari tiga bagian, yaitu kondisi, nilai jika benar, dan nilai jika salah.
+        \end{definisi}
+        \begin{lstlisting}[numbers=none]
+    variabel = ekspresi_logika ? nilai_jika_benar : nilai_jika_salah;
+        \end{lstlisting}
+        \begin{lstlisting}[caption={Contoh Ternary Operator}, firstnumber=34]
+    Scanner input = new Scanner(System.in);
+    int number = input.nextInt();
+    System.out.println(number > 0 ? "Positif" : "Negatif");
+        \end{lstlisting}

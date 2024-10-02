@@ -1,0 +1,4 @@
+\beamer@sectionintoc {1}{If-Else}{3}{0}{1}
+\beamer@sectionintoc {2}{Switch}{8}{0}{2}
+\beamer@sectionintoc {3}{Ternary Operator}{13}{0}{3}
+\beamer@sectionintoc {4}{Latihan}{15}{0}{4}
