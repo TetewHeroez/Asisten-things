@@ -1,0 +1,19 @@
+\frametitle{\insertsection}
+        \begin{lstlisting}[firstnumber=3,caption={Contoh penggunaan \texttt{return}}]
+    public static void main(String[] args) {
+        int x = input.nextInt();
+        if (x % 2 == 0) {
+            System.out.println("Bilangan genap");
+            return;
+        }
+        System.out.println("Bilangan ganjil");
+    }
+        \end{lstlisting}
+        \begin{lstlisting}[style=output]
+    Masukkan bilangan: (*\inputscan{12} \enter*)
+    Bilangan genap
+        \end{lstlisting}
+        \begin{lstlisting}[style=output]
+    Masukkan bilangan: (*\inputscan{7} \enter*)
+    Bilangan ganjil
+        \end{lstlisting}

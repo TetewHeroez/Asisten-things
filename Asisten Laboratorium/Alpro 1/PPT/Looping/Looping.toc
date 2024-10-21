@@ -1,0 +1,5 @@
+\beamer@sectionintoc {1}{For}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{Nested}{7}{0}{1}
+\beamer@sectionintoc {2}{While}{9}{0}{2}
+\beamer@sectionintoc {3}{Do-While}{13}{0}{3}
+\beamer@sectionintoc {4}{Latihan}{18}{0}{4}
