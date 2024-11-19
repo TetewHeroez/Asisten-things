@@ -1,0 +1,273 @@
+\documentclass[10pt,openany,a4paper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{animate}
+\usepackage{amsthm}
+\usepackage{caption}
+\usepackage{minted}
+\usepackage{fancyhdr}
+\usepackage{geometry}
+	\geometry{
+		total = {160mm, 237mm},
+		left = 30mm,
+		right = 35mm,
+		top = 35mm,
+        bottom = 30mm,
+        headheight=2cm
+	}
+\renewcommand{\headrulewidth}{0pt}
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\jawab}{\textbf{Solusi}:}
+
+\newtheorem*{teorema}{Teorema}
+\newtheorem*{definisi}{Definisi}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\includegraphics[width=1.6cm]{Provicom.png}}
+\fancyhead[C]{\textbf{\MakeUppercase{Latihan Evaluasi Akhir Semester}\\ 
+                \MakeUppercase{Semester Ganjil 2024/2025}\\ 
+                \MakeUppercase{Departemen Matematika - FSAD ITS}\\ 
+                \MakeUppercase{Program Sarjana}}}
+\fancyhead[R]{\includegraphics[width=1.6cm]{provicomIG.png}}
+\begin{document}
+\indent
+\textbf{Aturan Pengerjaan:}
+\begin{itemize}
+    \item Dilarang bekerja sama dalam bentuk apa pun. Segala jenis pelanggaran (mencontek, kerjasama, dsb) yang dilakukan saat EAS akan dikenakan sanksi pembatalan mata kuliah pada semester yang sedang berjalan.
+    \item Tuliskan Pakta Integritas di awal lembar jawaban Anda, sebagai berikut: ``Dengan ini saya menyatakan bahwa saya mengerjakan sendiri tanpa bantuan dan membantu orang lain dalam menyelesaikan soal-soal EAS Alpro 1'' dan ditandatangani.
+\end{itemize}
+
+\noindent
+Kerjakan dari yang termudah dulu yak !
+\begin{enumerate}
+    \item \textbf{(Skor: 20)} Lengkapi algoritma rekursif berikut untuk mengkonstruksi algoritma pengecekan Palindrome untuk input tipe data String.  Palindrom adalah kata, frasa, kalimat, angka, atau rangkaian simbol lain yang terbaca sama dari depan maupun dari belakang. Diasumsikan inputnya selalu \textit{lower case}.
+    
+    Contoh:
+    \begin{quote}
+        \noindent
+        \texttt{{\color{blue}isPalindrome}({\color{red}"kasur rusak"})\\
+        Output : true\\
+        {\color{blue}isPalindrome}({\color{red}"mas fuad"})\\
+        Output : false}
+    \end{quote}
+    \begin{minted}[fontsize=\footnotesize,frame=lines,framesep=2mm,linenos]{java}
+public static boolean isPalindrome(String s){
+    if (...) return true;
+    if (...) return false;
+    return isPalindrome(s.substring(1, s.length() - 1));
+}
+    \end{minted}
+    \textit{Hint}:
+\begin{itemize}
+    \item Jika string merupakan palindrom maka indeks string ke 0 dan indeks string terakhirnya pasti bernilai sama, atau panjang string adalah 1 atau 0.
+    \item \texttt{s.length()} merupakan statement untuk mencari panjang string \texttt{s}.
+    \item \texttt{s.charAt(2)} merupakan statement untuk menghasilkan output karakter pada indeks ke-2.
+    \item \texttt{s.substring(1,3)} merupakan statement mengambil bagian string dari indeks 1 sampai 2 (angka 3 hanya sebagai batas atas).
+    \item misal \texttt{s = "fuad"} maka \texttt{s.charAt(0) = 'f'},  \texttt{s.length() = 4}, \texttt{s.substring(1,3) = "ua"}
+\end{itemize}
+    
+    \item \textbf{(Skor: 20)} Lengkapi algoritma rekursif berikut untuk mengkonstruksi algoritma hitung mundur yang memiliki input \texttt{int n} dengan $n$ bernilai tak negatif.
+    \begin{quote}
+        \noindent
+        \texttt{{\color{blue}HitungMundur}(5)\\
+        Output : 5, 4, 3, 2, 1, STOP}
+    \end{quote}
+    \begin{minted}[fontsize=\footnotesize,frame=lines,framesep=2mm,linenos]{java}
+public static void HitungMundur(int n){
+    if (n == 0 ) ...;
+    if (n > 0) {
+       ...
+    }	    
+}
+    \end{minted}
+    
+    \item \textbf{(Skor: 20)} Lengkapi program dengan Java berikut, untuk mengecek apakah sebuah string adalah valid sebagai password. Ketentuan password sebagai berikut:
+\begin{itemize}
+    \item Harus 6 karakter
+    \item Terdiri dari huruf dan angka
+    \item Memuat sedikitnya 2 angka
+\end{itemize}
+Untuk mempermudah, anggap input letter selalu lowercase.\\
+Contoh:
+\begin{quote}
+\noindent
+\texttt{S = {\color{red}"sasa21"}, P = {\color{red}"puput8"},  J = {\color{red}"392jer"}}\\
+
+\texttt{{\color{blue}is\_valid\_password}(S) \\
+Output Method : true}\\
+
+\texttt{{\color{blue}is\_valid\_password}(P)\\ 
+Output Method : false}\\
+
+\texttt{{\color{blue}is\_valid\_password}(J)\\
+Output Method : true}
+\end{quote}
+\begin{minted}[fontsize=\footnotesize,frame=lines,framesep=2mm,linenos]{java}
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Password validasi: ");
+        String s = input.nextLine();
+        if (is_valid_password(s)) System.out.println("Valid");
+    }
+    public static boolean is_valid_password(String s){
+        ...
+    }
+    public static boolean is_Letter(char c){
+        ...
+    }
+    public static boolean is_Number(char c){
+        ...
+    }
+}
+    \end{minted}
+\textit{Hint:}
+\begin{itemize}
+    \item \texttt{s.length()} merupakan statement untuk mencari panjang string \texttt{s}.
+    \item \texttt{s.charAt(n)} merupakan statement untuk menghasilkan output karakter pada indeks ke-n. 
+    \item misal \texttt{s} = "fuad" maka \texttt{s.charAt(2)} = 'a',  \texttt{s.length()} = 4
+\end{itemize}
+    \item \textbf{(Skor: 20)} Diberikan program berikut.
+    \begin{minted}[fontsize=\footnotesize,frame=lines,framesep=2mm,linenos]{java}
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Nilai N = ");
+        int N = input.nextInt();
+        int hasil = aneh(N);
+        System.out.println("Hasil = " + hasil);
+    }
+    public static int aneh(int k){
+        if (k > 0) return k + aneh(k - 1);
+        return 0;
+    }
+}
+    \end{minted}
+    Tuliskan Output / Luaran Program apabila diberi input :
+\begin{enumerate}[label=(\alph*)]
+    \item $N = 0$
+    \item $N = 5$
+    \item $N = 10$
+    \item $N = 11.5$
+\end{enumerate}
+Serta tuliskan kesimpulanmu, apa yang dikerjakan oleh algoritma ini!
+
+    \item \textbf{(Skor: 20)} Perhatikan algoritma dibawah ini!
+    \begin{minted}[fontsize=\footnotesize,frame=lines,framesep=2mm,linenos]{java}
+import java.util.Scanner;
+public class Main{
+	public static void main(String[] args) {
+	    System.out.print("Masukkan ukuran array 2D (m x n) : ");
+	    Scanner input = new Scanner(System.in);
+	    int m = input.nextInt();
+	    int n = input.nextInt();
+	    
+	    int[][] array = new int[m][n];
+	    /* variabel genapGanjil merupakan array 1D 
+	    untuk menyimpan banyaknya bil genap dan ganjil dari array 2D */
+	    int[] genapGanjil = {0, 0};
+	    isiArray(array);
+	    genapGanjil = hitungGenapGanjil(array);
+	    
+	    // Menampilkan Output
+	    System.out.println("Jumlah angka genap : "+genapGanjil[0]);
+	    System.out.println("Jumlah angka ganjil : "+genapGanjil[1]);
+	    
+	}
+	public static void isiArray(int[][] a){
+	    Scanner in = new Scanner(System.in);
+	    for(int i = 0; i<a.length; i++){
+	        for(int j = 0; j<a[0].length; j++){
+	            System.out.print("array ["+i+"]["+j+"] : ");
+	            a[i][j] = in.nextInt();
+	        }
+	    }
+	}
+	
+	// Metode untuk menghitung jumlah angka genap dan ganjil dalam array 2D
+	// Hasilnya disimpan dalam array 1D banyakGenapGanjil
+	public static int[] hitungGenapGanjil(int[][] a){
+	    int[] banyakGenapGanjil = {0, 0};
+	    ...
+	    return banyakGenapGanjil;
+	}
+}
+    \end{minted}
+    Lengkapilah method \texttt{hitungGenapGanjil(int[][] a)} dan berikan simulasi output program tersebut dengan input variable array ukuran $3\times4$!
+
+    \item \textbf{(Skor: 20)} Telusuri program berikut dan temukan outputnya!
+    \begin{minted}[fontsize=\footnotesize,frame=lines,framesep=2mm,linenos]{java}
+public class Main{
+	public static void main(String[] args) {
+	    int[][] array = {{1,2,3,4,-1}, {5,6,7,8,-2}, {9,10,11,12,-3}};
+	    System.out.println(m1(array)[0]);
+	    System.out.println(m1(array)[1]);
+	    System.out.println(m1(array)[2]);
+	    
+	}
+	public static int[] m1(int[][] m){
+	    int[] h = new int [4];
+	    h[0] = m.length;
+	    h[1] = m[0].length;
+	    h[2] = m[1].length;
+	    h[3] = m[2].length;
+	    return h;
+	}
+}
+    \end{minted}
+\textit{Hint :}\\
+Method \texttt{m1(array)} outputnya adalah array1D, maka \texttt{m1(array)[0]} merupakan elemen indeks pertama dari \texttt{m1(array)}.
+
+    \item \textbf{(Skor: 20)} Perhatikan algoritma dibawah!
+    \begin{minted}[fontsize=\footnotesize,frame=lines,framesep=2mm,linenos]{java}
+import java.util.Scanner;
+public class Main{
+	public static void main(String[] args) {
+	    Scanner input = new Scanner(System.in);
+		System.out.println("Masukkan bilangan integer n : ");
+		int n = input.nextInt();
+		System.out.print("Hasil aneh : ");
+		for(int i = 0; i < n; i++){
+		    System.out.print(aneh(i)+ ", ");
+		}
+		
+	}
+	public static int aneh(int n){
+	    if(n==0) return 1;
+	    if(n==1) return 3;
+	    return 3 * aneh(n-1) - 2*aneh(n-2);
+	}
+}
+    \end{minted}
+\begin{enumerate}[label=(\alph*)]
+    \item Telusuri program tersebut, apa yang dikerjakan oleh program tersebut !
+    \item Dapatkan Output jika diberikan input/masukan
+    \begin{itemize}
+        \item \texttt{n = 0}
+        \item \texttt{n = 1}
+        \item \texttt{n = 7}
+        \item \texttt{n = 10}
+    \end{itemize}
+\end{enumerate}
+\end{enumerate}
+\begin{center}
+    \textbf{SELAMAT MENGERJAKAN}
+\end{center}
+\end{document}
