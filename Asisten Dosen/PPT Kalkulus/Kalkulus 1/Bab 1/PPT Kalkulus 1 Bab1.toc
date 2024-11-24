@@ -1,5 +1,0 @@
-\beamer@sectionintoc {1}{Bilangan Real}{3}{0}{1}
-\beamer@sectionintoc {2}{Nilai Mutlak}{12}{0}{2}
-\beamer@sectionintoc {3}{Grafik Persamaan}{15}{0}{3}
-\beamer@sectionintoc {4}{Persamaan Garis dan Jarak}{18}{0}{4}
-\beamer@sectionintoc {5}{Persamaan Lingkaran dan Parabola}{22}{0}{5}
