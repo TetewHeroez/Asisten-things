@@ -12,6 +12,7 @@
 \RequirePackage{animate}
 \RequirePackage{fancybox}
 \RequirePackage{wrapfig}
+\RequirePackage[bahasa]{babel}
 \RequirePackage{multirow}
 \RequirePackage{multicol}
 \RequirePackage{tkz-euclide,calc}
@@ -59,7 +60,6 @@
 
 \usefonttheme{professionalfonts}
 \setbeamertemplate{theorems}[numbered]
-\setbeamertemplate{itemize items}[circle]
 
 \usebackgroundtemplate{%
 \tikz[overlay,remember picture] \node[opacity=0.1, at=(current page.center)]{\includegraphics[width=\paperwidth]{plana class}};
@@ -73,32 +73,44 @@
 \newtheorem{latihan}{Latihan}
 \newtheorem*{contoh}{Contoh}
 \newtheorem*{masalah}{Masalah}
+\newtheorem*{akibat}{Akibat}
 \newcommand{\R}{\mathbb{R}}
 
 \AtBeginEnvironment{contoh}{%
     \setbeamercolor{block title}{use=example text,fg=white,bg=example text.fg!75!black}
     \setbeamercolor{block body}{parent=normal text,use=block title example,bg=block title example.bg!10!bg}
+    \setbeamercolor{item}{fg=example text.fg}
 }
 
 \AtBeginEnvironment{funfact}{%
-  \setbeamercolor{block title}{fg=white,bg=PastelGreen!50!HIMAmuda} % Set title background to pastel green and text to white
-  \setbeamercolor{block body}{parent=normal text,bg=PastelGreen!50!HIMAmuda!30!white} % Set body background to a lighter pastel green
+  \setbeamercolor{block title}{fg=white,bg=PastelGreen!50!HIMAmuda} 
+  \setbeamercolor{block body}{parent=normal text,bg=PastelGreen!50!HIMAmuda!30!white} 
+  \setbeamercolor{item}{fg=PastelGreen!50!HIMAmuda}
 }
 \AtBeginEnvironment{definisi}{
     \setbeamercolor{block title}{fg=white,bg=HIMAtua}
     \setbeamercolor{block body}{parent=normal text,bg=HIMAtua!30!white}
+    \setbeamercolor{item}{fg=HIMAtua}
 }
 \AtBeginEnvironment{teorema}{
     \setbeamercolor{block title}{bg=darkgray,fg=white}
     \setbeamercolor{block body}{parent=pallette tertiary,bg=HIMAabu!30!white}
+    \setbeamercolor{item}{fg=darkgray}
 }
 \AtBeginEnvironment{latihan}{%
-  \setbeamercolor{block title}{fg=white,bg=PastelGreen} % Set title background to pastel green and text to white
-  \setbeamercolor{block body}{parent=normal text,bg=PastelGreen!30!white} % Set body background to a lighter pastel green
+  \setbeamercolor{block title}{fg=white,bg=PastelGreen} 
+  \setbeamercolor{block body}{parent=normal text,bg=PastelGreen!30!white} 
+  \setbeamercolor{item}{fg=PastelGreen}
 }
 \AtBeginEnvironment{masalah}{%
-  \setbeamercolor{block title}{fg=white,bg=teal} % Set title background to pastel green and text to white
-  \setbeamercolor{block body}{parent=normal text,bg=teal!30!white} % Set body background to a lighter pastel green
+  \setbeamercolor{block title}{fg=white,bg=teal} 
+  \setbeamercolor{block body}{parent=normal text,bg=teal!30!white} 
+  \setbeamercolor{item}{fg=teal}
+}
+\AtBeginEnvironment{akibat}{%
+  \setbeamercolor{block title}{fg=white,bg=brown} 
+  \setbeamercolor{block body}{parent=normal text,bg=brown!30!white} 
+    \setbeamercolor{item}{fg=brown}
 }
 
 \renewcommand{\arraystretch}{1.3}
