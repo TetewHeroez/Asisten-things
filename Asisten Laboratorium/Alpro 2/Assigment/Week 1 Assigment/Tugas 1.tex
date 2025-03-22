@@ -1,0 +1,92 @@
+\documentclass[10pt,openany,a4paper]{article}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{animate}
+\usepackage{amsthm}
+\usepackage{caption}
+\usepackage{minted}
+\usepackage{fancyhdr}
+\usepackage{geometry}
+	\geometry{
+		total = {160mm, 237mm},
+		left = 30mm,
+		right = 35mm,
+		top = 35mm,
+    bottom = 30mm,
+    headheight=2cm
+	}
+\renewcommand{\headrulewidth}{0pt}
+
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\jawab}{\textbf{Solusi}:}
+
+\definecolor{bg}{rgb}{0.95, 0.95, 0.92}
+
+\setminted[java]{bgcolor=bg,fontsize=\small,frame=single,bgcolorpadding=1mm,escapeinside=||}
+
+\title{\textbf{Week 1 Assigment}}
+\date{15 Maret 2025}
+\author{Teosofi H.A \& Hafidz M.}
+
+\begin{document}
+  \maketitle
+  \pagenumbering{gobble}
+  \section*{Tugas Mandiri}
+  \begin{enumerate}
+    \item Perhatikan kedua program berikut ini:
+    \begin{multicols}{2}
+      \begin{minted}{java}
+public static int gcd(int a, int b) {
+  while (a!=b) {
+    if (a<b) b-=a;
+    if (a>b) a-=b;
+  }
+  return a;
+}
+      \end{minted}
+      \columnbreak
+      \begin{minted}{java}
+public static int lcm(int c, int d) {
+  int a=c, b=d;
+  while (c!=d) {
+    if (c<d) c+=a;
+    if (c>d) d+=b;
+  }
+  return c;
+}
+      \end{minted}
+    \end{multicols}
+    Buktikan atau sangkal bahwa masing-masing program menghasilkan output FPB dan KPK dari dua buah bilangan asli.
+
+    \item Diberikan potongan program sebagai berikut:
+    \begin{minted}{java}
+long[][] Fufu = {{1,0},{0,1}};
+long[][] Fafa = {{1,1},{1,0}};
+
+for (int i=1; i<=n ; i++){
+  Fufu = |\textcolor{blue}{multiply}|(Fufu,Fafa); //*
+}
+    \end{minted}
+    \textcolor{blue}{*Note: \texttt{multiply} merupakan \textit{method} yang mengalikan dua buah matriks $2\times 2$.}
+
+    Buktikan dengan induksi bahwa untuk setiap bilangan asli $n$, maka variabel \texttt{Fufu} akan menyimpan matriks
+    \[\begin{bmatrix}
+      F_{n+1} & F_n\\
+      F_n & F_{n-1}
+    \end{bmatrix}\]
+    Dengan $F_n$ adalah bilangan Fibonacci ke-$n$.
+  \end{enumerate}
+\end{document}

@@ -27,6 +27,11 @@
     filecolor=magenta,      
     urlcolor=cyan,
 }
+\RequirePackage{algorithm}
+\RequirePackage{algpseudocode}
+\RequirePackage{pgfplots}
+    \pgfplotsset{compat=1.18}
+\RequirePackage{soul}
 
 \renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
 
@@ -193,3 +198,5 @@ fill=PastelGreen]
 \end{tikzpicture}}}
 
 \newcommand{\inputscan}[1]{\raisebox{0pt}[1pt]{\colorbox{darkgray}{#1}}}
+
+\newcommand{\bigO}{\mathcal{O}}
