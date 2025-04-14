@@ -18,3 +18,5 @@
 *.vrb
 *_minted
 *.listing
+*.gnuplot
+*.sty

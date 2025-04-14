@@ -1,0 +1,236 @@
+\documentclass[11pt,openany,a4paper]{article}
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+\usepackage{tikz, pgfplots, tkz-euclide,calc}
+    \usetikzlibrary{patterns,snakes,shapes.arrows}
+\usepackage{fancyhdr}
+\usepackage{enumerate,enumitem}
+\usepackage{cancel}
+\usepackage{varwidth}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    }
+
+% TAMBAHKAN PACKAGE SENDIRI KALAU KURANG
+
+\usepackage{geometry}
+\geometry{
+	total = {160mm, 230mm},
+	left = 16mm,
+	right = 16mm,
+	top = 30mm,
+	bottom = 30mm,
+}
+
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[r]{}
+\fancyhead[l]{\fbox{\large{\textbf{SKPB - ITS}}}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
+\begin{document}
+
+    \begin{center}
+	{\underline{\textbf{\MakeUppercase{Evaluasi Akhir Semester Bersama Gasal 2023/2024}}}}
+    \end{center}
+
+    \begin{center}
+	\begin{tabular}{lcl}
+		Mata kuliah/SKS & : & Kalkulus 1 ( SM234101 ) / 3 SKS\\
+		Hari, Tanggal & : & Senin, 11 Desember 2023\\
+		Waktu & : & 07.00-08.40 WIB (100 menit)\\
+		Sifat & : & Tertutup\\
+		Kelas & : & 4-10
+	\end{tabular}
+    \end{center}
+	
+    \noindent\rule{\textwidth}{2.pt}
+	
+    \setlength{\parindent}{5pt}
+    \par Diberikan 5 soal, dengan bobot nilai masing-masing soal sama dan boleh dikerjakan tidak berurutan.
+    \setlength{\parindent}{5pt}
+    \centering{Tuliskan: Nama, NRP, dan Nomor Kelas pada lembar jawaban Anda.}
+    \setlength{\parindent}{5pt}
+    {\small
+    \par \textbf{\MakeUppercase{Dilarang membawa/menggunakan kalkulator dan alat komunikasi}}
+    \centering{\textbf{\MakeUppercase{dilarang memberikan/menerima jawaban selama ujian}}}}
+    \par \centering{\textbf{"Setiap tindak kecurangan akan mendapat sanksi akademik."}}
+	
+    \noindent\rule{\textwidth}{2.pt}
+	
+% SOAL DI SINI YAA
+    \begin{enumerate}
+	\item Kotak empat persegi panjang tertutup dengan dasar bujur sangkar mempunyai volume \(2560 \text{ cm}^3\).  
+  Harga bahan untuk bagian atas dan bawah adalah Rp. \(4.000\) per \(\text{cm}^2\), dan untuk sisinya adalah Rp. \(6.000\) per \(\text{cm}^2\).  
+  Tentukan biaya terkecil untuk membuat kotak tersebut.  
+
+        \item Diberikan fungsi \( f(x) = 5 + 4x^3 - x^4 \).  
+        \begin{enumerate}
+            \item Tentukan selang di mana fungsi \( f(x) \) naik atau turun.
+            \item Tentukan titik ekstrem relatif fungsi tersebut.
+            \item Tentukan selang kecekungan fungsi \( f(x) \) dan titik belok (jika ada).
+            \item Sketsa grafiknya.
+        \end{enumerate}
+
+        \item Hitung integral  
+        \[
+        \int_{0}^{4} \frac{4x}{\sqrt{2x+1}} \, dx
+        \]
+        
+        \item Hitung dan nyatakan dalam bentuk \( z = x + iy \) dari  
+        \[
+        \frac{(2 \text{ cis } 20^\circ)^5}{(2 \text{ cis } 40^\circ)^4}
+        \]
+
+        \item Selesaikan sistem persamaan linear berikut:  
+        \[
+        \begin{aligned}
+            2x - 3y + 3z &= -17 \\
+            x + 2y - 2z &= 9 \\
+            3x + y + 2z &= -7
+        \end{aligned}
+        \]
+        dengan eliminasi Gauss-Jordan
+    \end{enumerate}
+	
+  %   \vspace*{2cm}
+  %   \hrulefill\textbf{ Selamat Mengerjakan }\hrulefill
+
+  %   \begin{center}
+	% "\textit{Jujur adalah kunci kesuksesan}"
+  %   \end{center}
+    \fancyfoot{
+    \hrulefill\textbf{ Selamat Mengerjakan }\hrulefill
+
+    \begin{center}
+	    ``\textit{Jujur adalah kunci kesuksesan}''
+    \end{center}}
+
+    \newpage
+    \fancyhead[L]{\textit{Solution By: \hyperlink{https://github.com/TetewHeroez}{Tetew}}}
+    % \fancyfoot[R]{\animategraphics[autoplay,loop,width=0.1\textwidth]{15}{Kuru Kuru Herta/kuru kuru-}{0}{5}}
+    \fancyfoot{}
+    {\centering\textbf{SOLUSI}}
+    \renewcommand{\arraystretch}{1.5}
+    \renewcommand{\headrulewidth}{1pt}
+    \begin{enumerate}
+        \item Misalkan $h$ adalah tinggi dari kotak dan $s$ merupakan panjang sisi alas kotak, maka didapatkan hubungan
+        \[
+            V = s^2 h = 2560 \implies h = \frac{2560}{s^2}
+        \]
+        Selanjutnya harga kotak bergantung pada $s$ dan $h$ yang dimana untuk harga alas dan penutupnya adalah Rp. \(4.000s^2\), sedangkan harga sisi-sisinya adalah Rp. \(6.000sh\). Karena kotak memiliki 4 sisi dan alas atas dan bawah, maka harga total kotak dapat dirumuskan sebagai
+        \begin{align*}
+            C(s) &= 2\cdot 4.000s^2 + 4\cdot 6.000sh \\
+            C(s) &= 8.000s^2 + 24.000s\left(\frac{2560}{s^2}\right) \\
+            C(s) &= 8.000s^2 + \frac{61.440.000}{s} 
+        \end{align*}
+        Kemudian untuk meminimumkan biaya, kita perlu mencari titik kritis dari fungsi biaya $C(s)$ dengan cara mencari turunan pertama dari $C(s)$
+        \begin{align*}
+            C'(s) &= 16.000s - \frac{61.440.000}{s^2} 
+        \end{align*}
+        Lanjut dengan menentukan $s$ yang memenuhi $C'(s) = 0$ untuk mencari titik kritis
+        \begin{align*}
+            16.000s - \frac{61.440.000}{s^2} &= 0 \\
+            16.000s^3 &= 61.440.000 \\
+            s^3 &= \frac{61.440.000}{16.000} \\
+            s^3 &= 3840 \\
+            s &= \sqrt[3]{3840}=4\sqrt[3]{60}
+        \end{align*}
+        Untuk menentukan apakah $s$ adalah titik minimum, kita perlu mencari turunan kedua dari $C(s)$
+        \begin{align*}
+            C''(s) &= 16.000 + \frac{122.880.000}{s^3}
+        \end{align*}
+        Karena $C''(s) > 0$ untuk semua $s > 0$, maka $s=4\sqrt[3]{60}$ adalah absis dari titik minimum. Dengan demikian, biaya minimumnya dalam rupiah adalah
+        \begin{align*}
+            C(4\sqrt[3]{60}) &= 8.000(4\sqrt[3]{60})^2 + \frac{61.440.000}{4\sqrt[3]{60}} \\
+            &= 8.000\cdot 16\cdot 60^{2/3} + \frac{61.440.000}{4\sqrt[3]{60}} \\
+            &= 128.000\cdot 60^{2/3} + \frac{61.440.000}{4\sqrt[3]{60}} \\
+            &= \boxed{768000\sqrt[3]{450}}
+        \end{align*}
+        \item .
+        \item .
+        \item .
+        \item Langkah pertama adalah menuliskan sistem persamaan dalam bentuk \textit{augmented matrix} 
+        \[
+        \begin{bmatrix}
+            2 & -3 & 3 & | & -17 \\
+            1 & 2 & -2 & | & 9 \\
+            3 & 1 & 2 & | & -7
+        \end{bmatrix}
+        \]
+        Selanjutnya kita akan melakukan OBE sehingga matrix tersebut menjadi bentuk eselon tereduksi
+        \begin{align*}
+          &\begin{bmatrix}
+              2 & -3 & 3 & | & -17 \\
+              1 & 2 & -2 & | & 9 \\
+              3 & 1 & 2 & | & -7
+          \end{bmatrix}
+          \begin{matrix}
+              \xrightarrow{B_1 \Leftrightarrow B_2} 
+          \end{matrix}
+          \begin{bmatrix}
+              1 & 2 & -2 & | & 9 \\
+              2 & -3 & 3 & | & -17 \\
+              3 & 1 & 2 & | & -7
+          \end{bmatrix}
+          \begin{matrix}
+              {\scriptstyle B_2 - 2B_1}\\
+              \xrightarrow{B_3-3B_1}
+          \end{matrix}
+          \begin{bmatrix}
+              1 & 2 & -2 & | & 9 \\
+              0 & -7 & 7 & | & -35 \\
+              0 & -5 & 8 & | & -34
+          \end{bmatrix}\\
+          &\begin{matrix}
+            \xrightarrow{-\frac{1}{7}B_2}
+          \end{matrix}
+          \begin{bmatrix}
+              1 & 2 & -2 & | & 9 \\
+              0 & 1 & -1 & | & 5 \\
+              0 & -5 & 8 & | & -34
+          \end{bmatrix}
+          \begin{matrix}
+              \xrightarrow{B_3 + 5B_2}
+          \end{matrix}
+          \begin{bmatrix}
+              1 & 2 & -2 & | & 9 \\
+              0 & 1 & -1 & | & 5 \\
+              0 & 0 & 3 & | & -9
+          \end{bmatrix}
+          \begin{matrix}
+              \xrightarrow{\frac{1}{3}B_3}
+          \end{matrix}
+          \begin{bmatrix}
+              1 & 2 & -2 & | & 9 \\
+              0 & 1 & -1 & | & 5 \\
+              0 & 0 & 1 & | & -3
+          \end{bmatrix}\\
+          &\begin{matrix}
+              {\scriptstyle B_2 + B_3}\\
+              \xrightarrow{B_1 + 2B_3}
+          \end{matrix}
+          \begin{bmatrix}
+              1 & 2 & 0 & | & 3 \\
+              0 & 1 & 0 & | & 2 \\
+              0 & 0 & 1 & | & -3
+          \end{bmatrix}
+          \begin{matrix}
+              \xrightarrow{B_1-2B_2}
+          \end{matrix}
+          \begin{bmatrix}
+              1 & 0 & 0 & | & -1 \\
+              0 & 1 & 0 & | & 2 \\
+              0 & 0 & 1 & | & -3
+          \end{bmatrix}
+        \end{align*}
+        Dengan demikian, kita mendapatkan solusi dari sistem persamaan linear tersebut adalah $x = -1$, $y = 2$, dan $z = -3$.
+    \end{enumerate}
+\end{document}

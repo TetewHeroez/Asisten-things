@@ -1,0 +1,375 @@
+\documentclass{../praktikum-ppt}
+
+\author[Tew \& Haf]{Teosofi Hidayah Agung \\ Hafidz Mulia}
+\date{14 April 2025}
+\title[Alpro 2 - Week 4]{\textit{Exception} \textit{Handling}}
+\institute[Matematika ITS]{Departemen Matematika\\ Institut Teknologi Sepuluh Nopember}
+
+\begin{document}
+
+{\usebackgroundtemplate{
+  \tikz[overlay,remember picture] \node[opacity=0.2, at=(current page.center)]{\includegraphics[width=\paperwidth]{bg_22}};}
+\begin{frame}
+  \titlepage
+\end{frame}
+}
+
+\AtBeginSection{
+    {\usebackgroundtemplate{
+     \tikz[overlay,remember picture] \node[opacity=0.1, at=(current page.center)]{\includegraphics[width=\paperwidth]{code_bg}};}
+    \begin{frame}{Daftar isi}
+        \tableofcontents[currentsection]
+        % \begin{tikzpicture}[overlay, remember picture] 
+        %     \node at ([yshift=.5cm]current page.south east) [
+        %         anchor = south east, 
+        %         ] {
+        %     \animategraphics[autoplay,loop,width=0.2\textwidth]{30}{Arisu Dance/Arisu Dance-}{0}{186}
+        %     };
+        % \end{tikzpicture}
+    \end{frame}}
+    }
+    
+    \begin{frame}[fragile]
+      \begin{game}
+        Carilah kesalahan/eror pada kode berikut!
+      \end{game}
+      \begin{lstlisting}
+  public class Week4 { 
+    public static void main(String[] args) {        
+      int a[]=new int[5];        
+      a[5]=100;    
+      System.out.println("Tralalelo Tralala"); 
+    } 
+  }
+      \end{lstlisting}
+    \end{frame}
+    \begin{frame}[fragile]
+      \begin{game}
+        Carilah kesalahan/eror pada kode berikut!
+      \end{game}
+      \begin{lstlisting}
+  public class Week4 { 
+    public static void main(String[] args) {     
+      int result=1;   
+      for (int i = 5; i > 0; i--) {
+        for (int j = 1; j < 5; j++) {
+            System.out.println("i = " + i + " j = " + j);
+            int result =  (i*j)/result;;
+            System.out.println("Hasil 1/i = " + result);
+        }
+      }
+      System.out.println("Bombardino Crocodilo"); 
+    } 
+  }
+      \end{lstlisting}
+    \end{frame}
+    \begin{frame}[fragile]
+      \begin{game}
+        Carilah kesalahan/eror pada kode berikut!
+      \end{game}
+      \begin{columns}
+        \begin{column}{0.45\textwidth}
+          \begin{lstlisting}[numberstyle=\tiny\ttfamily\color{lightgray},basicstyle=\tiny\ttfamily]
+  public static void main(String[] args) {
+      String[] names = new String[15];
+      names[0] = "Tung";
+      names[2] = "Tung";
+      names[4] = "Tung";
+      names[6] = "Tung";
+      names[8] = "Tung";
+      names[9] = "Tung";
+      names[5] = "Tung";
+      names[7] = "Tung";
+      names[3] = "Tung";
+      names[10] = "Tung";
+      names[11] = "Sahur";
+
+      for (int i = 0; i < names.length; i++) 
+        System.out.println("names[" + i + "] = " + names[i]);
+      
+      System.out.println("\nStecu:");
+          \end{lstlisting}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+          \begin{lstlisting}[numberstyle=\tiny\ttfamily\color{lightgray},basicstyle=\tiny\ttfamily]
+     for (int i = 0; i < names.length; i++) {
+        if (names[i] != null) 
+           System.out.println("nama" + i + ": " + names[i].length());
+        else {System.out.println("nama" + i + ": null");}
+     }
+     System.out.println("\nABCD:");
+     int countNull = 0;
+     for (int i = 0; i < names.length; i++) 
+      if (names[i] == null) countNull++;
+          
+     System.out.println("Kernel: " + countNull);
+     System.out.println("\nNotul:");
+     for (String name : names) 
+         if (name != null) System.out.println(name.toUpperCase());
+          
+     int length = names[1].length(); 
+     System.out.println("Simpansini Bananini");
+   }
+          \end{lstlisting}
+        \end{column}
+      \end{columns}
+    \end{frame}
+
+    \begin{frame}
+      \begin{masalah}
+        Setelah di-\textit{run}, 3 kode sebelumnya tidak bisa menjalankan baris kode terakhir dalam fungsi \texttt{main}. Hal tersebut terkadang membuat program yang eror tidak dapat terdeteksi dimana eror tersebut berada.
+
+        Dalam sebuah program yang \textbf{cukup besar} dan kelakuan \textit{user} yang tidak bisa diprediksi, maka dibutuhkan suatu \textit{tools} untuk menangani kesalahan apa saja yang mungkin saja terjadi dalam program yang telah dibuat.
+      \end{masalah}
+    \end{frame}
+
+    \section{Exception}
+    \begin{frame}
+      \frametitle{\insertsection}
+      \begin{definisi}
+        \textbf{Exception} di Java adalah mekanisme untuk menangani kesalahan (error) yang terjadi saat program berjalan (runtime error), agar program tidak langsung crash dan bisa menangani situasi yang tidak normal secara terkendali.\\~\\
+
+        Singkatnya \textbf{Exception} adalah objek yang mewakili sebuah kondisi error yang terjadi saat eksekusi program.
+      \end{definisi}
+    \end{frame}
+
+    \begin{frame}
+      \frametitle{\insertsection}
+      \begin{contoh}
+        Pada dasarnya, beberapa eror di java menghasilkan suatu variabel yang disebut \textbf{exception}.
+        \begin{itemize}
+          \item \textbf{ArithmeticException} adalah exception yang terjadi ketika terjadi kesalahan aritmatika, seperti pembagian dengan nol.
+          \item \textbf{ArrayIndexOutOfBoundsException} adalah exception yang terjadi ketika mencoba mengakses indeks array yang tidak valid.
+          \item \textbf{NullPointerException} adalah exception yang terjadi ketika mencoba mengakses metode atau variabel dari objek yang bernilai null.
+        \end{itemize}
+      \end{contoh}
+    \end{frame}
+
+    \begin{frame}[fragile]
+      \frametitle{\insertsection}
+      \begin{lstlisting}[caption={\textit{ArithmeticException}}]
+  public class ArithmeticErrorExample {
+    public static void main(String[] args) {
+        int result = 1 / (9/11); 
+        System.out.println("Hasil: " + result);
+    }
+  }
+        \end{lstlisting}
+        \begin{lstlisting}[caption={\textit{NullPointerException}}]
+  public class NullPointerErrorExample {
+    public static void main(String[] args) {
+        String text = null;
+        System.out.println("Panjang string: " + text.length());
+    }
+  }
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[fragile]
+      \frametitle{\insertsection}
+      \begin{lstlisting}[caption={\textit{ArrayIndexOutOfBoundsException}}]
+  public class ArrayIndexErrorExample {
+    public static void main(String[] args) {
+        int[] numbers = {10, 20, 30};
+        System.out.println("Angka di indeks 5: " + numbers[5]); 
+    }
+  }
+      \end{lstlisting}
+    \end{frame}
+
+    \section{Try-Catch}
+    \begin{frame}
+      \frametitle{\insertsection}
+      \begin{definisi}
+         \textbf{Try} adalah blok kode yang digunakan untuk menangkap kesalahan yang mungkin terjadi dalam program. Jika terjadi kesalahan, maka program mengkonversinya dalam sebuah \textit{exception} dan akan mengeksekusi kode di dalam blok \textbf{catch}.
+      \end{definisi}
+      \begin{alertblock}{Eror dan Exception}
+        Jika tidak ada yang menangkap variabel exception (tidak ada \texttt{try-catch}), maka akan menyebabkan program terhenti sebelum mencapai baris kode terakhir dalam sebuah fungsi.
+      \end{alertblock}
+    \end{frame}
+
+    \begin{frame}[fragile]
+      \frametitle{\insertsection}
+      \begin{lstlisting}[caption={Struktur \textit{Try-Catch} pada Java}]
+    try {
+        // Kode yang mungkin menyebabkan exception
+    } catch (Exception e) {
+        // Menangkap exception dan menampilkan pesan kesalahan
+    }
+      \end{lstlisting}
+      \begin{alertblock}{Print Console}
+        Alangkah baiknya jika menampilkan pesan eror menggunakan \texttt{System.err.println()} 
+      \end{alertblock}
+    \end{frame}
+
+    \begin{frame}[fragile]
+      \frametitle{\insertsection}
+      \begin{lstlisting}[caption={Contoh \textit{Try-Catch} \#1}]
+    int bil = 10;
+    try {
+        System.out.println(bil / 0);
+    } catch (Exception e) {
+        System.out.println("Ini menghandle error yang terjadi");
+    }
+      \end{lstlisting}
+      \begin{lstlisting}[caption={Contoh \textit{Try-Catch} \#2}]
+    int bil = 10;
+    try {
+        System.out.println(bil / 0);
+    } catch (ArithmeticException e) {
+        System.out.println("Ini menghandle error yang terjadi");
+    }
+      \end{lstlisting}
+    \end{frame}
+
+    \subsection{Finally}
+    \begin{frame}
+      \frametitle{\insertsection}
+      \framesubtitle{\insertsubsection}
+      \begin{definisi}
+        \textbf{Finally} adalah bagian dari blok try-catch-finally yang selalu dijalankan, terlepas dari apakah terjadi exception atau tidak.        
+      \end{definisi}
+      \begin{block}{Penerapan}
+        Secara garis besar, \textit{finally} biasanya digunakan untuk membersihkan resource seperti:
+        \begin{itemize}
+          \item Menutup koneksi jaringan
+          \item Menutup stream file
+          \item Menutup koneksi database
+          \item Menghapus data sementara
+          \item dll
+        \end{itemize}
+      \end{block}
+    \end{frame}
+
+    \begin{frame}[fragile]
+      \frametitle{\insertsection}
+      \framesubtitle{\insertsubsection}
+      \begin{lstlisting}[caption={\textit{Try-Catch-Finally} pada Java}]
+    public class FinallyExample1 {
+      public static void main(String[] args) {
+          try {
+              int hasil = 10 / 0;
+          } catch (ArithmeticException e) {
+              System.out.println("Terjadi error: " + e);
+          } finally {
+              System.out.println("Blok finally dijalankan (walau ada error)");
+          }
+      }
+    }
+      \end{lstlisting}
+    \end{frame}
+
+    \section{Throw}
+    \begin{frame}[fragile]
+      \frametitle{\insertsection}
+      \begin{definisi}
+        \textbf{Throw} adalah keyword yang digunakan untuk melempar (\textit{throw}) sebuah objek exception secara eksplisit selama eksekusi program.
+      \end{definisi}
+      Karena \texttt{exception} adalah objek, maka perlu diinisialisasi (menggunakan \texttt{new}) terlebih dahulu sebelum dilemparkan.
+      \begin{lstlisting}[caption={Syntax \textit{Throw}}]
+        throw new ExceptionType("pesan error");
+      \end{lstlisting}
+    \end{frame}
+  
+
+    \begin{frame}[fragile]
+      \frametitle{\insertsection}
+      \begin{lstlisting}[caption={Contoh \textit{Throw}}]
+    public static void main(String[] args) {
+        int umur = -5;
+        if (umur < 0) 
+            throw new IllegalArgumentException("Umur tidak boleh negatif!");
+        System.out.println("Umur: " + umur);
+    }
+      \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[fragile]
+      \frametitle{\insertsection}
+      \begin{lstlisting}[caption={Contoh \textit{Throws}}]
+    public class Main {
+      public static int getElement(int[] arr, int index) throws Exception {
+          return arr[index];
+      }
+    
+      public static void main(String[] args) {
+          int[] angka = {10, 20, 30};
+          try {
+              int hasil = getElement(angka, 5);  // Index 5 tidak ada
+              System.out.println("Elemen: " + hasil);
+          } catch (ArrayIndexOutOfBoundsException e) {
+              System.out.println("Error: " + e.getMessage());
+          }
+      }
+    }
+      \end{lstlisting} 
+    \end{frame}
+
+    \begin{frame}
+      \frametitle{\insertsection}
+      \begin{table}[h!]
+        \centering
+        \begin{tabular}{|p{6cm}|p{6cm}|}
+        \hline
+        \rowcolor{HIMAmuda}\textbf{throw} & \textbf{throws} \\
+        \hline
+        Digunakan untuk melempar exception di dalam sebuah method & Digunakan untuk menyatakan jenis exception yang mungkin dilemparkan oleh sebuah method \\
+        \hline
+        Tidak dapat melempar lebih dari satu exception secara langsung & Dapat mendeklarasikan lebih dari satu jenis exception \\
+        \hline
+        \begin{itemize}
+            \item \texttt{throw} diikuti oleh objek baru (dari tipe exception)
+            \item Digunakan di dalam tubuh method
+        \end{itemize} 
+        & 
+        \begin{itemize}
+            \item \texttt{throws} diikuti oleh nama class exception
+            \item Digunakan di bagian deklarasi method (signature)
+        \end{itemize} \\
+        \hline
+        \end{tabular}
+        \caption{Perbandingan antara \texttt{throw} dan \texttt{throws} dalam Java}
+        \end{table}
+    \end{frame}
+
+    \section{Latihan}
+    \begin{frame}[fragile]
+      \begin{columns}
+        \begin{column}{0.45\textwidth}
+          \begin{lstlisting}[numberstyle=\scriptsize\ttfamily\color{lightgray},basicstyle=\scriptsize\ttfamily]
+  String a;
+  String[] nama = new String[1];
+  try {
+      statement1;
+      nama[2] = "Dinda";
+      statement2;
+  }
+  catch (ArithmeticException ex1) {
+      System.err.println(ex1);
+  }
+  catch (Exception ex2) {
+      System.out.println(ex2);
+  }
+  finally {
+      System.out.println("stecu");
+  }
+  System.out.println("choco-minto");
+            \end{lstlisting}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+        \begin{latihan}
+          Apa output dari program tersebut apabila terjadi kondisi seperti ini, jelaskan:
+        
+        \begin{enumerate}
+            \item Jika \texttt{statement1} dan \texttt{statement2} tidak terjadi exception (pernyataannya benar)
+            \item Jika \texttt{statement1} diganti dengan \texttt{a=3;} dan \texttt{statement2} tidak terjadi exception
+            \item Jika \texttt{statement1} tidak terjadi exception, dan \texttt{statement2} diganti dengan \texttt{System.out.println(1/0);}
+            \item Jika \texttt{statement1} diganti dengan \texttt{System.out.println(1/0);} dan \texttt{statement2} diganti \texttt{nama[0].length();}
+        \end{enumerate}
+          \end{latihan}
+        \end{column}
+      \end{columns}
+
+    \end{frame}
+    
+\end{document}

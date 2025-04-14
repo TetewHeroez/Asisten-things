@@ -1,0 +1,640 @@
+\documentclass[11pt,openany,a4paper]{article}
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+\usepackage{tikz, pgfplots, tkz-euclide,calc}
+    \usetikzlibrary{patterns,snakes,shapes.arrows}
+    \tikzset{Arrow Style/.style={text=black, font=\boldmath}}
+    \newcommand{\tikzmark}[1]{%
+        \tikz[overlay, remember picture, baseline] \node (#1) {};%
+    }
+
+    \newcommand*{\XShift}{0.5em}
+    \newcommand*{\YShift}{0.5ex}
+
+    \NewDocumentCommand{\DrawArrow}{s O{} m m m}{%
+        \begin{tikzpicture}[overlay,remember picture]
+            \draw[->, thick, Arrow Style, #2] 
+                    ($(#3.west)+(\XShift,\YShift)$) -- 
+                    ($(#4.east)+(-\XShift,\YShift)$)
+            node [midway,above] {#5};
+        \end{tikzpicture}%
+    }
+\usepackage{fancyhdr}
+\usepackage{enumerate,enumitem}
+\usepackage{cancel}
+\usepackage{polynom}
+\makeatletter
+\patchcmd{\pld@ArrangeResult}{\bigr)}{
+    \,\tikz[overlay]{
+        \coordinate (A) at (0,-3pt);
+        \coordinate (B) at (0,\normalbaselineskip-0.8pt);
+        \draw (A) to[in=-40, out=40, looseness=1] (B);
+    }
+}{}{}
+\makeatother
+\makeatletter
+\patchcmd{\pld@ArrangeResult}{\tw@-\pld@maxcol}{
+  \tw@-\pld@maxcol
+}{}{}
+\makeatother
+\usepackage{varwidth}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    }
+
+% TAMBAHKAN PACKAGE SENDIRI KALAU KURANG
+
+\usepackage{geometry}
+\geometry{
+	total = {160mm, 237mm},
+	left = 18mm,
+	right = 13mm,
+	top = 30mm,
+	bottom = 30mm,
+}
+
+
+\pagestyle{fancy}
+\fancypagestyle{problems}{
+  \fancyhead{}
+  \fancyfoot{}
+  \fancyhead[r]{}
+  \fancyhead[l]{\fbox{\large{\textbf{SKPB - ITS}}}}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\hrulefill}{\leavevmode\leaders\hrule height 2pt\hfill\kern0pt}
+
+
+\fancypagestyle{solution}{
+  \pagestyle{fancy}
+  \newpage
+  \fancyhead[L]{\textit{Solution By: \hyperlink{https://github.com/TetewHeroez}{Tetew Heroez}}}
+  % \fancyfoot[R]{\animategraphics[autoplay,loop,width=0.1\textwidth]{15}{Kuru Kuru Herta/kuru kuru-}{0}{5}}
+  \fancyfoot{}
+  \renewcommand{\headrulewidth}{1pt}
+}
+
+\newcommand{\Hrule}{\stackrel{\text{\raisebox{1.5pt}{\textcircled{\raisebox{-.9pt} {L}}}}}{=}}
+
+\begin{document}
+\pagestyle{problems}
+    \begin{center}
+	{\underline{\textbf{\MakeUppercase{Evaluasi Tengah Semester Bersama Genap 2024/2024}}}}
+    \end{center}
+
+    \begin{center}
+	\begin{tabular}{lcl}
+		Mata kuliah/SKS & : & Kalkulus 2 ( SM234201 ) / 3 SKS\\
+		Hari, Tanggal & : & Rabu, 24 April 2024\\
+		Waktu & : & 07.00-08.40 WIB (100 menit)\\
+		Sifat & : & Tertutup\\
+		Kelas & : & 1-13, 101
+	\end{tabular}
+    \end{center}
+	
+    \noindent\rule{\textwidth}{2.pt}
+	
+    \setlength{\parindent}{5pt}
+    \par Diberikan 5 soal, dengan bobot nilai masing-masing soal sama dan boleh dikerjakan tidak berurutan.
+    \setlength{\parindent}{5pt}
+    \centering{Tuliskan: Nama, NRP, dan Nomor Kelas pada lembar jawaban Anda.}
+    \setlength{\parindent}{5pt}
+    {\small
+    \par \textbf{\MakeUppercase{Dilarang membawa/menggunakan kalkulator dan alat komunikasi}}
+    \centering{\textbf{\MakeUppercase{dilarang memberikan/menerima jawaban selama ujian}}}}
+    \par \centering{\textbf{"Setiap tindak kecurangan akan mendapat sanksi akademik."}}
+	
+    \noindent\rule{\textwidth}{2.pt}
+	
+% SOAL DI SINI YAA
+\begin{enumerate}
+  \item
+    Jika 
+    $
+      \dfrac{d}{dx}\left(\sec^{-1}u\right)
+      = \dfrac{1}{u\sqrt{u^2-1}}\dfrac{du}{dx}
+    $
+    untuk \(u\) fungsi \(x\), maka dapatkan \(\displaystyle \frac{dy}{dx}\) jika 
+    $
+      y = \sec^{-1}\left(e^{-3x}\right).
+    $
+    
+  \item Hitung integral
+    \[
+      \int_{\frac14}^{\frac12} \frac{e^p}{x^2}\,dx
+    \]
+    dengan $p=\dfrac{1}{2x}$
+    
+  \item Hitung integral
+    \[
+      \int \sin^2(2x)\,\cos^3(2x)\,dx.
+    \]
+    
+  \item Hitung integral
+    \[
+      \int \frac{x^3}{x^2 - 5x - 6}\,dx.
+    \]
+    
+  \item Dapatkan
+    \[
+      \lim_{x\to 0}\left(\frac{1}{x} - \frac{1}{e^x - 1}\right).
+    \]
+\end{enumerate}
+	
+    \fancyfoot{
+    \hrulefill\textbf{ Selamat Mengerjakan }\hrulefill
+
+    \begin{center}
+	    ``\textit{Jujur adalah kunci kesuksesan}''
+    \end{center}}
+
+    \newpage
+    \pagestyle{solution}
+    {\centering\textbf{SOLUSI}}
+    
+    \begin{enumerate}
+        \item Dari informasi yang diberikan, dapat dimisalkan bahwa
+        \[
+          u = e^{-3x} \implies \frac{du}{dx} = -3e^{-3x}
+        \]
+        Sehingga, kita dapatkan
+        \[
+          \frac{dy}{dx} = \dfrac{d}{dx}\left(\sec^{-1}u\right) = \frac{1}{u\sqrt{u^2-1}}\frac{du}{dx} = \frac{1}{\cancel{e^{-3x}}\sqrt{e^{-6x}-1}} \cdot (-3\cancel{e^{-3x}}) = \boxed{-\frac{3}{\sqrt{e^{-6x}-1}}}.
+        \]
+
+        \item Soal tersebut telah dipermudahkan dengan memberikan \text{clue} yaitu menggunakan substitusi 
+        \[
+          p = \frac{1}{2x} \implies 2dp = -\frac{1}{x^2}dx
+        \]
+        dan untuk batas integralnya, kita dapatkan
+        \begin{align*}
+          x = \frac{1}{4} &\implies p = \frac{1}{2(\frac{1}{4})} = 2 \\
+          x = \frac{1}{2} &\implies p = \frac{1}{2(\frac{1}{2})} = 1
+        \end{align*}
+        Sehingga integral tersebut dapat ditulis ulang menjadi
+        \begin{align*}
+          \int_{\frac14}^{\frac12} \frac{e^{\frac{1}{2x}}}{x^2}\,dx &= \int_{2}^{1} e^p (-2dp) = 2\int_{1}^{2} e^p \, dp = 2\left[e^p\right]_{1}^{2} = \boxed{2\left(e^2 - e\right) } 
+        \end{align*}
+        
+        \item Ingat bahwa $\cos^2(\theta) = 1 - \sin^2(\theta)$, sehingga integral tersebut dapat ditulis ulang menjadi\footnote{Anda juga dapat menggunakan rumus yang ada pada buku diktat Kalkulus II}
+        \begin{align*}
+          \int \sin^2(2x)\,\cos^3(2x)\,dx&= \int \sin^2(2x)\,\cos^2(2x) \cos(2x)\,dx \\
+          &= \int \sin^2(2x)\left(1 - \sin^2(2x)\right)\cos(2x)\,dx\\
+          &= \int \left[\sin^2(2x)-\sin^4(2x)\right]\cos(2x)\,dx
+        \end{align*}
+        Dengan menggunakan substitusi $u = \sin(2x)\implies \dfrac{1}{2}du= \cos(2x)\,dx$, diperoleh
+        \begin{align*}
+          \int \left[\sin^2(2x)-\sin^4(2x)\right]\cos(2x)\,dx &= \frac{1}{2}\int \left[u^2 - u^4\right]\,du \\
+          &= \frac{1}{2}\left[\frac{u^3}{3} - \frac{u^5}{5}\right] + C \\
+          &= \boxed{\frac{1}{6}\sin^3(2x) - \frac{1}{10}\sin^5(2x) + C}
+        \end{align*}
+        \item Karena bentuk pecahan rasional tersebut memiliki pembilang yang derajatnya lebih besar dari penyebutnya, maka kita harus menyederhanakannya terlebih dahulu. 
+        
+        Disini akan digunakan metode pembagian porogapit untuk menyederhanakan bentuk rasional tersebut.
+        \begin{center}
+          \polylongdiv{x^3}{x^2-5x-6}
+        \end{center}
+        Fungsi rasional tersebut dapat ditulis ulang menjadi
+        \[
+          \frac{x^3}{x^2 - 5x - 6} = x + 5 + \frac{31x+30}{x^2 - 5x - 6}
+        \]
+        Sekarang kita tinjau pecahan rasional
+        \[
+          \frac{31x+30}{x^2 - 5x - 6} = \frac{31x+30}{(x-6)(x+1)} = \frac{A}{x-6} + \frac{B}{x+1} = \frac{A(x+1) + B(x-6)}{(x-6)(x+1)}
+        \]
+        Dengan menyamakan pembilang, kita dapatkan
+        \[
+          31x + 30 = A(x+1) + B(x-6)
+        \]
+        Subtitusikan $x=6$ dan $x=-1$ untuk mendapatkan nilai $A$ dan $B$\footnote{$x$ yang dipilih boleh saja sembarang bilangan, namun akan lebih mudah jika kita memilih $x$ yang membuat salah satu ekspresi menjadi nol.}
+        \begin{align*}
+          x = 6 &\implies 31(6) + 30 = A(6+1) + B(0) \\
+          &\implies 216 = 7A \implies A = \frac{216}{7} \\
+          x = -1 &\implies 31(-1) + 30 = A(0) + B(-1-6) \\
+          &\implies -1 = -7B \implies B = \frac{1}{7}    
+        \end{align*}
+        Sehingga integral pada soal dapat dituliskan sebagai
+        \begin{align*}
+          \int \frac{x^3}{x^2 - 5x - 6}\,dx &= \int x + 5 + \frac{216}{7(x-6)} + \frac{1}{7(x+1)}\,dx \\
+          &= \int (x + 5)\,dx + \frac{216}{7}\int \frac{1}{x-6}\,dx + \frac{1}{7}\int \frac{1}{x+1}\,dx \\
+          &= \boxed{\frac{x^2}{2} + 5x + \frac{216}{7}\ln|x-6| + \frac{1}{7}\ln|x+1| + C} \\
+        \end{align*}
+
+        \item Ketika $x\to 0$ ekspresi diatas menjadi bentuk tak tentu $\infty - \infty$, sehingga kita perlu mengubah ekspresi fungsinya agar mendapatkan bentuk $\dfrac{0}{0}$ atau $\dfrac{\infty}{\infty}$.\footnote{L'Hôpital hanya bisa digunakan pada bentuk $\frac{0}{0}$ atau $\frac{\infty}{\infty}$}
+        
+        Perhatikan bahwa
+        \begin{align*}
+          \lim_{x\to 0}\left(\frac{1}{x} - \frac{1}{e^x - 1}\right) &= \lim_{x\to 0}\left(\frac{e^x - 1 - x}{x(e^x - 1)}\right) = \frac{0}{0}
+        \end{align*}
+        oleh karena itu kita dapat menggunakan L'Hôpital untuk menyelesaikan limit tersebut.
+        \begin{align*}
+          \lim_{x\to 0}\left(\frac{e^x - 1 - x}{x(e^x - 1)}\right)\Hrule\lim_{x\to 0}\left(\frac{e^x - 1}{e^x - 1 + xe^x}\right)\Hrule \lim_{x\to 0}\left(\frac{e^x}{2e^x + xe^x}\right) = \frac{1}{2\cdot1+0\cdot1}=\boxed{\frac{1}{2}}
+        \end{align*}
+    \end{enumerate}
+
+    \newpage
+    \pagestyle{problems}
+
+    \begin{center}
+	{\underline{\textbf{\MakeUppercase{Evaluasi Tengah Semester Bersama Genap 2024/2024}}}}
+    \end{center}
+
+    \begin{center}
+	\begin{tabular}{lcl}
+		Mata kuliah/SKS & : & Kalkulus 2 ( SM234201 ) / 3 SKS\\
+		Hari, Tanggal & : & Rabu, 24 April 2024\\
+		Waktu & : & 09.00-10.40 WIB (100 menit)\\
+		Sifat & : & Tertutup\\
+		Kelas & : & 15-27, 102
+	\end{tabular}
+    \end{center}
+	
+    \noindent\rule{\textwidth}{2.pt}
+	
+    \setlength{\parindent}{5pt}
+    \par Diberikan 5 soal, dengan bobot nilai masing-masing soal sama dan boleh dikerjakan tidak berurutan.
+    \setlength{\parindent}{5pt}
+    \centering{Tuliskan: Nama, NRP, dan Nomor Kelas pada lembar jawaban Anda.}
+    \setlength{\parindent}{5pt}
+    {\small
+    \par \textbf{\MakeUppercase{Dilarang membawa/menggunakan kalkulator dan alat komunikasi}}
+    \centering{\textbf{\MakeUppercase{dilarang memberikan/menerima jawaban selama ujian}}}}
+    \par \centering{\textbf{"Setiap tindak kecurangan akan mendapat sanksi akademik."}}
+	
+    \noindent\rule{\textwidth}{2.pt}
+	
+% SOAL DI SINI YAA
+\begin{enumerate}
+  \item Dapatkan turunan dari \( f(x) = e^x \tan^{-1} x \).
+  
+  \item Hitung integral
+  \[
+  \int \frac{e^x}{e^x + 1} \, dx.
+  \]
+  
+  \item Hitung integral
+  \[
+  \int \ln(t^2 + 1) \, dt.
+  \]
+  
+  \item Hitung integral
+  \[
+  \int \frac{2x^2 - 2x - 1}{x^2 + x^3} \, dx.
+  \]
+  
+  \item Selesaikan integral tak wajar
+  \[
+  \int_0^{\pi/6} \frac{\cos x}{\sqrt{1 - 2 \sin x}} \, dx.
+  \]
+\end{enumerate}
+	
+    \fancyfoot{
+    \hrulefill\textbf{ Selamat Mengerjakan }\hrulefill
+
+    \begin{center}
+	    ``\textit{Jujur adalah kunci kesuksesan}''
+    \end{center}}
+
+    \newpage
+    \pagestyle{solution}
+    {\centering\textbf{SOLUSI}}
+    \begin{enumerate}
+        \item Ingat bahwa $\dfrac{d}{dx}\tan^{-1} x = \dfrac{1}{1+x^2}$. Kemudian dengan memisalkan $u = e^x$ dan $v=\tan^{-1} x$, maka dengan aturan perkalian pada diferensiasi didapatkan
+        \begin{align*}
+          f'(x) &= u'v + uv' \\
+          &= e^x \tan^{-1} x + e^x \cdot \frac{1}{1+x^2} \\
+          &= \boxed{e^x \left( \tan^{-1} x + \frac{1}{1+x^2} \right)}
+        \end{align*}
+        \item Gunakan teknik substitusi, yaitu $u = e^x + 1$, sehingga $du = e^x dx$. Akhirnya diperoleh
+        \begin{align*}
+          \int \frac{e^x}{e^x + 1} \, dx &= \int \frac{du}{u} = \ln|u| + C = \ln|e^x + 1| + C = \boxed{\ln(e^x + 1) + C}
+        \end{align*}
+        \item Gunakan teknik integral parsial dengan memisalkan
+        \begin{align*}
+          u &= \ln(t^2 + 1) \implies du = \frac{2t}{t^2 + 1} dt \\
+          dv &= dt \implies v = t
+        \end{align*}
+        Selanjutnya didapatkan ekspresi
+        \begin{align*}
+          \int \ln(t^2 + 1) \, dt &= uv - \int v \, du = t \ln(t^2 + 1) - \int \frac{2t^2}{t^2 + 1} dt = t \ln(t^2 + 1) - 2\int \left(1-\frac{1}{t^2 + 1} \right)dt \\
+        \end{align*}
+        Langkah terakhir adalah menyelesaikan integral yang tersisa, yaitu
+        \begin{align*}
+          \int \left(1-\frac{1}{t^2 + 1} \right)dt &= t - \tan^{-1} t + C 
+        \end{align*}
+        Jadi didapatkan kesimpulan\footnote{Jika ragu dengan hasil akhir yang sekarang, anda dapat melakukan diferensiasi pada hasil akhir dan cocokkan dengan fungsi awal.}
+        \begin{align*}
+          \int \ln(t^2 + 1) \, dt &= \boxed{t \ln(t^2 + 1) - 2t - 2\tan^{-1} t + C}
+        \end{align*}
+        \item Akan digunakan metode pecahan parsial untuk menyelesaikan integral tersebut. 
+        \begin{align*}
+          \frac{2x^2 - 2x - 1}{x^2 + x^3} &= \frac{2x^2 - 2x - 1}{x^2 (x+ 1)} = \frac{A}{x} + \frac{B}{x^2} + \frac{C}{x+1}= \frac{Ax(x + 1) + B(x+1) + Cx^2}{x^2(x+1)} 
+        \end{align*}
+        Dengan menyamakan pembilang, kita dapatkan
+        \[
+          2x^2 - 2x - 1 = Ax(x + 1) + B(x+1) + Cx^2
+        \]
+        \begin{itemize}
+          \item Subtitusi $x=0$
+          \begin{align*}
+            2(0)^2 - 2(0) - 1 &= A(0)(0 + 1) + B(0+1) + C(0)^2 \\
+            -1 &= B \implies B = -1
+          \end{align*}
+          \item Subtitusi $x=-1$
+          \begin{align*}
+            2(-1)^2 - 2(-1) - 1 &= A(-1)(-1 + 1) + B(-1+1) + C(-1)^2 \\
+            2 + 2 - 1 &= C \implies C = 3
+          \end{align*}
+          \item Subtitusi $x=1$ dan nilai variabel $B$ dan $C$ yang telah didapatkan sebelumnya
+          \begin{align*}
+            2(1)^2 - 2(1) - 1 &= A(1)(1 + 1) + B(1+1) + C(1)^2 \\
+            2 - 2 - 1 &= A(2) + B(2) + C \\
+            -1 &= 2A - 2 + 3 \implies A = -1
+          \end{align*}
+          Sehingga kita hanya perlu menyelesaikan integral
+          \begin{align*}
+            \int \left(\frac{-1}{x} + \frac{-1}{x^2} + \frac{3}{x+1}\right)dx &= \boxed{-\ln|x| + \frac{1}{x} + 3\ln|x+1| + C}
+          \end{align*}
+        \end{itemize}
+        \item Lakukan subtitusi $u = 1 - 2\sin x$, sehingga $-\dfrac{1}{2}du = \cos x \, dx$. Untuk batas integralnya berubah sebagaimana berikut
+        \begin{align*}
+          x = 0 &\implies u = 1 - 2\sin(0) = 1 \\
+          x = \frac{\pi}{6} &\implies u = 1 - 2\sin\left(\frac{\pi}{6}\right) = 0
+        \end{align*}
+        Sehingga integral tersebut dapat ditulis ulang menjadi
+        \begin{align*}
+          \int_0^{\frac{\pi}{6}} \frac{\cos x}{\sqrt{1 - 2 \sin x}} \, dx &= -\frac{1}{2}\int_1^0 \frac{1}{\sqrt{u}}\,du = \frac{1}{2}\int_0^1 u^{-1/2}\,du = \frac{1}{2}\left[2u^{1/2}\right]_0^1 = \boxed{1}
+        \end{align*}
+    \end{enumerate}
+
+    \newpage
+    \pagestyle{problems}
+    
+    \begin{center}
+	{\underline{\textbf{\MakeUppercase{Evaluasi Tengah Semester Bersama Genap 2024/2024}}}}
+    \end{center}
+
+    \begin{center}
+	\begin{tabular}{lcl}
+		Mata kuliah/SKS & : & Kalkulus 2 ( SM234201 ) / 3 SKS\\
+		Hari, Tanggal & : & Rabu, 24 April 2024\\
+		Waktu & : & 11.00-12.40 WIB (100 menit)\\
+		Sifat & : & Tertutup\\
+		Kelas & : & 31-38, 104
+	\end{tabular}
+    \end{center}
+	
+    \noindent\rule{\textwidth}{2.pt}
+	
+    \setlength{\parindent}{5pt}
+    \par Diberikan 5 soal, dengan bobot nilai masing-masing soal sama dan boleh dikerjakan tidak berurutan.
+    \setlength{\parindent}{5pt}
+    \centering{Tuliskan: Nama, NRP, dan Nomor Kelas pada lembar jawaban Anda.}
+    \setlength{\parindent}{5pt}
+    {\small
+    \par \textbf{\MakeUppercase{Dilarang membawa/menggunakan kalkulator dan alat komunikasi}}
+    \centering{\textbf{\MakeUppercase{dilarang memberikan/menerima jawaban selama ujian}}}}
+    \par \centering{\textbf{"Setiap tindak kecurangan akan mendapat sanksi akademik."}}
+	
+    \noindent\rule{\textwidth}{2.pt}
+	
+% SOAL DI SINI YAA
+\begin{enumerate}
+  \item Dapatkan \( \dfrac{dy}{dx} \) dari 
+  \[
+  y = \frac{\left(\sqrt[3]{x^2 - 8}\right)\left(\sqrt{x^3 + 1}\right)}{x^6 - 7x + 5}
+  \]
+  menggunakan diferensiasi logaritmik.
+  
+  \item Hitung integral
+  \[
+  \int x \, 2^{x^2} \, dx.
+  \]
+  
+  \item Hitung integral
+  \[
+  \int \sin(\ln x) \, dx.
+  \]
+  
+  \item Hitung integral
+  \[
+  \int \frac{x - 4}{x^3 - x^2 + 2x} \, dx.
+  \]
+  
+  \item Selesaikan integral tak wajar
+  \[
+  \int_0^2 \frac{e^x}{1 - e^x} \, dx.
+  \]
+\end{enumerate}
+	
+    \fancyfoot{
+    \hrulefill\textbf{ Selamat Mengerjakan }\hrulefill
+
+    \begin{center}
+	    ``\textit{Jujur adalah kunci kesuksesan}''
+    \end{center}}
+
+    \newpage
+    \pagestyle{solution}
+    {\centering\textbf{SOLUSI}}
+
+    \begin{enumerate}
+        \item Logaritma-kan kedua ruas 
+        \begin{align*}
+          \ln y &= \ln\left(\frac{\left(\sqrt[3]{x^2 - 8}\right)\left(\sqrt{x^3 + 1}\right)}{x^6 - 7x + 5}\right) \\
+          \ln y &= \ln\left(\sqrt[3]{x^2 - 8}\right) + \ln\left(\sqrt{x^3 + 1}\right) - \ln(x^6 - 7x + 5) \\
+          \ln y &= \frac{1}{3}\ln(x^2 - 8) + \frac{1}{2}\ln(x^3 + 1) - \ln(x^6 - 7x + 5)
+        \end{align*}
+        Kemudian gunakan turunan implisit pada kedua ruas terhadap $x$.
+        \begin{align*}
+          \frac{1}{y}\frac{dy}{dx} &= \frac{1}{3}\cdot\frac{1}{x^2 - 8}\cdot\frac{d}{dx}(x^2 - 8) + \frac{1}{2}\cdot\frac{1}{x^3 + 1}\cdot\frac{d}{dx}(x^3 + 1) - \frac{1}{x^6 - 7x + 5}\cdot\frac{d}{dx}(x^6 - 7x + 5) \\
+          \frac{1}{y}\frac{dy}{dx} &= \frac{1}{3(x^2 - 8)}(2x) + \frac{1}{2(x^3 + 1)}(3x^2) - \frac{1}{(x^6 - 7x + 5)}(6x^5 - 7)\\
+          \frac{1}{y}\frac{dy}{dx} &= \frac{2x}{3(x^2 - 8)} + \frac{3x^2}{2(x^3 + 1)} - \frac{6x^5 - 7}{(x^6 - 7x + 5)}\\
+          \frac{dy}{dx} &= \left[\frac{2x}{3x^2 - 24} + \frac{3x^2}{2x^3 + 2} - \frac{6x^5 - 7}{x^6 - 7x + 5}\right]\cdot y 
+        \end{align*}
+        Subtitusikan kembali $y=\dfrac{\left(\sqrt[3]{x^2 - 8}\right)\left(\sqrt{x^3 + 1}\right)}{x^6 - 7x + 5}$ ke dalam ekspresi diatas, sehingga didapatkan
+        \begin{align*}
+          \frac{dy}{dx} &= \boxed{\left[\frac{2x}{3x^2 - 24} + \frac{3x^2}{2x^3 + 2} - \frac{6x^5 - 7}{x^6 - 7x + 5}\right]\cdot\frac{\left(\sqrt[3]{x^2 - 8}\right)\left(\sqrt{x^3 + 1}\right)}{x^6 - 7x + 5}}
+        \end{align*}
+        \item Subtitusikan $u = x^2$, sehingga $\dfrac{1}{2}du = x \, dx$.
+        \begin{align*}
+          \int x \, 2^{x^2} \, dx &= \frac{1}{2}\int 2^u \, du
+        \end{align*}
+        Ingat bentuk eksponensial $a^x = e^{x \ln a}$ yang akibatnya
+        \begin{align*}
+          \frac{1}{2}\int 2^u \, du &= \frac{1}{2}\int e^{u \ln 2} \, du = \frac{1}{2\ln 2}e^{u \ln 2} + C = \frac{2^{u-1}}{\ln 2} + C = \boxed{\frac{2^{x^2 - 1}}{\ln 2} + C}
+        \end{align*}
+        \item Untuk soal ini dapat kita tinjau subtitusi berikut ini:
+        \begin{align*}
+          u &= \ln x \implies x=e^u \implies dx = e^u \, du \\
+        \end{align*}
+        Sehingga integralnya menjadi
+        \begin{align*}
+          \int \sin(\ln x) \, dx &= \int \sin(u) e^u \, du
+        \end{align*}
+        Disini kita gunakan integrasi parsial 
+        \item .
+        \item 
+    \end{enumerate}
+
+    \newpage
+    \pagestyle{problems}
+    
+    \begin{center}
+	{\underline{\textbf{\MakeUppercase{Evaluasi Tengah Semester Bersama Genap 2024/2024}}}}
+    \end{center}
+
+    \begin{center}
+	\begin{tabular}{lcl}
+		Mata kuliah/SKS & : & Kalkulus 2 ( SM234201 ) / 3 SKS\\
+		Hari, Tanggal & : & Rabu, 24 April 2024\\
+		Waktu & : & 13.30-15.10 WIB (100 menit)\\
+		Sifat & : & Tertutup\\
+		Kelas & : & 40-63
+	\end{tabular}
+    \end{center}
+	
+    \noindent\rule{\textwidth}{2.pt}
+	
+    \setlength{\parindent}{5pt}
+    \par Diberikan 5 soal, dengan bobot nilai masing-masing soal sama dan boleh dikerjakan tidak berurutan.
+    \setlength{\parindent}{5pt}
+    \centering{Tuliskan: Nama, NRP, dan Nomor Kelas pada lembar jawaban Anda.}
+    \setlength{\parindent}{5pt}
+    {\small
+    \par \textbf{\MakeUppercase{Dilarang membawa/menggunakan kalkulator dan alat komunikasi}}
+    \centering{\textbf{\MakeUppercase{dilarang memberikan/menerima jawaban selama ujian}}}}
+    \par \centering{\textbf{"Setiap tindak kecurangan akan mendapat sanksi akademik."}}
+	
+    \noindent\rule{\textwidth}{2.pt}
+	
+% SOAL DI SINI YAA
+\begin{enumerate}
+  \item Dapatkan turunan dari
+  \[
+  y = x^3 \ln(2x^2 - x)
+  \]
+  
+  \item Hitung integral
+  \[
+  \int e^{2x} \sqrt{1 + e^x} \, dx.
+  \]
+  
+  \item Hitung integral
+  \[
+  \int \frac{x^2}{\sqrt{4 - x^2}} \, dx.
+  \]
+  
+  \item Hitung integral
+  \[
+  \int \frac{3x + 1}{(x - 2)(x + 3)(3 - 2x)} \, dx.
+  \]
+  
+  \item Selesaikan integral tak wajar
+  \[
+  \int_3^4 \frac{1}{(x - 3)^2} \, dx.
+  \]
+\end{enumerate}
+	
+    \fancyfoot{
+    \hrulefill\textbf{ Selamat Mengerjakan }\hrulefill
+
+    \begin{center}
+	    ``\textit{Jujur adalah kunci kesuksesan}''
+    \end{center}}
+
+    \newpage
+    \pagestyle{solution}
+    {\centering\textbf{SOLUSI}}
+
+    \begin{enumerate}
+        \item 
+    \end{enumerate}
+
+    \newpage
+
+    \pagestyle{problems}
+
+    \begin{center}
+	{\underline{\textbf{\MakeUppercase{Evaluasi Tengah Semester Bersama Genap 2024/2024}}}}
+    \end{center}
+
+    \begin{center}
+	\begin{tabular}{lcl}
+		Mata kuliah/SKS & : & Kalkulus 2 ( SM234201 ) / 3 SKS\\
+		Hari, Tanggal & : & Kamis, 25 April 2024\\
+		Waktu & : & 11.00-12.40 WIB (100 menit)\\
+		Sifat & : & Tertutup\\
+		Kelas & : & 48-60, 107
+	\end{tabular}
+    \end{center}
+	
+    \noindent\rule{\textwidth}{2.pt}
+	
+    \setlength{\parindent}{5pt}
+    \par Diberikan 5 soal, dengan bobot nilai masing-masing soal sama dan boleh dikerjakan tidak berurutan.
+    \setlength{\parindent}{5pt}
+    \centering{Tuliskan: Nama, NRP, dan Nomor Kelas pada lembar jawaban Anda.}
+    \setlength{\parindent}{5pt}
+    {\small
+    \par \textbf{\MakeUppercase{Dilarang membawa/menggunakan kalkulator dan alat komunikasi}}
+    \centering{\textbf{\MakeUppercase{dilarang memberikan/menerima jawaban selama ujian}}}}
+    \par \centering{\textbf{"Setiap tindak kecurangan akan mendapat sanksi akademik."}}
+	
+    \noindent\rule{\textwidth}{2.pt}
+	
+% SOAL DI SINI YAA
+\begin{enumerate}
+  \item Dapatkan turunan dari
+  $
+  f(x) = \dfrac{e^x + \ln x}{\sinh 3x}
+  $
+
+  \item Hitung integral
+  \[
+  \int \frac{x + e^x}{x^2 + 2e^x} \, dx
+  \]
+
+  \item Hitung integral
+  \[
+  \int \frac{1}{t^{1/2} - t^{1/3}} \, dt
+  \]
+
+  \item Hitung integral
+  \[
+  \int \frac{t^3 + 4t^2 - t + 1}{t^3 + t^2} \, dt
+  \]
+
+  \item Dapatkan
+  \[
+  \lim_{x \to \infty} \left[ x \left( e^{\sin(1/x)} - 1 \right) \right]
+  \]
+\end{enumerate}
+	
+    \fancyfoot{
+    \hrulefill\textbf{ Selamat Mengerjakan }\hrulefill
+
+    \begin{center}
+	    ``\textit{Jujur adalah kunci kesuksesan}''
+    \end{center}}
+
+    \newpage
+    \pagestyle{solution}
+    {\centering\textbf{SOLUSI}}
+
+    \begin{enumerate}
+        \item 
+        \item 
+        \item 
+        \item 
+        \item
+    \end{enumerate}
+    
+\end{document}

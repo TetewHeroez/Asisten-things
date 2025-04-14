@@ -15,8 +15,8 @@
 \RequirePackage[bahasa]{babel}
 \RequirePackage{multirow}
 \RequirePackage{multicol}
-\RequirePackage{tkz-euclide,calc}
-    \usetikzlibrary{patterns,decorations,shapes.arrows,shapes.geometric,arrows}
+\RequirePackage{tkz-euclide,calc,pgfmath}
+    \usetikzlibrary{patterns,decorations,shapes.arrows,shapes.geometric,arrows,positioning}
 \RequirePackage{listings}
 \RequirePackage{pifont}
 \RequirePackage[scaled]{berasans}
@@ -51,6 +51,7 @@
 \definecolor{input}{HTML}{AAE1FA}
 \definecolor{bg}{rgb}{0.95, 0.95, 0.92}
 \definecolor{vscode}{HTML}{282A36}
+\definecolor{berlin}{HTML}{023047}
 
 \usetheme{Madrid}
 
@@ -76,6 +77,7 @@
 \newtheorem{teorema}{Teorema}
 \theoremstyle{definition}
 \newtheorem{latihan}{Latihan}
+\newtheorem{game}{Game}
 \newtheorem*{contoh}{Contoh}
 \newtheorem*{masalah}{Masalah}
 \newtheorem*{akibat}{Akibat}
@@ -116,6 +118,11 @@
   \setbeamercolor{block title}{fg=white,bg=brown} 
   \setbeamercolor{block body}{parent=normal text,bg=brown!30!white} 
     \setbeamercolor{item}{fg=brown}
+}
+\AtBeginEnvironment{game}{%
+  \setbeamercolor{block title}{fg=white,bg=berlin} 
+  \setbeamercolor{block body}{parent=normal text,bg=berlin!30!white} 
+    \setbeamercolor{item}{fg=berlin}
 }
 
 \renewcommand{\arraystretch}{1.3}

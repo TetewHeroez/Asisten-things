@@ -1,0 +1,205 @@
+\documentclass{../praktikum-ppt}
+
+\definecolor{br1}{HTML}{553A24}
+\definecolor{br2}{HTML}{A0856F}
+\definecolor{b1}{HTML}{4D4EB3}
+\definecolor{b2}{HTML}{222481}
+\definecolor{c1}{HTML}{348C98}
+\definecolor{c2}{HTML}{46C7D8}
+\definecolor{p1}{HTML}{AF78FF}
+\definecolor{p2}{HTML}{824BD2}
+\definecolor{r1}{HTML}{9C4058}
+\definecolor{r2}{HTML}{783B4B}
+\definecolor{g1}{HTML}{5EBA68}
+\definecolor{g2}{HTML}{66C26F}
+
+\tikzset{box/.style={draw, thick, minimum width=0.7cm, minimum height=0.7cm, text centered, fill=white}}
+
+
+\author[Tew \& Haf]{Teosofi Hidayah Agung \\ Hafidz Mulia}
+\date{11 April 2025}
+\title[Alpro 2 - Week 3]{\textit{Searching} \& \textit{Sorting}}
+\institute[Matematika ITS]{Departemen Matematika\\ Institut Teknologi Sepuluh Nopember}
+
+
+\begin{document}
+
+{\usebackgroundtemplate{
+  \tikz[overlay,remember picture] \node[opacity=0.2, at=(current page.center)]{\includegraphics[width=\paperwidth]{bg_22}};}
+\begin{frame}
+  \titlepage
+\end{frame}
+}
+
+\AtBeginSection{
+    {\usebackgroundtemplate{
+     \tikz[overlay,remember picture] \node[opacity=0.1, at=(current page.center)]{\includegraphics[width=\paperwidth]{code_bg}};}
+    \begin{frame}{Daftar isi}
+        \tableofcontents[currentsection]
+        % \begin{tikzpicture}[overlay, remember picture] 
+        %     \node at ([yshift=.5cm]current page.south east) [
+        %         anchor = south east, 
+        %         ] {
+        %     \animategraphics[autoplay,loop,width=0.2\textwidth]{30}{Arisu Dance/Arisu Dance-}{0}{186}
+        %     };
+        % \end{tikzpicture}
+    \end{frame}}
+    }
+
+    \begin{frame}
+      \begin{game}
+      Temukan tiga kotak berurutan yang secara horizontal, vertikal, atau diagonal memuat tulisan "MTK"! \onslide<2->{\textcolor{red}{9h, 8g, 7f}}
+      \end{game}
+      \begin{table}[h!]
+        \small
+      \begin{tabular}{>{\columncolor{black}}c|*{20}{>{\centering\arraybackslash}m{0.85em}|}}
+        \rowcolor{black}& {\color{white}1} & {\color{white}2} & {\color{white}3} & {\color{white}4} & {\color{white}5} & {\color{white}6} & {\color{white}7} & {\color{white}8} & {\color{white}9} & {\color{white}10} & {\color{white}11} & {\color{white}12} & {\color{white}13} & {\color{white}14} & {\color{white}15} & {\color{white}16} & {\color{white}17} & {\color{white}18} & {\color{white}19} & {\color{white}20}\\\cline{2-21}
+        {\color{white}a} & M & K & M & M & K & M & K & M & K & M & M & M & K & M & M & M & K & M & M & M \\\cline{2-21}
+        {\color{white}b} & M & K & K & M & K & K & M & K & M & K & K & M & K & M & M & K & M & M & M & M \\\cline{2-21}
+        {\color{white}c} & M & K & M & K & M & M & K & K & M & K & M & K & K & M & M & K & M & M & K & M \\\cline{2-21}
+        {\color{white}d} & M & K & M & T & M & M & M & T & M & M & K & K & T & K & M & M & T & M & K & M \\\cline{2-21}
+        {\color{white}e} & M & K & M & K & M & M & M & K & K & K & M & M & K & K & K & M & M & K & K & M \\\cline{2-21}
+        {\color{white}f} & K & K & M & M & K & K & K & M & K & M & K & K & K & M & K & M & M & M & K & K \\\cline{2-21}
+        {\color{white}g} & K & M & K & T & K & K & M & T & M & M & K & M & T & M & K & K & T & K & K & K \\\cline{2-21}
+        {\color{white}h} & M & K & K & M & M & M & K & M & M & K & M & M & K & K & K & M & M & M & K & M \\\cline{2-21}
+        {\color{white}i} & M & K & M & K & K & K & M & M & K & M & K & M & M & K & M & M & K & M & K & K \\\cline{2-21}
+        {\color{white}j} & M & K & M & M & M & K & K & K & M & K & K & M & K & M & K & K & M & K & M & K \\\cline{2-21}
+        \end{tabular}
+      \end{table}
+    \end{frame}
+
+    \begin{frame}
+      \begin{game}
+        \only<1>{Akan ditampilkan 8 kotak dengan warna berbeda. Temukan satu kotak yang mempunyai warna yang berbeda dari kotak yang lain!}\only<2->{Pilih satu kotak dengan warna yang berbeda dari ketujuh kotak lain!}
+      \end{game}
+      \only<1>{
+      \begin{center}
+        \begin{tikzpicture}
+          \def\special{6} % kotak ke-6 adalah kotak spesial (dari kiri ke kanan, baris atas ke bawah)
+        
+          \foreach \i in {1,...,8} {
+            % Hitung posisi x dan y berdasarkan index
+            \pgfmathtruncatemacro{\x}{mod(\i-1,4)}     % kolom (0 sampai 3)
+            \pgfmathtruncatemacro{\y}{1 - floor((\i-1)/4)} % baris: 1 (atas) atau 0 (bawah)
+            
+            % Warnai kotak
+            \ifnum\i=\special
+              \fill[darkgray] (\x*2.2, \y*-2.2) rectangle ++(2,2);
+              \node at (\x*2.2+1, \y*-2.2+1) {\textcolor{white}{\fontsize{40}{40}\selectfont\checkmark}};
+            \else
+              \fill[gray] (\x*2.2, \y*-2.2) rectangle ++(2,2);
+            \fi
+          }
+        \end{tikzpicture}
+      \end{center}}
+      \foreach \j[count=\n] in {br,b,c,p,r,g}{
+        \pgfmathtruncatemacro{\nplusone}{\n + 1}
+        \pgfmathrandominteger{\randomnum}{1}{8}
+        \only<\nplusone>{
+      \begin{center}
+        \begin{tikzpicture}
+          \def\special{\randomnum} % kotak ke-6 adalah kotak spesial (dari kiri ke kanan, baris atas ke bawah)
+        
+          \foreach \i in {1,...,8} {
+            % Hitung posisi x dan y berdasarkan index
+            \pgfmathtruncatemacro{\x}{mod(\i-1,4)}     % kolom (0 sampai 3)
+            \pgfmathtruncatemacro{\y}{1 - floor((\i-1)/4)} % baris: 1 (atas) atau 0 (bawah)
+            
+            % Warnai kotak
+            \ifnum\i=\special
+              \fill[\j1] (\x*2.2, \y*-2.2) rectangle ++(2,2);
+            \else
+              \fill[\j2] (\x*2.2, \y*-2.2) rectangle ++(2,2);
+            \fi
+          }
+        \end{tikzpicture}
+      \end{center}}
+      }
+    \end{frame}
+
+    \begin{frame}
+      \begin{masalah}
+        Pernakah kalian berpikir bagaimana cara kerja otak kita saat ingin \textbf{menemukan} jawaban dari dua permainan sebelumnya?\\~\\
+
+        Komputer dibuat oleh manusia, sehingga pastilah cara kerja komputer dalam menyelesaikan masalah adalah dari cara kerja otak manusia. Bedanya adalah komputer tidak ada kata lelah, oleh karena itu dia bisa kita \st{perbudak} pergunakan terus-menerus.\\~\\
+
+        Implementasi/algoritma apa saja yang sekiranya bisa kita terapkan kedalam komputer? apakah algoritma tersebut dapat lebih diefektifkan?
+      \end{masalah}
+    \end{frame}
+
+    \section{Search}
+    \begin{frame}
+        \frametitle{\insertsection}
+        \begin{definisi}
+          \textbf{Algoritma pencarian} adalah algoritma yang digunakan untuk menemukan elemen tertentu dalam suatu struktur data. Sederhananya hal yang akan kita cari menjadi \textcolor{HIMAtua}{input} dan hasil pencariannya menjadi \textcolor{HIMAtua}{output}.
+        \end{definisi}
+    \end{frame}
+
+    \subsection{\textit{Linear Search}}
+    \begin{frame}[fragile]
+      \frametitle{\insertsection}
+      \framesubtitle{\insertsubsection}
+      \begin{block}{\textit{Linear Search}}
+          Pencarian dilakukan dengan menelusuri tiap elemen satu per satu dari awal hingga akhir.
+          \begin{itemize}
+              \item \textbf{Best Case:} \(O(1)\) bila data target ada di awal array.
+              \item \textbf{Worst Case:} \(O(n)\) bila data target berada di akhir atau tidak ditemukan.
+          \end{itemize}
+      \end{block}
+      
+          \begin{lstlisting}[caption={Pseudocode Linear Search}]
+    for (i = 0; i < n; i++) {
+        if (array[i] == target) {
+            return i; // Ditemukan
+        }
+    }
+    return -1; // Tidak ditemukan
+          \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}
+      \frametitle{\insertsection}
+      \framesubtitle{\insertsubsection}
+      \begin{contoh}
+        Visualisasi \textit{linear search} pada array untuk mencari elemen \texttt{-2}.
+      \end{contoh}
+      \begin{center}
+        \begin{tikzpicture}
+          \def\target{-2}
+          \def\array{8,10,6,-2,-9,46,0}
+          \pgfmathtruncatemacro{\dimArray}{dim(\array)}
+          \foreach \k in {1,...,4}{
+            \foreach \i[count=\n,remember=\n as \last (initially 1)] in \array{
+              \node [rectangle,draw,fill=black] at (-1,{-\k}){\small\color{white}Iterasi-\k};
+              \ifnum\n=\k
+                  \ifnum\i=\target
+                    \node[box,fill=gray!30] (a\k\n) at ({\n*0.7},{-\k}){\color{blue}\small$\i$};
+                  \else
+                    \node[box,fill=gray!30] (a\k\n) at ({\n*0.7},{-\k}){\color{red}\small$\i$};
+                  \fi
+
+                  \ifnum\k=1
+                    \draw ($(a\k\n)+(-0.5,0.7)$) [out=0, in=90,-{Stealth[length = 2.5pt]}] to (a\k\n.north);
+                  \else
+                    \draw (a\k\last.north) [out=25, in=155, -{Stealth[length = 2.5pt]}] to (a\k\n.north);
+                  \fi
+              \else
+                  \node[box] (a\k\n) at ({\n*0.7},{-\k}){\small$\i$};
+              \fi
+              }
+          }
+      \end{tikzpicture}
+      \end{center}
+    \end{frame}
+
+    \section{Sorting}
+    \begin{frame}
+        \frametitle{\insertsubsection}
+        
+    \end{frame}
+
+    \section{Latihan}
+    \begin{frame}
+      
+    \end{frame}
+\end{document}
