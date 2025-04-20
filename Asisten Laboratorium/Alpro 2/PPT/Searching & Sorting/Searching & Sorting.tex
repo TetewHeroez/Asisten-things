@@ -147,13 +147,12 @@
           \end{itemize}
       \end{block}
       
-          \begin{lstlisting}[caption={Pseudocode Linear Search}]
-    for (i = 0; i < n; i++) {
-        if (array[i] == target) {
-            return i; // Ditemukan
-        }
-    }
+          \begin{lstlisting}[caption={Kode Linear Search}]
+  public static int linearSearch(int[] array, int n, int target) {
+    for (i = 0; i < n; i++) 
+        if (array[i] == target) return i; // Ditemukan
     return -1; // Tidak ditemukan
+  }
           \end{lstlisting}
     \end{frame}
 

@@ -86,7 +86,7 @@
 \begin{document}
 \pagestyle{problems}
     \begin{center}
-	{\underline{\textbf{\MakeUppercase{Evaluasi Tengah Semester Bersama Genap 2024/2024}}}}
+	{\underline{\textbf{\MakeUppercase{Evaluasi Tengah Semester Bersama Genap 2023/2024}}}}
     \end{center}
 
     \begin{center}
@@ -243,7 +243,7 @@
     \pagestyle{problems}
 
     \begin{center}
-	{\underline{\textbf{\MakeUppercase{Evaluasi Tengah Semester Bersama Genap 2024/2024}}}}
+	{\underline{\textbf{\MakeUppercase{Evaluasi Tengah Semester Bersama Genap 2023/2024}}}}
     \end{center}
 
     \begin{center}
@@ -378,7 +378,7 @@
     \pagestyle{problems}
     
     \begin{center}
-	{\underline{\textbf{\MakeUppercase{Evaluasi Tengah Semester Bersama Genap 2024/2024}}}}
+	{\underline{\textbf{\MakeUppercase{Evaluasi Tengah Semester Bersama Genap 2023/2024}}}}
     \end{center}
 
     \begin{center}
@@ -473,22 +473,115 @@
         \end{align*}
         \item Untuk soal ini dapat kita tinjau subtitusi berikut ini:
         \begin{align*}
-          u &= \ln x \implies x=e^u \implies dx = e^u \, du \\
+          p &= \ln x \implies x=e^p \implies dx = e^p \, dp \\
         \end{align*}
         Sehingga integralnya menjadi
         \begin{align*}
-          \int \sin(\ln x) \, dx &= \int \sin(u) e^u \, du
+          \int \sin(\ln x) \, dx &= \int \sin(p) e^p \, dp
         \end{align*}
-        Disini kita gunakan integrasi parsial 
-        \item .
-        \item 
+        Disini kita gunakan integrasi parsial
+        \begin{align*}
+          u &= \sin(p) \implies du = \cos(p) \, dp \\
+          dv &= e^p \, dp \implies v = e^p
+        \end{align*}
+        Sehingga kita dapatkan
+        \begin{align}
+          \int \sin(p) e^p \, dp &= uv - \int v \, du \notag\\
+          \int \sin(p) e^p \, dp &= e^p \sin(p) - \int e^p \cos(p) \, dp\label{eq:int1}
+        \end{align}
+        Dengan cara yang sama, parsialkan kembali integral yang tersisa
+        \begin{align*}
+          u &= \cos(p) \implies du = -\sin(p) \, dp \\
+          dv &= e^p \, dp \implies v = e^p
+        \end{align*}
+        Sehingga kita dapatkan
+        \begin{align}
+          e^p \sin(p) - \int e^p \cos(p) \, dp &=  e^p \sin(p)-\left[uv - \int v \, du \right]\notag\\
+          e^p \sin(p) - \int e^p \cos(p) \, dp &= e^p \sin(p) - \left[e^p \cos(p) + \int e^p \sin(p) \, dp\right]\notag\\
+          e^p \sin(p) - \int e^p \cos(p) \, dp &= e^p \sin(p) - e^p \cos(p) - \int e^p \sin(p) \, dp\label{eq:int2}
+        \end{align}
+        Dengan menyamakan \eqref{eq:int1} dan \eqref{eq:int2}, kita dapatkan
+        \begin{align*}
+          \int e^p \sin(p) \, dp &= e^p \sin(p) - e^p \cos(p) - \int e^p \sin(p) \, dp\\
+          \int e^p \sin(p) \, dp + \int e^p \sin(p) \, dp &= e^p \sin(p) - e^p \cos(p) \\
+          2\int e^p \sin(p) \, dp &= e^p \left[\sin(p) - \cos(p)\right] \\
+          \int e^p \sin(p) \, dp &= \frac{1}{2}e^p \left[\sin(p) - \cos(p)\right] + C
+        \end{align*}
+        Substitusi kembali $p = \ln x$, sehingga jawaban akhirnya adalah
+        \begin{align*}
+          \int \sin(\ln x) \, dx &= \frac{1}{2}e^{\ln x} \left[\sin(\ln x) - \cos(\ln x)\right] + C \\
+          &=\boxed{\frac{x}{2} \left[\sin(\ln x) - \cos(\ln x)\right] + C}
+        \end{align*}
+
+        \item Perhatikan bahwa
+        \begin{align*}
+          \int \frac{x - 4}{x^3 - x^2 + 2x} \, dx &= \int \frac{x - 4}{x(x^2 - x + 2)} \, dx \\
+        \end{align*}\footnote{Anda dapat menggunakan diskriminan untuk menentukan apakah $x^2 - x + 2$ memiliki akar real atau tidak.}
+        Kemudian gunakan metode pecahan parsial.
+        \begin{align*}
+          \frac{x - 4}{x(x^2 - x + 2)} &= \frac{A}{x} + \frac{Bx + C}{x^2 - x + 2} = \frac{A(x^2 - x + 2) + (Bx + C)x}{x(x^2 - x + 2)} \\
+          x-4 &= A(x^2 - x + 2) + (Bx + C)x \\
+        \end{align*}
+        \begin{itemize}
+          \item Subtitusi $x=0$
+          \begin{align*}
+            0 - 4 &= A(0^2 - 0 + 2) + (B(0) + C)(0) \\
+            -4 &= 2A \implies A = -2
+          \end{align*}
+          \item Subtitusi $x=1$
+          \begin{align}
+            1 - 4 &= A(1^2 - 1 + 2) + (B(1) + C)(1) \notag \\
+            -3 &= A(2) + (B + C)  \notag\\
+            -3 &= -2(2) + (B + C) \notag \\
+            B + C &= 1 \label{eq:bc1}
+          \end{align}
+          \item Subtitusi $x=-1$
+          \begin{align}
+            -1 - 4 &= A(-1^2 - (-1) + 2) + (B(-1) + C)(-1)  \notag\\
+            -5 &= A(4) + (B - C)  \notag\\
+            -5 &= -2(4) + B - C \notag \\
+            -5 &= -8 + B - C  \notag\\
+            B - C &= 3 \label{eq:bc2}
+          \end{align}
+        \end{itemize}
+        Dengan menyelesaikan sistem persamaan \eqref{eq:bc1} dan \eqref{eq:bc2}, kita dapatkan
+        \begin{align*}
+          B + C &= 1 \\
+          B - C &= 3 \\
+          \implies 2B &= 4 \implies B = 2 \\
+          \implies C &= -1
+        \end{align*}
+        Sehingga kita dapatkan
+        \begin{align*}
+          \int \frac{x - 4}{x^3 - x^2 + 2x} \, dx &= \int \left(\frac{-2}{x} + \frac{2x - 1}{x^2 - x + 2}\right)dx \\
+          &= -2\ln|x| + \int \frac{2x - 1}{x^2 - x + 2}dx \\
+          &= \boxed{-2\ln|x| + \ln|x^2 - x + 2| + C}
+        \end{align*}
+
+        \item Perlu diperhatikan terlebih dahulu bahwa batas bawah integral adalah $x=0$ yang dimana membuat fungsi menjadi tak terdefinisi. Oleh karena itu perlu digunakan limit untuk menyelesaikan integral ini.
+        \begin{align*}
+          \int_0^2 \frac{e^x}{1 - e^x} \, dx &= \lim_{a\to 0}\int_a^2 \frac{e^x}{1 - e^x} \, dx
+        \end{align*} 
+        Lakukan subtitusi $u = 1 - e^x$, sehingga $du = -e^x \, dx$ dan batas integralnya berubah menjadi
+        \begin{align*}
+          x = 2 &\implies u = 1 - e^2
+        \end{align*}
+        Sehingga integral tersebut dapat ditulis ulang menjadi
+        \begin{align*}
+          \lim_{a\to 0^+}\int_a^2 \frac{e^x}{1 - e^x} \, dx &= -\lim_{a\to 0^+}\int_{1 - e^a}^{1 - e^2} \frac{1}{u} \, du \\
+          &= -\lim_{a\to 0^+}\left[\ln|u|\right]_{1 - e^a}^{1 - e^2} \\
+          &= -\lim_{a\to 0^+}\left[\ln|1 - e^2| - \ln|1 - e^a|\right] \\
+          &= -\left[\ln|1 - e^2| - \lim_{a\to 0^+}\ln|1 - e^a|\right] \\
+          &= -\left[\ln|1 - e^2| - \ln|0^+|\right] = \boxed{-\infty}
+        \end{align*}
+        Dengan kata lain, integral tersebut divergen.
     \end{enumerate}
 
     \newpage
     \pagestyle{problems}
     
     \begin{center}
-	{\underline{\textbf{\MakeUppercase{Evaluasi Tengah Semester Bersama Genap 2024/2024}}}}
+	{\underline{\textbf{\MakeUppercase{Evaluasi Tengah Semester Bersama Genap 2023/2024}}}}
     \end{center}
 
     \begin{center}
@@ -555,7 +648,96 @@
     {\centering\textbf{SOLUSI}}
 
     \begin{enumerate}
-        \item 
+        \item Gunakan aturan perkalian yaitu misalkan $u = x^3$ dan $v = \ln(2x^2 - x)$, sehingga
+        \begin{align*}
+          \frac{dy}{dx} &= u'v + uv' \\
+          &= 3x^2 \ln(2x^2 - x) + x^3 \cdot \frac{1}{2x^2 - x}\cdot(4x - 1) \\
+          &= 3x^2 \ln(2x^2 - x) + \frac{x^3(4x - 1)}{2x^2 - x} \\
+          &= \boxed{3x^2 \ln(2x^2 - x) + \frac{x^2(4x - 1)}{2x - 1}}
+        \end{align*}
+        \item Gunakan substitusi $u = 1 + e^x$, sehingga $du = e^x \, dx$ dan ingat bahwa $e^{2x} = (e^x)^2 = (u - 1)^2$. 
+        \begin{align*}
+          \int e^{2x} \sqrt{1 + e^x} \, dx &= \int (u - 1)^2 \sqrt{u} \, du \\
+          &= \int (u^2 - 2u + 1)u^{1/2} \, du \\
+          &= \int (u^{5/2} - 2u^{3/2} + u^{1/2}) \, du \\
+          &= \frac{2}{7}u^{7/2} - \frac{4}{5}u^{5/2} + \frac{2}{3}u^{3/2} + C \\
+          &= \boxed{\frac{2}{7}(1 + e^x)^{7/2} - \frac{4}{5}(1 + e^x)^{5/2} + \frac{2}{3}(1 + e^x)^{3/2} + C}
+        \end{align*}
+        \item Gunakan substitusi trigonometri $x = 2\sin\theta$, sehingga $dx = 2\cos\theta \, d\theta$.
+        \begin{align*}
+          \int \frac{x^2}{\sqrt{4 - x^2}} \, dx &= \int \frac{(2\sin\theta)^2}{\sqrt{4 - (2\sin\theta)^2}} \cdot 2\cos\theta \, d\theta 
+          = 2\int \frac{4\sin^2\theta}{\sqrt{4(1 - \sin^2\theta)}} \cdot 2\cos\theta \, d\theta \\
+          &= 8\int \frac{\sin^2\theta}{\sqrt{4(1 - \sin^2\theta)}} \cdot \cos\theta \, d\theta 
+          = 4\int \frac{\sin^2\theta}{\sqrt{4\cos^2\theta}} \cdot \cos\theta \, d\theta 
+          = 4\int \frac{\sin^2\theta}{\cos\theta} \cdot \cos\theta \, d\theta \\
+          &= 4\int \sin^2\theta \, d\theta 
+          = 4\int\left(\frac{1}{2}-\frac{\cos(2\theta)}{2}\right) \, d\theta 
+          = 4\left[\frac{\theta}{2} - \frac{\sin(2\theta)}{4}\right] + C \\
+          &= 2\theta - \sin(2\theta) + C 
+        \end{align*}
+        Dari subtitusi awal, bisa kita dapatkan berbagai informasi tentang $\theta$.
+        \begin{align*}
+          \sin\theta &= \frac{x}{2} \implies \theta = \sin^{-1}\left(\frac{x}{2}\right) \\
+          \cos\theta &= \sqrt{1 - \sin^2\theta} = \sqrt{1 - \left(\frac{x}{2}\right)^2} = \frac{\sqrt{4 - x^2}}{2} \\
+          \sin(2\theta) &= 2\sin\theta\cos\theta = 2\left(\frac{x}{2}\right)\left(\frac{\sqrt{4 - x^2}}{2}\right) = \frac{x\sqrt{4 - x^2}}{2}
+        \end{align*}
+        Dengan demikian kita dapatkan
+        \begin{align*}
+          \int \frac{x^2}{\sqrt{4 - x^2}} \, dx &= 2\sin^{-1}\left(\frac{x}{2}\right) - \frac{x\sqrt{4 - x^2}}{2} + C \\
+          &= \boxed{2\sin^{-1}\left(\frac{x}{2}\right) - \frac{x\sqrt{4 - x^2}}{2} + C}
+        \end{align*}
+        \item Langsung saja gunakan metode pecahan parsial
+        \begin{align*}
+          \frac{3x + 1}{(x - 2)(x + 3)(3 - 2x)} &= \frac{A}{x - 2} + \frac{B}{x + 3} + \frac{C}{3 - 2x} \\
+          &= \frac{A(3 - 2x)(x + 3) + B(3 - 2x)(x - 2) + C(x - 2)(x + 3)}{(x - 2)(x + 3)(3 - 2x)} \\
+          3x + 1 &= A(3 - 2x)(x + 3) + B(3 - 2x)(x - 2) + C(x - 2)(x + 3) \\
+        \end{align*}
+        Subtitusikan masing-masing pembuat nol dari penyebut untuk mendapatkan nilai $A$, $B$, dan $C$.
+        \begin{itemize}
+          \item Subtitusi $x=2$
+          \begin{align*}
+            3(2) + 1 &= A(3 - 2(2))(2 + 3) + B(3 - 2(2))(2 - 2) + C(2 - 2)(2 + 3) \\
+            7 &= A(-1)(5) + B(0) + C(0) \\
+            A &= -\frac{7}{5}
+          \end{align*}
+          \item Subtitusi $x=-3$
+          \begin{align*}
+            3(-3) + 1 &= A(3 - 2(-3))(-3 + 3) + B(3 - 2(-3))(-3 - 2) + C(-3 - 2)(-3 + 3) \\
+            -8 &= A(9)(0) + B(9)(-5) + C(0) \\
+            B &= \frac{8}{45}
+          \end{align*}
+          \item Subtitusi $x=\dfrac{3}{2}$
+          \begin{align*}
+            3\left(\frac{3}{2}\right) + 1 &= A\left(3 - 2\left(\frac{3}{2}\right)\right)\left(\frac{3}{2} + 3\right) + B\left(3 - 2\left(\frac{3}{2}\right)\right)\left(\frac{3}{2} - 2\right) + C\left(\frac{3}{2} - 2\right)\left(\frac{3}{2} + 3\right) \\
+            \frac{9}{2} + 1 &= A(0)\left(\frac{9}{2}\right) + B(0)\left(-\frac{1}{2}\right) + C\left(-\frac{1}{2}\right)\left(\frac{9}{2}\right) \\
+            \frac{11}{2} &= -C \cdot \frac{9}{4} \\
+            C &= -\frac{22}{9}
+          \end{align*}
+        \end{itemize}
+        Dengan demikian kita dapatkan
+        \begin{align*}
+          \int \frac{3x + 1}{(x - 2)(x + 3)(3 - 2x)} \, dx &= \int \left(\frac{-\frac{7}{5}}{x - 2} + \frac{\frac{8}{45}}{x + 3} - \frac{\frac{22}{9}}{3 - 2x}\right)dx \\
+          &= -\frac{7}{5}\ln|x - 2| + \frac{8}{45}\ln|x + 3| - \left(-\frac{1}{2}\right) \frac{22}{9}\ln|3 - 2x| + C \\
+          &= \boxed{-\frac{7}{5}\ln|x - 2| + \frac{8}{45}\ln|x + 3| + \frac{11}{9}\ln|3 - 2x| + C}
+        \end{align*}
+        \item Subtitusi $u = x - 3$, sehingga $du = dx$ dan batas integralnya berubah menjadi
+        \begin{align*}
+          x = 3 &\implies u = 0 \\
+          x = 4 &\implies u = 1
+        \end{align*}
+        Sehingga integral tersebut dapat ditulis ulang menjadi
+        \begin{align*}
+          \int_3^4 \frac{1}{(x - 3)^2} \, dx &= \int_0^1 \frac{1}{u^2} \, du
+        \end{align*}
+        Perhatikan bahwa $\dfrac{1}{u^2}$ menuju tak hingga ketika $u \to 0$, sehingga kita perlu menggunakan limit untuk menyelesaikan integral ini.
+        \begin{align*}
+          \int_0^1 \frac{1}{u^2} \, du &= \lim_{a\to 0^+}\int_a^1 \frac{1}{u^2} \, du 
+          = \lim_{a\to 0^+}\left[-\frac{1}{u}\right]_a^1 
+          = \lim_{a\to 0^+}\left[-1 - \left(-\frac{1}{a}\right)\right] 
+          = \left[-1 + \infty\right] 
+          = \boxed{\infty}
+        \end{align*} 
+        Jadi, integral tersebut divergen.
     \end{enumerate}
 
     \newpage
@@ -563,7 +745,7 @@
     \pagestyle{problems}
 
     \begin{center}
-	{\underline{\textbf{\MakeUppercase{Evaluasi Tengah Semester Bersama Genap 2024/2024}}}}
+	{\underline{\textbf{\MakeUppercase{Evaluasi Tengah Semester Bersama Genap 2023/2024}}}}
     \end{center}
 
     \begin{center}
@@ -630,11 +812,96 @@
     {\centering\textbf{SOLUSI}}
 
     \begin{enumerate}
-        \item 
-        \item 
-        \item 
-        \item 
-        \item
+        \item Misalkan $u = e^x + \ln x$ dan $v = \sinh 3x$, sehingga
+        \begin{align*}
+          \frac{dy}{dx} &= \frac{u'v - uv'}{v^2} \\
+          &= \frac{\left(e^x + \dfrac{1}{x}\right)\sinh 3x - (e^x + \ln x)(3\cosh 3x)}{\sinh^2 3x} \\
+          &= \boxed{\frac{e^x \sinh 3x + \dfrac{1}{x}\sinh 3x - 3e^x\cosh 3x - 3\ln x \cosh 3x}{\sinh^2 3x} }\\
+        \end{align*}
+        \item Subtitusi $u = x^2 + 2e^x$, sehingga $\dfrac{1}{2}du = (x + e^x) \, dx$.
+        \begin{align*}
+          \int \frac{x + e^x}{x^2 + 2e^x} \, dx &= \frac{1}{2}\int \frac{1}{u} \, du \\
+          &= \frac{1}{2}\ln|u| + C = \boxed{\frac{1}{2}\ln|x^2 + 2e^x| + C}
+        \end{align*}
+        \item Karena bentuk pangkatnya rasional, maka akan digunakan substitusi agar pangkat dari variabelnya menjadi bulat.
+        
+        Perhatikan bahwa $\text{kpk}\{2,3\}=6$, sehingga kita gunakan substitusi $t=u^6$, sehingga $dt = 6u^5 \, du$.
+        \begin{align*}
+          \int \frac{1}{t^{1/2} - t^{1/3}} \, dt &= \int \frac{1}{u^3 - u^2} \cdot 6u^5 \, du 
+          = 6\int \frac{u^5}{u^3 - u^2} \, du = 6\int \frac{u^5}{u^2(u - 1)} \, du
+          = 6\int \frac{u^3}{u - 1} \, du 
+        \end{align*}
+        Selanjutnya lakukan pembagian polinomial
+        \begin{center}
+          \polyset{vars=u}
+          \polylongdiv{u^3}{u-1}
+        \end{center}
+        Artinya integral dapat ditulis
+        \begin{align*}
+          6\int \frac{u^3}{u - 1} \, du &= 6\int \left[u^2 + u + + 1+\frac{1}{u - 1}\right] \, du \\
+          &= 6\left[\frac{u^3}{3} + \frac{u^2}{2} + u + \ln|u - 1|\right] + C \\
+          &= 2u^3 + 3u^2 + 6u + 6\ln|u - 1| + C \\
+        \end{align*}
+        Substitusi kembali $u = t^{1/6}$, sehingga kita dapatkan
+        \begin{align*}
+          2u^3 + 3u^2 + 6u - 6\ln|u - 1| + C &= 2(t^{1/6})^3 + 3(t^{1/6})^2 + 6(t^{1/6}) -+6\ln|t^{1/6} - 1| + C \\
+          &= \boxed{2t^{1/2} + 3t^{1/3} + 6t^{1/6} + 6\ln|t^{1/6} - 1| + C} 
+        \end{align*}
+        \item Dari pembagian polinomial, kita dapatkan
+        \begin{center}
+          \polyset{vars=t}
+          \polylongdiv{t^3 + 4t^2 - t + 1}{t^3 + t^2}
+        \end{center}
+        Sehingga integral dapat ditulis
+        \begin{align*}
+          \int \frac{t^3 + 4t^2 - t + 1}{t^3 + t^2} \, dt &= \int \left[1 + \frac{3t^2-t+1}{t^3+t^2}\right] \, dt \\
+        \end{align*}
+        Selanjutnya gunakan metode pecahan parsial
+        \begin{align*}
+          \frac{3t^2 - t + 1}{t^2(t + 1)} &= \frac{A}{t} + \frac{B}{t^2} + \frac{C}{t + 1} \\
+          &= \frac{A(t)(t + 1) + B(t + 1) + C(t^2)}{t^2(t + 1)} \\
+          3t^2 - t + 1 &= A(t)(t + 1) + B(t + 1) + C(t^2) \\
+        \end{align*}
+        \begin{itemize}
+          \item Subtitusi $t=0$
+          \begin{align*}
+            3(0)^2 - (0) + 1 &= A(0)(0 + 1) + B(0 + 1) + C(0^2) \\
+            1 &= B \implies B = 1
+          \end{align*}
+          \item Subtitusi $t=-1$
+          \begin{align*}
+            3(-1)^2 - (-1) + 1 &= A(-1)(-1 + 1) + B(-1 + 1) + C(-1^2) \\
+            3 + 1 + 1 &= A(0) + B(0) + C(1) \\
+            5 &= C \implies C = 5
+          \end{align*}
+          \item Subtitusi $t=1$
+          \begin{align*}
+            3(1)^2 - (1) + 1 &= A(1)(1 + 1) + B(1 + 1) + C(1^2) \\
+            3 - 1 + 1 &= A(2) + B(2) + C(1) \\
+            3 &= 2A + 2B + C \\
+            3 &= 2A + 2(1) + 5 \\
+            3 &= 2A + 7 \implies A = -2
+          \end{align*}
+        \end{itemize}
+        Dengan demikian kita dapatkan
+        \begin{align*}
+          \int \frac{t^3 + 4t^2 - t + 1}{t^3 + t^2} \, dt &= \int \left[1 + \frac{-2}{t} + \frac{1}{t^2} + \frac{5}{t + 1}\right]dt \\
+          &= t - 2\ln|t| - \frac{1}{t} + 5\ln|t + 1| + C \\
+          &= \boxed{t - 2\ln|t| - \frac{1}{t} + 5\ln|t + 1| + C}
+        \end{align*}
+        \item Perhatikan bahwa
+        \begin{align*}
+          \lim_{x \to \infty} \left[ x \left( e^{\sin(1/x)} - 1 \right) \right] &= \infty\cdot 0 \quad\text{(bentuk tak tentu)}
+        \end{align*}
+        Agar tidak membingungkan, kita boleh mengubah bentuknya menjadi $y=1/x$ sehingga ketika $x \to \infty$, maka $y \to 0$. Dari perubahan variabel tersebut diperoleh
+        \begin{align*}
+          \lim_{x \to \infty} \left[ x \left( e^{\sin(1/x)} - 1 \right) \right] &= \lim_{y \to 0} \left[ \frac{1}{y} \left( e^{\sin y} - 1 \right) \right] 
+          = \lim_{y \to 0} \frac{e^{\sin y} - 1}{y} = \frac{0}{0}
+        \end{align*}
+        Gunakan aturan L'Hospital
+        \begin{align*}
+          \lim_{y \to 0} \frac{e^{\sin y} - 1}{y} &\Hrule \lim_{y \to 0} \frac{\cos y \cdot e^{\sin y}}{1} = \cos(0) \cdot e^{\sin(0)} = 1 \cdot 1 = \boxed{1}
+        \end{align*}
     \end{enumerate}
     
 \end{document}
