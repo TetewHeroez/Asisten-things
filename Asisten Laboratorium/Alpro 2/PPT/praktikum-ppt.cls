@@ -176,7 +176,7 @@ draw=black,
 fill=pink]
 
 \tikzstyle{io} = [trapezium, 
-trapezium stretches=true, % A later addition
+trapezium stretches=true, 
 trapezium left angle=70, 
 trapezium right angle=110, 
 minimum width=2cm, 
@@ -197,7 +197,19 @@ minimum height=1cm,
 text centered, 
 draw=black, 
 fill=PastelGreen]
+
 \tikzstyle{arrow} = [thick,->,>=stealth]
+
+\tikzstyle{sumjunction} = [draw,
+    circle,
+    minimum size=1cm,
+    text centered,
+    path picture={
+      \draw [black] % atau pakai warna lain yang pasti ada
+        (path picture bounding box.135) -- (path picture bounding box.315)
+        (path picture bounding box.45) -- (path picture bounding box.225);
+    }
+]
 
 \newcommand{\enter}{\raisebox{-1.8pt}{\begin{tikzpicture}[scale=0.3]
     \draw[thin,fill=gray] (0,0) rectangle (2,1);
