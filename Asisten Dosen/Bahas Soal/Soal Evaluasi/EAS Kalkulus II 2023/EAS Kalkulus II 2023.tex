@@ -1,0 +1,408 @@
+\documentclass[11pt,openany,a4paper]{article}
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+\usepackage{tikz, pgfplots, tkz-euclide,calc}
+    \usetikzlibrary{patterns,snakes,shapes.arrows}
+    \tikzset{Arrow Style/.style={text=black, font=\boldmath}}
+    \newcommand{\tikzmark}[1]{%
+        \tikz[overlay, remember picture, baseline] \node (#1) {};%
+    }
+
+    \newcommand*{\XShift}{0.5em}
+    \newcommand*{\YShift}{0.5ex}
+
+    \NewDocumentCommand{\DrawArrow}{s O{} m m m}{%
+        \begin{tikzpicture}[overlay,remember picture]
+            \draw[->, thick, Arrow Style, #2] 
+                    ($(#3.west)+(\XShift,\YShift)$) -- 
+                    ($(#4.east)+(-\XShift,\YShift)$)
+            node [midway,above] {#5};
+        \end{tikzpicture}%
+    }
+    \newcommand{\AxisRotator}[1][rotate=0]{%
+    \tikz [x=0.25cm,y=0.60cm,line width=.2ex,-stealth,#1] \draw (0,0) arc (-150:150:1 and 1);%
+}
+\usepackage{fancyhdr}
+\usepackage{enumerate,enumitem}
+\usepackage{cancel}
+\usepackage{polynom}
+\makeatletter
+\patchcmd{\pld@ArrangeResult}{\bigr)}{
+    \,\tikz[overlay]{
+        \coordinate (A) at (0,-3pt);
+        \coordinate (B) at (0,\normalbaselineskip-0.8pt);
+        \draw (A) to[in=-40, out=40, looseness=1] (B);
+    }
+}{}{}
+\makeatother
+\makeatletter
+\patchcmd{\pld@ArrangeResult}{\tw@-\pld@maxcol}{
+  \tw@-\pld@maxcol
+}{}{}
+\makeatother
+\usepackage{varwidth}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    }
+
+% TAMBAHKAN PACKAGE SENDIRI KALAU KURANG
+
+\usepackage{geometry}
+\geometry{
+	total = {160mm, 237mm},
+	left = 18mm,
+	right = 13mm,
+	top = 30mm,
+	bottom = 30mm,
+}
+
+
+\pagestyle{fancy}
+\fancypagestyle{problems}{
+  \fancyhead{}
+  \fancyfoot{}
+  \fancyhead[r]{}
+  \fancyhead[l]{\fbox{\large{\textbf{SKPB - ITS}}}}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\hrulefill}{\leavevmode\leaders\hrule height 2pt\hfill\kern0pt}
+
+
+\fancypagestyle{solution}{
+  \pagestyle{fancy}
+  \newpage
+  \fancyhead[L]{\textit{Solution By: \hyperlink{https://github.com/TetewHeroez}{Tetew Heroez}}}
+  % \fancyfoot[R]{\animategraphics[autoplay,loop,width=0.1\textwidth]{15}{Kuru Kuru Herta/kuru kuru-}{0}{5}}
+  \fancyfoot{}
+  \renewcommand{\headrulewidth}{1pt}
+}
+
+\newcommand{\Hrule}{\stackrel{\text{\raisebox{1.5pt}{\textcircled{\raisebox{-.9pt} {L}}}}}{=}}
+
+\begin{document}
+\pagestyle{problems}
+    \begin{center}
+	{\underline{\textbf{\MakeUppercase{Evaluasi Akhir Semester Bersama Genap 2023/2024}}}}
+    \end{center}
+
+    \begin{center}
+	\begin{tabular}{lcl}
+		Mata kuliah/SKS & : & Kalkulus 2 ( SM234201 ) / 3 SKS\\
+		Hari, Tanggal & : & Rabu, 26 Juni 2024\\
+		Waktu & : & 07.00-08.40 WIB (100 menit)\\
+		Sifat & : & Tertutup\\
+		Kelas & : & 1-13, 101
+	\end{tabular}
+    \end{center}
+	
+    \noindent\rule{\textwidth}{2.pt}
+	
+    \setlength{\parindent}{5pt}
+    \par Diberikan 5 soal, dengan bobot nilai masing-masing soal sama dan boleh dikerjakan tidak berurutan.
+    \setlength{\parindent}{5pt}
+    \centering{Tuliskan: Nama, NRP, dan Nomor Kelas pada lembar jawaban Anda.}
+    \setlength{\parindent}{5pt}
+    {\small
+    \par \textbf{\MakeUppercase{Dilarang membawa/menggunakan kalkulator dan alat komunikasi}}
+    \centering{\textbf{\MakeUppercase{dilarang memberikan/menerima jawaban selama ujian}}}}
+    \par \centering{\textbf{"Setiap tindak kecurangan akan mendapat sanksi akademik."}}
+	
+    \noindent\rule{\textwidth}{2.pt}
+	
+% SOAL DI SINI YAA
+\begin{enumerate}
+    \item Dapatkan luas daerah yang dibatasi oleh \( x = y^2 \) dan \( 2y + x = 3 \).
+
+    \item Gambarkan daerah yang dibatasi oleh kurva-kurva \( y = \sqrt{x} \), \( y = 2 \), dan \( x = 0 \), kemudian dapatkan volume benda putar jika daerah tersebut diputar pada garis \( x = -2 \).
+
+    \item Diberikan persamaan parametrik \( x = t^2 + 1 \), \( y = t \), \( 0 \leq t \leq 5 \).
+    \begin{enumerate}
+        \item Buatlah sketsa kurva tersebut dengan mengeliminasi parameter \( t \).
+        \item Dapatkan persamaan garis singgung dari persamaan parametrik tersebut saat \( t = \frac{1}{2} \).
+    \end{enumerate}
+
+    \item Dapatkan luas daerah dari irisan kardioida \( r = 2 - 2 \cos \theta \) dan kardioida \( r = 2 + 2 \cos \theta \).
+
+    \item Dapatkan lima suku pertama polinomial Maclaurin untuk fungsi \( f(x) = e^{-x^2} \).
+\end{enumerate}
+	
+    \fancyfoot{
+    \hrulefill\textbf{ Selamat Mengerjakan }\hrulefill
+
+    \begin{center}
+	    ``\textit{Jujur adalah kunci kesuksesan}''
+    \end{center}}
+
+    \newpage
+    \pagestyle{solution}
+    {\centering\textbf{SOLUSI}}
+    
+    \begin{enumerate}
+      \item
+    \end{enumerate}
+
+    \newpage
+    \pagestyle{problems}
+
+    \begin{center}
+	{\underline{\textbf{\MakeUppercase{Evaluasi Akhir Semester Bersama Genap 2023/2024}}}}
+    \end{center}
+
+    \begin{center}
+	\begin{tabular}{lcl}
+		Mata kuliah/SKS & : & Kalkulus 2 ( SM234201 ) / 3 SKS\\
+		Hari, Tanggal & : & Rabu, 26 Juni 2024\\
+		Waktu & : & 09.00-10.40 WIB (100 menit)\\
+		Sifat & : & Tertutup\\
+		Kelas & : & 15-27, 102
+	\end{tabular}
+    \end{center}
+	
+    \noindent\rule{\textwidth}{2.pt}
+	
+    \setlength{\parindent}{5pt}
+    \par Diberikan 5 soal, dengan bobot nilai masing-masing soal sama dan boleh dikerjakan tidak berurutan.
+    \setlength{\parindent}{5pt}
+    \centering{Tuliskan: Nama, NRP, dan Nomor Kelas pada lembar jawaban Anda.}
+    \setlength{\parindent}{5pt}
+    {\small
+    \par \textbf{\MakeUppercase{Dilarang membawa/menggunakan kalkulator dan alat komunikasi}}
+    \centering{\textbf{\MakeUppercase{dilarang memberikan/menerima jawaban selama ujian}}}}
+    \par \centering{\textbf{"Setiap tindak kecurangan akan mendapat sanksi akademik."}}
+	
+    \noindent\rule{\textwidth}{2.pt}
+	
+% SOAL DI SINI YAA
+\begin{enumerate}
+    \item Dapatkan luas daerah yang dibatasi oleh \( y = x^2 - 4x + 3 \) dan \( y = x + 3 \).
+
+    \item Dapatkan volume benda putar jika daerah yang dibatasi oleh kurva-kurva 
+    \( y = \frac{1}{x} \), \( x = 2 \), dan \( y = 2 \) diputar terhadap sumbu-\( x \). 
+    Buatlah sketsa daerah tersebut.
+
+    \item Diberikan persamaan parametrik \( x = \cos 2t \), \( y = 3 - 2 \cos 2t \) pada \( 0 \leq t \leq \frac{\pi}{2} \).
+    \begin{enumerate}
+        \item Dapatkan panjang kurva dari persamaan parametrik.
+        \item Buatlah sketsa kurva tersebut.
+    \end{enumerate}
+
+    \item Dapatkan luas daerah yang berada di dalam \( r = 2 - 2 \cos \theta \) dan di luar kardioida 
+    \( r = 2 + 2 \cos \theta \).
+
+    \item Dapatkan deret Maclaurin untuk fungsi \( f(x) = \ln(1 + x) \).
+\end{enumerate}
+	
+    \fancyfoot{
+    \hrulefill\textbf{ Selamat Mengerjakan }\hrulefill
+
+    \begin{center}
+	    ``\textit{Jujur adalah kunci kesuksesan}''
+    \end{center}}
+
+    \newpage
+    \pagestyle{solution}
+    {\centering\textbf{SOLUSI}}
+    \begin{enumerate}
+      \item
+    \end{enumerate}
+
+    \newpage
+    \pagestyle{problems}
+    
+    \begin{center}
+	{\underline{\textbf{\MakeUppercase{Evaluasi Akhir Semester Bersama Genap 2023/2024}}}}
+    \end{center}
+
+    \begin{center}
+	\begin{tabular}{lcl}
+		Mata kuliah/SKS & : & Kalkulus 2 ( SM234201 ) / 3 SKS\\
+		Hari, Tanggal & : & Rabu, 26 Juni 2024\\
+		Waktu & : & 11.00-12.40 WIB (100 menit)\\
+		Sifat & : & Tertutup\\
+		Kelas & : & 31-38, 104
+	\end{tabular}
+    \end{center}
+	
+    \noindent\rule{\textwidth}{2.pt}
+	
+    \setlength{\parindent}{5pt}
+    \par Diberikan 5 soal, dengan bobot nilai masing-masing soal sama dan boleh dikerjakan tidak berurutan.
+    \setlength{\parindent}{5pt}
+    \centering{Tuliskan: Nama, NRP, dan Nomor Kelas pada lembar jawaban Anda.}
+    \setlength{\parindent}{5pt}
+    {\small
+    \par \textbf{\MakeUppercase{Dilarang membawa/menggunakan kalkulator dan alat komunikasi}}
+    \centering{\textbf{\MakeUppercase{dilarang memberikan/menerima jawaban selama ujian}}}}
+    \par \centering{\textbf{"Setiap tindak kecurangan akan mendapat sanksi akademik."}}
+	
+    \noindent\rule{\textwidth}{2.pt}
+	
+% SOAL DI SINI YAA
+\begin{enumerate}
+    \item Dapatkan luas daerah yang dibatasi oleh \( y = -x^2 + 2x + 3 \) dan \( y + 2x = 3 \).
+
+    \item Gambarkan daerah yang dibatasi oleh kurva-kurva \( y = 2x - x^2 \) dan \( y = x^2 - 2x \). 
+    Menggunakan Dalil Guldin I, dapatkan volume benda padat jika daerah tersebut diputar terhadap garis \( y = 2 \).
+
+    \item Diberikan persamaan parametrik \( x = \sin t \), \( y = 1 + 2\sin t \), 
+    \( 0 \leq t \leq \frac{\pi}{2} \).
+    \begin{enumerate}
+        \item Dapatkan panjang kurva dari persamaan parametrik.
+        \item Buatlah sketsa kurva tersebut.
+    \end{enumerate}
+
+    \item Dapatkan luas daerah yang berada di dalam lingkaran \( r = 4\sin \theta \) 
+    dan di luar lingkaran \( r = 4\cos \theta \).
+
+    \item Dapatkan deret Taylor untuk fungsi \( f(x) = \dfrac{1}{5 - 4x} \) di sekitar \( x = 1 \).
+\end{enumerate}
+	
+    \fancyfoot{
+    \hrulefill\textbf{ Selamat Mengerjakan }\hrulefill
+
+    \begin{center}
+	    ``\textit{Jujur adalah kunci kesuksesan}''
+    \end{center}}
+
+    \newpage
+    \pagestyle{solution}
+    {\centering\textbf{SOLUSI}}
+
+    \begin{enumerate}
+      \item 
+    \end{enumerate}
+
+    \newpage
+    \pagestyle{problems}
+    
+    \begin{center}
+	{\underline{\textbf{\MakeUppercase{Evaluasi Akhir Semester Bersama Genap 2023/2024}}}}
+    \end{center}
+
+    \begin{center}
+	\begin{tabular}{lcl}
+		Mata kuliah/SKS & : & Kalkulus 2 ( SM234201 ) / 3 SKS\\
+		Hari, Tanggal & : & Rabu, 26 Juni 2024\\
+		Waktu & : & 13.30-15.10 WIB (100 menit)\\
+		Sifat & : & Tertutup\\
+		Kelas & : & 40-63
+	\end{tabular}
+    \end{center}
+	
+    \noindent\rule{\textwidth}{2.pt}
+	
+    \setlength{\parindent}{5pt}
+    \par Diberikan 5 soal, dengan bobot nilai masing-masing soal sama dan boleh dikerjakan tidak berurutan.
+    \setlength{\parindent}{5pt}
+    \centering{Tuliskan: Nama, NRP, dan Nomor Kelas pada lembar jawaban Anda.}
+    \setlength{\parindent}{5pt}
+    {\small
+    \par \textbf{\MakeUppercase{Dilarang membawa/menggunakan kalkulator dan alat komunikasi}}
+    \centering{\textbf{\MakeUppercase{dilarang memberikan/menerima jawaban selama ujian}}}}
+    \par \centering{\textbf{"Setiap tindak kecurangan akan mendapat sanksi akademik."}}
+	
+    \noindent\rule{\textwidth}{2.pt}
+	
+% SOAL DI SINI YAA
+\begin{enumerate}
+    \item Dapatkan luas daerah yang dibatasi oleh \( y = \sqrt{x + 2} \), \( y = x \), dan \( y = 0 \).
+
+    \item Gambarkan luas daerah yang dibatasi oleh kurva \( y = -x^2 + x \) dan sumbu-\( x \). 
+    Menggunakan Dalil Guldin I, dapatkan volume benda padat jika daerah tersebut diputar pada garis \( x = 4 \).
+
+    \item Dapatkan persamaan garis singgung kurva \( x = t + \cos t \), \( y = 2 + \sin t \) saat \( t = 0 \).
+
+    \item Dapatkan luas daerah dari irisan lingkaran \( r = 4 \sin \theta \) dan lingkaran \( r = 4 \cos \theta \).
+
+    \item Dapatkan deret Maclaurin untuk fungsi \( f(x) = xe^x \).
+\end{enumerate}
+	
+    \fancyfoot{
+    \hrulefill\textbf{ Selamat Mengerjakan }\hrulefill
+
+    \begin{center}
+	    ``\textit{Jujur adalah kunci kesuksesan}''
+    \end{center}}
+
+    \newpage
+    \pagestyle{solution}
+    {\centering\textbf{SOLUSI}}
+
+    \begin{enumerate}
+      \item
+    \end{enumerate}
+
+    \newpage
+
+    \pagestyle{problems}
+
+    \begin{center}
+	{\underline{\textbf{\MakeUppercase{Evaluasi Akhir Semester Bersama Genap 2023/2024}}}}
+    \end{center}
+
+    \begin{center}
+	\begin{tabular}{lcl}
+		Mata kuliah/SKS & : & Kalkulus 2 ( SM234201 ) / 3 SKS\\
+		Hari, Tanggal & : & Kamis, 27 Juni 2024\\
+		Waktu & : & 11.00-12.40 WIB (100 menit)\\
+		Sifat & : & Tertutup\\
+		Kelas & : & 48-60, 107
+	\end{tabular}
+    \end{center}
+	
+    \noindent\rule{\textwidth}{2.pt}
+	
+    \setlength{\parindent}{5pt}
+    \par Diberikan 5 soal, dengan bobot nilai masing-masing soal sama dan boleh dikerjakan tidak berurutan.
+    \setlength{\parindent}{5pt}
+    \centering{Tuliskan: Nama, NRP, dan Nomor Kelas pada lembar jawaban Anda.}
+    \setlength{\parindent}{5pt}
+    {\small
+    \par \textbf{\MakeUppercase{Dilarang membawa/menggunakan kalkulator dan alat komunikasi}}
+    \centering{\textbf{\MakeUppercase{dilarang memberikan/menerima jawaban selama ujian}}}}
+    \par \centering{\textbf{"Setiap tindak kecurangan akan mendapat sanksi akademik."}}
+	
+    \noindent\rule{\textwidth}{2.pt}
+	
+% SOAL DI SINI YAA
+\begin{enumerate}
+    \item Dapatkan luas daerah yang dibatasi oleh \( x = y^3 - y \) dan \( x = 0 \).
+
+    \item Gambarkan daerah di kuadran I yang dibatasi oleh kurva-kurva \( y = x^2 \), \( y = 8 - 2x \), dan sumbu-\( y \). 
+    Dapatkan volume benda putar jika daerah tersebut diputar pada sumbu-\( x \).
+
+    \item Hitung panjang busur kurva 
+    $
+        x = a(t - \sin t), \quad y = a(1 - \cos t)
+    $
+    pada \( 0 \leq t \leq 2\pi \).\\
+    Petunjuk: gunakan identitas trigonometri \( \cos 2t = 1 - 2\sin^2 t \).
+
+    \item Dapatkan luas daerah yang diperoleh dari irisan kurva \( r = 3\cos \theta \) dan \( r = 1 + \cos \theta \).
+
+    \item Dapatkan polinomial Taylor untuk fungsi \( f(x) = x \cos x \) di sekitar \( x = \pi \) hingga suku keempat.
+\end{enumerate}
+	
+    \fancyfoot{
+    \hrulefill\textbf{ Selamat Mengerjakan }\hrulefill
+
+    \begin{center}
+	    ``\textit{Jujur adalah kunci kesuksesan}''
+    \end{center}}
+
+    \newpage
+    \pagestyle{solution}
+    {\centering\textbf{SOLUSI}}
+
+    \begin{enumerate}
+      \item
+    \end{enumerate}
+    
+\end{document}

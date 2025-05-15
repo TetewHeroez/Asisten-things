@@ -15,6 +15,7 @@
 \RequirePackage[bahasa]{babel}
 \RequirePackage{multirow}
 \RequirePackage{multicol}
+\RequirePackage{../tikz-uml}
 \RequirePackage{tkz-euclide,calc,pgfmath}
     \usetikzlibrary{patterns,decorations,shapes.arrows,shapes.geometric,arrows,positioning}
 \RequirePackage{listings}
