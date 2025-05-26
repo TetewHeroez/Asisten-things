@@ -1,0 +1,214 @@
+\documentclass{../praktikum-ppt}
+\usepackage{tikz-3dplot}
+
+\author[Tew \& Haf]{Teosofi Hidayah Agung \\ Hafidz Mulia}
+\date{26 Mei 2025}
+\title[Alpro 2 - Week 9]{Kelas Abstrak \& \textit{Interface}}
+\institute[Matematika ITS]{Departemen Matematika\\ Institut Teknologi Sepuluh Nopember}
+
+\begin{document}
+
+{\usebackgroundtemplate{
+  \tikz[overlay,remember picture] \node[opacity=0.2, at=(current page.center)]{\includegraphics[width=\paperwidth]{bg_22}};}
+\begin{frame}
+  \titlepage
+\end{frame}
+}
+
+\AtBeginSection{
+    {\usebackgroundtemplate{
+     \tikz[overlay,remember picture] \node[opacity=0.1, at=(current page.center)]{\includegraphics[width=\paperwidth]{code_bg}};}
+    \begin{frame}{Daftar isi}
+        \tableofcontents[currentsection]
+        % \begin{tikzpicture}[overlay, remember picture] 
+        %     \node at ([yshift=.5cm]current page.south east) [
+        %         anchor = south east, 
+        %         ] {
+        %     \animategraphics[autoplay,loop,width=0.2\textwidth]{30}{Arisu Dance/Arisu Dance-}{0}{186}
+        %     };
+        % \end{tikzpicture}
+    \end{frame}}
+    }
+
+\begin{frame}
+  \begin{masalah}
+    Pewarisan sifat atau implementasi dari kelas ke objek lain itu sangat luas terlebih dalam pendefinisian method didalam kelas tersebut. Oleh karena itu, Agar tidak selalu harus mendefinisikan method pada setiap kelas yang dibuat, maka kita dapat menggunakan pendekatan umum yang bersifat \textbf{abstrak} dengan tujuan bisa mencakup case yang lebih luas nantinya.
+  \end{masalah}
+\end{frame}
+
+\section{\textit{Abstract}}
+\begin{frame}{\insertsection}
+  \begin{definisi}
+    \textbf{Kelas abstrak} adalah kelas yang tidak dapat diinstansiasi secara langsung dan biasanya berfungsi sebagai kerangka dasar (blueprint) bagi class-class turunan. Kelas abstrak bisa memiliki method abstrak (tanpa implementasi), method konkret (dengan implementasi), atribut, dan konstruktor.
+  \end{definisi}
+  Dikatakan/didefinisikan kelas abstrak ketika kelas tersebut minimal memiliki satu method abstrak.  
+\end{frame}
+
+\begin{frame}[fragile]{\insertsection}
+  \begin{lstlisting}[caption={Syntax Kelas Abstrak}]
+  abstract class NameClass {
+    // Atribut
+    String ID;
+    ...
+
+    // Method konkret
+    void print() {
+        System.out.println(this.ID);
+    }
+    ...
+
+    // Method abstrak
+    abstract void absMethod();
+  }
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{\insertsection}
+  \begin{contoh}
+    Penggunaan kelas abstrak pada kelas \texttt{BangunDatar} yang memiliki method abstrak \texttt{hitungLuas()} dan \texttt{hitungKeliling()}. 
+  \end{contoh}
+  \begin{lstlisting}{caption={Contoh Kelas Abstrak}}
+    abstract class Bentuk {
+      String nama;
+      Bentuk(String nama) { this.nama = nama; }
+
+      void printNama() {
+          System.out.println("Bentuk: " + this.nama);
+      }
+
+      abstract double luas();
+      abstract double keliling();
+    }
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{\insertsection}
+  \begin{lstlisting}{caption={Contoh Kelas Turunan dari Kelas Abstrak}}
+  class Persegi extends Bentuk {
+    double sisi;
+    Persegi(double s) { this.sisi = s; }
+
+    double luas() {// Jika tidak ada akan error
+        return this.sisi * this.sisi;
+    }
+    double keliling() {// Jika tidak ada akan error
+        return 4 * this.sisi;
+    }
+
+    void printNama() {// Override opsional
+          System.out.println("Persegi: " + this.nama);
+      }
+  }
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{\insertsection}
+  \begin{alertblock}{Penting!}
+    Kelas abstrak tidak dapat diinstansiasi secara langsung. 
+  \end{alertblock}
+  \begin{lstlisting}
+    Bentuk b = new Bentuk(); // ERROR!
+  \end{lstlisting}
+\end{frame}
+
+\section{\textit{Interface}}
+\begin{frame}{\insertsection}
+  \begin{definisi}
+    \textbf{Interface} adalah template yang hanya mendefinisikan method tanpa implementasi, atau method dengan implementasi default. Semua method dalam interface secara default \texttt{public abstract}.
+  \end{definisi}
+  Simpelnya semua yang didefinisikan dalam interface adalah method abstrak, dan tidak ada atribut yang didefinisikan di dalamnya.  
+\end{frame}
+
+\begin{frame}[fragile]{\insertsection}
+  \begin{lstlisting}[caption={Syntax Interface}]
+  interface NameInterface {
+    void method1();
+    String method2(char c);
+    int method3(int a, int b);
+    ...
+  }
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{\insertsection}
+  \begin{contoh}
+    Penggunaan interface pada interface \texttt{Kendaraan}.
+  \end{contoh}
+  \begin{lstlisting}[caption={Contoh Interface}]
+  interface Kendaraan {
+    void jalan();
+    void berhenti();
+    void belokKiri();
+    void belokKanan();
+    int getKecepatan();
+  }
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{\insertsection}
+  \begin{lstlisting}[caption={Contoh Kelas Implementasi Interface}]
+  class Mobil implements Kendaraan {
+    int kecepatan;
+
+    public void jalan() { System.out.println("Mobil berjalan");}
+    public void berhenti() { System.out.println("Mobil berhenti");}
+    public void belokKiri() { System.out.println("Mobil belok kiri");}
+    public void belokKanan() { System.out.println("Mobil belok kanan");}
+    public int getKecepatan() { return this.kecepatan;}
+  }
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{\insertsection}
+  \begin{alertblock}{Penting!}
+    Kita tahu sebuah kelas hanya bisa mengimplementasikan satu kelas (superclass), namun sebuah kelas bisa mengimplementasikan banyak interface.
+  \end{alertblock}
+  \begin{lstlisting}[caption={Syntax untuk Implementasi Banyak Interface}]
+    class A implements Interface1, Interface2 { 
+      ... 
+    }
+  \end{lstlisting}
+\end{frame}
+
+\section{Latihan}
+\begin{frame}
+  \begin{latihan}
+    Buatlah kode program yang mendefinisikan kelas dan interface berikut:
+  \end{latihan}
+  \begin{center}
+
+  \begin{tikzpicture}[every node/.style={scale=0.7}]
+  % Class abstract & Interface
+  \umlclass[type=abstract,x=2,y=0]{BangunDatar}{}{
+    \textit{+ hitungLuas() : double}\\
+    \textit{+ hitungKeliling() : double}\\
+    \textit{+ printInfo() : void}
+  }
+  \umlinterface[x=-2, y=0]{Simetri}{}{
+    \textit{+ simPutar(): int}\\
+    \textit{+ simLipatl(): int}
+  }
+  
+  % Class turunan
+  \umlclass[x=4, y=-3.5]{SegitigaSamaSisi}{
+    \textit{- sisi : double}
+  }{}
+  \umlclass[x=0, y=-3.5]{Persegi}{
+    \textit{- sisi : double}
+  }{}
+  \umlclass[x=-4, y=-3.5]{TrapesiumSamaKaki}{
+    \textit{- alas : double}\\
+    \textit{- tinggi : double}
+  }{}
+
+  % Relasi
+  \umlinherit{SegitigaSamaSisi}{BangunDatar}
+  \umlinherit{Persegi}{BangunDatar}
+  \umlinherit{TrapesiumSamaKaki}{BangunDatar}
+  \umlreal{SegitigaSamaSisi}{Simetri}
+  \umlreal{Persegi}{Simetri}
+  \umlreal{TrapesiumSamaKaki}{Simetri}
+  \end{tikzpicture}
+  \end{center}
+\end{frame}
+\end{document}
