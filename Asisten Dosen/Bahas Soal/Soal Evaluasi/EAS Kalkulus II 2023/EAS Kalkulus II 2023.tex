@@ -552,6 +552,9 @@
             \draw[thick] (-1,0) -- (1.1,0);
             \draw[->, thick] (0,-3) -- (0,4) node[above]{\footnotesize $y$};
 
+            \draw[domain=1.75:2.3,smooth,samples=120,variable=\x, purple!80, thick] plot ({\x},{\fx});
+            \draw[domain=1.75:2.3,smooth,samples=120,variable=\x, purple!30, thick] plot ({\x},{-\fx});
+
             \draw[|-|] (1.4,2.2) -- (1.8,2.2) node[midway,above,yshift=0.1cm] {\tiny $\Delta x$};
 
             \begin{scope}[xshift=6cm,font=\scriptsize]
