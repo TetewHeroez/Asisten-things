@@ -17,6 +17,8 @@
 *.toc
 *.vrb
 *_minted
+_minted-*/
 *.listing
 *.gnuplot
 *.sty
+*.pyg
