@@ -866,25 +866,24 @@
             \end{align*}
             \item Dengan melakukan substitusi \( x = \sin t \), maka didapatkan
             \begin{align*}
-                y &= 1+2x,\quad 1 \leq x \leq 3 \\
+                y &= 1+2x,\quad 0 \leq x \leq 1 \\
             \end{align*}
             Sehingga sketsa kurva tersebut adalah sebagai berikut:
             \begin{center}
-                \begin{tikzpicture}[scale=0.8,y=0.5cm,x=2cm]
+                \begin{tikzpicture}[scale=1,y=0.5cm,x=2cm]
                 %axes
-                \draw[latex-latex,very thick] (-1,0)--(4,0) node [right] {\footnotesize$x$};
-                \draw[latex-latex,very thick] (0,-1)--(0,8) node [above] {\footnotesize$y$};
+                \draw[latex-latex,very thick] (-1,0)--(2,0) node [right] {\footnotesize$x$};
+                \draw[latex-latex,very thick] (0,-1)--(0,4) node [above] {\footnotesize$y$};
 
                 %graphs
-                \draw[domain=1:3,smooth,samples=120,variable=\x, red!80!black, thick] plot ({\x},{1+2*\x}) node [below right] {\footnotesize$y=1+2x$};
+                \draw[domain=0:1,smooth,samples=120,variable=\x, red!80!black, thick] plot ({\x},{1+2*\x}) node [below right] {\footnotesize$y=1+2x$};
 
                 %intersection points
-                \draw[fill=black,darkgray] (1,3) circle (2pt) node [below left] {\tiny$(1,3)$};
-                \draw[fill=black,darkgray] (3,7) circle (2pt) node [above right] {\tiny$(3,7)$};
+                \draw[fill=black,darkgray] (0,1) circle (2pt) node [below left] {};
+                \draw[fill=black,darkgray] (1,3) circle (2pt) node [above right] {\tiny$(1,3)$};
+                \draw[darkgray,dashed] (0,1) node[left] {\tiny$1$};
                 \draw[darkgray,dashed] (1,0) node[below] {\tiny$1$} -- (1,3);
-                \draw[darkgray,dashed] (3,0) node[below] {\tiny$3$} -- (3,7);
                 \draw[darkgray,dashed] (0,3) node[left] {\tiny$3$} -- (1,3);
-                \draw[darkgray,dashed] (0,7) node[left] {\tiny$7$} -- (3,7);
                 \end{tikzpicture}
             \end{center}
         \end{enumerate}
