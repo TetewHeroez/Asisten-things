@@ -7,7 +7,7 @@ All materials in this repository were developed using **LaTeX**, particularly th
 <!-- PORTFOLIO-END: detailedDescription -->
 
 ## 📂 Contents
-
+<!-- PORTFOLIO-START: features -->
 - 📊 **Lecture Presentations**  
   Carefully crafted Beamer-based presentation slides used to deliver or assist in class explanations. These materials are designed to be visually clear, concise, and pedagogically effective.
 
@@ -19,6 +19,7 @@ All materials in this repository were developed using **LaTeX**, particularly th
 
 - 🧠 **Supplementary Notes**  
   Additional summaries or concept explanations that were used to support students' understanding beyond what was covered in lectures.
+  <!-- PORTFOLIO-END: features -->
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/bce9d7f1-f1d9-4c9b-9f66-390606327f60" width="600"/>
