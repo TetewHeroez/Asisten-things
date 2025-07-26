@@ -1,9 +1,10 @@
 # 📘 Academic Assistant Materials Repository
 
+<!-- PORTFOLIO-START: detailedDescription -->
 This repository serves as a personal archive of academic resources that I created and compiled during my tenure as a **teaching assistant** for two university-level courses: **Calculus** and **Programming Algorithm**.
 
 All materials in this repository were developed using **LaTeX**, particularly the Beamer document class for presentations, to ensure professional layout, clarity, and consistency. The use of LaTeX allows for precise formatting of mathematical notation and structured document design, making the content suitable for academic and teaching purposes.
-
+<!-- PORTFOLIO-END: detailedDescription -->
 
 ## 📂 Contents
 
