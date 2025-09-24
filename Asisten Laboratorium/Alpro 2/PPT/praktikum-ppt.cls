@@ -118,13 +118,14 @@
 \AtBeginEnvironment{akibat}{%
   \setbeamercolor{block title}{fg=white,bg=brown} 
   \setbeamercolor{block body}{parent=normal text,bg=brown!30!white} 
-    \setbeamercolor{item}{fg=brown}
+  \setbeamercolor{item}{fg=brown}
 }
 \AtBeginEnvironment{game}{%
   \setbeamercolor{block title}{fg=white,bg=berlin} 
   \setbeamercolor{block body}{parent=normal text,bg=berlin!30!white} 
-    \setbeamercolor{item}{fg=berlin}
+  \setbeamercolor{item}{fg=berlin}
 }
+
 
 \renewcommand{\arraystretch}{1.3}
 \renewcommand{\lstlistingname}{Kode}

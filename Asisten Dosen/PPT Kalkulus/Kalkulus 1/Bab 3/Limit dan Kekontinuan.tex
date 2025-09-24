@@ -1,6 +1,6 @@
 \documentclass[aspectratio=169]{beamer}
 \usepackage{pgf}
-\usepackage{colortbl,tabularx,mathrsfs,calligra}
+\usepackage{colortbl,tabularx,mathrsfs,calligra,xcolor}
 \usepackage{amsmath,amsfonts,amssymb,amsthm}
     \DeclareMathOperator{\sign}{sgn}
 \usepackage{ragged2e}
@@ -16,17 +16,12 @@
 \usepackage{tikz, pgfplots, tkz-euclide,calc}
     \usetikzlibrary{patterns,snakes,shapes.arrows,shapes.geometric,fit}
 \usepackage{listings}
-\usepackage{enumitem}
 \usepackage{pifont}
-% \usepackage[scaled]{berasans}
-%     \renewcommand*\familydefault{\sfdefault}  %% Only if the base font of the document is to be sans serif
-% \usepackage[T1]{fontenc}
 \usepackage[scaled]{uarial}
 \renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
 \usepackage[T1]{fontenc}
 
-% \graphicspath{{C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Kalkulus/Gambar & Logo/}}
-\graphicspath{{C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Kalkulus/Gambar & Logo/}}
+\graphicspath{{C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Kalkulus/Gambar & Logo/}{D:/Hada Touya/Asisten-things/Asisten Dosen/PPT Kalkulus/Gambar & Logo/}}
 
 \definecolor{HIMAmuda}{HTML}{01D1FD}
 \definecolor{HIMAtua}{HTML}{02016A}
@@ -46,7 +41,6 @@
 
 \usefonttheme{professionalfonts}
 \setbeamertemplate{theorems}[numbered]
-\setbeamertemplate{itemize items}[circle]
 
 \usebackgroundtemplate{%
 \tikz[overlay,remember picture] \node[opacity=0.1, at=(current page.center)]{\includegraphics[width=\paperwidth]{arona class}};
@@ -68,6 +62,7 @@
 \AtBeginEnvironment{definisi}{
     \setbeamercolor{block title}{fg=white,bg=HIMAtua}
     \setbeamercolor{block body}{parent=normal text,bg=HIMAtua!30!white}
+    \setbeamercolor{item}{fg=HIMAtua}
 }
 \AtBeginEnvironment{teorema}{
     \setbeamercolor{block title}{bg=darkgray,fg=white}
@@ -75,13 +70,17 @@
 }
 \AtBeginEnvironment{contoh}{%
   \setbeamercolor{block title}{fg=white,bg=PastelGreen} % Set title background to pastel green and text to white
-  \setbeamercolor{block body}{parent=normal text,bg=PastelGreen!30!white} % Set body background to a lighter pastel green
+  \setbeamercolor{block body}{parent=normal text,bg=PastelGreen!30!white} 
 }
+\AtBeginEnvironment{alertblock}{%
+  \setbeamercolor{item}{fg=red}
+}
+
 
 
 \author[Tetew]{Teosofi Hidayah Agung}
 \date{19 September 2024}
-\title[Kalkulus 1 - Bab 2]{Fungsi}
+\title[Kalkulus 1 - Bab 3]{Limit dan Kekontinuan}
 \institute[Matematika ITS]{Departemen Matematika\\ Institut Teknologi Sepuluh Nopember}
 \titlegraphic{{\includegraphics[scale=0.3]{ITS.png}$\quad$\includegraphics[scale=0.02]{M.png}}}
 
@@ -92,67 +91,33 @@
 
 \begin{document}
 {\usebackgroundtemplate{
-    \tikz[overlay,remember picture] \node[opacity=0.1.5, at=(current page.center)]{\includegraphics[width=\paperwidth]{WoN ML}};}
+    \tikz[overlay,remember picture] \node[opacity=0.09, at=(current page.center)]{\includegraphics[width=\paperwidth]{limitless}};}
 \begin{frame}
     \titlepage
 \end{frame}
 }
 
 \begin{frame}{Daftar isi}
-    \tableofcontents
+    \tableofcontents[currentsection]
 \end{frame}
 
-\section{Fungsi Real}
+\section{Notasi Limit}
 \begin{frame}
     \frametitle{\insertsection}
     \begin{definisi}
-        Fungsi adalah pemetaan elemen dari suatu himpunan ke {\color{red}tepat satu} elemen dari himpunan lain. Dalam Kalkulus 1, kita batasi pembahasan pada fungsi yang memetakan bilangan real ke bilangan real.
+        Notasi limit yang biasanya dibaca ``limit $f(x)$ saat $x$ \textbf{mendekati} $a$ adalah $L$'' dituliskan sebagai
+        \[\lim_{x\to a} f(x)=L,\]
+        Artinya jika kita mengambil nilai $x$ yang sangat dekat dengan $a$, maka $f(x)$ akan sangat dekat dengan $L$.
     \end{definisi}
-    \begin{columns}
-        \onslide<2->{\begin{column}{0.3\textwidth}
-                \begin{block}{Notasi}
-                    \begin{itemize}[label=$\bullet$]
-                        \item $f:A\to B$\\
-                              $\quad\,\,\,\,a\mapsto b$
-                        \item $y=f(x)$
-                    \end{itemize}
-                \end{block}
-            \end{column}}
-        \onslide<3->{\begin{column}{0.34\textwidth}
-                \begin{contoh}
-                    \begin{itemize}[label=$\bullet$]
-                        \item $f:\R\to\R$
-                        \item $f:\{1,2,3\}\to\{3,6,9\}$
-                        \item $f(x)=x^2$
-                        \item $f(n)=\begin{cases}
-                                      1,  & n \text{ genap}  \\
-                                      -1, & n \text{ ganjil} \\
-                                  \end{cases}$
-                    \end{itemize}
-                \end{contoh}
-            \end{column}}
-        \onslide<4->{\begin{column}{0.3\textwidth}
-                \centering
-                \begin{tikzpicture}
-                    \foreach[count=\i] \lseti/\lsetmi in {A/{$1$,$2$,$3$,$4$},B/{$\pi$,$e$,$\phi$,$ $}} {
-                    \begin{scope}[local bounding box=\lseti, x=2cm, y=0.5cm]
-                        \foreach[count=\j] \lj in \lsetmi {
-                            \node[minimum width=1em,anchor=base,text height=1.4ex,text
-                                depth=0.25ex] (n-\j-\lseti)
-                            at (\i,-\j) {\lj};
-                        }
-                    \end{scope}
-                    \node[ellipse, draw, fit=(\lseti),
-                        label={[name=l-\lseti]above:$\lseti$}] {};
-                    }
-                    \draw[->] (n-1-A) -- (n-2-B);
-                    \draw[->] (n-2-A) -- (n-2-B);
-                    \draw[->] (n-3-A) -- (n-3-B);
-                    \draw[->] (n-4-A) -- (n-3-B);
-                    \draw[->] (l-A) -- node[above]{$f$}(l-B);
-                \end{tikzpicture}
-            \end{column}}
-    \end{columns}
+    \onslide<2->{
+        \setbeamercolor{item}{fg=PastelGreen!50!HIMAmuda}
+        \begin{alertblock}{Catatan}
+            \begin{itemize}
+                \item Kata ``mendekati'' jangan disamakan dengan ``menuju''.
+                \item Nilai $f(a)$ tidak harus sama dengan $L$ atau bahkan $f(a)$ tidak terdefinisi.
+                \item Nilai $f(x)$ untuk $x=a$ tidak mempengaruhi nilai limit.
+            \end{itemize}
+        \end{alertblock}}
 \end{frame}
 
 \begin{frame}
@@ -174,7 +139,7 @@
 \begin{frame}
     \frametitle{\insertsection}
     \begin{contoh}
-        \begin{itemize}[label=$\checkmark$]
+        \begin{itemize}
             \item $f(x)=|x|$
             \item $f(x)=\sign(x)=\begin{cases}
                           1,  & x>0 \\
@@ -189,7 +154,7 @@
     \end{contoh}
 \end{frame}
 
-\section{Domain dan Range}
+\section{Perhitungan Limit}
 \begin{frame}
     \frametitle{\insertsection}
     \begin{definisi}
@@ -223,7 +188,7 @@
 \begin{frame}
     \frametitle{\insertsection}
     \begin{exampleblock}{Latihan}
-        \begin{enumerate}[label=(\arabic*)]
+        \begin{enumerate}
             \item Jika $f(t)=\begin{cases}
                           2t+1,  & t\geq 0 \\
                           t^2-1, & t<0
@@ -234,12 +199,12 @@
     \end{exampleblock}
 \end{frame}
 
-\section{Operasi pada Fungsi}
+\section{Limit di Tak-Hingga}
 \begin{frame}
     \frametitle{\insertsection}
     \begin{definisi}
         Misalkan $f$ dan $g$ adalah dua fungsi. Operasi-operasi pada fungsi adalah sebagai berikut
-        \begin{enumerate}[label=(\arabic*)]
+        \begin{enumerate}
             \item Penjumlahan: $(f+g)(x)=f(x)+g(x)$
             \item Pengurangan: $(f-g)(x)=f(x)-g(x)$
             \item Perkalian: $(f\cdot g)(x)=f(x)\cdot g(x)$
@@ -264,7 +229,7 @@
 \begin{frame}
     \frametitle{\insertsection}
     \begin{exampleblock}{Latihan}
-        \begin{enumerate} [label=(\arabic*)]
+        \begin{enumerate}
             \item Domain dari fungsi $\displaystyle f(x)=\frac{1}{x}+\sqrt{4-x^2}$ adalah
             \item Jika $f(g(x))=x^2+1$ dan $f(x)=\sqrt{x-1}$, tentukan $g(x)$
             \item Tentukan domain dari $g\circ f$ jika $f(x)=\sqrt{x^2-9}$ dan $\displaystyle g(x)=\frac{2}{x-3}$
@@ -272,7 +237,7 @@
     \end{exampleblock}
 \end{frame}
 
-\section{Grafik Fungsi}
+\section{Kekontinuan}
 \begin{frame}
     \frametitle{\insertsection}
     \begin{definisi}
@@ -455,7 +420,7 @@
 \begin{frame}
     \frametitle{\insertsection}
     \begin{exampleblock}{Latihan}
-        \begin{enumerate}[label=(\arabic*)]
+        \begin{enumerate}
             \item Tentukan persamaan dari grafik fungsi berikut\\
                   \begin{tikzpicture}[scale=0.5]
                       \draw [->] (-3,0) -- (3,0) node [right] {\footnotesize$x$};
@@ -474,37 +439,4 @@
     \end{exampleblock}
 \end{frame}
 
-\section{Fungsi Invers}
-\begin{frame}
-    \frametitle{\insertsection}
-    \begin{teorema}
-        Fungsi dikatakan mempunyai invers jika dan hanya jika fungsi tersebut bersifat satu-satu.
-    \end{teorema}
-    \begin{teorema}
-        Grafik fungsi invers adalah refleksi terhadap garis $y=x$ dari grafik fungsi aslinya.
-    \end{teorema}
-    \begin{block}{Sifat-sifat}
-        Sifat fungsi invers antara lain
-        \begin{enumerate}[label=(\arabic*)]
-            \item $\displaystyle f(f^{-1}(x))=x$
-            \item $\displaystyle f^{-1}(f(x))=x$
-            \item $\displaystyle (f^{-1})^{-1}(x)=f(x)$
-        \end{enumerate}
-    \end{block}
-\end{frame}
-
-{
-\usebackgroundtemplate{
-    \tikz[overlay,remember picture] \node[opacity=0.2, at=(current page.center)]{\includegraphics[width=\paperwidth]{sudah saatnya}};
-}
-\setbeamercolor{block title}{bg=brown,fg=white} % Block title background brown, text white
-\setbeamercolor{block body}{bg=brown!30,fg=black}
-\begin{frame}
-    \begin{block}{\huge Quest}
-        \begin{enumerate} [label=(\arabic*)]
-            \item Tentukan domain dari $g\circ f$ jika $f(x)=\sqrt{x^2-16}$ dan $\displaystyle g(x)=\frac{x}{x+4}$
-            \item Tentukan persamaan grafik fungsi berikut
-        \end{enumerate}
-    \end{block}
-\end{frame}}
 \end{document}
