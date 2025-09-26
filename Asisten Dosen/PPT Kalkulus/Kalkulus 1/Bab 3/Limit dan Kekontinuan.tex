@@ -1,80 +1,4 @@
-\documentclass[aspectratio=169]{beamer}
-\usepackage{pgf}
-\usepackage{colortbl,tabularx,mathrsfs,calligra,xcolor}
-\usepackage{amsmath,amsfonts,amssymb,amsthm}
-    \DeclareMathOperator{\sign}{sgn}
-\usepackage{ragged2e}
-\usepackage{setspace}
-\usepackage{filecontents}
-\usepackage{caption}
-\usepackage{subcaption}
-\usepackage{contour}
-\usepackage{fancybox}
-\usepackage{wrapfig}
-\usepackage{multirow}
-\usepackage{multicol}
-\usepackage{tikz, pgfplots, tkz-euclide,calc}
-    \usetikzlibrary{patterns,snakes,shapes.arrows,shapes.geometric,fit}
-\usepackage{listings}
-\usepackage{pifont}
-\usepackage[scaled]{uarial}
-\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
-\usepackage[T1]{fontenc}
-
-\graphicspath{{C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Kalkulus/Gambar & Logo/}{D:/Hada Touya/Asisten-things/Asisten Dosen/PPT Kalkulus/Gambar & Logo/}}
-
-\definecolor{HIMAmuda}{HTML}{01D1FD}
-\definecolor{HIMAtua}{HTML}{02016A}
-\definecolor{HIMAabu}{HTML}{CBCBCC}
-\definecolor{PastelGreen}{HTML}{77DD77}
-
-\usetheme{Madrid}
-
-\setbeamercolor{palette primary}{bg=HIMAtua,fg=white}
-\setbeamercolor{palette secondary}{bg=HIMAmuda,fg=black}
-\setbeamercolor{palette tertiary}{bg=HIMAabu,fg=black}
-\setbeamercolor{palette quaternary}{bg=HIMAmuda,fg=white}
-\setbeamercolor{structure}{fg=HIMAmuda} % itemize, enumerate, etc
-\setbeamercolor{section in toc}{fg=HIMAtua} % TOC sections
-\setbeamercolor{block title alerted}{fg=white,bg=magenta}
-\setbeamercolor{block body alerted}{fg=black!90,bg=pink}
-
-\usefonttheme{professionalfonts}
-\setbeamertemplate{theorems}[numbered]
-
-\usebackgroundtemplate{%
-\tikz[overlay,remember picture] \node[opacity=0.1, at=(current page.center)]{\includegraphics[width=\paperwidth]{arona class}};
-}
-
-\renewcommand\thesubfigure{\arabic{subfigure}}
-\newtheorem*{funfact}{Fun Fact}
-\newtheorem{latihan}{Latihan}
-\newtheorem{definisi}{Definisi}
-\newtheorem{teorema}{Teorema}
-\theoremstyle{definition}
-\newtheorem*{contoh}{Contoh}
-\newcommand{\R}{\mathbb{R}}
-
-\AtBeginEnvironment{funfact}{%
-  \setbeamercolor{block title}{fg=white,bg=PastelGreen} % Set title background to pastel green and text to white
-  \setbeamercolor{block body}{parent=normal text,bg=PastelGreen!30!white} % Set body background to a lighter pastel green
-}
-\AtBeginEnvironment{definisi}{
-    \setbeamercolor{block title}{fg=white,bg=HIMAtua}
-    \setbeamercolor{block body}{parent=normal text,bg=HIMAtua!30!white}
-    \setbeamercolor{item}{fg=HIMAtua}
-}
-\AtBeginEnvironment{teorema}{
-    \setbeamercolor{block title}{bg=darkgray,fg=white}
-    \setbeamercolor{block body}{parent=pallette tertiary,bg=HIMAabu!30!white}
-}
-\AtBeginEnvironment{contoh}{%
-  \setbeamercolor{block title}{fg=white,bg=PastelGreen} % Set title background to pastel green and text to white
-  \setbeamercolor{block body}{parent=normal text,bg=PastelGreen!30!white} 
-}
-\AtBeginEnvironment{alertblock}{%
-  \setbeamercolor{item}{fg=red}
-}
+\documentclass{../../kalkulus-ppt}
 
 
 
@@ -97,9 +21,19 @@
 \end{frame}
 }
 
-\begin{frame}{Daftar isi}
-    \tableofcontents[currentsection]
-\end{frame}
+\AtBeginSection{
+    {
+            \begin{frame}{Daftar isi}
+                \tableofcontents[currentsection]
+                % \begin{tikzpicture}[overlay, remember picture] 
+                %     \node at ([yshift=.5cm]current page.south east) [
+                %         anchor = south east, 
+                %         ] {
+                %     \animategraphics[autoplay,loop,width=0.2\textwidth]{30}{Arisu Dance/Arisu Dance-}{0}{186}
+                %     };
+                % \end{tikzpicture}
+            \end{frame}}
+}
 
 \section{Notasi Limit}
 \begin{frame}
@@ -122,39 +56,124 @@
 
 \begin{frame}
     \frametitle{\insertsection}
-    \begin{block}{Fungsi Piecewise}
-        Fungsi piecewise(sepotong-sepotong) adalah fungsi yang didefinisikan dengan beberapa aturan berbeda pada interval yang berbeda. Secara umum dapat ditulis sebagai berikut
-        \begin{equation*}
-            f(x)=\begin{cases}
-                f_1(x), & x\in \dom_1 \\
-                f_2(x), & x\in \dom_2 \\
-                        & \vdots      \\
-                f_n(x), & x\in \dom_n
-            \end{cases}
-        \end{equation*}
-        dengan $\dom_1\cup\dom_2\cup\cdots\cup\dom_n=\dom_f$ dan $\dom_i\cap\dom_j=\emptyset$ untuk $i\neq j$
-    \end{block}
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}[scale=.4,cap=round]
+            \tikzset{axes/.style={}}
+            % The graphic
+
+            \begin{scope}[style=axes]
+                \draw[->] (-7.5,0) -- (7.5,0) node[right] {$x$};
+                \draw[->] (0,-7.5)-- (0,7.5) node[above] {$y$};
+                \foreach \x/\xtext in {-6/-12,  -4/-8,  -2/-4,     2/4,  4/8, 6/12}
+                    {\ifnum\x=2
+                        \else
+                            \draw[xshift=\x cm] (0pt,2.6pt) -- (0pt,-2.6pt) node[below,font=\scriptsize]
+                            {$\xtext$};
+                        \fi
+                    }
+                \foreach \y/\ytext in {-6/-12,  -4/-8,  -2/-4,    2/4,  4/8,  6.5/13}
+                \draw[yshift=\y cm] (2.6pt,0pt) -- (-2.6pt,0pt) node[left,font=\scriptsize]
+                {$\ytext$};
+                \draw[domain=-4.1:2.9,smooth,variable=\x,brown,thick] plot ({\x},{.5*(3+4*\x)});
+                \node at (-6,-3) [brown] {\scriptsize$\displaystyle f(x)=\frac{2x^2-5x-12}{x-4}$};
+                \draw[dashed] (2.5,0)--(2.5,6.5)--(0,6.5);
+                \draw[dashed] (1.5,0)--(1.5,4.5)--(0,4.5);
+            \end{scope}
+            \draw[cyan,thick] (0,5.5) -- (-1,5.5) node[left,font=\scriptsize](11){11};
+            \node[single arrow,cyan,minimum height=1.5cm,rotate=-90,fill,transform
+                shape,anchor=east,opacity=0.3] at(11.north){};
+            \node[single arrow,cyan,minimum height=1.5cm,rotate=90,fill,transform
+                shape,anchor=east,opacity=0.3] at(11.south){};
+            \draw[red,thick,dashed] (2,0) -- (2,5.5);
+            \draw[blue,thick,dashed] (0,5.5) -- (2,5.5);
+            \node[text=red,font=\scriptsize] (4) at (2,-0.5) {4};
+            \node[single arrow,red,minimum height=1.5cm,rotate=0,fill,transform
+                shape,anchor=east,opacity=0.3] at(4.west){};
+            \node[single arrow,red,minimum height=1.5cm,rotate=180,fill,transform
+                shape,anchor=east,opacity=0.3] at(4.east){};
+            %
+            \matrix[matrix of math nodes,nodes={font=\scriptsize,text width=11mm,align=right,inner sep=3pt,
+                    text height=1.5ex,text depth=.25ex,draw=gray!40,ultra thin},draw,inner
+            sep=0pt,ampersand replacement=\&] (mat)
+            at (16,-0.5){
+            |[fill=green!40!gray,align=left]| x      \& |[fill=green!40!gray,align=left]|f(x)    \\
+            3.9    \& 10.8    \\
+            3.99   \& 10.98   \\
+            3.999  \& 10.998  \\
+            |[text=red!90,align=center]|\vdots \& |[text=cyan!90,align=center]|\vdots  \\
+            |[text=red!90,align=center]| 4 \& |[text=cyan!90,align=center]| 11 \\
+            |[text=red!90,align=center]|\vdots \& |[text=cyan!90,align=center]|\vdots  \\
+            4.001  \& 11.002  \\
+            4.01   \& 11.02   \\
+            4.1    \& 11.2    \\
+            };
+            \draw[thin,gray!40] (mat.north west) -- (mat.north east);
+            \draw[line width=1mm,-latex,red!90] ([xshift=-4mm,yshift=-3mm]mat-2-1.north west)
+            node[xshift=-5mm,anchor=east,align=left,font=\tiny,rotate=90]{Nilai input\\
+                mendekati 4 dari kiri.}
+            --([xshift=-4mm,yshift=-8mm]mat-5-1.west);
+            \draw[line width=1mm,latex-,red!90] ([xshift=-4mm,yshift=2mm]mat-6-1.south west)
+            node[xshift=-5mm,anchor=east,align=left,font=\tiny,rotate=90]{Nilai input\\
+                mendekati 4 dari kanan.}
+            --  ([xshift=-4mm,yshift=-4mm]mat-10-1.west);
+            \draw[line width=1mm,-latex,cyan!90] ([xshift=4mm,yshift=-3mm]mat-2-2.north east)
+            node[xshift=5mm,anchor=west,align=left,font=\tiny,rotate=-90]{Nilai output\\
+                mendekati 11 dari kiri.}
+            --([xshift=4mm,yshift=-8mm]mat-5-2.east);
+            \draw[line width=1mm,latex-,cyan!90] ([xshift=4mm,yshift=2mm]mat-6-2.south east)
+            node[xshift=5mm,anchor=west,align=left,font=\tiny,rotate=-90]{Nilai output\\
+                mendekati 11 dari kanan.}
+            --  ([xshift=4mm,yshift=2mm]mat-10-2.south east);
+            \draw[black,fill=white] (2,5.5) circle (4pt);
+        \end{tikzpicture}
+        \caption{Limit secara numerik}
+    \end{figure}
 \end{frame}
 
 \begin{frame}
     \frametitle{\insertsection}
-    \begin{contoh}
-        \begin{itemize}
-            \item $f(x)=|x|$
-            \item $f(x)=\sign(x)=\begin{cases}
-                          1,  & x>0 \\
-                          0,  & x=0 \\
-                          -1, & x<0
-                      \end{cases}$
-            \item $f(x)=\begin{cases}
-                          x+2,      & x\geq 2 \\
-                          -x^2-x+6, & x<2
-                      \end{cases}$
-        \end{itemize}
-    \end{contoh}
+    Dalam kasus $f(x)=\frac{|x|}{x}$, fungsi ini tidak memiliki limit saat $x$ mendekati 0. Mengapa?
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}[scale=0.8]
+            \draw [->] (-3,0) -- (3,0) node [right] {\footnotesize$x$};
+            \draw [->] (0,-3) -- (0,3) node [above] {\footnotesize$y$};
+
+            \draw [domain=-2.9:0, samples=50, thick, blue] plot (\x, {-1});
+            \draw [domain=0:2.9, samples=50, thick, blue] plot (\x, {1});
+
+            \draw [domain=-3:3, samples=10, darkgray, dashed] plot (0, {\x});
+
+            \draw[fill=white] (0,-1) circle (0.1);
+            \draw[fill=white] (0,1) circle (0.1);
+
+            \node [below] at (-2,0) {\footnotesize$-2$};
+            \node [below] at (2,0) {\footnotesize$2$};
+            \node [below left] at (0,-1) {\footnotesize$-1$};
+            \node [above left] at (0,1) {\footnotesize$1$};
+
+            \node at (7,0) {\footnotesize$f(x)=\begin{cases}
+                        -1, & x<0 \\
+                        1,  & x>0
+                    \end{cases}$};
+        \end{tikzpicture}
+    \end{figure}
+    \onslide<2->{Fungsi $f(x)=\frac{|x|}{x}$ tidak memiliki limit saat $x$ mendekati 0 karena nilai limit dari kiri ($-1$) tidak sama dengan nilai limit dari kanan ($1$).}
 \end{frame}
 
 \section{Perhitungan Limit}
+\begin{frame}
+    \frametitle{\insertsection}
+    \begin{contoh}
+        \begin{itemize}
+            \item $\displaystyle\lim_{x\to 2} x=2$
+            \item $\displaystyle\lim_{x\to \frac{1}{2}} \frac{6x^2-x-1}{2x-1}=\frac{5}{2}$
+            \item $\displaystyle\lim_{x\to 3} \frac{\sqrt{12-x}-3}{x-3}=-\frac{1}{6}$
+            \item $\displaystyle\lim_{x\to 0} \frac{\sin x}{x}=1$
+        \end{itemize}
+    \end{contoh}
+\end{frame}
 \begin{frame}
     \frametitle{\insertsection}
     \begin{definisi}
