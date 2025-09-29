@@ -1,19 +1,30 @@
-\documentclass[10pt,openany,a4paper]{article}
+\documentclass[11pt,openany,a4paper]{article}
 \usepackage{amsmath, amsfonts, amssymb, amsthm}
 \usepackage{tikz, pgfplots, tkz-euclide,calc}
-    \usetikzlibrary{patterns,snakes,shapes.arrows}
+    \usetikzlibrary{patterns,snakes,shapes.arrows,arrows.meta}
 \usepackage{fancyhdr}
 \usepackage{enumerate,enumitem}
 \usepackage{cancel}
 \usepackage{varwidth}
 \usepackage{array}
+\usepackage{animate}
 \usepackage{multirow,multicol}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\usepackage{graphicx}
+\graphicspath{{D:/Hada Touya/Asisten-things/Asisten Dosen/PPT Kalkulus/Gambar & Logo/}{C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium/Alpro 1/PPT/Graphicx/}{C:/Users/teoso/OneDrive/Documents/Tugas Kuliah/Template Math Depart/}}
 
 % TAMBAHKAN PACKAGE SENDIRI KALAU KURANG
 
 \usepackage{geometry}
 \geometry{
-	total = {160mm, 237mm},
 	left = 20mm,
 	right = 20mm,
 	top = 30mm,
@@ -29,54 +40,112 @@
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\cis}{\text{cis}}
 
 \begin{document}
 
-    \begin{center}
-	{\underline{\textbf{\MakeUppercase{Evaluasi Tengah Semester Bersama Genap 2024/2025}}}}
-    \end{center}
+\begin{center}
+    {\underline{\textbf{\MakeUppercase{Evaluasi Tengah Semester Bersama Genap 2024/2025}}}}
+\end{center}
 
-    \begin{center}
-	\begin{tabular}{lcl}
-		Mata kuliah/SKS & : & Kalkulus 1 ( SM234101 ) / 3 SKS\\
-		Hari, Tanggal & : & Kamis, 12 Desember 2024\\
-		Waktu & : & 13.30-15.10 WIB (100 menit)\\
-		Sifat & : & Tertutup\\
-		Kelas & : & 34-46, 107, 108
-	\end{tabular}
-    \end{center}
-	
-    \noindent\rule{\textwidth}{2.pt}
-	
-    \setlength{\parindent}{5pt}
-    \setlength{\parindent}{5pt}
-    \centering{Tuliskan: Nama, NRP, dan Nomor Kelas pada lembar jawaban Anda.}
-    \setlength{\parindent}{5pt}
-    \par \textbf{\MakeUppercase{dilarang membawa/menggunakan kalkulator dan alat komunikasi}}
-    \centering{\textbf{\MakeUppercase{dilarang memberikan/menerima jawaban selama ujian}}}
-    \par \centering{\textbf{"Setiap tindak kecurangan akan mendapat sanksi akademik."}}
-    \noindent\rule{\textwidth}{2.pt}
-    
-	\begin{table}[h]
-        \centering
-        EAS Mengukur Kemampuan
-        \begin{tabular}{|c|m{10.5cm}|c|c|}
-            \hline
-            CPL & CPMK & SOAL & BOBOT (\%) \\ \hline
-            \multirow{5}{*}{2} 
-            & CPMK-2 Mampu menentukan kekontinuan fungsi dan & 1 & 20 \\ \cline{3-4}
-            & turunannya & 2 & 20 \\\cline{2-4}
-            & CPMK-3 Mampu menghitung integral melalui teorema fundamental kalkulus & 3 & 20 \\ \cline{2-4}
-            & CPMK-4 Mampu mengaplikasikan bentuk peubah kompleks dalam bentuk polar serta mencari akar-akar persamaannya & 4 & 20 \\ \cline{2-4}
-            & CPMK-5 Mampu menerapkan konsep matriks untuk menyelesaikan sistem persamaan linier dan menentukan nilai eigen & 5 & 20 \\ \hline
-        \end{tabular}
-    \end{table}
-    \centering{\textbf{SOAL}}
+\begin{center}
+    \begin{tabular}{lcl}
+        Mata kuliah/SKS & : & Kalkulus 1 ( SM234101 ) / 3 SKS \\
+        Hari, Tanggal   & : & Kamis, 17 Oktober 2024          \\
+        Waktu           & : & 07.00-08.40 WIB (100 menit)     \\
+        Sifat           & : & Tertutup                        \\
+        Kelas           & : & 5-12, 101
+    \end{tabular}
+\end{center}
+
+\noindent\rule{\textwidth}{2.pt}
+
+\setlength{\parindent}{5pt}
+\setlength{\parindent}{5pt}
+\centering{Tuliskan: Nama, NRP, dan Nomor Kelas pada lembar jawaban Anda.}
+\setlength{\parindent}{5pt}
+\par \textbf{\small\MakeUppercase{dilarang membawa/menggunakan kalkulator dan alat komunikasi}}
+\centering{\textbf{\MakeUppercase{dilarang memberikan/menerima jawaban selama ujian}}}
+\par \centering{\textbf{"Setiap tindak kecurangan akan mendapat sanksi akademik."}}
+\noindent\rule{\textwidth}{2.pt}
+
+\begin{table}[h]
+    \centering
+    ETS Mengukur Kemampuan
+    \begin{tabular}{|c|m{11cm}|c|c|}
+        \hline
+        CPL & CPMK                                                                                      & SOAL & BOBOT (\%) \\ \hline
+        \multirow{5}{*}{2}
+            & CPMK-1 Mampu menyelesaikan persamaan dan pertidaksamaan serta menssketsa grafik persamaan & 1    & 20         \\ \cline{2-4}
+            & \multirow{4}{*}{CPMK-2 Mampu menentukan kekontinuan fungsi dan turunannya}                & 2    & 20         \\\cline{3-4}
+            &                                                                                           & 3    & 20         \\ \cline{3-4}
+            &                                                                                           & 4    & 20         \\ \cline{3-4}
+            &                                                                                           & 5    & 20         \\ \hline
+    \end{tabular}
+\end{table}
+{\centering\textbf{SOAL}}
 % SOAL DI SINI YAA
-    \begin{enumerate}
-        \item 
-    \end{enumerate}
-    \begin{center}
+\begin{enumerate}
+    \item
+\end{enumerate}
+
+\fancyfoot{\begin{center}
         \rule{0.28\textwidth}{2.pt}$\quad$\textbf{Selamat Mengerjakan}$\quad$\rule{0.28\textwidth}{2.pt}
-    \end{center}
+        \begin{quote}
+            \centering
+            \textit{``Jujur adalah kunci kesuksesan''}
+        \end{quote}
+    \end{center}}
+\newpage
+
+\begin{center}
+    {\underline{\textbf{\MakeUppercase{Evaluasi Tengah Semester Bersama Genap 2024/2025}}}}
+\end{center}
+
+\begin{center}
+    \begin{tabular}{lcl}
+        Mata kuliah/SKS & : & Kalkulus 1 ( SM234101 ) / 3 SKS \\
+        Hari, Tanggal   & : & Kamis, 12 Desember 2024         \\
+        Waktu           & : & 13.30-15.10 WIB (100 menit)     \\
+        Sifat           & : & Tertutup                        \\
+        Kelas           & : & 34-46, 107, 108
+    \end{tabular}
+\end{center}
+
+\noindent\rule{\textwidth}{2.pt}
+
+\setlength{\parindent}{5pt}
+\setlength{\parindent}{5pt}
+\centering{Tuliskan: Nama, NRP, dan Nomor Kelas pada lembar jawaban Anda.}
+\setlength{\parindent}{5pt}
+\par \textbf{\small\MakeUppercase{dilarang membawa/menggunakan kalkulator dan alat komunikasi}}
+\centering{\textbf{\MakeUppercase{dilarang memberikan/menerima jawaban selama ujian}}}
+\par \centering{\textbf{"Setiap tindak kecurangan akan mendapat sanksi akademik."}}
+\noindent\rule{\textwidth}{2.pt}
+
+\begin{table}[h]
+    \centering
+    EAS Mengukur Kemampuan
+    \begin{tabular}{|c|m{10.5cm}|c|c|}
+        \hline
+        CPL & CPMK                                                                                                          & SOAL & BOBOT (\%) \\ \hline
+        \multirow{5}{*}{2}
+            & CPMK-2 Mampu menentukan kekontinuan fungsi dan                                                                & 1    & 20         \\ \cline{3-4}
+            & turunannya                                                                                                    & 2    & 20         \\\cline{2-4}
+            & CPMK-3 Mampu menghitung integral melalui teorema fundamental kalkulus                                         & 3    & 20         \\ \cline{2-4}
+            & CPMK-4 Mampu mengaplikasikan bentuk peubah kompleks dalam bentuk polar serta mencari akar-akar persamaannya   & 4    & 20         \\ \cline{2-4}
+            & CPMK-5 Mampu menerapkan konsep matriks untuk menyelesaikan sistem persamaan linier dan menentukan nilai eigen & 5    & 20         \\ \hline
+    \end{tabular}
+\end{table}
+\centering{\textbf{SOAL}}
+% SOAL DI SINI YAA
+\begin{enumerate}
+    \item
+\end{enumerate}
+
 \end{document}

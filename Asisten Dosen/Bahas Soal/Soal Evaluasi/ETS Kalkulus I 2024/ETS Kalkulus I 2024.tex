@@ -124,47 +124,172 @@
 
 \newpage
 \fancyhead[L]{\textit{Solution By: \hyperlink{https://github.com/TetewHeroez}{Tetew}}}
+\fancyfoot{}
 % \fancyfoot[R]{\animategraphics[autoplay,loop,width=0.1\textwidth]{15}{Kuru Kuru Herta/kuru kuru-}{0}{5}}
 {\centering\textbf{SOLUSI}}
 \renewcommand{\arraystretch}{1.5}
 \renewcommand{\headrulewidth}{1pt}
 \begin{enumerate}
-    \item \begin{align*}
+    \item Pidahkan semua ruas ke kiri
+          \begin{align*}
               \frac{1}{x+2}-\frac{1}{4-x}         & < 0 \\
               \iff \frac{4-x - (x+2)}{(x+2)(4-x)} & < 0 \\
               \iff \frac{2 - 2x}{(x+2)(4-x)}      & < 0 \\
               \iff \frac{1-x}{(x+2)(4-x)}         & < 0
           \end{align*}
-          Diperoleh pembuat nol $x = 1, -2, 4$.\\
-          Selanjutnya gunakan uji tanda, didapatkan
+          Diperoleh pembuat nol-nya adalah $x = 1, -2, 4$. Selanjutnya gunakan uji tanda, didapatkan
           \begin{itemize}
-              \item $x=-3 \implies \frac{1-(-3)}{(-3+2)(4-(-3))} = \frac{4}{-7} < 0$
-              \item $x=0 \implies \frac{1-0}{(0+2)(4-0)} = \frac{1}{8} > 0$
-              \item $x=2 \implies \frac{1-2}{(2+2)(4-2)} = \frac{-1}{8} < 0$
+              \item $\displaystyle x=-3 \implies \frac{1-(-3)}{(-3+2)(4-(-3))} = \frac{4}{-7} < 0$
+              \item $\displaystyle x=0 \implies \frac{1-0}{(0+2)(4-0)} = \frac{1}{8} > 0$
+              \item $\displaystyle x=2 \implies \frac{1-2}{(2+2)(4-2)} = \frac{-1}{8} < 0$
+              \item $\displaystyle x=5 \implies \frac{1-5}{(5+2)(4-5)} = \frac{-4}{-7} > 0$
           \end{itemize}
+          Kemudian gambarkan garis bilangan sebagai berikut
           \begin{center}
               \begin{tikzpicture}
                   \draw[-Latex] (-1,0) -- (6,0);
                   \draw[Latex-] (-1,0) -- (6,0);
                   \foreach \i in {1,2,3}
                   \coordinate (A\i) at (\i,0);
-                  \node[below] at ($(0,-0.1)+(A1)$) {$\frac{7}{4}$};
-                  \node[below] at ($(0,-0.1)+(A2)$) {$2$};
-                  \node[below] at ($(0,-0.1)+(A3)$) {$\frac{9}{4}$};
+                  \node[below] at ($(0,-0.1)+(A1)$) {$-2$};
+                  \node[below] at ($(0,-0.1)+(A2)$) {$1$};
+                  \node[below] at ($(0,-0.1)+(A3)$) {$4$};
 
                   \fill[lightgray,pattern=north west lines,line width=1pt](A1)rectangle($(-0.8,0)+(0,1)$);
-                  \fill[lightgray,pattern=north west lines,line width=1pt](A3)rectangle($(5.8,0)+(0,1)$);
+                  \fill[lightgray,pattern=north west lines,line width=1pt](A2)rectangle($(3,0)+(0,1)$);
 
-                  \draw[-latex](A1)--($(A1)+(0,1)$)--($(-1,0)+(0,1)$);
-                  \draw[-latex](A3)--($(A3)+(0,1)$)--($(6,0)+(0,1)$);
+                  \draw (A1)--($(A1)+(0,1)$)--($(-1,0)+(0,1)$);
+                  \draw (A2)--($(A2)+(0,1)$)--($(A3)+(0,1)$)--(A3);
 
                   \foreach \i in {1,3}
-                  \node[circle,draw,fill=black,inner sep=1.5pt] at (A\i) {};
+                  \node[circle,draw,fill=white,inner sep=1.5pt] at (A\i) {};
                   \node[circle,draw,fill=white,inner sep=1.5pt] at (A2) {};
+
+                  \node[fill=white!5] at ($(A1)+(-1,0.5)$) {\tiny\color{red}$-$};
+                  \node[fill=white!5] at ($0.5*(A1)+0.5*(A2)+(0,0.5)$) {\tiny\color{blue}$+$};
+                  \node[fill=white!5] at ($0.5*(A2)+0.5*(A3)+(0,0.5)$) {\tiny\color{red}$-$};
+                  \node[fill=white!5] at ($(A3)+(1,0.5)$) {\tiny\color{blue}$+$};
 
               \end{tikzpicture}
           \end{center}
+          Sehingga diperoleh himpunan penyelesaian dari pertidaksamaan tersebut adalah
+          \[H_p=\{x\in\R\,|\,x<-2\vee 1\geq x<4\}=(-\infty,-2) \cup (1,4).\]
 
+    \item \begin{enumerate}
+              \item Karena polinomial selalu terdefinisi di $\R$, maka domain $f$ adalah $\mathcal{D}_f = [0,\infty)$ (karena dibatasi untuk $x\geq 0$). Sedangkan untuk $g(x) = \sqrt{x-3}$, agar terdefinisi maka $x-3 \geq 0 \implies x \geq 3$. Dengan demikian, domain dari $g$ adalah $\mathcal{D}_g = [3,\infty)$.
+              \item \begin{align*}
+                        (g \circ f)(x)  = g(f(x))
+                        = g(x^2 + 2)
+                        = \sqrt{(x^2 + 2) - 3}
+                        = \sqrt{x^2 - 1}
+                    \end{align*}
+                    Menurut definisi domain komposisi fungsi, maka
+                    \begin{align*}
+                        \mathcal{D}_{g \circ f} & = \{x \in \mathcal{D}_f \,|\, f(x) \in \mathcal{D}_g\}        \\
+                                                & = \{x \in [0,\infty) \,|\, x^2 + 2 \in [3,\infty)\}           \\
+                                                & = \{x \in [0,\infty) \,|\, x^2 + 2 \geq 3\}                   \\
+                                                & = \{x \in [0,\infty) \,|\, x^2 - 1 \geq 0\}                   \\
+                                                & = \{x \in [0,\infty) \,|\, x \geq 1 \text{ atau } x \leq -1\} \\
+                                                & = [1,\infty).
+                    \end{align*}
+                    Jadi domain dari $(g \circ f)(x)$ adalah $\mathcal{D}_{g \circ f} = [1,\infty)$.
+          \end{enumerate}
+    \item \begin{enumerate}
+              \item Tukar $y = f(x)$ menjadi $x = f(y)$, sehingga
+                    \begin{align*}
+                        x         & = y^3 - 2          \\
+                        y^3       & = x + 2            \\
+                        y         & = \sqrt[3]{x + 2}.
+                        f^{-1}(x) & = \sqrt[3]{x + 2}.
+                    \end{align*}
+                    Selanjutnya kita tahu bahwa $\mathcal{D}_{f^{-1}} = \mathcal{R}_f = \R$ (karena fungsi kubik memiliki range semua bilangan real $(\R)$).
+              \item Grafik $f(x)$ dan $f^{-1}(x)$ dapat digambarkan sebagai berikut
+                    \begin{center}
+                        \begin{tikzpicture}
+                            \begin{axis}[
+                                    axis lines = middle,
+                                    xlabel = $x$,
+                                    ylabel = {$y$},
+                                    xtick={-4,-2,...,4},
+                                    ytick={-4,-2,...,4},
+                                    ymin=-5.5, ymax=5.5,
+                                    xmin=-5.5, xmax=5.5,
+                                    grid=both,
+                                    width=10cm,
+                                    height=10cm,
+                                    grid style={line width=.1pt, draw=gray!10},
+                                    major grid style={line width=.2pt,draw=gray!50},
+                                    x label style={anchor=west}, % label x ke kanan
+                                    y label style={anchor=south}, % label y ke atas
+                                    samples=200,
+                                    legend style={
+                                            at={(1.1,1)},
+                                            anchor=north west,
+                                            font=\small,         % mengecilkan ukuran font
+                                            row sep=1pt,         % jarak antar baris legend
+                                            inner sep=1pt,       % margin dalam kotak legend
+                                            nodes={scale=0.7}    % skalakan isi legend
+                                        }
+                                ]
+                                \addplot[
+                                    domain=-2:2,
+                                    samples=200,
+                                    color=blue,
+                                ]
+                                {x^3 - 2};
+                                \addlegendentry{$f(x) = x^3 - 2$}
+
+                                \addplot[
+                                    domain=-5:5,
+                                    samples=200,
+                                    color=red,
+                                ]
+                                {sign(x+2)*abs(x+2)^(1/3)};
+                                \addlegendentry{$f^{-1}(x) = \sqrt[3]{x + 2}$}
+
+                                \addplot[
+                                    domain=-5:5,
+                                    samples=100,
+                                    color=black,
+                                    dashed
+                                ]
+                                {x};
+                                \addlegendentry{$y=x$}
+                            \end{axis}
+                        \end{tikzpicture}
+                    \end{center}
+          \end{enumerate}
+    \item Bagi pembilang dan penyebut dengan $|x|$ agar bentuknya menjadi
+          \begin{align*}
+              \lim_{x \to -\infty} \frac{\sqrt{5x^2 - 2}}{x+3}= \lim_{x \to -\infty} \frac{\frac{\sqrt{5x^2 - 2}}{|x|}}{\frac{x+3}{|x|}} = \lim_{x \to -\infty} \frac{\frac{\sqrt{5x^2 - 2}}{\sqrt{x^2}}}{\frac{x+3}{|x|}} = \lim_{x \to -\infty} \frac{\sqrt{5 - \frac{2}{x^2}}}{\frac{x+3}{|x|}}.
+          \end{align*}
+          karena $x \to -\infty$, maka $|x| = -x$. Sehingga
+          \begin{align*}
+              \lim_{x \to -\infty} \frac{\sqrt{5 - \frac{2}{x^2}}}{\frac{x+3}{|x|}} & = \lim_{x \to -\infty} \frac{\sqrt{5 - \frac{2}{x^2}}}{\frac{x+3}{-x}}= \lim_{x \to -\infty} \frac{\sqrt{5 - \frac{2}{x^2}}}{-1 - \frac{3}{x}} = \frac{\sqrt{5 - 0}}{-1 - 0}                                            =-\sqrt{5}.
+          \end{align*}
+    \item Diketahui $xy^2 + y + \sqrt{x} = x + 3$. Turunkan kedua ruas terhadap $x$,
+          \begin{align*}
+              \frac{d}{dx}(xy^2) + \frac{d}{dx}(y) + \frac{d}{dx}(\sqrt{x})   & = \frac{d}{dx}(x) + \frac{d}{dx}(3)              \\
+              y^2 + x(2y \frac{dy}{dx}) + \frac{dy}{dx} + \frac{1}{2\sqrt{x}} & = 1 + 0                                          \\
+              y^2 + 2xy \frac{dy}{dx} + \frac{dy}{dx} + \frac{1}{2\sqrt{x}}   & = 1                                              \\
+              (2xy + 1) \frac{dy}{dx}                                         & = 1 - y^2 - \frac{1}{2\sqrt{x}}                  \\
+              \frac{dy}{dx}                                                   & = \frac{1 - y^2 - \frac{1}{2\sqrt{x}}}{2xy + 1}.
+          \end{align*}
+          Selanjutnya, kita substitusi titik $(4,1)$ ke dalam turunan tersebut,
+          \begin{align*}
+              \left.\frac{dy}{dx}\right|_{(4,1)} & = \frac{1 - 1^2 - \frac{1}{2\sqrt{4}}}{2(4)(1) + 1} = \frac{0 - \frac{1}{4}}{8 + 1} = -\frac{\frac{1}{4}}{9} = -\frac{1}{36}.
+          \end{align*}
+          Dengan demikian, gradien garis singgung di titik $(4,1)$ adalah $m = -\frac{1}{36}$. Gunakan persamaan garis
+          \[
+              y - y_1 = m(x - x_1)
+          \]
+          dengan $(x_1,y_1) = (4,1)$, sehingga diperoleh
+          \begin{align*}
+              y - 1 & = -\frac{1}{36}(x - 4)              \\
+              y     & = -\frac{1}{36}x + \frac{4}{36} + 1 \\
+              y     & = -\frac{1}{36}x + \frac{40}{36}    \\
+              y     & = -\frac{1}{36}x + \frac{10}{9}.
+          \end{align*}
 \end{enumerate}
 
 \newpage
@@ -264,7 +389,98 @@
 \renewcommand{\arraystretch}{1.5}
 \renewcommand{\headrulewidth}{1pt}
 \begin{enumerate}
+    \item Hitung gradien garis $BC$ dengan $B(2,2)$ dan $C(0,4)$,
+          \[
+              m_{BC} = \frac{y_2 - y_1}{x_2 - x_1} = \frac{4 - 2}{0 - 2} = \frac{2}{-2} = -1.
+          \]
+          Karena garis yang melalui titik $A$ sejajar dengan garis $BC$, maka gradiennya juga $-1$. Gunakan persamaan garis
+          \[
+              y - y_1 = m(x - x_1)
+          \]
+          dengan titik $A$ adalah $(x_1,y_1) = (2,-1)$, sehingga diperoleh
+          \begin{align*}
+              y - (-1) & = -1(x - 2) \\
+              y + 1    & = -x + 2    \\
+              y        & = -x + 1.
+          \end{align*}
+
+    \item \begin{enumerate}
+              \item Agar $f(x) = \dfrac{1}{x^2 - 4}$ terdefinisi, maka $x^2 - 4 \neq 0 \implies x^2 \neq 4 \implies x \neq \pm 2$. Dengan demikian, domain dari $f$ adalah $\mathcal{D}_f = \R \setminus \{-2,2\}=\{x \in \R \,|\, x \ne -2\vee x \ne 2\}$. Sedangkan untuk $g(x) = \sqrt{x+1}$, agar terdefinisi maka $x + 1 \geq 0 \implies x \geq -1$. Dengan demikian, domain dari $g$ adalah $\mathcal{D}_g = [-1,\infty)$.
+              \item \begin{align*}
+                        (f \circ g)(x)  = f(g(x))
+                        = f(\sqrt{x+1})
+                        = \frac{1}{(\sqrt{x+1})^2 - 4}
+                        = \frac{1}{x + 1 - 4}
+                        = \frac{1}{x - 3}.
+                    \end{align*}
+                    Menurut definisi domain komposisi fungsi, maka
+                    \begin{align*}
+                        \mathcal{D}_{f \circ g} & = \{x \in \mathcal{D}_g \,|\, g(x) \in \mathcal{D}_f\}           \\
+                                                & = \{x \in [-1,\infty) \,|\, \sqrt{x+1} \in \R\setminus\{-2,2\}\} \\
+                                                & = \{x \geq -1 \,|\, \sqrt{x+1} \ne 2\}                           \\
+                                                & = \{x \geq -1 \,|\, x + 1 \ne 4\}                                \\
+                                                & = \{x \geq -1 \,|\, x \ne 3\}                                    \\
+                                                & = [-1,3) \cup (3,\infty).
+                    \end{align*}
+                    Jadi domain dari $(f \circ g)(x)$ adalah $\mathcal{D}_{f \circ g} = [-1,3) \cup (3,\infty)$.
+          \end{enumerate}
     \item
+          \begin{enumerate}
+              \item Ubah ekspresi fungsi tersebut dalam bentuk seperti berikut:
+                    \begin{align*}
+                        f(x) & = x^2 - 4x + 7       \\
+                        f(x) & = (x^2 - 4x + 4) + 3 \\
+                        f(x) & = (x - 2)^2 + 3.
+                    \end{align*}
+                    Selanjutnya kita akan coba gambarkan grafiknya dimana merupakan grafik $y=x^2$ yang digeser 2 satuan ke kanan dan 3 satuan ke atas.
+                    \begin{center}
+                        \begin{tikzpicture}
+                            \begin{axis}[
+                                    axis lines = middle,
+                                    xlabel = $x$,
+                                    ylabel = {$y$},
+                                    xtick={-2,-1,...,6},
+                                    ytick={-2,-1,...,6},
+                                    ymin=-2.5, ymax=6.5,
+                                    xmin=-2.5, xmax=6.5,
+                                    grid=both,
+                                    width=10cm,
+                                    height=10cm,
+                                    grid style={line width=.1pt, draw=gray!10},
+                                    major grid style={line width=.2pt,draw=gray!50},
+                                    x label style={anchor=west}, % label x ke kanan
+                                    y label style={anchor=south}, % label y ke atas
+                                    samples=200,
+                                    legend style={
+                                            at={(1.1,1)},
+                                            anchor=north west,
+                                            font=\small,         % mengecilkan ukuran font
+                                            row sep=1pt,         % jarak antar baris legend
+                                            inner sep=1pt,       % margin dalam kotak legend
+                                            nodes={scale=0.7}    % skalakan isi legend
+                                        }
+                                ]
+                                \addplot[
+                                    domain=-2:6,
+                                    samples=200,
+                                    color=blue,
+                                ]
+                                {x^2};
+                                \addlegendentry{$y=x^2$}
+
+                                \addplot[
+                                    domain=-0.5:6,
+                                    samples=200,
+                                    color=red,
+                                ]
+                                {(x-2)^2 + 3};
+                                \addlegendentry{$f(x)=(x-2)^2 + 3$}
+
+                            \end{axis}
+                        \end{tikzpicture}
+                    \end{center}
+              \item
+          \end{enumerate}
 \end{enumerate}
 
 \newpage
