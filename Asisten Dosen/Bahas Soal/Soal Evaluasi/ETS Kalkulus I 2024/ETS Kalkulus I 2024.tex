@@ -383,6 +383,7 @@
 
 
 \newpage
+\fancyfoot{}
 \fancyhead[L]{\textit{Solution By: \hyperlink{https://github.com/TetewHeroez}{Tetew}}}
 % \fancyfoot[R]{\animategraphics[autoplay,loop,width=0.1\textwidth]{15}{Kuru Kuru Herta/kuru kuru-}{0}{5}}
 {\centering\textbf{SOLUSI}}
@@ -439,10 +440,10 @@
                                     axis lines = middle,
                                     xlabel = $x$,
                                     ylabel = {$y$},
-                                    xtick={-2,-1,...,6},
-                                    ytick={-2,-1,...,6},
-                                    ymin=-2.5, ymax=6.5,
-                                    xmin=-2.5, xmax=6.5,
+                                    xtick={-2,0,...,6},
+                                    ytick={-1,3,...,12},
+                                    ymin=-2.5, ymax=12.5,
+                                    xmin=-1.5, xmax=6.5,
                                     grid=both,
                                     width=10cm,
                                     height=10cm,
@@ -461,26 +462,188 @@
                                         }
                                 ]
                                 \addplot[
-                                    domain=-2:6,
-                                    samples=200,
                                     color=blue,
+                                    thick,
+                                    dashed
                                 ]
-                                {x^2};
-                                \addlegendentry{$y=x^2$}
+                                coordinates {(2,-2) (2,12)};
+                                \addlegendentry{$x=2$}
 
                                 \addplot[
-                                    domain=-0.5:6,
+                                    domain=-1:6,
                                     samples=200,
                                     color=red,
                                 ]
                                 {(x-2)^2 + 3};
                                 \addlegendentry{$f(x)=(x-2)^2 + 3$}
+                            \end{axis}
+                        \end{tikzpicture}
 
+                    \end{center}
+                    dapat di analisis bahwa $f(x)$ mempunya invers jika dibatasi pada sumbu simetri nya yaitu $x=2$. Sehingga domain $f$ agar $f^{-1}$ ada adalah $\mathcal{D}_f = [2,\infty)$ atau $\mathcal{D}_f = (-\infty,2]$.
+
+              \item Tukar $y = f(x)$ menjadi $x = f(y)$, sehingga
+                    \begin{align*}
+                        x            & = y^2 - 4y + 7                                                 \\
+                        x - 7        & = y^2 - 4y                                                     \\
+                        y^2 - 4y     & = x - 7                                                        \\
+                        y^2 - 4y + 4 & = x - 7 + 4                                                    \\
+                        (y - 2)^2    & = x - 3                                                        \\
+                        y - 2        & = \pm\sqrt{x - 3}                                              \\
+                        y            & = 2 \pm \sqrt{x - 3}.                                          \\
+                        f^{-1}(x)    & = 2 + \sqrt{x - 3} \text{ atau } f^{-1}(x) = 2 - \sqrt{x - 3}.
+                    \end{align*}
+                    Selanjutnya kita tahu bahwa $\mathcal{D}_{f^{-1}} = \mathcal{R}_f$. Jika kita ambil $\mathcal{D}_f = [2,\infty)$, maka $\mathcal{R}_f = [3,\infty)$ sehingga $\mathcal{D}_{f^{-1}} = [3,\infty)$ dan $f^{-1}(x) = 2 + \sqrt{x - 3}$.
+                    Grafik $f(x)$ dan $f^{-1}(x)$ untuk $\mathcal{D}_f = [2,\infty)$ dan $\mathcal{D}_{f^{-1}} = [3,\infty)$ dapat digambarkan sebagai berikut:
+                                    \begin{center}
+                                        \begin{tikzpicture}
+                                            \begin{axis}[
+                                                    axis lines = middle,
+                                                    xlabel = $x$,
+                                                    ylabel = {$y$},
+                                                    xtick={0,2,4,6,8,10},
+                                                    ytick={0,3,6,9,12},
+                                                    ymin=0, ymax=12.5,
+                                                    xmin=0, xmax=10.5,
+                                                    grid=both,
+                                                    width=10cm,
+                                                    height=10cm,
+                                                    grid style={line width=.1pt, draw=gray!10},
+                                                    major grid style={line width=.2pt,draw=gray!50},
+                                                    x label style={anchor=west},
+                                                    y label style={anchor=south},
+                                                    samples=200,
+                                                    legend style={
+                                                            at={(1.05,1)},
+                                                            anchor=north west,
+                                                            font=\small,
+                                                            row sep=1pt,
+                                                            inner sep=1pt,
+                                                            nodes={scale=0.7}
+                                                        }
+                                                ]
+                                                \addplot[
+                                                    domain=2:10,
+                                                    samples=200,
+                                                    color=blue,
+                                                    thick
+                                                ]
+                                                {(x-2)^2 + 3};
+                                                \addlegendentry{$f(x)=(x-2)^2+3$}
+
+                                                \addplot[
+                                                    domain=3:12,
+                                                    samples=200,
+                                                    color=red,
+                                                    thick
+                                                ]
+                                                {2 + sqrt(x-3)};
+                                                \addlegendentry{$f^{-1}(x)=2+\sqrt{x-3}$}
+
+                                                \addplot[
+                                                    domain=0:12,
+                                                    samples=100,
+                                                    color=black,
+                                                    dashed
+                                                ]
+                                                {x};
+                                                \addlegendentry{$y=x$}
+                                            \end{axis}
+                                        \end{tikzpicture}
+                                    \end{center}
+
+                                    Namun jika kita ambil $\mathcal{D}_f = (-\infty,2]$, maka $\mathcal{R}_f = (-\infty,3]$ sehingga $\mathcal{D}_{f^{-1}} = (-\infty,3]$ dan $f^{-1}(x) = 2 - \sqrt{x - 3}$.
+                    Grafik $f(x)$ dan $f^{-1}(x)$ untuk $\mathcal{D}_f = (-\infty,2]$ dan $\mathcal{D}_{f^{-1}} = (-\infty,3]$ dapat digambarkan sebagai berikut:
+                    \begin{center}
+                        \begin{tikzpicture}
+                            \begin{axis}[
+                                    axis lines = middle,
+                                    xlabel = $x$,
+                                    ylabel = {$y$},
+                                    xtick={-2,0,2,4,6,8,10},
+                                    ytick={-2,0,2,4,6,8,10},
+                                    ymin=-2.5, ymax=10.5,
+                                    xmin=-2.5, xmax=10.5,
+                                    grid=both,
+                                    width=10cm,
+                                    height=10cm,
+                                    grid style={line width=.1pt, draw=gray!10},
+                                    major grid style={line width=.2pt,draw=gray!50},
+                                    x label style={anchor=west},
+                                    y label style={anchor=south},
+                                    samples=200,
+                                    legend style={
+                                            at={(1.05,1)},
+                                            anchor=north west,
+                                            font=\small,
+                                            row sep=1pt,
+                                            inner sep=1pt,
+                                            nodes={scale=0.7}
+                                        }
+                                ]
+                                \addplot[
+                                    domain=-2:2,
+                                    samples=200,
+                                    color=blue,
+                                    thick
+                                ]
+                                {(x-2)^2 + 3};
+                                \addlegendentry{$f(x)=(x-2)^2+3$}
+
+                                \addplot[
+                                    domain=3:10,
+                                    samples=200,
+                                    color=red,
+                                    thick
+                                ]
+                                {2 - sqrt(x-3)};
+                                \addlegendentry{$f^{-1}(x)=2-\sqrt{x-3}$}
+
+                                \addplot[
+                                    domain=-2:10,
+                                    samples=100,
+                                    color=black,
+                                    dashed
+                                ]
+                                {x};
+                                \addlegendentry{$y=x$}
                             \end{axis}
                         \end{tikzpicture}
                     \end{center}
-              \item
           \end{enumerate}
+    \item Pada soal ini, kita cukup untuk menyamakan limit kiri dan limit kanan di $x=3$. Pada dasarnya kekontinuan di $x=3$ akan terpenuhi jika
+          \begin{itemize}
+              \item $f(3)$ terdefinisi,
+              \item $\lim_{x \to 3} f(x)$ ada,
+              \item $\lim_{x \to 3} f(x) = f(3)$.
+          \end{itemize}
+          Kita tahu bahwa $f(3)=3(3)-3=6$, sehingga $f(3)$ terdefinisi. Selanjutnya kita hitung limit kiri dan limit kanan di $x=3$,
+          \begin{align*}
+              \lim_{x \to 3^-} f(x) & = \lim_{x \to 3^-} (x^2 - k) = 3^2 - k = 9 - k, \\
+              \lim_{x \to 3^+} f(x) & = \lim_{x \to 3^+} (3x - 3) = 3(3) - 3 = 6.
+          \end{align*}
+          Agar limit kiri dan limit kanan sama, maka
+          \begin{align*}
+              9 - k & = 6  \\
+              k     & = 3.
+          \end{align*}
+          Dengan demikian, nilai $k$ agar $f(x)$ kontinu di $x=3$ adalah $k=3$.
+    \item Fungsi tersebut dapat kita sederhanakan bentuknya menjadi
+          \begin{align*}
+              f(x) & = \sqrt{\frac{(3x+1)^3}{2x}} = \frac{(3x+1)^{3/2}}{(2x)^{1/2}} = \frac{(3x+1)^{3/2}}{\sqrt{2}\sqrt{x}} = \frac{1}{\sqrt{2}}(3x+1)^{3/2} x^{-1/2}.
+          \end{align*}
+          Untuk turunannya dapat kita gunakan aturan perkalian dan aturan rantai,
+          \begin{align*}
+              f'(x) & = \frac{1}{\sqrt{2}} \left[ \frac{3}{2}(3x+1)^{1/2} \cdot 3 \cdot x^{-1/2} + (3x+1)^{3/2} \cdot \left(-\frac{1}{2}\right) x^{-3/2} \right] \\
+                    & = \frac{1}{\sqrt{2}} \left[ \frac{9}{2}(3x+1)^{1/2} x^{-1/2} - \frac{1}{2}(3x+1)^{3/2} x^{-3/2} \right]                                    \\
+                    & = \frac{1}{2\sqrt{2}} \left[ 9(3x+1)^{1/2} x^{-1/2} - (3x+1)^{3/2} x^{-3/2} \right]                                                        \\
+                    & = \frac{1}{2\sqrt{2}} (3x+1)^{1/2} x^{-3/2} [9x - (3x+1)]                                                                                  \\
+                    & = \frac{1}{2\sqrt{2}} (3x+1)^{1/2} x^{-3/2} (6x - 1).
+          \end{align*}
+          Dengan demikian, turunan dari $f(x)$ adalah
+          \[
+              f'(x) = \frac{\sqrt{3x+1}\,(6x - 1)}{2x\sqrt{2x}}.
+          \]
 \end{enumerate}
 
 \newpage
