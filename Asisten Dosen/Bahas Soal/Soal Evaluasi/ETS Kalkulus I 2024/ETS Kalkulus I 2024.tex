@@ -1,7 +1,7 @@
 \documentclass[11pt,openany,a4paper]{article}
-\usepackage{amsmath, amsfonts, amssymb, amsthm}
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
 \usepackage{tikz, pgfplots, tkz-euclide,calc}
-    \usetikzlibrary{patterns,snakes,shapes.arrows,arrows.meta}
+    \usetikzlibrary{patterns,decorations,shapes.arrows,arrows.meta}
 \usepackage{fancyhdr}
 \usepackage{enumerate,enumitem}
 \usepackage{cancel}
@@ -740,13 +740,82 @@
 
 
 \newpage
+\fancyfoot{}
 \fancyhead[L]{\textit{Solution By: \hyperlink{https://github.com/TetewHeroez}{Tetew}}}
 % \fancyfoot[R]{\animategraphics[autoplay,loop,width=0.1\textwidth]{15}{Kuru Kuru Herta/kuru kuru-}{0}{5}}
 {\centering\textbf{SOLUSI}}
 \renewcommand{\arraystretch}{1.5}
 \renewcommand{\headrulewidth}{1pt}
 \begin{enumerate}
-    \item
+    \item Karena nilai mutlak selalu bernilai positif, maka tidak perlu kita tinjau untuk kasus $-1 \leq |2 - x|$. Sehingga kita hanya perlu menyelesaikan pertidaksamaan $|2 - x| < 3$. Berdasarkan definisi nilai mutlak, maka
+          \begin{align*}
+              |2 - x| < 3 & \iff -3 < 2 - x < 3      \\
+                          & \iff -3 - 2 < -x < 3 - 2 \\
+                          & \iff -5 < -x < 1         \\
+                          & \iff 5 > x > -1          \\
+                          & \iff -1 < x < 5.
+          \end{align*}
+          Dengan demikian, himpunan penyelesaian dari pertidaksamaan tersebut adalah $(-1,5)$.
+    \item \begin{enumerate}
+              \item Agar $f(x) = \sqrt{25 - x^2}$ terdefinisi, maka $25 - x^2 \geq 0 \implies x^2 \leq 25 \implies -5 \leq x \leq 5$. Dengan demikian, domain dari $f$ adalah $\mathcal{D}_f = [-5,5]$. Sedangkan untuk $g(x) = \dfrac{1}{x^2}$, agar terdefinisi maka $x^2 \neq 0 \implies x \neq 0$. Dengan demikian, domain dari $g$ adalah $\mathcal{D}_g = \R \setminus \{0\}=\{x \in \R \,|\, x \ne 0\}$.
+              \item \begin{align*}
+                        (g \circ f)(x)  = g(f(x))
+                        = g(\sqrt{25 - x^2})
+                        = \frac{1}{(\sqrt{25 - x^2})^2}
+                        = \frac{1}{25 - x^2}.
+                    \end{align*}
+                    Menurut definisi domain komposisi fungsi, maka
+                    \begin{align*}
+                        \mathcal{D}_{g \circ f} & = \{x \in \mathcal{D}_f \,|\, f(x) \in \mathcal{D}_g\}        \\
+                                                & = \{x \in [-5,5] \,|\, \sqrt{25 - x^2} \in \R\setminus\{0\}\} \\
+                                                & = \{x \in [-5,5] \,|\, 25 - x^2 \ne 0\}                       \\
+                                                & = \{x \in [-5,5] \,|\, x^2 \ne 25\}                           \\
+                                                & = \{x \in [-5,5] \,|\, x \ne 5\text{ dan } x \ne -5\}         \\
+                                                & = (-5,5).
+                    \end{align*}
+                    Jadi domain dari $(g \circ f)(x)$ adalah $\mathcal{D}_{g \circ f} = (-5,5)$.
+          \end{enumerate}
+    \item \begin{enumerate}
+              \item Agar $f(x) = \sqrt{4 - x^2}$ mempunyai invers, maka kita perlu membatasi domainnya pada salah satu sisi sumbu simetri yaitu $x=0$. Sehingga domain $f$ agar $f^{-1}$ ada adalah $\mathcal{D}_f = [0,2]$ atau $\mathcal{D}_f = [-2,0]$.
+              \item Tukar $y = f(x)$ menjadi $x = f(y)$, sehingga
+                    \begin{align*}
+                        x         & = \sqrt{4 - y^2}                                            \\
+                        x^2       & = 4 - y^2                                                   \\
+                        y^2       & = 4 - x^2                                                   \\
+                        y         & = \pm\sqrt{4 - x^2}                                         \\
+                        f^{-1}(x) & = \sqrt{4 - x^2} \text{ atau } f^{-1}(x) = -\sqrt{4 - x^2}.
+                    \end{align*}
+                    Selanjutnya kita tahu bahwa $\mathcal{D}_{f^{-1}} = \mathcal{R}_f$. Jika kita ambil $\mathcal{D}_f = [0,2]$, maka $\mathcal{R}_f = [0,2]$ sehingga $\mathcal{D}_{f^{-1}} = [0,2]$ dan $f^{-1}(x) = \sqrt{4 - x^2}$.
+                    Namun jika kita ambil $\mathcal{D}_f = [-2,0]$, maka $\mathcal{R}_f = [0,2]$ sehingga $\mathcal{D}_{f^{-1}} = [0,2]$ dan $f^{-1}(x) = -\sqrt{4 - x^2}$.
+          \end{enumerate}
+    \item Pada soal ini, kita cukup untuk menyamakan limit kiri dan limit kanan di $x=4$. Pada dasarnya kekontinuan di $x=4$ akan terpenuhi jika
+          \begin{itemize}
+              \item $f(4)$ terdefinisi,
+              \item $\lim_{x \to 4} f(x)$ ada,
+              \item $\lim_{x \to 4} f(x) = f(4)$.
+          \end{itemize}
+          Kita tahu bahwa $f(4)=6$, sehingga $f(4)$ terdefinisi. Selanjutnya kita hitung limit kiri dan limit kanan di $x=4$,
+          \begin{align*}
+              \lim_{x \to 4^-} f(x) & = \lim_{x \to 4^-} \frac{4 - x}{2 - \sqrt{x}} = \frac{4 - 4}{2 - \sqrt{4}} = \frac{0}{0}, \\
+              \lim_{x \to 4^+} f(x) & = \lim_{x \to 4^+} 6 = 6.
+          \end{align*}
+          Karena limit kiri menghasilkan bentuk tak tentu $\frac{0}{0}$, maka kita perlu menyederhanakannya terlebih dahulu. Kita lakukan dengan cara mengalikan dengan bentuk sekawan dari penyebutnya, sehingga
+          \begin{align*}
+              \lim_{x \to 4^-} f(x) & = \lim_{x \to 4^-} \frac{4 - x}{2 - \sqrt{x}} \cdot \frac{2 + \sqrt{x}}{2 + \sqrt{x}}      \\
+                                    & = \lim_{x \to 4^-} \frac{(4 - x)(2 + \sqrt{x})}{(2 - \sqrt{x})(2 + \sqrt{x})}              \\
+                                    & = \lim_{x \to 4^-} \frac{(4 - x)(2 + \sqrt{x})}{4 - x}                                     \\
+                                    & = \lim_{x \to 4^-} (2 + \sqrt{x})                                                          \\
+                                    & = 2 + \sqrt{4}                                                                        = 4.
+          \end{align*}
+          Karena limit kiri dan limit kanan tidak sama, maka fungsi tersebut tidak kontinu di $x=4$.
+    \item Dengan aturan rantai dapat diperoleh
+          \begin{align*}
+              f'(x) & = \frac{d}{dx}\left(2x+(2\sqrt{x} - 3)^{-2}\right)                           \\
+                    & =\frac{d}{dx}(2x)+\frac{d}{dx}((2\sqrt{x} - 3)^{-2})                         \\
+                    & =2 + (-2)(2\sqrt{x} - 3)^{-3} \cdot \frac{d}{dx}(2\sqrt{x} - 3)              \\
+                    & =2 + (-2)(2\sqrt{x} - 3)^{-3} \cdot \left(2 \cdot \frac{1}{2\sqrt{x}}\right) \\
+                    & =2 - \frac{2}{\sqrt{x}(2\sqrt{x} - 3)^3}.
+          \end{align*}
 \end{enumerate}
 
 \newpage
@@ -833,13 +902,156 @@
 
 
 \newpage
+\fancyfoot{}
 \fancyhead[L]{\textit{Solution By: \hyperlink{https://github.com/TetewHeroez}{Tetew}}}
 % \fancyfoot[R]{\animategraphics[autoplay,loop,width=0.1\textwidth]{15}{Kuru Kuru Herta/kuru kuru-}{0}{5}}
 {\centering\textbf{SOLUSI}}
 \renewcommand{\arraystretch}{1.5}
 \renewcommand{\headrulewidth}{1pt}
 \begin{enumerate}
-    \item
+    \item Diketahui titik $A(1,1)$, $B(4,2)$ dan $C(2,6)$. Pertama kita cari persamaan garis yang melalui titik $A$ dan $B$. Gradien garis tersebut adalah
+          \[
+              m = \frac{y_2 - y_1}{x_2 - x_1} = \frac{2 - 1}{4 - 1} = \frac{1}{3}.
+          \]
+          Dengan menggunakan titik $A(1,1)$, maka persamaan garisnya adalah
+          \begin{align*}
+              y - y_1 & = m(x - x_1)         \\
+              y - 1   & = \frac{1}{3}(x - 1) \\
+              3y - 3  & = x - 1              \\
+              x - 3y  & = -2.
+          \end{align*}
+          Dengan demikian, persamaan garis yang melalui titik $A$ dan $B$ adalah $x - 3y + 2 = 0$. Selanjutnya kita cari jarak dari titik $C(2,6)$ ke garis tersebut dengan rumus jarak titik ke garis,
+          \begin{align*}
+              d & = \frac{|Ax_0 + By_0 + C|}{\sqrt{A^2 + B^2}}       = \frac{|1(2) + (-3)(6) + 2|}{\sqrt{1^2 + (-3)^2}} = \frac{|-16|}{\sqrt{1 + 9}} = \frac{16}{\sqrt{10}}                             = \frac{16\sqrt{10}}{10}                            = \frac{8\sqrt{10}}{5}.
+          \end{align*}
+          Dengan demikian, jarak dari titik $C$ ke garis yang melalui titik $A$ dan $B$ adalah $\dfrac{8\sqrt{10}}{5}$ satuan.
+    \item \begin{enumerate}
+              \item Ingat bahwa fungsi polinomial terdefinisi di semua bilangan real, namun jika dalam soal diberikan batasan domain, maka kita ikuti batasan tersebut. Sehingga domain dari $f(x) = x - 4$ adalah $\mathcal{D}_f = [4,\infty)$. Sedangkan agar $g(x) = \sqrt{4 - x^2}$ terdefinisi, maka
+                    \[
+                        4 - x^2 \geq 0 \implies x^2 \leq 4 \implies -2 \leq x \leq 2.
+                    \]
+                    Dengan demikian, domain dari $g$ adalah $\mathcal{D}_g = [-2,2]$.
+              \item \begin{align*}
+                        (g \circ f)(x)  = g(f(x))
+                        = g(x - 4)
+                        = \sqrt{4 - (x - 4)^2}
+                        = \sqrt{4 - (x^2 - 8x + 16)}
+                        = \sqrt{-x^2 + 8x - 12}.
+                    \end{align*}
+                    Menurut definisi domain komposisi fungsi, maka
+                    \begin{align*}
+                        \mathcal{D}_{g \circ f} & = \{x \in \mathcal{D}_f \,|\, f(x) \in \mathcal{D}_g\} \\
+                                                & = \{x \in [4,\infty) \,|\, x - 4 \in [-2,2]\}          \\
+                                                & = \{x \geq 4 \,|\, -2 \leq x - 4 \leq 2\}              \\
+                                                & = \{x \geq 4 \,|\, 2 \leq x \leq 6\}                   \\
+                                                & = [4,6].
+                    \end{align*}
+                    Jadi domain dari $(g \circ f)(x)$ adalah $\mathcal{D}_{
+                            g \circ f
+                        } = [4,6]$.
+          \end{enumerate}
+    \item \begin{enumerate}
+              \item Sebelum mencari ekspresi fungsi inversnya dapat kita tinjau bahwa domain $f$ adalah $\mathcal{D}_f = [0,1]$ dan range $f$ adalah $\mathcal{R}_f = [0,1]$. Sehingga domain dari $f^{-1}$ adalah $\mathcal{D}_{f^{-1}} = \mathcal{R}_f = [0,1]$.
+                    Tukar $y = f(x)$ menjadi $x = f(y)$, sehingga
+                    \begin{align*}
+                        x            & = \sqrt{2y - y^2}      \\
+                        x^2          & = 2y - y^2             \\
+                        y^2 - 2y     & = -x^2                 \\
+                        y^2 - 2y + 1 & = -x^2 + 1             \\
+                        (y - 1)^2    & = 1 - x^2              \\
+                        y - 1        & = \pm\sqrt{1 - x^2}    \\
+                        y            & = 1 \pm \sqrt{1 - x^2}
+                    \end{align*}
+                    Karena $\mathcal{R}_{f^{-1}} = \mathcal{D}_f = [0,1]$, maka haruslah kita ambil $f^{-1}(x) = 1 - \sqrt{1 - x^2}$.
+              \item \begin{center}
+                        \begin{tikzpicture}
+                            \begin{axis}[
+                                    axis lines=middle,
+                                    xlabel={$x$},
+                                    ylabel={$y$},
+                                    xmin=-0.5, xmax=1.5,
+                                    ymin=-0.5, ymax=1.5,
+                                    xtick={0,1},
+                                    ytick={0,1},
+                                    grid=both,
+                                    grid style={line width=.1pt, draw=gray!10},
+                                    major grid style={line width=.2pt,draw=gray!50},
+                                    width=10cm,
+                                    height=10cm,
+                                    legend style={
+                                            at={(1,1)},
+                                            anchor=north west,
+                                            font=\small,
+                                            row sep=1pt,
+                                            inner sep=1pt,
+                                            nodes={scale=0.7}
+                                        }
+                                ]
+                                \addplot[
+                                    domain=0:1,
+                                    samples=200,
+                                    color=blue,
+                                    thick
+                                ]
+                                {sqrt(2*x - x^2)};
+                                \addlegendentry{$f(x)=\sqrt{2x - x^2}$}
+
+                                \addplot[
+                                    domain=0:1,
+                                    samples=200,
+                                    color=red,
+                                    thick
+                                ]
+                                {1 - sqrt(1 - x^2)};
+                                \addlegendentry{$f^{-1}(x)=1 - \sqrt{1 - x^2}$}
+
+                                \addplot[
+                                    domain=-0.5:1.5,
+                                    samples=100,
+                                    color=black,
+                                    dashed
+                                ]
+                                {x};
+                                \addlegendentry{$y=x$}
+                            \end{axis}
+                        \end{tikzpicture}
+                    \end{center}
+          \end{enumerate}
+    \item Untuk menghitung limit tersebut, kita kalikan dengan bentuk sekawan dari pembilangnya, sehingga
+          \begin{align*}
+              \lim_{x \to 2} \frac{\sqrt{x^2 + 5} - 3}{x - 2} & = \lim_{x \to 2} \frac{\sqrt{x^2 + 5} - 3}{x - 2} \cdot \frac{\sqrt{x^2 + 5} + 3}{\sqrt{x^2 + 5} + 3}                                                                                                                                                                                                                                                                          \\
+                                                              & = \lim_{x \to 2} \frac{(x^2 + 5) - 9}{(x - 2)(\sqrt{x^2 + 5} + 3)}                                                                                                                                                                                                                                                                                                             \\
+                                                              & = \lim_{x \to 2} \frac{x^2 - 4}{(x - 2)(\sqrt{x^2 + 5} + 3)}                                                                                                                                                                                                                                                                                                                   \\
+                                                              & = \lim_{x \to 2} \frac{(x - 2)(x + 2)}{(x - 2)(\sqrt{x^2 + 5} + 3)}                                                                                                                                                                                                                                                                                                            \\
+                                                              & = \lim_{x \to 2} \frac{x + 2}{\sqrt{x^2 + 5} + 3}                                                                                                                                                                                                                                                                                                                              \\
+                                                              & = \frac{2 + 2}{\sqrt{2^2 + 5} + 3}                                                             = \frac{4}{\sqrt{9} + 3}                                                             = \frac{4}{3 + 3}                                                                     = \frac{4}{6}                                                                         = \frac{2}{3}.
+          \end{align*}
+          Dengan demikian, nilai limit tersebut adalah $\dfrac{2}{3}$.
+    \item Diketahui persamaan garis singgung kurva $y^2 - xy = -2$ di titik $(a,b)$ sejajar dengan kurva $y = -x$. Pertama kita cari turunan implisit dari persamaan kurva tersebut,
+          \begin{align*}
+              y^2 - xy                                              & = -2                \\
+              2y \frac{dy}{dx} - \left( x \frac{dy}{dx} + y \right) & = 0                 \\
+              2y \frac{dy}{dx} - x \frac{dy}{dx}                    & = y                 \\
+              (2y - x) \frac{dy}{dx}                                & = y                 \\
+              \frac{dy}{dx}                                         & = \frac{y}{2y - x}.
+          \end{align*}
+          Karena garis singgung di titik $(a,b)$ sejajar dengan kurva $y = -x$, maka gradien garis singgung tersebut adalah $-1$. Sehingga
+          \begin{align*}
+              \left. \frac{dy}{dx} \right|_{(a,b)} & = -1      \\
+              \frac{b}{2b - a}                     & = -1      \\
+              b                                    & = -2b + a \\
+              3b                                   & = a       \\
+              a                                    & = 3b.
+          \end{align*}
+          Selanjutnya kita substitusi $a=3b$ ke dalam persamaan kurva, sehingga
+          \begin{align*}
+              b^2 - (3b)b & = -2     \\
+              b^2 - 3b^2  & = -2     \\
+              -2b^2       & = -2     \\
+              b^2         & = 1      \\
+              b           & = \pm 1.
+          \end{align*}
+          Jika $b=1$, maka $a=3(1)=3$. Jika $b=-1$, maka $a=3(-1)=-3$. Dengan demikian, titik $(a,b)$ yang dimaksud adalah $(3,1)$ dan $(-3,-1)$.
 \end{enumerate}
 
 \newpage
@@ -932,12 +1144,65 @@
 
 
 \newpage
+\fancyfoot{}
 \fancyhead[L]{\textit{Solution By: \hyperlink{https://github.com/TetewHeroez}{Tetew}}}
 % \fancyfoot[R]{\animategraphics[autoplay,loop,width=0.1\textwidth]{15}{Kuru Kuru Herta/kuru kuru-}{0}{5}}
 {\centering\textbf{SOLUSI}}
 \renewcommand{\arraystretch}{1.5}
 \renewcommand{\headrulewidth}{1pt}
 \begin{enumerate}
-    \item
+    \item Sebelum membagi kasus, perhatikan bahwa untuk $x = \frac{5}{2}$ akan menyebabkan penyebut menjadi nol. Sehingga dapat kita hiraukan nilai $x = \frac{5}{2}$ dari himpunan penyelesaian, maka yang perlu kita tinjau hanyalah
+          \[
+              x > 5|2x - 5|.\footnote{karena kita yakin bahwa $|2x - 5| \ne 0$, maka kita boleh mengalikan kedua ruas dengan $|2x - 5|$ tanpa mengubah arah pertidaksamaan.}
+          \]
+          Bagi kasus yaitu ketika $2x - 5 > 0$ dan $2x - 5 < 0$.
+          \begin{itemize}
+              \item Kasus $2x - 5 > 0 \implies x > \frac{5}{2}$. Diperoleh
+                    \begin{align*}
+                        \frac{x}{|2x - 5|} > 5 & \iff \frac{x}{2x - 5} > 5 \\
+                                               & \iff x > 5(2x - 5)        \\
+                                               & \iff x > 10x - 25         \\
+                                               & \iff -9x > -25            \\
+                                               & \iff 9x < 25              \\
+                                               & \iff x < \frac{25}{9}.
+                    \end{align*}
+                    Secara garis bilangan dapat diilustrasikan sebagai berikut,
+                    \begin{center}
+                        \begin{tikzpicture}
+                            \draw[<->] (-1,0) -- (5,0) node[right]{$[c,d]$};
+                            \draw[<->] (-1,2) -- (5,2) node[right]{$[a,b)$};
+                            \draw[<->] (-1,-2) -- (5,-2) node[right]{$[a,b)\cap[c,d]=[c,b)$};
+
+                            \draw[pattern=north west lines] (0,2) -- (2,2)--(2,3)--(0,3)--cycle;
+                            \draw[pattern=north east lines] (1,0) -- (4,0)--(4,1)--(1,1)--cycle;
+                            \draw[pattern=north west lines] (1,-2) -- (2,-2)--(2,-1)--(1,-1)--cycle;
+
+                            \draw[thick,dashed,blue] (1,3) -- (1,-2);
+                            \draw[thick,dashed,blue] (2,3) -- (2,-2);
+                            \fill[pattern=north west lines,opacity=0.2] (1,3) rectangle (2,-2);
+
+                            \draw[fill=black] (0,2) circle (0.06) node[below]{$a$};
+                            \draw[fill=white] (2,2) circle (0.06) node[below]{$b$};
+                            \draw[fill=black] (1,0) circle (0.06) node[below]{$c$};
+                            \draw[fill=black] (4,0) circle (0.06) node[below]{$d$};
+                            \draw[fill=white] (2,-2) circle (0.06) node[below]{$b$};
+                            \draw[fill=black] (1,-2) circle (0.06) node[below]{$c$};
+                        \end{tikzpicture}
+                    \end{center}
+              \item Kasus $2x - 5 < 0 \implies x < \frac{5}{2}$.
+                    Maka
+                    \begin{align*}
+                        \frac{x}{|2x - 5|} > 5 & \iff \frac{x}{-(2x - 5)} > 5 \\
+                                               & \iff x < -5(2x - 5)          \\
+                                               & \iff x < -10x + 25           \\
+                                               & \iff 11x < 25                \\
+                                               & \iff x < \frac{25}{11}.
+                    \end{align*}
+                    Dengan demikian, himpunan penyelesaian pada kasus ini adalah $\left(-\infty,\frac{25}{11}\right)$.
+          \end{itemize}
+          Dengan menggabungkan kedua himpunan penyelesaian tersebut, maka himpunan penyelesaian dari pertidaksamaan tersebut adalah
+          $
+              S = \left(\frac{25}{11},\frac{25}{9}\right).
+          $
 \end{enumerate}
 \end{document}
