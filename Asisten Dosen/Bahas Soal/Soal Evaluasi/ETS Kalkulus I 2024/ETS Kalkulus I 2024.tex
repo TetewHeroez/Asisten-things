@@ -1159,46 +1159,53 @@
           \begin{itemize}
               \item Kasus $2x - 5 > 0 \implies x > \frac{5}{2}$. Diperoleh
                     \begin{align*}
-                        \frac{x}{|2x - 5|} > 5 & \iff \frac{x}{2x - 5} > 5 \\
-                                               & \iff x > 5(2x - 5)        \\
-                                               & \iff x > 10x - 25         \\
-                                               & \iff -9x > -25            \\
-                                               & \iff 9x < 25              \\
-                                               & \iff x < \frac{25}{9}.
+                        x > 5|2x - 5| & \iff x > 5(2x - 5)     \\
+                                      & \iff x > 10x - 25      \\
+                                      & \iff -9x > -25         \\
+                                      & \iff 9x < 25           \\
+                                      & \iff x < \frac{25}{9}.
                     \end{align*}
                     Secara garis bilangan dapat diilustrasikan sebagai berikut,
                     \begin{center}
                         \begin{tikzpicture}
-                            \draw[<->] (-1,0) -- (5,0) node[right]{$[c,d]$};
-                            \draw[<->] (-1,2) -- (5,2) node[right]{$[a,b)$};
-                            \draw[<->] (-1,-2) -- (5,-2) node[right]{$[a,b)\cap[c,d]=[c,b)$};
+                            \draw[Latex-Latex,thick] (-2,-2) -- (4,-2) node[right]{$\left(\dfrac{5}{2},\infty\right)\cap\left(-\infty,\dfrac{25}{9}\right)=\left(\dfrac{5}{2},\dfrac{25}{9}\right)$};
 
-                            \draw[pattern=north west lines] (0,2) -- (2,2)--(2,3)--(0,3)--cycle;
-                            \draw[pattern=north east lines] (1,0) -- (4,0)--(4,1)--(1,1)--cycle;
-                            \draw[pattern=north west lines] (1,-2) -- (2,-2)--(2,-1)--(1,-1)--cycle;
+                            \coordinate (A) at (2,-2);
+                            \coordinate (B) at (0,-2);
 
-                            \draw[thick,dashed,blue] (1,3) -- (1,-2);
-                            \draw[thick,dashed,blue] (2,3) -- (2,-2);
-                            \fill[pattern=north west lines,opacity=0.2] (1,3) rectangle (2,-2);
+                            \fill[pattern=north west lines] (B) -- (A)--(2,-1)--(0,-1)--cycle;
 
-                            \draw[fill=black] (0,2) circle (0.06) node[below]{$a$};
-                            \draw[fill=white] (2,2) circle (0.06) node[below]{$b$};
-                            \draw[fill=black] (1,0) circle (0.06) node[below]{$c$};
-                            \draw[fill=black] (4,0) circle (0.06) node[below]{$d$};
-                            \draw[fill=white] (2,-2) circle (0.06) node[below]{$b$};
-                            \draw[fill=black] (1,-2) circle (0.06) node[below]{$c$};
+                            \draw[-latex,darkgray] (A) -- (2,-1) -- (-2,-1);
+                            \draw[-latex,darkgray] (B) -- (0,-0.5) -- (4,-0.5);
+
+                            \draw[fill=white] (A) circle (0.06) node[below]{$\dfrac{25}{9}$};
+                            \draw[fill=white] (B) circle (0.06) node[below]{$\dfrac{5}{2}$};
                         \end{tikzpicture}
                     \end{center}
               \item Kasus $2x - 5 < 0 \implies x < \frac{5}{2}$.
                     Maka
                     \begin{align*}
-                        \frac{x}{|2x - 5|} > 5 & \iff \frac{x}{-(2x - 5)} > 5 \\
-                                               & \iff x < -5(2x - 5)          \\
-                                               & \iff x < -10x + 25           \\
-                                               & \iff 11x < 25                \\
-                                               & \iff x < \frac{25}{11}.
+                        x > 5|2x - 5| & \iff x < -5(2x - 5)     \\
+                                      & \iff x < -10x + 25      \\
+                                      & \iff 11x < 25           \\
+                                      & \iff x < \frac{25}{11}.
                     \end{align*}
-                    Dengan demikian, himpunan penyelesaian pada kasus ini adalah $\left(-\infty,\frac{25}{11}\right)$.
+                    \begin{center}
+                        \begin{tikzpicture}
+                            \draw[Latex-Latex,thick] (-2,-2) -- (4,-2) node[right]{$\left(\dfrac{5}{2},\infty\right)\cap\left(-\infty,\dfrac{25}{9}\right)=\left(\dfrac{5}{2},\dfrac{25}{9}\right)$};
+
+                            \coordinate (A) at (2,-2);
+                            \coordinate (B) at (0,-2);
+
+                            \fill[pattern=north west lines] (B) -- (A)--(2,-1)--(0,-1)--cycle;
+
+                            \draw[-latex,darkgray] (A) -- (2,-1) -- (-2,-1);
+                            \draw[-latex,darkgray] (B) -- (0,-0.5) -- (4,-0.5);
+
+                            \draw[fill=white] (A) circle (0.06) node[below]{$\dfrac{25}{9}$};
+                            \draw[fill=white] (B) circle (0.06) node[below]{$\dfrac{5}{2}$};
+                        \end{tikzpicture}
+                    \end{center}
           \end{itemize}
           Dengan menggabungkan kedua himpunan penyelesaian tersebut, maka himpunan penyelesaian dari pertidaksamaan tersebut adalah
           $
