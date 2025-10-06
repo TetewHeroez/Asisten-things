@@ -1155,7 +1155,7 @@
           \[
               x > 5|2x - 5|.\footnote{karena kita yakin bahwa $|2x - 5| \ne 0$, maka kita boleh mengalikan kedua ruas dengan $|2x - 5|$ tanpa mengubah arah pertidaksamaan.}
           \]
-          Bagi kasus yaitu ketika $2x - 5 > 0$ dan $2x - 5 < 0$.
+          Bagi kasus yaitu ketika $2x - 5 > 0$ dan $2x - 5 < 0$.\footnote{Kasus $2x - 5 = 0$ tidak perlu ditinjau karena akan menyebabkan penyebut menjadi nol.}
           \begin{itemize}
               \item Kasus $2x - 5 > 0 \implies x > \frac{5}{2}$. Diperoleh
                     \begin{align*}
@@ -1192,24 +1192,146 @@
                     \end{align*}
                     \begin{center}
                         \begin{tikzpicture}
-                            \draw[Latex-Latex,thick] (-2,-2) -- (4,-2) node[right]{$\left(\dfrac{5}{2},\infty\right)\cap\left(-\infty,\dfrac{25}{9}\right)=\left(\dfrac{5}{2},\dfrac{25}{9}\right)$};
+                            \draw[Latex-Latex,thick] (-3,-2) -- (2,-2) node[right]{$\left(-\infty,\dfrac{5}{2}\right)\cap\left(-\infty,\dfrac{25}{11}\right)=\left(-\infty,\dfrac{25}{11}\right)$};
 
-                            \coordinate (A) at (2,-2);
+                            \coordinate (A) at (1,-2);
                             \coordinate (B) at (0,-2);
 
-                            \fill[pattern=north west lines] (B) -- (A)--(2,-1)--(0,-1)--cycle;
+                            \fill[pattern=north west lines] (B) --(0,-1)--(-3,-1)--(-3,-2);
 
-                            \draw[-latex,darkgray] (A) -- (2,-1) -- (-2,-1);
-                            \draw[-latex,darkgray] (B) -- (0,-0.5) -- (4,-0.5);
+                            \draw[-latex,darkgray] (A) -- (1,-1) -- (-3,-1);
+                            \draw[-latex,darkgray] (B) -- (0,-0.5) -- (-3,-0.5);
 
-                            \draw[fill=white] (A) circle (0.06) node[below]{$\dfrac{25}{9}$};
-                            \draw[fill=white] (B) circle (0.06) node[below]{$\dfrac{5}{2}$};
+                            \draw[fill=white] (A) circle (0.06) node[below]{$\dfrac{5}{2}$};
+                            \draw[fill=white] (B) circle (0.06) node[below]{$\dfrac{25}{11}$};
                         \end{tikzpicture}
                     \end{center}
           \end{itemize}
-          Dengan menggabungkan kedua himpunan penyelesaian tersebut, maka himpunan penyelesaian dari pertidaksamaan tersebut adalah
-          $
-              S = \left(\frac{25}{11},\frac{25}{9}\right).
-          $
+          Dengan demikian, himpunan penyelesaian dari pertidaksamaan tersebut adalah
+          \[
+              \left(-\infty,\frac{25}{11}\right) \cup \left(\frac{5}{2},\frac{25}{9}\right).
+          \]
+
+    \item \begin{enumerate}
+              \item Agar $f(x) = \sqrt{x - 3}$ terdefinisi, maka $x - 3 \geq 0 \implies x \geq 3$. Dengan demikian, domain dari $f$ adalah $\mathcal{D}_f = [3,\infty)$. Sedangkan untuk $g(x) = 1 + \sqrt{x - 5}$, agar terdefinisi maka $x - 5 \geq 0 \implies x \geq 5$. Dengan demikian, domain dari $g$ adalah $\mathcal{D}_g = [5,\infty)$.
+              \item \begin{align*}
+                        (f \circ g)(x)  = f(g(x))
+                        = f(1 + \sqrt{x - 5})
+                        = \sqrt{(1 + \sqrt{x - 5}) - 3}
+                        = \sqrt{\sqrt{x - 5} - 2}.
+                    \end{align*}
+                    Menurut definisi domain komposisi fungsi, maka
+                    \begin{align*}
+                        \mathcal{D}_{f \circ g} & = \{x \in \mathcal{D}_g \,|\, g(x) \in \mathcal{D}_f\}       \\
+                                                & = \{x \in [5,\infty) \,|\, 1 + \sqrt{x - 5} \in [3,\infty)\} \\
+                                                & = \{x \geq 5 \,|\, 1 + \sqrt{x - 5} \geq 3\}                 \\
+                                                & = \{x \geq 5 \,|\, \sqrt{x - 5} \geq 2\}                     \\
+                                                & = \{x \geq 5 \,|\, x - 5 \geq 4\}                            \\
+                                                & = \{x \geq 5 \,|\, x \geq 9\}                                \\
+                                                & = [9,\infty).
+                    \end{align*}
+                    Jadi domain dari $(f \circ g)(x)$ adalah $\mathcal{D}_{f \circ g} = [9,\infty)$.
+          \end{enumerate}
+    \item \begin{enumerate}
+              \item Sebelum mencari ekspresi fungsi inversnya dapat kita tinjau bahwa domain $f$ adalah $\mathcal{D}_f = [1,\infty)$ dan range $f$ adalah $\mathcal{R}_f = [0,\infty)$. Sehingga domain dari $f^{-1}$ adalah $\mathcal{D}_{f^{-1}} = \mathcal{R}_f = [0,\infty)$.
+                    Tukar $y = f(x)$ menjadi $x = f(y)$, sehingga
+                    \begin{align*}
+                        x         & = \sqrt[3]{y} - 1 \\
+                        x + 1     & = \sqrt[3]{y}     \\
+                        (x + 1)^3 & = y               \\
+                        f^{-1}(x) & = (x + 1)^3.
+                    \end{align*}
+              \item \begin{center}
+                        \begin{tikzpicture}
+                            \begin{axis}[
+                                    axis lines=middle,
+                                    xlabel={$x$},
+                                    ylabel={$y$},
+                                    xmin=-1, xmax=4,
+                                    ymin=-1, ymax=4,
+                                    xtick={0,1,2,3},
+                                    ytick={0,1,2,3},
+                                    grid=both,
+                                    grid style={line width=.1pt, draw=gray!10},
+                                    major grid style={line width=.2pt,draw=gray!50},
+                                    width=10cm,
+                                    height=10cm,
+                                    legend style={
+                                            at={(1,1)},
+                                            anchor=north west,
+                                            font=\small,
+                                            row sep=1pt,
+                                            inner sep=1pt,
+                                            nodes={scale=0.7}
+                                        }
+                                ]
+                                \addplot[
+                                    domain=1:4,
+                                    samples=200,
+                                    color=blue,
+                                    thick
+                                ]
+                                {x^(1/3) - 1};
+                                \addlegendentry{$f(x)=\sqrt[3]{x} - 1$}
+
+                                \addplot[
+                                    domain=0:3,
+                                    samples=200,
+                                    color=red,
+                                    thick
+                                ]
+                                {(x + 1)^3};
+                                \addlegendentry{$f^{-1}(x)=(x + 1)^3$}
+
+                                \addplot[
+                                    domain=-1:4,
+                                    samples=100,
+                                    color=black,
+                                    dashed
+                                ]
+                                {x};
+                                \addlegendentry{$y=x$}
+                            \end{axis}
+                        \end{tikzpicture}
+                    \end{center}
+          \end{enumerate}
+    \item  Untuk menghitung limit tersebut, kita bagi pembilang dan penyebut dengan $|y|$, sehingga
+          \begin{align*}
+              \lim_{y \to \infty} \frac{2 - y}{\sqrt{7 + 4y^2}} & = \lim_{y \to \infty} \frac{\frac{2 - y}{|y|}}{\frac{\sqrt{7 + 4y^2}}{|y|}}    = \lim_{y \to \infty} \frac{\frac{2}{|y|} - \frac{y}{|y|}}{\sqrt{\frac{7}{y^2} + 4}}
+          \end{align*}
+          Karena $y \to \infty$, maka $y > 0$ sehingga $|y| = y$. Oleh karena itu,
+          \begin{align*}
+              \lim_{y \to \infty} \frac{2 - y}{\sqrt{7 + 4y^2}} & = \lim_{y \to \infty} \frac{\frac{2}{y} - 1}{\sqrt{\frac{7}{y^2} + 4}}                                                                 = \frac{\lim_{y \to \infty} \left(\frac{2}{y} - 1\right)}{\lim_{y \to \infty} \sqrt{\frac{7}{y^2} + 4}}                                                                                 = \frac{0 - 1}{\sqrt{0 + 4}}                                                                                                     = \frac{-1}{\sqrt{4}}                                                                                                     = \frac{-1}{2}.
+          \end{align*}
+          Dengan demikian, nilai limit tersebut adalah $-\dfrac{1}{2}$.
+
+    \item Pertama kita cari turunan implisit dari persamaan kurva tersebut,
+          \begin{align*}
+              x^2 + y + \frac{y}{x}                                                                     & = \sqrt{x} + 2                                                     \\
+              2x + \frac{dy}{dx} + \frac{\frac{dy}{dx} \cdot x - y \cdot 1}{x^2}                        & = \frac{1}{2\sqrt{x}} + 0                                          \\
+              2x + \frac{dy}{dx} + \frac{x \frac{dy}{dx} - y}{x^2}                                      & = \frac{1}{2\sqrt{x}}                                              \\
+              2x + \frac{dy}{dx} + \frac{\frac{dy}{dx}}{x} - \frac{y}{x^2}                              & = \frac{1}{2\sqrt{x}}                                              \\
+              2x - \frac{y}{x^2}                                                                        & = \frac{1}{2\sqrt{x}} - \left(1 + \frac{1}{x}\right) \frac{dy}{dx} \\
+              2x - \frac{y}{x^2}                                                                        & = \frac{1}{2\sqrt{x}} - \left(\frac{x + 1}{x}\right) \frac{dy}{dx} \\
+              2x - \frac{y}{x^2} - \frac{1}{2\sqrt{x}}                                                  & = -\left(\frac{x + 1}{x}\right) \frac{dy}{dx}                      \\
+              -\left(2x - \frac{y}{x^2} - \frac{1}{2\sqrt{x}}\right)                                    & = \left(\frac{x + 1}{x}\right) \frac{dy}{dx}                       \\
+              -\left(2x - \frac{y}{x^2} - \frac{1}{2\sqrt{x}}\right) \cdot \left(\frac{x}{x + 1}\right) & = \frac{dy}{dx}.
+          \end{align*}
+          Selanjutnya kita substitusi titik $(1,1)$ ke dalam turunan tersebut, sehingga
+          \begin{align*}
+              \left. \frac{dy}{dx} \right|_{(1,1)} & = -\left(2(1) - \frac{1}{1^2} - \frac{1}{2\sqrt{1}}\right) \cdot \left(\frac{1}{1 + 1}\right) \\
+                                                   & = -\left(2 - 1 - \frac{1}{2}\right) \cdot \left(\frac{1}{2}\right)                            \\
+                                                   & = -\left(\frac{3}{2}\right) \cdot \left(\frac{1}{2}\right)                                    \\
+                                                   & = -\frac{3}{4}.
+          \end{align*}
+          Dengan demikian, gradien garis singgung di titik $(1,1)$ adalah $-\dfrac{3}{4}$. Sehingga persamaan garis singgungnya adalah
+          \begin{align*}
+              y - y_1 & = m(x - x_1)          \\
+              y - 1   & = -\frac{3}{4}(x - 1) \\
+              4y - 4  & = -3x + 3             \\
+              3x + 4y & = 7.
+          \end{align*}
+          Dengan demikian, persamaan garis singgung kurva di titik $(1,1)$ adalah $3x + 4y = 7$.
+
 \end{enumerate}
 \end{document}
