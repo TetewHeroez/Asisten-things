@@ -92,6 +92,7 @@
 \AtBeginEnvironment{teorema}{
         \setbeamercolor{block title}{bg=darkgray,fg=white}
         \setbeamercolor{block body}{parent=palette tertiary,bg=HIMAabu!30!white}
+        \setbeamercolor{item}{fg=HIMAabu}
 }
 \AtBeginEnvironment{contoh}{%
     \setbeamercolor{block title}{fg=white,bg=PastelGreen}
