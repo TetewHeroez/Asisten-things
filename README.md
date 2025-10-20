@@ -24,6 +24,8 @@ All materials in this repository were developed using **LaTeX**, particularly th
 <p align="center">
   <img src="https://github.com/user-attachments/assets/bce9d7f1-f1d9-4c9b-9f66-390606327f60" width="600"/>
   <br/><br/>
+  <img width="600" src="https://github.com/user-attachments/assets/16ca6e90-6805-4c94-b948-fcb5762e1f90" />
+  <br/><br/>
   <img src="https://github.com/user-attachments/assets/82cbf678-37a5-49c8-bf16-67c3912d20ca" width="600"/>
 </p>
 
@@ -37,4 +39,6 @@ These materials were written primarily in **LaTeX** and are organized by course 
   <img src="https://github.com/user-attachments/assets/54898da8-bcc4-4639-afe9-e58675b83069" width="250" style="margin: 5px;" />
   <img src="https://github.com/user-attachments/assets/49e3310a-c04c-421a-a4b8-233bd4521ed2" width="250" style="margin: 5px;" />
   <img src="https://github.com/user-attachments/assets/0433fe9a-466e-4b34-8575-509d1de028d7" width="250" style="margin: 5px;" />
+  <img width="250" style="margin: 5px;" src="https://github.com/user-attachments/assets/73d49eb0-9a1b-41b6-92ee-f8f6558edef9" />
+  <img width="250" style="margin: 5px;" src="https://github.com/user-attachments/assets/9dbd4ccb-21ef-4228-9a3e-b0b975f4adc1" />
 </p>

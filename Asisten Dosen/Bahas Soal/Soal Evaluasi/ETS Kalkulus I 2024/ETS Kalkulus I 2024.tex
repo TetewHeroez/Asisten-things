@@ -199,7 +199,7 @@
                     \begin{align*}
                         x         & = y^3 - 2          \\
                         y^3       & = x + 2            \\
-                        y         & = \sqrt[3]{x + 2}.
+                        y         & = \sqrt[3]{x + 2}. \\
                         f^{-1}(x) & = \sqrt[3]{x + 2}.
                     \end{align*}
                     Selanjutnya kita tahu bahwa $\mathcal{D}_{f^{-1}} = \mathcal{R}_f = \R$ (karena fungsi kubik memiliki range semua bilangan real $(\R)$).
@@ -484,14 +484,14 @@
 
               \item Tukar $y = f(x)$ menjadi $x = f(y)$, sehingga
                     \begin{align*}
-                        x            & = y^2 - 4y + 7                                                 \\
-                        x - 7        & = y^2 - 4y                                                     \\
-                        y^2 - 4y     & = x - 7                                                        \\
-                        y^2 - 4y + 4 & = x - 7 + 4                                                    \\
-                        (y - 2)^2    & = x - 3                                                        \\
-                        y - 2        & = \pm\sqrt{x - 3}                                              \\
-                        y            & = 2 \pm \sqrt{x - 3}.                                          \\
-                        f^{-1}(x)    & = 2 + \sqrt{x - 3} \text{ atau } f^{-1}(x) = 2 - \sqrt{x - 3}.
+                        x                                & = y^2 - 4y + 7                              \\
+                        x - 7                            & = y^2 - 4y                                  \\
+                        y^2 - 4y                         & = x - 7                                     \\
+                        y^2 - 4y + 4                     & = x - 7 + 4                                 \\
+                        (y - 2)^2                        & = x - 3                                     \\
+                        y - 2                            & = \pm\sqrt{x - 3}                           \\
+                        y                                & = 2 \pm \sqrt{x - 3}.                       \\
+                        f^{-1}(x)     = 2 + \sqrt{x - 3} & \text{ atau } f^{-1}(x) = 2 - \sqrt{x - 3}.
                     \end{align*}
                     Selanjutnya kita tahu bahwa $\mathcal{D}_{f^{-1}} = \mathcal{R}_f$. Jika kita ambil $\mathcal{D}_f = [2,\infty)$, maka $\mathcal{R}_f = [3,\infty)$ sehingga $\mathcal{D}_{f^{-1}} = [3,\infty)$ dan $f^{-1}(x) = 2 + \sqrt{x - 3}$.
                     Grafik $f(x)$ dan $f^{-1}(x)$ untuk $\mathcal{D}_f = [2,\infty)$ dan $\mathcal{D}_{f^{-1}} = [3,\infty)$ dapat digambarkan sebagai berikut:
@@ -779,11 +779,11 @@
               \item Agar $f(x) = \sqrt{4 - x^2}$ mempunyai invers, maka kita perlu membatasi domainnya pada salah satu sisi sumbu simetri yaitu $x=0$. Sehingga domain $f$ agar $f^{-1}$ ada adalah $\mathcal{D}_f = [0,2]$ atau $\mathcal{D}_f = [-2,0]$.
               \item Tukar $y = f(x)$ menjadi $x = f(y)$, sehingga
                     \begin{align*}
-                        x         & = \sqrt{4 - y^2}                                            \\
-                        x^2       & = 4 - y^2                                                   \\
-                        y^2       & = 4 - x^2                                                   \\
-                        y         & = \pm\sqrt{4 - x^2}                                         \\
-                        f^{-1}(x) & = \sqrt{4 - x^2} \text{ atau } f^{-1}(x) = -\sqrt{4 - x^2}.
+                        x                          & = \sqrt{4 - y^2}                           \\
+                        x^2                        & = 4 - y^2                                  \\
+                        y^2                        & = 4 - x^2                                  \\
+                        y                          & = \pm\sqrt{4 - x^2}                        \\
+                        f^{-1}(x) = \sqrt{4 - x^2} & \text{ atau } f^{-1}(x) = -\sqrt{4 - x^2}.
                     \end{align*}
                     Selanjutnya kita tahu bahwa $\mathcal{D}_{f^{-1}} = \mathcal{R}_f$. Jika kita ambil $\mathcal{D}_f = [0,2]$, maka $\mathcal{R}_f = [0,2]$ sehingga $\mathcal{D}_{f^{-1}} = [0,2]$ dan $f^{-1}(x) = \sqrt{4 - x^2}$.
                     Namun jika kita ambil $\mathcal{D}_f = [-2,0]$, maka $\mathcal{R}_f = [0,2]$ sehingga $\mathcal{D}_{f^{-1}} = [0,2]$ dan $f^{-1}(x) = -\sqrt{4 - x^2}$.
@@ -814,7 +814,20 @@
                     & =\frac{d}{dx}(2x)+\frac{d}{dx}((2\sqrt{x} - 3)^{-2})                         \\
                     & =2 + (-2)(2\sqrt{x} - 3)^{-3} \cdot \frac{d}{dx}(2\sqrt{x} - 3)              \\
                     & =2 + (-2)(2\sqrt{x} - 3)^{-3} \cdot \left(2 \cdot \frac{1}{2\sqrt{x}}\right) \\
-                    & =2 - \frac{2}{\sqrt{x}(2\sqrt{x} - 3)^3}.
+                    & =2 - 2(2\sqrt{x} - 3)^{-3} \cdot x^{-1/2}
+          \end{align*}
+          Selanjutnya, kita hitung turunan kedua $f''(x)$ dengan aturan perkalian. Misalkan
+          \begin{align*}
+              u  = -2(2\sqrt{x} - 3)^{-3} & \implies u' = 6(2\sqrt{x} - 3)^{-4} \cdot \frac{1}{\sqrt{x}}, \\
+              v  = x^{-1/2}               & \implies v' = - \frac{1}{2} x^{-3/2}.
+          \end{align*}
+          Dengan demikian, diperoleh
+          \begin{align*}
+              f''(x) & = \frac{d}{dx}\left(2 - 2(2\sqrt{x} - 3)^{-3} \cdot x^{-1/2}\right)                                                               \\
+                     & = 0 + \frac{d}{dx}\left(u \cdot v\right)                                                                                          \\
+                     & = u'v + uv'                                                                                                                       \\
+                     & = 6(2\sqrt{x} - 3)^{-4} \cdot \frac{1}{\sqrt{x}} \cdot x^{-1/2} + -2(2\sqrt{x} - 3)^{-3} \cdot \left(-\frac{1}{2} x^{-3/2}\right) \\
+                     & = 6(2\sqrt{x} - 3)^{-4} x^{-1} + (2\sqrt{x} - 3)^{-3} x^{-3/2}.
           \end{align*}
 \end{enumerate}
 
@@ -1168,7 +1181,6 @@
                     Secara garis bilangan dapat diilustrasikan sebagai berikut,
                     \begin{center}
                         \begin{tikzpicture}
-<<<<<<< HEAD
                             \draw[Latex-Latex,thick] (-2,-2) -- (4,-2) node[right]{$\left(\dfrac{5}{2},\infty\right)\cap\left(-\infty,\dfrac{25}{9}\right)=\left(\dfrac{5}{2},\dfrac{25}{9}\right)$};
 
                             \coordinate (A) at (2,-2);
@@ -1181,14 +1193,6 @@
 
                             \draw[fill=white] (A) circle (0.06) node[below]{$\dfrac{25}{9}$};
                             \draw[fill=white] (B) circle (0.06) node[below]{$\dfrac{5}{2}$};
-=======
-                            \draw[<->] (-1,-2) -- (5,-2) node[right]{$[a,b)\cap[c,d]=[c,b)$};
-
-                            \draw[pattern=north west lines] (1,-2) -- (2,-2)--(2,-1)--(1,-1)--cycle;
-
-                            \draw[fill=white] (2,-2) circle (0.06) node[below]{$\frac{25}{9}$};
-                            \draw[fill=black] (1,-2) circle (0.06) node[below]{$\frac{5}{2}$};
->>>>>>> main
                         \end{tikzpicture}
                     \end{center}
               \item Kasus $2x - 5 < 0 \implies x < \frac{5}{2}$.
@@ -1316,31 +1320,26 @@
 
     \item Pertama kita cari turunan implisit dari persamaan kurva tersebut,
           \begin{align*}
-              x^2 + y + \frac{y}{x}                                                                     & = \sqrt{x} + 2                                                     \\
-              2x + \frac{dy}{dx} + \frac{\frac{dy}{dx} \cdot x - y \cdot 1}{x^2}                        & = \frac{1}{2\sqrt{x}} + 0                                          \\
-              2x + \frac{dy}{dx} + \frac{x \frac{dy}{dx} - y}{x^2}                                      & = \frac{1}{2\sqrt{x}}                                              \\
-              2x + \frac{dy}{dx} + \frac{\frac{dy}{dx}}{x} - \frac{y}{x^2}                              & = \frac{1}{2\sqrt{x}}                                              \\
-              2x - \frac{y}{x^2}                                                                        & = \frac{1}{2\sqrt{x}} - \left(1 + \frac{1}{x}\right) \frac{dy}{dx} \\
-              2x - \frac{y}{x^2}                                                                        & = \frac{1}{2\sqrt{x}} - \left(\frac{x + 1}{x}\right) \frac{dy}{dx} \\
-              2x - \frac{y}{x^2} - \frac{1}{2\sqrt{x}}                                                  & = -\left(\frac{x + 1}{x}\right) \frac{dy}{dx}                      \\
-              -\left(2x - \frac{y}{x^2} - \frac{1}{2\sqrt{x}}\right)                                    & = \left(\frac{x + 1}{x}\right) \frac{dy}{dx}                       \\
-              -\left(2x - \frac{y}{x^2} - \frac{1}{2\sqrt{x}}\right) \cdot \left(\frac{x}{x + 1}\right) & = \frac{dy}{dx}.
+              x^2 + y + \frac{y}{x}                                              & = \sqrt{x} + 2            \\
+              2x + \frac{dy}{dx} + \frac{\frac{dy}{dx} \cdot x - y \cdot 1}{x^2} & = \frac{1}{2\sqrt{x}} + 0 \\
+              2x + \frac{dy}{dx} + \frac{x \frac{dy}{dx} - y}{x^2}               & = \frac{1}{2\sqrt{x}}     \\
+              2x + \frac{dy}{dx} + \frac{\frac{dy}{dx}}{x} - \frac{y}{x^2}       & = \frac{1}{2\sqrt{x}}
           \end{align*}
           Selanjutnya kita substitusi titik $(1,1)$ ke dalam turunan tersebut, sehingga
           \begin{align*}
-              \left. \frac{dy}{dx} \right|_{(1,1)} & = -\left(2(1) - \frac{1}{1^2} - \frac{1}{2\sqrt{1}}\right) \cdot \left(\frac{1}{1 + 1}\right) \\
-                                                   & = -\left(2 - 1 - \frac{1}{2}\right) \cdot \left(\frac{1}{2}\right)                            \\
-                                                   & = -\left(\frac{3}{2}\right) \cdot \left(\frac{1}{2}\right)                                    \\
-                                                   & = -\frac{3}{4}.
+              2(1) + \left.\frac{dy}{dx}\right|_{(1,1)} + \frac{\left.\frac{dy}{dx}\right|_{(1,1)}}{1} - \frac{1}{1^2} & = \frac{1}{2\sqrt{1}} \\
+              2 + \left.\frac{dy}{dx}\right|_{(1,1)} + \left.\frac{dy}{dx}\right|_{(1,1)} - 1                          & = \frac{1}{2}         \\
+              1 + 2\left.\frac{dy}{dx}\right|_{(1,1)}                                                                  & = \frac{1}{2}         \\
+              2\left.\frac{dy}{dx}\right|_{(1,1)}                                                                      & = -\frac{1}{2}        \\
+              \left.\frac{dy}{dx}\right|_{(1,1)}                                                                       & = -\frac{1}{4}.
           \end{align*}
-          Dengan demikian, gradien garis singgung di titik $(1,1)$ adalah $-\dfrac{3}{4}$. Sehingga persamaan garis singgungnya adalah
+          Dengan demikian, gradien garis singgung di titik $(1,1)$ adalah $-\dfrac{1}{4}$. Sehingga persamaan garis singgungnya adalah
           \begin{align*}
               y - y_1 & = m(x - x_1)          \\
-              y - 1   & = -\frac{3}{4}(x - 1) \\
-              4y - 4  & = -3x + 3             \\
-              3x + 4y & = 7.
+              y - 1   & = -\frac{1}{4}(x - 1) \\
+              4y - 4  & = -x + 1              \\
+              x + 4y  & = 5.
           \end{align*}
-          Dengan demikian, persamaan garis singgung kurva di titik $(1,1)$ adalah $3x + 4y = 7$.
-
+          Dengan demikian, persamaan garis singgung kurva di titik $(1,1)$ adalah $x + 4y = 5$.
 \end{enumerate}
 \end{document}
