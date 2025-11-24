@@ -1477,7 +1477,44 @@
 \renewcommand{\arraystretch}{1.5}
 \renewcommand{\headrulewidth}{1pt}
 \begin{enumerate}
-    \item ,
+    \item Misalkan panjang, lebar, dan tinggi kotak berturut-turut adalah \( p \), \( l \), dan \( t \). Maka, volume kotak dapat dituliskan sebagai
+          \[
+              V = p \cdot l \cdot t \implies plt = 2000 \implies t = \frac{2000}{pl}.
+          \]
+          Biaya total pembuatan kotak dapat dihitung berdasarkan luas permukaan dan biaya per satuan luas. Luas permukaan kotak terdiri dari satu alas, satu penutup, dan empat sisi tegak. Dengan biaya alas dan penutup dua kali lebih mahal daripada sisi-sisinya, maka biaya total \( C \) dapat dituliskan sebagai
+          \[
+              C = 2(pl) + 2(pl) + 4(lt) = 4pl + 4lt.
+          \]
+          Dengan menggunakan persamaan untuk \( t \), biaya total dapat dituliskan sebagai fungsi dari \( p \) dan \( l \):
+          \[
+              C(p, l) = 4pl + 4l\left( \frac{2000}{pl} \right) = 4pl + \frac{8000}{p}.
+          \]
+          Untuk meminimalkan biaya, kita dapat mengambil turunan parsial dari \( C \) terhadap \( p \) dan \( l \), kemudian menyamakannya dengan nol:
+          \begin{align*}
+              \frac{\partial C}{\partial p} & = 4l - \frac{8000}{p^2} = 0, \\
+              \frac{\partial C}{\partial l} & = 4p = 0.
+          \end{align*}
+          Dari persamaan kedua, diperoleh \( p = 0 \), yang tidak mungkin untuk dimensi kotak. Oleh karena itu, kita hanya perlu menyelesaikan persamaan pertama:
+          \[
+              4l = \frac{8000}{p^2} \implies l = \frac{2000}{p^2}.
+          \]
+          Substitusikan \( l \) ke dalam persamaan volume untuk mendapatkan \( t \):
+          \[
+              t = \frac{2000}{p \cdot \left( \frac{2000}{p^2} \right)} = \frac{p^2}{p} = p.
+          \]
+          Jadi, \( t = p \). Substitusikan \( l \) dan \( t \) ke dalam persamaan biaya:
+          \[
+              C(p) = 4p \left( \frac{2000}{p^2} \right) + \frac{8000}{p} = \frac{8000}{p} + \frac{8000}{p} = \frac{16000}{p}.
+          \]
+          Ambil turunan dari \( C(p) \) dan samakan dengan nol untuk menemukan nilai \( p \) yang meminimalkan biaya:
+          \[
+              \frac{dC}{dp} = -\frac{16000}{p^2} = 0.
+          \]
+          Turunan ini tidak pernah nol, tetapi kita dapat melihat bahwa \( C(p) \) menurun saat \( p \) bertambah. Namun, kita harus memastikan bahwa dimensi kotak tetap memenuhi volume \( 2000 \ \text{cm}^3 \). Dengan substitusi \( l = \frac{2000}{p^2} \) dan \( t = p \), kita dapat mencari nilai \( p \) yang masuk akal. Misalkan \( p = 10 \ \text{cm} \):
+          \[
+              l = \frac{2000}{10^2} = 20 \ \text{cm}, \quad t = 10 \ \text{cm}.
+          \]
+          Jadi, dimensi kotak yang meminimalkan biaya adalah \( p = 10 \ \text{cm} \), \( l = 20 \ \text{cm} \), dan \( t = 10 \ \text{cm} \).
     \item \begin{enumerate}
               \item Untuk menentukan selang naik/turun, maka diperlukan informasi mengenai tanda dari \( f'(x) \).
                     Diperoleh
@@ -1494,7 +1531,7 @@
 
                             %===== Naik/Turun =====
                             % Format: titik_awal / titik_akhir / tanda
-                            \foreach \start/\end/\sign in {\minint/0/-, 0/1/-, 1/\maxint/+} {
+                            \foreach \start/\end/\sign in {\minint/0/-, 0/1/+, 1/\maxint/+} {
 
                                     % Logika IF untuk menentukan Warna dan Arah Panah
                                     \ifx\sign\plus
@@ -1527,11 +1564,11 @@
                         \item Fungsi turun pada interval \( (-\infty, 0) \cup (0, 1) \).
                         \item Fungsi naik pada interval \( (1, \infty) \).
                     \end{itemize}
-              \item Titik ekstrem relatif terjadi pada titik kritis \( f'(x) \), yaitu \( x = 0 \) dan \( x = 1 \). Namun karena \( f'(x) \) tidak berganti tanda di sekitar \( x = 0 \), maka titik tersebut bukan titik ekstrem. Sedangkan pada \( x = 1 \), fungsi berganti dari turun ke naik, sehingga terdapat titik minimum relatif pada \( x = 1 \). Nilai fungsi pada titik tersebut adalah
+              \item Titik ekstrem relatif terjadi pada titik kritis \( f'(x) \), yaitu \( x = 0 \) dan \( x = 1 \). Namun karena \( f'(x) \) tidak berganti tanda di sekitar \( x = 1 \), maka titik tersebut bukan titik ekstrem. Sedangkan pada \( x = 0 \), fungsi berganti dari turun ke naik, sehingga terdapat titik minimum relatif pada \( x = 0 \). Nilai fungsi pada titik tersebut adalah
                     \[
-                        f(1) = 3(1)^4 - 8(1)^3 + 6(1)^2 + 1 = 3 - 8 + 6 + 1 = 2.
+                        f(0) = 3(0)^4 - 8(0)^3 + 6(0)^2 + 1 = 1.
                     \]
-                    Jadi, titik minimum relatifnya adalah \( (1, 2) \).
+                    Jadi, titik minimum relatifnya adalah \( (0, 1) \).
               \item Untuk menentukan selang kecekungan, maka diperlukan informasi mengenai tanda dari \( f''(x) \).
                     Turunkan \( f'(x) \):
                     \[
@@ -1539,9 +1576,9 @@
                     \]
                     Selanjutnya, tinjau tanda \( f''(x) \):
                     \begin{center}
-                        \begin{tikzpicture}[scale=1, baseline]
+                        \begin{tikzpicture}[scale=1, baseline, xscale=2]
                             \def\critpoints{1/black, {1/3}/black}
-                            \def\maxint{3}
+                            \def\maxint{2}
                             \def\minint{-1}
                             \def\plus{+}
 
@@ -1563,9 +1600,9 @@
                             \draw[fill=\mycolor, draw=\mycolor] ({\start},0) rectangle ({\end},0.5) node[midway,black] {$\sign$};
 
                             \draw[very thick, black!70!red]
-                            ({(\start+\end)/2 - 0.4}, \dyArc)
+                            ({(\start+\end)/2 - 0.2}, \dyArc)
                             to[bend \direction=80]
-                            ({(\start+\end)/2 + 0.4}, \dyArc);
+                            ({(\start+\end)/2 + 0.2}, \dyArc);
                             }
                             %===== GARIS BILANGAN =====
                             \draw[very thick] (\maxint,0) -- (\minint,0) node[left] {$f''(x):$};
@@ -1584,28 +1621,146 @@
                     \end{itemize}
               \item Sketsa grafiknya adalah sebagai berikut:
                     \begin{center}
-                        \begin{tikzpicture}[scale=2]
-                            \begin{axis}[
-                                    axis lines = middle,
-                                    xlabel = \(x\),
-                                    ylabel = {\(f(x)\)},
-                                    xtick={-1,0,1,2},
-                                    ytick={-5,0,5,10},
-                                    ymin=-5, ymax=10,
-                                    xmin=-1, xmax=2,
-                                    domain=-0.5:1.5,
-                                    samples=100,
-                                    grid=both,
-                                    width=10cm,
-                                    height=6cm
-                                ]
-                                \addplot[thick,blue] {3*x^4 - 8*x^3 + 6*x^2 + 1};
-                            \end{axis}
+                        \begin{tikzpicture}[scale=1.8,every node/.style={font=\small}]
+                            % Sumbu x dan y
+                            \draw[very thick,-Latex,darkgray] (-1,0) -- (2,0) node[right] {$x$};
+                            \draw[very thick,-Latex,darkgray] (0,-0.5) -- (0,3) node[above] {$f(x)$};
+
+                            % Kurva fungsi
+                            \draw[thick,domain=-0.45:1.55,smooth,samples=100] plot (\x, {3*(\x)^4 - 8*(\x)^3 + 6*(\x)^2 + 1});
+
+                            % Titik ekstrem
+                            \draw[dashed,orange!50!blue] (1,0) node[below] {$1$} |- (0,2) node[left] {$2$};
+                            \draw[fill=orange!50!blue] (1,2) circle (1pt);
+                            \draw[fill=red] (0,1) circle (1pt) node[below right] {$1$};
+
+
                         \end{tikzpicture}
                     \end{center}
           \end{enumerate}
-    \item ,
-    \item ,
+    \item Lakukan subtitusi berikut yaitu
+          \begin{align*}
+              \begin{matrix}
+                  u   & = x^2 + 1 \\
+                  x^2 & = u - 1   \\
+              \end{matrix}
+              \implies
+              \begin{matrix}
+                  du      & = 2x \, dx     \\
+                  x \, dx & = \frac{du}{2} \\
+              \end{matrix}
+          \end{align*}
+          Kemudian, ubah batas integralnya:
+          \begin{align*}
+              x=0        & \implies u = 0^2 + 1 = 1,          \\
+              x=\sqrt{3} & \implies u = (\sqrt{3})^2 + 1 = 4.
+          \end{align*}
+          Sehingga, integralnya menjadi
+          \begin{align*}
+              \int_{0}^{\sqrt{3}} (4x^3 + 4x)\sqrt{x^2 + 1}\, dx & = \int_{1}^{4} (4(u - 1) + 4) \sqrt{u} \cdot \frac{du}{2}                                                       = \int_{1}^{4} (2u + 2) \sqrt{u} \, du                                                                       \\
+                                                                 & = \int_{1}^{4} 2u^{3/2} + 2u^{1/2} \, du                                                                        = 2 \left[ \frac{2}{5} u^{5/2} + \frac{2}{3} u^{3/2} \right]_{1}^{4}                                         \\
+                                                                 & = 2 \left( \frac{2}{5} (4)^{5/2} + \frac{2}{3} (4)^{3/2} - \frac{2}{5} (1)^{5/2} - \frac{2}{3} (1)^{3/2} \right)                                                                                                             \\
+                                                                 & = 2 \left( \frac{64}{5} + \frac{16}{3} - \frac{2}{5} - \frac{2}{3} \right)                                                                                                                                                   \\
+                                                                 & = 2 \left( \frac{62}{5} + \frac{14}{3} \right)                                                                  = 2 \cdot \frac{256}{15}                                                                   = \frac{512}{15}.
+          \end{align*}
+    \item Pertama, ubah bilangan kompleks ke dalam bentuk kutub:
+          \begin{align*}
+              r      & = \left| -\sqrt{3} + i \right| = \sqrt{(-\sqrt{3})^2 + 1^2} = \sqrt{4} = 2, \\
+              \theta & = \tan^{-1}\left( \frac{1}{-\sqrt{3}} \right) + 180^\circ = 150^\circ.
+          \end{align*}
+          Jadi, bentuk kutubnya adalah $z = 2\, \cis \,150^\circ.$
+          Selanjutnya, gunakan rumus De Moivre untuk mencari pangkat dari bilangan kompleks tersebut:
+          \begin{align*}
+              z^n & = r^n \cis (n\theta)                                   = 2^{-6} \cis (-6 \cdot 150^\circ)                     = \frac{1}{64} \cis (-900^\circ)  = \frac{1}{64} \cis ( -900^\circ + 2 \cdot 360^\circ )                                                                                                                                                                                                                                                                                                                                                                                                                                     \\
+                  & = \frac{1}{64} \cis (-180^\circ)                                                                                                                                                                       = \frac{1}{64} (\cos -180^\circ + i \sin -180^\circ)                                                                                                                                                   = \frac{1}{64} (-1 + 0i)                                                                                                                                                                               = -\frac{1}{64} + 0i.
+          \end{align*}
+          Jadi, bagian realnya adalah $-\dfrac{1}{64}$ dan bagian imajinernya adalah $0$.
+    \item Metode Cramer secara umum untuk mencari nilai $x_n$ dapat dirumuskan sebagai
+          \[x_n=\frac{\det(A_n)}{\det(A)}\]
+          dengan $A_n$ adalah matriks yang diperoleh dari matriks $A$ yang kolom ke-$n$-nya diganti dengan vektor kolom $b$. (Dalam hal ini $n=4$)
+
+          Pada soal ini, diperoleh
+          \[\underbrace{\begin{pmatrix}
+                      2  & 1  & 0  & -2 \\
+                      -2 & 0  & 0  & 4  \\
+                      1  & 1  & -3 & 2  \\
+                      1  & -3 & 0  & 2
+                  \end{pmatrix}}_{A}\underbrace{\begin{pmatrix}
+                      x_1 \\x_2\\x_3\\x_4
+                  \end{pmatrix}}_{x}=\underbrace{\begin{pmatrix}
+                      2 \\0\\-9\\-16
+                  \end{pmatrix}}_{b}\]
+          Hitung determinan dari matriks $A$ menggunakan ekspansi kofaktor pada kolom ke-3:
+          \begin{align*}
+              \begin{vmatrix}
+                  2  & 1  & 0  & -2 \\
+                  -2 & 0  & 0  & 4  \\
+                  1  & 1  & -3 & 2  \\
+                  1  & -3 & 0  & 2
+              \end{vmatrix}
+              =0...-0...+(-3)\begin{vmatrix}
+                                 2  & 1  & -2 \\
+                                 -2 & 0  & 4  \\
+                                 1  & -3 & 2
+                             \end{vmatrix}-0\dots=
+              -3\begin{vmatrix}
+                    2  & 1  & -2 \\
+                    -2 & 0  & 4  \\
+                    1  & -3 & 2
+                \end{vmatrix}
+          \end{align*}
+          Selanjutnya dari matriks $3\times 3$ di atas, hitung lagi determinannya dengan ekspansi kofaktor pada baris ke-2:
+          \begin{align*}
+              -3\begin{vmatrix}
+                    2  & 1  & -2 \\
+                    -2 & 0  & 4  \\
+                    1  & -3 & 2
+                \end{vmatrix}
+               & = -3\left(-(-2)\begin{vmatrix}
+                                    1  & -2 \\
+                                    -3 & 2
+                                \end{vmatrix}+0...-4\begin{vmatrix}
+                                                        2 & 1  \\
+                                                        1 & -3
+                                                    \end{vmatrix}\right)            \\
+               & = -3\left(2(2 - 6) - 4(-6 - 1)\right)= -3(-8 + 28) = -3(20) = -60.
+          \end{align*}
+          Selanjutnya, hitung determinan dari matriks $A_4$:
+          \begin{align*}
+              \begin{vmatrix}
+                  2  & 1  & 0  & 2   \\
+                  -2 & 0  & 0  & 0   \\
+                  1  & 1  & -3 & -9  \\
+                  1  & -3 & 0  & -16
+              \end{vmatrix}
+              =0...-0...+(-3)\begin{vmatrix}
+                                 2  & 1  & 2   \\
+                                 -2 & 0  & 0   \\
+                                 1  & -3 & -16
+                             \end{vmatrix}-0\dots=
+              -3\begin{vmatrix}
+                    2  & 1  & 2   \\
+                    -2 & 0  & 0   \\
+                    1  & -3 & -16
+                \end{vmatrix}
+          \end{align*}
+          Hitung determinan matriks $3\times 3$ di atas dengan ekspansi kofaktor pada baris ke-2:
+          \begin{align*}
+              -3\begin{vmatrix}
+                    2  & 1  & 2   \\
+                    -2 & 0  & 0   \\
+                    1  & -3 & -16
+                \end{vmatrix}
+               & = -3\left(-(-2)\begin{vmatrix}
+                                    1  & 2   \\
+                                    -3 & -16
+                                \end{vmatrix}+0...-0\right)  \\
+               & = -3\left(2(-16 + 6)\right) = -3(-20) = 60.
+          \end{align*}
+          Dengan demikian, diperoleh nilai $x_4$ adalah
+          \[
+              x_4 = \frac{\det(A_4)}{\det(A)} = \frac{60}{-60} = -1.
+          \]
 \end{enumerate}
 
 \newpage
@@ -1833,11 +1988,7 @@
                 & =\frac{\left[2^{6}\cis\left(\pi\right)\right]\left[\cis\left(\dfrac{4\pi}{3}\right)\right]}{\cis\left(0\right)}=2^{6}\cis\left(\pi+\dfrac{4\pi}{3}-0\right)=2^{6}\cis\left(\dfrac{7\pi}{3}\right)=2^{6}\cis\left(\dfrac{\pi}{3}\right)                                                                                                                                                                                       \\
                 & =64\left(\cos\left(\dfrac{\pi}{3}\right)+i\sin\left(\dfrac{\pi}{3}\right)\right)=64\left(\dfrac{1}{2}+i\dfrac{\sqrt{3}}{2}\right)=\boxed{32+32\sqrt{3}i}
           \end{align*}
-    \item Metode Cramer secara umum untuk mencari nilai $x_n$ dapat dirumuskan sebagai
-          \[x_n=\frac{\det(A_n)}{\det(A)}\]
-          dengan $A_n$ adalah matriks yang diperoleh dari matriks $A$ yang kolom ke-$n$-nya diganti dengan vektor kolom $b$. (Dalam hal ini $n=3$)
-
-          SPL diatas dapat dituliskan dalam bentuk matriks sebagai berikut
+    \item SPL diatas dapat dituliskan dalam bentuk matriks sebagai berikut
           \[\underbrace{\begin{pmatrix}
                       1 & 0 & 4 & 1 \\
                       2 & 0 & 3 & 2 \\
