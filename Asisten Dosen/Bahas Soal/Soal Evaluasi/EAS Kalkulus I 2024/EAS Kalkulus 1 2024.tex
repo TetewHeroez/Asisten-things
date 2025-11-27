@@ -10,6 +10,7 @@
 \usepackage{animate}
 \usepackage{xfrac}
 \usepackage{multirow,multicol}
+\usepackage{soul}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
@@ -1477,44 +1478,61 @@
 \renewcommand{\arraystretch}{1.5}
 \renewcommand{\headrulewidth}{1pt}
 \begin{enumerate}
-    \item Misalkan panjang, lebar, dan tinggi kotak berturut-turut adalah \( p \), \( l \), dan \( t \). Maka, volume kotak dapat dituliskan sebagai
+    \item Asumsi pada soal mengatakan bahwa bagian alas dan penutup memiliki biaya dua kali lebih mahal daripada sisi-sisinya. Mungkin ini bisa diartikan bahwa luasan sisi-sisi kotak nya sama, atau dengan kata lain alas dan penutupnya berbentuk persegi.
+          \begin{center}
+              \begin{tikzpicture}[scale=0.8]
+                  \def\sisi{2}
+                  \def\tinggi{4}
+                  \coordinate (A) at (0,0,0);
+                  \coordinate (B) at (\sisi,0,0);
+                  \coordinate (C) at (\sisi,\sisi,0);
+                  \coordinate (D) at (0,\sisi,0);
+                  \coordinate (A') at (0,0,\tinggi);
+                  \coordinate (B') at (\sisi,0,\tinggi);
+                  \coordinate (C') at (\sisi,\sisi,\tinggi);
+                  \coordinate (D') at (0,\sisi,\tinggi);
+                  \foreach \p/\q in {C/C', D/D', C/D,B/C,B/B', A'/B', B'/C', C'/D', D'/A'}{
+                          \draw[thick] (\p) -- (\q);
+                      }
+                  \foreach \p/\q in { A/A',A/B,D/A}{
+                          \draw[thick,dashed] (\p) -- (\q);
+                      }
+                  \draw[<->] (-0.5,0,\tinggi) -- (-0.5,\sisi,\tinggi) node[midway,left] {$s$};
+                  \draw[<->] (0,-0.5,\tinggi) -- (\sisi,-0.5,\tinggi) node[midway,below] {$s$};
+                  \draw[<->] (\sisi+0.5,0,0) -- (\sisi+0.5,0,\tinggi) node[midway,right] {$t$};
+              \end{tikzpicture}
+          \end{center}
+          Dengan $s$ adalah panjang sisi alas dan penutup, serta $t$ adalah tinggi kotak. Maka, volume kotak dapat dituliskan sebagai
           \[
-              V = p \cdot l \cdot t \implies plt = 2000 \implies t = \frac{2000}{pl}.
+              V = s^2 t = 2000 \implies t = \frac{2000}{s^2}.
           \]
-          Biaya total pembuatan kotak dapat dihitung berdasarkan luas permukaan dan biaya per satuan luas. Luas permukaan kotak terdiri dari satu alas, satu penutup, dan empat sisi tegak. Dengan biaya alas dan penutup dua kali lebih mahal daripada sisi-sisinya, maka biaya total \( C \) dapat dituliskan sebagai
-          \[
-              C = 2(pl) + 2(pl) + 4(lt) = 4pl + 4lt.
-          \]
-          Dengan menggunakan persamaan untuk \( t \), biaya total dapat dituliskan sebagai fungsi dari \( p \) dan \( l \):
-          \[
-              C(p, l) = 4pl + 4l\left( \frac{2000}{pl} \right) = 4pl + \frac{8000}{p}.
-          \]
-          Untuk meminimalkan biaya, kita dapat mengambil turunan parsial dari \( C \) terhadap \( p \) dan \( l \), kemudian menyamakannya dengan nol:
+          Selanjutnya misalkan untuk biaya per cm$^2$ adalah \st{Rp.1000} Rp.1\footnote{kena redenominasi njir}, maka biaya total \( C(s) \) dalam rupiah dapat dituliskan sebagai berikut:
           \begin{align*}
-              \frac{\partial C}{\partial p} & = 4l - \frac{8000}{p^2} = 0, \\
-              \frac{\partial C}{\partial l} & = 4p = 0.
+              C(s) & = 2 \cdot (\text{Luas Alas}) + 2 \cdot (\text{Luas Penutup}) + 1 \cdot (\text{Luas Sisi-sisi}) \\
+              C(s) & = 2 \cdot (s^2) + 2 \cdot (s^2) + 1 \cdot (4st)                                                \\
+              C(s) & = 4s^2 + 4s \left( \frac{2000}{s^2} \right)                                                    \\
+              C(s) & = 4s^2 + \frac{8000}{s}.
           \end{align*}
-          Dari persamaan kedua, diperoleh \( p = 0 \), yang tidak mungkin untuk dimensi kotak. Oleh karena itu, kita hanya perlu menyelesaikan persamaan pertama:
+          Untuk mencari nilai \( s \) yang meminimalkan biaya, maka turunkan \( C(s) \) dan cari titik kritisnya:
           \[
-              4l = \frac{8000}{p^2} \implies l = \frac{2000}{p^2}.
+              C'(s) = 8s - \frac{8000}{s^2}.
           \]
-          Substitusikan \( l \) ke dalam persamaan volume untuk mendapatkan \( t \):
+          Titik kritis diperoleh dengan menyelesaikan persamaan \( C'(s) = 0 \):
+          \begin{align*}
+              0 & = 8s - \frac{8000}{s^2}
+              \implies 8s^3 = 8000
+              \implies s^3 = 1000
+              \implies s = 10.
+          \end{align*}
+          Untuk memastikan bahwa titik kritis tersebut merupakan titik minimum, maka tinjau tanda dari \( C''(s) \) di $s = 10$:
           \[
-              t = \frac{2000}{p \cdot \left( \frac{2000}{p^2} \right)} = \frac{p^2}{p} = p.
+              C''(s) = 8 + \frac{16000}{s^3} \implies C''(10) = 8 + \frac{16000}{1000} = 24 > 0.
           \]
-          Jadi, \( t = p \). Substitusikan \( l \) dan \( t \) ke dalam persamaan biaya:
+          Karena \( C''(10) > 0 \), maka \( s = 10 \) adalah titik minimum. Selanjutnya, hitung nilai \( t \) pada titik tersebut:
           \[
-              C(p) = 4p \left( \frac{2000}{p^2} \right) + \frac{8000}{p} = \frac{8000}{p} + \frac{8000}{p} = \frac{16000}{p}.
+              t = \frac{2000}{(10)^2} = \frac{2000}{100} = 20.
           \]
-          Ambil turunan dari \( C(p) \) dan samakan dengan nol untuk menemukan nilai \( p \) yang meminimalkan biaya:
-          \[
-              \frac{dC}{dp} = -\frac{16000}{p^2} = 0.
-          \]
-          Turunan ini tidak pernah nol, tetapi kita dapat melihat bahwa \( C(p) \) menurun saat \( p \) bertambah. Namun, kita harus memastikan bahwa dimensi kotak tetap memenuhi volume \( 2000 \ \text{cm}^3 \). Dengan substitusi \( l = \frac{2000}{p^2} \) dan \( t = p \), kita dapat mencari nilai \( p \) yang masuk akal. Misalkan \( p = 10 \ \text{cm} \):
-          \[
-              l = \frac{2000}{10^2} = 20 \ \text{cm}, \quad t = 10 \ \text{cm}.
-          \]
-          Jadi, dimensi kotak yang meminimalkan biaya adalah \( p = 10 \ \text{cm} \), \( l = 20 \ \text{cm} \), dan \( t = 10 \ \text{cm} \).
+          Jadi, ukuran kotak yang meminimalkan biaya adalah \( 10\ \text{cm} \times 10\ \text{cm} \times 20\ \text{cm} \).
     \item \begin{enumerate}
               \item Untuk menentukan selang naik/turun, maka diperlukan informasi mengenai tanda dari \( f'(x) \).
                     Diperoleh
