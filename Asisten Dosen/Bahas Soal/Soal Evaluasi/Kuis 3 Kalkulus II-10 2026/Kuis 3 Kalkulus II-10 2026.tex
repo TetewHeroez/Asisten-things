@@ -2,6 +2,8 @@
 \usepackage{amsmath, amssymb}
 \usepackage[margin=1in]{geometry}
 
+\pagenumbering{gobble}
+
 \begin{document}
 
 \begin{center}
@@ -72,5 +74,98 @@ Tuliskan: Nama, NRP, dan Nomor Kelas pada lembar jawaban Anda.
         \]
 
 \end{enumerate}
+\newpage
+\begin{center}
+  {\Large \textbf{\underline{ SOLUSI }}}
+\end{center}
 
+\begin{enumerate}
+  \item \textbf{Integral Parsial} \\
+        Misal $u = x^2 \implies du = 2x\,dx$ \\
+        dan $dv = e^{7x}\,dx \implies v = \frac{1}{7}e^{7x}$.
+        \begin{align*}
+          \int e^{7x}x^2\,dx &= uv - \int v\,du \\
+          &= \frac{1}{7}x^2 e^{7x} - \frac{2}{7}\int x e^{7x}\,dx
+        \end{align*}
+        Gunakan integral parsial lagi untuk $\int x e^{7x}\,dx$: \\
+        Misal $u = x \implies du = dx$ \\
+        dan $dv = e^{7x}\,dx \implies v = \frac{1}{7}e^{7x}$.
+        \begin{align*}
+          \int x e^{7x}\,dx &= \frac{1}{7}x e^{7x} - \int \frac{1}{7}e^{7x}\,dx \\
+          &= \frac{1}{7}x e^{7x} - \frac{1}{49}e^{7x}
+        \end{align*}
+        Substitusi kembali ke persamaan awal:
+        \begin{align*}
+          \int e^{7x}x^2\,dx &= \frac{1}{7}x^2 e^{7x} - \frac{2}{7}\left( \frac{1}{7}x e^{7x} - \frac{1}{49}e^{7x} \right) + C \\
+          &= \frac{1}{7}x^2 e^{7x} - \frac{2}{49}x e^{7x} + \frac{2}{343}e^{7x} + C
+        \end{align*}
+
+  \item \textbf{Integral Trigonometri \& Rumus Reduksi}
+        \begin{enumerate}
+          \item[(a)] $\int \cos^6(2x)\,\sin^5(2x)\,dx$ \\
+                Pisahkan satu $\sin(2x)$:
+                \[ \int \cos^6(2x)(\sin^2(2x))^2 \sin(2x)\,dx = \int \cos^6(2x)(1-\cos^2(2x))^2 \sin(2x)\,dx \]
+                Misal $u = \cos(2x) \implies du = -2\sin(2x)\,dx \implies \sin(2x)\,dx = -\frac{1}{2}du$.
+                \begin{align*}
+                  \int u^6(1-u^2)^2 \left(-\frac{1}{2}\right)du &= -\frac{1}{2} \int u^6(1 - 2u^2 + u^4)\,du \\
+                  &= -\frac{1}{2} \int (u^6 - 2u^8 + u^{10})\,du \\
+                  &= -\frac{1}{2} \left[ \frac{u^7}{7} - \frac{2u^9}{9} + \frac{u^{11}}{11} \right] + C \\
+                  &= -\frac{1}{14}\cos^7(2x) + \frac{1}{9}\cos^9(2x) - \frac{1}{22}\cos^{11}(2x) + C
+                \end{align*}
+
+          \item[(b)] $\int \tan^6\theta\,\sec^3\theta\,d\theta$ \\
+                Gunakan identitas $\tan^2\theta = \sec^2\theta - 1$:
+                \[ \int (\sec^2\theta - 1)^3 \sec^3\theta\,d\theta = \int (\sec^6\theta - 3\sec^4\theta + 3\sec^2\theta - 1)\sec^3\theta\,d\theta \]
+                \[ = \int (\sec^9\theta - 3\sec^7\theta + 3\sec^5\theta - \sec^3\theta)\,d\theta \]
+                Gunakan rumus reduksi $\int \sec^n\theta\,d\theta = \frac{\sec^{n-2}\theta\tan\theta}{n-1} + \frac{n-2}{n-1}\int \sec^{n-2}\theta\,d\theta$ secara berulang untuk menyelesaikan integral dari tiaptiap suku tersebut.
+        \end{enumerate}
+
+  \item \textbf{Pecahan Parsial}
+        \[ \frac{3x^2-x}{(x-2)(x^2+1)} = \frac{A}{x-2} + \frac{Bx+C}{x^2+1} \]
+        Kalikan dengan penyebut:
+        \[ 3x^2-x = A(x^2+1) + (Bx+C)(x-2) \]
+        Substitusi $x = 2 \implies 12 - 2 = A(5) \implies 10 = 5A \implies A = 2$. \\
+        Substitusi $x = 0 \implies 0 = 2(1) + C(-2) \implies 2C = 2 \implies C = 1$. \\
+        Substitusi $x = 1 \implies 2 = 2(2) + (B+1)(-1) \implies 2 = 4 - B - 1 \implies B = 1$. \\
+        Sehingga integralnya menjadi:
+        \begin{align*}
+          \int \left( \frac{2}{x-2} + \frac{x+1}{x^2+1} \right)\,dx &= \int \frac{2}{x-2}\,dx + \int \frac{x}{x^2+1}\,dx + \int \frac{1}{x^2+1}\,dx \\
+          &= 2\ln|x-2| + \frac{1}{2}\ln(x^2+1) + \arctan(x) + C
+        \end{align*}
+
+  \item \textbf{Substitusi Trigonometri} \\
+        Bentuk $\sqrt{x^2-16}$, gunakan $x = 4\sec\theta \implies dx = 4\sec\theta\tan\theta\,d\theta$, dan $\sqrt{x^2-16} = 4\tan\theta$.
+        \begin{align*}
+          \int x^2\sqrt{x^2-16}\,dx &= \int (16\sec^2\theta)(4\tan\theta)(4\sec\theta\tan\theta)\,d\theta \\
+          &= 256 \int \sec^3\theta\tan^2\theta\,d\theta \\
+          &= 256 \int \sec^3\theta(\sec^2\theta - 1)\,d\theta \\
+          &= 256 \int (\sec^5\theta - \sec^3\theta)\,d\theta \\
+          &= 256 \left[ \left(\frac{1}{4}\sec^3\theta\tan\theta + \frac{3}{4}\int \sec^3\theta\,d\theta\right) - \int \sec^3\theta\,d\theta \right] \\
+          &= 256 \left[ \frac{1}{4}\sec^3\theta\tan\theta - \frac{1}{4}\int \sec^3\theta\,d\theta \right] \\
+          &= 64\sec^3\theta\tan\theta - 64\left( \frac{1}{2}\sec\theta\tan\theta + \frac{1}{2}\ln|\sec\theta+\tan\theta| \right) \\
+          &= 64\sec^3\theta\tan\theta - 32\sec\theta\tan\theta - 32\ln|\sec\theta+\tan\theta| + C
+        \end{align*}
+        Kembalikan ke variabel $x$: $\sec\theta = \frac{x}{4}$ dan $\tan\theta = \frac{\sqrt{x^2-16}}{4}$.
+        \begin{align*}
+          &= 64\left(\frac{x}{4}\right)^3\left(\frac{\sqrt{x^2-16}}{4}\right) - 32\left(\frac{x}{4}\right)\left(\frac{\sqrt{x^2-16}}{4}\right) - 32\ln\left|\frac{x}{4} + \frac{\sqrt{x^2-16}}{4}\right| + C \\
+          &= \frac{1}{4}x^3\sqrt{x^2-16} - 2x\sqrt{x^2-16} - 32\ln\left|x + \sqrt{x^2-16}\right| + C'
+        \end{align*}
+
+  \item \textbf{Substitusi Bentuk Pangkat Rasional} \\
+        Penyebut pangkat pecahan memiliki penyebut $2$ dan $3$. KPK-nya adalah $6$. \\
+        Misal $t = u^6 \implies dt = 6u^5\,du$. \\
+        $t^{3/2} = (u^6)^{3/2} = u^9$, dan $t^{4/3} = (u^6)^{4/3} = u^8$.
+        \begin{align*}
+          \int \frac{t^{3/2}}{t+t^{4/3}}\,dt &= \int \frac{u^9}{u^6+u^8} (6u^5)\,du \\
+          &= \int \frac{6u^{14}}{u^6(1+u^2)}\,du \\
+          &= \int \frac{6u^8}{u^2+1}\,du
+        \end{align*}
+        Gunakan pembagian polinomial $\frac{u^8}{u^2+1} = u^6 - u^4 + u^2 - 1 + \frac{1}{u^2+1}$:
+        \begin{align*}
+          &= 6 \int \left( u^6 - u^4 + u^2 - 1 + \frac{1}{u^2+1} \right)\,du \\
+          &= 6 \left[ \frac{u^7}{7} - \frac{u^5}{5} + \frac{u^3}{3} - u + \arctan(u) \right] + C
+        \end{align*}
+        Substitusikan kembali $u = t^{1/6}$:
+        \[ = \frac{6}{7}t^{7/6} - \frac{6}{5}t^{5/6} + 2t^{1/2} - 6t^{1/6} + 6\arctan(t^{1/6}) + C \]
+\end{enumerate}
 \end{document}
