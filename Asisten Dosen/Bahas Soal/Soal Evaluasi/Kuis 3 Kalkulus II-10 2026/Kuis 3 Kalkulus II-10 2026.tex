@@ -19,7 +19,7 @@
 \begin{tabular}{ll}
   Mata Kuliah    & : Kalkulus 2                        \\
   Hari, tanggal  & : Rabu, 20 Mei 2026                 \\
-  Sifat          & : Open Book                         \\
+  Sifat          & : Open Book (Diktat)                \\
   Dosen Pengampu & : Dra. Wahyu Fistia Doctorina, M.Si \\
 \end{tabular}
 
@@ -59,9 +59,9 @@ Tuliskan: Nama, NRP, dan Nomor Kelas pada lembar jawaban Anda.
           \item Tentukan volume benda putar yang terbentuk apabila daerah tersebut diputar mengelilingi sumbu-$x$.
         \end{enumerate}
 
-  \item Tentukan panjang kurva $y = \frac{2}{3}x^{3/2}$ dari $x = 0$ hingga $x = 3$.
+  \item Tentukan panjang kurva $\displaystyle y = \frac{x^3}{6} + \frac{1}{2x}$ dari $x = 1$ hingga $x = 2$.
 
-  \item Tentukan luas permukaan benda putar yang terbentuk apabila kurva $y = \sqrt{x}$ pada interval $0 \le x \le 2$ diputar mengelilingi sumbu-$x$.
+  \item Tentukan luas permukaan benda putar yang terbentuk apabila kurva $\displaystyle y = \frac{x^3}{3}$ pada interval $0 \le x \le 1$ diputar mengelilingi sumbu-$x$.
 \end{enumerate}
 \newpage
 \begin{center}
@@ -69,28 +69,28 @@ Tuliskan: Nama, NRP, dan Nomor Kelas pada lembar jawaban Anda.
 \end{center}
 
 \begin{enumerate}
-  \item \textbf{Fungsi Logaritma Natural}
+  \item \textbf{Fungsi Logaritma Natural} \hfill \textcolor{red}{\textbf{[Total: 25 poin]}}
         \begin{enumerate}
           \item[(a)] Tentukan nilai $a$ dan $b$:
                 \begin{align*}
-                  f(a) = 1 & \implies \ln(2a) + 1 = 1 \implies \ln(2a) = 0 \implies 2a = e^0 = 1 \implies a = \frac{1}{2} \\
-                  f(b) = 2 & \implies \ln(2b) + 1 = 2 \implies \ln(2b) = 1 \implies 2b = e^1 = e \implies b = \frac{e}{2}
+                  f(a) = 1 & \implies \ln(2a) + 1 = 1 \implies \ln(2a) = 0 \implies 2a = e^0 = 1 \implies a = \frac{1}{2} &  & \text{\textcolor{red}{\textbf{[5 poin]}}} \\
+                  f(b) = 2 & \implies \ln(2b) + 1 = 2 \implies \ln(2b) = 1 \implies 2b = e^1 = e \implies b = \frac{e}{2} &  & \text{\textcolor{red}{\textbf{[5 poin]}}}
                 \end{align*}
 
           \item[(b)] Luas daerah yang dibatasi kurva:
                 \begin{align*}
-                  L & = \int_{1/2}^{e/2} (\ln(2x) + 1) \,dx
+                  L & = \int_{1/2}^{e/2} (\ln(2x) + 1) \,dx &  & \text{\textcolor{red}{\textbf{[5 poin]}}}
                 \end{align*}
                 Gunakan integral parsial. Misal $u = \ln(2x) + 1 \implies du = \frac{1}{x}\,dx$, dan $dv = dx \implies v = x$.
                 \begin{align*}
-                  \int (\ln(2x) + 1) \,dx & = x(\ln(2x) + 1) - \int x \left(\frac{1}{x}\right) \,dx \\
-                                          & = x\ln(2x) + x - x \\
-                                          & = x\ln(2x)
+                  \int (\ln(2x) + 1) \,dx & = x(\ln(2x) + 1) - \int x \left(\frac{1}{x}\right) \,dx                                                \\
+                                          & = x\ln(2x) + x - x                                                                                     \\
+                                          & = x\ln(2x)                                              &  & \text{\textcolor{red}{\textbf{[5 poin]}}}
                 \end{align*}
                 Maka, batas integrasinya:
                 \begin{align*}
-                  L & = \left[ x\ln(2x) \right]_{1/2}^{e/2} \\
-                    & = \left( \frac{e}{2}\ln(e) \right) - \left( \frac{1}{2}\ln(1) \right) = \left( \frac{e}{2} \cdot 1 \right) - 0 = \frac{e}{2}
+                  L & = \left[ x\ln(2x) \right]_{1/2}^{e/2}                                                                                                                                       \\
+                    & = \left( \frac{e}{2}\ln(e) \right) - \left( \frac{1}{2}\ln(1) \right) = \left( \frac{e}{2} \cdot 1 \right) - 0 = \frac{e}{2} &  & \text{\textcolor{red}{\textbf{[5 poin]}}}
                 \end{align*}
         \end{enumerate}
 
@@ -113,11 +113,11 @@ Tuliskan: Nama, NRP, dan Nomor Kelas pada lembar jawaban Anda.
           \end{tikzpicture}
         \end{center}
 
-  \item \textbf{Volume Benda Putar (Sumbu-$x$)}
+  \item \textbf{Volume Benda Putar (Sumbu-$x$)} \hfill \textcolor{red}{\textbf{[Total: 25 poin]}}
         \begin{enumerate}
-          \item[(a)] Sketsa daerah:
+          \item[(a)] Sketsa daerah: \hfill \textcolor{red}{\textbf{[10 poin]}} \\
                 Pada interval $\left[0, \frac{\pi}{4}\right]$, nilai $\cos(x) \ge \sin(x)$.
-                
+
                 \begin{center}
                   \begin{tikzpicture}
                     \begin{axis}[
@@ -137,21 +137,21 @@ Tuliskan: Nama, NRP, dan Nomor Kelas pada lembar jawaban Anda.
           \item[(b)] Volume benda putar mengelilingi sumbu-$x$ (Metode Cincin):
                 Jari-jari luar $R(x) = \cos(x)$ dan jari-jari dalam $r(x) = \sin(x)$.
                 \begin{align*}
-                  V & = \pi \int_{0}^{\pi/4} \left( [R(x)]^2 - [r(x)]^2 \right) \,dx \\
-                    & = \pi \int_{0}^{\pi/4} \left( \cos^2(x) - \sin^2(x) \right) \,dx \\
-                    & = \pi \int_{0}^{\pi/4} \cos(2x) \,dx \\
-                    & = \pi \left[ \frac{1}{2}\sin(2x) \right]_{0}^{\pi/4} \\
-                    & = \frac{\pi}{2} \left( \sin\left(\frac{\pi}{2}\right) - \sin(0) \right) = \frac{\pi}{2} (1 - 0) = \frac{\pi}{2}
+                  V & = \pi \int_{0}^{\pi/4} \left( [R(x)]^2 - [r(x)]^2 \right) \,dx                                                  &  & \text{\textcolor{red}{\textbf{[5 poin]}}} \\
+                    & = \pi \int_{0}^{\pi/4} \left( \cos^2(x) - \sin^2(x) \right) \,dx                                                                                               \\
+                    & = \pi \int_{0}^{\pi/4} \cos(2x) \,dx                                                                            &  & \text{\textcolor{red}{\textbf{[5 poin]}}} \\
+                    & = \pi \left[ \frac{1}{2}\sin(2x) \right]_{0}^{\pi/4}                                                                                                           \\
+                    & = \frac{\pi}{2} \left( \sin\left(\frac{\pi}{2}\right) - \sin(0) \right) = \frac{\pi}{2} (1 - 0) = \frac{\pi}{2} &  & \text{\textcolor{red}{\textbf{[5 poin]}}}
                 \end{align*}
         \end{enumerate}
 
-  \item \textbf{Panjang Kurva} \\
-        Diketahui $y = \frac{2}{3}x^{3/2}$. Turunannya adalah $y' = x^{1/2}$. \\
-        Maka, $1 + (y')^2 = 1 + x$.
+  \item \textbf{Panjang Kurva} \hfill \textcolor{red}{\textbf{[Total: 25 poin]}} \\
+        Diketahui $y = \frac{x^3}{6} + \frac{1}{2x}$. Turunannya adalah $y' = \frac{x^2}{2} - \frac{1}{2x^2}$. \hfill \textcolor{red}{\textbf{[5 poin]}} \\
+        Maka, $1 + (y')^2 = 1 + \left( \frac{x^2}{2} - \frac{1}{2x^2} \right)^2 = 1 + \frac{x^4}{4} - \frac{1}{2} + \frac{1}{4x^4} = \frac{x^4}{4} + \frac{1}{2} + \frac{1}{4x^4} = \left( \frac{x^2}{2} + \frac{1}{2x^2} \right)^2$. \hfill \textcolor{red}{\textbf{[5 poin]}}
         \begin{align*}
-          L & = \int_0^3 \sqrt{1 + (y')^2} \,dx = \int_0^3 \sqrt{1 + x} \,dx                                       \\
-            & = \left[ \frac{2}{3}(1 + x)^{3/2} \right]_0^3 = \frac{2}{3} \left( (1+3)^{3/2} - (1+0)^{3/2} \right) \\
-            & = \frac{2}{3} (4^{3/2} - 1) = \frac{2}{3} (8 - 1) = \frac{14}{3}
+          L & = \int_1^2 \sqrt{1 + (y')^2} \,dx = \int_1^2 \sqrt{\left( \frac{x^2}{2} + \frac{1}{2x^2} \right)^2} \,dx = \int_1^2 \left( \frac{x^2}{2} + \frac{1}{2x^2} \right) \,dx             &  & \text{\textcolor{red}{\textbf{[5 poin]}}} \\
+            & = \left[ \frac{x^3}{6} - \frac{1}{2x} \right]_1^2 = \left( \frac{8}{6} - \frac{1}{4} \right) - \left( \frac{1}{6} - \frac{1}{2} \right)                                            &  & \text{\textcolor{red}{\textbf{[5 poin]}}} \\
+            & = \left( \frac{4}{3} - \frac{1}{4} \right) - \left( \frac{1}{6} - \frac{3}{6} \right) = \frac{13}{12} - \left( -\frac{2}{6} \right) = \frac{13}{12} + \frac{4}{12} = \frac{17}{12} &  & \text{\textcolor{red}{\textbf{[5 poin]}}}
         \end{align*}
 
         \textbf{Ilustrasi:}
@@ -159,23 +159,28 @@ Tuliskan: Nama, NRP, dan Nomor Kelas pada lembar jawaban Anda.
           \begin{tikzpicture}
             \begin{axis}[
                 axis lines=middle, xlabel={$x$}, ylabel={$y$},
-                xmin=-0.2, xmax=3.5, ymin=-0.2, ymax=4.5,
+                xmin=0, xmax=2.5, ymin=0, ymax=2,
                 width=8cm, height=6cm, samples=100
               ]
-              \addplot[blue, thick, domain=0:3] {2/3 * x^(1.5)};
-              \draw[dashed] (axis cs: 3,0) -- (axis cs: 3, 3.464);
-              \node at (axis cs: 1.5, 1.8) [anchor=east] {$y = \frac{2}{3}x^{3/2}$};
+              \addplot[blue, thick, domain=1:2] {x^3/6 + 1/(2*x)};
+              \draw[dashed] (axis cs: 1,0) -- (axis cs: 1, 0.667);
+              \draw[dashed] (axis cs: 2,0) -- (axis cs: 2, 1.583);
+              \node at (axis cs: 1.5, 1.3) [anchor=south] {$y = \frac{x^3}{6} + \frac{1}{2x}$};
             \end{axis}
           \end{tikzpicture}
         \end{center}
 
-  \item \textbf{Luas Permukaan Benda Putar} \\
-        Fungsi $y = \sqrt{x}$. Turunannya merujuk ke $y' = \frac{1}{2\sqrt{x}}$. \\
-        $1 + (y')^2 = 1 + \frac{1}{4x} = \frac{4x + 1}{4x}$.
+  \item \textbf{Luas Permukaan Benda Putar} \hfill \textcolor{red}{\textbf{[Total: 25 poin]}} \\
+        Fungsi $y = \frac{x^3}{3}$. Turunannya merujuk ke $y' = x^2$. \hfill \textcolor{red}{\textbf{[5 poin]}} \\
+        $1 + (y')^2 = 1 + x^4$.
         \begin{align*}
-          S & = \int_0^2 2\pi y \sqrt{1 + (y')^2} \,dx = \int_0^2 2\pi \sqrt{x} \sqrt{\frac{4x+1}{4x}} \,dx                                                                                     \\
-            & = \int_0^2 2\pi \sqrt{x} \frac{\sqrt{4x+1}}{2\sqrt{x}} \,dx = \pi \int_0^2 \sqrt{4x+1} \,dx                                                                                       \\
-            & = \pi \left[ \frac{1}{4} \cdot \frac{2}{3} (4x+1)^{3/2} \right]_0^2 = \frac{\pi}{6} \left( 9^{3/2} - 1^{3/2} \right) = \frac{\pi}{6} (27 - 1) = \frac{26\pi}{6} = \frac{13\pi}{3}
+          S & = \int_0^1 2\pi y \sqrt{1 + (y')^2} \,dx = \int_0^1 2\pi \left( \frac{x^3}{3} \right) \sqrt{1 + x^4} \,dx = \frac{2\pi}{3} \int_0^1 x^3 \sqrt{1 + x^4} \,dx &  & \text{\textcolor{red}{\textbf{[5 poin]}}}
+        \end{align*}
+        Gunakan substitusi $u = 1 + x^4$, sehingga $du = 4x^3 \,dx \implies x^3 \,dx = \frac{du}{4}$. \hfill \textcolor{red}{\textbf{[5 poin]}} \\
+        Batas atas: $x = 1 \implies u = 2$. Batas bawah: $x = 0 \implies u = 1$.
+        \begin{align*}
+          S & = \frac{2\pi}{3} \int_1^2 \sqrt{u} \frac{du}{4} = \frac{\pi}{6} \int_1^2 u^{1/2} \,du                                                   &  & \text{\textcolor{red}{\textbf{[5 poin]}}} \\
+            & = \frac{\pi}{6} \left[ \frac{2}{3} u^{3/2} \right]_1^2 = \frac{\pi}{9} \left( 2^{3/2} - 1^{3/2} \right) = \frac{\pi}{9} (2\sqrt{2} - 1) &  & \text{\textcolor{red}{\textbf{[5 poin]}}}
         \end{align*}
 
         \textbf{Ilustrasi:}
@@ -183,14 +188,14 @@ Tuliskan: Nama, NRP, dan Nomor Kelas pada lembar jawaban Anda.
           \begin{tikzpicture}
             \begin{axis}[
                 axis lines=middle, xlabel={$x$}, ylabel={$y$},
-                xmin=-0.2, xmax=2.5, ymin=-1.8, ymax=1.8,
+                xmin=-0.1, xmax=1.2, ymin=-0.5, ymax=0.5,
                 width=8cm, height=6cm, samples=100
               ]
-              \addplot[blue, thick, domain=0:2] {sqrt(x)};
-              \addplot[blue!50, dashed, domain=0:2] {-sqrt(x)};
-              \draw[dashed, gray] (axis cs: 2, 1.414) arc (90:-90:0.3 and 1.414);
-              \draw[gray] (axis cs: 2, -1.414) arc (-90:-270:0.3 and 1.414);
-              \draw[->, thick, dashed] (axis cs: 1, 0.5) arc (90:270:0.2 and 0.5) node[midway, right] {putar sumbu-x};
+              \addplot[blue, thick, domain=0:1] {x^3/3};
+              \addplot[blue!50, dashed, domain=0:1] {-x^3/3};
+              \draw[dashed, gray] (axis cs: 1, 0.333) arc (90:-90:0.05 and 0.333);
+              \draw[gray] (axis cs: 1, -0.333) arc (-90:-270:0.05 and 0.333);
+              \draw[->, thick, dashed] (axis cs: 0.5, 0.1) arc (90:270:0.05 and 0.1) node[pos=0, right] {putar sumbu-x};
             \end{axis}
           \end{tikzpicture}
         \end{center}
