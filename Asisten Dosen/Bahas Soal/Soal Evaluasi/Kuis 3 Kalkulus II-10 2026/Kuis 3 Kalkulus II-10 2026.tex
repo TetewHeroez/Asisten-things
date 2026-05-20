@@ -1,6 +1,10 @@
 \documentclass[a4paper,12pt]{article}
 \usepackage{amsmath, amssymb}
 \usepackage[margin=1in]{geometry}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepgfplotslibrary{fillbetween}
+\pgfplotsset{compat=1.18}
 
 \pagenumbering{gobble}
 
@@ -13,10 +17,10 @@
 \vspace{0.5cm}
 
 \begin{tabular}{ll}
-  Mata Kuliah    & : Kalkulus 2                               \\
-  Hari, tanggal  & : Senin, 08 April 2025                     \\
-  Sifat          & : Open Cheat Sheet                         \\
-  Dosen Pengampu & : Alvian Alif Hidayatullah, S.Mat., M.Mat. \\
+  Mata Kuliah    & : Kalkulus 2                        \\
+  Hari, tanggal  & : Rabu, 20 Mei 2026                 \\
+  Sifat          & : Open Book                         \\
+  Dosen Pengampu & : Dra. Wahyu Fistia Doctorina, M.Si \\
 \end{tabular}
 
 \vspace{0.5cm}
@@ -25,7 +29,7 @@
 \vspace{0.1cm}
 
 
-Diberikan 5 soal dengan bobot nilai yang sama dan boleh dikerjakan tidak berurutan.
+Diberikan 4 soal dengan bobot nilai yang sama dan boleh dikerjakan tidak berurutan.
 
 Tuliskan: Nama, NRP, dan Nomor Kelas pada lembar jawaban Anda.
 
@@ -41,38 +45,23 @@ Tuliskan: Nama, NRP, dan Nomor Kelas pada lembar jawaban Anda.
 \vspace{0.5cm}
 
 \begin{enumerate}
-  \item Hitung integral berikut dengan integral parsial:
-        \[
-          \int e^{7x}x^2\,dx.
-        \]
+  \item Diberikan fungsi $f(x) = \ln(2x)+1$ dengan $x > 0$.
+        \begin{enumerate}
+          \item Tentukan nilai $a$ dan $b$ sehingga $f(a)=1$ dan $f(b)=2$.
+          \item Hitunglah luas daerah yang dibatasi oleh kurva $y = f(x)$, garis vertikal $x = a$, garis vertikal $x = b$, dan sumbu-$x$.
+                (Hint: Gunakan integral parsial)
+        \end{enumerate}
 
-  \item Dengan menggunakan rumus reduksi, hitung integral berikut:
 
-        \hspace*{1.4em}(a)
-        \[
-          \int \cos^6(2x)\,\sin^5(2x)\,dx.
-        \]
+  \item Diberikan daerah yang dibatasi oleh kurva $y = \cos(x)$, $y = \sin(x)$, $x = 0$, dan $x = \dfrac{\pi}{4}$.
+        \begin{enumerate}
+          \item Sketsakan daerah tersebut.
+          \item Tentukan volume benda putar yang terbentuk apabila daerah tersebut diputar mengelilingi sumbu-$x$.
+        \end{enumerate}
 
-        \hspace*{1.4em}(b)
-        \[
-          \int \tan^6\theta\,\sec^3\theta\,d\theta.
-        \]
+  \item Tentukan panjang kurva $y = \frac{2}{3}x^{3/2}$ dari $x = 0$ hingga $x = 3$.
 
-  \item Dengan integrasi pecahan parsial, hitunglah integral
-        \[
-          \int \frac{3x^2-x}{(x-2)(x^2+1)}\,dx
-        \]
-
-  \item Dengan menggunakan substitusi Trigonometri, hitunglah Integral dari
-        \[
-          \int x^2\sqrt{x^2-16}\,dx
-        \]
-
-  \item Dengan substitusi bentuk pangkat rasional, hitunglah
-        \[
-          \int \frac{t^{3/2}}{t+t^{4/3}}\,dt
-        \]
-
+  \item Tentukan luas permukaan benda putar yang terbentuk apabila kurva $y = \sqrt{x}$ pada interval $0 \le x \le 2$ diputar mengelilingi sumbu-$x$.
 \end{enumerate}
 \newpage
 \begin{center}
@@ -80,92 +69,130 @@ Tuliskan: Nama, NRP, dan Nomor Kelas pada lembar jawaban Anda.
 \end{center}
 
 \begin{enumerate}
-  \item \textbf{Integral Parsial} \\
-        Misal $u = x^2 \implies du = 2x\,dx$ \\
-        dan $dv = e^{7x}\,dx \implies v = \frac{1}{7}e^{7x}$.
-        \begin{align*}
-          \int e^{7x}x^2\,dx &= uv - \int v\,du \\
-          &= \frac{1}{7}x^2 e^{7x} - \frac{2}{7}\int x e^{7x}\,dx
-        \end{align*}
-        Gunakan integral parsial lagi untuk $\int x e^{7x}\,dx$: \\
-        Misal $u = x \implies du = dx$ \\
-        dan $dv = e^{7x}\,dx \implies v = \frac{1}{7}e^{7x}$.
-        \begin{align*}
-          \int x e^{7x}\,dx &= \frac{1}{7}x e^{7x} - \int \frac{1}{7}e^{7x}\,dx \\
-          &= \frac{1}{7}x e^{7x} - \frac{1}{49}e^{7x}
-        \end{align*}
-        Substitusi kembali ke persamaan awal:
-        \begin{align*}
-          \int e^{7x}x^2\,dx &= \frac{1}{7}x^2 e^{7x} - \frac{2}{7}\left( \frac{1}{7}x e^{7x} - \frac{1}{49}e^{7x} \right) + C \\
-          &= \frac{1}{7}x^2 e^{7x} - \frac{2}{49}x e^{7x} + \frac{2}{343}e^{7x} + C
-        \end{align*}
-
-  \item \textbf{Integral Trigonometri \& Rumus Reduksi}
+  \item \textbf{Fungsi Logaritma Natural}
         \begin{enumerate}
-          \item[(a)] $\int \cos^6(2x)\,\sin^5(2x)\,dx$ \\
-                Pisahkan satu $\sin(2x)$:
-                \[ \int \cos^6(2x)(\sin^2(2x))^2 \sin(2x)\,dx = \int \cos^6(2x)(1-\cos^2(2x))^2 \sin(2x)\,dx \]
-                Misal $u = \cos(2x) \implies du = -2\sin(2x)\,dx \implies \sin(2x)\,dx = -\frac{1}{2}du$.
+          \item[(a)] Tentukan nilai $a$ dan $b$:
                 \begin{align*}
-                  \int u^6(1-u^2)^2 \left(-\frac{1}{2}\right)du &= -\frac{1}{2} \int u^6(1 - 2u^2 + u^4)\,du \\
-                  &= -\frac{1}{2} \int (u^6 - 2u^8 + u^{10})\,du \\
-                  &= -\frac{1}{2} \left[ \frac{u^7}{7} - \frac{2u^9}{9} + \frac{u^{11}}{11} \right] + C \\
-                  &= -\frac{1}{14}\cos^7(2x) + \frac{1}{9}\cos^9(2x) - \frac{1}{22}\cos^{11}(2x) + C
+                  f(a) = 1 & \implies \ln(2a) + 1 = 1 \implies \ln(2a) = 0 \implies 2a = e^0 = 1 \implies a = \frac{1}{2} \\
+                  f(b) = 2 & \implies \ln(2b) + 1 = 2 \implies \ln(2b) = 1 \implies 2b = e^1 = e \implies b = \frac{e}{2}
                 \end{align*}
 
-          \item[(b)] $\int \tan^6\theta\,\sec^3\theta\,d\theta$ \\
-                Gunakan identitas $\tan^2\theta = \sec^2\theta - 1$:
-                \[ \int (\sec^2\theta - 1)^3 \sec^3\theta\,d\theta = \int (\sec^6\theta - 3\sec^4\theta + 3\sec^2\theta - 1)\sec^3\theta\,d\theta \]
-                \[ = \int (\sec^9\theta - 3\sec^7\theta + 3\sec^5\theta - \sec^3\theta)\,d\theta \]
-                Gunakan rumus reduksi $\int \sec^n\theta\,d\theta = \frac{\sec^{n-2}\theta\tan\theta}{n-1} + \frac{n-2}{n-1}\int \sec^{n-2}\theta\,d\theta$ secara berulang untuk menyelesaikan integral dari tiaptiap suku tersebut.
+          \item[(b)] Luas daerah yang dibatasi kurva:
+                \begin{align*}
+                  L & = \int_{1/2}^{e/2} (\ln(2x) + 1) \,dx
+                \end{align*}
+                Gunakan integral parsial. Misal $u = \ln(2x) + 1 \implies du = \frac{1}{x}\,dx$, dan $dv = dx \implies v = x$.
+                \begin{align*}
+                  \int (\ln(2x) + 1) \,dx & = x(\ln(2x) + 1) - \int x \left(\frac{1}{x}\right) \,dx \\
+                                          & = x\ln(2x) + x - x \\
+                                          & = x\ln(2x)
+                \end{align*}
+                Maka, batas integrasinya:
+                \begin{align*}
+                  L & = \left[ x\ln(2x) \right]_{1/2}^{e/2} \\
+                    & = \left( \frac{e}{2}\ln(e) \right) - \left( \frac{1}{2}\ln(1) \right) = \left( \frac{e}{2} \cdot 1 \right) - 0 = \frac{e}{2}
+                \end{align*}
         \end{enumerate}
 
-  \item \textbf{Pecahan Parsial}
-        \[ \frac{3x^2-x}{(x-2)(x^2+1)} = \frac{A}{x-2} + \frac{Bx+C}{x^2+1} \]
-        Kalikan dengan penyebut:
-        \[ 3x^2-x = A(x^2+1) + (Bx+C)(x-2) \]
-        Substitusi $x = 2 \implies 12 - 2 = A(5) \implies 10 = 5A \implies A = 2$. \\
-        Substitusi $x = 0 \implies 0 = 2(1) + C(-2) \implies 2C = 2 \implies C = 1$. \\
-        Substitusi $x = 1 \implies 2 = 2(2) + (B+1)(-1) \implies 2 = 4 - B - 1 \implies B = 1$. \\
-        Sehingga integralnya menjadi:
+        \textbf{Ilustrasi:}
+        \begin{center}
+          \begin{tikzpicture}
+            \begin{axis}[
+                axis lines=middle, xlabel={$x$}, ylabel={$y$},
+                xmin=0, xmax=2, ymin=-1, ymax=3,
+                width=8cm, height=6cm, samples=100
+              ]
+              \addplot[name path=A, blue, thick, domain=0.1:1.5] {ln(2*x) + 1};
+              \addplot[name path=B, domain=0.5:1.359, draw=none] {0};
+              \addplot[gray!30] fill between[of=A and B, soft clip={domain=0.5:1.359}];
+              \addplot[dashed] coordinates {(0.5,0) (0.5,1)};
+              \addplot[dashed] coordinates {(1.359,0) (1.359,2)};
+              \node at (axis cs: 0.5, -0.4) {$1/2$};
+              \node at (axis cs: 1.359, -0.4) {$e/2$};
+            \end{axis}
+          \end{tikzpicture}
+        \end{center}
+
+  \item \textbf{Volume Benda Putar (Sumbu-$x$)}
+        \begin{enumerate}
+          \item[(a)] Sketsa daerah:
+                Pada interval $\left[0, \frac{\pi}{4}\right]$, nilai $\cos(x) \ge \sin(x)$.
+                
+                \begin{center}
+                  \begin{tikzpicture}
+                    \begin{axis}[
+                        axis lines=middle, xlabel={$x$}, ylabel={$y$},
+                        xmin=-0.2, xmax=1.2, ymin=-0.2, ymax=1.2,
+                        xtick={0, 0.785}, xticklabels={0, $\frac{\pi}{4}$},
+                        width=8cm, height=6cm, samples=100
+                      ]
+                      \addplot[name path=cos, blue, thick, domain=0:0.785] {cos(deg(x))};
+                      \addplot[name path=sin, red, thick, domain=0:0.785] {sin(deg(x))};
+                      \addplot[gray!30] fill between[of=cos and sin];
+                      \draw[->, thick, dashed] (axis cs: 0.4, 0.4) arc (90:270:0.2 and 0.4) node[midway, right] {putar sumbu-x};
+                    \end{axis}
+                  \end{tikzpicture}
+                \end{center}
+
+          \item[(b)] Volume benda putar mengelilingi sumbu-$x$ (Metode Cincin):
+                Jari-jari luar $R(x) = \cos(x)$ dan jari-jari dalam $r(x) = \sin(x)$.
+                \begin{align*}
+                  V & = \pi \int_{0}^{\pi/4} \left( [R(x)]^2 - [r(x)]^2 \right) \,dx \\
+                    & = \pi \int_{0}^{\pi/4} \left( \cos^2(x) - \sin^2(x) \right) \,dx \\
+                    & = \pi \int_{0}^{\pi/4} \cos(2x) \,dx \\
+                    & = \pi \left[ \frac{1}{2}\sin(2x) \right]_{0}^{\pi/4} \\
+                    & = \frac{\pi}{2} \left( \sin\left(\frac{\pi}{2}\right) - \sin(0) \right) = \frac{\pi}{2} (1 - 0) = \frac{\pi}{2}
+                \end{align*}
+        \end{enumerate}
+
+  \item \textbf{Panjang Kurva} \\
+        Diketahui $y = \frac{2}{3}x^{3/2}$. Turunannya adalah $y' = x^{1/2}$. \\
+        Maka, $1 + (y')^2 = 1 + x$.
         \begin{align*}
-          \int \left( \frac{2}{x-2} + \frac{x+1}{x^2+1} \right)\,dx &= \int \frac{2}{x-2}\,dx + \int \frac{x}{x^2+1}\,dx + \int \frac{1}{x^2+1}\,dx \\
-          &= 2\ln|x-2| + \frac{1}{2}\ln(x^2+1) + \arctan(x) + C
+          L & = \int_0^3 \sqrt{1 + (y')^2} \,dx = \int_0^3 \sqrt{1 + x} \,dx                                       \\
+            & = \left[ \frac{2}{3}(1 + x)^{3/2} \right]_0^3 = \frac{2}{3} \left( (1+3)^{3/2} - (1+0)^{3/2} \right) \\
+            & = \frac{2}{3} (4^{3/2} - 1) = \frac{2}{3} (8 - 1) = \frac{14}{3}
         \end{align*}
 
-  \item \textbf{Substitusi Trigonometri} \\
-        Bentuk $\sqrt{x^2-16}$, gunakan $x = 4\sec\theta \implies dx = 4\sec\theta\tan\theta\,d\theta$, dan $\sqrt{x^2-16} = 4\tan\theta$.
+        \textbf{Ilustrasi:}
+        \begin{center}
+          \begin{tikzpicture}
+            \begin{axis}[
+                axis lines=middle, xlabel={$x$}, ylabel={$y$},
+                xmin=-0.2, xmax=3.5, ymin=-0.2, ymax=4.5,
+                width=8cm, height=6cm, samples=100
+              ]
+              \addplot[blue, thick, domain=0:3] {2/3 * x^(1.5)};
+              \draw[dashed] (axis cs: 3,0) -- (axis cs: 3, 3.464);
+              \node at (axis cs: 1.5, 1.8) [anchor=east] {$y = \frac{2}{3}x^{3/2}$};
+            \end{axis}
+          \end{tikzpicture}
+        \end{center}
+
+  \item \textbf{Luas Permukaan Benda Putar} \\
+        Fungsi $y = \sqrt{x}$. Turunannya merujuk ke $y' = \frac{1}{2\sqrt{x}}$. \\
+        $1 + (y')^2 = 1 + \frac{1}{4x} = \frac{4x + 1}{4x}$.
         \begin{align*}
-          \int x^2\sqrt{x^2-16}\,dx &= \int (16\sec^2\theta)(4\tan\theta)(4\sec\theta\tan\theta)\,d\theta \\
-          &= 256 \int \sec^3\theta\tan^2\theta\,d\theta \\
-          &= 256 \int \sec^3\theta(\sec^2\theta - 1)\,d\theta \\
-          &= 256 \int (\sec^5\theta - \sec^3\theta)\,d\theta \\
-          &= 256 \left[ \left(\frac{1}{4}\sec^3\theta\tan\theta + \frac{3}{4}\int \sec^3\theta\,d\theta\right) - \int \sec^3\theta\,d\theta \right] \\
-          &= 256 \left[ \frac{1}{4}\sec^3\theta\tan\theta - \frac{1}{4}\int \sec^3\theta\,d\theta \right] \\
-          &= 64\sec^3\theta\tan\theta - 64\left( \frac{1}{2}\sec\theta\tan\theta + \frac{1}{2}\ln|\sec\theta+\tan\theta| \right) \\
-          &= 64\sec^3\theta\tan\theta - 32\sec\theta\tan\theta - 32\ln|\sec\theta+\tan\theta| + C
-        \end{align*}
-        Kembalikan ke variabel $x$: $\sec\theta = \frac{x}{4}$ dan $\tan\theta = \frac{\sqrt{x^2-16}}{4}$.
-        \begin{align*}
-          &= 64\left(\frac{x}{4}\right)^3\left(\frac{\sqrt{x^2-16}}{4}\right) - 32\left(\frac{x}{4}\right)\left(\frac{\sqrt{x^2-16}}{4}\right) - 32\ln\left|\frac{x}{4} + \frac{\sqrt{x^2-16}}{4}\right| + C \\
-          &= \frac{1}{4}x^3\sqrt{x^2-16} - 2x\sqrt{x^2-16} - 32\ln\left|x + \sqrt{x^2-16}\right| + C'
+          S & = \int_0^2 2\pi y \sqrt{1 + (y')^2} \,dx = \int_0^2 2\pi \sqrt{x} \sqrt{\frac{4x+1}{4x}} \,dx                                                                                     \\
+            & = \int_0^2 2\pi \sqrt{x} \frac{\sqrt{4x+1}}{2\sqrt{x}} \,dx = \pi \int_0^2 \sqrt{4x+1} \,dx                                                                                       \\
+            & = \pi \left[ \frac{1}{4} \cdot \frac{2}{3} (4x+1)^{3/2} \right]_0^2 = \frac{\pi}{6} \left( 9^{3/2} - 1^{3/2} \right) = \frac{\pi}{6} (27 - 1) = \frac{26\pi}{6} = \frac{13\pi}{3}
         \end{align*}
 
-  \item \textbf{Substitusi Bentuk Pangkat Rasional} \\
-        Penyebut pangkat pecahan memiliki penyebut $2$ dan $3$. KPK-nya adalah $6$. \\
-        Misal $t = u^6 \implies dt = 6u^5\,du$. \\
-        $t^{3/2} = (u^6)^{3/2} = u^9$, dan $t^{4/3} = (u^6)^{4/3} = u^8$.
-        \begin{align*}
-          \int \frac{t^{3/2}}{t+t^{4/3}}\,dt &= \int \frac{u^9}{u^6+u^8} (6u^5)\,du \\
-          &= \int \frac{6u^{14}}{u^6(1+u^2)}\,du \\
-          &= \int \frac{6u^8}{u^2+1}\,du
-        \end{align*}
-        Gunakan pembagian polinomial $\frac{u^8}{u^2+1} = u^6 - u^4 + u^2 - 1 + \frac{1}{u^2+1}$:
-        \begin{align*}
-          &= 6 \int \left( u^6 - u^4 + u^2 - 1 + \frac{1}{u^2+1} \right)\,du \\
-          &= 6 \left[ \frac{u^7}{7} - \frac{u^5}{5} + \frac{u^3}{3} - u + \arctan(u) \right] + C
-        \end{align*}
-        Substitusikan kembali $u = t^{1/6}$:
-        \[ = \frac{6}{7}t^{7/6} - \frac{6}{5}t^{5/6} + 2t^{1/2} - 6t^{1/6} + 6\arctan(t^{1/6}) + C \]
+        \textbf{Ilustrasi:}
+        \begin{center}
+          \begin{tikzpicture}
+            \begin{axis}[
+                axis lines=middle, xlabel={$x$}, ylabel={$y$},
+                xmin=-0.2, xmax=2.5, ymin=-1.8, ymax=1.8,
+                width=8cm, height=6cm, samples=100
+              ]
+              \addplot[blue, thick, domain=0:2] {sqrt(x)};
+              \addplot[blue!50, dashed, domain=0:2] {-sqrt(x)};
+              \draw[dashed, gray] (axis cs: 2, 1.414) arc (90:-90:0.3 and 1.414);
+              \draw[gray] (axis cs: 2, -1.414) arc (-90:-270:0.3 and 1.414);
+              \draw[->, thick, dashed] (axis cs: 1, 0.5) arc (90:270:0.2 and 0.5) node[midway, right] {putar sumbu-x};
+            \end{axis}
+          \end{tikzpicture}
+        \end{center}
 \end{enumerate}
 \end{document}
