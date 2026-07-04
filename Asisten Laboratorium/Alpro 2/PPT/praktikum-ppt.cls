@@ -36,7 +36,7 @@
 
 \renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
 
-\graphicspath{{C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Laboratorium/Alpro 1/PPT/Graphicx/}}
+\graphicspath{{C:/Users/teoso/Documents/Asisten Dosen & Lab/Asisten Laboratorium/Alpro 1/Graphicx/}}
 
 \definecolor{HIMAmuda}{HTML}{01D1FD}
 \definecolor{HIMAtua}{HTML}{02016A}
