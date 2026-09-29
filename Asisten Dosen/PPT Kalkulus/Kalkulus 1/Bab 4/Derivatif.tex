@@ -1,0 +1,202 @@
+\documentclass{../../kalkulus-ppt}
+
+\author[Tetew]{Teosofi Hidayah Agung}
+\date{19 September 2024}
+\title[Kalkulus 1 - Bab 4]{Derivatif}
+\institute[Matematika ITS]{Departemen Matematika\\ Institut Teknologi Sepuluh Nopember}
+\titlegraphic{{\includegraphics[scale=0.3]{ITS.png}$\quad$\includegraphics[scale=0.02]{M.png}}}
+
+\newcommand{\dom}{\mathcal{D}}
+\newcommand{\rng}{\mathcal{R}}
+
+\renewcommand{\arraystretch}{1.5}
+
+\begin{document}
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\AtBeginSection{
+    {
+        \begin{frame}{Daftar isi}
+            \tableofcontents[currentsection]
+        \end{frame}}
+}
+
+\section{Garis Singgung dan Laju Perubahan}
+\begin{frame}
+    \frametitle{\insertsection}
+    \begin{definisi}[Garis Singgung]
+        Misalkan kurva $C$ memiliki persamaan $y = f(x)$ dan $P(a, f(a))$ adalah sebuah titik pada $C$. Garis singgung pada kurva $C$ di titik $P$ adalah garis yang melalui $P$ dengan gradien
+        \[m = \lim_{x \to a} \frac{f(x) - f(a)}{x - a}\]
+        asalkan limit ini ada.
+    \end{definisi}
+    \onslide<2->{
+        \begin{alertblock}{Bentuk Alternatif}
+            Misalkan $h = x - a$, maka $x = a + h$. Ketika $x \to a$, maka $h \to 0$. Gradien garis singgung juga dapat dituliskan sebagai:
+            \[m = \lim_{h \to 0} \frac{f(a+h) - f(a)}{h}\]
+        \end{alertblock}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \begin{contoh}
+        Tentukan persamaan garis singgung pada kurva $y = x^2$ di titik $(1, 1)$.
+    \end{contoh}
+    \onslide<2->{
+        \textbf{Jawab:}
+        Gradien garis singgung di titik $(1, 1)$ adalah:
+        \begin{align*}
+            m &= \lim_{x \to 1} \frac{f(x) - f(1)}{x - 1} \\
+              &= \lim_{x \to 1} \frac{x^2 - 1}{x - 1} \\
+              &= \lim_{x \to 1} \frac{(x - 1)(x + 1)}{x - 1} \\
+              &= \lim_{x \to 1} (x + 1) = 2
+        \end{align*}
+        Persamaan garis singgung: $y - y_1 = m(x - x_1) \implies y - 1 = 2(x - 1) \implies y = 2x - 1$.
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \begin{definisi}[Laju Perubahan Kecepatan]
+        Misalkan sebuah benda bergerak sepanjang garis lurus sesuai dengan persamaan gerak $s = f(t)$, dengan $s$ adalah perpindahan yang diukur dari titik asal pada waktu $t$. Kecepatan sesaat dari benda tersebut pada waktu $t = a$ adalah:
+        \[v(a) = \lim_{h \to 0} \frac{f(a+h) - f(a)}{h}\]
+    \end{definisi}
+    \onslide<2->{
+        Secara umum, limit dari nilai perbandingan
+        \[\lim_{\Delta x \to 0} \frac{\Delta y}{\Delta x} = \lim_{x_2 \to x_1} \frac{f(x_2) - f(x_1)}{x_2 - x_1}\]
+        disebut \textbf{laju perubahan sesaat} dari $y$ terhadap $x$.
+    }
+\end{frame}
+
+\section{Fungsi Turunan}
+\begin{frame}
+    \frametitle{\insertsection}
+    \begin{definisi}[Turunan]
+        Turunan dari fungsi $f$ pada suatu titik $x$, dinotasikan dengan $f'(x)$, didefinisikan sebagai:
+        \[f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}\]
+        asalkan limit ini ada. Jika limit ada, maka fungsi $f$ dikatakan memiliki turunan (\textit{differentiable}) di $x$.
+    \end{definisi}
+    \onslide<2->{
+        \begin{alertblock}{Notasi Leibniz}
+            Notasi lain untuk turunan fungsi $y=f(x)$ adalah
+            \[y' = f'(x) = \frac{dy}{dx} = \frac{d}{dx}f(x) = D_x f(x)\]
+        \end{alertblock}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \begin{contoh}
+        Jika $f(x) = \sqrt{x}$, carilah turunan dari $f$.
+    \end{contoh}
+    \onslide<2->{
+        \textbf{Jawab:}
+        \begin{align*}
+            f'(x) &= \lim_{h \to 0} \frac{f(x+h) - f(x)}{h} = \lim_{h \to 0} \frac{\sqrt{x+h} - \sqrt{x}}{h} \\
+                  &= \lim_{h \to 0} \frac{\sqrt{x+h} - \sqrt{x}}{h} \cdot \frac{\sqrt{x+h} + \sqrt{x}}{\sqrt{x+h} + \sqrt{x}} \\
+                  &= \lim_{h \to 0} \frac{(x+h) - x}{h(\sqrt{x+h} + \sqrt{x})} \\
+                  &= \lim_{h \to 0} \frac{h}{h(\sqrt{x+h} + \sqrt{x})} \\
+                  &= \lim_{h \to 0} \frac{1}{\sqrt{x+h} + \sqrt{x}} = \frac{1}{2\sqrt{x}}
+        \end{align*}
+    }
+\end{frame}
+
+\section{Diferensiasi}
+\begin{frame}
+    \frametitle{\insertsection}
+    \begin{teorema}[Aturan-aturan Diferensiasi]
+        Misalkan $c$ adalah suatu konstanta, $n$ bilangan rasional, dan $f$ serta $g$ adalah fungsi yang terturunkan, maka:
+        \begin{enumerate}
+            \item \textbf{Aturan Konstanta:} $\frac{d}{dx}(c) = 0$
+            \item \textbf{Aturan Pangkat:} $\frac{d}{dx}(x^n) = nx^{n-1}$
+            \item \textbf{Aturan Kelipatan Konstanta:} $\frac{d}{dx}[cf(x)] = c \frac{d}{dx}f(x)$
+            \item \textbf{Aturan Penjumlahan:} $\frac{d}{dx}[f(x) \pm g(x)] = \frac{d}{dx}f(x) \pm \frac{d}{dx}g(x)$
+        \end{enumerate}
+    \end{teorema}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \begin{teorema}[Aturan Perkalian dan Pembagian]
+        \begin{enumerate}
+            \item \textbf{Aturan Perkalian:} 
+            \[\frac{d}{dx}[f(x)g(x)] = f'(x)g(x) + f(x)g'(x)\]
+            \item \textbf{Aturan Pembagian:} 
+            \[\frac{d}{dx}\left[\frac{f(x)}{g(x)}\right] = \frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2}\]
+        \end{enumerate}
+    \end{teorema}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \begin{teorema}[Turunan Fungsi Trigonometri]
+        \begin{itemize}
+            \item $\frac{d}{dx}(\sin x) = \cos x$
+            \item $\frac{d}{dx}(\cos x) = -\sin x$
+            \item $\frac{d}{dx}(\tan x) = \sec^2 x$
+            \item $\frac{d}{dx}(\cot x) = -\csc^2 x$
+            \item $\frac{d}{dx}(\sec x) = \sec x \tan x$
+            \item $\frac{d}{dx}(\csc x) = -\csc x \cot x$
+        \end{itemize}
+    \end{teorema}
+\end{frame}
+
+\section{Aturan rantai dan Diferensiasi implisit}
+\begin{frame}
+    \frametitle{\insertsection}
+    \begin{teorema}[Aturan Rantai]
+        Jika $g$ dapat diturunkan di $x$ dan $f$ dapat diturunkan di $g(x)$, maka fungsi komposit $F = f \circ g$ yang didefinisikan dengan $F(x) = f(g(x))$ dapat diturunkan di $x$ dan $F'$ diberikan oleh hasil kali
+        \[F'(x) = f'(g(x)) \cdot g'(x)\]
+        Dalam Notasi Leibniz, jika $y = f(u)$ dan $u = g(x)$ dapat diturunkan, maka
+        \[\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}\]
+    \end{teorema}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \begin{contoh}
+        Carilah turunan dari fungsi $F(x) = \sqrt{x^2 + 1}$.
+    \end{contoh}
+    \onslide<2->{
+        \textbf{Jawab:}
+        Misalkan $u = x^2 + 1$ dan $y = \sqrt{u} = u^{1/2}$.
+        Maka $\frac{du}{dx} = 2x$ dan $\frac{dy}{du} = \frac{1}{2}u^{-1/2} = \frac{1}{2\sqrt{u}}$.
+        Dengan Aturan Rantai:
+        \begin{align*}
+            \frac{dy}{dx} &= \frac{dy}{du} \cdot \frac{du}{dx} \\
+                          &= \frac{1}{2\sqrt{u}} \cdot 2x \\
+                          &= \frac{x}{\sqrt{x^2 + 1}}
+        \end{align*}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \begin{alertblock}{Diferensiasi Implisit}
+        Beberapa fungsi tidak didefinisikan secara eksplisit sebagai $y = f(x)$, melainkan secara implisit melalui suatu persamaan, misalnya $x^2 + y^2 = 25$ atau $x^3 + y^3 = 6xy$. 
+        \\~\\
+        Untuk mencari $\frac{dy}{dx}$, kita mendiferensiasikan kedua ruas persamaan terhadap $x$ (dengan mengingat bahwa $y$ adalah fungsi dari $x$ dan menerapkan Aturan Rantai), kemudian kita selesaikan persamaan hasilnya untuk $\frac{dy}{dx}$.
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \begin{contoh}
+        Carilah $y'$ jika $x^3 + y^3 = 6xy$.
+    \end{contoh}
+    \onslide<2->{
+        \textbf{Jawab:}
+        Diferensiasikan kedua ruas terhadap $x$:
+        \begin{align*}
+            \frac{d}{dx}(x^3 + y^3) &= \frac{d}{dx}(6xy) \\
+            3x^2 + 3y^2 y' &= 6y + 6x y' \quad \text{(Gunakan Aturan Perkalian di ruas kanan)} \\
+            3y^2 y' - 6x y' &= 6y - 3x^2 \\
+            y'(3y^2 - 6x) &= 6y - 3x^2 \\
+            y' &= \frac{6y - 3x^2}{3y^2 - 6x} = \frac{2y - x^2}{y^2 - 2x}
+        \end{align*}
+    }
+\end{frame}
+
+\end{document}

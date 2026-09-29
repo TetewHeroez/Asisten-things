@@ -44,7 +44,7 @@
 \DeclareMathOperator{\sign}{sgn}
 
 % --- Graphics path ---
-\graphicspath{{C:/Users/teoso/OneDrive/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Kalkulus/Gambar & Logo/}{D:/Hada Touya/Asisten-things/Asisten Dosen/PPT Kalkulus/Gambar & Logo/}}
+\graphicspath{{C:/Users/teoso/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Kalkulus/Gambar & Logo/}{D:/Hada Touya/Asisten-things/Asisten Dosen/PPT Kalkulus/Gambar & Logo/}}
 
 % --- Colors ---
 \definecolor{HIMAmuda}{HTML}{01D1FD}
