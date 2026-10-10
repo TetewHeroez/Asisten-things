@@ -4,10 +4,15 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{xcolor}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \usepackage{enumitem}
+
+% Bobot adalah subtotal; poin adalah nilai untuk langkah yang dinilai.
+\newcommand{\bobot}[1]{\mbox{\textcolor{red}{\textbf{(#1 poin)}}}}
+\newcommand{\poin}[1]{\mbox{\textcolor{red}{\textbf{[#1 poin]}}}}
 
 \begin{document}
 
@@ -39,27 +44,32 @@
         \end{enumerate}
 \end{enumerate}
 
-\vspace{0.5cm}
+\newpage
 \begin{center}
   \textbf{\Large PEMBAHASAN}
 \end{center}
 
-
 \begin{enumerate}
-  \item Agar pecahan bernilai negatif, karena penyebut $(x-1)^2 > 0$ untuk setiap $x \neq 1$, maka pembilang haruslah negatif:
+  \item \bobot{20}
+        Penyebut tidak boleh nol, sehingga $x - 1 \neq 0$ atau $x \neq 1$. \poin{4}
+
+        Untuk $x \neq 1$, penyebut $(x-1)^2 > 0$.
+        Agar pecahan bernilai negatif, pembilang harus negatif: \poin{4}
         \[ x^2 - 16 < 0 \]
-        Faktorkan persamaan di atas:
+        Faktorkan pertidaksamaan di atas:
         \[ (x - 4)(x + 4) < 0 \]
-        Akar-akarnya adalah $x = 4$ dan $x = -4$.
-        Berdasarkan garis bilangan, nilai $x$ yang memenuhi adalah $-4 < x < 4$.
-        Namun, karena penyebut tidak boleh nol, maka $x - 1 \neq 0 \implies x \neq 1$.
-        Jadi, Himpunan Penyelesaiannya (HP) adalah:
+        Akar-akarnya adalah $x = 4$ dan $x = -4$. \poin{4}
+
+        Berdasarkan garis bilangan, nilai $x$ yang memenuhi adalah $-4 < x < 4$. \poin{4}
+
+        Keluarkan $x = 1$ dari selang tersebut.
+        Jadi, Himpunan Penyelesaiannya (HP) adalah: \poin{4}
         \[ \text{HP} = \{ x \mid -4 < x < 1 \text{ atau } 1 < x < 4, x \in \mathbb{R} \} \]
 
-  \item Karena ruas kiri berupa nilai mutlak, maka ruas kanan harus tak negatif.
-        Syarat: $6x \geq 0 \implies x \geq 0$.
+  \item \bobot{20} Karena ruas kiri berupa nilai mutlak, maka ruas kanan harus tak negatif.
+        Syarat: $6x \geq 0 \implies x \geq 0$. \poin{4}
 
-        Kasus 1: $3x + 1 \geq 0$ atau $x \geq -\frac{1}{3}$
+        Kasus 1: $3x + 1 \geq 0$ atau $x \geq -\frac{1}{3}$. \poin{6}
         \begin{align*}
           3x + 1 = 6x \implies
           1 = 3x \implies
@@ -67,88 +77,113 @@
         \end{align*}
         (Memenuhi syarat $x \geq 0$)
 
-        Kasus 2: $3x + 1 < 0$ atau $x < -\frac{1}{3}$
+        Kasus 2: $3x + 1 < 0$ atau $x < -\frac{1}{3}$. \poin{6}
         \begin{align*}
           -(3x + 1)  = 6x           \implies
           -3x - 1    = 6x           \implies
           -1         = 9x           \implies
           x          = -\frac{1}{9}
         \end{align*}
-        (Tidak memenuhi syarat $x \geq 0$)
+        (Tidak memenuhi syarat $x \geq 0$, juga tidak memenuhi $x < -\frac{1}{3}$.)
 
-        Jadi, Himpunan Penyelesaiannya (HP) adalah:
+        Jadi, Himpunan Penyelesaiannya (HP) adalah: \poin{4}
         \[ \text{HP} = \left\{ \frac{1}{3} \right\} \]
 
-  \item Pertama, cari gradien dari garis $10y + 3x = -2$.
+        \textit{Alternatif:} Dari $x \geq 0$, langsung diperoleh $3x+1>0$.
+        Alasan ini menggantikan pemeriksaan kasus kedua dengan poin yang sama.
+
+  \item \bobot{20} Pertama, cari gradien dari garis $10y + 3x = -2$.
         \begin{align*}
           10y & = -3x - 2                      \\
           y   & = -\frac{3}{10}x - \frac{1}{5}
         \end{align*}
-        Gradien garis tersebut adalah $m_1 = -\frac{3}{10}$.
-        Karena garis yang dicari tegak lurus, maka perkalian gradiennya adalah $-1$.
+        Gradien garis tersebut adalah $m_1 = -\frac{3}{10}$. \poin{4}
+
+        Karena garis yang dicari tegak lurus, maka perkalian gradiennya adalah $-1$. \poin{6}
         \begin{align*}
           m_1 \cdot m_2            = -1                             \implies
           -\frac{3}{10} \cdot m_2 = -1 \implies m_2 = \frac{10}{3}
         \end{align*}
-        Persamaan garis yang melalui titik $(x_1, y_1) = (8, 2)$ dengan gradien $m_2 = \frac{10}{3}$:
+        Persamaan garis yang melalui titik $(x_1, y_1) = (8, 2)$ dengan gradien $m_2 = \frac{10}{3}$: \poin{6}
         \begin{align*}
-          y - y_1       & = m_2(x - x_1)        \\
-          y - 2         & = \frac{10}{3}(x - 8) \\
-          3(y - 2)      & = 10(x - 8)           \\
-          3y - 6        & = 10x - 80            \\
+          y - y_1 & = m_2(x - x_1)        \\
+          y - 2   & = \frac{10}{3}(x - 8)
+        \end{align*}
+        Sederhanakan untuk memperoleh persamaan garis akhirnya: \poin{4}
+        \begin{align*}
+          3(y - 2)      & = 10(x - 8) \\
+          3y - 6        & = 10x - 80  \\
           10x - 3y - 74 & = 0
         \end{align*}
 
-  \item
+  \item \bobot{20}
         \begin{enumerate}[label=\alph*.]
-          \item Mencari $g \circ f(x)$:
+          \item \bobot{8} Mencari $g \circ f(x)$.
+
+                Urutan komposisi: \poin{4}
                 \begin{align*}
-                  (g \circ f)(x) & = g(f(x))            \\
-                                 & = g(x - 1)           \\
-                                 & = |(x - 1)^2 - 4|    \\
+                  (g \circ f)(x) & = g(f(x))  \\
+                                 & = g(x - 1)
+                \end{align*}
+                Substitusikan $x-1$ ke dalam rumus $g$: \poin{4}
+                \begin{align*}
+                  (g \circ f)(x) & = |(x - 1)^2 - 4|    \\
                                  & = |x^2 - 2x + 1 - 4| \\
                                  & = |x^2 - 2x - 3|
                 \end{align*}
 
-          \item Domain dan Range $(g \circ f)(x)$:
+          \item \bobot{12} Domain dan Range $(g \circ f)(x)$:
 
-                \textbf{Domain:}
+                \textbf{Domain} \bobot{6}:
                 Berdasarkan definisi fungsi komposisi, domain dari $(g \circ f)(x)$ adalah:
                 \[ D_{g \circ f} = \{ x \in D_f \mid f(x) \in D_g \} \]
                 Diketahui $f(x) = x - 1$ adalah fungsi linear, maka $D_f = \mathbb{R}$.
-                Fungsi $g(u) = |u^2 - 4|$ adalah fungsi nilai mutlak dari polinomial, maka $D_g = \mathbb{R}$.
-                Sehingga:
+                Fungsi $g(u) = |u^2 - 4|$ adalah fungsi nilai mutlak dari polinomial, maka $D_g = \mathbb{R}$. \poin{3}
+
+                Sehingga: \poin{3}
                 \[ D_{g \circ f} = \{ x \in \mathbb{R} \mid (x - 1) \in \mathbb{R} \} = \mathbb{R} \]
                 Jadi, domain $(g \circ f)(x)$ adalah $\mathbb{R}$ atau $(-\infty, \infty)$.
 
-                \textbf{Range:}
+                \textbf{Range} \bobot{6}:
                 Berdasarkan definisi, range dari $(g \circ f)(x)$ adalah hasil peta dari $g(u)$ untuk semua $u \in R_f$:
                 \[ R_{g \circ f} = \{ y \mid y = g(u), u \in R_f \} \]
                 Pertama, kita tentukan range fungsi $f(x) = x - 1$ pada $x \in D_f$. Karena fungsinya berupa garis lurus untuk semua $x \in \mathbb{R}$, maka rentangnya adalah $R_f = \mathbb{R}$.
                 Kemudian, kita cari hasil pemetaan $u \in R_f$ (atau $u \in \mathbb{R}$) ke dalam $g(u) = |u^2 - 4|$.
                 Untuk $u \in \mathbb{R}$, nilai minimum dari fungsi kuadrat $u^2 - 4$ adalah $-4$, sehingga rentangnya adalah $[-4, \infty)$.
                 Karena fungsi $g(u)$ memutlakkan nilai tersebut, maka daerah hasil $[-4, \infty)$ akan termutlakkan menjadi tidak negatif. Seluruh nilai negatif dari $[-4, 0)$ menjadi $(0, 4]$, dan nilai positif $[0, \infty)$ tetap $[0, \infty)$. Gabungannya akan menutup seluruh bilangan tak negatif.
-                Jadi rentang (range) dari $(g \circ f)(x)$ adalah:
+                Penjelasan bahwa semua nilai tak negatif tercapai bernilai \poin{3}.
+
+                Jadi rentang (range) dari $(g \circ f)(x)$ adalah: \poin{3}
                 \[ R_{g \circ f} = [0, \infty) \]
         \end{enumerate}
 
-  \item
+  \item \bobot{20}
         \begin{enumerate}[label=\alph*.]
-          \item Mencari invers fungsi $f(x)$:
-                Misalkan $y = f(x)$
+          \item \bobot{10} Mencari invers fungsi $f(x)$.
+                Misalkan $y = f(x)$, lalu nyatakan $x$ dalam $y$: \poin{6}
                 \begin{align*}
                   y               & = (x - 2)^3 + 1       \\
                   y - 1           & = (x - 2)^3           \\
                   \sqrt[3]{y - 1} & = x - 2               \\
                   x               & = \sqrt[3]{y - 1} + 2
                 \end{align*}
-                Jadi, invers fungsinya adalah:
+                Tukar nama variabel $x$ dan $y$. Jadi, invers fungsinya adalah: \poin{4}
                 \[ f^{-1}(x) = \sqrt[3]{x - 1} + 2 \]
 
-          \item Sketsa grafik $f(x) = (x - 2)^3 + 1$ dan $f^{-1}(x) = \sqrt[3]{x - 1} + 2$:
+          \item \bobot{10} Sketsa grafik $f(x) = (x - 2)^3 + 1$ dan $f^{-1}(x) = \sqrt[3]{x - 1} + 2$:
                 Titik penting pada $f(x)$ adalah: titik potong sumbu-y $(0, -7)$, titik potong sumbu-x $(1, 0)$, dan titik belok $(2, 1)$.
                 Berdasarkan konsep invers, grafik $f^{-1}(x)$ adalah hasil pencerminan grafik $f(x)$ terhadap garis $y = x$.
                 Oleh karena itu, titik-titik penting pada $f^{-1}(x)$ merupakan kebalikan dari titik penting $f(x)$, yaitu: $(-7, 0)$, $(0, 1)$, dan $(1, 2)$.
+
+                \begin{samepage}
+                  \textit{Rincian poin sketsa:}
+                  \begin{itemize}[nosep]
+                    \item Titik-titik acuan sesuai fungsi yang digambar. \poin{4}
+                    \item Bentuk dan posisi kurva sesuai rumus fungsi. \poin{4}
+                    \item Sumbu, skala, dan label grafik jelas. \poin{2}
+                  \end{itemize}
+                  Gambar berikut menampilkan $f$ dan $f^{-1}$.
+                \end{samepage}
 
                 \begin{center}
                   \begin{tikzpicture}
