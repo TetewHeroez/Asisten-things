@@ -29,12 +29,12 @@
   \item Dapatkan himpunan penyelesaian dari nilai mutlak berikut :
         \[ |3x + 1| = 6x \]
 
-  \item Tentukan persamaan garis yang melalui titik(8,2) dan tegak lurus dengan garis $10y + 3x = -2$
+  \item Tentukan persamaan garis yang melalui titik $(8,2)$ dan tegak lurus dengan garis $10y + 3x = -2$
 
   \item Diketahui $f(x) = x - 1$ dan $g(x) = |x^2 - 4|$
         \begin{enumerate}[label=\alph*.]
-          \item Dapatkan $g \circ f(x)$
-          \item Tentukan domain dan range $g \circ f(x)$
+          \item Dapatkan $(g \circ f)(x)$ dan $(f \circ g)(x)$.
+          \item Tentukan domain dan range kedua komposisi tersebut.
         \end{enumerate}
 
   \item Diketahui $f(x) = (x - 2)^3 + 1$
@@ -118,43 +118,76 @@
 
   \item \bobot{20}
         \begin{enumerate}[label=\alph*.]
-          \item \bobot{8} Mencari $g \circ f(x)$.
+          \item \bobot{8} Mencari kedua komposisi.
 
-                Urutan komposisi: \poin{4}
+                \textbf{Komposisi $g \circ f$} \bobot{4}:
+                Masukkan hasil $f$ ke dalam $g$. \poin{2}
                 \begin{align*}
                   (g \circ f)(x) & = g(f(x))  \\
                                  & = g(x - 1)
                 \end{align*}
-                Substitusikan $x-1$ ke dalam rumus $g$: \poin{4}
+                Substitusikan $x-1$ ke dalam rumus $g$: \poin{2}
                 \begin{align*}
                   (g \circ f)(x) & = |(x - 1)^2 - 4|    \\
                                  & = |x^2 - 2x + 1 - 4| \\
                                  & = |x^2 - 2x - 3|
                 \end{align*}
 
-          \item \bobot{12} Domain dan Range $(g \circ f)(x)$:
+                \textbf{Komposisi $f \circ g$} \bobot{4}:
+                Masukkan hasil $g$ ke dalam $f$. \poin{2}
+                \begin{align*}
+                  (f \circ g)(x) & = f(g(x))    \\
+                                 & = f(|x^2-4|)
+                \end{align*}
+                Fungsi $f$ mengurangi inputnya sebesar 1. \poin{2}
+                \[ (f \circ g)(x)=|x^2-4|-1 \]
 
-                \textbf{Domain} \bobot{6}:
-                Berdasarkan definisi fungsi komposisi, domain dari $(g \circ f)(x)$ adalah:
+          \item \bobot{12} Domain dan range kedua komposisi:
+
+                Kedua fungsi terdefinisi untuk semua bilangan real.
+                Jadi, $D_f=D_g=\mathbb{R}$.
+
+                \textbf{Domain $g \circ f$} \bobot{3}:
+                Syarat domainnya adalah:
                 \[ D_{g \circ f} = \{ x \in D_f \mid f(x) \in D_g \} \]
-                Diketahui $f(x) = x - 1$ adalah fungsi linear, maka $D_f = \mathbb{R}$.
-                Fungsi $g(u) = |u^2 - 4|$ adalah fungsi nilai mutlak dari polinomial, maka $D_g = \mathbb{R}$. \poin{3}
+                Untuk setiap $x\in\mathbb{R}$, nilai $f(x)=x-1$ juga real. \poin{1}
 
-                Sehingga: \poin{3}
-                \[ D_{g \circ f} = \{ x \in \mathbb{R} \mid (x - 1) \in \mathbb{R} \} = \mathbb{R} \]
-                Jadi, domain $(g \circ f)(x)$ adalah $\mathbb{R}$ atau $(-\infty, \infty)$.
+                Maka, domainnya adalah: \poin{2}
+                \[ D_{g \circ f}=\mathbb{R}=(-\infty,\infty) \]
 
-                \textbf{Range} \bobot{6}:
-                Berdasarkan definisi, range dari $(g \circ f)(x)$ adalah hasil peta dari $g(u)$ untuk semua $u \in R_f$:
-                \[ R_{g \circ f} = \{ y \mid y = g(u), u \in R_f \} \]
-                Pertama, kita tentukan range fungsi $f(x) = x - 1$ pada $x \in D_f$. Karena fungsinya berupa garis lurus untuk semua $x \in \mathbb{R}$, maka rentangnya adalah $R_f = \mathbb{R}$.
-                Kemudian, kita cari hasil pemetaan $u \in R_f$ (atau $u \in \mathbb{R}$) ke dalam $g(u) = |u^2 - 4|$.
-                Untuk $u \in \mathbb{R}$, nilai minimum dari fungsi kuadrat $u^2 - 4$ adalah $-4$, sehingga rentangnya adalah $[-4, \infty)$.
-                Karena fungsi $g(u)$ memutlakkan nilai tersebut, maka daerah hasil $[-4, \infty)$ akan termutlakkan menjadi tidak negatif. Seluruh nilai negatif dari $[-4, 0)$ menjadi $(0, 4]$, dan nilai positif $[0, \infty)$ tetap $[0, \infty)$. Gabungannya akan menutup seluruh bilangan tak negatif.
-                Penjelasan bahwa semua nilai tak negatif tercapai bernilai \poin{3}.
+                \par\noindent\begin{minipage}{\linewidth}
+                  \textbf{Domain $f \circ g$} \bobot{3}:
+                  Syarat domainnya adalah:
+                  \[ D_{f \circ g} = \{ x \in D_g \mid g(x) \in D_f \} \]
+                  Untuk setiap $x\in\mathbb{R}$, nilai $g(x)=|x^2-4|$ juga real. \poin{1}
 
-                Jadi rentang (range) dari $(g \circ f)(x)$ adalah: \poin{3}
+                  Maka, domainnya adalah: \poin{2}
+                  \[ D_{f \circ g}=\mathbb{R}=(-\infty,\infty) \]
+                \end{minipage}\par
+
+                \textbf{Range $g \circ f$} \bobot{3}:
+                Misalkan $u=f(x)=x-1$.
+                Range $f$ adalah $\mathbb{R}$.
+                Jadi, $u$ dapat mengambil semua nilai real.
+                \[ (g \circ f)(x)=|u^2-4| \]
+
+                Nilai minimum $u^2-4$ adalah $-4$.
+                Range-nya adalah $[-4,\infty)$.
+                Nilai mutlak mengubah bagian negatif menjadi positif.
+                Bagian $[0,\infty)$ tetap.
+                Jadi, semua nilai tak negatif tercapai. \poin{2}
+
+                Maka, range komposisinya adalah: \poin{1}
                 \[ R_{g \circ f} = [0, \infty) \]
+
+                \textbf{Range $f \circ g$} \bobot{3}:
+                Dari perhitungan di atas, range $g$ adalah $[0,\infty)$.
+                Fungsi $f$ mengurangi setiap nilai tersebut sebesar 1.
+                Nilai minimum berubah dari 0 menjadi $-1$.
+                Nilainya tetap tidak dibatasi ke atas. \poin{2}
+
+                Maka, range komposisinya adalah: \poin{1}
+                \[ R_{f \circ g}=[-1,\infty) \]
         \end{enumerate}
 
   \item \bobot{20}
@@ -170,19 +203,19 @@
                 Tukar nama variabel $x$ dan $y$. Jadi, invers fungsinya adalah: \poin{4}
                 \[ f^{-1}(x) = \sqrt[3]{x - 1} + 2 \]
 
-          \item \bobot{10} Sketsa grafik $f(x) = (x - 2)^3 + 1$ dan $f^{-1}(x) = \sqrt[3]{x - 1} + 2$:
-                Titik penting pada $f(x)$ adalah: titik potong sumbu-y $(0, -7)$, titik potong sumbu-x $(1, 0)$, dan titik belok $(2, 1)$.
-                Berdasarkan konsep invers, grafik $f^{-1}(x)$ adalah hasil pencerminan grafik $f(x)$ terhadap garis $y = x$.
-                Oleh karena itu, titik-titik penting pada $f^{-1}(x)$ merupakan kebalikan dari titik penting $f(x)$, yaitu: $(-7, 0)$, $(0, 1)$, dan $(1, 2)$.
-
+          \item \bobot{10} Sketsa grafik $f$ dan $f^{-1}$:
                 \begin{samepage}
-                  \textit{Rincian poin sketsa:}
                   \begin{itemize}[nosep]
-                    \item Titik-titik acuan sesuai fungsi yang digambar. \poin{4}
-                    \item Bentuk dan posisi kurva sesuai rumus fungsi. \poin{4}
-                    \item Sumbu, skala, dan label grafik jelas. \poin{2}
+                    \item Grafik $f$ melalui $(0,-7)$, $(1,0)$, dan $(2,1)$.
+                          Tukar koordinatnya untuk memperoleh titik pada grafik invers.
+                          Titik-titiknya adalah $(-7,0)$, $(0,1)$, dan $(1,2)$. \poin{4}
+                    \item Grafik $f$ berbentuk kurva kubik dengan titik belok $(2,1)$.
+                          Grafik $f^{-1}$ berbentuk kurva akar pangkat tiga.
+                          Keduanya saling mencerminkan terhadap garis $y=x$. \poin{4}
+                    \item Gambar kedua kurva pada sumbu yang sama.
+                          Gunakan skala yang sama pada kedua sumbu.
+                          Beri label $f$, $f^{-1}$, dan $y=x$. \poin{2}
                   \end{itemize}
-                  Gambar berikut menampilkan $f$ dan $f^{-1}$.
                 \end{samepage}
 
                 \begin{center}
@@ -198,7 +231,7 @@
                         width=12cm,
                         height=12cm,
                         samples=100,
-                        legend pos=south east
+                        legend pos=south west
                       ]
                       % Grafik f(x)
                       \addplot[domain=0:3.5, thick, blue] {(x-2)^3 + 1};
@@ -213,14 +246,14 @@
                       \addlegendentry{$y = x$}
 
                       % Titik penting f(x)
-                      \addplot[mark=*, blue] coordinates {(0, -7)} node[right]{$(0, -7)$};
-                      \addplot[mark=*, blue] coordinates {(1, 0)} node[below right]{$(1, 0)$};
-                      \addplot[mark=*, blue] coordinates {(2, 1)} node[right]{$(2, 1)$};
+                      \addplot[mark=*, blue] coordinates {(0, -7)} node[right]{\footnotesize$(0, -7)$};
+                      \addplot[mark=*, blue] coordinates {(1, 0)} node[below]{\footnotesize$(1, 0)$};
+                      \addplot[mark=*, blue] coordinates {(2, 1)} node[below right]{\footnotesize$(2, 1)$};
 
                       % Titik penting f^{-1}(x)
-                      \addplot[mark=*, red] coordinates {(-7, 0)} node[above]{$(-7, 0)$};
-                      \addplot[mark=*, red] coordinates {(0, 1)} node[above left]{$(0, 1)$};
-                      \addplot[mark=*, red] coordinates {(1, 2)} node[above]{$(1, 2)$};
+                      \addplot[mark=*, red] coordinates {(-7, 0)} node[above]{\footnotesize$(-7, 0)$};
+                      \addplot[mark=*, red] coordinates {(0, 1)} node[above left]{\footnotesize$(0, 1)$};
+                      \addplot[mark=*, red] coordinates {(1, 2)} node[above left]{\footnotesize$(1, 2)$};
                     \end{axis}
                   \end{tikzpicture}
                 \end{center}
