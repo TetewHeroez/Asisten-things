@@ -1,7 +1,8 @@
 \documentclass[10pt,openany,a4paper]{article}
 \usepackage{amsmath, amsfonts, amssymb, amsthm}
 \usepackage{tikz, pgfplots, tkz-euclide,calc}
-    \usetikzlibrary{patterns,snakes,shapes.arrows}
+    \usetikzlibrary{patterns,snakes,shapes.arrows,arrows.meta,calc}
+\pgfplotsset{compat=1.18}
 \usepackage{fancyhdr}
 \usepackage{enumerate,enumitem}
 \usepackage{cancel}
@@ -26,6 +27,7 @@
 }
 
 
+\setlength{\headheight}{16pt}
 \pagestyle{fancy}
 \fancyhead{}
 \fancyfoot{}
@@ -101,13 +103,134 @@
     \end{center}}
 
     \newpage
-    \fancyhead[L]{\textit{Solution By: \hyperlink{https://github.com/TetewHeroez}{Tetew}}}
+    \fancyhead[L]{\textit{Solution By: \href{https://github.com/TetewHeroez}{Tetew}}}
     % \fancyfoot[R]{\animategraphics[autoplay,loop,width=0.1\textwidth]{15}{Kuru Kuru Herta/kuru kuru-}{0}{5}}
     \fancyfoot{}
     {\centering\textbf{SOLUSI}}
     \renewcommand{\headrulewidth}{1pt}
     \begin{enumerate}
-        \item 
+        \item \begin{enumerate}
+            \item Gradien garis $g$ yang melalui $B(1,-2)$ dan $C(3,0)$ adalah
+            \begin{flalign*}
+                m_g&=\frac{0-(-2)}{3-1}=1.&
+            \end{flalign*}
+            Gunakan bentuk persamaan garis $y-y_1=m(x-x_1)$ dengan titik $B$.
+            \begin{flalign*}
+                y-(-2)&=1(x-1)&\\
+                y+2&=x-1&\\
+                \therefore\quad g:\ y&=x-3.&
+            \end{flalign*}
+
+            \item Karena $k$ tegak lurus dengan $g$, maka $m_km_g=-1$, sehingga $m_k=-1$. Garis $k$ melalui $A(-1,3)$, maka
+            \begin{flalign*}
+                y-3&=-1(x-(-1))&\\
+                y-3&=-x-1&\\
+                \therefore\quad k:\ y&=-x+2.&
+            \end{flalign*}
+
+            \item Bentuk umum persamaan garis $g$ adalah $x-y-3=0$. Jarak titik $(x_0,y_0)$ ke garis $ax+by+c=0$ diberikan oleh
+            \begin{flalign*}
+                d&=\frac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}}&\\
+                &=\frac{|1(-1)+(-1)(3)-3|}{\sqrt{1^2+(-1)^2}}&\\
+                &=\frac{7}{\sqrt{2}}=\frac{7\sqrt{2}}{2}.&
+            \end{flalign*}
+            Jadi, jarak titik $A$ ke garis $g$ adalah $\dfrac{7\sqrt{2}}{2}$ satuan.
+        \end{enumerate}
+
+        \item \begin{enumerate}
+            \item Penyebut pada $f$ tidak boleh nol, sedangkan bentuk di dalam akar pada $g$ harus tidak negatif.
+            \begin{flalign*}
+                x^2-1&\neq0 \quad\Rightarrow\quad x\neq-1,\ x\neq1,&\\
+                x+4&\geq0 \quad\Rightarrow\quad x\geq-4.&
+            \end{flalign*}
+            Dengan demikian,
+            \begin{flalign*}
+                D_f&=\mathbb{R}\setminus\{-1,1\},&\\
+                D_g&=[-4,+\infty).&
+            \end{flalign*}
+
+            \item Substitusi $f(x)$ ke dalam $g(x)$ memberikan
+            \begin{flalign*}
+                (g\circ f)(x)&=g(f(x))&\\
+                &=\sqrt{\frac{4}{x^2-1}+4}&\\
+                &=\sqrt{\frac{4+4(x^2-1)}{x^2-1}}&\\
+                &=\sqrt{\frac{4x^2}{x^2-1}}.&
+            \end{flalign*}
+            Syarat domain komposisi adalah $x\in D_f$ dan $f(x)\in D_g$, yaitu
+            \begin{flalign*}
+                x&\neq-1,\ x\neq1,&\\
+                \frac{4}{x^2-1}&\geq-4
+                \quad\Longleftrightarrow\quad
+                \frac{4x^2}{x^2-1}\geq0.&
+            \end{flalign*}
+            Untuk $x\neq0$, pembilang bernilai positif, sehingga penyebut harus positif: $x^2-1>0$, yaitu $x<-1$ atau $x>1$. Nilai $x=0$ juga memenuhi karena bentuk di dalam akar bernilai nol.
+            \begin{flalign*}
+                \therefore\quad D_{g\circ f}&=(-\infty,-1)\cup\{0\}\cup(1,+\infty).&
+            \end{flalign*}
+        \end{enumerate}
+
+        \item \begin{enumerate}
+            \item Domain alami fungsi diperoleh dari $8-x^2\geq0$, yaitu $D_f=[-2\sqrt{2},2\sqrt{2}]$. Pada domain tersebut, $f$ bukan fungsi satu-satu karena $f(x)=f(-x)$; misalnya $f(1)=f(-1)$. Jadi, \textbf{invers fungsi belum ada tanpa pembatasan domain}.
+
+            Untuk menentukan pilihan invers setelah domain dibatasi, misalkan $y=f(x)$.
+            \begin{flalign*}
+                y&=1+\sqrt{8-x^2}&\\
+                y-1&=\sqrt{8-x^2},\quad y\geq1&\\
+                (y-1)^2&=8-x^2&\\
+                x^2&=8-(y-1)^2&\\
+                x&=\pm\sqrt{8-(y-1)^2}.&
+            \end{flalign*}
+            Tanda yang dipilih ditentukan oleh pembatasan domain asal:
+            \begin{enumerate}[label=(\arabic*)]
+                \item Jika $D_f=[0,2\sqrt{2}]$, fungsi $f$ turun secara ketat dan mempunyai invers
+                \[
+                    f^{-1}(x)=\sqrt{8-(x-1)^2}.
+                \]
+                \item Jika $D_f=[-2\sqrt{2},0]$, fungsi $f$ naik secara ketat dan mempunyai invers
+                \[
+                    f^{-1}(x)=-\sqrt{8-(x-1)^2}.
+                \]
+            \end{enumerate}
+            \textit{(*Catatan: Kedua tanda tersebut merupakan dua pilihan invers untuk dua pembatasan domain yang berbeda, bukan satu fungsi invers dengan dua nilai.)}
+
+            \item Pada kedua pembatasan tersebut, range fungsi asal adalah $R_f=[1,1+2\sqrt{2}]$. Karena $D_{f^{-1}}=R_f$ dan $R_{f^{-1}}=D_f$, diperoleh
+            \begin{flalign*}
+                D_{f^{-1}}&=[1,1+2\sqrt{2}],&\\
+                R_{f^{-1}}&=
+                \begin{cases}
+                    [0,2\sqrt{2}],&\text{untuk pilihan (1)},\\
+                    [-2\sqrt{2},0],&\text{untuk pilihan (2)}.
+                \end{cases}&
+            \end{flalign*}
+        \end{enumerate}
+
+        \item Limit $\lim\limits_{x\to2}f(x)$ ada jika limit kiri dan limit kanannya sama.
+        \begin{flalign*}
+            \lim_{x\to2^-}f(x)&=\lim_{x\to2^-}2k^2(x-1)=2k^2,&\\
+            \lim_{x\to2^+}f(x)&=\lim_{x\to2^+}\left(\frac{1-k}{2}\right)x=1-k.&
+        \end{flalign*}
+        Samakan kedua limit tersebut.
+        \begin{flalign*}
+            2k^2&=1-k&\\
+            2k^2+k-1&=0&\\
+            (2k-1)(k+1)&=0&\\
+            k&=\frac12\quad\text{atau}\quad k=-1.&
+        \end{flalign*}
+        Jadi, semua nilai yang memenuhi adalah $\boxed{k\in\left\{-1,\frac12\right\}}$.
+
+        \item Turunkan kedua ruas terhadap $x$ dengan menganggap $y$ sebagai fungsi dari $x$. Gunakan aturan hasil kali dan aturan rantai.
+        \begin{flalign*}
+            \frac{d}{dx}(y-x^2y^3)&=\frac{d}{dx}(y^2x-x)&\\
+            \frac{dy}{dx}-\left(2xy^3+3x^2y^2\frac{dy}{dx}\right)
+                &=2xy\frac{dy}{dx}+y^2-1&\\
+            \left(1-3x^2y^2-2xy\right)\frac{dy}{dx}
+                &=2xy^3+y^2-1.&
+        \end{flalign*}
+        Dengan demikian,
+        \[
+            \boxed{\frac{dy}{dx}=\frac{2xy^3+y^2-1}{1-3x^2y^2-2xy}},
+            \qquad 1-3x^2y^2-2xy\neq0.
+        \]
     \end{enumerate}
     \newpage
     \fancyhead{}
@@ -181,16 +304,107 @@
     \end{center}}
 
     \newpage
-    \fancyhead[L]{\textit{Solution By: \hyperlink{https://github.com/TetewHeroez}{Tetew}}}
+    \fancyhead[L]{\textit{Solution By: \href{https://github.com/TetewHeroez}{Tetew}}}
     % \fancyfoot[R]{\animategraphics[autoplay,loop,width=0.1\textwidth]{15}{Kuru Kuru Herta/kuru kuru-}{0}{5}}
     \fancyfoot{}
     {\centering\textbf{SOLUSI}}
     \renewcommand{\headrulewidth}{1pt}
     \begin{enumerate}
-        \item .
-        \item .
-        \item .
-        \item 
+        \item Penyebut tidak boleh nol, sehingga $x\neq\dfrac52$. Pindahkan semua suku ke satu ruas.
+        \begin{flalign*}
+            \frac{\frac13x-5}{2x-5}&\geq3&\\
+            \frac{\frac13x-5-3(2x-5)}{2x-5}&\geq0&\\
+            \frac{30-17x}{3(2x-5)}&\geq0.&
+        \end{flalign*}
+        Titik kritisnya adalah $x=\dfrac{30}{17}$ dan $x=\dfrac52$. Perhatikan tanda pembilang dan penyebut pada setiap interval.
+        \[
+            \begin{array}{c|ccc}
+                x & (-\infty,\frac{30}{17}) & (\frac{30}{17},\frac52) & (\frac52,+\infty)\\ \hline
+                30-17x & + & - & -\\
+                2x-5 & - & - & +\\ \hline
+                \dfrac{30-17x}{3(2x-5)} & - & + & -
+            \end{array}
+        \]
+        Nilai $x=\dfrac{30}{17}$ termasuk karena membuat pembilang nol, sedangkan $x=\dfrac52$ tidak termasuk karena membuat penyebut nol. Jadi,
+        \[
+            \boxed{HP=\left[\frac{30}{17},\frac52\right)}.
+        \]
+
+        \item \begin{enumerate}
+            \item Fungsi $f(x)=x^2-1$ adalah polinom, sehingga terdefinisi untuk setiap bilangan real. Untuk $g(x)=\sqrt{x-3}$, disyaratkan $x-3\geq0$.
+            \begin{flalign*}
+                D_f&=\mathbb{R},&\\
+                D_g&=[3,+\infty).&
+            \end{flalign*}
+
+            \item Substitusi $f(x)$ ke dalam $g(x)$.
+            \begin{flalign*}
+                (g\circ f)(x)&=g(f(x))&\\
+                &=\sqrt{(x^2-1)-3}&\\
+                &=\sqrt{x^2-4}.&
+            \end{flalign*}
+            Domain komposisi memenuhi $x\in D_f$ dan $f(x)\in D_g$, sehingga
+            \begin{flalign*}
+                x^2-1&\geq3&\\
+                x^2&\geq4&\\
+                x&\leq-2\quad\text{atau}\quad x\geq2.&
+            \end{flalign*}
+            Jadi, $(g\circ f)(x)=\sqrt{x^2-4}$ dengan
+            \[
+                \boxed{D_{g\circ f}=(-\infty,-2]\cup[2,+\infty)}.
+            \]
+        \end{enumerate}
+
+        \item \begin{enumerate}
+            \item Lengkapi bentuk kuadrat pada $f(x)$.
+            \begin{flalign*}
+                f(x)&=x^2-4x+5&\\
+                &=(x-2)^2+1.&
+            \end{flalign*}
+            Grafiknya merupakan parabola dengan titik puncak $(2,1)$ dan sumbu simetri $x=2$. Pada $[2,+\infty)$, fungsi naik secara ketat sehingga satu-satu. Jika $k<2$, interval $[k,+\infty)$ memuat dua titik berbeda yang simetris terhadap $x=2$ dan mempunyai nilai fungsi sama. Dengan demikian, nilai terkecil yang memenuhi adalah $\boxed{k=2}$.
+
+            \item Gunakan domain $D_f=[2,+\infty)$ dari bagian (a). Misalkan $y=f(x)$.
+            \begin{flalign*}
+                y&=(x-2)^2+1&\\
+                y-1&=(x-2)^2&\\
+                \sqrt{y-1}&=|x-2|=x-2,\quad x\geq2&\\
+                x&=2+\sqrt{y-1}.&
+            \end{flalign*}
+            Tukarkan nama variabel $x$ dan $y$, sehingga
+            \[
+                \boxed{f^{-1}(x)=2+\sqrt{x-1}},
+                \qquad D_{f^{-1}}=[1,+\infty),\quad R_{f^{-1}}=[2,+\infty).
+            \]
+        \end{enumerate}
+
+        \item \begin{enumerate}
+            \item Karena $|3-x|>0$ untuk $x\neq3$ dan $|3-x|\to0$ ketika $x\to3$, diperoleh
+            \begin{flalign*}
+                \lim_{x\to3^-}\frac{1}{|3-x|}
+                    &=\lim_{x\to3^-}\frac{1}{3-x}=+\infty,&\\
+                \lim_{x\to3^+}\frac{1}{|3-x|}
+                    &=\lim_{x\to3^+}\frac{1}{x-3}=+\infty.&
+            \end{flalign*}
+            Jadi, $\boxed{\displaystyle\lim_{x\to3}f(x)=+\infty}$. Artinya, fungsi tumbuh tanpa batas; limitnya tidak berupa bilangan real.
+
+            \item Nilai $f(3)$ tidak terdefinisi karena penyebut $|3-3|=0$.
+
+            \item Fungsi $f$ kontinu pada setiap titik di domainnya, yaitu $(-\infty,3)\cup(3,+\infty)$. Akan tetapi, $f$ tidak kontinu di $x=3$ karena $f(3)$ tidak terdefinisi dan limitnya tidak berhingga.
+
+            \item Diskontinuitas di $x=3$ \textbf{tidak dapat dihilangkan}. Tidak ada nilai real yang dapat ditetapkan sebagai $f(3)$ agar sama dengan limitnya. Garis $x=3$ merupakan asimtot tegak.
+        \end{enumerate}
+
+        \item Turunkan kedua ruas terhadap $x$ dengan aturan hasil kali dan aturan rantai.
+        \begin{flalign*}
+            \frac{d}{dx}(x^3y^3-2y^2-3x+7)&=\frac{d}{dx}(0)&\\
+            3x^2y^3+3x^3y^2\frac{dy}{dx}-4y\frac{dy}{dx}-3&=0&\\
+            \left(3x^3y^2-4y\right)\frac{dy}{dx}&=3-3x^2y^3.&
+        \end{flalign*}
+        Jadi,
+        \[
+            \boxed{\frac{dy}{dx}=\frac{3-3x^2y^3}{3x^3y^2-4y}},
+            \qquad 3x^3y^2-4y\neq0.
+        \]
     \end{enumerate}
 
     \newpage
@@ -261,13 +475,128 @@
     \end{center}}
 
     \newpage
-    \fancyhead[L]{\textit{Solution By: \hyperlink{https://github.com/TetewHeroez}{Tetew}}}
+    \fancyhead[L]{\textit{Solution By: \href{https://github.com/TetewHeroez}{Tetew}}}
     % \fancyfoot[R]{\animategraphics[autoplay,loop,width=0.1\textwidth]{15}{Kuru Kuru Herta/kuru kuru-}{0}{5}}
     \fancyfoot{}
     {\centering\textbf{SOLUSI}}
     \renewcommand{\headrulewidth}{1pt}
     \begin{enumerate}
-        \item 
+        \item Penyebut tidak boleh nol, sehingga $x\neq2$ dan $x\neq-2$. Pindahkan kedua pecahan ke satu ruas.
+        \begin{flalign*}
+            \frac{x-1}{2-x}-\frac{x+1}{x+2}&\geq0&\\
+            \frac{(x-1)(x+2)-(x+1)(2-x)}{(2-x)(x+2)}&\geq0&\\
+            \frac{2(x^2-2)}{4-x^2}&\geq0.&
+        \end{flalign*}
+        Titik kritisnya adalah $-2,-\sqrt{2},\sqrt{2},2$. Tanda pecahan pada setiap interval adalah
+        \[
+            \begin{array}{c|ccccc}
+                x&(-\infty,-2)&(-2,-\sqrt{2})&(-\sqrt{2},\sqrt{2})&(\sqrt{2},2)&(2,+\infty)\\ \hline
+                \dfrac{2(x^2-2)}{4-x^2}&-&+&-&+&-
+            \end{array}
+        \]
+        Pembilang boleh nol, sedangkan penyebut tidak boleh nol. Dengan demikian,
+        \[
+            \boxed{HP=(-2,-\sqrt{2}]\cup[\sqrt{2},2)}.
+        \]
+
+        \item \begin{enumerate}
+            \item Syarat bentuk di dalam akar adalah tidak negatif.
+            \begin{flalign*}
+                x+1&\geq0\quad\Rightarrow\quad x\geq-1,&\\
+                4-x^2&\geq0\quad\Rightarrow\quad -2\leq x\leq2.&
+            \end{flalign*}
+            Jadi, $D_f=[-1,+\infty)$ dan $D_g=[-2,2]$.
+
+            \item Substitusikan $f(x)$ ke dalam $g$.
+            \begin{flalign*}
+                (g\circ f)(x)&=\sqrt{4-(\sqrt{x+1})^2}&\\
+                &=\sqrt{3-x}.&
+            \end{flalign*}
+            Domain komposisi harus memenuhi $x\in D_f$ dan $f(x)\in D_g$.
+            \begin{flalign*}
+                x&\geq-1,&\\
+                -2\leq\sqrt{x+1}&\leq2
+                    \quad\Rightarrow\quad x+1\leq4
+                    \quad\Rightarrow\quad x\leq3.&
+            \end{flalign*}
+            Maka, $\boxed{D_{g\circ f}=[-1,3]}$.
+        \end{enumerate}
+
+        \item \begin{enumerate}
+            \item Sesuai fungsi yang tertulis, $f(x)=2+\sqrt{4-x}$ terdefinisi untuk $x\leq4$ dan turun secara ketat pada domain tersebut. Jika $x_1<x_2\leq4$, maka
+            \[
+                4-x_1>4-x_2
+                \quad\Rightarrow\quad
+                2+\sqrt{4-x_1}>2+\sqrt{4-x_2}.
+            \]
+            Jadi, pada setiap interval $[a,2]$ dengan $a\leq2$, fungsi ini satu-satu dan mempunyai invers pada range-nya. \textbf{Tidak ada nilai real $a$ terkecil}, sebab $a$ dapat dipilih sekecil apa pun.
+
+            \textit{(*Catatan: Soal sebagaimana tertulis tidak menghasilkan satu nilai $a$ tertentu. Interval maksimal yang berujung di $2$ dapat ditulis $(-\infty,2]$; $-\infty$ bukan bilangan real yang dapat dijadikan nilai $a$.)}
+
+            \item Misalkan $y=f(x)$, kemudian nyatakan $x$ dalam $y$.
+            \begin{flalign*}
+                y&=2+\sqrt{4-x}&\\
+                y-2&=\sqrt{4-x}&\\
+                (y-2)^2&=4-x&\\
+                x&=4-(y-2)^2.&
+            \end{flalign*}
+            Tukarkan nama variabel, sehingga
+            \[
+                \boxed{f^{-1}(x)=4-(x-2)^2}.
+            \]
+            Untuk setiap $a\leq2$ yang dipilih, domain dan range invers adalah
+            \begin{flalign*}
+                D_{f^{-1}}&=[2+\sqrt{2},\,2+\sqrt{4-a}],&\\
+                R_{f^{-1}}&=[a,2].&
+            \end{flalign*}
+            Jika digunakan domain $D_f=(-\infty,2]$, maka $D_{f^{-1}}=[2+\sqrt{2},+\infty)$ dan $R_{f^{-1}}=(-\infty,2]$.
+
+            \item Grafik invers merupakan pencerminan grafik $f$ terhadap garis $y=x$. Untuk domain $[a,2]$, kedua ujung grafik $f$ adalah $(a,2+\sqrt{4-a})$ dan $(2,2+\sqrt{2})$; koordinatnya ditukar untuk memperoleh kedua ujung grafik invers.
+
+            Karena $a$ tidak ditentukan secara tunggal, berikut \textbf{contoh sketsa untuk $a=0$}.
+            \begin{center}
+                \begin{tikzpicture}[scale=0.95]
+                    \draw[very thin,color=lightgray!40] (-0.2,-0.2) grid (5,5);
+                    \draw[->] (-0.3,0)--(5.2,0) node[right] {$x$};
+                    \draw[->] (0,-0.3)--(0,5.2) node[above] {$y$};
+                    \foreach \t in {1,2,3,4}
+                    {
+                        \draw (\t,0.06)--(\t,-0.06) node[below] {$\t$};
+                        \draw (0.06,\t)--(-0.06,\t) node[left] {$\t$};
+                    }
+                    \draw[thick,brown,dashed] (0,0)--(4.7,4.7) node[right] {$y=x$};
+                    \draw[thick,blue,domain=0:2,samples=60] plot (\x,{2+sqrt(4-\x)});
+                    \draw[thick,red,domain=0:2,samples=60] plot ({2+sqrt(4-\x)},\x);
+                    \fill[blue] (0,4) circle (1.7pt) (2,{2+sqrt(2)}) circle (1.7pt);
+                    \fill[red] (4,0) circle (1.7pt) ({2+sqrt(2)},2) circle (1.7pt);
+                    \node[blue,above] at (1,4.15) {$f(x)=2+\sqrt{4-x}$};
+                    \node[red,right] at (3.8,2.3) {$f^{-1}(x)=4-(x-2)^2$};
+                \end{tikzpicture}
+            \end{center}
+        \end{enumerate}
+
+        \item Agar kontinu di $x=1$, haruslah $\lim\limits_{x\to1}f(x)=f(1)=k$. Perhatikan bahwa pembilang pada $x=1$ bernilai $1-2+1-1=-1$, sedangkan penyebutnya nol. Faktorkan sebagian pembilang:
+        \begin{flalign*}
+            \frac{x^3-2x^2+x-1}{x-1}
+                &=\frac{x(x-1)^2-1}{x-1}&\\
+                &=x(x-1)-\frac{1}{x-1},\qquad x\neq1.&
+        \end{flalign*}
+        Dengan demikian,
+        \[
+            \lim_{x\to1^-}f(x)=+\infty,
+            \qquad
+            \lim_{x\to1^+}f(x)=-\infty.
+        \]
+        Limit di $x=1$ tidak ada, sehingga \textbf{tidak ada nilai real $k$} yang membuat $f$ kontinu.
+
+        \item Periksa dahulu apakah titik $(2,1)$ terletak pada kurva.
+        \begin{flalign*}
+            x^3y+4xy\big|_{(2,1)}&=2^3(1)+4(2)(1)=16,&\\
+            12y\big|_{(2,1)}&=12.&
+        \end{flalign*}
+        Karena $16\neq12$, titik $(2,1)$ \textbf{tidak terletak pada kurva}. Jadi, persamaan garis singgung kurva \textbf{di titik $(2,1)$ tidak dapat ditentukan dari soal yang tertulis}.
+
+        \textit{(*Catatan: Persamaan kurva atau koordinat titik perlu diperiksa kembali. Menyubstitusikan titik yang bukan anggota kurva ke rumus turunan implisit tidak menghasilkan garis singgung di titik tersebut.)}
     \end{enumerate}
 
     \newpage
@@ -341,13 +670,117 @@
     \end{center}}
 
     \newpage
-    \fancyhead[L]{\textit{Solution By: \hyperlink{https://github.com/TetewHeroez}{Tetew}}}
+    \fancyhead[L]{\textit{Solution By: \href{https://github.com/TetewHeroez}{Tetew}}}
     % \fancyfoot[R]{\animategraphics[autoplay,loop,width=0.1\textwidth]{15}{Kuru Kuru Herta/kuru kuru-}{0}{5}}
     \fancyfoot{}
     {\centering\textbf{SOLUSI}}
     \renewcommand{\headrulewidth}{1pt}
     \begin{enumerate}
-        \item 
+        \item Syarat awal adalah $x\neq0$. Bagi pertidaksamaan menjadi dua bagian.
+        \begin{enumerate}[label=(\arabic*)]
+            \item Untuk $2\leq\dfrac{x^2+1}{x}$, diperoleh
+            \begin{flalign*}
+                \frac{x^2+1}{x}-2&\geq0&\\
+                \frac{(x-1)^2}{x}&\geq0.&
+            \end{flalign*}
+            Jika $x<0$, pembilang positif dan penyebut negatif, sehingga pecahan negatif. Jika $x>0$, pecahan tidak negatif, termasuk $x=1$ yang membuat pembilang nol. Jadi, $HP_1=(0,+\infty)$.
+
+            \item Untuk $\dfrac{x^2+1}{x}<x+3$, diperoleh
+            \begin{flalign*}
+                x+\frac1x&<x+3&\\
+                \frac1x&<3&\\
+                \frac{1-3x}{x}&<0.&
+            \end{flalign*}
+            Pecahan negatif ketika $x<0$ atau $x>\dfrac13$. Maka,
+            \[
+                HP_2=(-\infty,0)\cup\left(\frac13,+\infty\right).
+            \]
+        \end{enumerate}
+        Irisan kedua himpunan penyelesaian memberikan
+        \[
+            \boxed{HP=HP_1\cap HP_2=\left(\frac13,+\infty\right)}.
+        \]
+
+        \item \begin{enumerate}
+            \item Bentuk di dalam akar harus tidak negatif dan penyebut tidak boleh nol.
+            \begin{flalign*}
+                5-x&\geq0\quad\Rightarrow\quad x\leq5,&\\
+                9-x^2&\neq0\quad\Rightarrow\quad x\neq-3,\ x\neq3.&
+            \end{flalign*}
+            Jadi, $D_f=(-\infty,5]$ dan $D_g=\mathbb{R}\setminus\{-3,3\}$.
+
+            \item Substitusikan $f(x)$ ke dalam $g$.
+            \begin{flalign*}
+                (g\circ f)(x)&=\frac{1}{9-(\sqrt{5-x})^2}&\\
+                &=\frac{1}{9-(5-x)}=\frac{1}{x+4}.&
+            \end{flalign*}
+            Selain $x\leq5$, harus dipenuhi $f(x)\neq\pm3$. Karena $f(x)\geq0$, cukup dikecualikan $\sqrt{5-x}=3$, yaitu $x=-4$.
+            \[
+                \boxed{D_{g\circ f}=(-\infty,-4)\cup(-4,5]}.
+            \]
+            \textit{(*Catatan: Meskipun bentuk akhirnya rasional, syarat $x\leq5$ dari fungsi asal tetap berlaku.)}
+        \end{enumerate}
+
+        \item \begin{enumerate}
+            \item Syarat akar memberikan
+            \[
+                4-x^2\geq0
+                \quad\Longleftrightarrow\quad
+                -2\leq x\leq2.
+            \]
+            Jadi, $\boxed{D_f=[-2,2]}$.
+
+            \item Pada domain tersebut, $f$ tidak satu-satu sebab $f(-1)=f(1)=\sqrt{3}$. Jadi, $f^{-1}$ \textbf{belum ada sebagai fungsi} pada domain alami $f$.
+
+            \item Pilih pembatasan domain $D_f=[0,2]$. Pada interval ini, $f$ turun secara ketat sehingga satu-satu. Untuk memperoleh inversnya,
+            \begin{flalign*}
+                y&=\sqrt{4-x^2}&\\
+                y^2&=4-x^2&\\
+                x&=\sqrt{4-y^2},\qquad x\geq0.&
+            \end{flalign*}
+            Dengan demikian, $f^{-1}(x)=\sqrt{4-x^2}$, dengan $D_{f^{-1}}=R_{f^{-1}}=[0,2]$.
+
+            Pilihan lain yang juga benar adalah $D_f=[-2,0]$. Pada interval ini, inversnya adalah $f^{-1}(x)=-\sqrt{4-x^2}$, dengan domain $[0,2]$ dan range $[-2,0]$.
+        \end{enumerate}
+
+        \item Substitusi langsung menghasilkan bentuk $\dfrac00$. Kalikan dengan bentuk sekawan.
+        \begin{flalign*}
+            \lim_{x\to3}\frac{\sqrt{x^2-5}-2}{x-3}
+                &=\lim_{x\to3}\frac{(\sqrt{x^2-5}-2)(\sqrt{x^2-5}+2)}
+                    {(x-3)(\sqrt{x^2-5}+2)}&\\
+                &=\lim_{x\to3}\frac{x^2-9}{(x-3)(\sqrt{x^2-5}+2)}&\\
+                &=\lim_{x\to3}\frac{x+3}{\sqrt{x^2-5}+2}&\\
+                &=\frac{3+3}{\sqrt{9-5}+2}=\boxed{\frac32}.&
+        \end{flalign*}
+        Pencoretan faktor $x-3$ sah karena dalam proses limit digunakan $x\neq3$.
+
+        \item \begin{enumerate}
+            \item Dengan aturan turunan hasil bagi,
+            \begin{flalign*}
+                \frac{dy}{dx}
+                    &=\frac{(x+2)(1)-(x+3)(1)}{(x+2)^2}&\\
+                    &=\boxed{-\frac{1}{(x+2)^2}},\qquad x\neq-2.&
+            \end{flalign*}
+
+            \item Garis $y=x$ mempunyai gradien $1$. Agar garis singgung tegak lurus dengannya, gradien garis singgung harus $-1$.
+            \begin{flalign*}
+                -\frac{1}{(x_0+2)^2}&=-1&\\
+                (x_0+2)^2&=1&\\
+                x_0+2&=\pm1&\\
+                x_0&=-1\quad\text{atau}\quad x_0=-3.&
+            \end{flalign*}
+            Untuk $x_0=-1$, diperoleh $y_0=f(-1)=2$, sehingga garis singgungnya
+            \[
+                y-2=-1(x+1)
+                \quad\Rightarrow\quad \boxed{y=-x+1}.
+            \]
+            Untuk $x_0=-3$, diperoleh $y_0=f(-3)=0$, sehingga garis singgungnya
+            \[
+                y-0=-1(x+3)
+                \quad\Rightarrow\quad \boxed{y=-x-3}.
+            \]
+            Jadi, kedua titik yang memenuhi adalah $\boxed{(-1,2)\text{ dan }(-3,0)}$.
+        \end{enumerate}
     \end{enumerate}
 
     \newpage
@@ -426,7 +859,7 @@
     \end{center}}
 
     \newpage
-    \fancyhead[L]{\textit{Solution By: \hyperlink{https://github.com/TetewHeroez}{Tetew}}}
+    \fancyhead[L]{\textit{Solution By: \href{https://github.com/TetewHeroez}{Tetew}}}
     % \fancyfoot[R]{\animategraphics[autoplay,loop,width=0.1\textwidth]{15}{Kuru Kuru Herta/kuru kuru-}{0}{5}}
     \fancyfoot{}
     {\centering\textbf{SOLUSI}}
@@ -542,7 +975,7 @@
                 &=\left\{x\in \mathbb{R}/\{1\}\:\Big|\:x\in \mathbb{R}\Big/\left\{\frac{1}{2}\right\}\right\}&\\
                 &=\left\{x\in \mathbb{R}\Big/\left\{1,\frac{1}{2}\right\}\right\}&\\
             \end{flalign*}
-            $\therefore(f\circ g)(x)=\frac{1}{1-2x}$ dan $D_{f\circ g}=\{x\:|\:x\neq1\:\vee\:x\neq\frac{1}{2}\}$
+            $\therefore(f\circ g)(x)=\frac{1}{1-2x}$ dan $D_{f\circ g}=\{x\:|\:x\neq1\:\wedge\:x\neq\frac{1}{2}\}$
         \end{enumerate}
 
         \item \begin{enumerate}
@@ -558,7 +991,7 @@
                 
                 \draw[thick,blue,domain=-1:3,smooth] plot (\x,{(\x-1)^2}) node [below right] {$f(x)=x^2-2x+1$};
             \end{tikzpicture}\\
-            Perhatikan bahwa $f(x)$ simetri terhadap garis $x=1$. Ketika ingin mengambil $k$ terbesar agar $f(x)$ punya invers, haruslah pilih $k=1$ sehingga interval domainnya menjadi $[-\infty,1]$.\\~\\
+            Perhatikan bahwa $f(x)$ simetri terhadap garis $x=1$. Ketika ingin mengambil $k$ terbesar agar $f(x)$ punya invers, haruslah pilih $k=1$ sehingga interval domainnya menjadi $(-\infty,1]$.\\~\\
             \textit{(*Catatan: Secara geometris suatu fungsi dikatakan punya invers ketika kita menggambar sebarang garis horizontal yang melewati grafik fungsi tersebut sedemikian sehingga hanya terdapat maksimal satu titik potong antara garis horizontal dan grafik fungsi tersebut. lebih jelasnya perhatikan gambar berikut)}\\
             \begin{tikzpicture}
                 \draw[very thin,color=lightgray!20] (-2.1,-2.1) grid (3.1,4.1);
@@ -579,15 +1012,14 @@
             \item Gantikan $y$ dengan $x$ dan juga sebaliknya.
             \begin{flalign*}
                 x&=(y-1)^2&\\
-                x&=(y-1)^2&\\
-                \sqrt{x}&=\sqrt{y-1)^2}&\\
+                \sqrt{x}&=\sqrt{(y-1)^2}&\\
                 \sqrt{x}&=|y-1|&\\
                 \pm\sqrt{x}&=y-1&\\
                 y&=1\pm\sqrt{x}&\\
                 f^{-1}(x)&=1\pm\sqrt{x}&\\
             \end{flalign*}
             
-            Karena range $R_{f^{-1}}=D_f=[-\infty,1]$, maka $f^{-1}(x)=1-\sqrt{x}$.\\~\\
+            Karena range $R_{f^{-1}}=D_f=(-\infty,1]$, maka $f^{-1}(x)=1-\sqrt{x}$.\\~\\
 
             \item Salah satu cara menggambar grafik $f^{-1}(x)$ adalah dengan mencerminkan $f(x)$ terhadap garis $y=x$, sehingga akan didapat grafik $f^{-1}(x)$.\\
             \begin{tikzpicture}
@@ -604,7 +1036,11 @@
             \end{tikzpicture}\\
             \end{enumerate}
             
-            \item Secara definisi $f(x)=\begin{cases}
+            \item \textit{(*Catatan: Naskah soal menuliskan cabang kedua untuk $x\geq1$, sedangkan pembahasan yang telah ada menggunakan $x\geq-1$. Jika dibaca persis sesuai soal, domainnya adalah $(-\infty,-1)\cup[1,+\infty)$, nilai $f(-1)$ tidak terdefinisi, dan limit kiri di $-1$ adalah $0$; tidak ada titik domain yang mendekati $-1$ dari kanan. Fungsi kontinu pada domainnya, tetapi belum terdefinisi di $-1$.)}
+
+        \textbf{Pembahasan berikut berlaku jika batas cabang kedua yang dimaksud adalah $x\geq-1$.}
+
+        Secara definisi $f(x)=\begin{cases}
         2|x+1|&   x < -1\begin{cases}
             2x+2&\quad x>=-1,x<-1\\
              -2x-2&\quad x<-1,x<-1
@@ -619,7 +1055,7 @@
              -2x-2&\quad x<-1
         \end{cases}\\
         \\
-        x^2 &   x \geq ‐1
+        x^2 &   x \geq -1
         \end{cases}$\\~\\
         Dan dapat disederhanakan menjadi\\
         
@@ -631,7 +1067,7 @@
         \begin{enumerate}
             \item $\lim\limits_{x\to-1}f(x)=\begin{cases}
                     \lim\limits_{x\to-1^-}f(x)=\lim\limits_{x\to-1^-}-2x-2=0\\
-                    \lim\limits_{x\to-1^+}f(x)=\lim\limits_{x\to-1^-}x^2=1
+                    \lim\limits_{x\to-1^+}f(x)=\lim\limits_{x\to-1^+}x^2=1
                 \end{cases}$\\~\\
                 Karena $\lim\limits_{x\to-1^-}f(x)\neq\lim\limits_{x\to-1^+}f(x)$, maka $\lim\limits_{x\to-1}f(x)$ tidak ada.\\
 
@@ -643,7 +1079,7 @@
                 \item $\lim\limits_{x\to a}f(x)$ ada.
                 \item $f(a)=\lim\limits_{x\to a}f(x)$
             \end{itemize}
-            $f(x)$ tidak kontinu dimana-mana karena ada titik dimana $f(x)$ tidak kontinu, yaitu di $x=-1$. 
+            $f(x)$ diskontinu di $x=-1$ dan kontinu di setiap titik lainnya.
         \end{enumerate}
         $f(x)$ tidak kontinu di $x=-1$, karena pada soal (a) sudah disebutkan bahwa $\lim\limits_{x\to-1}f(x)$ tidak ada. Hal tersebut mengakibatkan syarat kedua dari $f(x)$ kontinu tidak terpenuhi.\\~\\
         
@@ -653,7 +1089,7 @@
             3y^2\frac{dy}{dx}&=4x&\\
             m_s&=\frac{dy}{dx}=\frac{4x}{3y^2},\quad y\neq0
         \end{flalign*}
-        Karena garis singgung melewati $(a,b)$, maka $m_s=\frac{dy}{dx}\Big|_{\tiny{\begin{matrix}x=a\\y=b\end{matrix}}}=\frac{4a}{3b^2}$. Diketahui bahwa garis singgung sejajar dengan garis $l:=2x+3y-5=0$.
+        Karena garis singgung melewati $(a,b)$, maka $m_s=\frac{dy}{dx}\Big|_{\substack{x=a\\y=b}}=\frac{4a}{3b^2}$. Diketahui bahwa garis singgung sejajar dengan garis $l:=2x+3y-5=0$.
         \begin{flalign*}
             2x&+3y-5=0&\\
             3y&=-2x+5&\\
@@ -752,13 +1188,132 @@
     \end{center}}
 
     \newpage
-    \fancyhead[L]{\textit{Solution By: \hyperlink{https://github.com/TetewHeroez}{Tetew}}}
+    \fancyhead[L]{\textit{Solution By: \href{https://github.com/TetewHeroez}{Tetew}}}
     % \fancyfoot[R]{\animategraphics[autoplay,loop,width=0.1\textwidth]{15}{Kuru Kuru Herta/kuru kuru-}{0}{5}}
     \fancyfoot{}
     {\centering\textbf{SOLUSI}}
     \renewcommand{\headrulewidth}{1pt}
     \begin{enumerate}
-        \item 
+        \item Tanda $2x+1$ berubah di $x=-\dfrac12$, sedangkan tanda $3x-2$ berubah di $x=\dfrac23$. Bagi penyelesaian menjadi tiga kasus.
+        \begin{enumerate}[label=(\arabic*)]
+            \item Jika $x<-\dfrac12$, kedua bentuk di dalam nilai mutlak negatif.
+            \begin{flalign*}
+                -(2x+1)&=-(3x-2)+1&\\
+                -2x-1&=-3x+3&\\
+                x&=4.&
+            \end{flalign*}
+            Nilai ini tidak memenuhi syarat $x<-\dfrac12$, sehingga ditolak.
+
+            \item Jika $-\dfrac12\leq x<\dfrac23$, diperoleh
+            \begin{flalign*}
+                2x+1&=-(3x-2)+1&\\
+                2x+1&=-3x+3&\\
+                5x&=2\quad\Rightarrow\quad x=\frac25.&
+            \end{flalign*}
+            Nilai $x=\dfrac25$ memenuhi syarat interval.
+
+            \item Jika $x\geq\dfrac23$, diperoleh
+            \begin{flalign*}
+                2x+1&=3x-2+1&\\
+                2x+1&=3x-1&\\
+                x&=2.&
+            \end{flalign*}
+            Nilai $x=2$ memenuhi syarat interval.
+        \end{enumerate}
+        Jadi, $\boxed{HP=\left\{\dfrac25,2\right\}}$.
+
+        \item \begin{enumerate}
+            \item Nilai mutlak dari polinom terdefinisi untuk semua bilangan real, sedangkan penyebut $g$ tidak boleh nol.
+            \begin{flalign*}
+                D_f&=\mathbb{R},&\\
+                D_g&=\{x\in\mathbb{R}\mid x^2-9\neq0\}
+                    =\mathbb{R}\setminus\{-3,3\}.&
+            \end{flalign*}
+
+            \item Substitusikan $f(x)$ ke dalam $g$.
+            \begin{flalign*}
+                (g\circ f)(x)&=\frac{1}{|x^2-1|^2-9}&\\
+                &=\frac{1}{(x^2-1)^2-9}&\\
+                &=\frac{1}{(x^2-4)(x^2+2)}.&
+            \end{flalign*}
+            Domain komposisi mensyaratkan $|x^2-1|\neq3$, sebab $f(x)$ selalu tidak negatif. Nilai yang dikecualikan diperoleh dari
+            \begin{flalign*}
+                |x^2-1|&=3&\\
+                x^2-1&=3\quad\text{atau}\quad x^2-1=-3&\\
+                x^2&=4\quad\text{atau}\quad x^2=-2.&
+            \end{flalign*}
+            Persamaan kedua tidak mempunyai solusi real, sehingga hanya $x=\pm2$ yang dikecualikan.
+            \[
+                \boxed{D_{g\circ f}=\mathbb{R}\setminus\{-2,2\}}.
+            \]
+        \end{enumerate}
+
+        \item \begin{enumerate}
+            \item Penyebut kedua fungsi tidak boleh nol.
+            \[
+                D_f=\mathbb{R}\setminus\{-3\},
+                \qquad D_g=\mathbb{R}\setminus\{-2\}.
+            \]
+            Untuk range $f$, misalkan $y=-\dfrac{2}{x+3}$. Nilai $y=0$ tidak mungkin, dan setiap $y\neq0$ menghasilkan
+            \[
+                x=-\frac2y-3.
+            \]
+            Nilai $x$ tersebut selalu berbeda dari $-3$. Jadi, $R_f=\mathbb{R}\setminus\{0\}$.
+
+            Untuk range $g$, tuliskan
+            \[
+                g(x)=\frac{3x+2}{x+2}=3-\frac4{x+2}.
+            \]
+            Nilai $y=3$ tidak mungkin. Untuk setiap $y\neq3$, persamaan $y=g(x)$ dapat diselesaikan menjadi
+            \begin{flalign*}
+                y(x+2)&=3x+2&\\
+                (y-3)x&=2-2y&\\
+                x&=\frac{2-2y}{y-3}.&
+            \end{flalign*}
+            Nilai $x$ ini selalu berbeda dari $-2$, sehingga $R_g=\mathbb{R}\setminus\{3\}$.
+
+            \item Agar saling invers, komposisi kedua fungsi harus menghasilkan fungsi identitas pada domain yang sesuai. Akan tetapi,
+            \begin{flalign*}
+                (f\circ g)(x)&=-\frac{2}{\frac{3x+2}{x+2}+3}&\\
+                &=-\frac{x+2}{3x+4},
+                    \qquad x\neq-2,\ -\frac43.&
+            \end{flalign*}
+            Sebagai contoh, $f(g(0))=-\dfrac12\neq0$. Jadi, \textbf{$f$ dan $g$ tidak saling invers}. Invers $f$ yang sebenarnya adalah
+            \[
+                f^{-1}(x)=-\frac2x-3,\qquad x\neq0,
+            \]
+            yang berbeda dari $g(x)$.
+        \end{enumerate}
+
+        \item Ketika $x\to-\infty$, nilai $x$ negatif sehingga $\sqrt{x^2}=|x|=-x$. Oleh karena itu,
+        \begin{flalign*}
+            \lim_{x\to-\infty}\frac{5-3x}{\sqrt{7+27x^2}}
+                &=\lim_{x\to-\infty}\frac{5-3x}{|x|\sqrt{\frac7{x^2}+27}}&\\
+                &=\lim_{x\to-\infty}\frac{-\frac5x+3}{\sqrt{\frac7{x^2}+27}}&\\
+                &=\frac3{\sqrt{27}}
+                =\boxed{\frac{\sqrt3}{3}}.&
+        \end{flalign*}
+
+        \begin{samepage}
+        \item Titik $(1,2)$ terletak pada kurva karena $1-4+8-8+3=0$. Gunakan diferensiasi implisit untuk mendapatkan gradien garis singgung di titik tersebut.
+        \begin{flalign*}
+            \frac{d}{dx}(x^3-2x^2y+2xy^2-y^3+3)&=0&\\
+            3x^2-4xy-2x^2\frac{dy}{dx}
+                +2y^2+4xy\frac{dy}{dx}-3y^2\frac{dy}{dx}&=0&\\
+            (-2x^2+4xy-3y^2)\frac{dy}{dx}&=-3x^2+4xy-2y^2&\\
+            \frac{dy}{dx}&=\frac{3x^2-4xy+2y^2}{2x^2-4xy+3y^2}.&
+        \end{flalign*}
+        Substitusi $(x,y)=(1,2)$ memberikan
+        \[
+            m_s=\frac{3-8+8}{2-8+12}=\frac12.
+        \]
+        Persamaan garis singgungnya adalah
+        \[
+            y-2=\frac12(x-1)
+            \quad\Rightarrow\quad
+            \boxed{y=\frac12x+\frac32}.
+        \]
+        \end{samepage}
     \end{enumerate}
 
     \newpage
@@ -835,12 +1390,138 @@
     \end{center}}
 
     \newpage
-    \fancyhead[L]{\textit{Solution By: \hyperlink{https://github.com/TetewHeroez}{Tetew}}}
+    \fancyhead[L]{\textit{Solution By: \href{https://github.com/TetewHeroez}{Tetew}}}
     % \fancyfoot[R]{\animategraphics[autoplay,loop,width=0.1\textwidth]{15}{Kuru Kuru Herta/kuru kuru-}{0}{5}}
     \fancyfoot{}
     {\centering\textbf{SOLUSI}}
     \renewcommand{\headrulewidth}{1pt}
     \begin{enumerate}
-        \item 
+        \item \begin{enumerate}
+            \item Gradien garis $\ell$ yang melalui $A(2,1)$ dan $B(-2,3)$ adalah
+            \[
+                m_\ell=\frac{3-1}{-2-2}=-\frac12.
+            \]
+            Gunakan titik $A$ untuk mendapatkan persamaan garis.
+            \begin{flalign*}
+                y-1&=-\frac12(x-2)&\\
+                \therefore\quad\ell:\ y&=-\frac12x+2.&
+            \end{flalign*}
+
+            \item Titik tengah antara $A$ dan $B$ adalah
+            \[
+                M=\left(\frac{2+(-2)}2,\frac{1+3}2\right)=(0,2).
+            \]
+            Karena $k$ tegak lurus dengan $\ell$, maka
+            \[
+                m_km_\ell=-1
+                \quad\Rightarrow\quad
+                m_k\left(-\frac12\right)=-1
+                \quad\Rightarrow\quad m_k=2.
+            \]
+            Garis $k$ melalui $M(0,2)$, sehingga
+            \[
+                y-2=2(x-0)
+                \quad\Rightarrow\quad
+                \boxed{k:\ y=2x+2}.
+            \]
+
+            \item Kedua garis berpotongan di $M(0,2)$ dan saling tegak lurus. Gunakan skala yang sama pada kedua sumbu.
+            \begin{center}
+                \begin{tikzpicture}[scale=0.85]
+                    \draw[very thin,color=lightgray!40] (-3,-2) grid (4,5);
+                    \draw[->] (-3.3,0)--(4.4,0) node[right] {$x$};
+                    \draw[->] (0,-2.3)--(0,5.4) node[above] {$y$};
+                    \foreach \t in {-2,-1,1,2,3,4}
+                        \draw (\t,0.06)--(\t,-0.06) node[below] {$\t$};
+                    \foreach \t in {-1,1,2,3,4,5}
+                        \draw (0.06,\t)--(-0.06,\t) node[left] {$\t$};
+                    \draw[thick,blue,domain=-3:4,samples=2]
+                        plot (\x,{-0.5*\x+2});
+                    \draw[thick,red,domain=-2:1.5,samples=2]
+                        plot (\x,{2*\x+2});
+                    \fill (2,1) circle (1.8pt) node[above right] {$A(2,1)$};
+                    \fill (-2,3) circle (1.8pt) node[above left] {$B(-2,3)$};
+                    \fill (0,2) circle (1.8pt) node[above right] {$M(0,2)$};
+                    \node[blue,right] at (3.1,0.9) {$\ell$};
+                    \node[red,right] at (1.5,4.8) {$k$};
+                \end{tikzpicture}
+            \end{center}
+        \end{enumerate}
+
+        \item \begin{enumerate}
+            \item Untuk $f$, bentuk di dalam akar harus tidak negatif. Untuk $g$, bentuk di dalam akar harus \textbf{positif} karena akarnya juga menjadi penyebut.
+            \begin{flalign*}
+                1-x&\geq0\quad\Rightarrow\quad x\leq1,&\\
+                9-x^2&>0\quad\Rightarrow\quad -3<x<3.&
+            \end{flalign*}
+            Jadi, $D_f=(-\infty,1]$ dan $D_g=(-3,3)$.
+
+            \item Substitusikan $f(x)$ ke dalam $g$.
+            \begin{flalign*}
+                (g\circ f)(x)&=\frac{1}{\sqrt{9-(\sqrt{1-x})^2}}&\\
+                &=\frac{1}{\sqrt{x+8}}.&
+            \end{flalign*}
+            Domain komposisi mensyaratkan $x\leq1$ dan $-3<\sqrt{1-x}<3$. Karena akar tidak negatif, syarat kedua cukup ditulis
+            \[
+                \sqrt{1-x}<3
+                \quad\Longleftrightarrow\quad
+                1-x<9
+                \quad\Longleftrightarrow\quad x>-8.
+            \]
+            Dengan demikian, $\boxed{D_{g\circ f}=(-8,1]}$.
+        \end{enumerate}
+
+        \item \begin{enumerate}
+            \item Fungsi akar pangkat tiga naik secara ketat pada $\mathbb{R}$, sehingga $f$ satu-satu. Misalkan $y=f(x)$, kemudian nyatakan $x$ dalam $y$.
+            \begin{flalign*}
+                y&=\sqrt[3]{x+1}+2&\\
+                y-2&=\sqrt[3]{x+1}&\\
+                (y-2)^3&=x+1&\\
+                x&=(y-2)^3-1.&
+            \end{flalign*}
+            Tukarkan nama variabel, sehingga $\boxed{f^{-1}(x)=(x-2)^3-1}$.
+
+            \item Domain dan range $f$ adalah seluruh bilangan real. Karena $D_{f^{-1}}=R_f$ dan $R_{f^{-1}}=D_f$, diperoleh
+            \[
+                \boxed{D_{f^{-1}}=\mathbb{R},\qquad R_{f^{-1}}=\mathbb{R}}.
+            \]
+        \end{enumerate}
+
+        \item \begin{enumerate}
+            \item Hitung limit kiri dan limit kanan di $x=2$.
+            \begin{flalign*}
+                \lim_{x\to2^-}f(x)&=\lim_{x\to2^-}(-2x+11)=7,&\\
+                \lim_{x\to2^+}f(x)&=\lim_{x\to2^+}(3x+1)=7.&
+            \end{flalign*}
+            Karena keduanya sama, $\boxed{\displaystyle\lim_{x\to2}f(x)=7}$.
+
+            \item Nilai $f(2)$ \textbf{tidak terdefinisi}, karena tidak ada cabang fungsi yang mencakup $x=2$.
+
+            \item Terdapat diskontinuitas di $x=2$ karena $f(2)$ tidak terdefinisi, meskipun limitnya ada. Pada setiap titik $x\neq2$, fungsi kontinu karena diberikan oleh fungsi linear.
+
+            \item Diskontinuitas tersebut dapat dihilangkan dengan menetapkan $f(2)=7$. Definisikan kembali fungsi menjadi
+            \[
+                \widetilde f(x)=
+                \begin{cases}
+                    -2x+11,&x<2,\\
+                    7,&x=2,\\
+                    3x+1,&x>2.
+                \end{cases}
+            \]
+            Kini $\lim\limits_{x\to2}\widetilde f(x)=\widetilde f(2)=7$, sehingga $\widetilde f$ kontinu pada $\mathbb{R}$.
+        \end{enumerate}
+
+        \item Persamaan asal mensyaratkan $x\neq0$. Turunkan kedua ruas terhadap $x$ menggunakan aturan hasil bagi pada $\dfrac{y}{x}$.
+        \begin{flalign*}
+            \frac{d}{dx}\left(x^2-y+\frac yx\right)&=\frac{d}{dx}(5)&\\
+            2x-\frac{dy}{dx}+\frac{x\frac{dy}{dx}-y}{x^2}&=0&\\
+            2x^3-x^2\frac{dy}{dx}+x\frac{dy}{dx}-y&=0&\\
+            (x^2-x)\frac{dy}{dx}&=2x^3-y.&
+        \end{flalign*}
+        Jadi,
+        \[
+            \boxed{\frac{dy}{dx}=\frac{2x^3-y}{x^2-x}},\qquad x\neq0,\ x\neq1.
+        \]
+        Nilai $x=1$ juga tidak mungkin pada kurva asal, sebab substitusinya menghasilkan $1-y+y=5$, yaitu $1=5$.
     \end{enumerate}
 \end{document}

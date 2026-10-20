@@ -1,7 +1,9 @@
-\documentclass[11pt,openany,a4paper]{article}
+\documentclass[11pt,a4paper]{article}
 \usepackage{amsmath, amsfonts, amssymb, amsthm}
 \usepackage{tikz, pgfplots, tkz-euclide,calc}
-    \usetikzlibrary{patterns,snakes,shapes.arrows}
+    \usetikzlibrary{patterns,shapes.arrows,arrows.meta,calc}
+\pgfplotsset{compat=1.18}
+\allowdisplaybreaks[1]
 \usepackage{fancyhdr}
 \usepackage{enumerate,enumitem}
 \usepackage{cancel}
@@ -18,7 +20,6 @@
 
 \usepackage{geometry}
 \geometry{
-	total = {160mm, 230mm},
 	left = 16mm,
 	right = 16mm,
 	top = 30mm,
@@ -26,6 +27,7 @@
 }
 
 
+\setlength{\headheight}{16pt}
 \pagestyle{fancy}
 \fancyhead{}
 \fancyfoot{}
@@ -35,7 +37,57 @@
 \renewcommand{\footrulewidth}{0pt}
 
 
+
+% Setiap paket dimulai dengan lembar soal, lalu pembahasan.
+% Urutan mengikuti tanggal dan jam pada lampiran; salinan ganda diabaikan.
+\newcounter{paket}
+\setcounter{paket}{1}
+\newcommand{\paketsoal}[4]{%
+    \clearpage
+    \stepcounter{paket}
+    \pdfbookmark[0]{#1, #2 WIB -- Kelas #3}{paket-\arabic{paket}}
+    \fancyhead{}
+    \fancyhead[L]{\fbox{\large\textbf{SKPB - ITS}}}
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\arraystretch}{1}
+    \fancyfoot{}
+    \fancyfoot[C]{%
+        \hrulefill\textbf{ Selamat Mengerjakan }\hrulefill
+        \begin{center}``\textit{Jujur adalah kunci kesuksesan}''\end{center}}
+    \begin{center}
+        \underline{\textbf{\MakeUppercase{Evaluasi Akhir Semester Bersama Gasal 2023/2024}}}
+    \end{center}
+    \begin{center}
+        \begin{tabular}{lcl}
+            Mata kuliah/SKS & : & Kalkulus 1 ( #4 ) / 3 SKS\\
+            Hari, Tanggal & : & #1\\
+            Waktu & : & #2 WIB (100 menit)\\
+            Sifat & : & Tertutup\\
+            Kelas & : & #3
+        \end{tabular}
+    \end{center}
+    \noindent\rule{\textwidth}{2pt}
+    \begin{center}
+        Diberikan 5 soal, dengan bobot nilai masing-masing soal sama dan boleh dikerjakan tidak berurutan.\\
+        Tuliskan: Nama, NRP, dan Nomor Kelas pada lembar jawaban Anda.\\
+        {\small\textbf{DILARANG MEMBAWA/MENGGUNAKAN KALKULATOR DAN ALAT KOMUNIKASI}\\
+        \textbf{DILARANG MEMBERIKAN/MENERIMA JAWABAN SELAMA UJIAN}}\\
+        \textbf{``Setiap tindak kecurangan akan mendapat sanksi akademik.''}
+    \end{center}
+    \noindent\rule{\textwidth}{2pt}
+}
+\newcommand{\mulaisolusi}{%
+    \clearpage
+    \fancyhead{}
+    \fancyhead[L]{\textit{Solution By: \href{https://github.com/TetewHeroez}{Tetew}}}
+    \fancyfoot{}
+    \renewcommand{\headrulewidth}{1pt}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{center}\textbf{SOLUSI}\end{center}
+}
+
 \begin{document}
+\pdfbookmark[0]{Senin, 11 Desember 2023, 07.00--08.40 WIB -- Kelas 4--10}{paket-1}
 
     \begin{center}
 	{\underline{\textbf{\MakeUppercase{Evaluasi Akhir Semester Bersama Gasal 2023/2024}}}}
@@ -106,7 +158,7 @@
   %   \begin{center}
 	% "\textit{Jujur adalah kunci kesuksesan}"
   %   \end{center}
-    \fancyfoot{
+    \fancyfoot[C]{
     \hrulefill\textbf{ Selamat Mengerjakan }\hrulefill
 
     \begin{center}
@@ -114,7 +166,7 @@
     \end{center}}
 
     \newpage
-    \fancyhead[L]{\textit{Solution By: \hyperlink{https://github.com/TetewHeroez}{Tetew}}}
+    \fancyhead[L]{\textit{Solution By: \href{https://github.com/TetewHeroez}{Tetew}}}
     % \fancyfoot[R]{\animategraphics[autoplay,loop,width=0.1\textwidth]{15}{Kuru Kuru Herta/kuru kuru-}{0}{5}}
     \fancyfoot{}
     {\centering\textbf{SOLUSI}}
@@ -154,9 +206,75 @@
             &= 128.000\cdot 60^{2/3} + \frac{61.440.000}{4\sqrt[3]{60}} \\
             &= \boxed{768000\sqrt[3]{450}}
         \end{align*}
-        \item .
-        \item .
-        \item .
+        \newpage
+        \item Untuk $f(x)=5+4x^3-x^4$, turunan pertama dan keduanya adalah
+        \[
+            f'(x)=12x^2-4x^3=4x^2(3-x),
+            \qquad f''(x)=24x-12x^2=12x(2-x).
+        \]
+        \begin{enumerate}
+            \item Titik kritisnya adalah $x=0$ dan $x=3$. Tanda turunan pertama:
+            \[
+                \begin{array}{c|ccc}
+                    x&(-\infty,0)&(0,3)&(3,+\infty)\\ \hline
+                    f'(x)&+&+&-
+                \end{array}
+            \]
+            Jadi, $f$ naik pada $(-\infty,0)$ dan $(0,3)$, serta turun pada $(3,+\infty)$. Karena arah perubahan tidak berganti di $x=0$, kedua selang naik tersebut dapat digabung menjadi $(-\infty,3)$.
+            \item Di $x=3$, tanda $f'$ berubah dari positif ke negatif, sehingga diperoleh maksimum relatif
+            \[
+                \boxed{(3,f(3))=(3,32)}.
+            \]
+            Di $x=0$ tidak terjadi perubahan tanda $f'$, sehingga $(0,5)$ bukan titik ekstrem. Tidak ada minimum relatif.
+            \item Tanda turunan kedua memberikan
+            \[
+                \begin{array}{c|ccc}
+                    x&(-\infty,0)&(0,2)&(2,+\infty)\\ \hline
+                    f''(x)&-&+&-
+                \end{array}
+            \]
+            Fungsi cekung ke atas pada $(0,2)$ dan cekung ke bawah pada $(-\infty,0)\cup(2,+\infty)$. Karena kecekungan berubah di kedua absis tersebut, titik beloknya adalah
+            \[
+                \boxed{(0,5)\text{ dan }(2,21)}.
+            \]
+            \item Grafik melalui $(-1,0)$ dan $(0,5)$, mencapai maksimum di $(3,32)$, lalu memotong sumbu $x$ sekali lagi di antara $4$ dan $5$. Kedua ujung grafik menuju $-\infty$.
+            \begin{center}
+                \begin{tikzpicture}
+                    \begin{axis}[width=11cm,height=6.6cm,axis lines=middle,
+                        xmin=-1.6,xmax=4.6,ymin=-15,ymax=38,
+                        xlabel=$x$,ylabel=$y$,grid=major,
+                        xtick={-1,0,1,2,3,4},ytick={0,5,21,32}]
+                        \addplot[blue,thick,domain=-1.5:4.5,samples=160]{5+4*x^3-x^4};
+                        \addplot[only marks,mark=*,mark size=1.8pt]
+                            coordinates {(0,5) (2,21) (3,32) (-1,0)};
+                        \node[above left] at (axis cs:3,32) {$(3,32)$};
+                        \node[above left] at (axis cs:2,21) {$(2,21)$};
+                        \node[above left] at (axis cs:0,5) {$(0,5)$};
+                    \end{axis}
+                \end{tikzpicture}
+            \end{center}
+        \end{enumerate}
+
+        \item Gunakan substitusi $u=2x+1$, sehingga $du=2\,dx$ dan $x=\dfrac{u-1}{2}$. Batas $x=0$ menjadi $u=1$ dan $x=4$ menjadi $u=9$.
+        \begin{align*}
+            \int_0^4\frac{4x}{\sqrt{2x+1}}\,dx
+                &=\int_1^9\frac{u-1}{\sqrt{u}}\,du\\
+                &=\int_1^9\left(u^{1/2}-u^{-1/2}\right)\,du\\
+                &=\left[\frac23u^{3/2}-2u^{1/2}\right]_1^9\\
+                &=(18-6)-\left(\frac23-2\right)
+                =\boxed{\frac{40}{3}}.
+        \end{align*}
+
+        \item Ingat bahwa $\operatorname{cis}\theta=\cos\theta+i\sin\theta$. Gunakan rumus de Moivre:
+        \begin{align*}
+            \frac{(2\operatorname{cis}20^\circ)^5}
+                {(2\operatorname{cis}40^\circ)^4}
+                &=\frac{2^5\operatorname{cis}100^\circ}
+                    {2^4\operatorname{cis}160^\circ}\\
+                &=2\operatorname{cis}(-60^\circ)\\
+                &=2\left(\frac12-i\frac{\sqrt3}{2}\right)\\
+                &=\boxed{1-i\sqrt3}.
+        \end{align*}
         \item Langkah pertama adalah menuliskan sistem persamaan dalam bentuk \textit{augmented matrix} 
         \[
         \begin{bmatrix}
@@ -233,4 +351,880 @@
         \end{align*}
         Dengan demikian, kita mendapatkan solusi dari sistem persamaan linear tersebut adalah $x = -1$, $y = 2$, dan $z = -3$.
     \end{enumerate}
+% Sumber: EAS Kelas 1 Matematika.pdf, halaman 4.
+\paketsoal{Senin, 11 Desember 2023}{09.00--10.40}{11--16}{SM234101}
+\begin{enumerate}
+    \item Segiempat mempunyai dua sudut bawah pada sumbu $x$ dan dua sudut atas pada kurva $y=49-x^2$. Berapa ukuran segiempat dengan luas terbesar?
+    \item Diberikan fungsi $f(x)=-3x^5+5x^3$.
+    \begin{enumerate}
+        \item Tentukan selang di mana fungsi $f(x)$ naik atau turun.
+        \item Tentukan titik ekstrem relatif fungsi tersebut.
+        \item Tentukan selang kecekungan fungsi $f(x)$ dan titik belok (jika ada).
+        \item Sketsa grafiknya.
+    \end{enumerate}
+    \item Hitung integral $\displaystyle\int_0^2(2-x)^{10}\,dx$.
+    \item Dapatkan semua bilangan kompleks $z$ yang memenuhi persamaan $z^4-16=0$.
+    \item Diketahui matriks
+    \[
+        A=\begin{bmatrix}3&1&2\\1&4&2\\2&2&2\end{bmatrix}.
+    \]
+    \begin{enumerate}
+        \item Tentukan matriks minor dari $A$.
+        \item Tentukan matriks kofaktor dari $A$.
+        \item Tentukan matriks invers dari $A$.
+    \end{enumerate}
+\end{enumerate}
+
+\mulaisolusi
+\begin{enumerate}
+    \item \textit{(*Catatan: Segiempat pada soal ditafsirkan sebagai persegi panjang dengan sisi bawah pada sumbu $x$ dan dua sudut atas pada parabola.)}
+
+    Misalkan sudut kanan atasnya $(a,49-a^2)$, dengan $0<a<7$. Karena kedua sudut atas memiliki tinggi yang sama, sudut kiri atasnya adalah $(-a,49-a^2)$. Lebar dan tingginya adalah $2a$ dan $49-a^2$.
+    \begin{align*}
+        L(a)&=2a(49-a^2)=98a-2a^3,\\
+        L'(a)&=98-6a^2.
+    \end{align*}
+    Syarat titik kritis memberikan
+    \[
+        98-6a^2=0\quad\Longrightarrow\quad a=\frac7{\sqrt3}.
+    \]
+    Karena $L''(a)=-12a<0$ untuk $a>0$, titik ini memberikan maksimum. Pada kedua ujung interval, luasnya nol. Jadi, ukuran persegi panjang dengan luas terbesar adalah
+    \[
+        \boxed{\text{lebar}=\frac{14}{\sqrt3}=\frac{14\sqrt3}{3},
+        \qquad \text{tinggi}=\frac{98}{3}}.
+    \]
+    Luas maksimumnya adalah $\displaystyle L_{\max}=\frac{1372\sqrt3}{9}$ satuan luas.
+
+    \item Turunan pertama dan kedua fungsi adalah
+    \[
+        f'(x)=15x^2(1-x^2),\qquad f''(x)=30x(1-2x^2).
+    \]
+    \begin{enumerate}
+        \item Titik kritisnya $x=-1,0,1$. Tanda turunan pertama:
+        \[
+            \begin{array}{c|cccc}
+                x&(-\infty,-1)&(-1,0)&(0,1)&(1,+\infty)\\ \hline
+                f'(x)&-&+&+&-
+            \end{array}
+        \]
+        Fungsi naik pada $(-1,1)$, meskipun $f'(0)=0$, dan turun pada $(-\infty,-1)\cup(1,+\infty)$.
+        \item Di $x=-1$, tanda $f'$ berubah dari negatif ke positif, sehingga minimum relatifnya adalah $\boxed{(-1,-2)}$. Di $x=1$, tanda $f'$ berubah dari positif ke negatif, sehingga maksimum relatifnya adalah $\boxed{(1,2)}$. Titik $(0,0)$ bukan titik ekstrem.
+        \item Misalkan $a=\dfrac1{\sqrt2}$. Tanda turunan kedua:
+        \[
+            \begin{array}{c|cccc}
+                x&(-\infty,-a)&(-a,0)&(0,a)&(a,+\infty)\\ \hline
+                f''(x)&+&-&+&-
+            \end{array}
+        \]
+        Jadi, fungsi cekung ke atas pada $(-\infty,-a)\cup(0,a)$ dan cekung ke bawah pada $(-a,0)\cup(a,+\infty)$. Titik beloknya adalah
+        \[
+            \boxed{\left(-\frac1{\sqrt2},-\frac{7\sqrt2}{8}\right),
+            \quad(0,0),\quad
+            \left(\frac1{\sqrt2},\frac{7\sqrt2}{8}\right)}.
+        \]
+        \item Fungsi ganjil ini simetris terhadap titik asal. Dari $f(x)=x^3(5-3x^2)$, titik potong sumbu $x$ berada pada $x=-\sqrt{5/3},0,\sqrt{5/3}$.
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{axis}[width=11cm,height=6.5cm,axis lines=middle,
+                    xmin=-1.65,xmax=1.65,ymin=-7,ymax=7,
+                    xlabel=$x$,ylabel=$y$,grid=major,
+                    xtick={-1,0,1},ytick={-6,-2,0,2,6}]
+                    \addplot[blue,thick,domain=-1.6:1.6,samples=180]{-3*x^5+5*x^3};
+                    \addplot[only marks,mark=*,mark size=1.8pt]
+                        coordinates {(-1,-2) (0,0) (1,2)};
+                    \addplot[only marks,mark=*,red,mark size=1.6pt]
+                        coordinates {(-0.70710678,-1.23743687) (0.70710678,1.23743687)};
+                    \node[below] at (axis cs:-1,-2) {$(-1,-2)$};
+                    \node[above] at (axis cs:1,2) {$(1,2)$};
+                \end{axis}
+            \end{tikzpicture}
+        \end{center}
+    \end{enumerate}
+
+    \item Gunakan substitusi $u=2-x$, sehingga $du=-dx$. Batasnya berubah dari $u=2$ ke $u=0$.
+    \begin{align*}
+        \int_0^2(2-x)^{10}\,dx
+            &=-\int_2^0u^{10}\,du
+            =\int_0^2u^{10}\,du\\
+            &=\left[\frac{u^{11}}{11}\right]_0^2
+            =\boxed{\frac{2048}{11}}.
+    \end{align*}
+
+    \item Tuliskan $z^4=16\operatorname{cis}0^\circ$. Semua akar pangkat empatnya adalah
+    \[
+        z_k=2\operatorname{cis}\left(\frac{360^\circ k}{4}\right),
+        \qquad k=0,1,2,3.
+    \]
+    Jadi, $\boxed{z\in\{2,\,2i,\,-2,\,-2i\}}$.
+
+    \newpage
+    \item \begin{enumerate}
+        \item Minor $M_{ij}$ diperoleh dengan menghapus baris ke-$i$ dan kolom ke-$j$, lalu menghitung determinan matriks sisanya. Misalnya,
+        \[
+            M_{11}=\begin{vmatrix}4&2\\2&2\end{vmatrix}=4,\qquad
+            M_{12}=\begin{vmatrix}1&2\\2&2\end{vmatrix}=-2.
+        \]
+        Dengan cara yang sama, diperoleh matriks minor
+        \[
+            \boxed{M=\begin{bmatrix}4&-2&-6\\-2&2&4\\-6&4&11\end{bmatrix}}.
+        \]
+        \item Kofaktor diberikan oleh $C_{ij}=(-1)^{i+j}M_{ij}$. Pola tandanya adalah
+        $\begin{bmatrix}+&-&+\\-&+&-\\+&-&+\end{bmatrix}$, sehingga
+        \[
+            \boxed{C=\begin{bmatrix}4&2&-6\\2&2&-4\\-6&-4&11\end{bmatrix}}.
+        \]
+        \item Ekspansi determinan pada baris pertama menghasilkan
+        \[
+            \det A=3(4)+1(2)+2(-6)=2\neq0.
+        \]
+        Dengan $\operatorname{adj}(A)=C^{\mathsf T}$, diperoleh
+        \[
+            \boxed{A^{-1}=\frac1{\det A}C^{\mathsf T}
+                =\frac12\begin{bmatrix}4&2&-6\\2&2&-4\\-6&-4&11\end{bmatrix}}.
+        \]
+    \end{enumerate}
+\end{enumerate}
+
+% Sumber: WhatsApp Image 2026-10-20 at 11.36.23.jpeg.
+\paketsoal{Senin, 11 Desember 2023}{11.00--12.40}{31--37}{SM234101}
+\begin{enumerate}
+    \item Diberikan $z=3x^3y^2$ dengan $x$ dan $y$ berubah terhadap waktu $(t)$. Pada saat tertentu jika $x=2$ dan $y=3$, laju $x$ berkurang $2$ satuan/detik dan laju $y$ bertambah $3$ satuan/detik. Dapatkan laju perubahan $z$ saat itu. Apakah $z$ bertambah atau berkurang?
+    \item Diberikan fungsi $f(x)=2x^3+3x^2-12x+9$.
+    \begin{enumerate}
+        \item Tentukan selang di mana fungsi $f(x)$ naik atau turun.
+        \item Tentukan titik ekstrem relatif fungsi tersebut.
+        \item Tentukan selang kecekungan fungsi $f(x)$ dan titik belok (jika ada).
+        \item Sketsa grafiknya.
+    \end{enumerate}
+    \item Misalkan $\displaystyle F(x)=\int_0^a\frac{s-2}{s^3+1}\,ds$. Dapatkan $F(0)$, $F'(0)$, dan $F''(0)$.
+    \item Tentukan bagian real dan bagian imajiner dari bilangan kompleks
+    \[
+        z=\left(\frac1{\sqrt2}-\frac1{\sqrt2}i\right)^{-6}.
+    \]
+    \item Selesaikan sistem persamaan linear berikut:
+    \[
+        \begin{aligned}
+            3x+y+2z&=4,\\
+            x+4y+2z&=12,\\
+            2x+2y+2z&=6,
+        \end{aligned}
+    \]
+    dengan menggunakan metode invers.
+\end{enumerate}
+
+\mulaisolusi
+\begin{enumerate}
+    \item Karena $x$ berkurang dan $y$ bertambah, $\dfrac{dx}{dt}=-2$ dan $\dfrac{dy}{dt}=3$. Turunkan $z=3x^3y^2$ terhadap $t$ dengan aturan hasil kali dan aturan rantai.
+    \begin{align*}
+        \frac{dz}{dt}
+            &=9x^2y^2\frac{dx}{dt}+6x^3y\frac{dy}{dt}\\
+            &=9(2)^2(3)^2(-2)+6(2)^3(3)(3)\\
+            &=-648+432=\boxed{-216}.
+    \end{align*}
+    Jadi, $z$ \textbf{berkurang dengan laju $216$ satuan/detik}.
+
+    \item Turunan pertama dan kedua fungsi adalah
+    \[
+        f'(x)=6x^2+6x-12=6(x+2)(x-1),
+        \qquad f''(x)=12x+6.
+    \]
+    \begin{enumerate}
+        \item Titik kritisnya adalah $x=-2$ dan $x=1$.
+        \[
+            \begin{array}{c|ccc}
+                x&(-\infty,-2)&(-2,1)&(1,+\infty)\\ \hline
+                f'(x)&+&-&+
+            \end{array}
+        \]
+        Jadi, fungsi naik pada $(-\infty,-2)\cup(1,+\infty)$ dan turun pada $(-2,1)$.
+        \item Perubahan tanda $f'$ dari positif ke negatif di $x=-2$ memberikan maksimum relatif $\boxed{(-2,29)}$. Perubahan dari negatif ke positif di $x=1$ memberikan minimum relatif $\boxed{(1,2)}$.
+        \item Karena $f''(x)<0$ untuk $x<-\dfrac12$ dan $f''(x)>0$ untuk $x>-\dfrac12$, fungsi cekung ke bawah pada $(-\infty,-\frac12)$ dan cekung ke atas pada $(-\frac12,+\infty)$. Titik beloknya adalah
+        \[
+            \boxed{\left(-\frac12,f\left(-\frac12\right)\right)
+                =\left(-\frac12,\frac{31}{2}\right)}.
+        \]
+        \item Grafik melalui $(0,9)$ dan memotong sumbu $x$ di antara $-4$ dan $-3$. Gunakan titik ekstrem serta titik belok untuk membuat sketsa berikut.
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{axis}[width=11cm,height=6.6cm,axis lines=middle,
+                    xmin=-4.2,xmax=2.6,ymin=-20,ymax=40,
+                    xlabel=$x$,ylabel=$y$,grid=major,
+                    xtick={-4,-3,-2,-1,0,1,2},ytick={0,9,20,29}]
+                    \addplot[blue,thick,domain=-4.2:2.6,samples=160]{2*x^3+3*x^2-12*x+9};
+                    \addplot[only marks,mark=*,mark size=1.8pt]
+                        coordinates {(-2,29) (-0.5,15.5) (1,2) (0,9)};
+                    \node[above] at (axis cs:-2,29) {$(-2,29)$};
+                    \node[above right] at (axis cs:1,2) {$(1,2)$};
+                    \node[left] at (axis cs:-0.5,15.5) {$(-\frac12,\frac{31}{2})$};
+                \end{axis}
+            \end{tikzpicture}
+        \end{center}
+    \end{enumerate}
+
+    \newpage
+    \item \textit{(*Catatan: Pada foto, batas atas integral tertulis $a$. Jika $a$ merupakan konstanta dan integralnya terdefinisi, maka $F$ konstan terhadap $x$, sehingga $F'(0)=F''(0)=0$ dan $F(0)=\int_0^a\frac{s-2}{s^3+1}\,ds$. Nilai numerik $F(0)$ tidak dapat ditentukan tanpa nilai $a$.)}
+
+    \textbf{Jika batas atas yang dimaksud adalah $x$}, gunakan
+    \[
+        F(x)=\int_0^x\frac{s-2}{s^3+1}\,ds.
+    \]
+    Integran kontinu di sekitar $0$, sehingga Teorema Fundamental Kalkulus dapat digunakan.
+    \begin{align*}
+        F(0)&=\int_0^0\frac{s-2}{s^3+1}\,ds=\boxed{0},\\
+        F'(x)&=\frac{x-2}{x^3+1}
+            \quad\Longrightarrow\quad F'(0)=\boxed{-2},\\
+        F''(x)&=\frac{(x^3+1)-3x^2(x-2)}{(x^3+1)^2}
+            =\frac{-2x^3+6x^2+1}{(x^3+1)^2}\\
+            &\hspace{2cm}\Longrightarrow\quad F''(0)=\boxed{1}.
+    \end{align*}
+
+    \item Modulus $\dfrac1{\sqrt2}-\dfrac1{\sqrt2}i$ adalah $1$, dan argumennya $-45^\circ$. Dengan rumus de Moivre,
+    \begin{align*}
+        z&=\bigl(\operatorname{cis}(-45^\circ)\bigr)^{-6}
+            =\operatorname{cis}270^\circ\\
+            &=\cos270^\circ+i\sin270^\circ=-i.
+    \end{align*}
+    Maka, $\boxed{\operatorname{Re}(z)=0,\quad\operatorname{Im}(z)=-1}$.
+
+    \item Tulis sistem dalam bentuk $AX=b$, dengan
+    \[
+        A=\begin{bmatrix}3&1&2\\1&4&2\\2&2&2\end{bmatrix},
+        \quad X=\begin{bmatrix}x\\y\\z\end{bmatrix},
+        \quad b=\begin{bmatrix}4\\12\\6\end{bmatrix}.
+    \]
+    Matriks kofaktor dan determinan $A$ adalah
+    \[
+        C=\begin{bmatrix}4&2&-6\\2&2&-4\\-6&-4&11\end{bmatrix},
+        \qquad \det A=3(4)+1(2)+2(-6)=2.
+    \]
+    Karena determinannya tidak nol, invers $A$ ada dan $X=A^{-1}b$.
+    \begin{align*}
+        X&=\frac12
+            \begin{bmatrix}4&2&-6\\2&2&-4\\-6&-4&11\end{bmatrix}
+            \begin{bmatrix}4\\12\\6\end{bmatrix}\\
+            &=\frac12\begin{bmatrix}16+24-36\\8+24-24\\-24-48+66\end{bmatrix}
+            =\begin{bmatrix}2\\4\\-3\end{bmatrix}.
+    \end{align*}
+    Jadi, $\boxed{x=2,\quad y=4,\quad z=-3}$.
+\end{enumerate}
+
+% Sumber: EAS Kelas 1 Matematika.pdf, halaman 1.
+\paketsoal{Selasa, 12 Desember 2023}{09.00--10.40}{24--30}{SM234101}
+\begin{enumerate}
+    \item Pasir dituangkan dari suatu luncuran akan membentuk berupa kerucut dengan ketinggian selalu sama dengan diameter. Jika ketinggian bertambah dengan laju $8$ m/menit, dengan laju berapa pasir dituangkan dari peluncuran jika ketinggian tumpukan $12$ m?
+    \item Diberikan fungsi $f(x)=1+(1-2x)^3$.
+    \begin{enumerate}
+        \item Tentukan selang di mana fungsi $f(x)$ naik atau turun.
+        \item Tentukan titik ekstrem relatif fungsi tersebut.
+        \item Tentukan selang kecekungan fungsi $f(x)$ dan titik belok (jika ada).
+        \item Sketsa grafiknya.
+    \end{enumerate}
+    \item Diberikan $\displaystyle F(x)=\int_4^x\sqrt{t^2+9}\,dt$. Dapatkan $F(4)$, $F'(4)$, dan $F''(4)$.
+    \item Dapatkan semua bilangan kompleks $z$ yang memenuhi persamaan $z^3=\sqrt3+i$, serta sketsa semua bilangan kompleks tersebut.
+    \item Hitung determinan dari
+    \[
+        \begin{vmatrix}
+            2&3&4&2\\
+            3&-4&-1&1\\
+            -1&3&2&3\\
+            2&-2&1&3
+        \end{vmatrix}.
+    \]
+\end{enumerate}
+
+\mulaisolusi
+\begin{enumerate}
+    \item Misalkan $r$ adalah jari-jari alas dan $h$ tinggi tumpukan. Karena tinggi sama dengan diameter, $h=2r$, sehingga $r=\dfrac h2$.
+    \begin{align*}
+        V&=\frac13\pi r^2h
+            =\frac13\pi\left(\frac h2\right)^2h
+            =\frac{\pi}{12}h^3,\\
+        \frac{dV}{dt}&=\frac{\pi}{4}h^2\frac{dh}{dt}.
+    \end{align*}
+    Ketika $h=12$ dan $\dfrac{dh}{dt}=8$, diperoleh
+    \[
+        \boxed{\frac{dV}{dt}=\frac{\pi}{4}(12)^2(8)
+            =288\pi\ \text{m}^3/\text{menit}}.
+    \]
+    Inilah laju volume pasir yang dituangkan.
+
+    \item Turunan pertama dan kedua fungsi adalah
+    \[
+        f'(x)=-6(1-2x)^2,\qquad f''(x)=24(1-2x).
+    \]
+    \begin{enumerate}
+        \item Untuk setiap $x\neq\dfrac12$, berlaku $f'(x)<0$, sedangkan $f'(\frac12)=0$. Jadi, fungsi turun pada $(-\infty,\frac12)$ dan $(\frac12,+\infty)$; secara keseluruhan fungsi turun secara ketat pada $\mathbb{R}$. Tidak ada selang naik.
+        \item Satu-satunya titik kritis adalah $x=\dfrac12$. Karena $f'$ tetap negatif pada kedua sisinya, titik tersebut bukan ekstrem. Jadi, \textbf{tidak ada ekstrem relatif}.
+        \item Turunan kedua positif untuk $x<\dfrac12$ dan negatif untuk $x>\dfrac12$. Maka, fungsi cekung ke atas pada $(-\infty,\frac12)$ dan cekung ke bawah pada $(\frac12,+\infty)$. Titik beloknya
+        \[
+            \boxed{\left(\frac12,1\right)}.
+        \]
+        \item Grafik melalui $(0,2)$ dan $(1,0)$, serta memiliki garis singgung horizontal di titik belok $(\frac12,1)$.
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{axis}[width=10.5cm,height=6.5cm,axis lines=middle,
+                    xmin=-0.6,xmax=1.6,ymin=-9,ymax=11,
+                    xlabel=$x$,ylabel=$y$,grid=major,
+                    xtick={0,0.5,1},xticklabels={$0$,$\frac12$,$1$},
+                    ytick={-7,0,1,2,9}]
+                    \addplot[blue,thick,domain=-0.6:1.6,samples=150]{1+(1-2*x)^3};
+                    \addplot[only marks,mark=*,mark size=1.8pt]
+                        coordinates {(0,2) (0.5,1) (1,0)};
+                    \node[above right] at (axis cs:0.5,1) {$(\frac12,1)$};
+                \end{axis}
+            \end{tikzpicture}
+        \end{center}
+    \end{enumerate}
+
+    \item Gunakan sifat integral dengan batas yang sama dan Teorema Fundamental Kalkulus.
+    \begin{align*}
+        F(4)&=\int_4^4\sqrt{t^2+9}\,dt=\boxed{0},\\
+        F'(x)&=\sqrt{x^2+9}
+            \quad\Longrightarrow\quad F'(4)=\sqrt{25}=\boxed{5},\\
+        F''(x)&=\frac{x}{\sqrt{x^2+9}}
+            \quad\Longrightarrow\quad F''(4)=\boxed{\frac45}.
+    \end{align*}
+
+    \item Modulus $\sqrt3+i$ adalah $2$ dan argumennya $30^\circ$, sehingga
+    \[
+        z^3=2\operatorname{cis}30^\circ.
+    \]
+    Semua akar pangkat tiganya adalah
+    \[
+        z_k=\sqrt[3]{2}\operatorname{cis}
+            \left(\frac{30^\circ+360^\circ k}{3}\right),\qquad k=0,1,2.
+    \]
+    Dengan demikian,
+    \[
+        \boxed{z_0=\sqrt[3]{2}\operatorname{cis}10^\circ,\quad
+        z_1=\sqrt[3]{2}\operatorname{cis}130^\circ,\quad
+        z_2=\sqrt[3]{2}\operatorname{cis}250^\circ}.
+    \]
+    Ketiga titik terletak pada lingkaran berjari-jari $\sqrt[3]{2}$ dan berbeda sudut $120^\circ$.
+    \begin{center}
+        \begin{tikzpicture}[scale=1.8]
+            \def\r{1.25992105}
+            \draw[->] (-1.65,0)--(1.75,0) node[right] {$\operatorname{Re}z$};
+            \draw[->] (0,-1.65)--(0,1.65) node[above] {$\operatorname{Im}z$};
+            \draw[dashed,gray] (0,0) circle (\r);
+            \foreach \a/\lab in {10/z_0,130/z_1,250/z_2}
+            {
+                \draw[gray] (0,0)--(\a:\r);
+                \fill[blue] (\a:\r) circle (1.2pt);
+                \node at (\a:1.48) {$\lab$};
+            }
+            \node[below left] at (0,0) {$0$};
+            \draw[->] (0.55,0) arc[start angle=0,end angle=10,radius=0.55];
+            \node[above right] at (0.58,0.07) {$10^\circ$};
+        \end{tikzpicture}
+    \end{center}
+
+    \item Misalkan determinan yang ditanyakan adalah $D$. Tukar $B_1$ dan $B_3$; pertukaran ini mengubah tanda determinan. Kemudian lakukan
+    \[
+        B_2\leftarrow B_2+3B_1,\qquad
+        B_3\leftarrow B_3+2B_1,\qquad
+        B_4\leftarrow B_4+2B_1.
+    \]
+    Penambahan kelipatan baris lain tidak mengubah determinan. Dengan ekspansi pada kolom pertama,
+    \begin{align*}
+        D&=-\begin{vmatrix}
+            -1&3&2&3\\
+            0&5&5&10\\
+            0&9&8&8\\
+            0&4&5&9
+        \end{vmatrix}
+        =\begin{vmatrix}5&5&10\\9&8&8\\4&5&9\end{vmatrix}\\
+        &=5(8\cdot9-8\cdot5)
+          -5(9\cdot9-8\cdot4)
+          +10(9\cdot5-8\cdot4)\\
+        &=160-245+130=\boxed{45}.
+    \end{align*}
+\end{enumerate}
+
+% Sumber: EAS Kelas 1 Matematika.pdf, halaman 2.
+\paketsoal{Selasa, 12 Desember 2023}{11.00--12.40}{38--43, 60}{SM234101}
+\begin{enumerate}
+    \item Papan kayu dengan panjang $15$ m bersandar di tembok. Jika suatu saat bagian papan $3$ m dari tembok dan ditekan ke tembok dengan laju $9$ m/detik, seberapa cepatkah bertambahnya sudut lancip yang dibuat papan tersebut dengan tanah?
+    \item Diberikan fungsi $\displaystyle f(x)=\frac{x-5}{x-1}$.
+    \begin{enumerate}
+        \item Tentukan asimtot datar dan tegaknya (jika ada).
+        \item Tentukan selang di mana fungsi $f(x)$ naik atau turun.
+        \item Tentukan titik ekstrem relatif fungsi tersebut.
+        \item Tentukan selang kecekungan fungsi $f(x)$ dan titik belok (jika ada).
+        \item Sketsa grafiknya.
+    \end{enumerate}
+    \item Dapatkan $f(2)$ dengan menggunakan Teorema Fundamental Kalkulus II jika
+    \[
+        \int_0^x f(t)\,dt=\frac23(x^4+9)^{3/2}.
+    \]
+    \item Dapatkan semua bilangan kompleks $z$ yang memenuhi
+    \[
+        z^5=-\frac12+\frac{\sqrt3}{2}i.
+    \]
+    \item Carilah nilai $x_4$ dari sistem persamaan linear berikut:
+    \[
+        \begin{aligned}
+            3x_1+x_2+2x_3+3x_4&=30,\\
+            x_1+4x_2+2x_3+2x_4&=13,\\
+            2x_1+x_2+5x_3-3x_4&=9,\\
+            x_1+3x_2+2x_3+4x_4&=25,
+        \end{aligned}
+    \]
+    dengan menggunakan metode Cramer.
+\end{enumerate}
+
+\mulaisolusi
+\begin{enumerate}
+    \item Misalkan $x$ jarak kaki papan ke tembok dan $\theta$ sudut lancip antara papan dengan tanah. Panjang papan tetap $15$, sehingga
+    \[
+        x=15\cos\theta.
+    \]
+    Karena kaki papan bergerak mendekati tembok, $\dfrac{dx}{dt}=-9$. Turunkan persamaan terhadap waktu:
+    \[
+        \frac{dx}{dt}=-15\sin\theta\frac{d\theta}{dt}.
+    \]
+    Ketika $x=3$, tinggi ujung papan adalah
+    \[
+        y=\sqrt{15^2-3^2}=\sqrt{216}=6\sqrt6,
+        \qquad 15\sin\theta=y.
+    \]
+    Maka,
+    \[
+        \boxed{\frac{d\theta}{dt}
+            =\frac{-(-9)}{6\sqrt6}
+            =\frac{\sqrt6}{4}\ \text{radian/detik}}.
+    \]
+    Tanda positif menunjukkan bahwa sudutnya bertambah.
+
+    \item Tulis ulang fungsi sebagai
+    \[
+        f(x)=1-\frac4{x-1},\qquad D_f=\mathbb{R}\setminus\{1\}.
+    \]
+    \begin{enumerate}
+        \item Karena $\lim\limits_{x\to\pm\infty}f(x)=1$, asimtot datarnya adalah $\boxed{y=1}$. Selain itu,
+        \[
+            \lim_{x\to1^-}f(x)=+\infty,\qquad
+            \lim_{x\to1^+}f(x)=-\infty,
+        \]
+        sehingga asimtot tegaknya adalah $\boxed{x=1}$.
+        \item Turunan pertama fungsi adalah
+        \[
+            f'(x)=\frac4{(x-1)^2}>0,\qquad x\neq1.
+        \]
+        Jadi, fungsi naik pada $(-\infty,1)$ dan $(1,+\infty)$. Tidak ada selang turun.
+        \item Tidak ada titik dengan $f'(x)=0$ pada domainnya, sedangkan $x=1$ bukan anggota domain. Jadi, \textbf{tidak ada ekstrem relatif}.
+        \item Turunan kedua:
+        \[
+            f''(x)=-\frac8{(x-1)^3}.
+        \]
+        Untuk $x<1$, turunan kedua positif; untuk $x>1$, turunan kedua negatif. Jadi, fungsi cekung ke atas pada $(-\infty,1)$ dan cekung ke bawah pada $(1,+\infty)$. \textbf{Tidak ada titik belok}, karena perubahan kecekungan terjadi melewati $x=1$, tempat fungsi tidak terdefinisi.
+        \item Titik potong sumbu $x$ adalah $(5,0)$ dan titik potong sumbu $y$ adalah $(0,5)$.
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{axis}[width=11cm,height=6.5cm,axis lines=middle,
+                    xmin=-5,xmax=8,ymin=-10,ymax=12,
+                    xlabel=$x$,ylabel=$y$,grid=major,
+                    xtick={-4,-2,0,1,3,5,7},ytick={-8,-4,0,1,5,9}]
+                    \addplot[gray,dashed] coordinates {(1,-10) (1,12)};
+                    \addplot[gray,dashed] coordinates {(-5,1) (8,1)};
+                    \addplot[blue,thick,domain=-5:0.65,samples=120]{(x-5)/(x-1)};
+                    \addplot[blue,thick,domain=1.3:8,samples=120]{(x-5)/(x-1)};
+                    \addplot[only marks,mark=*,mark size=1.8pt] coordinates {(0,5) (5,0)};
+                    \node[left] at (axis cs:0,5) {$(0,5)$};
+                    \node[below right,xshift=4pt,yshift=-5pt] at (axis cs:5,0) {$(5,0)$};
+                    \node[right] at (axis cs:1,10) {$x=1$};
+                    \node[above] at (axis cs:6.7,1) {$y=1$};
+                \end{axis}
+            \end{tikzpicture}
+        \end{center}
+    \end{enumerate}
+
+    \item \textit{(*Catatan: Identitas pada soal tidak konsisten di $x=0$: ruas kiri bernilai $0$, sedangkan ruas kanan bernilai $\frac23(9)^{3/2}=18$. Karena itu, tidak ada fungsi kontinu yang memenuhi identitas tersebut sebagaimana tertulis.)}
+
+    Untuk memperoleh hasil yang dimaksud melalui Teorema Fundamental Kalkulus, turunkan ruas kanan:
+    \begin{align*}
+        f(x)&=\frac{d}{dx}\left[\frac23(x^4+9)^{3/2}\right]\\
+            &=\frac23\cdot\frac32(x^4+9)^{1/2}\cdot4x^3\\
+            &=4x^3\sqrt{x^4+9}.
+    \end{align*}
+    Dengan demikian, \textbf{hasil dari penafsiran ini} adalah
+    \[
+        \boxed{f(2)=4(2)^3\sqrt{2^4+9}=32(5)=160}.
+    \]
+    Identitas integral yang konsisten untuk fungsi tersebut adalah
+    \[
+        \int_0^x f(t)\,dt=\frac23(x^4+9)^{3/2}-18.
+    \]
+
+    \item Bilangan $-\dfrac12+\dfrac{\sqrt3}{2}i$ mempunyai modulus $1$ dan argumen $120^\circ$. Jadi,
+    \[
+        z_k=\operatorname{cis}\left(\frac{120^\circ+360^\circ k}{5}\right)
+            =\operatorname{cis}(24^\circ+72^\circ k),
+        \qquad k=0,1,2,3,4.
+    \]
+    Semua solusinya adalah
+    \[
+        \boxed{\operatorname{cis}24^\circ,\quad
+        \operatorname{cis}96^\circ,\quad
+        \operatorname{cis}168^\circ,\quad
+        \operatorname{cis}240^\circ,\quad
+        \operatorname{cis}312^\circ}.
+    \]
+
+    \newpage
+    \item Matriks koefisien dan vektor konstanta sistem adalah
+    \[
+        A=\begin{bmatrix}
+            3&1&2&3\\1&4&2&2\\2&1&5&-3\\1&3&2&4
+        \end{bmatrix},
+        \qquad
+        b=\begin{bmatrix}30\\13\\9\\25\end{bmatrix}.
+    \]
+    Dengan metode Cramer, $x_4=\dfrac{\det A_4}{\det A}$, dengan $A_4$ diperoleh dengan mengganti kolom keempat $A$ oleh $b$:
+    \[
+        A_4=\begin{bmatrix}
+            3&1&2&30\\1&4&2&13\\2&1&5&9\\1&3&2&25
+        \end{bmatrix}.
+    \]
+    Untuk kedua determinan, tukar $B_1$ dengan $B_2$, lalu lakukan
+    \[
+        B_2\leftarrow B_2-3B_1,\qquad
+        B_3\leftarrow B_3-2B_1,\qquad
+        B_4\leftarrow B_4-B_1.
+    \]
+    Ekspansi pada kolom pertama menghasilkan
+    \begin{align*}
+        \det A
+            &=-\begin{vmatrix}-11&-4&-3\\-7&1&-7\\-1&0&2\end{vmatrix}\\
+            &=-\left[(-11)(2)-(-4)(-21)+(-3)(1)\right]
+            =109,\\
+        \det A_4
+            &=-\begin{vmatrix}-11&-4&-9\\-7&1&-17\\-1&0&12\end{vmatrix}\\
+            &=-\left[(-11)(12)-(-4)(-101)+(-9)(1)\right]
+            =545.
+    \end{align*}
+    Karena $\det A\neq0$, diperoleh
+    \[
+        \boxed{x_4=\frac{545}{109}=5}.
+    \]
+\end{enumerate}
+
+% Sumber: EAS Kelas 1 Matematika.pdf, halaman 5.
+% Halaman 6 memuat salinan paket yang sama dan tidak ditambahkan ulang.
+\paketsoal{Selasa, 12 Desember 2023}{13.30--15.10}{44--50}{SM234101}
+\begin{enumerate}
+    \item Tangki air berbentuk kerucut dengan jari-jari alasnya $12$ m dan tinggi kerucut $30$ m. Jika air mengalir ke dalam tangki dengan laju $24$ m$^3$/menit, berapa cepat kedalaman air bertambah pada saat kedalaman air $20$ m?
+    \item Diberikan fungsi $f(x)=1+2x^2-x^4$.
+    \begin{enumerate}
+        \item Tentukan selang di mana fungsi $f(x)$ naik atau turun.
+        \item Tentukan titik ekstrem relatif fungsi tersebut.
+        \item Tentukan selang kecekungan fungsi $f(x)$ dan titik belok (jika ada).
+        \item Sketsa grafiknya.
+    \end{enumerate}
+    \item Hitung integral
+    \[
+        \int_0^1\frac{x+2}{\sqrt{x^2+4x+5}}\,dx.
+    \]
+    \item Dapatkan semua bilangan kompleks $z$ yang memenuhi persamaan $z^2=-1+i$, serta sketsa semua bilangan kompleks tersebut.
+    \item Selesaikan sistem persamaan linear berikut:
+    \[
+        \begin{aligned}
+            2x_1+x_2+2x_3-x_4&=3,\\
+            2x_1+x_2-2x_3-2x_4&=-2,\\
+            -x_1+2x_2-4x_3+x_4&=1,\\
+            3x_1+4x_2-x_3-3x_4&=-3,
+        \end{aligned}
+    \]
+    dengan menggunakan metode Gauss.
+\end{enumerate}
+
+\mulaisolusi
+\begin{enumerate}
+    \item Gunakan model tangki kerucut dengan ujung runcing di bawah. Misalkan $h$ adalah kedalaman air diukur dari ujung tersebut dan $r$ jari-jari permukaan air. Dari kesebangunan,
+    \[
+        \frac rh=\frac{12}{30}=\frac25
+        \quad\Longrightarrow\quad r=\frac25h.
+    \]
+    Volume air dan turunannya terhadap waktu adalah
+    \begin{align*}
+        V&=\frac13\pi r^2h
+            =\frac13\pi\left(\frac25h\right)^2h
+            =\frac{4\pi}{75}h^3,\\
+        \frac{dV}{dt}&=\frac{4\pi}{25}h^2\frac{dh}{dt}.
+    \end{align*}
+    Substitusikan $\dfrac{dV}{dt}=24$ dan $h=20$:
+    \[
+        24=\frac{4\pi}{25}(20)^2\frac{dh}{dt}
+        \quad\Longrightarrow\quad
+        \boxed{\frac{dh}{dt}=\frac3{8\pi}\ \text{m/menit}}.
+    \]
+
+    \item Turunan pertama dan kedua fungsi adalah
+    \[
+        f'(x)=4x(1-x^2),\qquad f''(x)=4-12x^2.
+    \]
+    \begin{enumerate}
+        \item Titik kritisnya adalah $x=-1,0,1$. Tanda turunan pertama:
+        \[
+            \begin{array}{c|cccc}
+                x&(-\infty,-1)&(-1,0)&(0,1)&(1,+\infty)\\ \hline
+                f'(x)&+&-&+&-
+            \end{array}
+        \]
+        Fungsi naik pada $(-\infty,-1)\cup(0,1)$ dan turun pada $(-1,0)\cup(1,+\infty)$.
+        \item Tanda $f'$ berubah dari positif ke negatif di $x=-1$ dan $x=1$, sehingga maksimum relatifnya adalah $\boxed{(-1,2)\text{ dan }(1,2)}$. Di $x=0$, tanda berubah dari negatif ke positif, sehingga minimum relatifnya adalah $\boxed{(0,1)}$.
+        \item Turunan kedua positif jika $|x|<\dfrac1{\sqrt3}$ dan negatif jika $|x|>\dfrac1{\sqrt3}$. Jadi, fungsi cekung ke atas pada $(-\frac1{\sqrt3},\frac1{\sqrt3})$ dan cekung ke bawah pada $(-\infty,-\frac1{\sqrt3})\cup(\frac1{\sqrt3},+\infty)$.
+
+        Titik beloknya adalah
+        \[
+            \boxed{\left(-\frac1{\sqrt3},\frac{14}{9}\right)
+            \quad\text{dan}\quad
+            \left(\frac1{\sqrt3},\frac{14}{9}\right)}.
+        \]
+        \item Grafik simetris terhadap sumbu $y$. Titik potong sumbu $x$ diperoleh dari $x^4-2x^2-1=0$, yaitu $x=\pm\sqrt{1+\sqrt2}$. Kedua ujung grafik menuju $-\infty$.
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{axis}[width=11cm,height=6.5cm,axis lines=middle,
+                    xmin=-2,xmax=2,ymin=-4,ymax=3,
+                    xlabel=$x$,ylabel=$y$,grid=major,
+                    xtick={-2,-1,0,1,2},ytick={-4,-2,0,1,2}]
+                    \addplot[blue,thick,domain=-2:2,samples=160]{1+2*x^2-x^4};
+                    \addplot[only marks,mark=*,mark size=1.8pt]
+                        coordinates {(-1,2) (0,1) (1,2)};
+                    \addplot[only marks,mark=*,red,mark size=1.6pt]
+                        coordinates {(-0.57735027,1.55555556) (0.57735027,1.55555556)};
+                    \node[above] at (axis cs:-1,2) {$(-1,2)$};
+                    \node[above] at (axis cs:1,2) {$(1,2)$};
+                    \node[below right] at (axis cs:0,1) {$(0,1)$};
+                \end{axis}
+            \end{tikzpicture}
+        \end{center}
+    \end{enumerate}
+
+    \item Gunakan $u=x^2+4x+5$, sehingga $du=2(x+2)\,dx$. Batas $x=0$ menjadi $u=5$ dan $x=1$ menjadi $u=10$.
+    \begin{align*}
+        \int_0^1\frac{x+2}{\sqrt{x^2+4x+5}}\,dx
+            &=\frac12\int_5^{10}u^{-1/2}\,du\\
+            &=\left[\sqrt{u}\right]_5^{10}
+            =\boxed{\sqrt{10}-\sqrt5}.
+    \end{align*}
+
+    \item Modulus $-1+i$ adalah $\sqrt2$ dan argumennya $135^\circ$. Akar pangkat duanya adalah
+    \[
+        z_k=2^{1/4}\operatorname{cis}
+            \left(\frac{135^\circ+360^\circ k}{2}\right),\qquad k=0,1.
+    \]
+    Jadi,
+    \[
+        \boxed{z_0=2^{1/4}\operatorname{cis}67{,}5^\circ,
+        \qquad z_1=2^{1/4}\operatorname{cis}247{,}5^\circ}.
+    \]
+    Dalam bentuk kartesius, kedua akar tersebut dapat ditulis
+    \[
+        \boxed{z=\pm\left(\sqrt{\frac{\sqrt2-1}{2}}
+            +i\sqrt{\frac{\sqrt2+1}{2}}\right)}.
+    \]
+    Keduanya terletak pada lingkaran berjari-jari $2^{1/4}$ dan saling berlawanan terhadap titik asal.
+    \begin{center}
+        \begin{tikzpicture}[scale=1.8]
+            \def\r{1.18920712}
+            \draw[->] (-1.55,0)--(1.65,0) node[right] {$\operatorname{Re}z$};
+            \draw[->] (0,-1.55)--(0,1.65) node[above] {$\operatorname{Im}z$};
+            \draw[dashed,gray] (0,0) circle (\r);
+            \draw[gray] (247.5:\r)--(67.5:\r);
+            \fill[blue] (67.5:\r) circle (1.2pt) node[above right] {$z_0$};
+            \fill[blue] (247.5:\r) circle (1.2pt) node[below left] {$z_1$};
+            \draw[->] (0.45,0) arc[start angle=0,end angle=67.5,radius=0.45];
+            \node[right] at (0.4,0.38) {$67{,}5^\circ$};
+            \node[below left] at (0,0) {$0$};
+        \end{tikzpicture}
+    \end{center}
+
+    \newpage
+    \item Bentuk matriks diperbesar dari sistem adalah
+    \[
+        \left[\begin{array}{rrrr|r}
+            2&1&2&-1&3\\
+            2&1&-2&-2&-2\\
+            -1&2&-4&1&1\\
+            3&4&-1&-3&-3
+        \end{array}\right].
+    \]
+    Tukar $B_1$ dan $B_3$, kemudian kalikan baris pertama yang baru dengan $-1$. Lanjutkan dengan $B_2\leftarrow B_2-2B_1$, $B_3\leftarrow B_3-2B_1$, dan $B_4\leftarrow B_4-3B_1$.
+    \[
+        \left[\begin{array}{rrrr|r}
+            1&-2&4&-1&-1\\
+            0&5&-10&0&0\\
+            0&5&-6&1&5\\
+            0&10&-13&0&0
+        \end{array}\right].
+    \]
+    Bagi $B_2$ dengan $5$, lalu lakukan $B_3\leftarrow B_3-5B_2$ dan $B_4\leftarrow B_4-10B_2$.
+    \[
+        \left[\begin{array}{rrrr|r}
+            1&-2&4&-1&-1\\
+            0&1&-2&0&0\\
+            0&0&4&1&5\\
+            0&0&7&0&0
+        \end{array}\right]
+        \xrightarrow{B_4\leftarrow4B_4-7B_3}
+        \left[\begin{array}{rrrr|r}
+            1&-2&4&-1&-1\\
+            0&1&-2&0&0\\
+            0&0&4&1&5\\
+            0&0&0&-7&-35
+        \end{array}\right].
+    \]
+    Matriks sudah berbentuk eselon. Substitusi balik memberikan
+    \begin{align*}
+        -7x_4&=-35 &&\Longrightarrow x_4=5,\\
+        4x_3+x_4&=5 &&\Longrightarrow x_3=0,\\
+        x_2-2x_3&=0 &&\Longrightarrow x_2=0,\\
+        x_1-2x_2+4x_3-x_4&=-1 &&\Longrightarrow x_1=4.
+    \end{align*}
+    Jadi, $\boxed{(x_1,x_2,x_3,x_4)=(4,0,0,5)}$.
+\end{enumerate}
+
+% Sumber: EAS Kelas 1 Matematika.pdf, halaman 7.
+% Kode mata kuliah mengikuti cetakan pada sumber sesi ini.
+\paketsoal{Selasa, 12 Desember 2023}{15.30--17.10}{51--56, 61}{SM224101}
+\begin{enumerate}
+    \item Roket naik vertikal dan dipantau oleh stasiun radar yang terletak $10$ km dari landasan peluncuran. Berapa cepat roket naik jika tingginya $6$ km dan jaraknya dari stasiun radar bertambah dengan laju $3000$ km/jam?
+    \item Diberikan fungsi $f(x)=(x-2)^{1/3}$.
+    \begin{enumerate}
+        \item Tentukan selang di mana fungsi $f(x)$ naik atau turun.
+        \item Tentukan titik ekstrem relatif fungsi tersebut.
+        \item Tentukan selang kecekungan fungsi $f(x)$ dan titik belok (jika ada).
+        \item Sketsa grafiknya.
+    \end{enumerate}
+    \item Diberikan $\displaystyle F(x)=\int_0^x\frac{t-3}{t^2+7}\,dt$, $-\infty<x<\infty$.
+    \begin{enumerate}
+        \item Dapatkan selang di mana fungsi $F(x)$ naik atau turun.
+        \item Dapatkan selang kecekungan fungsi $F(x)$.
+    \end{enumerate}
+    \item Hitung
+    \[
+        \left(\frac{1-i\sqrt3}{1+i\sqrt3}\right)^{23}.
+    \]
+    \item Diberikan matriks
+    \[
+        A=\begin{bmatrix}
+            1&-2&1&4\\
+            2&4&1&6\\
+            3&2&1&3\\
+            3&2&1&4
+        \end{bmatrix}.
+    \]
+    Hitunglah:
+    \begin{enumerate}
+        \item $M_{12}$ dan $M_{42}$.
+        \item $C_{12}$ dan $C_{42}$.
+    \end{enumerate}
+\end{enumerate}
+
+\mulaisolusi
+\begin{enumerate}
+    \item Misalkan $h$ adalah tinggi roket dan $s$ jarak roket dari radar, keduanya dalam km. Dari teorema Pythagoras,
+    \[
+        s^2=10^2+h^2.
+    \]
+    Turunkan terhadap waktu:
+    \[
+        2s\frac{ds}{dt}=2h\frac{dh}{dt}
+        \quad\Longrightarrow\quad
+        \frac{dh}{dt}=\frac sh\frac{ds}{dt}.
+    \]
+    Ketika $h=6$, jarak roket dari radar adalah $s=\sqrt{100+36}=2\sqrt{34}$. Maka,
+    \[
+        \boxed{\frac{dh}{dt}=\frac{2\sqrt{34}}6(3000)
+            =1000\sqrt{34}\ \text{km/jam}}.
+    \]
+
+    \item Fungsi $f(x)=\sqrt[3]{x-2}$ terdefinisi dan kontinu pada seluruh $\mathbb{R}$. Untuk $x\neq2$,
+    \[
+        f'(x)=\frac1{3(x-2)^{2/3}},
+        \qquad
+        f''(x)=-\frac2{9(x-2)^{5/3}}.
+    \]
+    \begin{enumerate}
+        \item Turunan pertama positif pada $(-\infty,2)$ dan $(2,+\infty)$. Fungsi akar pangkat tiga mempertahankan urutan, sehingga $f$ naik secara ketat pada seluruh $\mathbb{R}$. Tidak ada selang turun.
+        \item Turunan pertama tidak terdefinisi di $x=2$, tetapi fungsi tetap naik melewati titik tersebut. Jadi, \textbf{tidak ada ekstrem relatif}.
+        \item Jika $x<2$, maka $(x-2)^{5/3}<0$ dan $f''(x)>0$. Jika $x>2$, maka $f''(x)<0$. Jadi, fungsi cekung ke atas pada $(-\infty,2)$ dan cekung ke bawah pada $(2,+\infty)$. Karena fungsi kontinu dan kecekungannya berubah di $x=2$, titik beloknya adalah
+        \[
+            \boxed{(2,0)}.
+        \]
+        \textit{(*Catatan: Titik belok dapat terjadi meskipun turunan kedua tidak terdefinisi di titik tersebut.)}
+        \item Grafik merupakan pergeseran grafik $y=\sqrt[3]{x}$ sejauh $2$ satuan ke kanan. Grafik melalui $(1,-1)$, $(2,0)$, dan $(3,1)$, serta memiliki garis singgung vertikal $x=2$.
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{axis}[width=10.5cm,height=6.5cm,axis lines=middle,
+                    xmin=-6.5,xmax=10.5,ymin=-2.4,ymax=2.4,
+                    xlabel=$x$,ylabel=$y$,grid=major,
+                    xtick={-6,0,2,10},ytick={-2,-1,0,1,2}]
+                    \addplot[gray,dashed] coordinates {(2,-2.4) (2,2.4)};
+                    \addplot[blue,thick,domain=-2:2,samples=160,variable=\t]
+                        ({\t^3+2},{\t});
+                    \addplot[only marks,mark=*,mark size=1.8pt]
+                        coordinates {(1,-1) (2,0) (3,1)};
+                    \node[below left] at (axis cs:1,-1) {$(1,-1)$};
+                    \node[above right] at (axis cs:3,1) {$(3,1)$};
+                    \node[below right,xshift=5pt,yshift=-3pt] at (axis cs:2,0) {$(2,0)$};
+                \end{axis}
+            \end{tikzpicture}
+        \end{center}
+    \end{enumerate}
+
+    \item Integran kontinu pada $\mathbb{R}$ karena $t^2+7>0$. Menurut Teorema Fundamental Kalkulus,
+    \[
+        F'(x)=\frac{x-3}{x^2+7}.
+    \]
+    \begin{enumerate}
+        \item Penyebut selalu positif, sehingga tanda $F'(x)$ ditentukan oleh $x-3$. Jadi, $F$ turun pada $\boxed{(-\infty,3)}$ dan naik pada $\boxed{(3,+\infty)}$.
+        \item Turunan keduanya adalah
+        \begin{align*}
+            F''(x)&=\frac{(x^2+7)-2x(x-3)}{(x^2+7)^2}\\
+                &=\frac{-x^2+6x+7}{(x^2+7)^2}
+                =-\frac{(x-7)(x+1)}{(x^2+7)^2}.
+        \end{align*}
+        Penyebutnya positif. Pembilang positif untuk $-1<x<7$ dan negatif untuk $x<-1$ atau $x>7$. Jadi,
+        \[
+            \boxed{\begin{aligned}
+                \text{cekung ke atas: }&(-1,7),\\
+                \text{cekung ke bawah: }&(-\infty,-1)\cup(7,+\infty).
+            \end{aligned}}
+        \]
+    \end{enumerate}
+
+    \item Tuliskan pembilang dan penyebut dalam bentuk polar:
+    \[
+        1-i\sqrt3=2\operatorname{cis}(-60^\circ),
+        \qquad
+        1+i\sqrt3=2\operatorname{cis}60^\circ.
+    \]
+    Dengan rumus de Moivre,
+    \begin{align*}
+        \left(\frac{1-i\sqrt3}{1+i\sqrt3}\right)^{23}
+            &=\bigl(\operatorname{cis}(-120^\circ)\bigr)^{23}\\
+            &=\operatorname{cis}(-2760^\circ)
+            =\operatorname{cis}120^\circ\\
+            &=\boxed{-\frac12+\frac{\sqrt3}{2}i}.
+    \end{align*}
+
+    \item \begin{enumerate}
+        \item Minor $M_{ij}$ adalah determinan yang diperoleh dengan menghapus baris ke-$i$ dan kolom ke-$j$.
+        \begin{align*}
+            M_{12}
+                &=\begin{vmatrix}2&1&6\\3&1&3\\3&1&4\end{vmatrix}\\
+                &=2(4-3)-(12-9)+6(3-3)=\boxed{-1},\\
+            M_{42}
+                &=\begin{vmatrix}1&1&4\\2&1&6\\3&1&3\end{vmatrix}\\
+                &=(3-6)-(6-18)+4(2-3)=\boxed{5}.
+        \end{align*}
+        \item Gunakan $C_{ij}=(-1)^{i+j}M_{ij}$:
+        \[
+            \boxed{C_{12}=(-1)^3(-1)=1,\qquad
+                C_{42}=(-1)^6(5)=5}.
+        \]
+    \end{enumerate}
+\end{enumerate}
 \end{document}
