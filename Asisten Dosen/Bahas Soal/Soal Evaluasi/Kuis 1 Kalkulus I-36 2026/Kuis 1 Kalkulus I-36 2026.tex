@@ -1,0 +1,264 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{enumitem}
+
+% Bobot adalah subtotal; poin adalah nilai untuk langkah yang dinilai.
+\newcommand{\bobot}[1]{\mbox{\textcolor{red}{\textbf{(#1 poin)}}}}
+\newcommand{\poin}[1]{\mbox{\textcolor{red}{\textbf{[#1 poin]}}}}
+
+\begin{document}
+
+\begin{center}
+  \textbf{\Large KUIS ke 1}\\[0.5cm]
+  \textbf{\large Waktu : 100 menit}
+\end{center}
+\vspace{0.5cm}
+
+\begin{enumerate}
+  \item Dapatkan himpunan penyelesaian dari pertidaksamaan berikut :
+        \[ \frac{x^2 - 16}{(x - 1)^2} < 0 \]
+
+  \item Dapatkan himpunan penyelesaian dari nilai mutlak berikut :
+        \[ |3x + 1| = 6x \]
+
+  \item Tentukan persamaan garis yang melalui titik $(8,2)$ dan tegak lurus dengan garis $10y + 3x = -2$
+
+  \item Diketahui $f(x) = x - 1$ dan $g(x) = |x^2 - 4|$
+        \begin{enumerate}[label=\alph*.]
+          \item Dapatkan $(g \circ f)(x)$ dan $(f \circ g)(x)$.
+          \item Tentukan domain dan range kedua komposisi tersebut.
+        \end{enumerate}
+
+  \item Diketahui $f(x) = (x - 2)^3 + 1$
+        \begin{enumerate}[label=\alph*.]
+          \item Dapatkah invers fungsinya
+          \item Sketsalah grafiknya
+        \end{enumerate}
+\end{enumerate}
+
+\newpage
+\begin{center}
+  \textbf{\Large PEMBAHASAN}
+\end{center}
+
+\begin{enumerate}
+  \item \bobot{20}
+        Penyebut tidak boleh nol, sehingga $x - 1 \neq 0$ atau $x \neq 1$. \poin{4}
+
+        Untuk $x \neq 1$, penyebut $(x-1)^2 > 0$.
+        Agar pecahan bernilai negatif, pembilang harus negatif: \poin{4}
+        \[ x^2 - 16 < 0 \]
+        Faktorkan pertidaksamaan di atas:
+        \[ (x - 4)(x + 4) < 0 \]
+        Akar-akarnya adalah $x = 4$ dan $x = -4$. \poin{4}
+
+        Berdasarkan garis bilangan, nilai $x$ yang memenuhi adalah $-4 < x < 4$. \poin{4}
+
+        Keluarkan $x = 1$ dari selang tersebut.
+        Jadi, Himpunan Penyelesaiannya (HP) adalah: \poin{4}
+        \[ \text{HP} = \{ x \mid -4 < x < 1 \text{ atau } 1 < x < 4, x \in \mathbb{R} \} \]
+
+  \item \bobot{20} Karena ruas kiri berupa nilai mutlak, maka ruas kanan harus tak negatif.
+        Syarat: $6x \geq 0 \implies x \geq 0$. \poin{4}
+
+        Kasus 1: $3x + 1 \geq 0$ atau $x \geq -\frac{1}{3}$. \poin{6}
+        \begin{align*}
+          3x + 1 = 6x \implies
+          1 = 3x \implies
+          x = \frac{1}{3}
+        \end{align*}
+        (Memenuhi syarat $x \geq 0$)
+
+        Kasus 2: $3x + 1 < 0$ atau $x < -\frac{1}{3}$. \poin{6}
+        \begin{align*}
+          -(3x + 1)  = 6x           \implies
+          -3x - 1    = 6x           \implies
+          -1         = 9x           \implies
+          x          = -\frac{1}{9}
+        \end{align*}
+        (Tidak memenuhi syarat $x \geq 0$, juga tidak memenuhi $x < -\frac{1}{3}$.)
+
+        Jadi, Himpunan Penyelesaiannya (HP) adalah: \poin{4}
+        \[ \text{HP} = \left\{ \frac{1}{3} \right\} \]
+
+        \textit{Alternatif:} Dari $x \geq 0$, langsung diperoleh $3x+1>0$.
+        Alasan ini menggantikan pemeriksaan kasus kedua dengan poin yang sama.
+
+  \item \bobot{20} Pertama, cari gradien dari garis $10y + 3x = -2$.
+        \begin{align*}
+          10y & = -3x - 2                      \\
+          y   & = -\frac{3}{10}x - \frac{1}{5}
+        \end{align*}
+        Gradien garis tersebut adalah $m_1 = -\frac{3}{10}$. \poin{4}
+
+        Karena garis yang dicari tegak lurus, maka perkalian gradiennya adalah $-1$. \poin{6}
+        \begin{align*}
+          m_1 \cdot m_2            = -1                             \implies
+          -\frac{3}{10} \cdot m_2 = -1 \implies m_2 = \frac{10}{3}
+        \end{align*}
+        Persamaan garis yang melalui titik $(x_1, y_1) = (8, 2)$ dengan gradien $m_2 = \frac{10}{3}$: \poin{6}
+        \begin{align*}
+          y - y_1 & = m_2(x - x_1)        \\
+          y - 2   & = \frac{10}{3}(x - 8)
+        \end{align*}
+        Sederhanakan untuk memperoleh persamaan garis akhirnya: \poin{4}
+        \begin{align*}
+          3(y - 2)      & = 10(x - 8) \\
+          3y - 6        & = 10x - 80  \\
+          10x - 3y - 74 & = 0
+        \end{align*}
+
+  \item \bobot{20}
+        \begin{enumerate}[label=\alph*.]
+          \item \bobot{8} Mencari kedua komposisi.
+
+                \textbf{Komposisi $g \circ f$} \bobot{4}:
+                Masukkan hasil $f$ ke dalam $g$. \poin{2}
+                \begin{align*}
+                  (g \circ f)(x) & = g(f(x))  \\
+                                 & = g(x - 1)
+                \end{align*}
+                Substitusikan $x-1$ ke dalam rumus $g$: \poin{2}
+                \begin{align*}
+                  (g \circ f)(x) & = |(x - 1)^2 - 4|    \\
+                                 & = |x^2 - 2x + 1 - 4| \\
+                                 & = |x^2 - 2x - 3|
+                \end{align*}
+
+                \textbf{Komposisi $f \circ g$} \bobot{4}:
+                Masukkan hasil $g$ ke dalam $f$. \poin{2}
+                \begin{align*}
+                  (f \circ g)(x) & = f(g(x))    \\
+                                 & = f(|x^2-4|)
+                \end{align*}
+                Fungsi $f$ mengurangi inputnya sebesar 1. \poin{2}
+                \[ (f \circ g)(x)=|x^2-4|-1 \]
+
+          \item \bobot{12} Domain dan range kedua komposisi:
+
+                Kedua fungsi terdefinisi untuk semua bilangan real.
+                Jadi, $D_f=D_g=\mathbb{R}$.
+
+                \textbf{Domain $g \circ f$} \bobot{3}:
+                Syarat domainnya adalah:
+                \[ D_{g \circ f} = \{ x \in D_f \mid f(x) \in D_g \} \]
+                Untuk setiap $x\in\mathbb{R}$, nilai $f(x)=x-1$ juga real. \poin{1}
+
+                Maka, domainnya adalah: \poin{2}
+                \[ D_{g \circ f}=\mathbb{R}=(-\infty,\infty) \]
+
+                \par\noindent\begin{minipage}{\linewidth}
+                  \textbf{Domain $f \circ g$} \bobot{3}:
+                  Syarat domainnya adalah:
+                  \[ D_{f \circ g} = \{ x \in D_g \mid g(x) \in D_f \} \]
+                  Untuk setiap $x\in\mathbb{R}$, nilai $g(x)=|x^2-4|$ juga real. \poin{1}
+
+                  Maka, domainnya adalah: \poin{2}
+                  \[ D_{f \circ g}=\mathbb{R}=(-\infty,\infty) \]
+                \end{minipage}\par
+
+                \textbf{Range $g \circ f$} \bobot{3}:
+                Misalkan $u=f(x)=x-1$.
+                Range $f$ adalah $\mathbb{R}$.
+                Jadi, $u$ dapat mengambil semua nilai real.
+                \[ (g \circ f)(x)=|u^2-4| \]
+
+                Nilai minimum $u^2-4$ adalah $-4$.
+                Range-nya adalah $[-4,\infty)$.
+                Nilai mutlak mengubah bagian negatif menjadi positif.
+                Bagian $[0,\infty)$ tetap.
+                Jadi, semua nilai tak negatif tercapai. \poin{2}
+
+                Maka, range komposisinya adalah: \poin{1}
+                \[ R_{g \circ f} = [0, \infty) \]
+
+                \textbf{Range $f \circ g$} \bobot{3}:
+                Dari perhitungan di atas, range $g$ adalah $[0,\infty)$.
+                Fungsi $f$ mengurangi setiap nilai tersebut sebesar 1.
+                Nilai minimum berubah dari 0 menjadi $-1$.
+                Nilainya tetap tidak dibatasi ke atas. \poin{2}
+
+                Maka, range komposisinya adalah: \poin{1}
+                \[ R_{f \circ g}=[-1,\infty) \]
+        \end{enumerate}
+
+  \item \bobot{20}
+        \begin{enumerate}[label=\alph*.]
+          \item \bobot{10} Mencari invers fungsi $f(x)$.
+                Misalkan $y = f(x)$, lalu nyatakan $x$ dalam $y$: \poin{6}
+                \begin{align*}
+                  y               & = (x - 2)^3 + 1       \\
+                  y - 1           & = (x - 2)^3           \\
+                  \sqrt[3]{y - 1} & = x - 2               \\
+                  x               & = \sqrt[3]{y - 1} + 2
+                \end{align*}
+                Tukar nama variabel $x$ dan $y$. Jadi, invers fungsinya adalah: \poin{4}
+                \[ f^{-1}(x) = \sqrt[3]{x - 1} + 2 \]
+
+          \item \bobot{10} Sketsa grafik $f$ dan $f^{-1}$:
+                \begin{samepage}
+                  \begin{itemize}[nosep]
+                    \item Grafik $f$ melalui $(0,-7)$, $(1,0)$, dan $(2,1)$.
+                          Tukar koordinatnya untuk memperoleh titik pada grafik invers.
+                          Titik-titiknya adalah $(-7,0)$, $(0,1)$, dan $(1,2)$. \poin{4}
+                    \item Grafik $f$ berbentuk kurva kubik dengan titik belok $(2,1)$.
+                          Grafik $f^{-1}$ berbentuk kurva akar pangkat tiga.
+                          Keduanya saling mencerminkan terhadap garis $y=x$. \poin{4}
+                    \item Gambar kedua kurva pada sumbu yang sama.
+                          Gunakan skala yang sama pada kedua sumbu.
+                          Beri label $f$, $f^{-1}$, dan $y=x$. \poin{2}
+                  \end{itemize}
+                \end{samepage}
+
+                \begin{center}
+                  \begin{tikzpicture}
+                    \begin{axis}[
+                        axis lines = middle,
+                        xlabel = $x$,
+                        ylabel = $y$,
+                        ymin=-8, ymax=5,
+                        xmin=-8, xmax=5,
+                        grid=both,
+                        minor tick num=1,
+                        width=12cm,
+                        height=12cm,
+                        samples=100,
+                        legend pos=south west
+                      ]
+                      % Grafik f(x)
+                      \addplot[domain=0:3.5, thick, blue] {(x-2)^3 + 1};
+                      \addlegendentry{$f(x) = (x-2)^3+1$}
+
+                      % Grafik f^{-1}(x) dengan metode parametrik (menukar x dan y dari f(x))
+                      \addplot[domain=0:3.5, thick, red] ({(x-2)^3 + 1}, {x});
+                      \addlegendentry{$f^{-1}(x) = \sqrt[3]{x-1}+2$}
+
+                      % Garis pantul y = x
+                      \addplot[domain=-8:4.5, dashed, black] {x};
+                      \addlegendentry{$y = x$}
+
+                      % Titik penting f(x)
+                      \addplot[mark=*, blue] coordinates {(0, -7)} node[right]{\footnotesize$(0, -7)$};
+                      \addplot[mark=*, blue] coordinates {(1, 0)} node[below]{\footnotesize$(1, 0)$};
+                      \addplot[mark=*, blue] coordinates {(2, 1)} node[below right]{\footnotesize$(2, 1)$};
+
+                      % Titik penting f^{-1}(x)
+                      \addplot[mark=*, red] coordinates {(-7, 0)} node[above]{\footnotesize$(-7, 0)$};
+                      \addplot[mark=*, red] coordinates {(0, 1)} node[above left]{\footnotesize$(0, 1)$};
+                      \addplot[mark=*, red] coordinates {(1, 2)} node[above left]{\footnotesize$(1, 2)$};
+                    \end{axis}
+                  \end{tikzpicture}
+                \end{center}
+        \end{enumerate}
+
+\end{enumerate}
+
+\end{document}

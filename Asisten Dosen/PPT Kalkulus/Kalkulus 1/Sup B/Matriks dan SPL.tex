@@ -1,0 +1,96 @@
+\documentclass{../../kalkulus-ppt}
+
+\author[Tetew]{Teosofi Hidayah Agung}
+\date{\today}
+\title[Kalkulus 1 - Sup B]{Matriks, Determinan, dan SPL}
+\institute[Matematika ITS]{Departemen Matematika\\ Institut Teknologi Sepuluh Nopember}
+\titlegraphic{{\includegraphics[scale=0.3]{ITS.png}$\quad$\includegraphics[scale=0.02]{M.png}}}
+
+\newcommand{\dom}{\mathcal{D}}
+\newcommand{\rng}{\mathcal{R}}
+
+\renewcommand{\arraystretch}{1.5}
+
+\begin{document}
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\AtBeginSection{
+    {
+        \begin{frame}{Daftar isi}
+            \tableofcontents[currentsection]
+        \end{frame}}
+}
+
+\section{Matriks dan Operasi Matriks}
+\begin{frame}
+    \frametitle{\insertsection}
+    \begin{definisi}
+        \textbf{Matriks} adalah susunan bilangan berbentuk persegi panjang yang diatur dalam baris dan kolom. Bilangan-bilangan dalam matriks disebut entri atau elemen matriks.
+    \end{definisi}
+    \begin{block}{Operasi Matriks}
+        Beberapa operasi dasar pada matriks antara lain:
+        \begin{itemize}
+            \item Penjumlahan matriks
+            \item Perkalian skalar dengan matriks
+            \item Perkalian dua matriks
+            \item Transpos matriks
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\section{Operasi Baris Elementer dan Matriks Invers}
+\begin{frame}
+    \frametitle{\insertsection}
+    \begin{block}{Operasi Baris Elementer (OBE)}
+        Tiga operasi baris elementer pada suatu matriks:
+        \begin{enumerate}
+            \item Menukar posisi dua baris.
+            \item Mengalikan suatu baris dengan skalar tak-nol.
+            \item Menambahkan kelipatan suatu baris ke baris yang lain.
+        \end{enumerate}
+    \end{block}
+    \onslide<2->{
+        \begin{definisi}[Matriks Invers]
+            Jika $A$ adalah matriks persegi, dan jika terdapat matriks $B$ yang berukuran sama sedemikian sehingga $AB = BA = I$, maka $A$ dikatakan \textbf{dapat dibalik} (invertible) dan $B$ disebut \textbf{invers} dari $A$ ($A^{-1}$).
+        \end{definisi}
+    }
+\end{frame}
+
+\section{Sistem Persamaan Linier}
+\begin{frame}
+    \frametitle{\insertsection}
+    \begin{definisi}[Sistem Persamaan Linier]
+        Sistem Persamaan Linier (SPL) dengan $m$ persamaan dan $n$ variabel $x_1, x_2, \dots, x_n$ dituliskan sebagai:
+        \begin{align*}
+            a_{11}x_1 + a_{12}x_2 + \dots + a_{1n}x_n &= b_1 \\
+            a_{21}x_1 + a_{22}x_2 + \dots + a_{2n}x_n &= b_2 \\
+            \vdots \qquad \qquad \qquad &= \vdots \\
+            a_{m1}x_1 + a_{m2}x_2 + \dots + a_{mn}x_n &= b_m
+        \end{align*}
+        Dapat ditulis dalam bentuk matriks $AX = B$.
+    \end{definisi}
+\end{frame}
+
+\section{Determinan}
+\begin{frame}
+    \frametitle{\insertsection}
+    \begin{definisi}[Determinan]
+        Untuk matriks persegi $A$ berukuran $2 \times 2$:
+        \[A = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \implies \det(A) = ad - bc\]
+        Untuk matriks berukuran $n \times n$, determinan dihitung menggunakan ekspansi kofaktor atau menggunakan OBE.
+    \end{definisi}
+\end{frame}
+
+\section{Nilai Eigen dan Vektor Eigen}
+\begin{frame}
+    \frametitle{\insertsection}
+    \begin{definisi}[Nilai Eigen dan Vektor Eigen]
+        Misalkan $A$ adalah matriks persegi $n \times n$. Sebuah skalar $\lambda$ disebut \textbf{nilai eigen} (eigenvalue) dari $A$ jika terdapat vektor tak-nol $\mathbf{x}$ di $\mathbb{R}^n$ sedemikian sehingga
+        \[A\mathbf{x} = \lambda \mathbf{x}\]
+        Vektor $\mathbf{x}$ tersebut disebut \textbf{vektor eigen} (eigenvector) dari $A$ yang berkorespondensi dengan $\lambda$.
+    \end{definisi}
+\end{frame}
+
+\end{document}

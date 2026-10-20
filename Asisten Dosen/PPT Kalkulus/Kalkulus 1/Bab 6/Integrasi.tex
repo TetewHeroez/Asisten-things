@@ -1,0 +1,100 @@
+\documentclass{../../kalkulus-ppt}
+
+\author[Tetew]{Teosofi Hidayah Agung}
+\date{\today}
+\title[Kalkulus 1 - Bab 6]{Integrasi}
+\institute[Matematika ITS]{Departemen Matematika\\ Institut Teknologi Sepuluh Nopember}
+\titlegraphic{{\includegraphics[scale=0.3]{ITS.png}$\quad$\includegraphics[scale=0.02]{M.png}}}
+
+\newcommand{\dom}{\mathcal{D}}
+\newcommand{\rng}{\mathcal{R}}
+
+\renewcommand{\arraystretch}{1.5}
+
+\begin{document}
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\AtBeginSection{
+    {
+        \begin{frame}{Daftar isi}
+            \tableofcontents[currentsection]
+        \end{frame}}
+}
+
+\section{Anti-turunan; Integral Taktentu}
+\begin{frame}
+    \frametitle{\insertsection}
+    \begin{definisi}[Anti-turunan]
+        Suatu fungsi $F$ disebut \textbf{anti-turunan} dari fungsi $f$ pada suatu interval $I$ jika 
+        \[F'(x) = f(x)\]
+        untuk semua $x$ dalam $I$.
+    \end{definisi}
+    \onslide<2->{
+        \begin{alertblock}{Integral Taktentu}
+            Himpunan semua anti-turunan dari $f$ dinotasikan dengan \textbf{integral taktentu}:
+            \[\int f(x) \,dx = F(x) + C\]
+            dengan $F$ adalah salah satu anti-turunan $f$ dan $C$ adalah konstanta sebarang.
+        \end{alertblock}
+    }
+\end{frame}
+
+\section{Integrasi dengan Substitusi}
+\begin{frame}
+    \frametitle{\insertsection}
+    \begin{teorema}[Aturan Substitusi]
+        Misalkan $u = g(x)$ adalah fungsi yang dapat diturunkan dan daerah hasilnya merupakan suatu interval $I$. Misalkan $f$ kontinu pada $I$. Maka:
+        \[\int f(g(x))g'(x) \,dx = \int f(u) \,du\]
+    \end{teorema}
+\end{frame}
+
+\section{Luas Sebagai Limit}
+\begin{frame}
+    \frametitle{\insertsection}
+    \begin{definisi}[Luas Daerah]
+        Luas $A$ dari daerah $S$ yang terletak di bawah grafik fungsi kontinu $f$ yang tak-negatif pada interval $[a,b]$ adalah limit dari jumlah luas persegi panjang penghampir:
+        \[A = \lim_{n \to \infty} \sum_{i=1}^n f(x_i) \Delta x\]
+    \end{definisi}
+\end{frame}
+
+\section{Integral Tertentu}
+\begin{frame}
+    \frametitle{\insertsection}
+    \begin{definisi}[Integral Tertentu]
+        Jika $f$ didefinisikan pada selang tertutup $[a,b]$, maka \textbf{integral tertentu} dari $f$ dari $a$ ke $b$ adalah
+        \[\int_a^b f(x) \,dx = \lim_{n \to \infty} \sum_{i=1}^n f(\bar{x}_i) \Delta x_i\]
+        asalkan limit ini ada. Jika limitnya ada, kita katakan bahwa $f$ \textbf{terintegralkan} pada $[a,b]$.
+    \end{definisi}
+\end{frame}
+
+\section{Teorema Fundamental Kalkulus Pertama}
+\begin{frame}
+    \frametitle{\insertsection}
+    \begin{teorema}[TFK Pertama]
+        Jika $f$ kontinu pada interval tertutup $[a,b]$ dan $x$ adalah sebarang titik pada $(a,b)$, maka fungsi $F$ yang didefinisikan oleh
+        \[F(x) = \int_a^x f(t) \,dt\]
+        dapat diturunkan pada $(a,b)$ dan $F'(x) = f(x)$. Secara ringkas:
+        \[\frac{d}{dx} \left[ \int_a^x f(t) \,dt \right] = f(x)\]
+    \end{teorema}
+\end{frame}
+
+\section{Integral Tertentu dengan Substitusi}
+\begin{frame}
+    \frametitle{\insertsection}
+    \begin{teorema}[Substitusi pada Integral Tertentu]
+        Jika $g'$ kontinu pada $[a,b]$ dan $f$ kontinu pada daerah hasil $g$, maka:
+        \[\int_a^b f(g(x))g'(x) \,dx = \int_{g(a)}^{g(b)} f(u) \,du\]
+    \end{teorema}
+\end{frame}
+
+\section{Teorema Fundamental Kalkulus Kedua}
+\begin{frame}
+    \frametitle{\insertsection}
+    \begin{teorema}[TFK Kedua]
+        Jika $f$ kontinu pada interval tertutup $[a,b]$ dan $F$ adalah sebarang anti-turunan dari $f$ pada $[a,b]$, maka
+        \[\int_a^b f(x) \,dx = F(b) - F(a)\]
+    \end{teorema}
+\end{frame}
+
+\end{document}

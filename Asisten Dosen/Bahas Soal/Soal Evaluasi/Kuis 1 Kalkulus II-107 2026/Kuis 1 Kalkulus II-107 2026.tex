@@ -1,0 +1,129 @@
+﻿\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+
+\begin{center}
+  \bfseries
+  Waktu 80 menit \\
+  Sifat Ujian : Tutup Buku\\
+\end{center}
+
+\begin{enumerate}
+  \item Diketahui fungsi  $y= e^{|x|} - 1$, dapatkan (poin 30):
+        \begin{enumerate}
+          \item Turunan fungsinya
+          \item Sketsa grafik fungsinya
+        \end{enumerate}
+
+  \item Dapatkan turunan pertama ($\frac{dy}{dx}$) dari fungsi invers trigonometri (poin 20):
+        \[
+          y = \sin^{-1}\left(\frac{2x}{1 - x^2}\right)
+        \]
+
+  \item Dapatkan Integral tak tertentu berikut (poin 25):
+        \[
+          \int \frac{3}{2x^2 + x - 1}\,dx
+        \]
+
+  \item Hitunglah integral tertentu dari (poin 25):
+        \[
+          \int_{\pi/6}^{\pi/3} \frac{\sin x + 1}{\cos^2 x}\,dx
+        \]
+\end{enumerate}
+
+\begin{center}
+  \textbf{\underline{Solusi}}
+\end{center}
+
+\begin{enumerate}
+  \item \textbf{Analisis fungsi $y= e^{|x|} - 1$:} \textcolor{red}{(Total 30 poin)}
+        \begin{enumerate}
+          \item \textbf{Turunan fungsinya:} \\
+                Bisa diselesaikan dengan mendefinisikan nilai mutlak secara sepotong-sepotong (piecewise): \textcolor{red}{(10 poin)}
+                \[
+                  y = \begin{cases}
+                    e^x - 1,    & \text{jika } x \ge 0 \\
+                    e^{-x} - 1, & \text{jika } x < 0
+                  \end{cases}
+                \]
+
+
+                Maka turunan pertamanya adalah: \textcolor{red}{(10 poin)}
+                \[
+                  y' = \begin{cases}
+                    e^x,     & \text{jika } x > 0 \\
+                    -e^{-x}, & \text{jika } x < 0
+                  \end{cases}
+                \]
+                \textit{Catatan:} Pada $x=0$, limit kiri turunan $\displaystyle\lim_{x \to 0^-} y' = -1$ dan limit kanan $\lim_{x \to 0^+} y' = 1$ berbeda, sehingga fungsi terbukti tidak terturunkan pada $x=0$. Jika dijawab menggunakan aturan rantai, bisa juga ditulis $\frac{dy}{dx} = e^{|x|} \frac{x}{|x|}$ untuk $x \neq 0$.
+
+          \item \textbf{Sketsa grafik fungsinya:} \\
+                Karena melibatkan $|x|$, grafiknya simetris terhadap sumbu-$y$ (fungsi genap), dengan titik minimum di $(0,0)$. Di sebelah kanan sumbu-$y$ ($x > 0$), grafiknya berupa fungsi eksponensial naik standar $y = e^x - 1$. Di sebelah kiri ($x < 0$), grafiknya merupakan pencerminan kurva sisi kanannya terhadap sumbu $y$.
+                \begin{center}
+                  \begin{tikzpicture}
+                    \draw[->] (-3,0) -- (3,0) node[right] {$x$};
+                    \draw[->] (0,-1) -- (0,5) node[above] {$y$};
+                    \draw[domain=0:1.7, smooth, variable=\x, blue, thick] plot ({\x}, {exp(\x)-1});
+                    \draw[domain=-1.7:0, smooth, variable=\x, blue, thick] plot ({\x}, {exp(-\x)-1});
+                    \draw[domain=1.8:-2.5, smooth, variable=\x, red, thick, dashed] plot ({\x}, {exp(\x)-1}) node[left, red] {$y = e^x - 1$};
+                    \draw[domain=-1.8:2.5, smooth, variable=\x, brown, thick, dashed] plot ({\x}, {exp(-\x)-1}) node[right, brown] {$y = e^{-x} - 1$};
+                    \node[below left] at (0,0) {$0$};
+                    \node[right, blue] at (1.5, 3.5) {$y = e^{|x|} - 1$};
+                  \end{tikzpicture} \\
+                  \vspace{0.2cm}
+                  \textcolor{red}{(10 poin)}
+                  \vspace{0.2cm}
+                \end{center}
+        \end{enumerate}
+
+  \item \textbf{Turunan pertama dengan aturan rantai:} \textcolor{red}{(Total 20 poin)}\\
+        Misalkan $u = \frac{2x}{1-x^2}$. Aturan rantai invers sinus: $\frac{d}{dx}\sin^{-1}(u) = \frac{1}{\sqrt{1-u^2}} \cdot u'$ \textcolor{red}{(5 poin)}
+        \begin{align*}
+          \frac{dy}{dx} & = \frac{1}{\sqrt{1 - \left( \frac{2x}{1 - x^2} \right)^2}} \cdot \frac{d}{dx}\left[ \frac{2x}{1 - x^2} \right]              &  & \textcolor{red}{\quad (10 \text{ poin})} \\
+                        & = \frac{1}{\sqrt{\frac{(1 - x^2)^2 - 4x^2}{(1 - x^2)^2}}} \cdot \left[ \frac{(2)(1 - x^2) - (2x)(-2x)}{(1 - x^2)^2} \right]                                               \\
+                        & = \frac{|1 - x^2|}{\sqrt{1 - 2x^2 + x^4 - 4x^2}} \cdot \frac{2 - 2x^2 + 4x^2}{(1 - x^2)^2}                                                                                \\
+                        & = \frac{|1 - x^2|}{\sqrt{x^4 - 6x^2 + 1}} \cdot \frac{2(x^2 + 1)}{(1 - x^2)^2}                                                                                            \\
+                        & = \frac{2(x^2 + 1)}{|1 - x^2| \sqrt{x^4 - 6x^2 + 1}}                                                                        &  & \textcolor{red}{\quad (5 \text{ poin})}
+        \end{align*}
+
+  \item \textbf{Integral Tak Tentu:} \textcolor{red}{(Total 25 poin)} \\
+        Faktorkan penyebut: $2x^2 + x - 1 = (2x-1)(x+1)$. Lalu pecah menjadi pecahan parsial: \textcolor{red}{(5 poin)}
+        \[
+          \frac{3}{(2x-1)(x+1)} = \frac{A}{2x-1} + \frac{B}{x+1}
+        \]
+        Samakan penyebut, didapatkan:
+        \[
+          3 = A(x+1) + B(2x-1)
+        \]
+        Substitusi $x = -1 \implies 3 = B(-3) \implies B = -1$. \textcolor{red}{(5 poin)} \\
+        Substitusi $x = \frac{1}{2} \implies 3 = A\left(\frac{3}{2}\right) \implies A = 2$. \textcolor{red}{(5 poin)} \\
+        Maka Integral aslinya menjadi:
+        \begin{align*}
+          \int \frac{3}{2x^2 + x - 1}\,dx & = \int \left( \frac{2}{2x-1} - \frac{1}{x+1} \right)\,dx                                               \\
+                                          & = 2 \left( \frac{1}{2}\ln|2x-1| \right) - \ln|x+1| + C                                                 \\
+                                          & = \ln|2x-1| - \ln|x+1| + C                                                                             \\
+                                          & = \ln\left| \frac{2x-1}{x+1} \right| + C                 &  & \textcolor{red}{\quad (10 \text{ poin})}
+        \end{align*}
+
+  \item \textbf{Integral Tertentu:} \textcolor{red}{(Total 25 poin)}\\
+        Jabarkan bentuk pecahannya terlebih dahulu untuk mempermudah: \textcolor{red}{(5 poin)}
+        \begin{align*}
+          \int_{\pi/6}^{\pi/3} \frac{\sin x + 1}{\cos^2 x}\,dx & = \int_{\pi/6}^{\pi/3} \left( \frac{\sin x}{\cos^2 x} + \frac{1}{\cos^2 x} \right)\,dx                                               \\
+                                                               & = \int_{\pi/6}^{\pi/3} (\tan x \sec x + \sec^2 x)\,dx                                  &  & \textcolor{red}{\quad (10 \text{ poin})}
+        \end{align*}
+        Hasil integralnya adalah $(\sec x + \tan x)$. Substitusikan batas integral:
+        \begin{align*}
+           & = \left[ \sec x + \tan x \right]_{\pi/6}^{\pi/3}                                                                        \\
+           & = (\sec(\pi/3) + \tan(\pi/3)) - (\sec(\pi/6) + \tan(\pi/6))                                                             \\
+           & = (2 + \sqrt{3}) - \left( \frac{2}{\sqrt{3}} + \frac{1}{\sqrt{3}} \right)                                               \\
+           & = 2 + \sqrt{3} - \frac{3}{\sqrt{3}}                                                                                     \\
+           & = 2 + \sqrt{3} - \sqrt{3}                                                                                               \\
+           & = 2                                                                       &  & \textcolor{red}{\quad (10 \text{ poin})}
+        \end{align*}
+\end{enumerate}
+
+\end{document}

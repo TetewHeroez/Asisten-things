@@ -1,0 +1,47 @@
+\documentclass{../../kalkulus-ppt}
+
+\author[Tetew]{Teosofi Hidayah Agung}
+\date{\today}
+\title[Kalkulus 1 - Sup A]{Bilangan Kompleks}
+\institute[Matematika ITS]{Departemen Matematika\\ Institut Teknologi Sepuluh Nopember}
+\titlegraphic{{\includegraphics[scale=0.3]{ITS.png}$\quad$\includegraphics[scale=0.02]{M.png}}}
+
+\newcommand{\dom}{\mathcal{D}}
+\newcommand{\rng}{\mathcal{R}}
+
+\renewcommand{\arraystretch}{1.5}
+
+\begin{document}
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\AtBeginSection{
+    {
+        \begin{frame}{Daftar isi}
+            \tableofcontents[currentsection]
+        \end{frame}}
+}
+
+\section{Bilangan Kompleks}
+\begin{frame}
+    \frametitle{\insertsection}
+    \begin{definisi}[Bilangan Kompleks]
+        Bilangan kompleks $z$ ditulis dalam bentuk
+        \[z = a + bi\]
+        di mana $a, b \in \mathbb{R}$ dan $i = \sqrt{-1}$ (satuan imajiner, sehingga $i^2 = -1$).\\
+        $a$ disebut \textbf{bagian real} dari $z$, dinotasikan $\mathrm{Re}(z)$.\\
+        $b$ disebut \textbf{bagian imajiner} dari $z$, dinotasikan $\mathrm{Im}(z)$.
+    \end{definisi}
+\end{frame}
+
+\section{Teorema De Moivre}
+\begin{frame}
+    \frametitle{\insertsection}
+    \begin{teorema}[Teorema De Moivre]
+        Jika $z = r(\cos \theta + i \sin \theta)$ adalah bilangan kompleks dalam bentuk polar, maka untuk setiap bilangan bulat $n$, berlaku:
+        \[z^n = r^n (\cos(n\theta) + i \sin(n\theta))\]
+    \end{teorema}
+\end{frame}
+
+\end{document}
