@@ -1,0 +1,1763 @@
+% !TeX program = xelatex
+% Font dan ukuran kertas mengikuti PDF EAS asli (8,5 x 13 inci).
+\documentclass[12pt]{article}
+\usepackage{amsmath,amsthm}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{Times New Roman}
+\setmathfont{Cambria Math}
+\usepackage{graphicx}
+\graphicspath{{../../../PPT Kalkulus/Gambar & Logo/}}
+\usepackage{array,tabularx,enumitem}
+\usepackage{fancyhdr}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=cyan,
+    pdftitle={Bahas Soal EAS Kalkulus 1 2025/2026},
+    pdfpagemode=UseOutlines,hypertexnames=false}
+\usepackage{geometry}
+\geometry{paperwidth=612bp,paperheight=936bp,
+    left=54bp,right=54bp,top=143bp,bottom=55bp,
+    headheight=120bp,headsep=8bp,footskip=25bp}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\tabcolsep}{5bp}
+\setlength{\jot}{3bp}
+\setlist{topsep=4bp,itemsep=3bp,parsep=0pt,partopsep=0pt}
+\setlist[enumerate,1]{label=\arabic*.,leftmargin=29bp,labelsep=8bp}
+\setlist[enumerate,2]{label=\alph*.,leftmargin=18bp,labelsep=5bp}
+\setlist[itemize]{leftmargin=18bp}
+\allowdisplaybreaks[1]
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\cis}{\text{cis}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4bp}
+\renewcommand{\footrulewidth}{0.4bp}
+\newcommand{\packetid}{1}
+\newcommand{\answername}{Jawaban}
+\newcommand{\startpacket}[1]{%
+    \clearpage
+    \renewcommand{\packetid}{#1}%
+    \setcounter{page}{1}%
+}
+
+% Kepala ujian diulang pada setiap halaman, termasuk lanjutan jawaban.
+\newcommand{\examhead}[7]{%
+    \begin{minipage}[b]{124bp}
+        \includegraphics[width=117bp]{logoITSBiru.png}\par\vspace{8bp}
+        {\fontsize{20bp}{22bp}\selectfont\bfseries SKPB -- ITS}
+    \end{minipage}\hfill
+    \begin{minipage}[b]{370bp}
+        {\fontsize{16bp}{17bp}\selectfont\bfseries\underline{#1}}\par
+        {\fontsize{12bp}{14bp}\selectfont
+        \begin{tabular}[b]{@{}l@{\hspace{12bp}:\hspace{5bp}}l@{}}
+            #2 & #3\\
+            #4\\
+            #5\\
+            #6\\[3bp]
+            #7
+        \end{tabular}}
+    \end{minipage}%
+}
+\newcommand{\examheaderID}[4]{%
+    \renewcommand{\answername}{Jawaban}%
+    \fancyhead[C]{\examhead
+        {EVALUASI AKHIR SEMESTER GANJIL 2025/2026}
+        {Mata Kuliah, SKS}{#1}
+        {Hari, Tanggal & #2}
+        {Jam, Waktu Ujian & #3}
+        {Kelas, Sifat & #4}
+        {{\fontsize{16bp}{20bp}\selectfont\bfseries Nama} & \\[6bp]
+         {\fontsize{16bp}{20bp}\selectfont\bfseries NRP, Kelas} &}}%
+    \fancyfoot[R]{\fontsize{12bp}{14bp}\selectfont Halaman \thepage\ dari \pageref*{akhir-paket-\packetid}}%
+}
+\newcommand{\examheaderEN}[4]{%
+    \renewcommand{\answername}{Solution}%
+    \fancyhead[C]{\examhead
+        {FINAL EXAM OF THE ODD SEMESTER 2025/2026}
+        {Course, Credit}{#1}
+        {Day, Date & #2}
+        {Time, Exam Time & #3}
+        {Class, Type & #4}
+        {{\fontsize{16bp}{20bp}\selectfont\bfseries Name} & \\[6bp]
+         {\fontsize{16bp}{20bp}\selectfont\bfseries NRP, Class} &}}%
+    \fancyfoot[R]{\fontsize{12bp}{14bp}\selectfont Page \thepage\ of \pageref*{akhir-paket-\packetid}}%
+}
+
+\newcommand{\warningsID}{%
+    \vspace*{-8bp}%
+    {\centering\fontsize{12bp}{14bp}\selectfont
+    Tuliskan Nama, NRP, dan Nomor Kelas pada setiap lembar kerja ini\\
+    \textbf{DILARANG MEMBAWA/MENGGUNAKAN KALKULATOR DAN ALAT KOMUNIKASI}\\
+    \textbf{DILARANG MEMBERIKAN/MENERIMA JAWABAN SELAMA UJIAN BERLANGSUNG}\\
+    ``Setiap tindak kecurangan akan mendapatkan sanksi akademik''\par}
+    \vspace{2bp}\hrule height 0.4bp\vspace{4bp}%
+}
+\newcommand{\warningsEN}{%
+    \vspace*{-8bp}%
+    {\centering\fontsize{12bp}{14bp}\selectfont
+    Write your Name, Student ID (NRP), and Class Number on every sheet of this worksheet\\
+    {\fontsize{11bp}{14bp}\selectfont USING OR BRINGING CALCULATORS AND COMMUNICATION DEVICES IS STRICTLY PROHIBITED}\\
+    SHARING OR RECEIVING ANSWERS DURING THE EXAM IS STRICTLY PROHIBITED\\
+    ``Any act of dishonesty will result in academic sanctions''\par}
+    \vspace{2bp}\hrule height 0.4bp\vspace{4bp}%
+}
+\newcommand{\cpmktableID}{%
+    {\renewcommand{\arraystretch}{1}\fontsize{12bp}{14bp}\selectfont\hyphenpenalty=10000
+    \begin{tabularx}{\textwidth}{|p{48bp}|X|>{\centering\arraybackslash}p{41bp}|>{\centering\arraybackslash}p{56bp}|}
+        \hline
+        CPMK & Kemampuan & No Soal & Bobot (\%)\\\hline
+        CPMK-2 & Mampu menentukan kekontinuan fungsi dan turunannya & 2 & 20\\\hline
+        CPMK-3 & Mampu menghitung integral dan memahami Teorema Fundamental Kalkulus & 1, 3 & 40\\\hline
+        CPMK-4 & Mampu mengaplikasikan bentuk peubah kompleks dalam bentuk polar serta mencari akar-akar persamaannya & 4 & 20\\\hline
+        CPMK-5 & Mampu menerapkan konsep matriks untuk menyelesaikan sistem persamaan linier dan menentukan nilai eigen & 5 & 20\\\hline
+    \end{tabularx}\par}\vspace{4bp}%
+}
+\newcommand{\cpmktableEN}{%
+    {\renewcommand{\arraystretch}{1}\fontsize{12bp}{14bp}\selectfont\hyphenpenalty=10000
+    \begin{tabularx}{\textwidth}{|p{48bp}|X|>{\centering\arraybackslash}p{50bp}|>{\centering\arraybackslash}p{63bp}|}
+        \hline
+        CLO & Ability & Question & Weight (\%)\\\hline
+        CLO-2 & Able to determine the continuity of functions and their derivatives & 2 & 20\\\hline
+        CLO-3 & Able to calculate integrals and understand the Fundamental Theorem of Calculus & 1, 3 & 40\\\hline
+        CLO-4 & Able to apply complex variables in polar form and find the roots of the equations & 4 & 20\\\hline
+        CLO-5 & Able to apply matrix concepts to solve systems of linear equations and determine eigenvalues & 5 & 20\\\hline
+    \end{tabularx}\par}\vspace{4bp}%
+}
+\newcommand{\scoretable}[2]{%
+    {\renewcommand{\arraystretch}{1}\fontsize{12bp}{14bp}\selectfont
+    \begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}p{60bp}|*{5}{>{\centering\arraybackslash}X|}>{\centering\arraybackslash}p{60bp}|}
+        \hline
+        #1 & 1 & 2 & 3 & 4 & 5 & TOTAL\\\hline
+        #2 & & & & & & \rule[-10bp]{0pt}{25bp}\\\hline
+    \end{tabularx}\par}\vspace{4bp}%
+}
+\newcommand{\scoretableID}{\scoretable{Nomor}{Nilai}}
+\newcommand{\scoretableEN}{\scoretable{Question}{Score}}
+
+% Satu soal beserta jawaban dalam satu bingkai; jawaban panjang dapat bersambung.
+\newenvironment{soaljawab}[1]{%
+    \ifnum#1>1\clearpage\fi
+    \begin{tcolorbox}[enhanced,breakable,height fill,height fixed for=all,
+        sharp corners,colback=white,colframe=black,boxrule=0.4bp,
+        boxsep=0pt,left=12bp,right=12bp,top=6bp,bottom=10bp,
+        before skip=0pt,after skip=0pt,pad at break=8bp]
+    \fontsize{12bp}{14bp}\selectfont
+    \setlength{\abovedisplayskip}{8bp}
+    \setlength{\belowdisplayskip}{8bp}
+    \setlength{\abovedisplayshortskip}{8bp}
+    \setlength{\belowdisplayshortskip}{8bp}
+    \renewcommand{\arraystretch}{1.15}
+    \begin{enumerate}[start=#1,topsep=0pt]
+}{%
+    \end{enumerate}
+    \end{tcolorbox}
+}
+\newcommand{\jawaban}{\par\medskip\textbf{\answername.}\par\smallskip}
+
+\begin{document}
+
+
+% PAKET 1: Senin, 8 Desember 2025 | 07.00 - 08.40 WIB | Reguler (Kelas 40-49, 62-66)
+\startpacket{1}
+\pdfbookmark[0]{Paket 1: Senin 07.00 Reguler (Kelas 40--49, 62--66)}{paket1}
+\examheaderID{Kalkulus 1, 3 SKS}{Senin, 8 Desember 2025}{07:00 -- 08:40, 100 menit}{40 -- 49 dan 62 -- 66, Tertutup}
+\warningsID
+\cpmktableID
+\scoretableID
+\begin{soaljawab}{1}
+\item Hitunglah integral berikut
+        \[
+          \int \cos(3x)\sqrt{2 - \sin(3x)} \, dx.
+        \]
+\jawaban
+Gunakan metode substitusi. Misalkan $u = 2 - \sin(3x)$, maka:
+        \[
+          du = -3\cos(3x)\,dx \implies \cos(3x)\,dx = -\frac{1}{3}\,du.
+        \]
+        Sehingga integralnya menjadi:
+        \begin{align*}
+          \int \cos(3x)\sqrt{2 - \sin(3x)} \, dx & = \int \sqrt{u} \left(-\frac{1}{3}\right) du = -\frac{1}{3} \int u^{1/2} \, du \\
+                                                 & = -\frac{1}{3} \cdot \frac{2}{3} u^{3/2} + C                                   \\
+                                                 & = -\frac{2}{9} (2 - \sin(3x))^{3/2} + C.
+        \end{align*}
+\end{soaljawab}
+
+\begin{soaljawab}{2}
+\item Carilah maksimum dan minimum absolut dari
+        \[
+          y = \frac{2x + 5}{x^2 - 4}
+        \]
+        pada interval $[-5, -3]$.
+\jawaban
+Diberikan fungsi $y = f(x) = \dfrac{2x + 5}{x^2 - 4}$ pada $[-5, -3]$.
+        Perhatikan bahwa penyebut bernilai nol saat $x = \pm 2$, yang berada di luar interval $[-5, -3]$. Jadi $f(x)$ kontinu dan terdiferensialkan pada $[-5, -3]$.
+
+        Cari turunan pertama:
+        \begin{align*}
+          f'(x) & = \frac{2(x^2 - 4) - (2x + 5)(2x)}{(x^2 - 4)^2} = \frac{2x^2 - 8 - 4x^2 - 10x}{(x^2 - 4)^2}                          \\
+                & = \frac{-2x^2 - 10x - 8}{(x^2 - 4)^2} = \frac{-2(x^2 + 5x + 4)}{(x^2 - 4)^2} = \frac{-2(x + 1)(x + 4)}{(x^2 - 4)^2}.
+        \end{align*}
+        Titik kritis dari $f'(x) = 0$ adalah $x = -1$ dan $x = -4$.
+        Titik yang berada di dalam interval $[-5, -3]$ hanyalah $x = -4$.
+
+        Evaluasi nilai fungsi pada titik kritis dan titik ujung interval:
+        \begin{itemize}
+          \item $x = -5$: $f(-5) = \dfrac{2(-5) + 5}{(-5)^2 - 4} = \dfrac{-5}{21} \approx -0.238$
+          \item $x = -4$: $f(-4) = \dfrac{2(-4) + 5}{(-4)^2 - 4} = \dfrac{-3}{12} = -\frac{1}{4} = -0.25$
+          \item $x = -3$: $f(-3) = \dfrac{2(-3) + 5}{(-3)^2 - 4} = \dfrac{-1}{5} = -0.2$
+        \end{itemize}
+        Dari nilai-nilai di atas:
+        \begin{itemize}
+          \item Nilai maksimum absolut adalah $-\dfrac{1}{5}$ pada $x = -3$.
+          \item Nilai minimum absolut adalah $-\dfrac{1}{4}$ pada $x = -4$.
+        \end{itemize}
+\end{soaljawab}
+
+\begin{soaljawab}{3}
+\item Gambarkan grafik $y = |2x + 1|$ untuk $-1 \le x \le 4$ dan hitung integral
+        \[
+          \int_{-1}^{4} |2x + 1| \, dx
+        \]
+        dengan menggunakan rumus dari geometri bidang yang sesuai.
+\jawaban
+Fungsi $y = |2x + 1|$ bernilai:
+        \[
+          |2x + 1| = \begin{cases}
+            2x + 1,    & x \ge -\frac{1}{2} \\
+            -(2x + 1), & x < -\frac{1}{2}
+          \end{cases}
+        \]
+        Pada interval $[-1, 4]$, daerah di bawah kurva terbagi menjadi dua segitiga:
+        \begin{enumerate}
+          \item Segitiga I pada $\left[-1, -\frac{1}{2}\right]$:
+                \begin{itemize}
+                  \item Alas $a_1 = -\frac{1}{2} - (-1) = \frac{1}{2}$
+                  \item Tinggi $t_1 = |2(-1) + 1| = 1$
+                  \item Luas $L_1 = \frac{1}{2} \cdot \frac{1}{2} \cdot 1 = \frac{1}{4}$
+                \end{itemize}
+          \item Segitiga II pada $\left[-\frac{1}{2}, 4\right]$:
+                \begin{itemize}
+                  \item Alas $a_2 = 4 - \left(-\frac{1}{2}\right) = \frac{9}{2}$
+                  \item Tinggi $t_2 = |2(4) + 1| = 9$
+                  \item Luas $L_2 = \frac{1}{2} \cdot \frac{9}{2} \cdot 9 = \frac{81}{4}$
+                \end{itemize}
+        \end{enumerate}
+        Maka dengan rumus geometri bidang:
+        \[
+          \int_{-1}^{4} |2x + 1| \, dx = L_1 + L_2 = \frac{1}{4} + \frac{81}{4} = \frac{82}{4} = \frac{41}{2} = 20.5.
+        \]
+\end{soaljawab}
+
+\begin{soaljawab}{4}
+\item Nyatakan bilangan kompleks $\sqrt{3} + i$ dalam bentuk kutub. Kemudian carilah semua bilangan kompleks $z$ yang memenuhi
+        \[
+          z = (\sqrt{3} + i)^{1/3}.
+        \]
+\jawaban
+Misalkan $w = \sqrt{3} + i$.
+        Modulus $r = |w| = \sqrt{(\sqrt{3})^2 + 1^2} = \sqrt{3 + 1} = 2$.
+        Argumen $\theta = \arctan\left(\frac{1}{\sqrt{3}}\right) = 30^\circ = \frac{\pi}{6}$ (karena berada di kuadran I).
+        Sehingga bentuk kutubnya:
+        \[
+          \sqrt{3} + i = 2 \operatorname{cis}(30^\circ) = 2 \left(\cos\frac{\pi}{6} + i\sin\frac{\pi}{6}\right).
+        \]
+        Akar-akar $z = w^{1/3}$ untuk $k = 0, 1, 2$:
+        \[
+          z_k = \sqrt[3]{2} \operatorname{cis}\left(\frac{30^\circ + 360^\circ k}{3}\right) = 2^{1/3} \operatorname{cis}(10^\circ + 120^\circ k).
+        \]
+        Diperoleh ketiga akar:
+        \begin{align*}
+          z_0 & = 2^{1/3} \operatorname{cis}(10^\circ),  \\
+          z_1 & = 2^{1/3} \operatorname{cis}(130^\circ), \\
+          z_2 & = 2^{1/3} \operatorname{cis}(250^\circ).
+        \end{align*}
+\end{soaljawab}
+
+\begin{soaljawab}{5}
+\item Carilah invers dari
+        \[
+          A = \begin{bmatrix}
+            1  & -2 & -6 \\
+            2  & -1 & 4  \\
+            -2 & 2  & 1
+          \end{bmatrix}
+        \]
+        dengan menggunakan operasi baris elementer.
+\jawaban
+Gabungkan $A$ dengan matriks identitas $I_3$. Lakukan OBE pada
+kedua bagian hingga $[A\mid I_3]$ menjadi $[I_3\mid A^{-1}]$.
+Di sini $B_i$ menyatakan baris ke-$i$; label $B_i+kB_j$ berarti
+mengganti $B_i$ dengan $B_i+kB_j$.
+{\setlength{\arraycolsep}{4bp}
+\begin{align*}
+    & \left[\begin{array}{ccc|ccc}
+            1 & -2 & -6 & 1 & 0 & 0 \\
+            2 & -1 & 4 & 0 & 1 & 0 \\
+            -2 & 2 & 1 & 0 & 0 & 1
+        \end{array}\right]
+        \begin{array}{c}\xrightarrow{B_2-2B_1}\end{array}
+        \left[\begin{array}{ccc|ccc}
+            1 & -2 & -6 & 1 & 0 & 0 \\
+            0 & 3 & 16 & -2 & 1 & 0 \\
+            -2 & 2 & 1 & 0 & 0 & 1
+        \end{array}\right] \\[6bp]
+    & \begin{array}{c}\xrightarrow{B_3+2B_1}\end{array}
+        \left[\begin{array}{ccc|ccc}
+            1 & -2 & -6 & 1 & 0 & 0 \\
+            0 & 3 & 16 & -2 & 1 & 0 \\
+            0 & -2 & -11 & 2 & 0 & 1
+        \end{array}\right]
+        \begin{array}{c}\xrightarrow{B_2+B_3}\end{array}
+        \left[\begin{array}{ccc|ccc}
+            1 & -2 & -6 & 1 & 0 & 0 \\
+            0 & 1 & 5 & 0 & 1 & 1 \\
+            0 & -2 & -11 & 2 & 0 & 1
+        \end{array}\right] \\[6bp]
+    & \begin{array}{c}\xrightarrow{B_3+2B_2}\end{array}
+        \left[\begin{array}{ccc|ccc}
+            1 & -2 & -6 & 1 & 0 & 0 \\
+            0 & 1 & 5 & 0 & 1 & 1 \\
+            0 & 0 & -1 & 2 & 2 & 3
+        \end{array}\right]
+        \begin{array}{c}\xrightarrow{B_1+2B_2}\end{array}
+        \left[\begin{array}{ccc|ccc}
+            1 & 0 & 4 & 1 & 2 & 2 \\
+            0 & 1 & 5 & 0 & 1 & 1 \\
+            0 & 0 & -1 & 2 & 2 & 3
+        \end{array}\right] \\[6bp]
+    & \begin{array}{c}\xrightarrow{-B_3}\end{array}
+        \left[\begin{array}{ccc|ccc}
+            1 & 0 & 4 & 1 & 2 & 2 \\
+            0 & 1 & 5 & 0 & 1 & 1 \\
+            0 & 0 & 1 & -2 & -2 & -3
+        \end{array}\right]
+        \begin{array}{c}\xrightarrow{B_1-4B_3}\end{array}
+        \left[\begin{array}{ccc|ccc}
+            1 & 0 & 0 & 9 & 10 & 14 \\
+            0 & 1 & 5 & 0 & 1 & 1 \\
+            0 & 0 & 1 & -2 & -2 & -3
+        \end{array}\right] \\[6bp]
+    & \begin{array}{c}\xrightarrow{B_2-5B_3}\end{array}
+        \left[\begin{array}{ccc|ccc}
+            1 & 0 & 0 & 9 & 10 & 14 \\
+            0 & 1 & 0 & 10 & 11 & 16 \\
+            0 & 0 & 1 & -2 & -2 & -3
+        \end{array}\right]
+\end{align*}}
+Bagian kiri sudah menjadi $I_3$, sehingga bagian kanan merupakan inversnya:
+\[
+    A^{-1} = \begin{bmatrix}
+            9 & 10 & 14 \\
+            10 & 11 & 16 \\
+            -2 & -2 & -3
+        \end{bmatrix}.
+\]
+\end{soaljawab}
+
+\label{akhir-paket-1}
+
+% PAKET 2: Senin, 8 Desember 2025 | 09.00 - 10.40 WIB | IUP (Class 1, 4, 67, 70, 71)
+\startpacket{2}
+\pdfbookmark[0]{Paket 2: Monday 09.00 IUP (Class 1, 4, 67, 70, 71)}{paket2}
+\examheaderEN{Kalkulus 1, 3 SKS}{Monday, 8 December 2025}{09:00 -- 10:40, 100 minutes}{1, 4, 67, 70, 71, Closed book}
+\warningsEN
+\cpmktableEN
+\scoretableEN
+\begin{soaljawab}{1}
+\item Calculate the following integral
+        \[
+          \int \frac{\cos(3x)}{\sin^6(3x)} \, dx.
+        \]
+\jawaban
+Let $u = \sin(3x)$, then $du = 3\cos(3x)\,dx \implies \cos(3x)\,dx = \frac{1}{3}\,du$.
+        \begin{align*}
+          \int \frac{\cos(3x)}{\sin^6(3x)} \, dx & = \int u^{-6} \left(\frac{1}{3}\right) du = \frac{1}{3} \cdot \left(\frac{u^{-5}}{-5}\right) + C \\
+                                                 & = -\frac{1}{15\sin^5(3x)} + C.
+        \end{align*}
+\end{soaljawab}
+
+\begin{soaljawab}{2}
+\item A particle moves east at a speed of $4\text{ m/s}$, while another particle moves north at a speed of $3\text{ m/s}$. At a certain moment, the first particle is $8\text{ m}$ from the origin, and the second particle is $6\text{ m}$ from the origin. Determine the rate of change of the distance between the two particles at that moment.
+\jawaban
+Let the position of the first particle moving east be $x(t)$, and the second moving north be $y(t)$.
+        Given:
+        \[
+          \frac{dx}{dt} = 4\text{ m/s}, \quad \frac{dy}{dt} = 3\text{ m/s}.
+        \]
+        At the given instant, $x = 8\text{ m}$ and $y = 6\text{ m}$.
+        The distance $D$ between the particles satisfies:
+        \[
+          D^2 = x^2 + y^2 \implies D = \sqrt{8^2 + 6^2} = 10\text{ m}.
+        \]
+        Differentiating implicitly with respect to time $t$:
+        \[
+          2D \frac{dD}{dt} = 2x \frac{dx}{dt} + 2y \frac{dy}{dt} \implies D \frac{dD}{dt} = x \frac{dx}{dt} + y \frac{dy}{dt}.
+        \]
+        Substituting the known values:
+        \[
+          10 \frac{dD}{dt} = 8(4) + 6(3) = 32 + 18 = 50 \implies \frac{dD}{dt} = \frac{50}{10} = 5\text{ m/s}.
+        \]
+        Therefore, the distance between the two particles is increasing at a rate of $5\text{ m/s}$.
+\end{soaljawab}
+
+\begin{soaljawab}{3}
+\item Draw the graph of $y = |2x - 2|$ for $0 \le x \le 3$ and calculate
+        \[
+          \int_{0}^{3} |2x - 2| \, dx
+        \]
+        using the appropriate formula from geometry.
+\jawaban
+The function $y = |2x - 2| = 2|x - 1|$ forms two right triangles on $[0, 3]$ with vertex on the $x$-axis at $x = 1$:
+        \begin{enumerate}
+          \item Triangle 1 on $[0, 1]$:
+                Base $b_1 = 1 - 0 = 1$, height $h_1 = |2(0) - 2| = 2$.
+                $\text{Area}_1 = \frac{1}{2} \cdot 1 \cdot 2 = 1$.
+          \item Triangle 2 on $[1, 3]$:
+                Base $b_2 = 3 - 1 = 2$, height $h_2 = |2(3) - 2| = 4$.
+                $\text{Area}_2 = \frac{1}{2} \cdot 2 \cdot 4 = 4$.
+        \end{enumerate}
+        Using plane geometry:
+        \[
+          \int_{0}^{3} |2x - 2| \, dx = \text{Area}_1 + \text{Area}_2 = 1 + 4 = 5.
+        \]
+\end{soaljawab}
+
+\begin{soaljawab}{4}
+\item Given $z_1 = 5 - 10i$, $z_2 = -3 + 2i$, and $z_3 = 3 + 4i$.
+        \begin{enumerate}
+          \item Calculate $\dfrac{z_1 z_2}{z_3}$ and express it in the form $a + bi$.
+          \item Calculate $\left| \dfrac{z_1 z_2}{z_3} \right|^2$.
+        \end{enumerate}
+\jawaban
+\begin{enumerate}
+          \item Compute $z_1 z_2$:
+                \[
+                  z_1 z_2 = (5 - 10i)(-3 + 2i) = -15 + 10i + 30i - 20i^2 = -15 + 40i + 20 = 5 + 40i.
+                \]
+                Now divide by $z_3 = 3 + 4i$:
+                \begin{align*}
+                  \frac{z_1 z_2}{z_3} & = \frac{5 + 40i}{3 + 4i} \cdot \frac{3 - 4i}{3 - 4i} = \frac{15 - 20i + 120i - 160i^2}{3^2 + 4^2} \\
+                                      & = \frac{15 + 100i + 160}{25} = \frac{175 + 100i}{25} = 7 + 4i.
+                \end{align*}
+          \item Modulus squared:
+                \[
+                  \left| \frac{z_1 z_2}{z_3} \right|^2 = |7 + 4i|^2 = 7^2 + 4^2 = 49 + 16 = 65.
+                \]
+        \end{enumerate}
+\end{soaljawab}
+
+\begin{soaljawab}{5}
+\item Given the following system of linear equations
+        \[
+          \begin{aligned}
+            x + y + 2z   & = 8,  \\
+            -x - 2y + 3z & = 1,  \\
+            3x - 7y + 4z & = 10.
+          \end{aligned}
+        \]
+        \begin{enumerate}
+          \item Convert the system into an augmented matrix.
+          \item Solve it using the Gauss elimination method or the Gauss--Jordan elimination method.
+        \end{enumerate}
+\jawaban
+\begin{enumerate}
+\item The columns correspond to $x$, $y$, $z$, and the right-hand side, respectively.
+The augmented matrix is
+\[
+    [A\mid\mathbf b] = \left[\begin{array}{ccc|c}
+            1 & 1 & 2 & 8 \\
+            -1 & -2 & 3 & 1 \\
+            3 & -7 & 4 & 10
+        \end{array}\right].
+\]
+\item Apply Gaussian elimination to obtain an upper triangular coefficient matrix.
+Here $B_i$ denotes row $i$; an arrow labelled $B_i+kB_j$ replaces row $i$
+by $B_i+kB_j$.
+{\setlength{\arraycolsep}{4bp}
+\begin{align*}
+    & \left[\begin{array}{ccc|c}
+            1 & 1 & 2 & 8 \\
+            -1 & -2 & 3 & 1 \\
+            3 & -7 & 4 & 10
+        \end{array}\right]
+        \begin{array}{c}\xrightarrow{B_2+B_1}\end{array}
+        \left[\begin{array}{ccc|c}
+            1 & 1 & 2 & 8 \\
+            0 & -1 & 5 & 9 \\
+            3 & -7 & 4 & 10
+        \end{array}\right] \\[6bp]
+    & \begin{array}{c}\xrightarrow{B_3-3B_1}\end{array}
+        \left[\begin{array}{ccc|c}
+            1 & 1 & 2 & 8 \\
+            0 & -1 & 5 & 9 \\
+            0 & -10 & -2 & -14
+        \end{array}\right]
+        \begin{array}{c}\xrightarrow{B_3-10B_2}\end{array}
+        \left[\begin{array}{ccc|c}
+            1 & 1 & 2 & 8 \\
+            0 & -1 & 5 & 9 \\
+            0 & 0 & -52 & -104
+        \end{array}\right]
+\end{align*}}
+Now use back substitution, starting with the last row:
+\begin{align*}
+    B_3:\quad -52z&=-104
+        &\Longrightarrow\quad z&=2,\\
+    B_2:\quad -y+5(2)&=9
+        &\Longrightarrow\quad -y&=-1
+        \quad\Longrightarrow\quad y=1,\\
+    B_1:\quad x+1+2(2)&=8
+        &\Longrightarrow\quad x&=8-1-4=3.
+\end{align*}
+Therefore, $(x,y,z)=(3,1,2)$.
+\end{enumerate}
+\end{soaljawab}
+
+\label{akhir-paket-2}
+
+% PAKET 3: Senin, 8 Desember 2025 | 11.00 - 12.40 WIB | Reguler (Kelas 17-22)
+\startpacket{3}
+\pdfbookmark[0]{Paket 3: Senin 11.00 Reguler (Kelas 17--22)}{paket3}
+\examheaderID{Kalkulus 1, 3 SKS}{Senin, 8 Desember 2025}{11:00 -- 12:40, 100 menit}{17 -- 22, Tertutup}
+\warningsID
+\cpmktableID
+\scoretableID
+\begin{soaljawab}{1}
+\item Hitunglah integral berikut
+        \[
+          \int \frac{\sin(7x)}{(1 + \cos(7x))^3} \, dx.
+        \]
+\jawaban
+Gunakan substitusi $u = 1 + \cos(7x)$, sehingga $du = -7\sin(7x)\,dx \implies \sin(7x)\,dx = -\frac{1}{7}\,du$.
+        \begin{align*}
+          \int \frac{\sin(7x)}{(1 + \cos(7x))^3} \, dx & = \int u^{-3} \left(-\frac{1}{7}\right) du = -\frac{1}{7} \left(\frac{u^{-2}}{-2}\right) + C \\
+                                                       & = \frac{1}{14(1 + \cos(7x))^2} + C.
+        \end{align*}
+\end{soaljawab}
+
+\begin{soaljawab}{2}
+\item Diberikan $y = 2x^3 - 3x^2$.
+        \begin{enumerate}
+          \item Carilah perpotongan fungsi tersebut dengan sumbu $y$ dan sumbu $x$.
+          \item Carilah turunan pertama, titik stasioner, dan selang naik turun dari fungsi tersebut.
+          \item Carilah turunan kedua, titik belok, dan kecekungan dari fungsi tersebut.
+          \item Gunakan informasi di atas untuk mendapatkan grafik dari fungsi tersebut.
+        \end{enumerate}
+\jawaban
+\begin{enumerate}
+          \item Titik potong sumbu:
+                \begin{itemize}
+                  \item Sumbu $y$ ($x = 0$): $y = 0 \implies (0, 0)$.
+                  \item Sumbu $x$ ($y = 0$): $2x^3 - 3x^2 = 0 \implies x^2(2x - 3) = 0 \implies x = 0$ atau $x = \frac{3}{2}$. Jadi titik potongnya $(0, 0)$ dan $\left(\frac{3}{2}, 0\right)$.
+                \end{itemize}
+          \item Turunan pertama:
+                \[
+                  y' = 6x^2 - 6x = 6x(x - 1).
+                \]
+                Titik stasioner saat $y' = 0 \implies x = 0$ dan $x = 1$.
+                \begin{itemize}
+                  \item Naik pada $(-\infty, 0) \cup (1, \infty)$.
+                  \item Turun pada $(0, 1)$.
+                \end{itemize}
+          \item Turunan kedua:
+                \[
+                  y'' = 12x - 6 = 6(2x - 1).
+                \]
+                Titik belok saat $y'' = 0 \implies x = \frac{1}{2}$.
+                Nilai $y\left(\frac{1}{2}\right) = 2\left(\frac{1}{8}\right) - 3\left(\frac{1}{4}\right) = \frac{1}{4} - \frac{3}{4} = -\frac{1}{2}$. Titik belok di $\left(\frac{1}{2}, -\frac{1}{2}\right)$.
+                \begin{itemize}
+                  \item Cekung ke bawah pada $\left(-\infty, \frac{1}{2}\right)$.
+                  \item Cekung ke atas pada $\left(\frac{1}{2}, \infty\right)$.
+                \end{itemize}
+          \item Sketsa kurva memiliki titik maksimum lokal di $(0, 0)$, titik minimum lokal di $(1, -1)$, dan titik belok di $\left(\frac{1}{2}, -\frac{1}{2}\right)$.
+        \end{enumerate}
+\end{soaljawab}
+
+\begin{soaljawab}{3}
+\item Diketahui $\displaystyle \int_{1}^{8} f(x) \, dx = 4$. Dapatkan
+        \[
+          \int_{1}^{2} x^2 f(9 - x^3) \, dx
+        \]
+        dengan substitusi $u = 9 - x^3$.
+\jawaban
+Substitusi $u = 9 - x^3$, maka $du = -3x^2\,dx \implies x^2\,dx = -\frac{1}{3}\,du$.
+        Batas integrasi:
+        \begin{itemize}
+          \item Saat $x = 1 \implies u = 9 - 1^3 = 8$.
+          \item Saat $x = 2 \implies u = 9 - 2^3 = 1$.
+        \end{itemize}
+        Maka:
+        \begin{align*}
+          \int_{1}^{2} x^2 f(9 - x^3) \, dx & = \int_{8}^{1} f(u) \left(-\frac{1}{3}\right) du = \frac{1}{3} \int_{1}^{8} f(u) \, du \\
+                                            & = \frac{1}{3} (4) = \frac{4}{3}.
+        \end{align*}
+\end{soaljawab}
+
+\begin{soaljawab}{4}
+\item Misalkan $z = 3 + 3i$.
+        \begin{enumerate}
+          \item Nyatakan $z$ dalam bentuk kutub.
+          \item Hitunglah $z^5$ dalam bentuk kutub.
+          \item Nyatakan $z^5$ dalam bentuk $a + bi$.
+        \end{enumerate}
+\jawaban
+\begin{enumerate}
+          \item Modulus $r = \sqrt{3^2 + 3^2} = \sqrt{18} = 3\sqrt{2}$.
+                Argumen $\theta = \arctan\left(\frac{3}{3}\right) = 45^\circ = \frac{\pi}{4}$.
+                Bentuk kutub: $z = 3\sqrt{2}\operatorname{cis}(45^\circ)$.
+          \item Menggunakan Teorema De Moivre:
+                \begin{align*}
+                  z^5 & = (3\sqrt{2})^5 \operatorname{cis}(5 \times 45^\circ) = 3^5 \cdot 2^{5/2} \operatorname{cis}(225^\circ) \\
+                      & = 243 \cdot 4\sqrt{2} \operatorname{cis}(225^\circ) = 972\sqrt{2} \operatorname{cis}(225^\circ).
+                \end{align*}
+          \item Bentuk $a + bi$:
+                \begin{align*}
+                  z^5 & = 972\sqrt{2} \left(\cos 225^\circ + i\sin 225^\circ\right) = 972\sqrt{2} \left(-\frac{\sqrt{2}}{2} - i\frac{\sqrt{2}}{2}\right) \\
+                      & = 972\sqrt{2}\left(-\frac{\sqrt{2}}{2}\right) - i 972\sqrt{2}\left(\frac{\sqrt{2}}{2}\right) = -972 - 972i.
+                \end{align*}
+        \end{enumerate}
+\end{soaljawab}
+
+\begin{soaljawab}{5}
+\item Carilah invers dari
+        \[
+          A = \begin{bmatrix}
+            1 & 2 & 3  \\
+            1 & 3 & 6  \\
+            2 & 6 & 13
+          \end{bmatrix}
+        \]
+        dengan menggunakan operasi baris elementer.
+\jawaban
+Gabungkan $A$ dengan matriks identitas $I_3$. Lakukan OBE pada
+kedua bagian hingga $[A\mid I_3]$ menjadi $[I_3\mid A^{-1}]$.
+Di sini $B_i$ menyatakan baris ke-$i$; label $B_i+kB_j$ berarti
+mengganti $B_i$ dengan $B_i+kB_j$.
+{\setlength{\arraycolsep}{4bp}
+\begin{align*}
+    & \left[\begin{array}{ccc|ccc}
+            1 & 2 & 3 & 1 & 0 & 0 \\
+            1 & 3 & 6 & 0 & 1 & 0 \\
+            2 & 6 & 13 & 0 & 0 & 1
+        \end{array}\right]
+        \begin{array}{c}\xrightarrow{B_2-B_1}\end{array}
+        \left[\begin{array}{ccc|ccc}
+            1 & 2 & 3 & 1 & 0 & 0 \\
+            0 & 1 & 3 & -1 & 1 & 0 \\
+            2 & 6 & 13 & 0 & 0 & 1
+        \end{array}\right] \\[6bp]
+    & \begin{array}{c}\xrightarrow{B_3-2B_1}\end{array}
+        \left[\begin{array}{ccc|ccc}
+            1 & 2 & 3 & 1 & 0 & 0 \\
+            0 & 1 & 3 & -1 & 1 & 0 \\
+            0 & 2 & 7 & -2 & 0 & 1
+        \end{array}\right]
+        \begin{array}{c}\xrightarrow{B_3-2B_2}\end{array}
+        \left[\begin{array}{ccc|ccc}
+            1 & 2 & 3 & 1 & 0 & 0 \\
+            0 & 1 & 3 & -1 & 1 & 0 \\
+            0 & 0 & 1 & 0 & -2 & 1
+        \end{array}\right] \\[6bp]
+    & \begin{array}{c}\xrightarrow{B_1-2B_2}\end{array}
+        \left[\begin{array}{ccc|ccc}
+            1 & 0 & -3 & 3 & -2 & 0 \\
+            0 & 1 & 3 & -1 & 1 & 0 \\
+            0 & 0 & 1 & 0 & -2 & 1
+        \end{array}\right]
+        \begin{array}{c}\xrightarrow{B_1+3B_3}\end{array}
+        \left[\begin{array}{ccc|ccc}
+            1 & 0 & 0 & 3 & -8 & 3 \\
+            0 & 1 & 3 & -1 & 1 & 0 \\
+            0 & 0 & 1 & 0 & -2 & 1
+        \end{array}\right] \\[6bp]
+    & \begin{array}{c}\xrightarrow{B_2-3B_3}\end{array}
+        \left[\begin{array}{ccc|ccc}
+            1 & 0 & 0 & 3 & -8 & 3 \\
+            0 & 1 & 0 & -1 & 7 & -3 \\
+            0 & 0 & 1 & 0 & -2 & 1
+        \end{array}\right]
+\end{align*}}
+Bagian kiri sudah menjadi $I_3$, sehingga bagian kanan merupakan inversnya:
+\[
+    A^{-1} = \begin{bmatrix}
+            3 & -8 & 3 \\
+            -1 & 7 & -3 \\
+            0 & -2 & 1
+        \end{bmatrix}.
+\]
+\end{soaljawab}
+
+\label{akhir-paket-3}
+
+% PAKET 4: Senin, 8 Desember 2025 | 13.30 - 15.10 WIB | Reguler (Kelas 13-16, 50-61)
+\startpacket{4}
+\pdfbookmark[0]{Paket 4: Senin 13.30 Reguler (Kelas 13--16, 50--61)}{paket4}
+\examheaderID{Kalkulus 1, 3 SKS}{Senin, 8 Desember 2025}{13:30 -- 15:10, 100 menit}{13 -- 16 dan 50 -- 61, Tertutup}
+\warningsID
+\cpmktableID
+\scoretableID
+\begin{soaljawab}{1}
+\item Hitunglah integral berikut
+        \[
+          \int \frac{x^2}{(x^3 + 2)^{1/4}} \, dx.
+        \]
+\jawaban
+Substitusi $u = x^3 + 2 \implies du = 3x^2\,dx \implies x^2\,dx = \frac{1}{3}\,du$.
+        \begin{align*}
+          \int \frac{x^2}{(x^3 + 2)^{1/4}} \, dx & = \frac{1}{3} \int u^{-1/4} \, du = \frac{1}{3} \cdot \frac{4}{3} u^{3/4} + C \\
+                                                 & = \frac{4}{9} (x^3 + 2)^{3/4} + C.
+        \end{align*}
+\end{soaljawab}
+
+\begin{soaljawab}{2}
+\item Diberikan fungsi $y = 2x + \dfrac{1}{(x-1)^2}$ dengan $x \in (1, \infty)$.
+        \begin{enumerate}
+          \item Tentukan maksimum atau minimum relatif (jika ada) dari $y$.
+          \item Apakah hasil pada bagian (a) juga merupakan maksimum atau minimum absolut?
+        \end{enumerate}
+\jawaban
+\begin{enumerate}
+          \item Cari turunan pertama untuk $x > 1$:
+                \[
+                  y' = 2 - 2(x-1)^{-3} = 2 - \frac{2}{(x-1)^3}.
+                \]
+                Titik kritis: $y' = 0 \implies \frac{2}{(x-1)^3} = 2 \implies (x-1)^3 = 1 \implies x - 1 = 1 \implies x = 2$.
+                Turunan kedua:
+                \[
+                  y'' = 6(x-1)^{-4} = \frac{6}{(x-1)^4} > 0 \quad \forall x \in (1, \infty).
+                \]
+                Karena $y''(2) = 6 > 0$, maka $x = 2$ memberikan minimum relatif dengan nilai:
+                \[
+                  y(2) = 2(2) + \frac{1}{(2-1)^2} = 4 + 1 = 5.
+                \]
+          \item Karena $y'' > 0$ untuk seluruh domain $(1, \infty)$ (fungsi konveks murni), dan $\displaystyle \lim_{x \to 1^+} y = \infty$ serta $\displaystyle \lim_{x \to \infty} y = \infty$, maka nilai $y(2) = 5$ adalah minimum absolut pada interval $(1, \infty)$.
+        \end{enumerate}
+\end{soaljawab}
+
+\begin{soaljawab}{3}
+\item Diketahui $\displaystyle \int_{0}^{4} f(x) \, dx = 3$. Dapatkan
+        \[
+          \int_{0}^{16} \frac{f(\sqrt{x})}{\sqrt{x}} \, dx
+        \]
+        dengan substitusi $u = \sqrt{x}$.
+\jawaban
+Substitusi $u = \sqrt{x} \implies du = \frac{1}{2\sqrt{x}}\,dx \implies \frac{dx}{\sqrt{x}} = 2\,du$.
+        Batas integrasi:
+        \begin{itemize}
+          \item $x = 0 \implies u = 0$
+          \item $x = 16 \implies u = \sqrt{16} = 4$
+        \end{itemize}
+        Maka:
+        \[
+          \int_{0}^{16} \frac{f(\sqrt{x})}{\sqrt{x}} \, dx = \int_{0}^{4} f(u) (2\,du) = 2 \int_{0}^{4} f(u)\,du = 2(3) = 6.
+        \]
+\end{soaljawab}
+
+\begin{soaljawab}{4}
+\item Nyatakan bilangan kompleks $2 + 2\sqrt{3}i$ dalam bentuk kutub. Carilah semua bilangan kompleks $z$ yang memenuhi
+        \[
+          z^3 = 2 + 2\sqrt{3}i.
+        \]
+\jawaban
+Misalkan $w = 2 + 2\sqrt{3}i$.
+        Modulus $r = \sqrt{2^2 + (2\sqrt{3})^2} = \sqrt{4 + 12} = \sqrt{16} = 4$.
+        Argumen $\theta = \arctan\left(\frac{2\sqrt{3}}{2}\right) = \arctan(\sqrt{3}) = 60^\circ = \frac{\pi}{3}$.
+        Bentuk kutub: $w = 4\operatorname{cis}(60^\circ)$.
+
+        Penyelesaian $z^3 = w$ untuk $k = 0, 1, 2$:
+        \[
+          z_k = \sqrt[3]{4} \operatorname{cis}\left(\frac{60^\circ + 360^\circ k}{3}\right) = 4^{1/3} \operatorname{cis}(20^\circ + 120^\circ k).
+        \]
+        Diperoleh:
+        \begin{align*}
+          z_0 & = 4^{1/3} \operatorname{cis}(20^\circ),  \\
+          z_1 & = 4^{1/3} \operatorname{cis}(140^\circ), \\
+          z_2 & = 4^{1/3} \operatorname{cis}(260^\circ).
+        \end{align*}
+\end{soaljawab}
+
+\begin{soaljawab}{5}
+\item Carilah invers dari
+        \[
+          A = \begin{bmatrix}
+            -1 & -2 & -2 \\
+            1  & 3  & 3  \\
+            -1 & 4  & 5
+          \end{bmatrix}
+        \]
+        dengan menggunakan operasi baris elementer.
+\jawaban
+Gabungkan $A$ dengan matriks identitas $I_3$. Lakukan OBE pada
+kedua bagian hingga $[A\mid I_3]$ menjadi $[I_3\mid A^{-1}]$.
+Di sini $B_i$ menyatakan baris ke-$i$; label $B_i+kB_j$ berarti
+mengganti $B_i$ dengan $B_i+kB_j$.
+{\setlength{\arraycolsep}{4bp}
+\begin{align*}
+    & \left[\begin{array}{ccc|ccc}
+            -1 & -2 & -2 & 1 & 0 & 0 \\
+            1 & 3 & 3 & 0 & 1 & 0 \\
+            -1 & 4 & 5 & 0 & 0 & 1
+        \end{array}\right]
+        \begin{array}{c}\xrightarrow{-B_1}\end{array}
+        \left[\begin{array}{ccc|ccc}
+            1 & 2 & 2 & -1 & 0 & 0 \\
+            1 & 3 & 3 & 0 & 1 & 0 \\
+            -1 & 4 & 5 & 0 & 0 & 1
+        \end{array}\right] \\[6bp]
+    & \begin{array}{c}\xrightarrow{B_2-B_1}\end{array}
+        \left[\begin{array}{ccc|ccc}
+            1 & 2 & 2 & -1 & 0 & 0 \\
+            0 & 1 & 1 & 1 & 1 & 0 \\
+            -1 & 4 & 5 & 0 & 0 & 1
+        \end{array}\right]
+        \begin{array}{c}\xrightarrow{B_3+B_1}\end{array}
+        \left[\begin{array}{ccc|ccc}
+            1 & 2 & 2 & -1 & 0 & 0 \\
+            0 & 1 & 1 & 1 & 1 & 0 \\
+            0 & 6 & 7 & -1 & 0 & 1
+        \end{array}\right] \\[6bp]
+    & \begin{array}{c}\xrightarrow{B_3-6B_2}\end{array}
+        \left[\begin{array}{ccc|ccc}
+            1 & 2 & 2 & -1 & 0 & 0 \\
+            0 & 1 & 1 & 1 & 1 & 0 \\
+            0 & 0 & 1 & -7 & -6 & 1
+        \end{array}\right]
+        \begin{array}{c}\xrightarrow{B_1-2B_2}\end{array}
+        \left[\begin{array}{ccc|ccc}
+            1 & 0 & 0 & -3 & -2 & 0 \\
+            0 & 1 & 1 & 1 & 1 & 0 \\
+            0 & 0 & 1 & -7 & -6 & 1
+        \end{array}\right] \\[6bp]
+    & \begin{array}{c}\xrightarrow{B_2-B_3}\end{array}
+        \left[\begin{array}{ccc|ccc}
+            1 & 0 & 0 & -3 & -2 & 0 \\
+            0 & 1 & 0 & 8 & 7 & -1 \\
+            0 & 0 & 1 & -7 & -6 & 1
+        \end{array}\right]
+\end{align*}}
+Bagian kiri sudah menjadi $I_3$, sehingga bagian kanan merupakan inversnya:
+\[
+    A^{-1} = \begin{bmatrix}
+            -3 & -2 & 0 \\
+            8 & 7 & -1 \\
+            -7 & -6 & 1
+        \end{bmatrix}.
+\]
+\end{soaljawab}
+
+\label{akhir-paket-4}
+
+% PAKET 5: Selasa, 9 Desember 2025 | 07.00 - 08.40 WIB | IUP (Class 2, 3, 68, 69)
+\startpacket{5}
+\pdfbookmark[0]{Paket 5: Tuesday 07.00 IUP (Class 2, 3, 68, 69)}{paket5}
+\examheaderEN{Kalkulus 1, 3 SKS}{Tuesday, 9 December 2025}{07:00 -- 08:40, 100 minutes}{2, 3, 68, 69, Closed book}
+\warningsEN
+\cpmktableEN
+\scoretableEN
+\begin{soaljawab}{1}
+\item Calculate the following integral
+        \[
+          \int \frac{x}{(4x^2 + 1)^3} \, dx.
+        \]
+\jawaban
+Let $u = 4x^2 + 1 \implies du = 8x\,dx \implies x\,dx = \frac{1}{8}\,du$.
+        \begin{align*}
+          \int \frac{x}{(4x^2 + 1)^3} \, dx & = \frac{1}{8} \int u^{-3} \, du = \frac{1}{8} \left(\frac{u^{-2}}{-2}\right) + C \\
+                                            & = -\frac{1}{16(4x^2 + 1)^2} + C.
+        \end{align*}
+\end{soaljawab}
+
+\begin{soaljawab}{2}
+\item A tank in the shape of an inverted cone has a height of $12\text{ m}$ and a circular radius of $6\text{ m}$. Water is poured into the tank at a rate of $2\text{ m}^3/\text{min}$. Determine the rate of change of the height of water level when the height of the water (measured from the bottom) reaches $6\text{ m}$. Use the volume formula for a cone $V = \frac{1}{3}\pi r^2 y$.
+\jawaban
+For an inverted cone with height $H = 12$ and radius $R = 6$, by similar triangles:
+        \[
+          \frac{r}{y} = \frac{6}{12} = \frac{1}{2} \implies r = \frac{y}{2}.
+        \]
+        Volume in terms of height $y$:
+        \[
+          V = \frac{1}{3}\pi r^2 y = \frac{1}{3}\pi \left(\frac{y}{2}\right)^2 y = \frac{\pi y^3}{12}.
+        \]
+        Differentiating with respect to time $t$:
+        \[
+          \frac{dV}{dt} = \frac{\pi y^2}{4} \frac{dy}{dt} \implies \frac{dy}{dt} = \frac{4}{\pi y^2} \frac{dV}{dt}.
+        \]
+        Given $\dfrac{dV}{dt} = 2\text{ m}^3/\text{min}$ and $y = 6\text{ m}$:
+        \[
+          \frac{dy}{dt} = \frac{4}{\pi (6^2)} \cdot 2 = \frac{8}{36\pi} = \frac{2}{9\pi}\text{ m/min}.
+        \]
+\end{soaljawab}
+
+\begin{soaljawab}{3}
+\item Draw the graph of $y = 1 - \dfrac{x}{2}$ for $0 \le x \le 6$ and calculate
+        \[
+          \int_{0}^{6} \left(1 - \frac{x}{2}\right) \, dx
+        \]
+        using the appropriate formula from geometry.
+\jawaban
+The line $y = 1 - \frac{x}{2}$ crosses the $x$-axis at $x = 2$:
+        \begin{itemize}
+          \item On $[0, 2]$, $y \ge 0$. It forms a triangle above the $x$-axis with base $2$ and height $1$:
+                \[
+                  A_1 = \frac{1}{2} \cdot 2 \cdot 1 = 1.
+                \]
+          \item On $[2, 6]$, $y \le 0$. It forms a triangle below the $x$-axis with base $6 - 2 = 4$ and height $|1 - 3| = 2$:
+                \[
+                  A_2 = \frac{1}{2} \cdot 4 \cdot 2 = 4.
+                \]
+        \end{itemize}
+        Using net signed area:
+        \[
+          \int_{0}^{6} \left(1 - \frac{x}{2}\right) \, dx = A_1 - A_2 = 1 - 4 = -3.
+        \]
+\end{soaljawab}
+
+\begin{soaljawab}{4}
+\item Given $w = \dfrac{10 + 2i}{3 - 2i}$.
+        \begin{enumerate}
+          \item Express $w$ in the form $w = a + bi$.
+          \item Express $w$ in polar form.
+        \end{enumerate}
+\jawaban
+\begin{enumerate}
+          \item Simplify $w$:
+                \begin{align*}
+                  w & = \frac{10 + 2i}{3 - 2i} \cdot \frac{3 + 2i}{3 + 2i} = \frac{30 + 20i + 6i + 4i^2}{3^2 + (-2)^2} \\
+                    & = \frac{26 + 26i}{13} = 2 + 2i.
+                \end{align*}
+          \item Polar form:
+                $r = \sqrt{2^2 + 2^2} = \sqrt{8} = 2\sqrt{2}$.
+                $\theta = \arctan(2/2) = 45^\circ = \frac{\pi}{4}$.
+                \[
+                  w = 2\sqrt{2} \operatorname{cis}(45^\circ) = 2\sqrt{2}\left(\cos\frac{\pi}{4} + i\sin\frac{\pi}{4}\right).
+                \]
+        \end{enumerate}
+\end{soaljawab}
+
+\begin{soaljawab}{5}
+\item Given the following system of linear equations
+        \[
+          \begin{aligned}
+            x + y + 2z    & = 4,  \\
+            2x + 3y + 6z  & = 10, \\
+            3x + 6y + 10z & = 17.
+          \end{aligned}
+        \]
+        \begin{enumerate}
+          \item Convert the system into an augmented matrix.
+          \item Solve it using the Gauss elimination method or the Gauss--Jordan elimination method.
+        \end{enumerate}
+\jawaban
+\begin{enumerate}
+\item The columns correspond to $x$, $y$, $z$, and the right-hand side, respectively.
+The augmented matrix is
+\[
+    [A\mid\mathbf b] = \left[\begin{array}{ccc|c}
+            1 & 1 & 2 & 4 \\
+            2 & 3 & 6 & 10 \\
+            3 & 6 & 10 & 17
+        \end{array}\right].
+\]
+\item Apply Gaussian elimination to obtain an upper triangular coefficient matrix.
+Here $B_i$ denotes row $i$; an arrow labelled $B_i+kB_j$ replaces row $i$
+by $B_i+kB_j$.
+{\setlength{\arraycolsep}{4bp}
+\begin{align*}
+    & \left[\begin{array}{ccc|c}
+            1 & 1 & 2 & 4 \\
+            2 & 3 & 6 & 10 \\
+            3 & 6 & 10 & 17
+        \end{array}\right]
+        \begin{array}{c}\xrightarrow{B_2-2B_1}\end{array}
+        \left[\begin{array}{ccc|c}
+            1 & 1 & 2 & 4 \\
+            0 & 1 & 2 & 2 \\
+            3 & 6 & 10 & 17
+        \end{array}\right] \\[6bp]
+    & \begin{array}{c}\xrightarrow{B_3-3B_1}\end{array}
+        \left[\begin{array}{ccc|c}
+            1 & 1 & 2 & 4 \\
+            0 & 1 & 2 & 2 \\
+            0 & 3 & 4 & 5
+        \end{array}\right]
+        \begin{array}{c}\xrightarrow{B_3-3B_2}\end{array}
+        \left[\begin{array}{ccc|c}
+            1 & 1 & 2 & 4 \\
+            0 & 1 & 2 & 2 \\
+            0 & 0 & -2 & -1
+        \end{array}\right]
+\end{align*}}
+Use back substitution from the third row to the first:
+\begin{align*}
+    B_3:\quad -2z&=-1
+        &\Longrightarrow\quad z&=\frac12,\\
+    B_2:\quad y+2\left(\frac12\right)&=2
+        &\Longrightarrow\quad y&=2-1=1,\\
+    B_1:\quad x+1+2\left(\frac12\right)&=4
+        &\Longrightarrow\quad x&=4-1-1=2.
+\end{align*}
+Therefore, $(x,y,z)=\left(2,1,\frac12\right)$.
+\end{enumerate}
+\end{soaljawab}
+
+\label{akhir-paket-5}
+
+% PAKET 6: Selasa, 9 Desember 2025 | 07.00 - 08.40 WIB | Mengulang (Kelas 113, 114)
+\startpacket{6}
+\pdfbookmark[0]{Paket 6: Selasa 07.00 Mengulang (Kelas 113, 114)}{paket6}
+\examheaderID{Kalkulus 1, 3 SKS}{Selasa, 9 Desember 2025}{07:00 -- 08:40, 100 menit}{113, 114, Tertutup}
+\warningsID
+\cpmktableID
+\scoretableID
+\begin{soaljawab}{1}
+\item Hitunglah integral berikut
+        \[
+          \int 5x^4(x^5 + 3)^6 \, dx.
+        \]
+\jawaban
+Substitusi $u = x^5 + 3 \implies du = 5x^4\,dx$:
+        \[
+          \int 5x^4(x^5 + 3)^6 \, dx = \int u^6 \, du = \frac{1}{7} u^7 + C = \frac{1}{7} (x^5 + 3)^7 + C.
+        \]
+\end{soaljawab}
+
+\begin{soaljawab}{2}
+\item Dapatkan turunan pertama, titik stasioner, dan maksimum dan minimum relatif dari
+        \[
+          f(x) = x^4 - 2x^2 - 15.
+        \]
+\jawaban
+\begin{itemize}
+          \item Turunan pertama:
+                \[
+                  f'(x) = 4x^3 - 4x = 4x(x^2 - 1) = 4x(x - 1)(x + 1).
+                \]
+          \item Titik stasioner: $f'(x) = 0 \implies x = -1, 0, 1$.
+          \item Uji turunan kedua: $f''(x) = 12x^2 - 4$.
+                \begin{itemize}
+                  \item $x = 0$: $f''(0) = -4 < 0 \implies$ maksimum relatif di $(0, f(0)) = (0, -15)$.
+                  \item $x = -1$: $f''(-1) = 8 > 0 \implies$ minimum relatif di $(-1, f(-1)) = (-1, -16)$.
+                  \item $x = 1$: $f''(1) = 8 > 0 \implies$ minimum relatif di $(1, f(1)) = (1, -16)$.
+                \end{itemize}
+        \end{itemize}
+\end{soaljawab}
+
+\begin{soaljawab}{3}
+\item Gambarkan grafik dari $y = 2x + 1$ untuk $1 \le x \le 3$ dan hitung integral
+        \[
+          \int_{1}^{3} (2x + 1) \, dx
+        \]
+        dengan menggunakan rumus dari geometri bidang yang sesuai.
+\jawaban
+Daerah di bawah garis $y = 2x + 1$ pada interval $[1, 3]$ merupakan trapesium tegak dengan:
+        \begin{itemize}
+          \item Sisi sejajar $y_1 = 2(1) + 1 = 3$ dan $y_2 = 2(3) + 1 = 7$
+          \item Tinggi trapesium $t = 3 - 1 = 2$
+        \end{itemize}
+        Luas trapesium:
+        \[
+          \int_{1}^{3} (2x + 1) \, dx = \frac{y_1 + y_2}{2} \cdot t = \frac{3 + 7}{2} \cdot 2 = 10.
+        \]
+\end{soaljawab}
+
+\begin{soaljawab}{4}
+\item Diberikan bilangan kompleks $z_1 = 1 + 2i$, $z_2 = 2 + 3i$, dan $z_3 = 3 + 4i$. Sederhanakan
+        \[
+          \frac{5(z_1 + z_2 + z_3)}{z_1 \times z_2}
+        \]
+        dalam bentuk $a + bi$.
+\jawaban
+Pembilang:
+        \[
+          z_1 + z_2 + z_3 = (1 + 2i) + (2 + 3i) + (3 + 4i) = 6 + 9i.
+        \]
+        \[
+          5(z_1 + z_2 + z_3) = 5(6 + 9i) = 30 + 45i.
+        \]
+        Penyebut:
+        \[
+          z_1 z_2 = (1 + 2i)(2 + 3i) = 2 + 3i + 4i + 6i^2 = -4 + 7i.
+        \]
+        Pembagian:
+        \begin{align*}
+          \frac{30 + 45i}{-4 + 7i} & = \frac{30 + 45i}{-4 + 7i} \cdot \frac{-4 - 7i}{-4 - 7i} = \frac{-120 - 210i - 180i - 315i^2}{(-4)^2 + 7^2} \\
+                                   & = \frac{-120 - 390i + 315}{16 + 49} = \frac{195 - 390i}{65} = 3 - 6i.
+        \end{align*}
+\end{soaljawab}
+
+\begin{soaljawab}{5}
+\item Misalkan $A = \begin{bmatrix} x & y \\ 0 & z \end{bmatrix}$ dan $A^3 = \begin{bmatrix} 8 & -57 \\ 0 & 27 \end{bmatrix}$. Carilah $x, y$, dan $z$.
+\jawaban
+\textbf{Langkah 1: hitung $A^2$ dengan perkalian baris dan kolom.}
+\begin{align*}
+    A^2
+    &=\begin{bmatrix}x&y\\0&z\end{bmatrix}
+      \begin{bmatrix}x&y\\0&z\end{bmatrix}\\
+    &=\begin{bmatrix}
+        x\cdot x+y\cdot0 & x\cdot y+y\cdot z\\
+        0\cdot x+z\cdot0 & 0\cdot y+z\cdot z
+      \end{bmatrix}
+     =\begin{bmatrix}x^2&y(x+z)\\0&z^2\end{bmatrix}.
+\end{align*}
+\textbf{Langkah 2: kalikan $A^2$ dengan $A$.}
+\begin{align*}
+    A^3
+    &=\begin{bmatrix}x^2&y(x+z)\\0&z^2\end{bmatrix}
+      \begin{bmatrix}x&y\\0&z\end{bmatrix}\\
+    &=\begin{bmatrix}
+        x^2\cdot x+y(x+z)\cdot0 & x^2\cdot y+y(x+z)\cdot z\\
+        0\cdot x+z^2\cdot0 & 0\cdot y+z^2\cdot z
+      \end{bmatrix}\\
+    &=\begin{bmatrix}x^3&x^2y+xyz+yz^2\\0&z^3\end{bmatrix}
+     =\begin{bmatrix}x^3&y(x^2+xz+z^2)\\0&z^3\end{bmatrix}.
+\end{align*}
+\textbf{Langkah 3: samakan elemen yang bersesuaian.}
+Karena $A^3=\begin{bmatrix}8&-57\\0&27\end{bmatrix}$, diperoleh
+\[
+    x^3=8,\qquad z^3=27,\qquad y(x^2+xz+z^2)=-57.
+\]
+Untuk $x,y,z$ real, dua persamaan pertama memberi $x=2$ dan $z=3$.
+Substitusikan ke persamaan ketiga:
+\begin{align*}
+    y(2^2+2\cdot3+3^2)&=-57,\\
+    y(4+6+9)&=-57,\\
+    19y&=-57
+    \quad\Longrightarrow\quad y=-3.
+\end{align*}
+Jadi $x=2$, $y=-3$, dan $z=3$.
+\end{soaljawab}
+
+\label{akhir-paket-6}
+
+% PAKET 7: Selasa, 9 Desember 2025 | 09.00 - 10.40 WIB | Reguler (Kelas 5-12, 23-29)
+\startpacket{7}
+\pdfbookmark[0]{Paket 7: Selasa 09.00 Reguler (Kelas 5--12, 23--29)}{paket7}
+\examheaderID{Kalkulus 1, 3 SKS}{Selasa, 9 Desember 2025}{09:00 -- 10:40, 100 menit}{5 -- 12, 23 -- 29, Tertutup}
+\warningsID
+\cpmktableID
+\scoretableID
+\begin{soaljawab}{1}
+\item Hitunglah integral berikut
+        \[
+          \int \frac{3x^3}{(3x^4 + 2)^{1/3}} \, dx.
+        \]
+\jawaban
+Substitusi $u = 3x^4 + 2 \implies du = 12x^3\,dx \implies 3x^3\,dx = \frac{1}{4}\,du$.
+        \begin{align*}
+          \int \frac{3x^3}{(3x^4 + 2)^{1/3}} \, dx & = \frac{1}{4} \int u^{-1/3} \, du = \frac{1}{4} \cdot \frac{3}{2} u^{2/3} + C \\
+                                                   & = \frac{3}{8} (3x^4 + 2)^{2/3} + C.
+        \end{align*}
+\end{soaljawab}
+
+\begin{soaljawab}{2}
+\item Diberikan $y = -2x^4 + 8x^2$.
+        \begin{enumerate}
+          \item Carilah turunan pertama, titik stasioner, maksimum dan minimum relatif, dan selang naik turun dari fungsi tersebut.
+          \item Carilah turunan kedua, titik belok, dan kecekungan dari fungsi tersebut.
+        \end{enumerate}
+\jawaban
+\begin{enumerate}
+          \item Turunan pertama:
+                \[
+                  y' = -8x^3 + 16x = -8x(x^2 - 2) = -8x(x - \sqrt{2})(x + \sqrt{2}).
+                \]
+                Titik stasioner: $x = 0, \pm\sqrt{2}$.
+                \begin{itemize}
+                  \item Naik pada $(-\infty, -\sqrt{2}) \cup (0, \sqrt{2})$.
+                  \item Turun pada $(-\sqrt{2}, 0) \cup (\sqrt{2}, \infty)$.
+                  \item Maksimum relatif di $x = \pm\sqrt{2}$ dengan nilai $y(\pm\sqrt{2}) = -2(4) + 8(2) = 8$.
+                  \item Minimum relatif di $x = 0$ dengan nilai $y(0) = 0$.
+                \end{itemize}
+          \item Turunan kedua:
+                \[
+                  y'' = -24x^2 + 16 = -8(3x^2 - 2).
+                \]
+                Titik belok saat $y'' = 0 \implies x = \pm\sqrt{\frac{2}{3}}$.
+                \begin{itemize}
+                  \item Cekung ke atas pada $\left(-\sqrt{\frac{2}{3}}, \sqrt{\frac{2}{3}}\right)$.
+                  \item Cekung ke bawah pada $\left(-\infty, -\sqrt{\frac{2}{3}}\right) \cup \left(\sqrt{\frac{2}{3}}, \infty\right)$.
+                \end{itemize}
+        \end{enumerate}
+\end{soaljawab}
+
+\begin{soaljawab}{3}
+\item Misalkan $\displaystyle F(x) = \int_{4}^{x} \frac{t+3}{t+2} \, dt$ untuk $x \in (-2, \infty)$. Dapatkan
+        \begin{enumerate}
+          \item $F(4)$
+          \item $F'(4)$
+          \item $F''(4)$
+        \end{enumerate}
+\jawaban
+Berdasarkan Teorema Fundamental Kalkulus I:
+        \begin{enumerate}
+          \item $F(4) = \displaystyle\int_{4}^{4} \frac{t+3}{t+2} \, dt = 0$.
+          \item $F'(x) = \dfrac{x+3}{x+2} \implies F'(4) = \dfrac{4+3}{4+2} = \dfrac{7}{6}$.
+          \item $F''(x) = \dfrac{d}{dx}\left(\frac{x+3}{x+2}\right) = \dfrac{1(x+2) - (x+3)(1)}{(x+2)^2} = \dfrac{-1}{(x+2)^2}$.
+                Maka $F''(4) = \dfrac{-1}{(4+2)^2} = -\dfrac{1}{36}$.
+        \end{enumerate}
+\end{soaljawab}
+
+\begin{soaljawab}{4}
+\item Diketahui
+        \[
+          z = \frac{(4 \operatorname{cis} 40^\circ)^3}{(2 \operatorname{cis} 60^\circ)^4}.
+        \]
+        \begin{enumerate}
+          \item Sederhanakan $z$ dalam satu bentuk kutub $r\operatorname{cis}\theta$ dimana $0 \le \theta < 2\pi$.
+          \item Carilah semua bilangan kompleks $w$ yang memenuhi $w = z^{1/2}$.
+        \end{enumerate}
+\jawaban
+\begin{enumerate}
+          \item Sederhanakan $z$:
+                \[
+                  (4 \operatorname{cis} 40^\circ)^3 = 4^3 \operatorname{cis}(3 \times 40^\circ) = 64 \operatorname{cis}(120^\circ).
+                \]
+                \[
+                  (2 \operatorname{cis} 60^\circ)^4 = 2^4 \operatorname{cis}(4 \times 60^\circ) = 16 \operatorname{cis}(240^\circ).
+                \]
+                Maka:
+                \[
+                  z = \frac{64}{16} \operatorname{cis}(120^\circ - 240^\circ) = 4 \operatorname{cis}(-120^\circ) = 4 \operatorname{cis}(240^\circ) = 4 \operatorname{cis}\left(\frac{4\pi}{3}\right).
+                \]
+          \item Nilai $w = z^{1/2}$:
+                \[
+                  w_k = \sqrt{4} \operatorname{cis}\left(\frac{240^\circ + 360^\circ k}{2}\right) = 2 \operatorname{cis}(120^\circ + 180^\circ k) \quad \text{untuk } k = 0, 1.
+                \]
+                \begin{align*}
+                  w_0 & = 2 \operatorname{cis}(120^\circ) = 2\left(-\frac{1}{2} + i\frac{\sqrt{3}}{2}\right) = -1 + i\sqrt{3}, \\
+                  w_1 & = 2 \operatorname{cis}(300^\circ) = 2\left(\frac{1}{2} - i\frac{\sqrt{3}}{2}\right) = 1 - i\sqrt{3}.
+                \end{align*}
+        \end{enumerate}
+\end{soaljawab}
+
+\begin{soaljawab}{5}
+\item Diberikan sistem persamaan linier berikut
+        \[
+          \begin{aligned}
+            x_1 + x_2 + 2x_3    & = 4,  \\
+            2x_1 + 3x_2 + 6x_3  & = 10, \\
+            3x_1 + 6x_2 + 10x_3 & = 17.
+          \end{aligned}
+        \]
+        \begin{enumerate}
+          \item Nyatakan sistem tersebut dalam bentuk $A\mathbf{x} = \mathbf{b}$ dan dapatkan determinan dari $A$.
+          \item Dapatkan $x_2$ dengan aturan Cramer.
+        \end{enumerate}
+\jawaban
+\begin{enumerate}
+\item Matriks koefisien, vektor variabel, dan ruas kanan adalah
+\[
+    A=\begin{bmatrix}1&1&2\\2&3&6\\3&6&10\end{bmatrix},\qquad
+    \mathbf{x}=\begin{bmatrix}x_1\\x_2\\x_3\end{bmatrix},\qquad
+    \mathbf{b}=\begin{bmatrix}4\\10\\17\end{bmatrix}.
+\]
+Dengan demikian, bentuk $A\mathbf{x}=\mathbf{b}$ ialah
+\[
+    \begin{bmatrix}1&1&2\\2&3&6\\3&6&10\end{bmatrix}
+    \begin{bmatrix}x_1\\x_2\\x_3\end{bmatrix}
+    =\begin{bmatrix}4\\10\\17\end{bmatrix}.
+\]
+Gunakan ekspansi kofaktor pada \textbf{baris pertama}:
+\[
+    \det(A)=a_{11}C_{11}+a_{12}C_{12}+a_{13}C_{13},\qquad
+    C_{ij}=(-1)^{i+j}\det(M_{ij}),
+\]
+dengan $M_{ij}$ diperoleh dengan menghapus baris $i$ dan kolom $j$.
+Tanda kofaktor pada baris pertama adalah $+,-,+$, sehingga
+\begin{align*}
+    \det(A)
+    &=1\begin{vmatrix}3&6\\6&10\end{vmatrix}
+      -1\begin{vmatrix}2&6\\3&10\end{vmatrix}
+      +2\begin{vmatrix}2&3\\3&6\end{vmatrix}\\
+    &=1(3\cdot10-6\cdot6)-1(2\cdot10-6\cdot3)
+      +2(2\cdot6-3\cdot3)\\
+    &=1(30-36)-1(20-18)+2(12-9)\\
+    &=-6-2+6=-2.
+\end{align*}
+Karena $\det(A)\ne0$, sistem memiliki solusi tunggal dan aturan Cramer dapat digunakan.
+
+\item Untuk mencari $x_2$, ganti \textbf{kolom kedua} dari $A$ dengan $\mathbf b$:
+\[
+    A_2=\begin{bmatrix}1&4&2\\2&10&6\\3&17&10\end{bmatrix}.
+\]
+Ekspansi kofaktor $\det(A_2)$ pada baris pertama memberikan
+\begin{align*}
+    \det(A_2)
+    &=1\begin{vmatrix}10&6\\17&10\end{vmatrix}
+      -4\begin{vmatrix}2&6\\3&10\end{vmatrix}
+      +2\begin{vmatrix}2&10\\3&17\end{vmatrix}\\
+    &=1(10\cdot10-6\cdot17)-4(2\cdot10-6\cdot3)
+      +2(2\cdot17-10\cdot3)\\
+    &=1(100-102)-4(20-18)+2(34-30)\\
+    &=-2-8+8=-2.
+\end{align*}
+Jadi, menurut aturan Cramer,
+\[
+    x_2=\frac{\det(A_2)}{\det(A)}=\frac{-2}{-2}=1.
+\]
+\end{enumerate}
+\end{soaljawab}
+
+\label{akhir-paket-7}
+
+% PAKET 8: Selasa, 9 Desember 2025 | 09.00 - 10.40 WIB | Mengulang (Kelas 115, 116)
+\startpacket{8}
+\pdfbookmark[0]{Paket 8: Selasa 09.00 Mengulang (Kelas 115, 116)}{paket8}
+\examheaderID{Kalkulus 1, 3 SKS}{Selasa, 9 Desember 2025}{09:00 -- 10:40, 100 menit}{115, 116, Tertutup}
+\warningsID
+\cpmktableID
+\scoretableID
+\begin{soaljawab}{1}
+\item Hitunglah integral berikut
+        \[
+          \int 3x^2(x^3 - 6)^7 \, dx.
+        \]
+\jawaban
+Substitusi $u = x^3 - 6 \implies du = 3x^2\,dx$:
+        \[
+          \int 3x^2(x^3 - 6)^7 \, dx = \int u^7 \, du = \frac{1}{8} u^8 + C = \frac{1}{8}(x^3 - 6)^8 + C.
+        \]
+\end{soaljawab}
+
+\begin{soaljawab}{2}
+\item Dapatkan turunan pertama, titik stasioner, dan maksimum dan minimum relatif dari
+        \[
+          f(x) = x^4 - 8x^2 + 2.
+        \]
+\jawaban
+\begin{itemize}
+          \item Turunan pertama: $f'(x) = 4x^3 - 16x = 4x(x^2 - 4) = 4x(x - 2)(x + 2)$.
+          \item Titik stasioner: $x = 0, \pm 2$.
+          \item Turunan kedua: $f''(x) = 12x^2 - 16$.
+                \begin{itemize}
+                  \item $x = 0$: $f''(0) = -16 < 0 \implies$ maksimum relatif di $(0, 2)$.
+                  \item $x = \pm 2$: $f''(\pm 2) = 12(4) - 16 = 32 > 0 \implies$ minimum relatif di $(\pm 2, -14)$ karena $f(\pm 2) = 16 - 32 + 2 = -14$.
+                \end{itemize}
+        \end{itemize}
+\end{soaljawab}
+
+\begin{soaljawab}{3}
+\item Gambarkan grafik dari $y = \dfrac{1}{2}x + 2$ untuk $2 \le x \le 6$ dan hitung integral
+        \[
+          \int_{2}^{6} \left(\frac{1}{2}x + 2\right) \, dx
+        \]
+        dengan menggunakan rumus dari geometri bidang yang sesuai.
+\jawaban
+Daerah di bawah kurva $y = \frac{1}{2}x + 2$ pada interval $[2, 6]$ adalah trapesium dengan:
+        \begin{itemize}
+          \item Sisi sejajar: $y(2) = 1 + 2 = 3$ dan $y(6) = 3 + 2 = 5$
+          \item Tinggi trapesium: $t = 6 - 2 = 4$
+        \end{itemize}
+        Luas trapesium:
+        \[
+          \int_{2}^{6} \left(\frac{1}{2}x + 2\right) \, dx = \frac{3 + 5}{2} \cdot 4 = 16.
+        \]
+\end{soaljawab}
+
+\begin{soaljawab}{4}
+\item Sederhanakan
+        \[
+          \frac{5 + 5i}{3 - 4i} + \frac{20i}{4 + 3i}
+        \]
+        dalam bentuk $a + bi$.
+\jawaban
+Hitung masing-masing pecahan:
+        \[
+          \frac{5 + 5i}{3 - 4i} = \frac{(5 + 5i)(3 + 4i)}{3^2 + (-4)^2} = \frac{15 + 20i + 15i - 20}{25} = \frac{-5 + 35i}{25} = -\frac{1}{5} + \frac{7}{5}i.
+        \]
+        \[
+          \frac{20i}{4 + 3i} = \frac{20i(4 - 3i)}{4^2 + 3^2} = \frac{80i - 60i^2}{25} = \frac{60 + 80i}{25} = \frac{12}{5} + \frac{16}{5}i.
+        \]
+        Jumlahkan:
+        \[
+          \left(-\frac{1}{5} + \frac{7}{5}i\right) + \left(\frac{12}{5} + \frac{16}{5}i\right) = \frac{11}{5} + \frac{23}{5}i.
+        \]
+\end{soaljawab}
+
+\begin{soaljawab}{5}
+\item Diketahui $A = \begin{pmatrix} 1 & 4 \\ 4 & 15 \end{pmatrix}$.
+        \begin{enumerate}
+          \item Dapatkan $A^{-1}$ dengan menggunakan rumus $\dfrac{1}{ad-bc} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}$.
+          \item Dapatkan $A^{-1}$ dengan menggunakan operasi baris elementer.
+        \end{enumerate}
+\jawaban
+\begin{enumerate}
+\item Untuk $A=\begin{pmatrix}a&b\\c&d\end{pmatrix}$, rumus inversnya adalah
+\[
+    A^{-1}=\frac1{ad-bc}\begin{pmatrix}d&-b\\-c&a\end{pmatrix},
+    \qquad ad-bc\ne0.
+\]
+Ekspansi kofaktor pada baris pertama memberi
+\[
+    \det(A)=\begin{vmatrix}
+            1 & 4 \\
+            4 & 15
+        \end{vmatrix}=1\cdot15-4\cdot4=15-16=-1.
+\]
+Karena determinan tidak nol, inversnya ada. Substitusi ke rumus memberikan
+\[
+    A^{-1}=\frac1{-1}\begin{pmatrix}
+            15 & -4 \\
+            -4 & 1
+        \end{pmatrix}=\begin{pmatrix}
+            -15 & 4 \\
+            4 & -1
+        \end{pmatrix}.
+\]
+\item Untuk metode OBE, ubah $[A\mid I_2]$ menjadi $[I_2\mid A^{-1}]$.
+Notasi $B_i$ menyatakan baris ke-$i$.
+{\setlength{\arraycolsep}{4bp}
+\begin{align*}
+    & \left[\begin{array}{cc|cc}
+            1 & 4 & 1 & 0 \\
+            4 & 15 & 0 & 1
+        \end{array}\right]
+        \begin{array}{c}\xrightarrow{B_2-4B_1}\end{array}
+        \left[\begin{array}{cc|cc}
+            1 & 4 & 1 & 0 \\
+            0 & -1 & -4 & 1
+        \end{array}\right] \\[6bp]
+    & \begin{array}{c}\xrightarrow{-B_2}\end{array}
+        \left[\begin{array}{cc|cc}
+            1 & 4 & 1 & 0 \\
+            0 & 1 & 4 & -1
+        \end{array}\right]
+        \begin{array}{c}\xrightarrow{B_1-4B_2}\end{array}
+        \left[\begin{array}{cc|cc}
+            1 & 0 & -15 & 4 \\
+            0 & 1 & 4 & -1
+        \end{array}\right]
+\end{align*}}
+Bagian kiri telah menjadi $I_2$. Maka bagian kanan memberi hasil yang sama:
+\[
+    A^{-1}=\begin{pmatrix}
+            -15 & 4 \\
+            4 & -1
+        \end{pmatrix}.
+\]
+\end{enumerate}
+\end{soaljawab}
+
+\label{akhir-paket-8}
+
+% PAKET 9: Selasa, 9 Desember 2025 | 11.00 - 12.40 WIB | Mengulang (Kelas 102, 108-112)
+\startpacket{9}
+\pdfbookmark[0]{Paket 9: Selasa 11.00 Mengulang (Kelas 102, 108--112)}{paket9}
+\examheaderID{Kalkulus 1, 3 SKS}{Selasa, 9 Desember 2025}{11:00 -- 12:40, 100 menit}{102, 108 -- 112, Tertutup}
+\warningsID
+\cpmktableID
+\scoretableID
+\begin{soaljawab}{1}
+\item Hitunglah integral berikut
+        \[
+          \int 4x^3(x^4 - 2)^6 \, dx.
+        \]
+\jawaban
+Substitusi $u = x^4 - 2 \implies du = 4x^3\,dx$:
+        \[
+          \int 4x^3(x^4 - 2)^6 \, dx = \int u^6 \, du = \frac{1}{7} u^7 + C = \frac{1}{7}(x^4 - 2)^7 + C.
+        \]
+\end{soaljawab}
+
+\begin{soaljawab}{2}
+\item Diketahui $f(x) = 5 + 12x - x^3$.
+        \begin{enumerate}
+          \item Dapatkan turunan pertama, titik stasioner, dan selang naik turun dari fungsi tersebut.
+          \item Dapatkan turunan kedua, titik belok, dan kecekungan dari fungsi tersebut.
+        \end{enumerate}
+\jawaban
+\begin{enumerate}
+          \item Turunan pertama:
+                \[
+                  f'(x) = 12 - 3x^2 = 3(4 - x^2) = 3(2 - x)(2 + x).
+                \]
+                Titik stasioner: $x = \pm 2$.
+                \begin{itemize}
+                  \item Naik pada interval $(-2, 2)$.
+                  \item Turun pada interval $(-\infty, -2) \cup (2, \infty)$.
+                \end{itemize}
+          \item Turunan kedua:
+                \[
+                  f''(x) = -6x.
+                \]
+                Titik belok di $x = 0$ dengan koordinat $(0, f(0)) = (0, 5)$.
+                \begin{itemize}
+                  \item Cekung ke atas pada $(-\infty, 0)$ (karena $f''(x) > 0$).
+                  \item Cekung ke bawah pada $(0, \infty)$ (karena $f''(x) < 0$).
+                \end{itemize}
+        \end{enumerate}
+\end{soaljawab}
+
+\begin{soaljawab}{3}
+\item Gambarkan grafik dari $y = -2x + 8$ untuk $1 \le x \le 3$ dan hitung integral
+        \[
+          \int_{1}^{3} (-2x + 8) \, dx
+        \]
+        dengan menggunakan rumus dari geometri bidang yang sesuai.
+\jawaban
+Daerah di bawah garis $y = -2x + 8$ pada interval $[1, 3]$ merupakan trapesium:
+        \begin{itemize}
+          \item Sisi sejajar: $y(1) = -2 + 8 = 6$ dan $y(3) = -6 + 8 = 2$
+          \item Tinggi trapesium: $t = 3 - 1 = 2$
+        \end{itemize}
+        Luas:
+        \[
+          \int_{1}^{3} (-2x + 8) \, dx = \frac{6 + 2}{2} \cdot 2 = 8.
+        \]
+\end{soaljawab}
+
+\begin{soaljawab}{4}
+\item Sederhanakan
+        \[
+          \frac{10 + 5i}{4 - 3i} + \frac{15i}{3 + 4i}
+        \]
+        dalam bentuk $a + bi$.
+\jawaban
+Sederhanakan masing-masing:
+        \[
+          \frac{10 + 5i}{4 - 3i} = \frac{(10 + 5i)(4 + 3i)}{4^2 + (-3)^2} = \frac{40 + 30i + 20i - 15}{25} = \frac{25 + 50i}{25} = 1 + 2i.
+        \]
+        \[
+          \frac{15i}{3 + 4i} = \frac{15i(3 - 4i)}{3^2 + 4^2} = \frac{45i - 60i^2}{25} = \frac{60 + 45i}{25} = \frac{12}{5} + \frac{9}{5}i.
+        \]
+        Jumlahkan:
+        \[
+          (1 + 2i) + \left(\frac{12}{5} + \frac{9}{5}i\right) = \frac{17}{5} + \frac{19}{5}i.
+        \]
+\end{soaljawab}
+
+\begin{soaljawab}{5}
+\item Diketahui $A = \begin{pmatrix} 1 & 5 \\ 3 & 14 \end{pmatrix}$.
+        \begin{enumerate}
+          \item Dapatkan $A^{-1}$ dengan menggunakan rumus $\dfrac{1}{ad-bc} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}$.
+          \item Dapatkan $A^{-1}$ dengan menggunakan operasi baris elementer.
+        \end{enumerate}
+\jawaban
+\begin{enumerate}
+\item Untuk $A=\begin{pmatrix}a&b\\c&d\end{pmatrix}$, rumus inversnya adalah
+\[
+    A^{-1}=\frac1{ad-bc}\begin{pmatrix}d&-b\\-c&a\end{pmatrix},
+    \qquad ad-bc\ne0.
+\]
+Ekspansi kofaktor pada baris pertama memberi
+\[
+    \det(A)=\begin{vmatrix}
+            1 & 5 \\
+            3 & 14
+        \end{vmatrix}=1\cdot14-5\cdot3=14-15=-1.
+\]
+Karena determinan tidak nol, inversnya ada. Substitusi ke rumus memberikan
+\[
+    A^{-1}=\frac1{-1}\begin{pmatrix}
+            14 & -5 \\
+            -3 & 1
+        \end{pmatrix}=\begin{pmatrix}
+            -14 & 5 \\
+            3 & -1
+        \end{pmatrix}.
+\]
+\item Untuk metode OBE, ubah $[A\mid I_2]$ menjadi $[I_2\mid A^{-1}]$.
+Notasi $B_i$ menyatakan baris ke-$i$.
+{\setlength{\arraycolsep}{4bp}
+\begin{align*}
+    & \left[\begin{array}{cc|cc}
+            1 & 5 & 1 & 0 \\
+            3 & 14 & 0 & 1
+        \end{array}\right]
+        \begin{array}{c}\xrightarrow{B_2-3B_1}\end{array}
+        \left[\begin{array}{cc|cc}
+            1 & 5 & 1 & 0 \\
+            0 & -1 & -3 & 1
+        \end{array}\right] \\[6bp]
+    & \begin{array}{c}\xrightarrow{-B_2}\end{array}
+        \left[\begin{array}{cc|cc}
+            1 & 5 & 1 & 0 \\
+            0 & 1 & 3 & -1
+        \end{array}\right]
+        \begin{array}{c}\xrightarrow{B_1-5B_2}\end{array}
+        \left[\begin{array}{cc|cc}
+            1 & 0 & -14 & 5 \\
+            0 & 1 & 3 & -1
+        \end{array}\right]
+\end{align*}}
+Bagian kiri telah menjadi $I_2$. Maka bagian kanan memberi hasil yang sama:
+\[
+    A^{-1}=\begin{pmatrix}
+            -14 & 5 \\
+            3 & -1
+        \end{pmatrix}.
+\]
+\end{enumerate}
+\end{soaljawab}
+
+\label{akhir-paket-9}
+
+% PAKET 10: Selasa, 9 Desember 2025 | 15.30 - 17.10 WIB | Reguler (Kelas 30-39)
+\startpacket{10}
+\pdfbookmark[0]{Paket 10: Selasa 15.30 Reguler (Kelas 30--39)}{paket10}
+\examheaderID{Kalkulus 1, 3 SKS}{Selasa, 9 Desember 2025}{15:30 -- 17:10, 100 menit}{30 -- 39, Tertutup}
+\warningsID
+\cpmktableID
+\scoretableID
+\begin{soaljawab}{1}
+\item Hitunglah integral berikut
+        \[
+          \int x^3 \sqrt{x^2 + 5} \, dx.
+        \]
+\jawaban
+Tuliskan $x^3 = x^2 \cdot x$. Substitusi $u = x^2 + 5 \implies x^2 = u - 5$, dan $du = 2x\,dx \implies x\,dx = \frac{1}{2}\,du$.
+        \begin{align*}
+          \int x^3 \sqrt{x^2 + 5} \, dx & = \int (u - 5)\sqrt{u} \left(\frac{1}{2}\,du\right) = \frac{1}{2} \int (u^{3/2} - 5u^{1/2}) \, du \\
+                                        & = \frac{1}{2} \left(\frac{2}{5}u^{5/2} - 5 \cdot \frac{2}{3}u^{3/2}\right) + C                    \\
+                                        & = \frac{1}{5}(x^2 + 5)^{5/2} - \frac{5}{3}(x^2 + 5)^{3/2} + C.
+        \end{align*}
+\end{soaljawab}
+
+\begin{soaljawab}{2}
+\item Tentukan nilai maksimum dan minimum absolut dari
+        \[
+          f(x) = \begin{cases}
+            4x - 2,       & x < 1,   \\
+            x^2 - 5x + 6, & x \ge 1,
+          \end{cases}
+        \]
+        pada interval $\left[\frac{1}{2}, 3\right]$.
+\jawaban
+Evaluasi fungsi pada domain $\left[\frac{1}{2}, 3\right]$:
+        \begin{itemize}
+          \item Periksa kekontinuan di titik batas cabang $x = 1$:
+                $\displaystyle \lim_{x \to 1^-} (4x - 2) = 2$, dan $f(1) = 1^2 - 5(1) + 6 = 2$. Jadi $f(x)$ kontinu di $x = 1$.
+          \item Pada $\left[\frac{1}{2}, 1\right)$: $f'(x) = 4 \ne 0$ (tidak ada titik stasioner).
+          \item Pada $(1, 3]$: $f'(x) = 2x - 5$. Titik stasioner $f'(x) = 0 \implies x = \frac{5}{2} = 2.5 \in (1, 3)$.
+          \item Evaluasi nilai-nilai calon ekstrim:
+                \begin{itemize}
+                  \item $x = \frac{1}{2}$: $f\left(\frac{1}{2}\right) = 4\left(\frac{1}{2}\right) - 2 = 0$.
+                  \item $x = 1$: $f(1) = 2$.
+                  \item $x = \frac{5}{2}$: $f\left(\frac{5}{2}\right) = \left(\frac{5}{2}\right)^2 - 5\left(\frac{5}{2}\right) + 6 = \frac{25}{4} - \frac{25}{2} + 6 = -\frac{1}{4} = -0.25$.
+                  \item $x = 3$: $f(3) = 3^2 - 5(3) + 6 = 0$.
+                \end{itemize}
+        \end{itemize}
+        Dari nilai-nilai di atas:
+        \begin{itemize}
+          \item Nilai maksimum absolut adalah $2$ pada $x = 1$.
+          \item Nilai minimum absolut adalah $-\dfrac{1}{4}$ pada $x = \dfrac{5}{2}$.
+        \end{itemize}
+\end{soaljawab}
+
+\begin{soaljawab}{3}
+\item Misalkan $\displaystyle F(x) = \int_{4}^{x} \sqrt{t^2 + 9} \, dt$. Dapatkan
+        \begin{enumerate}
+          \item $F(4)$
+          \item $F'(4)$
+          \item $F''(4)$
+        \end{enumerate}
+\jawaban
+Berdasarkan Teorema Fundamental Kalkulus I:
+        \begin{enumerate}
+          \item $F(4) = \displaystyle\int_{4}^{4} \sqrt{t^2 + 9} \, dt = 0$.
+          \item $F'(x) = \sqrt{x^2 + 9} \implies F'(4) = \sqrt{4^2 + 9} = \sqrt{25} = 5$.
+          \item $F''(x) = \dfrac{d}{dx}\sqrt{x^2 + 9} = \dfrac{2x}{2\sqrt{x^2 + 9}} = \dfrac{x}{\sqrt{x^2 + 9}}$.
+                Maka $F''(4) = \dfrac{4}{\sqrt{4^2 + 9}} = \dfrac{4}{5}$.
+        \end{enumerate}
+\end{soaljawab}
+
+\begin{soaljawab}{4}
+\item Carilah semua bilangan kompleks $z$ yang memenuhi $z = (-16)^{1/4}$. Gambarlah semua bilangan kompleks yang memenuhi tersebut pada bidang kompleks.
+\jawaban
+Nyatakan $-16$ dalam bentuk polar:
+        \[
+          -16 = 16 \operatorname{cis}(180^\circ) = 16 e^{i\pi}.
+        \]
+        Akar keempatnya untuk $k = 0, 1, 2, 3$:
+        \[
+          z_k = \sqrt[4]{16} \operatorname{cis}\left(\frac{180^\circ + 360^\circ k}{4}\right) = 2 \operatorname{cis}(45^\circ + 90^\circ k).
+        \]
+        Diperoleh ke-4 akar:
+        \begin{align*}
+          z_0 & = 2 \operatorname{cis}(45^\circ) = 2\left(\frac{\sqrt{2}}{2} + i\frac{\sqrt{2}}{2}\right) = \sqrt{2} + i\sqrt{2},    \\
+          z_1 & = 2 \operatorname{cis}(135^\circ) = 2\left(-\frac{\sqrt{2}}{2} + i\frac{\sqrt{2}}{2}\right) = -\sqrt{2} + i\sqrt{2}, \\
+          z_2 & = 2 \operatorname{cis}(225^\circ) = 2\left(-\frac{\sqrt{2}}{2} - i\frac{\sqrt{2}}{2}\right) = -\sqrt{2} - i\sqrt{2}, \\
+          z_3 & = 2 \operatorname{cis}(315^\circ) = 2\left(\frac{\sqrt{2}}{2} - i\frac{\sqrt{2}}{2}\right) = \sqrt{2} - i\sqrt{2}.
+        \end{align*}
+        Pada bidang kompleks, keempat titik tersebut terletak pada lingkaran berpusat di titik asal dengan jari-jari $r = 2$ dan membentuk persegi yang simetris di empat kuadran.
+\end{soaljawab}
+
+\begin{soaljawab}{5}
+\item Hitunglah determinan dari
+        \[
+          A = \begin{bmatrix}
+            1 & 2 & 1  & 2 \\
+            1 & 3 & -1 & 1 \\
+            0 & 2 & 2  & 3 \\
+            2 & 4 & -3 & 2
+          \end{bmatrix}.
+        \]
+\jawaban
+\textbf{Langkah 1: buat nol pada kolom pertama dengan OBE.}
+Operasi $B_i\leftarrow B_i+kB_j$ tidak mengubah determinan.
+Lakukan $B_2\leftarrow B_2-B_1$ dan $B_4\leftarrow B_4-2B_1$:
+{\setlength{\arraycolsep}{4bp}
+\begin{align*}
+    & \left[\begin{array}{cccc}
+            1 & 2 & 1 & 2 \\
+            1 & 3 & -1 & 1 \\
+            0 & 2 & 2 & 3 \\
+            2 & 4 & -3 & 2
+        \end{array}\right]
+        \begin{array}{c}\xrightarrow{B_2-B_1}\end{array}
+        \left[\begin{array}{cccc}
+            1 & 2 & 1 & 2 \\
+            0 & 1 & -2 & -1 \\
+            0 & 2 & 2 & 3 \\
+            2 & 4 & -3 & 2
+        \end{array}\right] \\[6bp]
+    & \begin{array}{c}\xrightarrow{B_4-2B_1}\end{array}
+        \left[\begin{array}{cccc}
+            1 & 2 & 1 & 2 \\
+            0 & 1 & -2 & -1 \\
+            0 & 2 & 2 & 3 \\
+            0 & 0 & -5 & -2
+        \end{array}\right]
+\end{align*}}
+Sebut matriks terakhir $U$. Karena kedua operasi hanya menambahkan kelipatan
+baris lain, $\det(A)=\det(U)$.
+
+\smallskip
+\textbf{Langkah 2: ekspansi kofaktor pada kolom pertama $U$.}
+Dengan $C_{ij}=(-1)^{i+j}\det(M_{ij})$, diperoleh
+\begin{align*}
+    \det(A)=\det(U)
+    &=u_{11}C_{11}+u_{21}C_{21}+u_{31}C_{31}+u_{41}C_{41}\\
+    &=1C_{11}+0C_{21}+0C_{31}+0C_{41}\\
+    &=1(-1)^{1+1}\begin{vmatrix}
+        1&-2&-1\\2&2&3\\0&-5&-2
+      \end{vmatrix}.
+\end{align*}
+Minor di atas diperoleh dengan menghapus baris pertama dan kolom pertama $U$.
+
+\smallskip
+\textbf{Langkah 3: ekspansi determinan $3\times3$ pada baris pertama.}
+Tanda kofaktor pada baris pertama adalah $+,-,+$, sehingga
+\begin{align*}
+    \det(A)
+    &=1\begin{vmatrix}2&3\\-5&-2\end{vmatrix}
+      -(-2)\begin{vmatrix}2&3\\0&-2\end{vmatrix}
+      +(-1)\begin{vmatrix}2&2\\0&-5\end{vmatrix}\\
+    &=1\bigl(2(-2)-3(-5)\bigr)
+      +2\bigl(2(-2)-3\cdot0\bigr)
+      -\bigl(2(-5)-2\cdot0\bigr)\\
+    &=1(-4+15)+2(-4-0)-(-10-0)\\
+    &=11-8+10=13.
+\end{align*}
+Jadi $\det(A)=13$.
+\end{soaljawab}
+
+\label{akhir-paket-10}
+\end{document}

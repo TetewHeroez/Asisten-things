@@ -1,0 +1,1409 @@
+% !TeX program = xelatex
+% Font dan ukuran kertas mengikuti PDF ETS asli (8,5 x 13 inci).
+\documentclass[12pt]{article}
+\usepackage{amsmath,amsthm}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{Times New Roman}
+\setmathfont{Cambria Math}
+\usepackage{graphicx}
+\graphicspath{{../../../PPT Kalkulus/Gambar & Logo/}}
+\usepackage{array,tabularx,enumitem}
+\usepackage{fancyhdr}
+\usepackage{needspace}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=cyan,
+    pdftitle={Bahas Soal ETS Kalkulus 2 2025/2026},
+    pdfpagemode=UseOutlines,hypertexnames=false}
+\usepackage{geometry}
+\geometry{paperwidth=612bp,paperheight=936bp,
+    left=54bp,right=54bp,top=143bp,bottom=55bp,
+    headheight=120bp,headsep=8bp,footskip=25bp}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\tabcolsep}{5bp}
+\setlength{\jot}{3bp}
+\setlist{topsep=4bp,itemsep=3bp,parsep=0pt,partopsep=0pt}
+\setlist[enumerate,1]{label=\arabic*.,leftmargin=29bp,labelsep=8bp}
+\setlist[enumerate,2]{label=\alph*.,leftmargin=18bp,labelsep=5bp}
+\setlist[itemize]{leftmargin=18bp}
+\allowdisplaybreaks[1]
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\cis}{\text{cis}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4bp}
+\renewcommand{\footrulewidth}{0.4bp}
+\newcommand{\packetid}{1}
+\newcommand{\answername}{Jawaban}
+\newcommand{\solutionheadername}{Pembahasan ETS Kalkulus II 2025/2026}
+\newcommand{\startpacket}[1]{%
+    \restoregeometry
+    \fancyhead{}%
+    \renewcommand{\packetid}{#1}%
+}
+
+% Kepala ujian pada halaman soal; kepala ringkas pada halaman pembahasan.
+\newcommand{\examhead}[7]{%
+    \begin{minipage}[b]{124bp}
+        \includegraphics[width=117bp]{logoITSBiru.png}\par\vspace{8bp}
+        {\fontsize{20bp}{22bp}\selectfont\bfseries SKPB -- ITS}
+    \end{minipage}\hfill
+    \begin{minipage}[b]{370bp}
+        {\fontsize{15bp}{17bp}\selectfont\bfseries\underline{#1}}\par
+        {\fontsize{12bp}{14bp}\selectfont
+        \begin{tabular}[b]{@{}l@{\hspace{12bp}:\hspace{5bp}}l@{}}
+            #2 & #3\\
+            #4\\
+            #5\\
+            #6\\[3bp]
+            #7
+        \end{tabular}}
+    \end{minipage}%
+}
+\newcommand{\examheaderID}[4]{%
+    \renewcommand{\answername}{Jawaban}%
+    \renewcommand{\solutionheadername}{Pembahasan ETS Kalkulus II 2025/2026}%
+    \fancyhead[C]{\examhead
+        {EVALUASI TENGAH SEMESTER GENAP 2025/2026}
+        {Mata Kuliah, SKS}{#1}
+        {Hari, Tanggal & #2}
+        {Jam, Waktu Ujian & #3}
+        {Kelas, Sifat & #4}
+        {{\fontsize{16bp}{20bp}\selectfont\bfseries Nama} & \\[6bp]
+         {\fontsize{16bp}{20bp}\selectfont\bfseries NRP, Kelas} &}}%
+    \fancyfoot[R]{\fontsize{12bp}{14bp}\selectfont Halaman \thepage}%
+}
+\newcommand{\examheaderEN}[4]{%
+    \renewcommand{\answername}{Solution}%
+    \renewcommand{\solutionheadername}{Solutions to Calculus II Mid Exam 2025/2026}%
+    \fancyhead[C]{\examhead
+        {MID EXAM OF THE EVEN SEMESTER 2025/2026}
+        {Course, Credit}{#1}
+        {Day, Date & #2}
+        {Time, Exam Time & #3}
+        {Class, Type & #4}
+        {{\fontsize{16bp}{20bp}\selectfont\bfseries Name} & \\[6bp]
+         {\fontsize{16bp}{20bp}\selectfont\bfseries NRP, Class} &}}%
+    \fancyfoot[R]{\fontsize{12bp}{14bp}\selectfont Page \thepage}%
+}
+
+\newcommand{\warningsID}{%
+    \vspace*{-8bp}%
+    {\centering\fontsize{12bp}{14bp}\selectfont
+    Tuliskan Nama, NRP, dan Nomor Kelas pada lembar kerja ini\\
+    \textbf{DILARANG MEMBAWA/MENGGUNAKAN KALKULATOR DAN ALAT KOMUNIKASI}\\
+    \textbf{DILARANG MEMBERIKAN/MENERIMA JAWABAN SELAMA UJIAN BERLANGSUNG}\\
+    ``Setiap tindak kecurangan akan mendapatkan sanksi akademik''\par}
+    \vspace{2bp}\hrule height 0.4bp\vspace{4bp}%
+}
+\newcommand{\warningsEN}{%
+    \vspace*{-8bp}%
+    {\centering\fontsize{12bp}{14bp}\selectfont
+    Write your Name, Student ID (NRP), and Class Number on this worksheet\\
+    {\fontsize{11bp}{14bp}\selectfont USING OR BRINGING CALCULATORS AND COMMUNICATION DEVICES IS STRICTLY PROHIBITED}\\
+    SHARING OR RECEIVING ANSWERS DURING THE EXAM IS STRICTLY PROHIBITED\\
+    ``Any act of dishonesty will result in academic sanctions''\par}
+    \vspace{2bp}\hrule height 0.4bp\vspace{4bp}%
+}
+\newcommand{\cpmktableID}{%
+    {\renewcommand{\arraystretch}{1}\fontsize{12bp}{14bp}\selectfont\hyphenpenalty=10000
+    \begin{tabularx}{\textwidth}{|p{48bp}|>{\raggedright\arraybackslash}X|>{\centering\arraybackslash}p{41bp}|>{\centering\arraybackslash}p{56bp}|}
+        \hline
+        CPMK & Kemampuan & No Soal & Bobot (\%)\\\hline
+        CPMK-1 & Mampu menerapkan konsep-konsep dasar matematika yang terkait dengan fungsi transenden & 1, 2 & 40\\\hline
+        CPMK-2 & Mampu menerapkan teknik integrasi dan integrasi tak wajar & 3, 4, 5 & 60\\\hline
+    \end{tabularx}\par}\vspace{4bp}%
+}
+\newcommand{\cpmktableEN}{%
+    {\renewcommand{\arraystretch}{1}\fontsize{12bp}{14bp}\selectfont\hyphenpenalty=10000
+    \begin{tabularx}{\textwidth}{|p{48bp}|>{\raggedright\arraybackslash}X|>{\centering\arraybackslash}p{50bp}|>{\centering\arraybackslash}p{63bp}|}
+        \hline
+        CLO & Ability & Question & Weight (\%)\\\hline
+        CLO-1 & Able to apply basic mathematical concepts related to transcendental functions & 1, 2 & 40\\\hline
+        CLO-2 & Able to apply integration techniques and solve improper integral & 3, 4, 5 & 60\\\hline
+    \end{tabularx}\par}\vspace{4bp}%
+}
+\newcommand{\scoretable}[2]{%
+    {\renewcommand{\arraystretch}{1}\fontsize{12bp}{14bp}\selectfont
+    \begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}p{60bp}|*{5}{>{\centering\arraybackslash}X|}>{\centering\arraybackslash}p{60bp}|}
+        \hline
+        #1 & 1 & 2 & 3 & 4 & 5 & TOTAL\\\hline
+        #2 & & & & & & \rule[-10bp]{0pt}{25bp}\\\hline
+    \end{tabularx}\par}\vspace{4bp}%
+}
+\newcommand{\scoretableID}{\scoretable{Nomor}{Nilai}}
+\newcommand{\scoretableEN}{\scoretable{Question}{Score}}
+
+
+% Semua soal satu sesi ditulis dahulu. Pembahasan dimulai pada halaman baru.
+\newenvironment{daftarsoal}{%
+    \fontsize{12bp}{15bp}\selectfont
+    \setlength{\abovedisplayskip}{6bp}%
+    \setlength{\belowdisplayskip}{6bp}%
+    \setlength{\abovedisplayshortskip}{6bp}%
+    \setlength{\belowdisplayshortskip}{6bp}%
+    \begin{enumerate}[topsep=16bp,itemsep=12bp]
+}{\end{enumerate}}
+\newcommand{\mulaisolusi}[2]{%
+    \newpage
+    \newgeometry{left=54bp,right=54bp,top=48bp,bottom=55bp,
+        headheight=17bp,headsep=12bp,footskip=25bp}%
+    \fancyhead{}%
+    \fancyhead[L]{\fontsize{11bp}{13bp}\selectfont\solutionheadername}%
+    \fancyhead[R]{\fontsize{11bp}{13bp}\selectfont Paket \packetid}%
+    \pdfbookmark[1]{#1}{solusi\packetid}%
+    {\centering\fontsize{16bp}{19bp}\selectfont\bfseries #1\par}
+    \smallskip
+    {\centering\fontsize{12bp}{15bp}\selectfont #2\par}
+    \medskip
+    \fontsize{12bp}{15bp}\selectfont
+}
+\newenvironment{daftarsolusi}{%
+    \begin{enumerate}[topsep=6bp,itemsep=12bp]
+}{\end{enumerate}}
+\newcommand{\solusi}{\Needspace{8\baselineskip}\item}
+
+\begin{document}
+
+% Paket 1: Senin 07:00 Reguler (Kelas 61 -- 65)
+% Sumber: ETS Kalkulus 2 Senin 07.00 Reguler.pdf
+\startpacket{1}
+\pdfbookmark[0]{Paket 1: Senin 07:00 Reguler (Kelas 61 -- 65)}{paket1}
+\examheaderID{Kalkulus 2, 3 SKS}{Senin, 20 April 2026}{07:00 -- 08:40, 100 menit}{61 -- 65, Tertutup}
+\warningsID
+\cpmktableID
+\scoretableID
+\begin{daftarsoal}
+\item Dengan aturan rantai, dapatkan $\dfrac{dy}{dx}$ dari
+\[
+    y=\cos\left(e^{5x^3}\right)
+\]
+\item Selesaikan integral berikut dengan substitusi $u=\cos 5x$.
+\[
+    \int\frac{15\sin 5x}{\sqrt{1-\cos^2 5x}}\,dx
+\]
+\item Selesaikan dengan integrasi parsial dan sederhanakan
+\[
+    \int 27x^2e^{3x}\,dx
+\]
+\item Selesaikan integral fungsi rasional berikut
+\[
+    \int\frac{3x^2+6x+5}{(x+2)(x^2+1)}\,dx
+\]
+\item Selesaikan integral tak wajar berikut
+\[
+    \int_1^4\frac{1}{(x-1)^{2/3}}\,dx
+\]
+\end{daftarsoal}
+
+\mulaisolusi{PEMBAHASAN PAKET 1}{Senin, 20 April 2026 | 07:00 -- 08:40 | Reguler\\Kelas 61 -- 65}
+$C$ menyatakan konstanta integrasi.
+\begin{daftarsolusi}
+\solusi \textbf{Turunan dengan aturan rantai.}
+Ambil $u=5x^3$ dan $v=e^u$. Karena $y=\cos v$, diperoleh
+\[
+ \frac{dy}{dx}=-\sin v\cdot e^u\cdot15x^2
+ =-15x^2e^{5x^3}\sin\left(e^{5x^3}\right).
+\]
+
+\solusi \textbf{Integral dengan substitusi.}
+Untuk $u=\cos5x$, berlaku $du=-5\sin5x\,dx$. Maka
+\begin{align*}
+ \int\frac{15\sin5x}{\sqrt{1-\cos^25x}}\,dx
+ &=-3\int\frac{du}{\sqrt{1-u^2}}\\
+ &=-3\arcsin u+C=-3\arcsin(\cos5x)+C.
+\end{align*}
+Hasil berlaku pada setiap interval yang tidak memuat $\sin5x=0$.
+Perhatikan bahwa $\sqrt{1-\cos^25x}=|\sin5x|$, sehingga tanda sinus tidak boleh diabaikan.
+
+\solusi \textbf{Integrasi parsial dua kali.}
+Gunakan $\int u\,dv=uv-\int v\,du$ dengan $u=27x^2$ dan $dv=e^{3x}\,dx$.
+Dengan demikian $du=54x\,dx$, $v=\frac13e^{3x}$, dan
+\[
+ I=9x^2e^{3x}-18\int xe^{3x}\,dx.
+\]
+Untuk integral yang tersisa, ambil $u=x$ dan $dv=e^{3x}\,dx$:
+\[
+ \int xe^{3x}\,dx=\frac{x}{3}e^{3x}-\frac19e^{3x}.
+\]
+Jadi
+\[
+ I=9x^2e^{3x}-6xe^{3x}+2e^{3x}+C
+   =(9x^2-6x+2)e^{3x}+C.
+\]
+
+\solusi \textbf{Pecahan parsial.}
+Tuliskan
+\[
+ \frac{3x^2+6x+5}{(x+2)(x^2+1)}
+ =\frac{A}{x+2}+\frac{Bx+D}{x^2+1}.
+\]
+Setelah penyebut dihilangkan,
+\[
+ 3x^2+6x+5=A(x^2+1)+(Bx+D)(x+2).
+\]
+Penyamaan koefisien memberikan $A+B=3$, $2B+D=6$, dan $A+2D=5$,
+sehingga $A=1$, $B=2$, $D=2$. Oleh karena itu,
+\begin{align*}
+ I&=\int\left(\frac1{x+2}+\frac{2x}{x^2+1}+\frac2{x^2+1}\right)dx\\
+  &=\ln|x+2|+\ln(x^2+1)+2\arctan x+C.
+\end{align*}
+
+\solusi \textbf{Integral tak wajar di batas bawah.}
+Integran tidak terdefinisi di $x=1$, sehingga batas bawah diganti dengan $a>1$:
+\begin{align*}
+ \int_1^4(x-1)^{-2/3}\,dx
+ &=\lim_{a\to1^+}\int_a^4(x-1)^{-2/3}\,dx\\
+ &=\lim_{a\to1^+}\left[3(x-1)^{1/3}\right]_a^4\\
+ &=\lim_{a\to1^+}\left(3\sqrt[3]{3}-3\sqrt[3]{a-1}\right)
+ =3\sqrt[3]{3}.
+\end{align*}
+Limitnya berhingga, maka integral tersebut konvergen.
+
+\end{daftarsolusi}
+
+% Paket 2: Senin 07:00 IUP (Kelas 29, 30, 37, 67, 68)
+% Sumber: ETS Kalkulus 2 Senin 07.00 IUP.pdf
+\startpacket{2}
+\pdfbookmark[0]{Paket 2: Senin 07:00 IUP (Kelas 29, 30, 37, 67, 68)}{paket2}
+\examheaderEN{Calculus 2, 3 Credits}{Monday, 20 April 2026}{07:00 -- 08:40, 100 minutes}{29, 30, 37, 67, 68, Closed book}
+\warningsEN
+\cpmktableEN
+\scoretableEN
+\begin{daftarsoal}
+\item Using the derivative product rule, find $\dfrac{dy}{dx}$ of
+\[
+    y=e^{3x}(\cos 3x+\sin 3x)
+\]
+\item Solve the following integral using the substitution $u=3x^2$.
+\[
+    \int\frac{x}{1+9x^4}\,dx
+\]
+\item Solve the following integral
+\[
+    \int\sin^3 4x\cos^2 4x\,dx
+\]
+\item Solve the following integral of a rational function
+\[
+    \int\frac{9x-17}{x^2-4x+3}\,dx
+\]
+\item Solve using L'Hopital's Rule
+\[
+    \lim_{x\to0}\frac{e^x-x-1}{3x^4}
+\]
+\end{daftarsoal}
+
+\mulaisolusi{SOLUTIONS -- PACKET 2}{Monday, 20 April 2026 | 07:00 -- 08:40 | IUP\\Class 29, 30, 37, 67, 68}
+$C$ denotes an arbitrary constant of integration.
+\begin{daftarsolusi}
+\solusi \textbf{Product rule.}
+Let $u=e^{3x}$ and $v=\cos3x+\sin3x$. Then
+$u'=3e^{3x}$ and $v'=-3\sin3x+3\cos3x$. Hence
+\begin{align*}
+ y'&=u'v+uv'\\
+   &=3e^{3x}(\cos3x+\sin3x)+e^{3x}(-3\sin3x+3\cos3x)\\
+   &=6e^{3x}\cos3x.
+\end{align*}
+
+\solusi \textbf{Substitution.}
+Set $u=3x^2$, so $du=6x\,dx$. Therefore,
+\[
+ \int\frac{x}{1+9x^4}\,dx
+ =\frac16\int\frac{du}{1+u^2}
+ =\frac16\arctan(3x^2)+C.
+\]
+
+\solusi \textbf{Trigonometric integral.}
+Write $\sin^34x=\sin4x(1-\cos^24x)$ and set $u=\cos4x$,
+so $du=-4\sin4x\,dx$. Thus
+\begin{align*}
+ I&=-\frac14\int(1-u^2)u^2\,du
+   =-\frac14\left(\frac{u^3}{3}-\frac{u^5}{5}\right)+C\\
+  &=-\frac{\cos^34x}{12}+\frac{\cos^54x}{20}+C.
+\end{align*}
+
+\solusi \textbf{Partial fractions.}
+Factor $x^2-4x+3=(x-1)(x-3)$ and write
+\[
+ \frac{9x-17}{(x-1)(x-3)}=\frac{A}{x-1}+\frac{B}{x-3}.
+\]
+The identity $9x-17=A(x-3)+B(x-1)$ gives $A=4$ at $x=1$
+and $B=5$ at $x=3$. Consequently,
+\[
+ I=\int\left(\frac4{x-1}+\frac5{x-3}\right)dx
+ =4\ln|x-1|+5\ln|x-3|+C.
+\]
+
+\solusi \textbf{L'Hopital's rule.}
+The original quotient has the form $0/0$. The first differentiated quotient
+also has the form $0/0$, so the rule can be applied twice:
+\[
+ \lim_{x\to0}\frac{e^x-x-1}{3x^4}
+ =\lim_{x\to0}\frac{e^x-1}{12x^3}
+ =\lim_{x\to0}\frac{e^x}{36x^2}=+\infty.
+\]
+In the last quotient the numerator tends to $1$ and the denominator tends to
+$0$ through positive values on both sides. Thus the limit is $+\infty$;
+there is no finite limit. The last quotient is no longer an indeterminate form.
+
+\end{daftarsolusi}
+
+% Paket 3: Senin 09:00 Reguler (Kelas 15 -- 20 dan 22 -- 28)
+% Sumber: ETS Kalkulus 2 Senin 09.00 Reguler.pdf
+\startpacket{3}
+\pdfbookmark[0]{Paket 3: Senin 09:00 Reguler (Kelas 15 -- 20 dan 22 -- 28)}{paket3}
+\examheaderID{Kalkulus 2, 3 SKS}{Senin, 20 April 2026}{09:00 -- 10:40, 100 menit}{15 -- 20 dan 22 -- 28, Tertutup}
+\warningsID
+\cpmktableID
+\scoretableID
+\begin{daftarsoal}
+\item Dengan aturan rantai, dapatkan $\dfrac{dy}{dx}$ dari
+\[
+    y=\sin\left(e^{x^2+x}\right)
+\]
+\item Selesaikan integral berikut dengan substitusi $u=\cos 4x$.
+\[
+    \int\frac{12\sin 4x}{1+\cos^2 4x}\,dx
+\]
+\item Selesaikan dengan integrasi parsial
+\[
+    \int24x^2\cos 2x\,dx
+\]
+\item Selesaikan integral fungsi rasional berikut
+\[
+    \int\frac{4x^2+7x+5}{(x+3)(x^2+1)}\,dx
+\]
+\item Selesaikan integral tak wajar berikut
+\[
+    \int_0^{\pi/6}\frac{\sin x}{\sqrt{1-\cos x}}\,dx
+\]
+\end{daftarsoal}
+
+\mulaisolusi{PEMBAHASAN PAKET 3}{Senin, 20 April 2026 | 09:00 -- 10:40 | Reguler\\Kelas 15 -- 20 dan 22 -- 28}
+$C$ menyatakan konstanta integrasi.
+\begin{daftarsolusi}
+\solusi \textbf{Aturan rantai.}
+Ambil $u=x^2+x$ dan $v=e^u$. Turunannya adalah $u'=2x+1$ dan $v'=e^u u'$.
+Karena $y=\sin v$, maka
+\[
+ y'=\cos v\cdot e^u(2x+1)
+ =(2x+1)e^{x^2+x}\cos\left(e^{x^2+x}\right).
+\]
+
+\solusi \textbf{Substitusi.}
+Dengan $u=\cos4x$, diperoleh $du=-4\sin4x\,dx$. Jadi
+\[
+ \int\frac{12\sin4x}{1+\cos^24x}\,dx
+ =-3\int\frac{du}{1+u^2}
+ =-3\arctan(\cos4x)+C.
+\]
+
+\solusi \textbf{Integrasi parsial dua kali.}
+Ambil $u=24x^2$, $dv=\cos2x\,dx$, sehingga $du=48x\,dx$ dan
+$v=\frac12\sin2x$. Maka
+\[
+ I=12x^2\sin2x-24\int x\sin2x\,dx.
+\]
+Untuk $J=\int x\sin2x\,dx$, gunakan $u=x$, $dv=\sin2x\,dx$:
+\[
+ J=-\frac{x}{2}\cos2x+\frac12\int\cos2x\,dx
+   =-\frac{x}{2}\cos2x+\frac14\sin2x.
+\]
+Substitusi kembali menghasilkan
+\[
+ I=12x^2\sin2x+12x\cos2x-6\sin2x+C.
+\]
+
+\solusi \textbf{Pecahan parsial.}
+Misalkan
+\[
+ \frac{4x^2+7x+5}{(x+3)(x^2+1)}=\frac{A}{x+3}+\frac{Bx+D}{x^2+1}.
+\]
+Identitas $4x^2+7x+5=A(x^2+1)+(Bx+D)(x+3)$ memberikan
+$A+B=4$, $3B+D=7$, $A+3D=5$. Diperoleh $A=2$, $B=2$, $D=1$, sehingga
+\begin{align*}
+ I&=\int\left(\frac2{x+3}+\frac{2x}{x^2+1}+\frac1{x^2+1}\right)dx\\
+  &=2\ln|x+3|+\ln(x^2+1)+\arctan x+C.
+\end{align*}
+
+\solusi \textbf{Integral tak wajar.}
+Penyebut nol di $x=0$. Untuk $a>0$, gunakan substitusi $u=1-\cos x$,
+$du=\sin x\,dx$:
+\begin{align*}
+ I&=\lim_{a\to0^+}\int_a^{\pi/6}\frac{\sin x}{\sqrt{1-\cos x}}\,dx\\
+  &=\lim_{a\to0^+}\left[2\sqrt{1-\cos x}\right]_a^{\pi/6}\\
+  &=2\sqrt{1-\frac{\sqrt3}{2}}
+   =\sqrt{4-2\sqrt3}=\sqrt3-1.
+\end{align*}
+Karena limit berhingga, integral tersebut konvergen.
+
+\end{daftarsolusi}
+
+% Paket 4: Senin 13:30 Reguler (Kelas 7 -- 13 dan 31 -- 36)
+% Sumber: ETS Kalkulus 2 Senin 13.30 Reguler.pdf
+\startpacket{4}
+\pdfbookmark[0]{Paket 4: Senin 13:30 Reguler (Kelas 7 -- 13 dan 31 -- 36)}{paket4}
+\examheaderID{Kalkulus 2, 3 SKS}{Senin, 20 April 2026}{13:30 -- 15:10, 100 menit}{7 -- 13 dan 31 -- 36, Tertutup}
+\warningsID
+\cpmktableID
+\scoretableID
+\begin{daftarsoal}
+\item Dengan aturan rantai, dapatkan $\dfrac{dy}{dx}$ dari
+\[
+    y=\cos\left(\ln(7x^3+1)\right)
+\]
+\item Selesaikan integral berikut dengan substitusi $u=e^{-x}$.
+\[
+    \int\frac{17e^{-x}}{\sqrt{4-4e^{-2x}}}\,dx
+\]
+\item Selesaikan integral berikut
+\[
+    \int\sin^5 3x\cos^4 3x\,dx
+\]
+\item Selesaikan integral fungsi rasional berikut
+\[
+    \int\frac{3x^2+15x+16}{(x+1)(x+3)^2}\,dx
+\]
+\item Selesaikan integral tak wajar berikut
+\[
+    \int_1^\infty\frac{4}{\sqrt{x}(4+\sqrt{x})}\,dx
+\]
+\end{daftarsoal}
+
+\mulaisolusi{PEMBAHASAN PAKET 4}{Senin, 20 April 2026 | 13:30 -- 15:10 | Reguler\\Kelas 7 -- 13 dan 31 -- 36}
+$C$ menyatakan konstanta integrasi.
+\begin{daftarsolusi}
+\solusi \textbf{Aturan rantai.}
+Ambil $u=7x^3+1$ dan $v=\ln u$. Maka $u'=21x^2$, $v'=u'/u$, dan
+\[
+ y'=-\sin v\cdot\frac{u'}u
+ =-\frac{21x^2}{7x^3+1}\sin\left(\ln(7x^3+1)\right).
+\]
+Turunan berlaku pada domain $7x^3+1>0$, yaitu $x>-\sqrt[3]{1/7}$.
+
+\solusi \textbf{Substitusi.}
+Ambil $u=e^{-x}$, sehingga $du=-e^{-x}\,dx$. Diperoleh
+\begin{align*}
+ \int\frac{17e^{-x}}{\sqrt{4-4e^{-2x}}}\,dx
+ &=-\frac{17}{2}\int\frac{du}{\sqrt{1-u^2}}\\
+ &=-\frac{17}{2}\arcsin(e^{-x})+C.
+\end{align*}
+Untuk integral real, penyebut harus positif: $e^{-2x}<1$, yakni $x>0$.
+
+\solusi \textbf{Integral trigonometri.}
+Pisahkan satu faktor $\sin3x$ dan gunakan $u=\cos3x$, $du=-3\sin3x\,dx$.
+Karena $\sin^43x=(1-\cos^23x)^2$, maka
+\begin{align*}
+ I&=-\frac13\int(1-u^2)^2u^4\,du\\
+  &=-\frac13\int(u^4-2u^6+u^8)\,du\\
+  &=-\frac{u^5}{15}+\frac{2u^7}{21}-\frac{u^9}{27}+C\\
+  &=-\frac{\cos^53x}{15}+\frac{2\cos^73x}{21}-\frac{\cos^93x}{27}+C.
+\end{align*}
+
+\solusi \textbf{Pecahan parsial dengan faktor berulang.}
+Tuliskan
+\[
+ \frac{3x^2+15x+16}{(x+1)(x+3)^2}
+ =\frac{A}{x+1}+\frac{B}{x+3}+\frac{D}{(x+3)^2}.
+\]
+Identitas pembilangnya adalah
+\[
+ 3x^2+15x+16=A(x+3)^2+B(x+1)(x+3)+D(x+1).
+\]
+Substitusi $x=-1$ memberi $A=1$, sedangkan $x=-3$ memberi $D=1$.
+Koefisien $x^2$ memberi $A+B=3$, sehingga $B=2$. Maka
+\begin{align*}
+ I&=\int\left(\frac1{x+1}+\frac2{x+3}+\frac1{(x+3)^2}\right)dx\\
+  &=\ln|x+1|+2\ln|x+3|-\frac1{x+3}+C.
+\end{align*}
+
+\solusi \textbf{Integral tak wajar dengan batas tak hingga.}
+Ambil $t=\sqrt{x}$, sehingga $x=t^2$ dan $dx=2t\,dt$. Untuk $b>1$,
+\begin{align*}
+ \int_1^b\frac4{\sqrt{x}(4+\sqrt{x})}\,dx
+ &=8\int_1^{\sqrt b}\frac{dt}{4+t}\\
+ &=8\ln(4+\sqrt b)-8\ln5.
+\end{align*}
+Oleh karena itu,
+\[
+ I=\lim_{b\to\infty}8\ln\left(\frac{4+\sqrt b}{5}\right)=+\infty.
+\]
+Jadi integral tersebut divergen.
+
+\end{daftarsolusi}
+
+% Paket 5: Senin 13:30 IUP Mengulang (Kelas 118)
+% Sumber: ETS Kalkulus 2 Senin 13.30 IUP Mengulang.pdf
+\startpacket{5}
+\pdfbookmark[0]{Paket 5: Senin 13:30 IUP Mengulang (Kelas 118)}{paket5}
+\examheaderEN{Calculus 2, 3 Credits}{Monday, 20 April 2026}{13:30 -- 15:10, 100 minutes}{118, Closed book}
+\warningsEN
+\cpmktableEN
+\scoretableEN
+\begin{daftarsoal}
+\item Using the derivative product rule, find $\dfrac{dy}{dx}$ of
+\[
+    y=(8x+4)e^{2x}
+\]
+\item Using the chain rule, find $\dfrac{dy}{dx}$ of
+\[
+    y=\sin^{-1}(5x^3)
+\]
+\item Solve using integration by parts
+\[
+    \int2xe^{3x}\,dx
+\]
+\item Solve the following integral of a rational function
+\[
+    \int\frac{4}{x(x+4)}\,dx
+\]
+\item Solve using L'Hopital's Rule
+\[
+    \lim_{x\to2}\frac{x^3-3x^2+4}{x^2-4x+4}
+\]
+\end{daftarsoal}
+
+\mulaisolusi{SOLUTIONS -- PACKET 5}{Monday, 20 April 2026 | 13:30 -- 15:10 | IUP Mengulang\\Class 118}
+$C$ denotes an arbitrary constant of integration.
+\begin{daftarsolusi}
+\solusi \textbf{Product rule.}
+For $u=8x+4$ and $v=e^{2x}$, we have $u'=8$ and $v'=2e^{2x}$. Therefore,
+\begin{align*}
+ y'&=u'v+uv'=8e^{2x}+2(8x+4)e^{2x}\\
+   &=(16x+16)e^{2x}.
+\end{align*}
+
+\solusi \textbf{Chain rule for the inverse sine.}
+Here $\sin^{-1}$ denotes $\arcsin$. Set $u=5x^3$, so $u'=15x^2$. Then
+\[
+ y'=\frac{u'}{\sqrt{1-u^2}}=\frac{15x^2}{\sqrt{1-25x^6}}.
+\]
+This derivative exists for $|5x^3|<1$, or $|x|<5^{-1/3}$.
+
+\solusi \textbf{Integration by parts.}
+Choose $u=2x$ and $dv=e^{3x}\,dx$. Then $du=2\,dx$ and $v=\frac13e^{3x}$.
+Thus
+\begin{align*}
+ \int2xe^{3x}\,dx
+ &=\frac{2x}{3}e^{3x}-\frac23\int e^{3x}\,dx\\
+ &=\frac{2x}{3}e^{3x}-\frac29e^{3x}+C
+ =\frac29(3x-1)e^{3x}+C.
+\end{align*}
+
+\solusi \textbf{Partial fractions.}
+Write $\frac4{x(x+4)}=\frac A x+\frac B{x+4}$.
+The identity $4=A(x+4)+Bx$ yields $A=1$ and $B=-1$. Hence
+\[
+ \int\frac4{x(x+4)}\,dx
+ =\int\left(\frac1x-\frac1{x+4}\right)dx
+ =\ln|x|-\ln|x+4|+C.
+\]
+
+\solusi \textbf{L'Hopital's rule.}
+At $x=2$, both the numerator and denominator vanish. After one application
+of the rule, the form is still $0/0$. Thus
+\begin{align*}
+ \lim_{x\to2}\frac{x^3-3x^2+4}{x^2-4x+4}
+ &=\lim_{x\to2}\frac{3x^2-6x}{2x-4}\\
+ &=\lim_{x\to2}\frac{6x-6}{2}=3.
+\end{align*}
+
+\end{daftarsolusi}
+
+% Paket 6: Senin 15:30 Mengulang (Kelas 121)
+% Sumber: ETS Kalkulus 2 Senin 15.30 Mengulang.pdf
+\startpacket{6}
+\pdfbookmark[0]{Paket 6: Senin 15:30 Mengulang (Kelas 121)}{paket6}
+\examheaderID{Kalkulus 2, 3 SKS}{Senin, 20 April 2026}{15:30 -- 17:10, 100 menit}{121, Tertutup}
+\warningsID
+\cpmktableID
+\scoretableID
+\begin{daftarsoal}
+\item Dengan turunan aturan perkalian, dapatkan $\dfrac{dy}{dx}$ dari
+\[
+    y=(9x^2-6x+2)e^{3x}
+\]
+\item Dengan aturan rantai, dapatkan $\dfrac{dy}{dx}$ dari
+\[
+    y=\tan^{-1}(4x^2+1)
+\]
+\item Selesaikan dengan integrasi parsial
+\[
+    \int6xe^{3x}\,dx
+\]
+\item Selesaikan integral fungsi rasional berikut
+\[
+    \int\frac{10x+21}{(x+2)(x+3)}\,dx
+\]
+\item Selesaikan dengan aturan L'Hopital
+\[
+    \lim_{x\to0}\frac{6x^2}{\cos x-1}
+\]
+\end{daftarsoal}
+
+\mulaisolusi{PEMBAHASAN PAKET 6}{Senin, 20 April 2026 | 15:30 -- 17:10 | Mengulang\\Kelas 121}
+$C$ menyatakan konstanta integrasi.
+\begin{daftarsolusi}
+\solusi \textbf{Aturan perkalian.}
+Gunakan $u=9x^2-6x+2$ dan $v=e^{3x}$, sehingga $u'=18x-6$, $v'=3e^{3x}$.
+\begin{align*}
+ y'&=(18x-6)e^{3x}+3(9x^2-6x+2)e^{3x}\\
+   &=e^{3x}(18x-6+27x^2-18x+6)=27x^2e^{3x}.
+\end{align*}
+
+\solusi \textbf{Aturan rantai untuk invers tangen.}
+Notasi $\tan^{-1}$ berarti $\arctan$. Ambil $u=4x^2+1$, sehingga $u'=8x$.
+Maka
+\[
+ y'=\frac{u'}{1+u^2}=\frac{8x}{1+(4x^2+1)^2},\qquad x\in\mathbb R.
+\]
+
+\solusi \textbf{Integrasi parsial.}
+Ambil $u=6x$, $dv=e^{3x}\,dx$, sehingga $du=6\,dx$, $v=\frac13e^{3x}$.
+Dengan rumus $\int u\,dv=uv-\int v\,du$,
+\begin{align*}
+ \int6xe^{3x}\,dx
+ &=2xe^{3x}-2\int e^{3x}\,dx\\
+ &=2xe^{3x}-\frac23e^{3x}+C
+ =\frac23(3x-1)e^{3x}+C.
+\end{align*}
+
+\solusi \textbf{Pecahan parsial.}
+Misalkan
+\[
+ \frac{10x+21}{(x+2)(x+3)}=\frac A{x+2}+\frac B{x+3}.
+\]
+Dari $10x+21=A(x+3)+B(x+2)$, substitusi $x=-2$ memberi $A=1$ dan
+$x=-3$ memberi $B=9$. Maka
+\[
+ I=\int\left(\frac1{x+2}+\frac9{x+3}\right)dx
+ =\ln|x+2|+9\ln|x+3|+C.
+\]
+
+\solusi \textbf{Aturan L'Hopital.}
+Bentuk awal adalah $0/0$. Setelah satu kali diturunkan, bentuknya masih $0/0$,
+sehingga aturan L'Hopital dapat diterapkan dua kali:
+\[
+ \lim_{x\to0}\frac{6x^2}{\cos x-1}
+ =\lim_{x\to0}\frac{12x}{-\sin x}
+ =\lim_{x\to0}\frac{12}{-\cos x}=-12.
+\]
+
+\end{daftarsolusi}
+
+% Paket 7: Senin 18:20 Mengulang (Kelas 123, 124, 125, 126, 129, 131)
+% Sumber: ETS Kalkulus 2 Senin 18.20 Mengulang.pdf
+\startpacket{7}
+\pdfbookmark[0]{Paket 7: Senin 18:20 Mengulang (Kelas 123, 124, 125, 126, 129, 131)}{paket7}
+\examheaderID{Kalkulus 2, 3 SKS}{Senin, 20 April 2026}{18:20 -- 20:00, 100 menit}{123, 124, 125, 126, 129, 131, Tertutup}
+\warningsID
+\cpmktableID
+\scoretableID
+\begin{daftarsoal}
+\item Dengan turunan aturan perkalian, dapatkan $\dfrac{dy}{dx}$ dari
+\[
+    y=(12x^2-12x+6)e^{2x}
+\]
+\item Dengan aturan rantai, dapatkan $\dfrac{dy}{dx}$ dari
+\[
+    y=\tan^{-1}(2\sin x)
+\]
+\item Selesaikan dengan integrasi parsial
+\[
+    \int(2x+3)\sin x\,dx
+\]
+\item Selesaikan integral fungsi rasional berikut
+\[
+    \int\frac{7x+40}{(x+4)(x+7)}\,dx
+\]
+\item Selesaikan dengan aturan L'Hopital
+\[
+    \lim_{x\to0}\frac{1-\cos x}{3x^2}
+\]
+\end{daftarsoal}
+
+\mulaisolusi{PEMBAHASAN PAKET 7}{Senin, 20 April 2026 | 18:20 -- 20:00 | Mengulang\\Kelas 123, 124, 125, 126, 129, 131}
+$C$ menyatakan konstanta integrasi.
+\begin{daftarsolusi}
+\solusi \textbf{Aturan perkalian.}
+Ambil $u=12x^2-12x+6$ dan $v=e^{2x}$, sehingga $u'=24x-12$, $v'=2e^{2x}$.
+\begin{align*}
+ y'&=(24x-12)e^{2x}+2(12x^2-12x+6)e^{2x}\\
+   &=e^{2x}(24x-12+24x^2-24x+12)=24x^2e^{2x}.
+\end{align*}
+
+\solusi \textbf{Aturan rantai untuk invers tangen.}
+Ambil $u=2\sin x$, sehingga $u'=2\cos x$. Karena $y=\arctan u$,
+\[
+ y'=\frac{u'}{1+u^2}=\frac{2\cos x}{1+4\sin^2x},\qquad x\in\mathbb R.
+\]
+
+\solusi \textbf{Integrasi parsial.}
+Ambil $u=2x+3$ dan $dv=\sin x\,dx$. Maka $du=2\,dx$, $v=-\cos x$, dan
+\begin{align*}
+ \int(2x+3)\sin x\,dx
+ &=-(2x+3)\cos x+2\int\cos x\,dx\\
+ &=-(2x+3)\cos x+2\sin x+C.
+\end{align*}
+
+\solusi \textbf{Pecahan parsial.}
+Tuliskan
+\[
+ \frac{7x+40}{(x+4)(x+7)}=\frac A{x+4}+\frac B{x+7}.
+\]
+Identitas $7x+40=A(x+7)+B(x+4)$ memberikan $A=4$ saat $x=-4$ dan
+$B=3$ saat $x=-7$. Jadi
+\[
+ I=\int\left(\frac4{x+4}+\frac3{x+7}\right)dx
+ =4\ln|x+4|+3\ln|x+7|+C.
+\]
+
+\solusi \textbf{Aturan L'Hopital.}
+Bentuk $0/0$ muncul pada pecahan awal dan setelah penerapan pertama. Maka
+\[
+ \lim_{x\to0}\frac{1-\cos x}{3x^2}
+ =\lim_{x\to0}\frac{\sin x}{6x}
+ =\lim_{x\to0}\frac{\cos x}{6}=\frac16.
+\]
+
+\end{daftarsolusi}
+
+% Paket 8: Selasa 07:00 Reguler (Kelas 38 -- 50)
+% Sumber: ETS Kalkulus 2 Selasa 07.00 Reguler.pdf
+\startpacket{8}
+\pdfbookmark[0]{Paket 8: Selasa 07:00 Reguler (Kelas 38 -- 50)}{paket8}
+\examheaderID{Kalkulus 2, 3 SKS}{Selasa, 21 April 2026}{07:00 -- 08:40, 100 menit}{38 -- 50, Tertutup}
+\warningsID
+\cpmktableID
+\scoretableID
+\begin{daftarsoal}
+\item Selesaikan integral berikut
+\[
+    \int\frac{1}{\sqrt{x}(1+3\sqrt{x})}\,dx
+\]
+\item Dengan aturan rantai, dapatkan $\dfrac{dy}{dx}$ dari
+\[
+    y=\ln\left(\sin^{-1}(3x^2)\right)
+\]
+\item Selesaikan dengan integrasi parsial
+\[
+    \int e^{3x}\cos x\,dx
+\]
+\item Selesaikan integral fungsi rasional berikut
+\[
+    \int\frac{5x+5}{2x^2+7x+3}\,dx
+\]
+\item Selesaikan dengan aturan L'Hopital
+\[
+    \lim_{x\to1^+}\left(\frac{1}{x-1}-\frac{1}{\ln x}\right)
+\]
+\end{daftarsoal}
+
+\mulaisolusi{PEMBAHASAN PAKET 8}{Selasa, 21 April 2026 | 07:00 -- 08:40 | Reguler\\Kelas 38 -- 50}
+$C$ menyatakan konstanta integrasi.
+\begin{daftarsolusi}
+\solusi \textbf{Substitusi.}
+Ambil $u=1+3\sqrt{x}$, sehingga $du=\frac3{2\sqrt{x}}\,dx$. Jadi
+\[
+ \int\frac1{\sqrt{x}(1+3\sqrt{x})}\,dx
+ =\frac23\int\frac{du}{u}
+ =\frac23\ln(1+3\sqrt{x})+C.
+\]
+Domain integran adalah $x>0$, sehingga $1+3\sqrt{x}>0$.
+
+\solusi \textbf{Aturan rantai.}
+Notasi $\sin^{-1}$ berarti $\arcsin$. Ambil $u=3x^2$ dan $v=\arcsin u$.
+Untuk $y=\ln v$, diperoleh
+\[
+ \frac{dy}{dx}=\frac1v\cdot\frac1{\sqrt{1-u^2}}\cdot6x
+ =\frac{6x}{\arcsin(3x^2)\sqrt{1-9x^4}}.
+\]
+Logaritma mensyaratkan $\arcsin(3x^2)>0$, sedangkan turunan invers sinus
+mensyaratkan $3x^2<1$. Jadi turunan berlaku untuk $0<|x|<1/\sqrt3$.
+
+\solusi \textbf{Integrasi parsial berulang.}
+Misalkan $I=\int e^{3x}\cos x\,dx$. Ambil $u=\cos x$, $dv=e^{3x}\,dx$:
+\[
+ I=\frac13e^{3x}\cos x+\frac13J,
+ \qquad J=\int e^{3x}\sin x\,dx.
+\]
+Pada $J$, gunakan $u=\sin x$, $dv=e^{3x}\,dx$, sehingga
+\[
+ J=\frac13e^{3x}\sin x-\frac13I.
+\]
+Substitusi kembali memberi
+\[
+ I=\frac13e^{3x}\cos x+\frac19e^{3x}\sin x-\frac19I,
+ \qquad \frac{10}{9}I=\frac{e^{3x}}9(3\cos x+\sin x).
+\]
+Dengan menambahkan konstanta integrasi, diperoleh
+\[
+ I=\frac{e^{3x}}{10}(3\cos x+\sin x)+C.
+\]
+
+\solusi \textbf{Pecahan parsial.}
+Faktorkan $2x^2+7x+3=(2x+1)(x+3)$ dan tuliskan
+\[
+ \frac{5x+5}{(2x+1)(x+3)}=\frac A{2x+1}+\frac B{x+3}.
+\]
+Dari $5x+5=A(x+3)+B(2x+1)$, diperoleh $A+2B=5$ dan $3A+B=5$,
+sehingga $A=1$, $B=2$. Jadi
+\[
+ I=\int\left(\frac1{2x+1}+\frac2{x+3}\right)dx
+ =\frac12\ln|2x+1|+2\ln|x+3|+C.
+\]
+
+\solusi \textbf{Aturan L'Hopital.}
+Bentuk $\infty-\infty$ diubah dahulu menjadi pecahan:
+\[
+ \frac1{x-1}-\frac1{\ln x}=\frac{\ln x-x+1}{(x-1)\ln x}.
+\]
+Pembilang dan penyebut menuju nol. Setelah penerapan pertama, bentuknya
+masih $0/0$, sehingga
+\begin{align*}
+ L&=\lim_{x\to1^+}\frac{1/x-1}{\ln x+(x-1)/x}\\
+  &=\lim_{x\to1^+}\frac{-1/x^2}{1/x+1/x^2}
+   =-\frac12.
+\end{align*}
+
+\end{daftarsolusi}
+
+% Paket 9: Selasa 09:00 IUP (Kelas 14, 21, 66)
+% Sumber: ETS Kalkulus 2 Selasa 09.00 IUP.pdf
+\startpacket{9}
+\pdfbookmark[0]{Paket 9: Selasa 09:00 IUP (Kelas 14, 21, 66)}{paket9}
+\examheaderEN{Calculus 2, 3 Credits}{Tuesday, 21 April 2026}{09:00 -- 10:40, 100 minutes}{14, 21, 66, Closed book}
+\warningsEN
+\cpmktableEN
+\scoretableEN
+\begin{daftarsoal}
+\item Using the derivative product rule, find $\dfrac{dy}{dx}$ of
+\[
+    y=e^{4x}(\cos 4x+\sin 4x)
+\]
+\item Solve the following integral using the substitution $u=2x^2$.
+\[
+    \int\frac{x}{\sqrt{1-4x^4}}\,dx
+\]
+\item Solve the following integral
+\[
+    \int\sin^2 4x\cos^3 4x\,dx
+\]
+\item Solve the following integral of a rational function
+\[
+    \int\frac{6x-20}{x^2-6x+8}\,dx
+\]
+\item Solve using L'Hopital's Rule
+\[
+    \lim_{x\to0}\frac{5-5\cos x}{x^4}
+\]
+\end{daftarsoal}
+
+\mulaisolusi{SOLUTIONS -- PACKET 9}{Tuesday, 21 April 2026 | 09:00 -- 10:40 | IUP\\Class 14, 21, 66}
+$C$ denotes an arbitrary constant of integration.
+\begin{daftarsolusi}
+\solusi \textbf{Product rule.}
+Let $u=e^{4x}$ and $v=\cos4x+\sin4x$. Then $u'=4e^{4x}$ and
+$v'=-4\sin4x+4\cos4x$. Hence
+\begin{align*}
+ y'&=u'v+uv'\\
+   &=4e^{4x}(\cos4x+\sin4x)+e^{4x}(-4\sin4x+4\cos4x)\\
+   &=8e^{4x}\cos4x.
+\end{align*}
+
+\solusi \textbf{Substitution.}
+Set $u=2x^2$, so $du=4x\,dx$. Thus
+\[
+ \int\frac{x}{\sqrt{1-4x^4}}\,dx
+ =\frac14\int\frac{du}{\sqrt{1-u^2}}
+ =\frac14\arcsin(2x^2)+C.
+\]
+The real integrand is defined for $|x|<1/\sqrt2$.
+
+\solusi \textbf{Trigonometric integral.}
+Write $\cos^34x=\cos4x(1-\sin^24x)$ and take $u=\sin4x$,
+so $du=4\cos4x\,dx$. Then
+\begin{align*}
+ I&=\frac14\int u^2(1-u^2)\,du
+   =\frac{u^3}{12}-\frac{u^5}{20}+C\\
+  &=\frac{\sin^34x}{12}-\frac{\sin^54x}{20}+C.
+\end{align*}
+
+\solusi \textbf{Partial fractions.}
+Since $x^2-6x+8=(x-2)(x-4)$, write
+\[
+ \frac{6x-20}{(x-2)(x-4)}=\frac A{x-2}+\frac B{x-4}.
+\]
+The identity $6x-20=A(x-4)+B(x-2)$ gives $A=4$ at $x=2$ and
+$B=2$ at $x=4$. Therefore,
+\[
+ I=\int\left(\frac4{x-2}+\frac2{x-4}\right)dx
+ =4\ln|x-2|+2\ln|x-4|+C.
+\]
+
+\solusi \textbf{L'Hopital's rule.}
+The original quotient and the first differentiated quotient have the form $0/0$.
+Applying the rule twice gives
+\[
+ \lim_{x\to0}\frac{5-5\cos x}{x^4}
+ =\lim_{x\to0}\frac{5\sin x}{4x^3}
+ =\lim_{x\to0}\frac{5\cos x}{12x^2}=+\infty.
+\]
+The last numerator tends to $5$, while the denominator tends to $0$ through
+positive values from both sides. Thus the limit is $+\infty$, not a finite value.
+The last quotient is no longer an indeterminate form.
+
+\end{daftarsolusi}
+
+% Paket 10: Selasa 11:00 Reguler (Kelas 1 -- 6)
+% Sumber: ETS Kalkulus 2 Selasa 11.00 Reguler.pdf
+\startpacket{10}
+\pdfbookmark[0]{Paket 10: Selasa 11:00 Reguler (Kelas 1 -- 6)}{paket10}
+\examheaderID{Kalkulus 2, 3 SKS}{Selasa, 21 April 2026}{11:00 -- 12:40, 100 menit}{1 -- 6, Tertutup}
+\warningsID
+\cpmktableID
+\scoretableID
+\begin{daftarsoal}
+\item Selesaikan integral berikut
+\[
+    \int\frac{e^{3x}}{\sqrt{1+e^{3x}}}\,dx
+\]
+\item Dengan aturan rantai, dapatkan $\dfrac{dy}{dx}$ dari
+\[
+    y=\ln\left(\tan^{-1}(4x^2)\right)
+\]
+\item Selesaikan dengan integrasi parsial
+\[
+    \int e^{4x}\sin x\,dx
+\]
+\item Selesaikan integral fungsi rasional berikut
+\[
+    \int\frac{4x+5}{2x^2+5x+3}\,dx
+\]
+\item Selesaikan dengan aturan L'Hopital
+\[
+    \lim_{x\to0^+}\left(\frac{3}{x}-\frac{3}{\sin x}\right)
+\]
+\end{daftarsoal}
+
+\mulaisolusi{PEMBAHASAN PAKET 10}{Selasa, 21 April 2026 | 11:00 -- 12:40 | Reguler\\Kelas 1 -- 6}
+$C$ menyatakan konstanta integrasi.
+\begin{daftarsolusi}
+\solusi \textbf{Substitusi.}
+Ambil $u=1+e^{3x}$, sehingga $du=3e^{3x}\,dx$. Diperoleh
+\begin{align*}
+ \int\frac{e^{3x}}{\sqrt{1+e^{3x}}}\,dx
+ &=\frac13\int u^{-1/2}\,du
+ =\frac23\sqrt{u}+C\\
+ &=\frac23\sqrt{1+e^{3x}}+C.
+\end{align*}
+
+\solusi \textbf{Aturan rantai.}
+Ambil $u=4x^2$ dan $v=\arctan u$. Karena $y=\ln v$, diperoleh
+\[
+ y'=\frac1v\cdot\frac1{1+u^2}\cdot8x
+ =\frac{8x}{\arctan(4x^2)(1+16x^4)}.
+\]
+Logaritma terdefinisi jika $\arctan(4x^2)>0$, yaitu $x\ne0$.
+
+\solusi \textbf{Integrasi parsial berulang.}
+Misalkan $I=\int e^{4x}\sin x\,dx$. Pilih $u=\sin x$, $dv=e^{4x}\,dx$:
+\[
+ I=\frac14e^{4x}\sin x-\frac14J,
+ \qquad J=\int e^{4x}\cos x\,dx.
+\]
+Pada $J$, gunakan $u=\cos x$, $dv=e^{4x}\,dx$:
+\[
+ J=\frac14e^{4x}\cos x+\frac14I.
+\]
+Substitusi kembali menghasilkan
+\[
+ I=\frac14e^{4x}\sin x-\frac1{16}e^{4x}\cos x-\frac1{16}I,
+ \qquad \frac{17}{16}I=\frac{e^{4x}}{16}(4\sin x-\cos x).
+\]
+Jadi, setelah konstanta integrasi ditambahkan,
+\[
+ I=\frac{e^{4x}}{17}(4\sin x-\cos x)+C.
+\]
+
+\solusi \textbf{Pecahan parsial.}
+Karena $2x^2+5x+3=(x+1)(2x+3)$, tuliskan
+\[
+ \frac{4x+5}{(x+1)(2x+3)}=\frac A{x+1}+\frac B{2x+3}.
+\]
+Identitas $4x+5=A(2x+3)+B(x+1)$ memberikan $2A+B=4$, $3A+B=5$.
+Jadi $A=1$, $B=2$, dan
+\[
+ I=\int\left(\frac1{x+1}+\frac2{2x+3}\right)dx
+ =\ln|x+1|+\ln|2x+3|+C.
+\]
+
+\solusi \textbf{Aturan L'Hopital.}
+Gabungkan selisih menjadi satu pecahan:
+\[
+ \frac3x-\frac3{\sin x}=\frac{3(\sin x-x)}{x\sin x}.
+\]
+Bentuk awal dan bentuk setelah penerapan pertama sama-sama $0/0$. Maka
+\begin{align*}
+ L&=\lim_{x\to0^+}\frac{3(\cos x-1)}{\sin x+x\cos x}\\
+  &=\lim_{x\to0^+}\frac{-3\sin x}{2\cos x-x\sin x}=0.
+\end{align*}
+
+\end{daftarsolusi}
+
+% Paket 11: Selasa 11:00 Mengulang (Kelas 101 -- 104)
+% Sumber: ETS Kalkulus 2 Selasa 11.00 Mengulang.pdf
+\startpacket{11}
+\pdfbookmark[0]{Paket 11: Selasa 11:00 Mengulang (Kelas 101 -- 104)}{paket11}
+\examheaderID{Kalkulus 2, 3 SKS}{Selasa, 21 April 2026}{11:00 -- 12:40, 100 menit}{101 -- 104, Tertutup}
+\warningsID
+\cpmktableID
+\scoretableID
+\begin{daftarsoal}
+\item Dengan turunan aturan perkalian, dapatkan $\dfrac{dy}{dx}$ dari
+\[
+    y=(3x^2+6)\ln(2x+1)
+\]
+\item Dengan aturan rantai, dapatkan $\dfrac{dy}{dx}$ dari
+\[
+    y=\sin^{-1}(3\sqrt{x})
+\]
+\item Selesaikan dengan integrasi parsial
+\[
+    \int5x\cos 3x\,dx
+\]
+\item Selesaikan integral fungsi rasional berikut
+\[
+    \int\frac{10x+48}{(x+3)(x+6)}\,dx
+\]
+\item Selesaikan dengan aturan L'Hopital
+\[
+    \lim_{x\to2}\frac{3x^3-10x^2+4x+8}{x^3-3x^2+4}
+\]
+\end{daftarsoal}
+
+\mulaisolusi{PEMBAHASAN PAKET 11}{Selasa, 21 April 2026 | 11:00 -- 12:40 | Mengulang\\Kelas 101 -- 104}
+$C$ menyatakan konstanta integrasi.
+\begin{daftarsolusi}
+\solusi \textbf{Aturan perkalian.}
+Ambil $u=3x^2+6$ dan $v=\ln(2x+1)$, sehingga $u'=6x$ dan
+$v'=\frac2{2x+1}$. Dengan demikian,
+\[
+ y'=u'v+uv'=6x\ln(2x+1)+\frac{2(3x^2+6)}{2x+1}.
+\]
+Turunan berlaku untuk $x>-\frac12$, sesuai domain logaritma.
+
+\solusi \textbf{Aturan rantai untuk invers sinus.}
+Ambil $u=3\sqrt{x}$, sehingga $u'=\frac3{2\sqrt{x}}$. Karena $y=\arcsin u$,
+\[
+ y'=\frac{u'}{\sqrt{1-u^2}}=\frac3{2\sqrt{x}\sqrt{1-9x}}.
+\]
+Fungsi terdefinisi pada $0\le x\le\frac19$, sedangkan turunan di atas
+berlaku untuk $0<x<\frac19$.
+
+\solusi \textbf{Integrasi parsial.}
+Ambil $u=5x$ dan $dv=\cos3x\,dx$, sehingga $du=5\,dx$, $v=\frac13\sin3x$.
+\begin{align*}
+ \int5x\cos3x\,dx
+ &=\frac{5x}{3}\sin3x-\frac53\int\sin3x\,dx\\
+ &=\frac{5x}{3}\sin3x+\frac59\cos3x+C.
+\end{align*}
+
+\solusi \textbf{Pecahan parsial.}
+Misalkan
+\[
+ \frac{10x+48}{(x+3)(x+6)}=\frac A{x+3}+\frac B{x+6}.
+\]
+Identitas $10x+48=A(x+6)+B(x+3)$ memberikan $A=6$ saat $x=-3$ dan
+$B=4$ saat $x=-6$. Maka
+\[
+ I=\int\left(\frac6{x+3}+\frac4{x+6}\right)dx
+ =6\ln|x+3|+4\ln|x+6|+C.
+\]
+
+\solusi \textbf{Aturan L'Hopital.}
+Substitusi $x=2$ pada pembilang dan penyebut menghasilkan $0/0$.
+Setelah satu kali diturunkan, bentuknya masih $0/0$. Jadi
+\begin{align*}
+ \lim_{x\to2}\frac{3x^3-10x^2+4x+8}{x^3-3x^2+4}
+ &=\lim_{x\to2}\frac{9x^2-20x+4}{3x^2-6x}\\
+ &=\lim_{x\to2}\frac{18x-20}{6x-6}
+ =\frac{16}{6}=\frac83.
+\end{align*}
+
+\end{daftarsolusi}
+
+% Paket 12: Selasa 13:30 Mengulang (Kelas 105 -- 109)
+% Sumber: ETS Kalkulus 2 Selasa 13.30 Mengulang.pdf
+\startpacket{12}
+\pdfbookmark[0]{Paket 12: Selasa 13:30 Mengulang (Kelas 105 -- 109)}{paket12}
+\examheaderID{Kalkulus 2, 3 SKS}{Selasa, 21 April 2026}{13:30 -- 15:10, 100 menit}{105 -- 109, Tertutup}
+\warningsID
+\cpmktableID
+\scoretableID
+\begin{daftarsoal}
+\item Dengan turunan aturan perkalian, dapatkan $\dfrac{dy}{dx}$ dari
+\[
+    y=(16x^2-8x+2)e^{4x}
+\]
+\item Dengan aturan rantai, dapatkan $\dfrac{dy}{dx}$ dari
+\[
+    y=\sin^{-1}(5x^2+1)
+\]
+\item Selesaikan dengan integrasi parsial
+\[
+    \int5xe^{4x}\,dx
+\]
+\item Selesaikan integral fungsi rasional berikut
+\[
+    \int\frac{9x+43}{(x+3)(x+7)}\,dx
+\]
+\item Selesaikan dengan aturan L'Hopital
+\[
+    \lim_{x\to3}\frac{2x^3-11x^2+12x+9}{x^3-5x^2+3x+9}
+\]
+\end{daftarsoal}
+
+\mulaisolusi{PEMBAHASAN PAKET 12}{Selasa, 21 April 2026 | 13:30 -- 15:10 | Mengulang\\Kelas 105 -- 109}
+$C$ menyatakan konstanta integrasi.
+\begin{daftarsolusi}
+\solusi \textbf{Aturan perkalian.}
+Ambil $u=16x^2-8x+2$, $v=e^{4x}$, sehingga $u'=32x-8$, $v'=4e^{4x}$.
+\begin{align*}
+ y'&=(32x-8)e^{4x}+4(16x^2-8x+2)e^{4x}\\
+   &=e^{4x}(32x-8+64x^2-32x+8)=64x^2e^{4x}.
+\end{align*}
+
+\solusi \textbf{Pemeriksaan domain pada naskah asli.}
+Soal menuliskan $y=\sin^{-1}(5x^2+1)=\arcsin(5x^2+1)$.
+Untuk fungsi bernilai real, argumen invers sinus harus memenuhi
+\[
+ -1\le5x^2+1\le1.
+\]
+Karena $5x^2\ge0$, syarat tersebut hanya dipenuhi oleh $x=0$.
+Jadi domain real fungsi ini adalah $\{0\}$, dengan $y(0)=\frac\pi2$.
+Fungsi tidak terdefinisi pada suatu interval di sekitar $0$, sehingga
+\textbf{turunan real biasa tidak terdefinisi}.
+
+\smallskip
+Jika aturan rantai ditulis secara formal, bentuk yang muncul adalah
+\[
+ \frac{10x}{\sqrt{1-(5x^2+1)^2}}.
+\]
+Namun, bentuk ini bukan turunan real yang berlaku: penyebutnya nol saat $x=0$
+dan radikannya negatif saat $x\ne0$. Rumus soal dipertahankan sesuai PDF asli;
+diperlukan koreksi soal jika yang dimaksud adalah fungsi real yang dapat diturunkan.
+
+\solusi \textbf{Integrasi parsial.}
+Pilih $u=5x$, $dv=e^{4x}\,dx$, sehingga $du=5\,dx$, $v=\frac14e^{4x}$.
+\begin{align*}
+ \int5xe^{4x}\,dx
+ &=\frac{5x}{4}e^{4x}-\frac54\int e^{4x}\,dx\\
+ &=\frac{5x}{4}e^{4x}-\frac5{16}e^{4x}+C
+ =\frac5{16}(4x-1)e^{4x}+C.
+\end{align*}
+
+\solusi \textbf{Pecahan parsial.}
+Tuliskan
+\[
+ \frac{9x+43}{(x+3)(x+7)}=\frac A{x+3}+\frac B{x+7}.
+\]
+Dari $9x+43=A(x+7)+B(x+3)$, diperoleh $A=4$ saat $x=-3$ dan
+$B=5$ saat $x=-7$. Jadi
+\[
+ I=\int\left(\frac4{x+3}+\frac5{x+7}\right)dx
+ =4\ln|x+3|+5\ln|x+7|+C.
+\]
+
+\solusi \textbf{Aturan L'Hopital.}
+Bentuk awal adalah $0/0$ di $x=3$. Setelah pembilang dan penyebut diturunkan
+sekali, bentuknya masih $0/0$. Dengan penerapan kedua,
+\begin{align*}
+ \lim_{x\to3}\frac{2x^3-11x^2+12x+9}{x^3-5x^2+3x+9}
+ &=\lim_{x\to3}\frac{6x^2-22x+12}{3x^2-10x+3}\\
+ &=\lim_{x\to3}\frac{12x-22}{6x-10}
+ =\frac{14}{8}=\frac74.
+\end{align*}
+
+\end{daftarsolusi}
+
+% Paket 13: Selasa 15:30 Reguler (Kelas 51 -- 60)
+% Sumber: ETS Kalkulus 2 Selasa 15.30 Reguler.pdf
+\startpacket{13}
+\pdfbookmark[0]{Paket 13: Selasa 15:30 Reguler (Kelas 51 -- 60)}{paket13}
+\examheaderID{Kalkulus 2, 3 SKS}{Selasa, 21 April 2026}{15:30 -- 17:10, 100 menit}{51 -- 60, Tertutup}
+\warningsID
+\cpmktableID
+\scoretableID
+\begin{daftarsoal}
+\item Dengan aturan rantai, dapatkan $\dfrac{dy}{dx}$ dari
+\[
+    y=\sin\left(\ln(x^2+x)\right)
+\]
+\item Selesaikan integral berikut dengan substitusi $u=e^{-x}$.
+\[
+    \int\frac{5e^{-x}}{8+8e^{-2x}}\,dx
+\]
+\item Selesaikan integral berikut
+\[
+    \int\sin^4 2x\cos^5 2x\,dx
+\]
+\item Selesaikan integral fungsi rasional berikut
+\[
+    \int\frac{5x^2+13x+9}{(x+2)(x+1)^2}\,dx
+\]
+\item Selesaikan integral tak wajar berikut
+\[
+    \int_0^\infty\frac{2x}{(4+x^2)^2}\,dx
+\]
+\end{daftarsoal}
+
+\mulaisolusi{PEMBAHASAN PAKET 13}{Selasa, 21 April 2026 | 15:30 -- 17:10 | Reguler\\Kelas 51 -- 60}
+$C$ menyatakan konstanta integrasi.
+\begin{daftarsolusi}
+\solusi \textbf{Aturan rantai.}
+Ambil $u=x^2+x$ dan $v=\ln u$. Maka $u'=2x+1$, $v'=u'/u$, sehingga
+\[
+ y'=\cos v\cdot\frac{u'}u
+ =\frac{2x+1}{x^2+x}\cos\left(\ln(x^2+x)\right).
+\]
+Domainnya memenuhi $x(x+1)>0$, yaitu $x<-1$ atau $x>0$.
+
+\solusi \textbf{Substitusi.}
+Ambil $u=e^{-x}$, sehingga $du=-e^{-x}\,dx$. Maka
+\[
+ \int\frac{5e^{-x}}{8+8e^{-2x}}\,dx
+ =-\frac58\int\frac{du}{1+u^2}
+ =-\frac58\arctan(e^{-x})+C.
+\]
+
+\solusi \textbf{Integral trigonometri.}
+Pisahkan satu faktor $\cos2x$ dan gunakan $u=\sin2x$, $du=2\cos2x\,dx$.
+Karena $\cos^42x=(1-\sin^22x)^2$, diperoleh
+\begin{align*}
+ I&=\frac12\int u^4(1-u^2)^2\,du\\
+  &=\frac12\int(u^4-2u^6+u^8)\,du\\
+  &=\frac{u^5}{10}-\frac{u^7}{7}+\frac{u^9}{18}+C\\
+  &=\frac{\sin^52x}{10}-\frac{\sin^72x}{7}+\frac{\sin^92x}{18}+C.
+\end{align*}
+
+\solusi \textbf{Pecahan parsial dengan faktor berulang.}
+Tuliskan
+\[
+ \frac{5x^2+13x+9}{(x+2)(x+1)^2}
+ =\frac A{x+2}+\frac B{x+1}+\frac D{(x+1)^2}.
+\]
+Setelah penyebut dihilangkan,
+\[
+ 5x^2+13x+9=A(x+1)^2+B(x+2)(x+1)+D(x+2).
+\]
+Substitusi $x=-2$ memberi $A=3$, sedangkan $x=-1$ memberi $D=1$.
+Koefisien $x^2$ memberi $A+B=5$, sehingga $B=2$. Dengan demikian,
+\begin{align*}
+ I&=\int\left(\frac3{x+2}+\frac2{x+1}+\frac1{(x+1)^2}\right)dx\\
+  &=3\ln|x+2|+2\ln|x+1|-\frac1{x+1}+C.
+\end{align*}
+
+\solusi \textbf{Integral tak wajar.}
+Gunakan $u=4+x^2$, $du=2x\,dx$. Untuk batas atas $b>0$,
+\[
+ \int_0^b\frac{2x}{(4+x^2)^2}\,dx
+ =\left[-\frac1{4+x^2}\right]_0^b
+ =\frac14-\frac1{4+b^2}.
+\]
+Maka
+\[
+ \int_0^\infty\frac{2x}{(4+x^2)^2}\,dx
+ =\lim_{b\to\infty}\left(\frac14-\frac1{4+b^2}\right)=\frac14.
+\]
+Limit berhingga, sehingga integral tersebut konvergen.
+
+\end{daftarsolusi}
+
+% Paket 14: Selasa 15:30 Mengulang (Kelas 122, 127, 128)
+% Sumber: ETS Kalkulus 2 Selasa 15.30 Mengulang.pdf
+\startpacket{14}
+\pdfbookmark[0]{Paket 14: Selasa 15:30 Mengulang (Kelas 122, 127, 128)}{paket14}
+\examheaderID{Kalkulus 2, 3 SKS}{Selasa, 21 April 2026}{15:30 -- 17:10, 100 menit}{122, 127, 128, Tertutup}
+\warningsID
+\cpmktableID
+\scoretableID
+\begin{daftarsoal}
+\item Dengan turunan aturan perkalian, dapatkan $\dfrac{dy}{dx}$ dari
+\[
+    y=(4x^2+3)\ln(3x+1)
+\]
+\item Dengan aturan rantai, dapatkan $\dfrac{dy}{dx}$ dari
+\[
+    y=\tan^{-1}(2\sqrt{x})
+\]
+\item Selesaikan dengan integrasi parsial
+\[
+    \int3x\sin 4x\,dx
+\]
+\item Selesaikan integral fungsi rasional berikut
+\[
+    \int\frac{9x+38}{(x+2)(x+7)}\,dx
+\]
+\item Selesaikan dengan aturan L'Hopital
+\[
+    \lim_{x\to0}\frac{\sin x-x}{5x^2}
+\]
+\end{daftarsoal}
+
+\mulaisolusi{PEMBAHASAN PAKET 14}{Selasa, 21 April 2026 | 15:30 -- 17:10 | Mengulang\\Kelas 122, 127, 128}
+$C$ menyatakan konstanta integrasi.
+\begin{daftarsolusi}
+\solusi \textbf{Aturan perkalian.}
+Ambil $u=4x^2+3$ dan $v=\ln(3x+1)$. Turunannya adalah $u'=8x$ dan
+$v'=\frac3{3x+1}$. Jadi
+\[
+ y'=u'v+uv'=8x\ln(3x+1)+\frac{3(4x^2+3)}{3x+1}.
+\]
+Turunan berlaku untuk $x>-\frac13$.
+
+\solusi \textbf{Aturan rantai untuk invers tangen.}
+Ambil $u=2\sqrt{x}$, sehingga $u'=\frac1{\sqrt{x}}$. Karena $y=\arctan u$,
+\[
+ y'=\frac{u'}{1+u^2}=\frac1{\sqrt{x}(1+4x)},\qquad x>0.
+\]
+Fungsi terdefinisi juga di $x=0$, tetapi tidak memiliki turunan berhingga di titik tersebut.
+
+\solusi \textbf{Integrasi parsial.}
+Ambil $u=3x$, $dv=\sin4x\,dx$, sehingga $du=3\,dx$, $v=-\frac14\cos4x$.
+\begin{align*}
+ \int3x\sin4x\,dx
+ &=-\frac{3x}{4}\cos4x+\frac34\int\cos4x\,dx\\
+ &=-\frac{3x}{4}\cos4x+\frac3{16}\sin4x+C.
+\end{align*}
+
+\solusi \textbf{Pecahan parsial.}
+Tuliskan
+\[
+ \frac{9x+38}{(x+2)(x+7)}=\frac A{x+2}+\frac B{x+7}.
+\]
+Identitas $9x+38=A(x+7)+B(x+2)$ memberikan $A=4$ saat $x=-2$ dan
+$B=5$ saat $x=-7$. Jadi
+\[
+ I=\int\left(\frac4{x+2}+\frac5{x+7}\right)dx
+ =4\ln|x+2|+5\ln|x+7|+C.
+\]
+
+\solusi \textbf{Aturan L'Hopital.}
+Bentuk awal adalah $0/0$. Setelah penerapan pertama, bentuknya masih $0/0$.
+Maka
+\[
+ \lim_{x\to0}\frac{\sin x-x}{5x^2}
+ =\lim_{x\to0}\frac{\cos x-1}{10x}
+ =\lim_{x\to0}\frac{-\sin x}{10}=0.
+\]
+
+\end{daftarsolusi}
+
+\end{document}
