@@ -1,5 +1,6 @@
 # Ignore VS Code settings
 .vscode/
+scripts/
 
 # Ignore LaTeX auxiliary files
 *.aux
