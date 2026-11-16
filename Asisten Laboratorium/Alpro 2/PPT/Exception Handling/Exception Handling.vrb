@@ -1,0 +1,36 @@
+\begin{columns}
+        \begin{column}{0.45\textwidth}
+          \begin{lstlisting}[numberstyle=\scriptsize\ttfamily\color{lightgray},basicstyle=\scriptsize\ttfamily]
+  String a;
+  String[] nama = new String[1];
+  try {
+      statement1;
+      nama[2] = "Dinda";
+      statement2;
+  }
+  catch (ArithmeticException ex1) {
+      System.err.println(ex1);
+  }
+  catch (Exception ex2) {
+      System.out.println(ex2);
+  }
+  finally {
+      System.out.println("stecu");
+  }
+  System.out.println("choco-minto");
+            \end{lstlisting}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+        \begin{latihan}
+          Apa output dari program tersebut apabila terjadi kondisi seperti ini, jelaskan:
+
+        \begin{enumerate}
+            \item Jika \texttt{statement1} dan \texttt{statement2} tidak terjadi exception (pernyataannya benar)
+            \item Jika \texttt{statement1} diganti dengan \texttt{a=3;} dan \texttt{statement2} tidak terjadi exception
+            \item Jika \texttt{statement1} tidak terjadi exception, dan \texttt{statement2} diganti dengan \texttt{System.out.println(1/0);}
+            \item Jika \texttt{statement1} diganti dengan \texttt{System.out.println(1/0);} dan \texttt{statement2} diganti \texttt{int b = nama[0].length();}
+        \end{enumerate}
+          \end{latihan}
+        \end{column}
+      \end{columns}
+

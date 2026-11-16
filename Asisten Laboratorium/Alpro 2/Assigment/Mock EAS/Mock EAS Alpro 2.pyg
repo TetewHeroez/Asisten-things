@@ -1,0 +1,5 @@
+public static boolean isPalindrome(String s){
+    if (...) return true;
+    if (...) return false;
+    return isPalindrome(s.substring(1, s.length() - 1));
+}

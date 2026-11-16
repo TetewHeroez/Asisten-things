@@ -1,0 +1,7 @@
+\babel@toc {bahasa}{}\relax 
+\beamer@sectionintoc {1}{Inheritance}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{Constructor Child Class}{8}{0}{1}
+\beamer@sectionintoc {2}{Polymorphism}{10}{0}{2}
+\beamer@sectionintoc {3}{Diagram Kelas}{18}{0}{3}
+\beamer@subsectionintoc {3}{1}{Hubungan/Relasi}{19}{0}{3}
+\beamer@sectionintoc {4}{Latihan}{21}{0}{4}

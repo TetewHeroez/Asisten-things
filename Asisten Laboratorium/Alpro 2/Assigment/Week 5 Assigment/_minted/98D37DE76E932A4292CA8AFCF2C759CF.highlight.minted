@@ -1,0 +1,12 @@
+\begin{MintedVerbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{k+kd}{class} \PYG{n+nc}{Main}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kd}{static}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{main}\PYG{p}{(}\PYG{n}{String}\PYG{o}{[}\PYG{o}{]}\PYG{+w}{ }\PYG{n}{args}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{      }\PYG{n}{Matriks2x2}\PYG{+w}{ }\PYG{n}{M1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Matriks2x2}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{4}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{      }\PYG{n}{Matriks2x2}\PYG{+w}{ }\PYG{n}{M2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Matriks2x2}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{      }\PYG{n}{Matriks2x2}\PYG{+w}{ }\PYG{n}{M3}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Matriks2x2}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{5}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{      }\PYG{n}{Matriks2x2}\PYG{+w}{ }\PYG{n}{M4}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{c+c1}{//...}
+\PYG{+w}{      }\PYG{n}{Matriks2x2}\PYG{+w}{ }\PYG{n}{M5}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{c+c1}{//...}
+\PYG{+w}{      }\PYG{c+c1}{//...}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}
+\end{MintedVerbatim}

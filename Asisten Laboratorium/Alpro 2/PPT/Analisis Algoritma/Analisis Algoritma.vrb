@@ -1,0 +1,20 @@
+\begin{latihan}
+        Buktikan bahwa fungsi berikut menghitung jumlahan digit suatu bilangan bulat
+      \end{latihan}
+      \begin{lstlisting}
+  int jumlahDigit(int X) {
+    if (X == 0) return 0;
+    else return (X % 10) + jumlahDigit(X / 10);
+  }
+      \end{lstlisting}
+      \begin{latihan}
+        Telusuri fungsi berikut dan buktikan kebenaran dari fungsi tersebut.
+      \end{latihan}
+      \begin{lstlisting}
+  boolean cek(string S) {
+    for (int i = 0; i < n-1; i++) {
+      if (S[i] > S[i+1]) return false;
+      }
+    return true;
+  }
+      \end{lstlisting}

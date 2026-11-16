@@ -1,0 +1,12 @@
+\frametitle{\insertsection }
+\framesubtitle{\insertsubsection}
+      \begin{lstlisting}[caption={Perhitungan dalam \textit{getter}}]
+  public class Lingkaran {
+    private double jariJari;
+
+    // Getter: menghitung luas
+    public double getLuas() {
+        return Math.PI * jariJari * jariJari;
+    }
+  }
+      \end{lstlisting}

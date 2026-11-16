@@ -1,0 +1,17 @@
+\frametitle{\insertsection}
+    \begin{contoh}
+      Contoh pembuatan objek mobil dan menggunakan perilakunya.
+    \end{contoh}
+    \begin{lstlisting}[caption={Contoh Penggunaan Object Mobil}]
+    public static void main(String[] args) {
+        Mobil mobilSaya = new Mobil(); // Membuat object
+        Mobil mobilTeman = new Mobil("Esemka", "RGB", 2030); // Constructor
+
+        mobilSaya.merk = "Toyota"; // Mengisi atribut
+        mobilSaya.warna = "Putih";
+        mobilSaya.tahun = 2020;
+
+        mobilSaya.nyalakanMesin(); // Menggunakan method
+        mobilSaya.matikanMesin();
+    }
+    \end{lstlisting}

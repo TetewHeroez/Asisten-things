@@ -1,0 +1,9 @@
+\beamer@sectionintoc {1}{Apa itu Array?}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{Deklarasi Array}{5}{0}{1}
+\beamer@subsectionintoc {1}{2}{Indeks Array}{7}{0}{1}
+\beamer@sectionintoc {2}{Display Array}{9}{0}{2}
+\beamer@subsectionintoc {2}{1}{For-loop}{12}{0}{2}
+\beamer@subsectionintoc {2}{2}{For-each}{13}{0}{2}
+\beamer@subsectionintoc {2}{3}{Import Arrays}{14}{0}{2}
+\beamer@sectionintoc {3}{Array Multidimensi}{15}{0}{3}
+\beamer@sectionintoc {4}{Latihan}{20}{0}{4}

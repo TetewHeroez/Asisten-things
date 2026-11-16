@@ -1,0 +1,45 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{// Lengkapi kode di bawah ini:}
+
+\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kd}{class} \PYG{n+nc}{Car}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{String}\PYG{+w}{ }\PYG{n}{brand}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{String}\PYG{+w}{ }\PYG{n}{model}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{year}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{mileage}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c+c1}{// Constructor}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n+nf}{Car}\PYG{p}{(}\PYG{+w}{ }\PYG{p}{...}\PYG{+w}{ }\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{p}{...}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+c1}{// Getter untuk semua atribut}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n}{String}\PYG{+w}{ }\PYG{n+nf}{getBrand}\PYG{p}{()}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{p}{...}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n}{String}\PYG{+w}{ }\PYG{n+nf}{getModel}\PYG{p}{()}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{p}{...}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{getYear}\PYG{p}{()}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{p}{...}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{getMileage}\PYG{p}{()}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{p}{...}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+c1}{// Setter hanya untuk mileage}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{setMileage}\PYG{p}{(}\PYG{+w}{ }\PYG{p}{...}\PYG{+w}{ }\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{p}{...}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+c1}{// Method drive untuk menambahkan mileage}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{drive}\PYG{p}{(}\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{km}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{p}{...}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+c1}{// Override toString()}
+\PYG{+w}{    }\PYG{n+nd}{@Override}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n}{String}\PYG{+w}{ }\PYG{n+nf}{toString}\PYG{p}{()}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{p}{...}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+c1}{// Main untuk menguji}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kd}{static}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{main}\PYG{p}{(}\PYG{n}{String}\PYG{o}{[]}\PYG{+w}{ }\PYG{n}{args}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{c+c1}{// Buat objek Car brand \PYGZdq{}Toyota\PYGZdq{}, model \PYGZdq{}Corolla\PYGZdq{}, year 2020}
+\PYG{+w}{        }\PYG{n}{Car}\PYG{+w}{ }\PYG{n}{myCar}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Car}\PYG{p}{(...);}
+\PYG{+w}{        }\PYG{c+c1}{// Panggil drive(15000.5)}
+\PYG{+w}{        }\PYG{n}{myCar}\PYG{p}{.}\PYG{n+na}{drive}\PYG{p}{(}\PYG{l+m+mf}{15000.5}\PYG{p}{);}
+\PYG{+w}{        }\PYG{c+c1}{// Cetak hasil toString()}
+\PYG{+w}{        }\PYG{n}{System}\PYG{p}{.}\PYG{n+na}{out}\PYG{p}{.}\PYG{n+na}{println}\PYG{p}{(}\PYG{n}{myCar}\PYG{p}{.}\PYG{n+na}{toString}\PYG{p}{());}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{MintedVerbatim}

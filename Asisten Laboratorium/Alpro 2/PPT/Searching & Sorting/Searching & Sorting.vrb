@@ -1,0 +1,17 @@
+\frametitle{\insertsection}
+      \framesubtitle{\insertsubsection}
+      \begin{block}{\textit{Linear Search}}
+          Pencarian dilakukan dengan menelusuri tiap elemen satu per satu dari awal hingga akhir.
+          \begin{itemize}
+              \item \textbf{Best Case:} \(O(1)\) bila data target ada di awal array.
+              \item \textbf{Worst Case:} \(O(n)\) bila data target berada di akhir atau tidak ditemukan.
+          \end{itemize}
+      \end{block}
+
+          \begin{lstlisting}[caption={Kode Linear Search}]
+  public static int linearSearch(int[] array, int n, int target) {
+    for (i = 0; i < n; i++)
+        if (array[i] == target) return i; // Ditemukan
+    return -1; // Tidak ditemukan
+  }
+          \end{lstlisting}

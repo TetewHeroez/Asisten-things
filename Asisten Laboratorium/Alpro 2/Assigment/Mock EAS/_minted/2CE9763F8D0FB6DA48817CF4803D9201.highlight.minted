@@ -1,0 +1,45 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{// Lengkapi kode di bawah ini:}
+
+\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kd}{class} \PYG{n+nc}{Person}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{String}\PYG{+w}{ }\PYG{n}{name}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{age}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c+c1}{// Constructor penuh}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n+nf}{Person}\PYG{p}{(}\PYG{+w}{ }\PYG{p}{...}\PYG{+w}{ }\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{p}{...}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+c1}{// Getter dan Setter}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n}{String}\PYG{+w}{ }\PYG{n+nf}{getName}\PYG{p}{()}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{p}{...}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{setName}\PYG{p}{(}\PYG{n}{String}\PYG{+w}{ }\PYG{n}{name}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{p}{...}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{getAge}\PYG{p}{()}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{p}{...}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{setAge}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{age}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{p}{...}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kd}{class} \PYG{n+nc}{Student}\PYG{+w}{ }\PYG{k+kd}{extends}\PYG{+w}{ }\PYG{n}{Person}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{String}\PYG{+w}{ }\PYG{n}{studentId}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{gpa}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c+c1}{// Constructor}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n+nf}{Student}\PYG{p}{(}\PYG{+w}{ }\PYG{p}{...}\PYG{+w}{ }\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{c+c1}{// Panggil super(...) di sini}
+\PYG{+w}{        }\PYG{p}{...}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+c1}{// Getter dan Setter untuk studentId dan gpa}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n}{String}\PYG{+w}{ }\PYG{n+nf}{getStudentId}\PYG{p}{()}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{p}{...}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{setStudentId}\PYG{p}{(}\PYG{n}{String}\PYG{+w}{ }\PYG{n}{studentId}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{p}{...}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{getGpa}\PYG{p}{()}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{p}{...}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{setGpa}\PYG{p}{(}\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{gpa}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{p}{...}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kd}{class} \PYG{n+nc}{TestStudent}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kd}{static}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{main}\PYG{p}{(}\PYG{n}{String}\PYG{o}{[]}\PYG{+w}{ }\PYG{n}{args}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{c+c1}{// Buat objek Student dengan nama \PYGZdq{}Budi\PYGZdq{}, age 20, studentId \PYGZdq{}S12345\PYGZdq{}, gpa 3.75}
+\PYG{+w}{        }\PYG{p}{...}
+\PYG{+w}{        }\PYG{c+c1}{// Tampilkan semua informasi Student}
+\PYG{+w}{        }\PYG{p}{...}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{MintedVerbatim}

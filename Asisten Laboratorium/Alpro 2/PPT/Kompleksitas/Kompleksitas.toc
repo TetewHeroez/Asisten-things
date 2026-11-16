@@ -1,0 +1,6 @@
+\babel@toc {bahasa}{}\relax 
+\beamer@sectionintoc {1}{\textit {Complexity}}{4}{0}{1}
+\beamer@subsectionintoc {1}{1}{Kompleksitas Waktu}{7}{0}{1}
+\beamer@subsectionintoc {1}{2}{Kompleksitas Ruang}{14}{0}{1}
+\beamer@sectionintoc {2}{Big-O}{18}{0}{2}
+\beamer@sectionintoc {3}{Latihan}{25}{0}{3}

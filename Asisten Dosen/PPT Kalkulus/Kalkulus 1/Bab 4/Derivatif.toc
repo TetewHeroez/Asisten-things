@@ -1,0 +1,4 @@
+\beamer@sectionintoc {1}{Garis Singgung dan Laju Perubahan}{2}{0}{1}
+\beamer@sectionintoc {2}{Fungsi Turunan}{9}{0}{2}
+\beamer@sectionintoc {3}{Diferensiasi}{14}{0}{3}
+\beamer@sectionintoc {4}{Aturan rantai dan Diferensiasi implisit}{18}{0}{4}

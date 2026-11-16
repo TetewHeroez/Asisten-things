@@ -1,0 +1,15 @@
+\begin{latihan}
+            Buatlah sebuah program untuk melakukan sebuah konversi suhu dari celsius ke beberapa satuan yang lain (Kelvin, Reamur, Farenheit)!
+            \begin{itemize}[label=$\bullet$]
+                \item Celsius $(C)$ = $C$
+                \item Kelvin $(K)$ = $C + 273$
+                \item Reamur $(R)$ = $\displaystyle \frac{4}{5}\times C$
+                \item Fahrenheit $(F)$ = $\displaystyle \frac{9}{5}\times C$
+            \end{itemize}
+        \end{latihan}
+        \begin{lstlisting}[style=output,numbers=none]
+Suhu dalam Celsius: 30
+Suhu dalam Kelvin: 303
+Suhu dalam Reamur: 24
+Suhu dalam Fahrenheit: 86
+        \end{lstlisting}

@@ -1,0 +1,9 @@
+\frametitle{\insertsection }
+\begin{alertblock}{Penting!}
+    Kita tahu sebuah kelas hanya bisa mengimplementasikan satu kelas (superclass), namun sebuah kelas bisa mengimplementasikan banyak interface.
+  \end{alertblock}
+  \begin{lstlisting}[caption={Syntax untuk Implementasi Banyak Interface}]
+    class A implements Interface1, Interface2 {
+      ...
+    }
+  \end{lstlisting}

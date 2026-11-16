@@ -1,0 +1,8 @@
+\babel@toc {bahasa}{}\relax 
+\beamer@sectionintoc {1}{Prosedural vs. Berorientasi Objek}{6}{0}{1}
+\beamer@subsectionintoc {1}{1}{Prosedural}{7}{0}{1}
+\beamer@subsectionintoc {1}{2}{Berorientasi Objek}{10}{0}{1}
+\beamer@sectionintoc {2}{\textit {Class}}{14}{0}{2}
+\beamer@subsectionintoc {2}{1}{\textit {Constructor}}{18}{0}{2}
+\beamer@sectionintoc {3}{\textit {Object}}{20}{0}{3}
+\beamer@sectionintoc {4}{Latihan}{23}{0}{4}
