@@ -1,6 +1,0 @@
-\babel@toc {bahasa}{}\relax 
-\beamer@sectionintoc {1}{Exception}{6}{0}{1}
-\beamer@sectionintoc {2}{Try-Catch}{11}{0}{2}
-\beamer@subsectionintoc {2}{1}{Finally}{15}{0}{2}
-\beamer@sectionintoc {3}{Throw}{17}{0}{3}
-\beamer@sectionintoc {4}{Latihan}{22}{0}{4}

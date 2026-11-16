@@ -1,9 +1,0 @@
-\begin{exampleblock}{Contoh}
-            Ubahlah angka desimal 3.14159 menjadi 3.14
-        \end{exampleblock}
-        \begin{lstlisting}[caption={Manipulasi Angka Desimal}]
-    double pi = 3.14159;
-    int pi2 = (int)(pi * 100);
-    double pi3 = pi2 / 100.0;
-    System.out.println(pi3);
-        \end{lstlisting}

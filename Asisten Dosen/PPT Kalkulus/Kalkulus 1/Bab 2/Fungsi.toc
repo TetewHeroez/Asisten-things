@@ -1,5 +1,0 @@
-\beamer@sectionintoc {1}{Fungsi Real}{3}{0}{1}
-\beamer@sectionintoc {2}{Domain dan Range}{9}{0}{2}
-\beamer@sectionintoc {3}{Operasi pada Fungsi}{12}{0}{3}
-\beamer@sectionintoc {4}{Grafik Fungsi}{15}{0}{4}
-\beamer@sectionintoc {5}{Fungsi Invers}{25}{0}{5}

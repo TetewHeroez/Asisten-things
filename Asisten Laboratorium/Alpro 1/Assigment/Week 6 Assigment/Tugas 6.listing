@@ -1,4 +1,0 @@
-Masukkan nilai z: (*\inputscan{1} \enter*)
-Toleransi error: (*\inputscan{10e-5} \enter*)
-Diperlukan iterasi sebanyak 5
-P( Z <= 1.0 ) = 0.8413441191604394

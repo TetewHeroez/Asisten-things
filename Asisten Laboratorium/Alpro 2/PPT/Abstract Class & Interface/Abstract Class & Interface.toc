@@ -1,4 +1,0 @@
-\babel@toc {bahasa}{}\relax 
-\beamer@sectionintoc {1}{\textit {Abstract}}{3}{0}{1}
-\beamer@sectionintoc {2}{\textit {Interface}}{9}{0}{2}
-\beamer@sectionintoc {3}{Latihan}{15}{0}{3}
