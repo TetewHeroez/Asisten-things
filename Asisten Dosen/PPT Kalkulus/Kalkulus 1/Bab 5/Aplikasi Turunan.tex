@@ -12,6 +12,8 @@
 \newcommand{\rng}{\mathcal{R}}
 
 \renewcommand{\arraystretch}{1.5}
+% Tata letak mengikuti Beamer Bab 1 dan Bab 2.
+\setbeamertemplate{itemize items}[circle]
 
 \begin{document}
 {\usebackgroundtemplate{
@@ -21,422 +23,978 @@
 \end{frame}
 }
 
-\AtBeginSection{
-  {
-      \begin{frame}{Daftar isi}
-        \tableofcontents[currentsection]
-        % \begin{tikzpicture}[overlay, remember picture] 
-        %     \node at ([yshift=.5cm]current page.south east) [
-        %         anchor = south east, 
-        %         ] {
-        %     \animategraphics[autoplay,loop,width=0.2\textwidth]{30}{Arisu Dance/Arisu Dance-}{0}{186}
-        %     };
-        % \end{tikzpicture}
-      \end{frame}}
-}
+\begin{frame}{Daftar isi}
+    \tableofcontents
+\end{frame}
+
+
+
+% Sumber: ../KALKULUS 1 BAB 5.pdf, PDF 1--71 = halaman buku 137--207.
+% Definisi buku: 5.2.1--3, 5.3.1--2, 5.4.1, 5.5.1.
+% Teorema buku: 5.2.1--2, 5.3.1--3, 5.5.1--3, 5.7.1--2.
+% Penomoran otomatis seperti Bab 1--2, semua gambar dibuat dengan TikZ.
+\pgfplotsset{babfive/.style={width=6.3cm,height=4.2cm,axis lines=middle,
+xlabel={$x$},ylabel={$y$},tick label style={font=\scriptsize},
+label style={font=\scriptsize},samples=120,clip=true}}
 
 \section{Laju-laju yang Berkaitan}
-\begin{frame}
-  \frametitle{\insertsection}
-  \begin{definisi}{Laju-laju yang Berkaitan}
-    Jika suatu variabel $y$ bergantung pada waktu $t$, maka turunannya, $dy/dt$, disebut \textbf{laju perubahan sesaat}. Jika $y$ bergantung pada variabel lain, misalnya $x$, yang juga bergantung pada $t$, maka laju perubahan $y$ dan $x$ saling berkaitan melalui Aturan Rantai:
-    \[
-      \frac{dy}{dt} = \frac{dy}{dx} \cdot \frac{dx}{dt}
-    \]
-  \end{definisi}
 
-  \begin{block}{Strategi Penyelesaian}
-    \begin{enumerate}
-      \item Baca masalah dengan cermat dan identifikasi semua kuantitas yang berubah terhadap waktu.
-      \item Buat sketsa dan beri nama variabel dan konstanta.
-      \item Tuliskan laju perubahan yang diketahui dan yang ingin dicari.
-      \item Tuliskan persamaan yang menghubungkan variabel-variabel tersebut.
-      \item Gunakan Aturan Rantai untuk menurunkan persamaan secara implisit terhadap waktu $t$.
-      \item Substitusikan nilai yang diketahui ke dalam persamaan turunan untuk mencari laju yang tidak diketahui.
-    \end{enumerate}
-  \end{block}
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Satu perubahan memengaruhi perubahan lain}
+\begin{columns}[c]
+\begin{column}{.48\textwidth}
+
+\centering\begin{tikzpicture}[scale=.85]
+\filldraw[fill=HIMAmuda!20,draw=HIMAtua,thick] (0,0) circle (1.4);
+\draw[dashed,gray] (0,0) circle (1.8);
+\draw[->,red,thick] (0,0)--(1.4,0) node[midway,above] {$r(t)$};
+\node at (0,-2.2) {$A(t)=\pi r(t)^2$};
+\end{tikzpicture}
+\end{column}
+\begin{column}{.48\textwidth}
+
+% Adaptasi motivasi hlm. 137--138.
+\begin{block}{Motivasi}
+Tumpahan cairan melebar membentuk lingkaran. Jika jari-jarinya bertambah dengan laju tetap, apakah laju luasnya juga tetap?
+\end{block}
+\onslide<2->{\[\frac{dA}{dt}=2\pi r\frac{dr}{dt}.\]
+Untuk $dr/dt=1$ m/s, laju luas saat $r=10$ adalah $20\pi$ m$^2$/s, sedangkan saat $r=20$ menjadi $40\pi$ m$^2$/s.}
+\end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Contoh: Masalah Tangga}
-  \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \begin{contoh}
-        Sebuah tangga dengan panjang 5 meter bersandar pada dinding vertikal. Ujung bawah tangga digeser menjauhi dinding dengan laju 2 m/s. Seberapa cepat ujung atas tangga meluncur ke bawah dinding saat ujung bawahnya berjarak 3 meter dari dinding?
-      \end{contoh}
-      \pause
-      \textbf{Solusi:}
-      \begin{itemize}
-        \item Misal $x$ adalah jarak ujung bawah tangga dari dinding, dan $y$ adalah ketinggian ujung atas tangga.
-        \item Diketahui: $\frac{dx}{dt} = 2$ m/s.
-        \item Dicari: $\frac{dy}{dt}$ saat $x=3$ m.
-        \item Persamaan: $x^2 + y^2 = 5^2 = 25$.
-        \item Saat $x=3$, maka $3^2 + y^2 = 25 \implies y = \sqrt{16} = 4$ m.
-        \item Turunkan terhadap $t$: $2x \frac{dx}{dt} + 2y \frac{dy}{dt} = 0$.
-        \item Substitusi: $2(3)(2) + 2(4)\frac{dy}{dt} = 0 \implies 12 + 8\frac{dy}{dt} = 0$.
-        \item Hasil: $\frac{dy}{dt} = -\frac{12}{8} = -1.5$ m/s. (Tanda negatif berarti meluncur ke bawah).
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=1.2]
-        % Dinding dan lantai
-        \draw[thick] (0,4.5) -- (0,0) -- (4,0);
-        \node at (-0.3, 2) [rotate=90] {Dinding};
-        \node at (2, -0.3) {Lantai};
+\frametitle{\insertsection}
+\framesubtitle{Susun hubungan sebelum memasukkan angka}
 
-        % Tangga
-        \draw[ultra thick, blue!70!black] (0,4) -- (3,0);
-        \node at (1.2, 2.3) [rotate=-53, white] {5 m};
+\begin{block}{Laju-laju yang Berkaitan}
+Besaran-besaran yang bergantung pada waktu dihubungkan oleh persamaan. Turunkan persamaan itu terhadap $t$ menggunakan aturan rantai untuk menghubungkan laju perubahannya.
+\end{block}
+\begin{enumerate}
+\item Gambar situasi dan beri nama besaran serta laju yang diketahui.
+\item Tulis persamaan yang berlaku selama proses berlangsung.
+\item Turunkan terhadap waktu, kemudian substitusikan keadaan yang ditanyakan.
+\item Periksa tanda dan satuan hasilnya.
+\end{enumerate}
+\onslide<2->{\begin{alertblock}{Mengapa angka dimasukkan belakangan?}
+$r=10$ mungkin hanya berlaku pada satu saat. Menggantikan $r(t)$ dengan konstanta sebelum menurunkan akan menghilangkan perubahan yang dicari.
+\end{alertblock}}
+\end{frame}
 
-        % Jarak x dan y
-        \draw[<->] (0,-0.5) -- (3,-0.5);
-        \node at (1.5, -0.8) {$x$};
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: tangga yang bergeser}
 
-        \draw[<->] (-0.5,0) -- (-0.5,4);
-        \node at (-0.8, 2) {$y$};
+% Modifikasi Contoh 5.1.1, hlm. 138--139.
+\begin{contoh}
+Tangga 5 m bersandar pada dinding. Kakinya menjauh dengan laju 1 m/s. Tentukan laju ujung atas saat kaki berjarak 4 m dari dinding.
+\end{contoh}\begin{columns}[c]
+\begin{column}{.48\textwidth}
 
-        % Vektor laju
-        \draw[->, red, thick] (3,0) -- (4,0) node[right] {$\frac{dx}{dt} = 2$ m/s};
-        \visible<2->{\draw[->, red, thick] (0,4) -- (0,3) node[below] {$\frac{dy}{dt} = ?$};}
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
+\centering\begin{tikzpicture}[scale=.65]
+\draw[thick] (0,4)--(0,0)--(5,0);
+\draw[HIMAtua,very thick] (0,3)--(4,0) node[midway,above right] {5 m};
+\node[left] at (0,1.5) {$y$};\node[below] at (2,0) {$x$};
+\draw[->,red,thick] (4,0)--(5,0);\draw[->,red,thick] (0,3)--(0,2);
+\end{tikzpicture}
+\end{column}
+\begin{column}{.48\textwidth}
+
+\onslide<2->{\[x^2+y^2=25,\quad y=3.\]
+\[2x\frac{dx}{dt}+2y\frac{dy}{dt}=0.\]
+\[\frac{dy}{dt}=-\frac{x}{y}\frac{dx}{dt}=-\frac43\text{ m/s}.\]
+Tanda negatif menyatakan gerakan turun.}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: kamera mengikuti roket}
+
+% Modifikasi Contoh 5.1.2, hlm. 139--140.
+\begin{contoh}
+Kamera berjarak 3 km dari landasan. Roket naik dengan laju 0,5 km/s. Tentukan laju sudut elevasi ketika ketinggiannya 4 km.
+\end{contoh}\begin{columns}[c]
+\begin{column}{.48\textwidth}
+
+\centering\begin{tikzpicture}[scale=.65]
+\draw[thick] (0,0)--(3,0)--(3,4)--cycle;
+\node[below] at (1.5,0) {3 km};\node[right] at (3,2) {$h$};
+\draw[red] (.8,0) arc (0:53.13:.8);\node at (1,.4) {$\theta$};
+\draw[->,HIMAtua,thick] (3,4)--(3,4.6);
+\end{tikzpicture}
+\end{column}
+\begin{column}{.48\textwidth}
+
+\onslide<2->{\[\tan\theta=\frac h3,\qquad
+\sec^2\theta\frac{d\theta}{dt}=\frac13\frac{dh}{dt}.\]
+Saat $h=4$, $\sec^2\theta=25/9$, sehingga
+\[\frac{d\theta}{dt}=\frac3{25}(0{,}5)=0{,}06\text{ rad/s}.\]
+Rumus turunan trigonometri menggunakan sudut dalam radian.}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: cairan keluar dari kerucut}
+
+% Modifikasi Contoh 5.1.3, hlm. 140--141.
+\begin{contoh}
+Tangki kerucut berjari-jari 4 cm dan tinggi 12 cm mengeluarkan cairan 3 cm$^3$/menit. Cari laju tinggi cairan saat $h=6$ cm.
+\end{contoh}\begin{columns}[c]
+\begin{column}{.48\textwidth}
+
+\centering\begin{tikzpicture}[scale=.7]
+\fill[HIMAmuda!25] (0,0)--(-1,1.5)--(1,1.5)--cycle;
+\draw[thick] (-2,3)--(0,0)--(2,3);\draw (0,3) ellipse (2 and .3);
+\draw[HIMAtua] (0,1.5) ellipse (1 and .15);
+\draw[dashed] (0,0)--(0,3);\node[left] at (0,.7) {$h$};
+\draw[<->] (2.3,0)--(2.3,3) node[midway,right] {12};
+\draw[->] (0,3)--(2,3) node[midway,above] {4};
+\node[above] at (.5,1.5) {$r$};
+\end{tikzpicture}
+\end{column}
+\begin{column}{.48\textwidth}
+
+\onslide<2->{Kesebangunan memberi $r=h/3$.
+\[V=\frac13\pi r^2h=\frac\pi{27}h^3,\qquad
+\frac{dV}{dt}=\frac\pi9h^2\frac{dh}{dt}.\]
+Dengan $dV/dt=-3$ dan $h=6$,
+\[\frac{dh}{dt}=-\frac3{4\pi}\text{ cm/menit}.\]
+Tanda negatif diperlukan karena volume berkurang.}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Latihan: pilih besaran yang berubah}
+
+% Modifikasi latihan 5.1, hlm. 142--146.
+\begin{exampleblock}{Latihan}
+\begin{enumerate}
+\item Bola mengembang dengan laju volume $12\pi$ cm$^3$/s. Cari laju jari-jari saat $r=3$ cm.
+\item Sisi persegi panjang $x=3$, $y=4$ cm berubah dengan $x'=2$, $y'=-1$ cm/s. Cari laju diagonalnya.
+\item Orang setinggi 1,5 m menjauh dari lampu setinggi 6 m dengan laju 2 m/s. Cari laju panjang bayangan dan laju ujung bayangan.
+\end{enumerate}
+\end{exampleblock}
+\onslide<2->{\textbf{Petunjuk:} panjang bayangan berbeda dari posisi ujungnya. Gunakan dua segitiga sebangun.}
 \end{frame}
 
 \section{Interval Naik, Turun, dan Kecekungan Fungsi}
+
 \begin{frame}
-  \frametitle{\insertsection}
-  \begin{teorema}{Uji Turunan Pertama untuk Kemonotonan}
-    Misalkan $f$ kontinu pada interval $[a,b]$ dan terdiferensial pada $(a,b)$.
-    \begin{itemize}
-      \item Jika $f'(x) > 0$ untuk semua $x \in (a,b)$, maka $f$ \textbf{naik} pada $[a,b]$.
-      \item Jika $f'(x) < 0$ untuk semua $x \in (a,b)$, maka $f$ \textbf{turun} pada $[a,b]$.
-    \end{itemize}
-  \end{teorema}
-  \pause
-  \begin{teorema}{Uji Turunan Kedua untuk Kecekungan}
-    Misalkan $f$ terdiferensial dua kali pada interval terbuka $I$.
-    \begin{itemize}
-      \item Jika $f''(x) > 0$ untuk semua $x \in I$, maka grafik $f$ \textbf{cekung ke atas} pada $I$.
-      \item Jika $f''(x) < 0$ untuk semua $x \in I$, maka grafik $f$ \textbf{cekung ke bawah} pada $I$.
-    \end{itemize}
-  \end{teorema}
-  \pause
-  \begin{definisi}{Titik Belok (Inflection Point)}
-    Misalkan $f$ kontinu pada suatu interval yang memuat $c$. Titik $(c, f(c))$ disebut \textbf{titik belok} jika $f$ mengalami perubahan kecekungan di $c$ (dari cekung ke atas menjadi ke bawah, atau sebaliknya).
-  \end{definisi}
+\frametitle{\insertsection}
+\framesubtitle{Naik dan turun adalah sifat pada interval}
+
+% Definisi 5.2.1, hlm. 147.
+\begin{definisi}
+Untuk setiap $x_1<x_2$ dalam interval $I$, fungsi $f$ disebut naik jika $f(x_1)<f(x_2)$, turun jika $f(x_1)>f(x_2)$, dan konstan jika $f(x_1)=f(x_2)$ untuk semua pasangan titiknya.
+\end{definisi}
+\onslide<2->{\begin{block}{Baca grafik dari kiri ke kanan}
+Yang dibandingkan adalah tinggi grafik, bukan apakah nilainya positif atau negatif. Fungsi $f(x)=x-10$ tetap naik ketika nilainya negatif.
+\end{block}}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Ilustrasi Kemonotonan dan Kecekungan}
-  \centering
-  \begin{tikzpicture}[scale=1.5, every node/.style={font=\small}]
-    \begin{axis}[
-        axis lines=middle,
-        xlabel=$x$,
-        ylabel=$y$,
-        xtick=\empty,
-        ytick=\empty,
-        xmin=-1, xmax=7,
-        ymin=-1, ymax=4,
-        clip=false
-      ]
-      \addplot[
-        domain=0:6,
-        samples=100,
-        smooth,
-        thick,
-        blue,
-      ] {0.1*x^3 - 0.9*x^2 + 2*x + 1};
+\frametitle{\insertsection}
+\framesubtitle{Tanda turunan pertama menentukan kemonotonan}
 
-      % Annotations
-      \node[above] at (axis cs:1,2.2) {$f'(x)>0$};
-      \node[above] at (axis cs:1,1.9) {Naik};
+% Teorema 5.2.1, hlm. 147.
+\begin{teorema}
+Jika $f$ kontinu pada $[a,b]$ dan dapat diturunkan pada $(a,b)$:
+\begin{itemize}
+\item $f'>0$ di seluruh $(a,b)$ menjamin $f$ naik pada $[a,b]$;
+\item $f'<0$ menjamin $f$ turun;
+\item $f'=0$ di seluruh interval menjamin $f$ konstan.
+\end{itemize}
+\end{teorema}
+\onslide<2->{\begin{alertblock}{Satu titik datar belum berarti konstan}
+Untuk $f(x)=x^3$, $f'(0)=0$, tetapi fungsi tetap naik pada $\mathbb R$. Syarat untuk konstan berlaku di seluruh interval.
+\end{alertblock}}
+\end{frame}
 
-      \node[below] at (axis cs:3,1) {$f'(x)<0$};
-      \node[below] at (axis cs:3,0.7) {Turun};
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: tabel tanda sebelum menggambar}
 
-      \node[above] at (axis cs:5,2.2) {$f'(x)>0$};
-      \node[above] at (axis cs:5,1.9) {Naik};
+% Modifikasi Contoh 5.2.2, hlm. 149.
+\begin{contoh}Tentukan interval naik dan turun $f(x)=x^3-6x^2+5$.\end{contoh}
+\onslide<2->{\[f'(x)=3x(x-4).\]
+\begin{center}\begin{tabular}{c|ccccc}
+$x$&$(-\infty,0)$&$0$&$(0,4)$&$4$&$(4,\infty)$\\\hline
+$f'$&$+$&$0$&$-$&$0$&$+$\\
+$f$&$\nearrow$&&$\searrow$&&$\nearrow$
+\end{tabular}\end{center}
+Karena kontinu, $f$ naik pada $(-\infty,0]$ dan $[4,\infty)$, serta turun pada $[0,4]$.
+\begin{block}{Mengapa satu titik uji cukup?}
+Faktor-faktor $3x(x-4)$ tidak berubah tanda di antara akar-akarnya.
+\end{block}}
+\end{frame}
 
-      \node[below] at (axis cs:1.5, 1.5) {$f''(x)<0$};
-      \node[below] at (axis cs:1.5, 1.2) {Cekung ke bawah};
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Kecekungan mengukur perubahan kemiringan}
 
-      \node[above] at (axis cs:4.5, 1.5) {$f''(x)>0$};
-      \node[above] at (axis cs:4.5, 1.2) {Cekung ke atas};
+% Definisi 5.2.2, hlm. 150.
+\begin{definisi}
+Pada interval tempat $f$ dapat diturunkan, grafik cekung ke atas jika $f'$ naik, dan cekung ke bawah jika $f'$ turun.
+\end{definisi}\begin{columns}[c]
+\begin{column}{.48\textwidth}
 
-      \draw[dashed] (axis cs:2,1.8) -- (axis cs:2,0);
-      \node[below] at (axis cs:2,0) {$x_1$};
-      \node[above, pin=120:Maksimum lokal] at (axis cs:2,1.8) {};
+\centering\begin{tikzpicture}[scale=.7]
+\draw[->] (-1.8,0)--(1.8,0);
+\draw[HIMAtua,very thick,domain=-1.5:1.5] plot (\x,{.6*\x*\x+.3});
+\foreach \a in {-1,0,1}{\draw[red,domain=-.4:.4] plot ({\a+\x},{.6*\a*\a+.3+1.2*\a*\x});}
+\node at (0,-.5) {kemiringan bertambah};\end{tikzpicture}
+\end{column}
+\begin{column}{.48\textwidth}
 
-      \draw[dashed] (axis cs:4,1.4) -- (axis cs:4,0);
-      \node[below] at (axis cs:4,0) {$x_2$};
-      \node[below, pin=-60:Minimum lokal] at (axis cs:4,1.4) {};
+\onslide<2->{\begin{alertblock}{Naik bukan berarti cekung ke atas}
+$\sqrt{x}$ naik, tetapi gradiennya mengecil. Grafiknya cekung ke bawah untuk $x>0$.
+\end{alertblock}}
+\end{column}
+\end{columns}
+\end{frame}
 
-      \draw[dashed] (axis cs:3,1.6) -- (axis cs:3,0);
-      \node[below] at (axis cs:3,0) {$c$};
-      \node[above, pin=60:Titik Belok] at (axis cs:3,1.6) {};
-      \fill (axis cs:3,1.6) circle (1.5pt);
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Turunan kedua dan titik belok}
 
-    \end{axis}
-  \end{tikzpicture}
+% Teorema 5.2.2 dan Definisi 5.2.3, hlm. 151.
+\begin{teorema}
+Jika $f''>0$ pada interval terbuka, grafik $f$ cekung ke atas. Jika $f''<0$, grafik cekung ke bawah.
+\end{teorema}
+\begin{definisi}
+Jika $f$ kontinu di sekitar $c$ dan kecekungannya berubah saat melewati $c$, maka $(c,f(c))$ disebut titik belok.
+\end{definisi}
+\onslide<2->{\begin{alertblock}{Tidak cukup hanya $f''(c)=0$}
+$f(x)=x^4$ memenuhi $f''(0)=0$, tetapi kecekungannya tidak berubah. Jadi $(0,0)$ bukan titik belok.
+\end{alertblock}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: menggabungkan dua jenis informasi}
+\begin{columns}[c]
+\begin{column}{.48\textwidth}
+\centering\begin{tikzpicture}\begin{axis}[babfive,domain=-2:2,xmin=-2.2,xmax=2.2,ymin=-3,ymax=3,xtick={-1,0,1},ytick={-2,2}]
+\addplot[HIMAtua,very thick] {x^3-3*x};
+\addplot[only marks,red] coordinates {(-1,2) (0,0) (1,-2)};
+\end{axis}\end{tikzpicture}
+\end{column}
+\begin{column}{.48\textwidth}
+
+% Adaptasi Contoh 5.2.3, hlm. 151--153.
+\begin{contoh}$f(x)=x^3-3x$.\end{contoh}
+\[f'=3(x-1)(x+1),\qquad f''=6x.\]
+\onslide<2->{Naik untuk $x<-1$ atau $x>1$; turun untuk $-1<x<1$.
+Cekung ke bawah untuk $x<0$, ke atas untuk $x>0$.
+Titik belok $(0,0)$ terjadi ketika fungsi sedang turun.}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Latihan: membaca grafik turunannya}
+
+\begin{exampleblock}{Latihan}
+\begin{enumerate}
+\item Cari interval naik, turun, dan kecekungan $f(x)=x^3-3x^2+2$.
+\item Apakah setiap titik dengan $f'(c)=0$ merupakan titik belok? Bandingkan $x^2$ dan $x^3$.
+\item Jika grafik $f'$ berada di atas sumbu $x$ tetapi menurun, apa arti kedua informasi tersebut bagi $f$?
+\end{enumerate}\end{exampleblock}
+\onslide<2->{\textbf{Kunci membaca:} tinggi grafik $f'$ menentukan tanda $f'$, sedangkan kemiringannya menentukan tanda $f''$.}
 \end{frame}
 
 \section{Ekstrim Relatif, Uji Turunan Pertama dan Kedua}
+
 \begin{frame}
-  \frametitle{\insertsection}
-  \begin{definisi}{Titik Kritis}
-    Misalkan $f$ terdefinisi pada interval $I$ yang memuat titik $c$. Titik $c$ disebut \textbf{titik kritis} dari $f$ jika:
-    \begin{enumerate}
-      \item $f'(c) = 0$ (titik stasioner), atau
-      \item $f'(c)$ tidak ada (titik singular).
-    \end{enumerate}
-    Jika $f$ memiliki ekstrim lokal (relatif) di $c$, maka $c$ haruslah sebuah titik kritis.
-  \end{definisi}
-  \pause
-  \begin{block}{Ekstrim Relatif (Lokal)}
-    \begin{itemize}
-      \item $f(c)$ adalah \textbf{maksimum relatif} jika $f(c) \ge f(x)$ untuk semua $x$ di sekitar $c$.
-      \item $f(c)$ adalah \textbf{minimum relatif} jika $f(c) \le f(x)$ untuk semua $x$ di sekitar $c$.
-    \end{itemize}
-  \end{block}
+\frametitle{\insertsection}
+\framesubtitle{Ekstrim relatif membandingkan lingkungan sekitar}
+
+% Definisi 5.3.1, hlm. 157.
+\begin{definisi}
+$f$ mempunyai maksimum relatif di $c$ jika $f(c)\ge f(x)$ untuk semua $x$ dalam suatu interval terbuka yang memuat $c$. Minimum relatif didefinisikan dengan $f(c)\le f(x)$. Keduanya disebut ekstrim relatif.
+\end{definisi}
+\onslide<2->{\begin{block}{Puncak lokal belum tentu paling tinggi}
+Pada $f(x)=x^3-3x$, titik $(-1,2)$ adalah maksimum relatif. Namun $f(3)=18$ lebih besar: fungsi tidak mempunyai maksimum di seluruh $\mathbb R$.
+\end{block}}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Uji Ekstrim Relatif}
-  \begin{alertblock}{Uji Turunan Pertama}
-    Misalkan $c$ adalah titik kritis dari $f$.
-    \begin{itemize}
-      \item Jika tanda $f'$ berubah dari $(+)$ menjadi $(-)$ di $c$, maka $f(c)$ adalah \textbf{maksimum relatif}.
-      \item Jika tanda $f'$ berubah dari $(-)$ menjadi $(+)$ di $c$, maka $f(c)$ adalah \textbf{minimum relatif}.
-      \item Jika tanda $f'$ tidak berubah di $c$, maka $f(c)$ bukan ekstrim relatif.
-    \end{itemize}
-  \end{alertblock}
-  \pause
-  \begin{funfact}{Uji Turunan Kedua}
-    Misalkan $f'$ dan $f''$ ada di sekitar $c$ dan $f'(c)=0$.
-    \begin{itemize}
-      \item Jika $f''(c) < 0$, maka $f(c)$ adalah \textbf{maksimum relatif}. (Cekung ke bawah $\implies$ puncak)
-      \item Jika $f''(c) > 0$, maka $f(c)$ adalah \textbf{minimum relatif}. (Cekung ke atas $\implies$ lembah)
-      \item Jika $f''(c) = 0$, uji ini gagal. Gunakan Uji Turunan Pertama.
-    \end{itemize}
-  \end{funfact}
+\frametitle{\insertsection}
+\framesubtitle{Titik kritis adalah kandidat}
+
+% Teorema 5.3.1 dan Definisi 5.3.2, hlm. 157.
+\begin{teorema}
+Jika $f$ mempunyai ekstrim relatif di titik interior $c$, maka $f'(c)=0$ atau $f'(c)$ tidak ada.
+\end{teorema}
+\begin{definisi}
+Titik kritis adalah $c$ dalam domain $f$ dengan $f'(c)=0$ atau $f'(c)$ tidak ada. Titik dengan $f'(c)=0$ disebut titik stasioner.
+\end{definisi}
+\onslide<2->{\textbf{Bandingkan di $0$:} $x^2$ minimum stasioner; $|x|$ minimum tak terturunkan; $x^3$ stasioner tetapi bukan ekstrim.}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Mengapa ekstrim yang mulus harus datar?}
+
+\begin{block}{Gagasan Bukti untuk Maksimum Relatif}
+Jika $f(c+h)\le f(c)$ di dekat $c$, maka
+\[\frac{f(c+h)-f(c)}h\le0\ (h>0),\qquad
+\frac{f(c+h)-f(c)}h\ge0\ (h<0).\]
+Jika turunan ada, kedua limit sama. Satu tidak positif dan satu tidak negatif, sehingga $f'(c)=0$.
+\end{block}
+\onslide<2->{\begin{alertblock}{Perhatikan syaratnya}
+Bukti membutuhkan turunan yang ada dan titik interior. Titik sudut dan titik ujung harus diperiksa tersendiri.
+\end{alertblock}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Uji turunan pertama: perubahan tanda}
+
+% Teorema 5.3.2, hlm. 158.
+\begin{teorema}[Uji Turunan Pertama]
+Misalkan $f$ kontinu di $c$ dan dapat diturunkan pada kedua sisi dekat $c$.
+\begin{center}\begin{tabular}{c|c|l}
+$f'$ di kiri&$f'$ di kanan&Kesimpulan di $c$\\\hline
+$+$&$-$&Maksimum relatif\\
+$-$&$+$&Minimum relatif\\
+$+$&$+$&Bukan ekstrim relatif\\
+$-$&$-$&Bukan ekstrim relatif
+\end{tabular}\end{center}\end{teorema}
+\onslide<2->{\textbf{Maknanya:} naik lalu turun menghasilkan puncak; turun lalu naik menghasilkan lembah. Uji ini juga dapat digunakan pada titik sudut.}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Uji turunan kedua dan batasnya}
+
+% Teorema 5.3.3, hlm. 159.
+\begin{teorema}[Uji Turunan Kedua]
+Misalkan $f$ dapat diturunkan dua kali di sekitar titik stasioner $c$. Jika $f''(c)<0$, maka $f(c)$ maksimum relatif; jika $f''(c)>0$, maka $f(c)$ minimum relatif.
+\end{teorema}
+\onslide<2->{\begin{alertblock}{Jika $f''(c)=0$, uji belum memberi jawaban}
+Di $0$, ketiganya mempunyai turunan kedua nol:
+\[x^4\text{ (minimum)},\quad -x^4\text{ (maksimum)},\quad x^3\text{ (bukan ekstrim)}.\]
+Kembali ke perubahan tanda turunan pertama.
+\end{alertblock}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: dua lembah dan satu puncak}
+\begin{columns}[c]
+\begin{column}{.48\textwidth}
+\centering\begin{tikzpicture}\begin{axis}[babfive,domain=-3:3,xmin=-3,xmax=3,ymin=-19,ymax=6,xtick={-2,0,2},ytick={-16,0}]
+\addplot[HIMAtua,very thick] {x^4-8*x^2};
+\addplot[only marks,red] coordinates {(-2,-16) (0,0) (2,-16)};
+\end{axis}\end{tikzpicture}
+\end{column}
+\begin{column}{.48\textwidth}
+
+% Modifikasi Contoh 5.3.5, hlm. 160--161.
+\begin{contoh}$f(x)=x^4-8x^2$.\end{contoh}
+\[f'=4x(x-2)(x+2),\quad f''=12x^2-16.\]
+\onslide<2->{Titik stasioner: $-2,0,2$.
+$f''(0)<0$: maksimum relatif $(0,0)$.
+$f''(\pm2)>0$: minimum relatif $(\pm2,-16)$.}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: ekstrim tanpa turunan}
+
+% Modifikasi Contoh 5.3.3, hlm. 160.
+\begin{contoh}Tentukan ekstrim relatif $f(x)=3x^{5/3}-30x^{2/3}$.\end{contoh}
+\onslide<2->{Untuk $x\ne0$, $f'(x)=5x^{-1/3}(x-4)$.
+Tandanya positif pada $(-\infty,0)$, negatif pada $(0,4)$, dan positif pada $(4,\infty)$.
+\begin{block}{Kesimpulan}
+Maksimum relatif $(0,0)$ meskipun $f'(0)$ tidak ada.
+Minimum relatif $(4,-18\cdot4^{2/3})$.
+\end{block}
+Titik $0$ tetap termasuk kandidat karena $f(0)$ terdefinisi.}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Latihan: kandidat belum tentu ekstrim}
+
+\begin{exampleblock}{Latihan}\begin{enumerate}
+\item Klasifikasikan titik kritis $f(x)=(x-2)^3$.
+\item Tentukan ekstrim relatif $f(x)=x^4-4x^2+1$ dengan kedua uji.
+\item Tentukan ekstrim relatif $f(x)=|x^2-1|$. Periksa juga titik yang tidak dapat diturunkan.
+\end{enumerate}\end{exampleblock}
+\onslide<2->{\textbf{Pertanyaan tambahan:} apakah bilangan yang membuat penyebut $f$ nol merupakan titik kritis? Periksa terlebih dahulu domain fungsi.}
 \end{frame}
 
 \section{Grafik Polinomial dan Fungsi Rasional}
-\begin{frame}
-  \frametitle{\insertsection}
-  \begin{block}{Langkah-langkah Menggambar Grafik Fungsi $y=f(x)$}
-    \begin{enumerate}
-      \item \textbf{Analisis Pra-Kalkulus}:
-            \begin{itemize}
-              \item Tentukan domain (daerah asal) fungsi.
-              \item Cari titik potong dengan sumbu-$x$ (akar) dan sumbu-$y$.
-              \item Uji kesimetrian (fungsi ganjil/genap).
-              \item Tentukan asimtot (tegak, datar, miring) untuk fungsi rasional.
-            \end{itemize}
-      \item \textbf{Analisis dengan Turunan Pertama}:
-            \begin{itemize}
-              \item Cari $f'(x)$. Tentukan titik kritis.
-              \item Tentukan interval di mana fungsi naik ($f'(x)>0$) dan turun ($f'(x)<0$).
-              \item Identifikasi ekstrim lokal menggunakan Uji Turunan Pertama.
-            \end{itemize}
-      \item \textbf{Analisis dengan Turunan Kedua}:
-            \begin{itemize}
-              \item Cari $f''(x)$.
-              \item Tentukan interval di mana grafik cekung ke atas ($f''(x)>0$) dan cekung ke bawah ($f''(x)<0$).
-              \item Cari titik belok.
-            \end{itemize}
-      \item \textbf{Sketsa Grafik}: Gabungkan semua informasi di atas untuk membuat sketsa grafik.
-    \end{enumerate}
-  \end{block}
-\end{frame}
 
-\section{Nilai Maksimum dan Minimum pada Suatu Fungsi}
 \begin{frame}
-  \frametitle{\insertsection}
-  \begin{definisi}{Ekstrim Absolut (Global)}
-    Misalkan $f$ terdefinisi pada interval $I$.
-    \begin{itemize}
-      \item $f(c)$ adalah \textbf{maksimum absolut} pada $I$ jika $f(c) \ge f(x)$ untuk semua $x \in I$.
-      \item $f(c)$ adalah \textbf{minimum absolut} pada $I$ jika $f(c) \le f(x)$ untuk semua $x \in I$.
-    \end{itemize}
-  \end{definisi}
-  \pause
-  \begin{teorema}{Teorema Nilai Ekstrim}
-    Jika $f$ kontinu pada interval tertutup $[a,b]$, maka $f$ pasti memiliki nilai maksimum absolut dan minimum absolut pada interval tersebut.
-  \end{teorema}
-  \pause
-  \begin{block}{Prosedur Menemukan Ekstrim Absolut pada $[a,b]$}
-    \begin{enumerate}
-      \item Cari semua titik kritis $f$ pada interval terbuka $(a,b)$.
-      \item Hitung nilai $f$ di setiap titik kritis yang ditemukan.
-      \item Hitung nilai $f$ di titik ujung interval, yaitu $f(a)$ dan $f(b)$.
-      \item Bandingkan semua nilai dari langkah 2 dan 3. Nilai terbesar adalah maksimum absolut, dan nilai terkecil adalah minimum absolut.
-    \end{enumerate}
-  \end{block}
+\frametitle{\insertsection}
+\framesubtitle{Sketsa grafik adalah rangkuman analisis}
+
+% Hlm. 163--164.
+\begin{block}{Urutan Pemeriksaan}
+\begin{enumerate}
+\item Domain, simetri, dan perpotongan dengan sumbu koordinat.
+\item Limit di batas domain dan perilaku ketika $x\to\pm\infty$.
+\item Titik kritis dan tanda $f'$ untuk naik, turun, dan ekstrim.
+\item Tanda $f''$ untuk kecekungan dan titik belok.
+\item Gabungkan semuanya dalam sketsa; periksa beberapa titik.
+\end{enumerate}\end{block}
+\onslide<2->{\begin{alertblock}{Grafik komputer juga perlu diperiksa}
+Jendela gambar yang terlalu sempit dapat menyembunyikan titik belok atau ekstrim. Analisis fungsi menjadi dasar untuk memilih skala gambar.
+\end{alertblock}}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Ilustrasi Ekstrim Absolut}
-  \centering
-  \begin{tikzpicture}[scale=1.5]
-    \begin{axis}[
-        axis lines=middle,
-        xlabel=$x$,
-        ylabel=$y$,
-        xmin=-0.5, xmax=5.5,
-        ymin=-0.5, ymax=4.5,
-        xtick={1, 2, 4, 5},
-        xticklabels={$a$, $c_1$, $c_2$, $b$},
-        ytick=\empty,
-        legend pos=north west
-      ]
-      \addplot[
-        domain=1:5,
-        samples=100,
-        smooth,
-        thick,
-        blue,
-      ] { (x-3)^2 * 0.5 + sin(deg(x*180/pi)) + 1.5};
-      \addlegendentry{$y=f(x)$}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: sketsa polinomial}
+\begin{columns}[c]
+\begin{column}{.48\textwidth}
+\centering\begin{tikzpicture}\begin{axis}[babfive,domain=-2.2:2.2,xmin=-2.2,xmax=2.2,ymin=-4,ymax=5,xtick={-1,0,1},ytick={-1,1,3}]
+\addplot[HIMAtua,very thick] {x^3-3*x+1};
+\addplot[only marks,red] coordinates {(-1,3) (0,1) (1,-1)};
+\end{axis}\end{tikzpicture}
+\end{column}
+\begin{column}{.48\textwidth}
 
-      % Titik-titik
-      \addplot[only marks, mark=*, red, point meta=explicit symbolic] table [row sep=\\, meta=label] {
-          x y label\\
-          1 2.84 {Ujung interval $f(a)$}\\
-          2 1.4 {Kritis (min lokal) $f(c_1)$}\\
-          4 2.4 {Kritis (maks lokal) $f(c_2)$}\\
-          5 4.4 {Ujung interval $f(b)$}\\
-        };
+% Modifikasi Contoh 5.4.1, hlm. 164--165.
+\begin{contoh}$f(x)=x^3-3x+1$.\end{contoh}
+\[f'=3(x^2-1),\quad f''=6x.\]
+\onslide<2->{Maksimum relatif $(-1,3)$, minimum relatif $(1,-1)$, titik belok $(0,1)$.
+Grafik menuju $-\infty$ di kiri dan $+\infty$ di kanan.
+Tiga akar terletak dalam $(-2,-1)$, $(0,1)$, dan $(1,2)$.}
+\end{column}
+\end{columns}
+\end{frame}
 
-      % Anotasi
-      \node[pin=150:{Minimum Absolut}] at (axis cs:2, 1.4) {};
-      \node[pin=90:{Maksimum Absolut}] at (axis cs:5, 4.4) {};
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Asimtot tegak dan datar}
 
-    \end{axis}
-  \end{tikzpicture}
-  \begin{itemize}
-    \item Titik kritis (lokal) tidak selalu menjadi titik ekstrim absolut.
-    \item Ekstrim absolut dapat terjadi di titik kritis atau di ujung interval.
-  \end{itemize}
+% Definisi 5.4.1, hlm. 165.
+\begin{definisi}
+$x=a$ adalah asimtot tegak jika setidaknya satu limit satu sisi $f(x)$ saat $x\to a$ adalah $+\infty$ atau $-\infty$.
+$y=L$ adalah asimtot datar jika $\lim_{x\to+\infty}f(x)=L$ atau $\lim_{x\to-\infty}f(x)=L$.
+\end{definisi}
+\onslide<2->{\begin{alertblock}{Penyebut nol belum cukup}
+$\dfrac{x^2-1}{x-1}=x+1$ untuk $x\ne1$ mempunyai lubang di $(1,2)$, bukan asimtot tegak. Periksa limit setelah penyederhanaan.
+\end{alertblock}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: dua cabang yang tidak disambung}
+\begin{columns}[c]
+\begin{column}{.48\textwidth}
+
+\centering\begin{tikzpicture}\begin{axis}[babfive,xmin=-4,xmax=5,ymin=-4,ymax=5,xtick={-2,1,3},ytick={1}]
+\addplot[HIMAtua,very thick,domain=-4:.8]{x/(x-1)};
+\addplot[HIMAtua,very thick,domain=1.2:5]{x/(x-1)};
+\draw[red,dashed] (axis cs:1,-4)--(axis cs:1,5);
+\draw[red,dashed] (axis cs:-4,1)--(axis cs:5,1);
+\end{axis}\end{tikzpicture}
+\end{column}
+\begin{column}{.48\textwidth}
+
+% Modifikasi pengantar hlm. 165--166.
+\begin{contoh}$f(x)=\dfrac{x}{x-1}=1+\dfrac1{x-1}$.\end{contoh}
+\[f'=-\frac1{(x-1)^2},\quad f''=\frac2{(x-1)^3}.\]
+\onslide<2->{Asimtot $x=1$, $y=1$.
+Fungsi turun pada masing-masing interval domain.
+Kecekungan berubah melintasi $1$, tetapi tidak ada titik belok di sana karena $f(1)$ tidak terdefinisi.}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh lengkap: fungsi rasional genap}
+
+% Modifikasi Contoh 5.4.3, hlm. 167--169.
+\begin{contoh}Sketsakan $f(x)=\dfrac{2x^2-2}{x^2-4}=2+\dfrac6{x^2-4}$.\end{contoh}
+\onslide<2->{\[f'=\frac{-12x}{(x^2-4)^2},\qquad
+f''=\frac{12(3x^2+4)}{(x^2-4)^3}.\]
+\begin{itemize}
+\item Domain $\mathbb R\setminus\{-2,2\}$; simetri terhadap sumbu $y$.
+\item Titik potong $(\pm1,0)$ dan $(0,1/2)$.
+\item Asimtot tegak $x=\pm2$; asimtot datar $y=2$.
+\item Naik untuk $x<0$ dan turun untuk $x>0$, dipisahkan pada asimtot.
+\end{itemize}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Menggabungkan tabel tanda dengan sketsa}
+\begin{columns}[c]
+\begin{column}{.48\textwidth}
+
+\centering\begin{tikzpicture}\begin{axis}[babfive,xmin=-5,xmax=5,ymin=-4,ymax=6,xtick={-2,-1,1,2},ytick={.5,2}]
+\addplot[HIMAtua,very thick,domain=-5:-2.1]{(2*x^2-2)/(x^2-4)};
+\addplot[HIMAtua,very thick,domain=-1.9:1.9]{(2*x^2-2)/(x^2-4)};
+\addplot[HIMAtua,very thick,domain=2.1:5]{(2*x^2-2)/(x^2-4)};
+\draw[red,dashed] (axis cs:-2,-4)--(axis cs:-2,6);
+\draw[red,dashed] (axis cs:2,-4)--(axis cs:2,6);
+\draw[red,dashed] (axis cs:-5,2)--(axis cs:5,2);
+\addplot[only marks,red] coordinates {(0,.5) (-1,0) (1,0)};
+\end{axis}\end{tikzpicture}
+\end{column}
+\begin{column}{.48\textwidth}
+
+\begin{block}{Lanjutan Contoh}
+$f''>0$ pada $(-\infty,-2)$ dan $(2,\infty)$, sedangkan $f''<0$ pada $(-2,2)$.
+\end{block}
+\onslide<2->{Titik $(0,1/2)$ adalah maksimum relatif, tetapi bukan maksimum seluruh fungsi.
+\begin{alertblock}{Tidak ada titik belok}
+Kecekungan berubah hanya ketika melewati $x=\pm2$, yang bukan bagian domain.
+\end{alertblock}}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Asimtot miring dan latihan sketsa}
+
+% Latihan 5.4 nomor 41, hlm. 172.
+\begin{block}{Pembagian Polinomial}
+Jika $f(x)=ax+b+R(x)/Q(x)$ dan $R/Q\to0$ saat $x\to\pm\infty$, maka $y=ax+b$ adalah asimtot miring untuk $a\ne0$.
+\end{block}
+\begin{contoh}
+$\displaystyle\frac{x^2+1}{x-1}=x+1+\frac2{x-1}$ mempunyai asimtot miring $y=x+1$ dan asimtot tegak $x=1$.
+\end{contoh}
+\onslide<2->{\begin{exampleblock}{Latihan}
+Sketsakan fungsi contoh tersebut. Cari titik kritis, interval naik--turun, dan kecekungannya. Apakah ada titik belok?
+\end{exampleblock}}
+\end{frame}
+
+\section{Nilai Maksimum dan Minimum Suatu Fungsi}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Ekstrim absolut bergantung pada domain}
+
+% Definisi 5.5.1, hlm. 175.
+\begin{definisi}
+Pada himpunan $I$, $f(c)$ adalah maksimum absolut jika $f(c)\ge f(x)$ untuk semua $x\in I$, dan minimum absolut jika $f(c)\le f(x)$ untuk semua $x\in I$.
+\end{definisi}
+\onslide<2->{\begin{contoh}
+Untuk $f(x)=x^2$ pada $[-1,2]$, minimum adalah $0$ dan maksimum $4$. Pada $\mathbb R$, minimum tetap $0$, tetapi maksimum tidak ada.
+\end{contoh}
+\textbf{Tiga pertanyaan berbeda:} apakah ekstrim ada, berapa nilainya, dan di titik mana nilai itu dicapai?}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Jaminan adanya ekstrim}
+
+% Teorema 5.5.1, hlm. 175.
+\begin{teorema}[Teorema Nilai Ekstrim]
+Jika $f$ kontinu pada interval tertutup dan terbatas $[a,b]$, maka $f$ mempunyai maksimum dan minimum pada interval tersebut.
+\end{teorema}
+\onslide<2->{\begin{columns}[t]
+\begin{column}{.48\textwidth}\begin{block}{Jika ujung tidak termasuk}
+$f(x)=x$ pada $(0,1)$ tidak mencapai $0$ atau $1$: maksimum dan minimum tidak ada.
+\end{block}\end{column}
+\begin{column}{.48\textwidth}\begin{block}{Jika tidak kontinu}
+$f(0)=0$, $f(x)=1/x$ untuk $0<x\le1$ tidak memiliki maksimum pada $[0,1]$.
+\end{block}\end{column}\end{columns}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Di mana ekstrim dapat terjadi?}
+
+% Teorema 5.5.2, hlm. 175--176.
+\begin{teorema}
+Jika maksimum atau minimum dicapai di bagian dalam suatu interval, maka titik tempatnya terjadi adalah titik kritis.
+\end{teorema}
+\begin{block}{Metode Interval Tertutup}
+Untuk $f$ kontinu pada $[a,b]$: cari titik kritis dalam $(a,b)$, hitung nilai fungsi di sana dan di kedua ujung, lalu bandingkan semuanya.
+\end{block}
+\onslide<2->{\begin{alertblock}{Uji lokal saja tidak cukup}
+Maksimum relatif dapat kalah tinggi dari nilai di ujung. Yang dibandingkan adalah nilai $f$, bukan $f'$.
+\end{alertblock}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: tabel kandidat termasuk titik ujung}
+
+% Modifikasi Contoh 5.5.7, hlm. 179.
+\begin{contoh}Cari ekstrim absolut $f(x)=x^3-3x^2+1$ pada $[-1,3]$.\end{contoh}
+\onslide<2->{\[f'(x)=3x(x-2)=0\Rightarrow x=0,2.\]
+\begin{center}\begin{tabular}{c|rrrr}
+$x$&$-1$&$0$&$2$&$3$\\\hline
+$f(x)$&$-3$&$1$&$-3$&$1$
+\end{tabular}\end{center}
+Minimum $-3$ di $x=-1,2$; maksimum $1$ di $x=0,3$.
+\begin{block}{Dapat dicapai lebih dari sekali}
+Titik ujung dan titik interior dapat memberikan nilai ekstrim yang sama.
+\end{block}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: jangan lupakan titik tak terturunkan}
+
+% Modifikasi Contoh 5.5.8, hlm. 180.
+\begin{contoh}Cari ekstrim $f(x)=3x^{4/3}-4x^{1/3}$ pada $[-1,1]$.\end{contoh}
+\onslide<2->{\[f'(x)=\frac{4(3x-1)}{3x^{2/3}},\quad x\ne0.\]
+Kandidat: ujung $-1,1$, titik stasioner $1/3$, dan titik tak terturunkan $0$.
+\[f(-1)=7,\quad f(0)=0,\quad f(1/3)=-\sqrt[3]9,\quad f(1)=-1.\]
+Maksimum $7$ di $-1$; minimum $-\sqrt[3]9$ di $1/3$.
+\begin{alertblock}{Periksa domain}
+Akar kubik terdefinisi untuk bilangan negatif. Titik $0$ juga termasuk domain fungsi meskipun turunannya tidak ada.
+\end{alertblock}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Satu-satunya ekstrim relatif pada interval}
+
+% Teorema 5.5.3, hlm. 178.
+\begin{teorema}
+Jika $f$ kontinu pada suatu interval $I$ dan hanya mempunyai satu ekstrim relatif di $c$, maka minimum relatif tersebut adalah minimum pada $I$, atau maksimum relatif tersebut adalah maksimum pada $I$.
+\end{teorema}
+\onslide<2->{\begin{contoh}
+$f(x)=x+4/x$ pada $(0,\infty)$ mempunyai $f'=1-4/x^2$. Fungsi turun sebelum $2$ dan naik sesudah $2$. Jadi $f(2)=4$ adalah minimum absolut.
+\end{contoh}
+Kedua ujung menuju $+\infty$, sehingga maksimum tidak ada.}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Interval terbuka dan tak terbatas}
+
+% Tabel 5.3 dan contoh 5.5.9--13, hlm. 177--182.
+\begin{block}{Perilaku Ujung untuk Fungsi Kontinu pada $\mathbb R$}
+\begin{itemize}
+\item Kedua ujung menuju $+\infty$: ada minimum, tidak ada maksimum.
+\item Kedua ujung menuju $-\infty$: ada maksimum, tidak ada minimum.
+\item Ujung-ujung menuju tak hingga dengan tanda berlawanan: tidak ada maksimum maupun minimum.
+\end{itemize}\end{block}
+\onslide<2->{\begin{exampleblock}{Latihan}
+Cari ekstrim $x+9/x$ pada $(0,\infty)$, lalu pada $[1,2]$. Jelaskan mengapa domain mengubah jawaban.
+\end{exampleblock}}
 \end{frame}
 
 \section{Aplikasi Masalah Maksimum dan Minimum}
-\begin{frame}
-  \frametitle{\insertsection}
-  \begin{contoh}
-    Sebuah kotak tanpa tutup akan dibuat dari selembar karton berbentuk persegi dengan panjang sisi 12 cm. Kotak dibuat dengan memotong empat persegi identik di setiap sudutnya, lalu melipat sisinya ke atas. Tentukan ukuran potongan agar volume kotak maksimum.
-  \end{contoh}
-  \pause
-  \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \textbf{Solusi:}
-      \begin{itemize}
-        \item Misal $x$ adalah panjang sisi persegi yang dipotong. Domain $x$ adalah $(0,6)$.
-        \item Dimensi kotak:
-              \begin{itemize}
-                \item Panjang: $p = 12 - 2x$
-                \item Lebar: $l = 12 - 2x$
-                \item Tinggi: $t = x$
-              \end{itemize}
-        \item Volume: $V(x) = (12-2x)(12-2x)x = 4x(6-x)^2 = 4(x^3 - 12x^2 + 36x)$.
-        \item Cari maksimum $V(x)$. Turunkan: $V'(x) = 4(3x^2 - 24x + 36) = 12(x^2 - 8x + 12) = 12(x-2)(x-6)$.
-        \item Titik kritis: $V'(x)=0 \implies x=2$ atau $x=6$.
-        \item Karena domain $x \in (0,6)$, satu-satunya titik kritis yang relevan adalah $x=2$.
-        \item Uji turunan kedua: $V''(x) = 12(2x-8)$. $V''(2) = 12(4-8) = -48 < 0$. Maka $x=2$ memberikan volume maksimum.
-        \item Jadi, ukuran potongan adalah persegi 2 cm x 2 cm.
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.9]
-        \draw (0,0) rectangle (6,6);
-        \node at (3,3) {Karton 12x12};
-        \draw[dashed] (1,1) rectangle (5,5);
-        \draw[fill=gray!50] (0,0) rectangle (1,1); \node at (0.5,0.5) {$x$};
-        \draw[fill=gray!50] (5,0) rectangle (6,1); \node at (5.5,0.5) {$x$};
-        \draw[fill=gray!50] (0,5) rectangle (1,6); \node at (0.5,5.5) {$x$};
-        \draw[fill=gray!50] (5,5) rectangle (6,6); \node at (5.5,5.5) {$x$};
-        \node at (3,0.5) {$12-2x$};
-        \node at (0.5,3) [rotate=90] {$12-2x$};
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
-\end{frame}
 
-\section{Teorema Rolle, Teorema Nilai Rata-rata}
 \begin{frame}
-  \frametitle{\insertsection}
-  \begin{teorema}{Teorema Rolle}
-    Misalkan $f$ adalah fungsi yang memenuhi:
-    \begin{enumerate}
-      \item $f$ kontinu pada interval tertutup $[a,b]$.
-      \item $f$ terdiferensial pada interval terbuka $(a,b)$.
-      \item $f(a) = f(b)$.
-    \end{enumerate}
-    Maka, ada setidaknya satu bilangan $c \in (a,b)$ sedemikian sehingga $f'(c) = 0$.
-  \end{teorema}
-  \pause
-  \begin{block}{Interpretasi Geometris}
-    Jika sebuah kurva mulus memiliki ketinggian yang sama di dua titik, maka pasti ada setidaknya satu titik di antaranya di mana garis singgungnya horizontal.
-  \end{block}
-  \begin{center}
-    \begin{tikzpicture}[scale=1.2]
-      \begin{axis}[
-          axis lines=middle, xlabel=$x$, ylabel=$y$,
-          xmin=-0.5, xmax=5.5, ymin=-0.5, ymax=3,
-          xtick={1, 4}, xticklabels={$a$, $b$},
-          ytick={1}, yticklabels={$f(a)=f(b)$}]
-        \addplot[domain=1:4, smooth, thick, blue] {-(x-2.5)^2+2.5};
-        \draw[dashed] (axis cs:1,1) -- (axis cs:4,1);
-        \node[pin=180:{$f(a)$}] at (axis cs:1,1) {};
-        \node[pin=0:{$f(b)$}] at (axis cs:4,1) {};
-        % Garis singgung horizontal
-        \draw[red, thick] (axis cs:2,2.75) -- (axis cs:3,2.75);
-        \node[above] at (axis cs:2.5, 2.75) {$f'(c)=0$};
-        \node[below] at (axis cs:2.5,0) {$c$};
-        \fill (axis cs:2.5,2.75) circle (1.5pt);
-      \end{axis}
-    \end{tikzpicture}
-  \end{center}
+\frametitle{\insertsection}
+\framesubtitle{Dari cerita ke fungsi satu variabel}
+
+% Hlm. 185--187: klasifikasi dan prosedur optimasi.
+\begin{block}{Membangun Model Optimasi}\begin{enumerate}
+\item Buat sketsa; tentukan besaran yang dioptimalkan.
+\item Tulis fungsi tujuan: luas, volume, biaya, jarak, atau keuntungan.
+\item Gunakan syarat masalah untuk menyisakan satu variabel.
+\item Tentukan domain fisik, cari kandidat, dan uji maksimum/minimum.
+\item Tafsirkan ukuran, nilai optimum, dan satuan hasilnya.
+\end{enumerate}\end{block}
+\onslide<2->{\begin{alertblock}{Persamaan $f'=0$ baru memberikan kandidat}
+Pada interval tertutup, bandingkan dengan ujung. Pada interval terbuka atau tak terbatas, periksa tanda turunan, limit batas, atau keunikan ekstrim.
+\end{alertblock}}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Teorema Nilai Rata-rata (TNR)}
-  \begin{teorema}
-    Misalkan $f$ adalah fungsi yang memenuhi:
-    \begin{enumerate}
-      \item $f$ kontinu pada interval tertutup $[a,b]$.
-      \item $f$ terdiferensial pada interval terbuka $(a,b)$.
-    \end{enumerate}
-    Maka, ada setidaknya satu bilangan $c \in (a,b)$ sedemikian sehingga
-    \[ f'(c) = \frac{f(b) - f(a)}{b - a} \]
-  \end{teorema}
-  \pause
-  \begin{block}{Interpretasi Geometris}
-    Pada kurva mulus antara dua titik, pasti ada setidaknya satu titik di mana garis singgungnya sejajar dengan garis sekan (tali busur) yang menghubungkan kedua titik tersebut.
-  \end{block}
-  \begin{center}
-    \begin{tikzpicture}[scale=1.2]
-      \begin{axis}[
-          axis lines=middle, xlabel=$x$, ylabel=$y$,
-          xmin=-0.5, xmax=5.5, ymin=-0.5, ymax=4,
-          xtick={1, 5}, xticklabels={$a$, $b$},
-          ytick=\empty]
-        \addplot[domain=1:5, smooth, thick, blue] {0.1*(x-3)^3 + 0.5*x + 1};
-        % Garis sekan
-        \addplot[dashed, domain=1:5] {0.6*x + 0.5};
-        \node[pin=180:{$A(a,f(a))$}] at (axis cs:1,1.1) {};
-        \node[pin=0:{$B(b,f(b))$}] at (axis cs:5,3.5) {};
-        % Garis singgung
-        \addplot[red, thick, domain=2:4] {0.6*x + 0.23};
-        \node[below] at (axis cs:3,0) {$c$};
-        \fill (axis cs:3,2.03) circle (1.5pt);
-      \end{axis}
-    \end{tikzpicture}
-  \end{center}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: luas terbesar dengan keliling tetap}
+
+% Modifikasi motivasi hlm. 185--186.
+\begin{contoh}Persegi panjang memiliki keliling 80 m. Tentukan dimensi agar luas maksimum.\end{contoh}\begin{columns}[c]
+\begin{column}{.48\textwidth}
+
+\centering\begin{tikzpicture}[scale=.75]
+\filldraw[fill=HIMAmuda!20,draw=HIMAtua,thick] (0,0) rectangle (4,2);
+\node[below] at (2,0) {$x$};\node[above] at (2,2) {$y=40-x$};
+\end{tikzpicture}
+\end{column}
+\begin{column}{.48\textwidth}
+
+\onslide<2->{\[A=x(40-x),\quad0<x<40.\]
+\[A'=40-2x=0\Rightarrow x=20.\]
+$A'$ berubah dari positif ke negatif. Jadi $x=y=20$ m dan luas terbesar $400$ m$^2$.
+Mendekati ujung domain, luas mendekati nol.}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: kotak terbuka dari karton}
+
+% Modifikasi Contoh 5.6.1, hlm. 187--188.
+\begin{contoh}Karton $12\times24$ cm dipotong persegi bersisi $x$ di setiap sudut, lalu dilipat menjadi kotak tanpa tutup. Modelkan volumenya.\end{contoh}\begin{columns}[c]
+\begin{column}{.48\textwidth}
+
+\centering\begin{tikzpicture}[scale=.65]
+\draw[thick] (0,0) rectangle (6,3);
+\draw[dashed] (.6,.6) rectangle (5.4,2.4);
+\foreach \a/\b in {0/0,5.4/0,0/2.4,5.4/2.4}{\filldraw[fill=HIMAmuda!40] (\a,\b) rectangle +(.6,.6);}
+\node[below] at (3,0) {24 cm};\node[left] at (0,1.5) {12 cm};\node at (.3,.3) {$x$};
+\end{tikzpicture}
+\end{column}
+\begin{column}{.48\textwidth}
+
+\onslide<2->{\[V=x(12-2x)(24-2x).\]
+Domain fisik $0<x<6$. Untuk membandingkan batas, perluas secara kontinu ke $[0,6]$; kedua ujung memberi volume nol.
+\begin{block}{Makna domain}
+$x=6$ membuat salah satu sisi alas nol, sehingga bukan kotak yang dapat digunakan.
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Kotak terbuka: menguji kandidat}
+
+\begin{block}{Lanjutan Contoh}
+\[V=4x^3-72x^2+288x,\qquad V'=12(x^2-12x+24).\]
+Titik stasioner $x=6\pm2\sqrt3$. Hanya $6-2\sqrt3$ yang berada dalam $(0,6)$.
+\end{block}
+\onslide<2->{$V'$ positif sebelum titik itu dan negatif sesudahnya. Dengan $V(0)=V(6)=0$, volume terbesar adalah
+\[V(6-2\sqrt3)=192\sqrt3\text{ cm}^3.\]
+\begin{alertblock}{Saring jawaban aljabar}
+Akar $6+2\sqrt3$ harus ditolak karena berada di luar domain model.
+\end{alertblock}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: jalur darat dan bawah air}
+
+% Modifikasi Contoh 5.6.2, hlm. 188--190; biaya hipotetis.
+\begin{contoh}$W$ berjarak 3 km dari pantai di $A$, dan $AB=8$ km. Biaya pipa bawah air 5 satuan/km, di darat 3 satuan/km. Pilih titik pendaratan $P$.\end{contoh}\begin{columns}[c]
+\begin{column}{.48\textwidth}
+
+\centering\begin{tikzpicture}[scale=.65]
+\fill[HIMAmuda!15] (-.5,0) rectangle (6,3.5);
+\draw[thick] (-.5,0)--(6,0);
+\draw[dashed] (0,0) node[below] {$A$}--(0,3) node[above] {$W$};
+\draw[HIMAtua,very thick] (0,3)--(2,0) node[below] {$P$}--(5.5,0) node[below] {$B$};
+\node[left] at (0,1.5) {3};\node[above] at (1,0) {$x$};\node[above] at (3.8,0) {$8-x$};
+\end{tikzpicture}
+\end{column}
+\begin{column}{.48\textwidth}
+
+\onslide<2->{\[C=5\sqrt{x^2+9}+3(8-x),\quad0\le x\le8.\]
+\[C'=\frac{5x}{\sqrt{x^2+9}}-3.\]
+$C'=0$ memberi $x=9/4$ km. Karena $C''=45/(x^2+9)^{3/2}>0$, ini minimum; biayanya 36 satuan.}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: silinder di dalam kerucut}
+
+% Modifikasi Contoh 5.6.3, hlm. 190--191.
+\begin{contoh}Silinder berada dalam kerucut berjari-jari 6 cm dan tinggi 12 cm, dengan alas pada bidang yang sama. Cari volume silinder terbesar.\end{contoh}\begin{columns}[c]
+\begin{column}{.48\textwidth}
+
+\centering\begin{tikzpicture}[scale=.65]
+\draw[HIMAtua,thick] (-2,0)--(0,4)--(2,0);\draw (0,0) ellipse (2 and .3);
+\draw[fill=HIMAmuda!20] (-1.333,0) rectangle (1.333,1.333);
+\draw (0,1.333) ellipse (1.333 and .2);\draw[dashed] (0,0)--(0,4);
+\node at (.6,.6) {$h$};\node[above] at (.65,1.333) {$r$};
+\node[left] at (-1.2,2.3) {12};\node[below] at (1,0) {6};
+\end{tikzpicture}
+\end{column}
+\begin{column}{.48\textwidth}
+
+\onslide<2->{Kesebangunan: $h=12-2r$.
+\[V=\pi r^2(12-2r),\quad0\le r\le6.\]
+\[V'=6\pi r(4-r).\]
+Maksimum di $r=4$ cm, $h=4$ cm, dengan $V=64\pi$ cm$^3$.
+Ujung $r=0,6$ memberi volume nol.}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: kaleng dengan bahan minimum}
+
+% Modifikasi Contoh 5.6.4, hlm. 191--193.
+\begin{contoh}Kaleng silinder tertutup bervolume $250\pi$ cm$^3$. Tentukan $r,h$ agar luas bahannya minimum.\end{contoh}
+\onslide<2->{\[h=\frac{250}{r^2},\qquad S=2\pi r^2+\frac{500\pi}{r},\quad r>0.\]
+\[S'=4\pi r-\frac{500\pi}{r^2}=0\Rightarrow r=5,\quad h=10.\]
+\begin{block}{Mengapa minimum absolut?}
+$S''=4\pi+1000\pi/r^3>0$, dan $S\to+\infty$ pada kedua ujung domain. Tinggi optimal sama dengan diameter: $h=2r$.
+\end{block}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: titik terdekat pada kurva}
+
+% Modifikasi Contoh 5.6.5, hlm. 193--194.
+\begin{contoh}Cari titik pada $y=x^2$ yang paling dekat dengan $(3,0)$.\end{contoh}
+\onslide<2->{Jarak $D=\sqrt{(x-3)^2+x^4}$. Karena akar naik, cukup minimalkan
+\[F=D^2=(x-3)^2+x^4,\qquad F'=2(x-1)(2x^2+2x+3).\]
+Faktor kuadrat selalu positif, sehingga satu-satunya titik kritis adalah $x=1$.
+\begin{block}{Kesimpulan}
+$F''=2+12x^2>0$: titik terdekat $(1,1)$, dengan jarak $\sqrt5$.
+Meminimalkan kuadrat jarak menghindari turunan akar yang lebih panjang.
+\end{block}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Biaya, pendapatan, dan keuntungan}
+
+% Hlm. 194--195.
+\begin{block}{Model Ekonomi Sederhana}
+$C(x)$ adalah biaya, $R(x)$ pendapatan, dan $P(x)=R(x)-C(x)$ keuntungan dari $x$ unit produk.
+Jika harga per unit tetap $p$, maka $R(x)=px$. Biaya dapat dimodelkan $C(x)=a+bx+cx^2$.
+\end{block}
+\onslide<2->{\begin{alertblock}{Periksa batas produksi}
+Di titik optimum interior, $P'=0$ berarti $R'=C'$. Kapasitas produksi dan $x\ge0$ tetap harus diperiksa. Untuk unit diskret, bandingkan bilangan bulat terdekat jika hasilnya tidak bulat.
+\end{alertblock}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: kapasitas membatasi keuntungan}
+
+% Modifikasi Contoh 5.6.6, hlm. 195--196; model latihan.
+\begin{contoh}Harga jual 200 ribu rupiah/unit dan biaya $C(x)=1000+80x+2x^2$ ribu rupiah. Kapasitas 40 unit. Cari keuntungan terbesar.\end{contoh}
+\onslide<2->{\[P=-1000+120x-2x^2,\quad0\le x\le40.\]
+\[P'=120-4x=0\Rightarrow x=30.\]
+$P(0)=-1000$, $P(30)=800$, $P(40)=600$ (ribu rupiah).
+\begin{block}{Tafsir hasil}
+Produksi optimal 30 unit dengan keuntungan Rp800.000. Jika kapasitas hanya 20 unit, optimum berpindah ke ujung $x=20$.
+\end{block}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Latihan: model, domain, dan kesimpulan}
+
+\begin{exampleblock}{Latihan}\begin{enumerate}
+\item Pagar 60 m menutup tiga sisi kebun persegi panjang di tepi sungai. Cari luas terbesar.
+\item Kaleng tanpa tutup bervolume $128\pi$ cm$^3$. Cari $r,h$ agar luas bahan minimum. Apakah masih berlaku $h=2r$?
+\item Untuk model keuntungan tadi, tentukan optimum jika kapasitas hanya 15 unit.
+\end{enumerate}\end{exampleblock}
+\onslide<2->{\textbf{Pada setiap jawaban:} tulis fungsi tujuan, domain, alasan maksimum/minimum, dan satuannya.}
+\end{frame}
+
+\section{Teorema Rolle dan Teorema Nilai Rata-rata}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Rolle: kembali ke ketinggian yang sama}
+
+% Teorema 5.7.1, hlm. 202. Bentuk f(a)=f(b) diperoleh dari
+% bentuk f(a)=f(b)=0 di buku dengan mengurangi konstanta f(a).
+\begin{teorema}[Rolle]
+Jika $f$ kontinu pada $[a,b]$, dapat diturunkan pada $(a,b)$, dan $f(a)=f(b)$, maka ada $c\in(a,b)$ dengan $f'(c)=0$.
+\end{teorema}
+\onslide<2->{\begin{block}{Gagasan Bukti}
+Jika grafik tidak konstan, salah satu maksimum atau minimum berada di interior. Di titik ekstrim yang dapat diturunkan, gradiennya nol.
+Jika grafik konstan, setiap titik interior dapat dipilih sebagai $c$.
+\end{block}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh Rolle dan pentingnya asumsi}
+\begin{columns}[c]
+\begin{column}{.48\textwidth}
+\centering\begin{tikzpicture}\begin{axis}[babfive,domain=-2:2,xmin=-2.5,xmax=2.5,ymin=-.5,ymax=5,xtick={-2,0,2},ytick={4}]
+\addplot[HIMAtua,very thick] {4-x^2};
+\addplot[red,thick,domain=-1:1]{4};\addplot[only marks,red] coordinates {(0,4)};
+\end{axis}\end{tikzpicture}
+\end{column}
+\begin{column}{.48\textwidth}
+
+% Modifikasi Contoh 5.7.1--2, hlm. 203.
+\begin{contoh}$f(x)=4-x^2$ pada $[-2,2]$ memenuhi syarat Rolle. $f'(c)=-2c=0$ memberi $c=0$.\end{contoh}
+\onslide<2->{\begin{alertblock}{Jika ada sudut}
+$g(x)=|x|-2$ mempunyai nilai ujung sama pada $[-2,2]$, tetapi tidak ada gradien nol. Syarat dapat diturunkan di $0$ gagal.
+\end{alertblock}}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Teorema Nilai Rata-rata}
+
+% Teorema 5.7.2, hlm. 204.
+\begin{teorema}[Nilai Rata-rata]
+Jika $f$ kontinu pada $[a,b]$ dan dapat diturunkan pada $(a,b)$, maka ada $c\in(a,b)$ sehingga
+\[f'(c)=\frac{f(b)-f(a)}{b-a}.\]
+\end{teorema}
+\onslide<2->{\begin{block}{Arti geometris dan fisik}
+Ada garis singgung yang sejajar garis potong kedua ujung. Untuk posisi sebagai fungsi waktu, ada saat ketika kecepatan sesaat sama dengan kecepatan rata-rata sepanjang interval waktu tersebut.
+\end{block}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: mencari titik yang dijamin teorema}
+\begin{columns}[c]
+\begin{column}{.48\textwidth}
+\centering\begin{tikzpicture}\begin{axis}[babfive,domain=1:3,xmin=0,xmax=3.5,ymin=0,ymax=10,xtick={1,2,3},ytick={1,4,9}]
+\addplot[HIMAtua,very thick] {x^2};
+\addplot[red,dashed,domain=1:3]{4*x-3};\addplot[HIMAmuda!60!black,thick,domain=1:3]{4*x-4};\addplot[only marks] coordinates {(1,1) (2,4) (3,9)};
+\end{axis}\end{tikzpicture}
+\end{column}
+\begin{column}{.48\textwidth}
+
+% Modifikasi Contoh 5.7.3, hlm. 205.
+\begin{contoh}$f(x)=x^2$ pada $[1,3]$ kontinu dan dapat diturunkan.\end{contoh}
+\onslide<2->{\[\frac{f(3)-f(1)}{3-1}=4.\]
+$2c=4$ memberi $c=2$.
+Garis potong $y=4x-3$ sejajar garis singgung $y=4x-4$ di $(2,4)$.
+Nilai $c$ harus berada dalam $(1,3)$.}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Mengapa TNR mengikuti Rolle?}
+
+% Bukti hlm. 204--205.
+\begin{block}{Kurangi Grafik dengan Garis Potongnya}
+Tuliskan $m=(f(b)-f(a))/(b-a)$ dan
+\[g(x)=f(x)-[f(a)+m(x-a)].\]
+Maka $g(a)=g(b)=0$, dan $g$ memenuhi syarat Rolle.
+\end{block}
+\onslide<2->{Ada $c\in(a,b)$ dengan $g'(c)=0$, sehingga $f'(c)-m=0$.
+\begin{alertblock}{Yang dijamin adalah keberadaan}
+Teorema tidak menjamin $c$ tunggal atau berada di titik tengah. Nilainya bergantung pada bentuk fungsi.
+\end{alertblock}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Akibat dan latihan penutup}
+
+% Aplikasi latihan 5.7, hlm. 206--207.
+\begin{block}{Turunan Sama, Selisih Konstan}
+Jika $f'=g'$ pada suatu interval, terapkan TNR pada $h=f-g$. Karena $h'=0$, maka $h(b)=h(a)$ untuk setiap $a,b$: selisih $f-g$ konstan.
+\end{block}
+\begin{exampleblock}{Latihan}\begin{enumerate}
+\item Cari semua $c$ yang dijamin Rolle untuk $\sin x$ pada $[0,2\pi]$.
+\item Cari $c$ yang dijamin TNR untuk $x^3+2$ pada $[1,2]$.
+\item Mobil bergerak lurus searah sejauh 12 km dalam 15 menit. Dengan asumsi posisi kontinu dan dapat diturunkan, jelaskan mengapa pernah terjadi kecepatan tepat 48 km/jam.
+\end{enumerate}\end{exampleblock}
 \end{frame}
 
 \end{document}

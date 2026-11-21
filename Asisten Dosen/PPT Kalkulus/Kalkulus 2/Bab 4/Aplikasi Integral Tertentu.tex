@@ -1,0 +1,1808 @@
+\documentclass{../../kalkulus-ppt}
+
+\author[Tetew]{Teosofi Hidayah Agung}
+\date{\today}
+\title[Kalkulus 2 - Bab 4]{Aplikasi Integral Tertentu}
+\institute[Matematika ITS]{Departemen Matematika\\ Institut Teknologi Sepuluh Nopember}
+\titlegraphic{{\includegraphics[scale=0.3]{ITS.png}$\quad$\includegraphics[scale=0.02]{M.png}}}
+
+\setbeamertemplate{itemize items}[circle]
+\usetikzlibrary{calc}
+\usepgfplotslibrary{fillbetween}
+\pgfplotsset{
+    grafik aplikasi/.style={
+        width=6.1cm,height=4.45cm,axis lines=middle,
+        xlabel={$x$},ylabel={$y$},samples=100,
+        ticklabel style={font=\scriptsize},
+        every axis plot/.append style={thick}
+    }
+}
+\tikzset{
+    batas daerah/.style={HIMAtua,very thick},
+    irisan daerah/.style={teal!80!black,thick,fill=HIMAmuda!32}
+}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Daftar isi}
+    \tableofcontents
+\end{frame}
+
+% Kalkulus 2 Bab 4.pdf, halaman PDF 1--8 (cetak 145--152).
+\section{Luas Antara Dua Kurva}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Irisan vertikal mengukur selisih atas dan bawah}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{definisi}[Luas dengan irisan vertikal]
+                Jika $f$ dan $g$ kontinu pada $[a,b]$ dan $f(x)\ge g(x)$, maka
+                luas daerah antara $y=f(x)$ dan $y=g(x)$ adalah
+                \[
+                    A=\int_a^b [f(x)-g(x)]\,dx.
+                \]
+            \end{definisi}
+            Satu strip berlebar $\Delta x$ memiliki tinggi kira-kira
+            $f(x)-g(x)$. Batas $a$ dan $b$ adalah posisi paling kiri
+            dan kanan yang dilalui strip tersebut.
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik aplikasi,width=5.8cm,xmin=0,xmax=3.5,
+                    ymin=0,ymax=3.85,xtick={.45,1.8,2.9},
+                    xticklabels={$a$,$x$,$b$},ytick=\empty]
+                    \addplot[batas daerah,name path=atas,domain=.45:2.9] {2.4+.23*(x-1.1)^2};
+                    \addplot[teal!80!black,name path=bawah,domain=.45:2.9] {.55+.26*(x-.95)^2};
+                    \addplot[draw=none,fill=HIMAmuda!25] fill between[of=atas and bawah];
+                    \draw[gray,dashed] (axis cs:.45,0) -- (axis cs:.45,2.497);
+                    \draw[gray,dashed] (axis cs:2.9,0) -- (axis cs:2.9,3.145);
+                    \filldraw[irisan daerah] (axis cs:1.7,.69625) -- (axis cs:1.7,2.4828)
+                        -- (axis cs:1.9,2.5472) -- (axis cs:1.9,.78465) -- cycle;
+                    \node[font=\scriptsize,HIMAtua] at (axis cs:1.95,3.19) {$f(x)$};
+                    \node[font=\scriptsize,teal!80!black] at (axis cs:2.18,.42) {$g(x)$};
+                    \draw[<->,magenta,thick] (axis cs:1.8,.742) -- (axis cs:1.8,2.5127);
+                \end{axis}
+            \end{tikzpicture}\par
+            \small Panah menunjukkan tinggi strip.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Luas tetap sama ketika kedua kurva digeser}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.47\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik aplikasi,width=5.8cm,height=3.75cm,xmin=-.2,xmax=2.38,
+                    ymin=-3.55,ymax=1.65,xtick={2},ytick={-3,-1,1},domain=0:2]
+                    \addplot[batas daerah,name path=atas] {x-1};
+                    \addplot[teal!80!black,name path=bawah] {x^2-3};
+                    \addplot[draw=none,fill=HIMAmuda!25] fill between[of=atas and bawah];
+                    \draw[<->,magenta,thick] (axis cs:1.23,-1.4871) -- (axis cs:1.23,.23);
+                \end{axis}
+            \end{tikzpicture}\par
+            $f(x)=x-1,\quad g(x)=x^2-3$
+        \end{column}
+        \begin{column}{.47\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik aplikasi,width=5.8cm,height=3.75cm,xmin=-.2,xmax=2.38,
+                    ymin=-.55,ymax=4.65,xtick={2},ytick={2,4},domain=0:2]
+                    \addplot[batas daerah,name path=atas] {x+2};
+                    \addplot[teal!80!black,name path=bawah] {x^2};
+                    \addplot[draw=none,fill=HIMAmuda!25] fill between[of=atas and bawah];
+                    \draw[<->,magenta,thick] (axis cs:1.23,1.5129) -- (axis cs:1.23,3.23);
+                \end{axis}
+            \end{tikzpicture}\par
+            $f(x)+3=x+2,\quad g(x)+3=x^2$
+        \end{column}
+    \end{columns}
+    \onslide<2->{Untuk kurva di kanan, luasnya selisih dua luas di atas sumbu $x$.
+    Tinggi tiap irisan tetap $(f+3)-(g+3)=f-g$, sehingga rumus yang sama
+    berlaku pada gambar kiri.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Titik potong menentukan batas daerah tertutup}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{contoh}
+                Tentukan luas yang dibatasi oleh $y=x+2$ dan $y=x^2$.
+            \end{contoh}
+            \onslide<2->{Samakan tinggi kedua kurva.
+            \[
+                x^2=x+2\quad\Longleftrightarrow\quad
+                (x-2)(x+1)=0.
+            \]
+            Pada $[-1,2]$, garis $y=x+2$ ada di atas parabola.}
+            \onslide<3->{%
+                \[
+                    A=\int_{-1}^2(x+2-x^2)\,dx=\frac92.
+                \]
+                Jika hanya bagian $0\le x\le1$ yang diminta,
+                batas itu memberi $A=13/6$.}
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik aplikasi,width=5.75cm,xmin=-1.55,xmax=2.45,
+                    ymin=-.4,ymax=5.1,xtick={-1,1,2},ytick={1,4}]
+                    \addplot[batas daerah,name path=garis,domain=-1.4:2.3] {x+2};
+                    \addplot[teal!80!black,name path=parabola,domain=-1.4:2.23] {x^2};
+                    \addplot[draw=none,fill=HIMAmuda!30]
+                        fill between[of=garis and parabola,soft clip={domain=-1:2}];
+                    \addplot[only marks,mark=*,mark size=1.65pt,HIMAtua] coordinates {(-1,1) (2,4)};
+                    \node[font=\scriptsize,HIMAtua,anchor=west] at (axis cs:-1.32,2.7) {$x+2$};
+                    \node[font=\scriptsize,teal!80!black,anchor=west] at (axis cs:.8,.37) {$x^2$};
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Pisahkan daerah saat kurva atas berubah}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{contoh}
+                Hitung luas antara $y=x$ dan $y=x^3$ pada $[-1,1]$.
+            \end{contoh}
+            \onslide<2->{Kurva bertemu di $x=-1,0,1$.
+            Pada $[-1,0]$ kubik di atas garis, lalu urutannya berbalik.
+            \[
+                \begin{aligned}
+                    A&=\int_{-1}^0(x^3-x)\,dx+\int_0^1(x-x^3)\,dx\\
+                     &=\tfrac14+\tfrac14=\tfrac12.
+                \end{aligned}
+            \]}
+            \onslide<3->{Dengan menulis $A=\int_{-1}^1|x-x^3|\,dx$,
+            kedua bagian menyumbang luas positif.}
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik aplikasi,width=5.75cm,axis equal image,xmin=-1.25,xmax=1.25,
+                    ymin=-1.25,ymax=1.25,xtick={-1,1},ytick={-1,1},domain=-1.05:1.05]
+                    \addplot[batas daerah,name path=garis] {x};
+                    \addplot[teal!80!black,name path=kubik] {x^3};
+                    \addplot[draw=none,fill=magenta!19]
+                        fill between[of=garis and kubik,soft clip={domain=-1:0}];
+                    \addplot[draw=none,fill=HIMAmuda!34]
+                        fill between[of=garis and kubik,soft clip={domain=0:1}];
+                    \node[font=\scriptsize,HIMAtua] at (axis cs:-.63,-.89) {$y=x$};
+                    \node[font=\scriptsize,teal!80!black] at (axis cs:.62,.12) {$y=x^3$};
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Irisan horizontal mengukur selisih kanan dan kiri}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{definisi}[Luas dengan irisan horizontal]
+                Jika $w(y)\ge v(y)$ dan keduanya kontinu pada $[c,d]$,
+                luas daerah antara $x=v(y)$ di kiri dan $x=w(y)$ di kanan adalah
+                \[
+                    A=\int_c^d[w(y)-v(y)]\,dy.
+                \]
+            \end{definisi}
+            Pada gambar, satu strip bergerak dari $y=c$ ke $y=d$.
+            Di setiap tinggi $y$, lebarnya adalah $w(y)-v(y)$.
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik aplikasi,width=5.8cm,xmin=-.65,xmax=10.4,
+                    ymin=-2.75,ymax=3.65,xtick=\empty,
+                    ytick={-2,1.05,3},yticklabels={$c$,$y$,$d$}]
+                    \addplot[draw=none,fill=HIMAmuda!26,domain=-2:3] ({x^2},{x}) -- cycle;
+                    \addplot[teal!80!black,domain=-2.23:3.17] ({x^2},{x});
+                    \addplot[batas daerah,domain=-2.3:3.26] ({x+6},{x});
+                    \draw[gray,dotted] (axis cs:0,-2) -- (axis cs:4,-2);
+                    \draw[gray,dotted] (axis cs:0,3) -- (axis cs:9,3);
+                    \filldraw[irisan daerah] (axis cs:.81,.9) -- (axis cs:6.9,.9)
+                        -- (axis cs:7.2,1.2) -- (axis cs:1.44,1.2) -- cycle;
+                    \draw[<->,magenta,thick] (axis cs:1.1025,1.05) -- (axis cs:7.05,1.05);
+                    \node[font=\scriptsize,teal!80!black,anchor=west] at (axis cs:1.92,2.49) {$v(y)$};
+                    \node[font=\scriptsize,HIMAtua,anchor=west] at (axis cs:7.58,1.71) {$w(y)$};
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Satu integral horizontal cukup untuk daerah ini}
+    \begin{contoh}
+        Tentukan luas antara $x=y^2$ dan $x=y+6$. Gunakan irisan horizontal.
+    \end{contoh}
+    \onslide<2->{Titik potong memenuhi $y^2-y-6=(y-3)(y+2)=0$.
+    Untuk $-2\le y\le3$, parabola $x=y^2$ menjadi batas kiri dan
+    garis $x=y+6$ menjadi batas kanan.}
+    \onslide<3->{%
+        \[
+            A=\int_{-2}^{3}(y+6-y^2)\,dy
+             =\left[\frac{y^2}{2}+6y-\frac{y^3}{3}\right]_{-2}^{3}
+             =\frac{125}{6}.
+        \]
+        Uji $y=0$ untuk mengecek sisi kiri dan kanan. Nilai $x$-nya $0$ dan $6$.
+    }
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Daerah yang sama dengan dua integral vertikal}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.55\textwidth}
+            Untuk $x=y^2$ dan $x=y+6$, batas atasnya $y=\sqrt{x}$.
+            Batas bawahnya berubah ketika $-\sqrt{x}=x-6$, yaitu di $x=4$.
+            \onslide<2->{%
+                \[
+                    \begin{aligned}
+                        A&=\int_0^4 2\sqrt{x}\,dx
+                             +\int_4^9(\sqrt{x}-x+6)\,dx\\
+                         &=\frac{32}{3}+\frac{61}{6}=\frac{125}{6}.
+                    \end{aligned}
+                \]
+                Kedua arah memberi luas yang sama. Irisan horizontal
+                menghindari perubahan batas di tengah perhitungan.
+            }
+        \end{column}
+        \begin{column}{.41\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik aplikasi,width=5.65cm,xmin=-.6,xmax=10.1,
+                    ymin=-2.72,ymax=3.65,xtick={4,9},ytick={-2,3}]
+                    \addplot[draw=none,fill=HIMAmuda!26,domain=-2:3] ({x^2},{x}) -- cycle;
+                    \addplot[teal!80!black,domain=-2:3] ({x^2},{x});
+                    \addplot[batas daerah,domain=-2:3] ({x+6},{x});
+                    \draw[magenta,densely dashed,thick] (axis cs:4,-2) -- (axis cs:4,2);
+                    \draw[<->,teal!80!black,thick] (axis cs:2,-1.4142) -- (axis cs:2,1.4142);
+                    \draw[<->,HIMAtua,thick] (axis cs:6.45,.45) -- (axis cs:6.45,2.5397);
+                \end{axis}
+            \end{tikzpicture}\par
+            \small Garis putus-putus membatasi dua bagian.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Luas elips dari luas lingkaran satuan}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{contoh}
+                Hitung luas elips $x^2/a^2+y^2/b^2=1$, dengan $a,b>0$.
+            \end{contoh}
+            \onslide<2->{Selisih kedua cabang adalah $2b\sqrt{1-(x/a)^2}$.
+            Dengan $u=x/a$ dan $dx=a\,du$,
+            \[
+                A=ab\int_{-1}^1 2\sqrt{1-u^2}\,du.
+            \]}
+            \onslide<3->{Integral di kanan adalah luas lingkaran satuan.
+            Maka $A=\pi ab$. Contoh, untuk $a=3$ dan $b=2$ luasnya $6\pi$.}
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}[x=.69cm,y=.69cm,>=stealth]
+                \fill[HIMAmuda!30] (0,0) ellipse[x radius=3,y radius=2];
+                \draw[->,gray!85] (-3.55,0) -- (3.55,0) node[right] {$x$};
+                \draw[->,gray!85] (0,-2.44) -- (0,2.52) node[above] {$y$};
+                \draw[batas daerah] (0,0) ellipse[x radius=3,y radius=2];
+                \draw[HIMAtua] (-3,-.11) -- (-3,.11) node[above left] {$-a$};
+                \draw[HIMAtua] (3,-.11) -- (3,.11) node[above right] {$a$};
+                \node[above right,HIMAtua] at (0,2) {$b$};
+                \node[below right,HIMAtua] at (0,-2) {$-b$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Luas pada selang tak hingga}
+    \begin{contoh}
+        Tentukan luas di bawah $y=3e^{-2x}$ untuk $x\ge0$.
+    \end{contoh}
+    \onslide<2->{Hitung dahulu hingga $x=R$ dan ambil limit saat $R$ membesar.
+    \[
+        A=\lim_{R\to\infty}\int_0^R 3e^{-2x}\,dx
+          =\lim_{R\to\infty}\frac32(1-e^{-2R})=\frac32.
+    \]}
+    \onslide<3->{Luasnya berhingga karena integral tak wajarnya konvergen.
+    Untuk $y=1/x$ pada $[1,\infty)$, luas potongannya $\ln R$ tumbuh tanpa batas.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Latihan menghitung luas}
+    \begin{latihan}
+        Buat sketsa, pilih arah irisan, dan hitung luasnya.
+        \begin{enumerate}
+            \item $y=4-x^2$ dan $y=0$.
+            \item $x=y^2$ dan $x=9$.
+            \item $y=\cos x$ dan $y=0$ pada $[0,\pi]$.
+        \end{enumerate}
+    \end{latihan}
+    \onslide<2->{%
+        \begin{block}{Cek jawaban}
+            \begin{enumerate}
+                \item $\int_{-2}^2 (4-x^2)\,dx=32/3$.
+                \item $\int_{-3}^3 (9-y^2)\,dy=36$.
+                \item Pisah di $x=\pi/2$. Luasnya $1+1=2$.
+            \end{enumerate}
+        \end{block}
+    }
+\end{frame}
+
+% Kalkulus 2 Bab 4.pdf, halaman PDF 9--24 (cetak 153--168).
+\section{Menghitung Volume Benda Putar}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Pendekatan volume memakai keping-keping tipis}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{definisi}[Volume dengan penampang tetap]
+                Untuk silinder tegak dengan luas penampang tetap $A_0$
+                dan tinggi $h$, volumenya $V=A_0h$.
+            \end{definisi}
+            Jika luas penampang berubah menjadi $A(x)$, ambil keping tipis.
+            \[
+                \Delta V_i\approx A(x_i^*)\,\Delta x_i,\qquad
+                V\approx\sum_i A(x_i^*)\,\Delta x_i.
+            \]
+            Penampang dapat berbentuk lingkaran, persegi, atau bentuk lain
+            yang luasnya diketahui.
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}[>=stealth]
+                \fill[HIMAmuda!19] (.26,.59) .. controls (1.14,.71) and (2.25,.91) .. (3.46,1.24)
+                    -- (3.46,-1.24) .. controls (2.25,-.91) and (1.14,-.71) .. (.26,-.59) -- cycle;
+                \fill[HIMAmuda!42] (1.83,.82) -- (2.19,.91) -- (2.19,-.91) -- (1.83,-.82) -- cycle;
+                \draw[batas daerah] (.26,.59) .. controls (1.14,.71) and (2.25,.91) .. (3.46,1.24);
+                \draw[batas daerah] (.26,-.59) .. controls (1.14,-.71) and (2.25,-.91) .. (3.46,-1.24);
+                \draw[HIMAtua] (.26,0) ellipse[x radius=.17,y radius=.59];
+                \draw[HIMAtua,thick] (3.46,0) ellipse[x radius=.32,y radius=1.24];
+                \draw[teal!80!black] (1.83,0) ellipse[x radius=.24,y radius=.82];
+                \filldraw[irisan daerah] (2.19,0) ellipse[x radius=.26,y radius=.91];
+                \draw[->,gray,dashed] (-.12,0) -- (4.07,0) node[right] {$x$};
+                \draw[<->,magenta,thick] (1.83,-1.11) -- (2.19,-1.11)
+                    node[midway,below,black] {$\Delta x_i$};
+                \node[teal!80!black] at (2.19,.43) {\scriptsize $A(x_i^*)$};
+            \end{tikzpicture}\par
+            \small Keping biru mempunyai luas irisan dan ketebalan.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Jumlah Riemann menjadi integral luas penampang}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{definisi}[Irisan tegak lurus sumbu $x$]
+                Jika luas penampang di $x$ adalah $A(x)$ yang
+                dapat diintegralkan, maka
+                \[
+                    V=\lim_{\max\Delta x_i\to0}\sum_i A(x_i^*)\Delta x_i
+                     =\int_a^b A(x)\,dx.
+                \]
+            \end{definisi}
+            Pakai $dx$ karena bidang irisan digeser sepanjang sumbu $x$.
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{definisi}[Irisan tegak lurus sumbu $y$]
+                Jika luas penampang di $y$ adalah $A(y)$ yang
+                dapat diintegralkan, maka
+                \[
+                    V=\int_c^d A(y)\,dy.
+                \]
+            \end{definisi}
+            Pakai $dy$ karena bidang irisan digeser sepanjang sumbu $y$.
+        \end{column}
+    \end{columns}
+    \onslide<2->{Satuan luas dikali satuan panjang memberi satuan volume.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Volume piramida dari persegi-persegi sebangun}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{contoh}
+                Piramida tegak memiliki alas persegi bersisi $a$ dan tinggi $h$.
+                Hitung volumenya.
+            \end{contoh}
+            \onslide<2->{Pada tinggi $y$ dari alas, kesebangunan memberi
+            sisi penampang $s(y)=a(h-y)/h$.}
+            \onslide<3->{%
+                \[
+                    V=\int_0^h s(y)^2\,dy
+                     =\frac{a^2}{h^2}\int_0^h(h-y)^2\,dy
+                     =\frac{a^2h}{3}.
+                \]
+                Untuk $a=6$ dan $h=9$, volumenya $108$ satuan kubik.}
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}[>=stealth]
+                \coordinate (A) at (-1.72,0);
+                \coordinate (B) at (1.05,0);
+                \coordinate (C) at (1.94,.55);
+                \coordinate (D) at (-.83,.55);
+                \coordinate (P) at (.11,3.64);
+                \fill[HIMAmuda!15] (A) -- (B) -- (C) -- (P) -- cycle;
+                \draw[batas daerah] (A) -- (B) -- (C) -- (P) -- (A);
+                \draw[HIMAtua,dashed] (A) -- (D) -- (C) (D) -- (P);
+                \draw[batas daerah] (P) -- (B);
+                \filldraw[irisan daerah] ($(A)!.48!(P)$) -- ($(B)!.48!(P)$)
+                    -- ($(C)!.48!(P)$) -- ($(D)!.48!(P)$) -- cycle;
+                \node[teal!80!black,above] at (.1,1.9) {$s(y)$};
+                \draw[<->,magenta] (2.22,.28) -- (2.22,1.9) node[midway,right,black] {$y$};
+                \draw[<->,gray] (-2.14,.28) -- (-2.14,3.64) node[midway,left,black] {$h$};
+                \node[below] at (-.34,0) {$a$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Sisi penampang dapat dibaca dari daerah alas}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{contoh}
+                Alas benda dibatasi $y=x$ dan $y=x^2$ pada $[0,1]$.
+                Irisan tegak lurus sumbu $x$ berbentuk persegi
+                dengan satu sisi membentang pada alas. Hitung volumenya.
+            \end{contoh}
+            \onslide<2->{Sisinya $x-x^2$, sehingga $A(x)=(x-x^2)^2$.}
+            \onslide<3->{%
+                \[
+                    V=\int_0^1(x^2-2x^3+x^4)\,dx
+                     =\tfrac13-\tfrac12+\tfrac15=\tfrac1{30}.
+                \]}
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik aplikasi,width=5.7cm,axis equal image,xmin=-.15,xmax=1.25,
+                    ymin=-.15,ymax=1.23,xtick={.57,1},xticklabels={$x$,$1$},ytick={1}]
+                    \addplot[batas daerah,name path=atas,domain=0:1] {x};
+                    \addplot[teal!80!black,name path=bawah,domain=0:1] {x^2};
+                    \addplot[draw=none,fill=HIMAmuda!29] fill between[of=atas and bawah];
+                    \draw[<->,magenta,very thick] (axis cs:.57,.3249) -- (axis cs:.57,.57);
+                    \node[font=\scriptsize,magenta,anchor=west] at (axis cs:.61,.45) {$s=x-x^2$};
+                \end{axis}
+            \end{tikzpicture}\par
+            \small Alas dilihat dari atas.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Metode cakram saat daerah menyentuh sumbu putar}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{teorema}[Cakram terhadap sumbu $x$]
+                Untuk daerah di bawah $y=f(x)\ge0$ pada $[a,b]$, putaran
+                terhadap sumbu $x$ menghasilkan cakram berjari-jari $f(x)$.
+                \[
+                    A(x)=\pi[f(x)]^2,\qquad
+                    V=\pi\int_a^b[f(x)]^2\,dx.
+                \]
+            \end{teorema}
+            Strip vertikal dari sumbu ke kurva berputar menjadi cakram.
+            Ketebalan cakram diukur sepanjang sumbu putar.
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}[>=stealth]
+                \fill[HIMAmuda!16] (.25,.41) -- (3.5,1.26) -- (3.5,-1.26) -- (.25,-.41) -- cycle;
+                \draw[batas daerah] (.25,.41) -- (3.5,1.26) (.25,-.41) -- (3.5,-1.26);
+                \draw[HIMAtua] (.25,0) ellipse[x radius=.15,y radius=.41];
+                \draw[HIMAtua,thick] (3.5,0) ellipse[x radius=.29,y radius=1.26];
+                \filldraw[irisan daerah] (1.96,0) ellipse[x radius=.24,y radius=.8572];
+                \draw[->,gray,dashed] (-.2,0) -- (4.08,0) node[right] {$x$};
+                \draw[->,magenta,thick] (1.96,0) -- (1.96,.8572)
+                    node[midway,above left,black] {$f(x)$};
+                \node[below] at (1.96,-.94) {\small cakram};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Cakram membentuk kerucut terpancung}
+    \begin{contoh}
+        Daerah di antara $y=1+x$ dan sumbu $x$ untuk $0\le x\le2$
+        diputar terhadap sumbu $x$. Berapa volumenya?
+    \end{contoh}
+    \onslide<2->{Jari-jari cakram bertambah dari $1$ menjadi $3$.
+    Pada posisi $x$, luasnya $\pi(1+x)^2$.}
+    \onslide<3->{%
+        \[
+            V=\pi\int_0^2(1+x)^2\,dx
+             =\pi\left[\frac{(1+x)^3}{3}\right]_0^2
+             =\frac{26\pi}{3}.
+        \]
+        Pengkuadratan diperlukan karena setiap irisan berupa lingkaran.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Volume bola dari perputaran setengah lingkaran}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.53\textwidth}
+            \begin{contoh}
+                Putar daerah di bawah $y=\sqrt{r^2-x^2}$ pada $[-r,r]$
+                terhadap sumbu $x$.
+            \end{contoh}
+            \onslide<2->{Jari-jari cakram adalah $\sqrt{r^2-x^2}$.
+            \[
+                V=\pi\int_{-r}^{r}(r^2-x^2)\,dx
+                  =\frac{4\pi r^3}{3}.
+            \]
+            Di $x=0$, cakram berluas $\pi r^2$. Di kedua ujung, luasnya nol.}
+        \end{column}
+        \begin{column}{.43\textwidth}
+            \centering
+            \begin{tikzpicture}[>=stealth]
+                \fill[HIMAmuda!14] (0,0) circle[radius=1.61];
+                \draw[batas daerah] (0,0) circle[radius=1.61];
+                \filldraw[irisan daerah] (.67,0) ellipse[x radius=.255,y radius=1.464];
+                \draw[->,gray,dashed] (-2.04,0) -- (2.05,0) node[right] {$x$};
+                \draw[->,magenta,thick] (.67,0) -- (.67,1.464)
+                    node[midway,right,black] {\scriptsize $\sqrt{r^2-x^2}$};
+                \node[below left] at (-1.61,0) {$-r$};
+                \node[below right] at (1.61,0) {$r$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Cincin-cakram mempunyai jari-jari luar dan dalam}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{teorema}[Cincin-cakram terhadap sumbu $x$]
+                Jika $0\le g(x)\le f(x)$ pada $[a,b]$, putar daerah antara
+                keduanya terhadap sumbu $x$. Jari-jari luar $R=f(x)$
+                dan jari-jari dalam $r=g(x)$ memberi
+                \[
+                    V=\pi\int_a^b\bigl(R(x)^2-r(x)^2\bigr)\,dx.
+                \]
+            \end{teorema}
+            Luas cincin adalah luas cakram besar dikurangi luas cakram kecil.
+            Bila $r=0$, irisannya menjadi cakram penuh.
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}[>=stealth]
+                \fill[even odd rule,HIMAmuda!36] (0,0) circle[radius=1.58]
+                    (0,0) circle[radius=.69];
+                \draw[batas daerah] (0,0) circle[radius=1.58];
+                \draw[teal!80!black,thick] (0,0) circle[radius=.69];
+                \fill[HIMAtua] (0,0) circle[radius=1.6pt];
+                \draw[->,magenta,very thick] (0,0) -- (31:1.58) node[midway,below] {$R$};
+                \draw[->,teal!80!black,very thick] (0,0) -- (142:.69) node[midway,above] {$r$};
+                \node[HIMAtua] at (0,-1.02) {\small $\pi(R^2-r^2)$};
+            \end{tikzpicture}\par
+            \small Penampang dilihat sepanjang sumbu putar.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Daerah parabola dan garis menghasilkan cincin}
+    \begin{contoh}
+        Putar daerah antara $y=x+2$ dan $y=x^2$ pada $[-1,2]$
+        terhadap sumbu $x$.
+    \end{contoh}
+    \onslide<2->{Kedua kurva berada di atas sumbu putar.
+    Strip vertikal menghasilkan $R=x+2$ dan $r=x^2$.
+    Luas irisannya $\pi[(x+2)^2-x^4]$.}
+    \onslide<3->{%
+        \[
+            V=\pi\int_{-1}^{2}[(x+2)^2-x^4]\,dx
+             =\pi\left[\frac{(x+2)^3}{3}-\frac{x^5}{5}\right]_{-1}^2
+             =\frac{72\pi}{5}.
+        \]
+        Di $x=0$ lubangnya tertutup karena $r=0$.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Cakram dan cincin horizontal untuk sumbu putar $y$}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{teorema}[Cincin-cakram terhadap sumbu $y$]
+                Jika $0\le v(y)\le w(y)$, putar daerah
+                $v(y)\le x\le w(y)$ untuk $c\le y\le d$ terhadap sumbu $y$.
+                \[
+                    V=\pi\int_c^d\bigl(w(y)^2-v(y)^2\bigr)\,dy.
+                \]
+                Pilih $v=0$ saat irisannya cakram penuh.
+            \end{teorema}
+            Strip horizontal tegak lurus sumbu $y$. Jarak titik ujung kanan
+            ke sumbu adalah jari-jari luar.
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik aplikasi,width=5.75cm,xmin=-.43,xmax=3.65,
+                    ymin=-.21,ymax=1.28,xtick={1,3},ytick={1}]
+                    \addplot[draw=none,fill=HIMAmuda!29,domain=0:1]
+                        ({1+x^2},{x}) -- (axis cs:3,1) -- (axis cs:3,0) -- cycle;
+                    \addplot[teal!80!black,domain=0:1] ({1+x^2},{x});
+                    \draw[batas daerah] (axis cs:3,0) -- (axis cs:3,1);
+                    \draw[magenta,very thick] (axis cs:1.36,.6) -- (axis cs:3,.6);
+                    \draw[<->,HIMAtua] (axis cs:0,.29) -- (axis cs:3,.29)
+                        node[midway,below,font=\scriptsize] {$R$};
+                    \draw[<->,teal!80!black] (axis cs:0,.6) -- (axis cs:1.36,.6)
+                        node[midway,above,font=\scriptsize] {$r$};
+                    \draw[gray,dotted] (axis cs:3,.29) -- (axis cs:3,.6);
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Dua contoh irisan yang tegak lurus sumbu $y$}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.47\textwidth}
+            \begin{contoh}
+                Putar $0\le x\le y^2$ untuk $0\le y\le3$ terhadap sumbu $y$.
+            \end{contoh}
+            \onslide<2->{Radius cakram adalah $y^2$, sehingga
+            \[
+                V=\pi\int_0^3 y^4\,dy=\frac{243\pi}{5}.
+            \]}
+        \end{column}
+        \begin{column}{.49\textwidth}
+            \begin{contoh}
+                Putar $1+y^2\le x\le3$ untuk $0\le y\le1$ terhadap sumbu $y$.
+            \end{contoh}
+            \onslide<3->{Radius luar $3$ dan radius dalam $1+y^2$ memberi
+            \[
+                V=\pi\int_0^1[9-(1+y^2)^2]\,dy=\frac{107\pi}{15}.
+            \]}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Untuk sumbu bergeser, ukur jarak ke garis putar}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{contoh}
+                Putar daerah $0\le y\le x$ untuk $0\le x\le1$ terhadap
+                garis $y=2$.
+            \end{contoh}
+            \onslide<2->{Batas $y=0$ paling jauh, jadi $R=2$.
+            Batas $y=x$ paling dekat, jadi $r=2-x$.}
+            \onslide<3->{%
+                \[
+                    V=\pi\int_0^1[4-(2-x)^2]\,dx=\frac{5\pi}{3}.
+                \]
+                Jika garis putar melintasi sebuah strip, irisannya
+                adalah cakram dengan radius sejauh ujung terluar.}
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik aplikasi,width=5.75cm,xmin=-.12,xmax=1.42,
+                    ymin=-.26,ymax=2.44,xtick={1},ytick={2}]
+                    \fill[HIMAmuda!29] (axis cs:0,0) -- (axis cs:1,0) -- (axis cs:1,1) -- cycle;
+                    \draw[batas daerah] (axis cs:0,0) -- (axis cs:1,1) -- (axis cs:1,0);
+                    \draw[magenta,dashed,thick] (axis cs:0,2) -- (axis cs:1.34,2)
+                        node[above left,font=\scriptsize] {$y=2$};
+                    \draw[<->,HIMAtua,thick] (axis cs:.52,0) -- (axis cs:.52,2)
+                        node[midway,left,font=\scriptsize] {$R$};
+                    \draw[<->,teal!80!black,thick] (axis cs:.71,.71) -- (axis cs:.71,2)
+                        node[midway,right,font=\scriptsize] {$r$};
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Cincin silinder mempunyai radius, tinggi, dan tebal}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.53\textwidth}
+            Misalkan tabung berongga memiliki tinggi $h$ dan radius
+            dalam $r_1$, luar $r_2$. Dari luas cincin pada alas,
+            \[
+                \begin{aligned}
+                    \Delta V&=\pi(r_2^2-r_1^2)h\\
+                        &=2\pi\underbrace{\frac{r_1+r_2}{2}}_{\bar r}
+                              \,h\underbrace{(r_2-r_1)}_{\Delta r}.
+                \end{aligned}
+            \]
+            Saat cincin tipis, $\bar r$ mendekati radius irisan.
+            Keliling $2\pi\bar r$ dikali tinggi $h$ memberi luas selimut,
+            lalu dikali tebal $\Delta r$ memberi volume.
+        \end{column}
+        \begin{column}{.43\textwidth}
+            \centering
+            \begin{tikzpicture}[>=stealth]
+                \fill[HIMAmuda!26] (-1.48,0)
+                    arc[start angle=180,end angle=360,x radius=1.48,y radius=.31]
+                    -- (1.48,1.75)
+                    arc[start angle=0,end angle=-180,x radius=1.48,y radius=.31]
+                    -- cycle;
+                \draw[batas daerah] (-1.48,0)
+                    arc[start angle=180,end angle=360,x radius=1.48,y radius=.31];
+                \draw[HIMAtua,thick] (-1.48,0) -- (-1.48,1.75) (1.48,0) -- (1.48,1.75);
+                \fill[even odd rule,HIMAmuda!46] (0,1.75) ellipse[x radius=1.48,y radius=.31]
+                    (0,1.75) ellipse[x radius=1.14,y radius=.235];
+                \draw[batas daerah] (0,1.75) ellipse[x radius=1.48,y radius=.31];
+                \draw[teal!80!black,thick] (0,1.75) ellipse[x radius=1.14,y radius=.235];
+                \draw[->,gray,dashed] (0,-.45) -- (0,2.42) node[above] {\scriptsize sumbu};
+                \draw[<->,magenta,thick] (1.86,0) -- (1.86,1.75)
+                    node[midway,right,black] {$h$};
+                \draw[<->,magenta,thick] (1.14,1.75) -- (1.48,1.75);
+                \node[above right,magenta] at (1.3,1.87) {$\Delta r$};
+                \draw[->,HIMAtua] (0,1.75) -- (-1.31,1.75)
+                    node[midway,below] {$\bar r$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Metode cincin silinder memakai irisan sejajar sumbu putar}
+    \begin{teorema}[Volume dengan cincin silinder]
+        Untuk daerah di satu sisi sumbu putar, jumlah Riemann dari
+        $2\pi\,(\text{radius})(\text{tinggi})(\text{tebal})$ menghasilkan
+        \[
+            V=2\pi\int \text{radius}\cdot\text{tinggi irisan}\,d(\text{radius}).
+        \]
+    \end{teorema}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \textbf{Terhadap sumbu $y$, di kanan sumbu.}
+            Strip vertikal memiliki radius $x$ dan tinggi $f(x)-g(x)$.
+            \[
+                V=2\pi\int_a^b x[f(x)-g(x)]\,dx.
+            \]
+            Untuk daerah di bawah $f$ hingga sumbu $x$, gunakan $g=0$.
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \textbf{Terhadap sumbu $x$, di atas sumbu.}
+            Strip horizontal memiliki radius $y$ dan panjang $w(y)-v(y)$.
+            \[
+                V=2\pi\int_c^d y[w(y)-v(y)]\,dy.
+            \]
+            Panjang horizontal menjadi tinggi selimut silinder.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Cincin silinder dari selisih dua kurva}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{contoh}
+                Daerah antara $y=\sqrt{2x}$ dan $y=x$ diputar terhadap sumbu $y$.
+            \end{contoh}
+            \onslide<2->{Kedua kurva bertemu di $x=0$ dan $x=2$.
+            Radiusnya $x$, sedangkan tinggi selimutnya $\sqrt{2x}-x$.}
+            \onslide<3->{%
+                \[
+                    \begin{aligned}
+                        V&=2\pi\int_0^2 x(\sqrt{2x}-x)\,dx\\
+                         &=2\pi\bigl(\tfrac{16}{5}-\tfrac83\bigr)
+                           =\frac{16\pi}{15}.
+                    \end{aligned}
+                \]}
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik aplikasi,width=5.7cm,xmin=-.25,xmax=2.4,
+                    ymin=-.2,ymax=2.49,xtick={.88,2},xticklabels={$x$,$2$},ytick={2}]
+                    \addplot[batas daerah,name path=atas,domain=0:2] {sqrt(2*x)};
+                    \addplot[teal!80!black,name path=bawah,domain=0:2] {x};
+                    \addplot[draw=none,fill=HIMAmuda!29] fill between[of=atas and bawah];
+                    \draw[magenta,very thick] (axis cs:.88,.88) -- (axis cs:.88,1.32665);
+                    \draw[<->,teal!80!black] (axis cs:0,.5) -- (axis cs:.88,.5)
+                        node[midway,below,font=\scriptsize] {$x$};
+                    \draw[gray,dotted] (axis cs:.88,0) -- (axis cs:.88,.88);
+                \end{axis}
+            \end{tikzpicture}\par
+            \small Strip vertikal sejajar sumbu putar.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Daerah yang sama juga dapat dihitung dengan cincin-cakram}
+    Putar lagi daerah antara $y=\sqrt{2x}$ dan $y=x$ terhadap sumbu $y$.
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{block}{Irisan vertikal}
+                Sejajar sumbu $y$, sehingga terbentuk cincin silinder
+                dan integrasinya terhadap $x$.
+                \[
+                    V=2\pi\int_0^2 x(\sqrt{2x}-x)\,dx.
+                \]
+            \end{block}
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{block}{Irisan horizontal}
+                Tegak lurus sumbu $y$, dengan radius luar $y$
+                dan dalam $y^2/2$.
+                \[
+                    V=\pi\int_0^2\left(y^2-\frac{y^4}{4}\right)\,dy.
+                \]
+            \end{block}
+        \end{column}
+    \end{columns}
+    \onslide<2->{Cincin-cakram memberi $\pi(8/3-8/5)=16\pi/15$,
+    sama dengan hasil cincin silinder. Pilih arah yang membuat batas
+    dan integrannya mudah ditulis.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Sumbu putar $x$ memberi tinggi dari irisan horizontal}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{contoh}
+                Putar daerah di bawah $y=x^2$ pada $0\le x\le3$
+                terhadap sumbu $x$. Gunakan cincin silinder.
+            \end{contoh}
+            \onslide<2->{Untuk $0\le y\le9$, strip membentang dari $\sqrt y$ sampai $3$.
+            Radiusnya $y$ dan panjang stripnya $3-\sqrt y$.}
+            \onslide<3->{%
+                \[
+                    V=2\pi\int_0^9 y(3-\sqrt y)\,dy=\frac{243\pi}{5}.
+                \]
+                Dengan cakram, $\pi\int_0^3 x^4\,dx$ memberi nilai yang sama.}
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik aplikasi,width=5.75cm,xmin=-.26,xmax=3.5,
+                    ymin=-.6,ymax=10.3,xtick={2,3},xticklabels={$\sqrt y$,$3$},
+                    ytick={4,9},yticklabels={$y$,$9$}]
+                    \addplot[draw=none,fill=HIMAmuda!30,domain=0:3] {x^2} \closedcycle;
+                    \addplot[batas daerah,domain=0:3] {x^2};
+                    \draw[batas daerah] (axis cs:3,0) -- (axis cs:3,9);
+                    \draw[magenta,very thick] (axis cs:2,4) -- (axis cs:3,4);
+                    \draw[<->,teal!80!black,thick] (axis cs:2.52,0) -- (axis cs:2.52,4)
+                        node[midway,right,font=\scriptsize] {$y$};
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Volume cairan pada wadah setengah bola}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.55\textwidth}
+            \begin{contoh}
+                Wadah setengah bola berjari-jari $R$ diisi cairan sampai
+                kedalaman $h$ dari dasar. Tentukan $V(h)$.
+            \end{contoh}
+            \onslide<2->{Pada tinggi $z$, penampangnya berjari-jari
+            $\sqrt{R^2-(z-R)^2}$. Maka
+            \[
+                V(h)=\pi\int_0^h(2Rz-z^2)\,dz
+                     =\pi(Rh^2-h^3/3).
+            \]}
+            \onslide<3->{Jika $R=3$ cm, $h=1$ cm, dan cairan masuk
+            $5\pi$ cm$^3$/s, maka tinggi naik $1$ cm/s karena
+            $dV/dt=\pi(2Rh-h^2)\,dh/dt$.}
+        \end{column}
+        \begin{column}{.41\textwidth}
+            \centering
+            \begin{tikzpicture}[>=stealth]
+                \begin{scope}
+                    \clip (0,1.85) circle[radius=1.85];
+                    \fill[HIMAmuda!35] (-1.92,0) rectangle (1.92,.92);
+                \end{scope}
+                \draw[batas daerah] (-1.85,1.85) arc[start angle=180,end angle=360,radius=1.85];
+                \draw[gray,dashed] (-1.85,1.85) -- (1.85,1.85) (0,0) -- (0,2.15);
+                \draw[teal!80!black,thick] (-1.598,.92) -- (1.598,.92);
+                \draw[<->,magenta,thick] (1.82,0) -- (1.82,.92)
+                    node[midway,right,black] {$h$};
+                \draw[->,HIMAtua] (0,1.85) -- (-1.85,1.85)
+                    node[midway,above] {$R$};
+                \draw[teal!80!black,thick] (-1.273,.51) -- (1.273,.51);
+                \node[teal!80!black,above,font=\scriptsize] at (0,.49) {irisan di $z$};
+            \end{tikzpicture}\par
+            \small Tampak samping wadah.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Latihan memilih metode volume}
+    \begin{latihan}
+        Tentukan bentuk irisan, radius yang diperlukan, dan volumenya.
+        \begin{enumerate}
+            \item $0\le y\le2x$ untuk $0\le x\le1$, diputar terhadap sumbu $x$.
+            \item $1\le y\le3$ untuk $0\le x\le2$, diputar terhadap sumbu $x$.
+            \item $0\le y\le x$ untuk $0\le x\le2$, diputar terhadap garis $x=3$.
+        \end{enumerate}
+    \end{latihan}
+    \onslide<2->{%
+        \begin{block}{Cek jawaban}
+            \begin{enumerate}
+                \item Cakram berjari-jari $2x$ memberi $4\pi/3$.
+                \item Cincin dengan $R=3$ dan $r=1$ memberi $16\pi$.
+                \item Cincin silinder berjari-jari $3-x$ memberi
+                    $2\pi\int_0^2(3-x)x\,dx=20\pi/3$.
+            \end{enumerate}
+        \end{block}
+    }
+\end{frame}
+
+% Kalkulus 2 Bab 4.pdf, halaman PDF 24--29 (cetak 168--173).
+\section{Panjang Suatu Kurva}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Hampiri kurva dengan lintasan poligonal}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{definisi}[Panjang busur]
+                Hubungkan titik-titik berurutan pada kurva. Jika limitnya
+                ada dan berhingga, panjang busurnya adalah
+                \[
+                    L=\lim_{\max\Delta x_i\to0}
+                       \sum_i\sqrt{(\Delta x_i)^2+(\Delta y_i)^2}.
+                \]
+            \end{definisi}
+            Setiap ruas lurus memiliki panjang dari Teorema Pythagoras.
+            Memperpendek subselang membuat lintasan poligonal mengikuti
+            kelengkungan kurva dengan lebih dekat.
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik aplikasi,width=5.75cm,xmin=0,xmax=3.11,
+                    ymin=0,ymax=4.95,xtick=\empty,ytick=\empty]
+                    \addplot[batas daerah,domain=.39:2.83] {.52*x^2+.22};
+                    \addplot[magenta,thick,mark=*,mark size=1.6pt] coordinates
+                        {(.5,.35) (1.25,1.0325) (2,2.3) (2.75,4.1525)};
+                    \draw[gray,dashed] (axis cs:1.25,1.0325) -- (axis cs:2,1.0325)
+                        node[midway,below,font=\scriptsize] {$\Delta x_i$}
+                        -- (axis cs:2,2.3) node[midway,right,font=\scriptsize] {$\Delta y_i$};
+                    \node[font=\scriptsize,magenta,above left] at (axis cs:1.59,1.61) {$\ell_i$};
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Kemiringan menentukan panjang tiap elemen busur}
+    Pada subselang $[x_{i-1},x_i]$, Teorema Nilai Rata-rata memberi
+    $\Delta y_i=f'(\xi_i)\Delta x_i$. Panjang tali busurnya menjadi
+    \[
+        \ell_i=\sqrt{(\Delta x_i)^2+(\Delta y_i)^2}
+              =\sqrt{1+[f'(\xi_i)]^2}\,\Delta x_i.
+    \]
+    \onslide<2->{%
+        \begin{teorema}[Panjang kurva $y=f(x)$]
+            Jika $f'$ kontinu pada $[a,b]$, limit jumlah di atas adalah
+            \[
+                L=\int_a^b\sqrt{1+[f'(x)]^2}\,dx,\qquad
+                ds=\sqrt{1+[f'(x)]^2}\,dx.
+            \]
+        \end{teorema}
+    }
+    \onslide<3->{Faktor akar selalu paling sedikit $1$. Pada segmen datar,
+    $f'=0$ sehingga panjang busurnya sama dengan panjang mendatarnya.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Rumus yang sama dapat dibaca dari arah $y$}
+    \begin{teorema}[Panjang kurva $x=g(y)$]
+        Jika $g'$ kontinu pada $[c,d]$, panjang dari $y=c$ ke $y=d$ adalah
+        \[
+            L=\int_c^d\sqrt{1+[g'(y)]^2}\,dy,\qquad
+            ds=\sqrt{1+[g'(y)]^2}\,dy.
+        \]
+    \end{teorema}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.47\textwidth}
+            Pada kurva $y=f(x)$, kemiringan yang dipakai adalah $dy/dx$
+            dan batasnya berupa koordinat $x$.
+        \end{column}
+        \begin{column}{.49\textwidth}
+            Pada kurva $x=g(y)$, gunakan $dx/dy$ dengan batas koordinat $y$.
+            Pilih bentuk yang halus pada bagian kurva yang dihitung.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Contoh panjang kurva pangkat terhadap $x$}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{contoh}
+                Hitung panjang $y=\tfrac23x^{3/2}$ dari $x=1$ ke $x=3$.
+            \end{contoh}
+            \onslide<2->{Turunannya $\sqrt{x}$, sehingga $ds=\sqrt{1+x}\,dx$.}
+            \onslide<3->{%
+                \[
+                    L=\int_1^3\sqrt{1+x}\,dx
+                      =\frac23\bigl(8-2\sqrt2\bigr).
+                \]
+                Ujung busurnya berada pada tinggi $2/3$ dan $2\sqrt3$.}
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik aplikasi,width=5.75cm,xmin=0,xmax=3.52,
+                    ymin=0,ymax=4.25,xtick={1,3},ytick=\empty]
+                    \addplot[gray,domain=0:3.31] {2*x^(3/2)/3};
+                    \addplot[batas daerah,domain=1:3] {2*x^(3/2)/3};
+                    \draw[gray,dashed] (axis cs:1,0) -- (axis cs:1,.66667);
+                    \draw[gray,dashed] (axis cs:3,0) -- (axis cs:3,3.46410);
+                    \addplot[only marks,mark=*,mark size=1.8pt,magenta]
+                        coordinates {(1,.66667) (3,3.46410)};
+                    \node[font=\scriptsize,HIMAtua] at (axis cs:1.44,2.51) {$y=\tfrac23x^{3/2}$};
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Busur yang sama dihitung terhadap $y$}
+    Dari $y=\tfrac23x^{3/2}$ diperoleh $x=(3y/2)^{2/3}$ dan
+    $dx/dy=(3y/2)^{-1/3}$.
+    \onslide<2->{Batasnya berubah menjadi $y=2/3$ dan $y=2\sqrt3$.
+    \[
+        L=\int_{2/3}^{2\sqrt3}\sqrt{1+(3y/2)^{-2/3}}\,dy.
+    \]}
+    \onslide<3->{Ambil $u=(3y/2)^{2/3}$, sehingga $dy=\sqrt u\,du$.
+    \[
+        L=\int_1^3\sqrt{1+u^{-1}}\sqrt u\,du
+         =\int_1^3\sqrt{1+u}\,du
+         =\frac23(8-2\sqrt2).
+    \]
+    Kedua cara menghitung panjang busur yang sama dengan peubah berbeda.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Pisahkan kurva di titik runcing}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.55\textwidth}
+            \begin{contoh}
+                Tentukan panjang $y=|x|^{2/3}$ pada $[-1,1]$.
+            \end{contoh}
+            \onslide<2->{Kemiringan terhadap $x$ tidak terbatas saat mendekati $0$.
+            Tulis setiap cabang sebagai $x=\pm y^{3/2}$ untuk $0\le y\le1$.}
+            \onslide<3->{Masing-masing memakai $ds=\sqrt{1+9y/4}\,dy$.
+            \[
+                L=2\int_0^1\sqrt{1+\tfrac94 y}\,dy
+                 =\frac{2(13\sqrt{13}-8)}{27}.
+            \]
+            Tanda berbeda pada $dx/dy$ hilang saat dikuadratkan.}
+        \end{column}
+        \begin{column}{.41\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik aplikasi,width=5.6cm,axis equal image,xmin=-1.25,xmax=1.25,
+                    ymin=-.18,ymax=1.28,xtick={-1,1},ytick={1}]
+                    \addplot[teal!80!black,very thick,domain=0:1] ({-x^(3/2)},{x});
+                    \addplot[batas daerah,domain=0:1] ({x^(3/2)},{x});
+                    \fill[magenta] (axis cs:0,0) circle[radius=1.7pt];
+                    \node[font=\scriptsize,magenta,anchor=west] at (axis cs:.17,.17) {titik runcing};
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Batasi panjang dengan kemiringan minimum dan maksimum}
+    \begin{teorema}[Batas panjang busur]
+        Jika $m\le |f'(x)|\le M$ pada $[a,b]$ dengan $m\ge0$, maka
+        \[
+            (b-a)\sqrt{1+m^2}\le L\le(b-a)\sqrt{1+M^2}.
+        \]
+    \end{teorema}
+    Akar $\sqrt{1+t^2}$ naik untuk $t\ge0$. Terapkan batas itu pada
+    integran panjang busur, lalu integralkan.
+    \begin{contoh}
+        Untuk $y=\sin x$ pada $[0,\pi/3]$, berlaku
+        $1/2\le\cos x\le1$.
+        \onslide<2->{Maka $\pi\sqrt5/6\le L\le\pi\sqrt2/3$.}
+    \end{contoh}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Hampiri panjang busur dengan Simpson}
+    Untuk $y=\sin x$ pada $[0,\pi/3]$, integrannya
+    $q(x)=\sqrt{1+\cos^2x}$. Ambil $n=4$ dan $h=\pi/12$.
+    \onslide<2->{%
+        \begin{center}
+            \renewcommand{\arraystretch}{1.25}
+            \begin{tabular}{c|ccccc}
+                $x_i$ & $0$ & $\pi/12$ & $\pi/6$ & $\pi/4$ & $\pi/3$\\ \hline
+                $q(x_i)$ & $1{,}414214$ & $1{,}390328$ & $1{,}322876$
+                         & $1{,}224745$ & $1{,}118034$\\
+                Bobot & $1$ & $4$ & $2$ & $4$ & $1$
+            \end{tabular}
+        \end{center}
+        Jumlah berbobot dikalikan $\pi/36$ menghasilkan $L\approx1{,}364698$.
+        Hampiran ini berada di antara batas $1{,}170802$ dan $1{,}480961$.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Latihan panjang busur}
+    \begin{latihan}
+        Tulis elemen $ds$ dan tentukan panjangnya.
+        \begin{enumerate}
+            \item $y=3x-1$ dari $x=0$ ke $x=2$. Cek dengan Pythagoras.
+            \item $x=\tfrac23 y^{3/2}$ dari $y=0$ ke $y=8$.
+        \end{enumerate}
+    \end{latihan}
+    \onslide<2->{%
+        \begin{block}{Cek jawaban}
+            \begin{enumerate}
+                \item $ds=\sqrt{10}\,dx$, sehingga $L=2\sqrt{10}$.
+                    Perpindahan mendatar $2$ dan tegak $6$ memberi nilai yang sama.
+                \item $ds=\sqrt{1+y}\,dy$, sehingga $L=\tfrac23(27-1)=52/3$.
+            \end{enumerate}
+        \end{block}
+    }
+\end{frame}
+
+% Kalkulus 2 Bab 4.pdf, halaman PDF 29--32 (cetak 173--176).
+\section{Luas Permukaan Benda Putar}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Putaran satu tali busur menghasilkan selimut kerucut terpancung}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            Jika tali busur sepanjang $\ell$ mempunyai jarak ujung
+            $r_1$ dan $r_2$ ke sumbu putar, luas selimut hasil putarannya
+            \[
+                \Delta K=\pi(r_1+r_2)\ell
+                         =2\pi\left(\frac{r_1+r_2}{2}\right)\ell.
+            \]
+            Keliling pada radius rata-rata dikalikan panjang miring.
+            Saat $r_1=r_2$, bentuknya selimut silinder.
+            Saat $r_1=0$, bentuknya selimut kerucut.
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}[>=stealth]
+                \fill[HIMAmuda!23] (.32,.65) -- (3.49,1.22)
+                    arc[start angle=90,end angle=-90,x radius=.30,y radius=1.22]
+                    -- (.32,-.65) arc[start angle=-90,end angle=-270,x radius=.19,y radius=.65] -- cycle;
+                \draw[batas daerah] (.32,.65) -- (3.49,1.22)
+                    node[midway,above,black] {$\ell$};
+                \draw[batas daerah] (.32,-.65) -- (3.49,-1.22);
+                \draw[HIMAtua,thick] (.32,0) ellipse[x radius=.19,y radius=.65];
+                \draw[batas daerah] (3.49,0) ellipse[x radius=.30,y radius=1.22];
+                \draw[->,gray,dashed] (-.14,0) -- (4.13,0) node[right] {$x$};
+                \draw[->,teal!80!black] (.32,0) -- (.32,.65)
+                    node[midway,left,black] {$r_1$};
+                \draw[->,teal!80!black] (3.49,0) -- (3.49,1.22)
+                    node[midway,right,black] {$r_2$};
+            \end{tikzpicture}\par
+            \small Yang dihitung luas selimutnya.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Elemen luas adalah keliling dikali elemen panjang busur}
+    Ketika partisi makin halus, panjang tali busur mendekati $ds$ dan
+    radius rata-ratanya mendekati jarak $\rho$ ke sumbu. Maka $dK=2\pi\rho\,ds$.
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{teorema}[Putaran terhadap sumbu $x$]
+                Jika $y=f(x)\ge0$ dan $f'$ kontinu pada $[a,b]$,
+                \[
+                    K=2\pi\int_a^b f(x)\sqrt{1+[f'(x)]^2}\,dx.
+                \]
+            \end{teorema}
+            Radiusnya $f(x)$ dan elemen panjangnya menggunakan $dx$.
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{teorema}[Putaran terhadap sumbu $y$]
+                Jika $x=g(y)\ge0$ dan $g'$ kontinu pada $[c,d]$,
+                \[
+                    K=2\pi\int_c^d g(y)\sqrt{1+[g'(y)]^2}\,dy.
+                \]
+            \end{teorema}
+            Radiusnya $g(y)$ dan elemen panjangnya menggunakan $dy$.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Luas zona bola hanya bergantung pada lebar sepanjang sumbu}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            Untuk $y=\sqrt{R^2-x^2}$, berlaku $y'=-x/\sqrt{R^2-x^2}$
+            pada $|x|<R$. Maka
+            \[
+                y\sqrt{1+(y')^2}=R.
+            \]
+            \onslide<2->{Jadi zona dari $a$ ke $b$ memiliki luas
+            $K=2\pi R(b-a)$. Untuk $R=2$ dan $[-1,1]$, luasnya $8\pi$.}
+            \onslide<3->{Untuk seluruh bola, dekatkan batas ke $-R$ dan $R$.
+            Integran yang sudah disederhanakan tetap konstan, memberi $4\pi R^2$.}
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}[>=stealth]
+                \fill[HIMAmuda!13] (0,0) circle[radius=1.7];
+                \begin{scope}
+                    \clip (0,0) circle[radius=1.7];
+                    \fill[HIMAmuda!46] (-.85,-1.74) rectangle (.85,1.74);
+                \end{scope}
+                \draw[batas daerah] (0,0) circle[radius=1.7];
+                \draw[teal!75!black] (-.85,0) ellipse[x radius=.22,y radius=1.47224];
+                \draw[teal!75!black] (.85,0) ellipse[x radius=.22,y radius=1.47224];
+                \draw[->,gray,dashed] (-2.04,0) -- (2.05,0) node[right] {$x$};
+                \node[below] at (-.85,-1.5) {$a$};
+                \node[below] at (.85,-1.5) {$b$};
+                \node[HIMAtua] at (0,.62) {\small zona};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Gunakan $dy$ bila radius dinyatakan sebagai fungsi tinggi}
+    \begin{contoh}
+        Kurva $x=2y^3$ untuk $0\le y\le1$ diputar terhadap sumbu $y$.
+        Hitung luas permukaannya.
+    \end{contoh}
+    \onslide<2->{Radiusnya $2y^3$ dan $dx/dy=6y^2$. Dengan demikian
+    \[
+        K=4\pi\int_0^1 y^3\sqrt{1+36y^4}\,dy.
+    \]}
+    \onslide<3->{Ambil $u=1+36y^4$, $du=144y^3\,dy$.
+    \[
+        K=\frac{\pi}{36}\int_1^{37}\sqrt u\,du
+         =\frac{\pi}{54}(37\sqrt{37}-1).
+    \]}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Luas selimut kerucut dari garis pembentuk}
+    \begin{contoh}
+        Putar $y=(r/h)x$ pada $0\le x\le h$ terhadap sumbu $x$.
+    \end{contoh}
+    \onslide<2->{Faktor panjang busurnya $\sqrt{1+(r/h)^2}$. Jadi
+    \[
+        K=2\pi\int_0^h\frac{r}{h}x\,\sqrt{1+(r/h)^2}\,dx
+         =\pi r\sqrt{h^2+r^2}.
+    \]}
+    \onslide<3->{Nilai $\sqrt{h^2+r^2}$ adalah panjang garis pelukis.
+    Jika $r=3$ dan $h=4$, luas selimutnya $15\pi$.
+    Luas alas hanya ditambahkan jika yang diminta adalah luas total kerucut.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Ganti radius ketika sumbu putar digeser}
+    \begin{contoh}
+        Putar segmen $y=x$ untuk $0\le x\le1$ terhadap garis $y=2$.
+    \end{contoh}
+    \onslide<2->{Radiusnya $|x-2|=2-x$ pada selang ini.
+    Panjang elemen busurnya $ds=\sqrt2\,dx$.}
+    \onslide<3->{Maka
+    \[
+        K=2\pi\sqrt2\int_0^1(2-x)\,dx=3\pi\sqrt2.
+    \]
+    Pergeseran sumbu mengubah radius, sedangkan elemen panjang busurnya tetap.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Latihan luas permukaan benda putar}
+    \begin{latihan}
+        Tentukan radius dan elemen $ds$, lalu hitung luas yang tersapu.
+        \begin{enumerate}
+            \item $y=2$ pada $[0,3]$, putar terhadap sumbu $x$.
+            \item $y=x$ pada $[0,2]$, putar terhadap sumbu $x$.
+            \item $x=2y$ pada $0\le y\le1$, putar terhadap sumbu $y$.
+        \end{enumerate}
+    \end{latihan}
+    \onslide<2->{%
+        \begin{block}{Cek jawaban}
+            \begin{enumerate}
+                \item $2\pi(2)(3)=12\pi$, selimut silinder.
+                \item $2\pi\int_0^2 x\sqrt2\,dx=4\pi\sqrt2$.
+                \item $2\pi\int_0^1 2y\sqrt5\,dy=2\pi\sqrt5$.
+            \end{enumerate}
+        \end{block}
+    }
+\end{frame}
+
+% Kalkulus 2 Bab 4.pdf, halaman PDF 32--46 (cetak 176--190).
+\section[Titik Berat]{Titik Berat (Pusat Massa, Centroid)}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Momen mengukur pengaruh massa dan jaraknya ke sumbu}
+    \begin{definisi}[Pusat massa sistem partikel]
+        Untuk partikel bermassa $m_i>0$ pada $(x_i,y_i)$, massa total dan
+        momen statisnya ialah
+        \[
+            M=\sum_i m_i,\qquad M_x=\sum_i y_i m_i,\qquad M_y=\sum_i x_i m_i.
+        \]
+        Titik berat $Z=(\bar x,\bar y)$ memenuhi
+        \[
+            \bar x=\frac{M_y}{M},\qquad \bar y=\frac{M_x}{M}.
+        \]
+    \end{definisi}
+    Momen terhadap sumbu $x$ memakai koordinat $y$, jarak bertanda
+    ke sumbu tersebut. Jika seluruh massa ditempatkan di $Z$,
+    kedua momennya tetap sama.
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Partikel yang lebih berat menarik pusat massa lebih dekat}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{contoh}
+                Massa $1,2,3$ berturut-turut berada di $(-2,1)$, $(1,1)$,
+                dan $(2,3)$. Cari titik beratnya.
+            \end{contoh}
+            \onslide<2->{%
+                \[
+                    \begin{aligned}
+                        M&=1+2+3=6,\\
+                        M_y&=1(-2)+2(1)+3(2)=6,\\
+                        M_x&=1(1)+2(1)+3(3)=12.
+                    \end{aligned}
+                \]
+            }
+            \onslide<3->{Maka $Z=(1,2)$. Koordinat $-2$ pada partikel pertama
+            menyumbang momen negatif terhadap sumbu $y$.}
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik aplikasi,width=5.75cm,xmin=-2.72,xmax=2.91,
+                    ymin=-.26,ymax=3.65,xtick={-2,1,2},ytick={1,2,3}]
+                    \fill[HIMAtua] (axis cs:-2,1) circle[radius=1.75pt];
+                    \fill[HIMAtua] (axis cs:1,1) circle[radius=2.3pt];
+                    \fill[HIMAtua] (axis cs:2,3) circle[radius=2.95pt];
+                    \node[font=\scriptsize,HIMAtua,above] at (axis cs:-2,1) {$m_1$};
+                    \node[font=\scriptsize,HIMAtua,below right] at (axis cs:1,1) {$m_2$};
+                    \node[font=\scriptsize,HIMAtua,above] at (axis cs:2,3) {$m_3$};
+                    \only<3->{%
+                        \draw[dashed,magenta] (axis cs:0,2) -- (axis cs:1,2) -- (axis cs:1,0);
+                        \fill[magenta] (axis cs:1,2) circle[radius=2.1pt];
+                        \node[font=\scriptsize,magenta,above left] at (axis cs:1,2) {$Z$};
+                    }
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Bidang homogen dapat dipandang sebagai kumpulan strip}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            Bidang homogen mempunyai rapat massa per satuan luas $\delta$
+            yang konstan. Untuk strip di antara $y=g(x)$ dan $y=f(x)$,
+            \[
+                dA=(f-g)\,dx,\qquad dM=\delta\,dA.
+            \]
+            Posisi pusat strip kira-kira $(x,(f+g)/2)$.
+            \onslide<2->{%
+                \[
+                    dM_y=x\,dM,\qquad
+                    dM_x=\frac{f+g}{2}\,dM.
+                \]
+                Setelah diintegralkan, kedua momen dibagi massa total.}
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik aplikasi,width=5.75cm,xmin=0,xmax=3.42,
+                    ymin=0,ymax=4.25,xtick={.4,1.69,2.85},
+                    xticklabels={$a$,$x$,$b$},ytick=\empty]
+                    \addplot[batas daerah,name path=atas,domain=.4:2.85] {2+.22*x^2};
+                    \addplot[teal!80!black,name path=bawah,domain=.4:2.85] {.45+.12*x};
+                    \addplot[draw=none,fill=HIMAmuda!24] fill between[of=atas and bawah];
+                    \filldraw[irisan daerah] (axis cs:1.57,.6384) -- (axis cs:1.57,2.54228)
+                        -- (axis cs:1.81,2.72074) -- (axis cs:1.81,.6672) -- cycle;
+                    \fill[magenta] (axis cs:1.69,1.6410) circle[radius=1.9pt];
+                    \node[font=\scriptsize,magenta,anchor=west] at (axis cs:1.78,1.64)
+                        {pusat strip};
+                    \node[font=\scriptsize,HIMAtua] at (axis cs:1.23,3.16) {$f(x)$};
+                    \node[font=\scriptsize,teal!80!black] at (axis cs:2.52,.43) {$g(x)$};
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Rumus titik berat memakai momen per satuan luas}
+    \begin{teorema}[Titik berat bidang datar homogen]
+        Untuk $f\ge g$ di $[a,b]$ dan luas $A=\int_a^b(f-g)\,dx>0$,
+        \[
+            \bar x=\frac{1}{A}\int_a^b x(f-g)\,dx,\qquad
+            \bar y=\frac{1}{2A}\int_a^b(f^2-g^2)\,dx.
+        \]
+    \end{teorema}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            Rapat massa $\delta$ muncul pada momen dan massa total,
+            lalu saling habis. Karena itu koordinat hanya bergantung pada bentuk.
+        \end{column}
+        \begin{column}{.48\textwidth}
+            Untuk daerah antara $y=f(x)\ge0$ dan sumbu $x$, gunakan $g=0$.
+            Integran momennya menjadi $xf(x)$ dan $f(x)^2/2$.
+        \end{column}
+    \end{columns}
+    \onslide<2->{Jika ada sumbu simetri, pusat massa terletak pada sumbu itu.
+    Refleksi memasangkan bagian-bagian bermassa sama.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Simetri menentukan satu koordinat titik berat}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{contoh}
+                Tentukan titik berat daerah di bawah $y=2\sin x$
+                pada $[0,\pi]$.
+            \end{contoh}
+            \onslide<2->{Simetri terhadap $x=\pi/2$ memberi $\bar x=\pi/2$.
+            Luasnya $A=\int_0^\pi 2\sin x\,dx=4$.}
+            \onslide<3->{%
+                \[
+                    \bar y=\frac1{2(4)}\int_0^\pi 4\sin^2x\,dx
+                          =\frac{\pi}{4}.
+                \]
+                Jadi $Z=(\pi/2,\pi/4)$.}
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik aplikasi,width=5.75cm,xmin=-.2,xmax=3.55,
+                    ymin=-.28,ymax=2.42,xtick={1.570796,3.141593},
+                    xticklabels={$\pi/2$,$\pi$},ytick={2}]
+                    \addplot[draw=none,fill=HIMAmuda!31,domain=0:pi]
+                        {2*sin(deg(x))} \closedcycle;
+                    \addplot[batas daerah,domain=0:pi] {2*sin(deg(x))};
+                    \draw[dashed,teal!80!black] (axis cs:1.570796,0) -- (axis cs:1.570796,2.15);
+                    \only<3->{%
+                        \fill[magenta] (axis cs:1.570796,.785398) circle[radius=2pt];
+                        \node[font=\scriptsize,magenta,above right] at (axis cs:1.570796,.785398) {$Z$};
+                    }
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Titik berat daerah dengan batas atas dan bawah}
+    \begin{contoh}
+        Cari titik berat daerah antara $y=x$ dan $y=x^2$ pada $[0,1]$.
+    \end{contoh}
+    \onslide<2->{Luasnya $A=\int_0^1(x-x^2)\,dx=1/6$.
+    Untuk koordinat mendatar, kalikan lebar strip dengan letaknya $x$.
+    \[
+        \bar x=6\int_0^1 (x^2-x^3)\,dx=\frac12.
+    \]}
+    \onslide<3->{Untuk koordinat tegak, gunakan selisih kuadrat tinggi kurva.
+    \[
+        \bar y=3\int_0^1(x^2-x^4)\,dx=\frac25.
+    \]
+    Jadi titik beratnya $Z=(1/2,2/5)$.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Dalil Guldin I menghubungkan volume dan titik berat bidang}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{teorema}[Dalil Guldin I]
+                Putar penuh daerah dengan luas $A$ terhadap garis sebidang.
+                Jika daerah berada di satu sisi garis dan sumbu tidak
+                memotong interiornya, maka
+                \[
+                    V=2\pi d\,A
+                \]
+                dengan $d$ jarak pusat massa bidang homogen ke sumbu.
+            \end{teorema}
+            Rumus cincin silinder memberi $V=2\pi\int \rho\,dA$,
+            dengan $\rho$ jarak elemen luas ke sumbu. Rata-rata
+            jarak berbobot luas adalah $d$.
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}[>=stealth]
+                \draw[->,gray!80] (-.52,0) -- (3.6,0) node[right] {$x$};
+                \draw[magenta,dashed,thick] (1.56,0) ellipse[x radius=.27,y radius=1.53];
+                \filldraw[irisan daerah] (1.56,1.53) circle[radius=.47];
+                \draw[<->,magenta] (1.56,0) -- (1.56,1.53)
+                    node[midway,left,black] {$d$};
+                \fill[magenta] (1.56,1.53) circle[radius=1.8pt];
+                \node[above right,magenta] at (1.56,1.53) {$Z$};
+                \node[teal!80!black,right] at (2.05,1.42) {\small daerah $A$};
+                \node[below,magenta] at (1.56,-1.58) {\small lintasan $Z$};
+            \end{tikzpicture}\par
+            \small Pusat bidang menempuh satu keliling $2\pi d$.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Gunakan Guldin I untuk mencari volume atau jarak pusat}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                Lingkaran berjari-jari $1$ dengan pusat $(0,4)$
+                membatasi daerah yang diputar terhadap sumbu $x$.
+                Hitung volume torusnya.
+            \end{contoh}
+            \onslide<2->{Luas bidang $A=\pi$ dan jarak $d=4$ memberi
+            \[
+                V=(2\pi\cdot4)\pi=8\pi^2.
+            \]}
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                Tentukan $\bar y$ daerah di bawah $y=2\sin x$ pada $[0,\pi]$
+                dari volume hasil putar terhadap sumbu $x$.
+            \end{contoh}
+            \onslide<3->{Cakram memberi $V=4\pi\int_0^\pi\sin^2x\,dx=2\pi^2$.
+            Karena $A=4$,
+            \[
+                \bar y=\frac{V}{2\pi A}=\frac{\pi}{4}.
+            \]}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Titik berat benda putar terletak pada sumbu putarnya}
+    \begin{teorema}[Pusat massa volume homogen]
+        Elemen volume $dV$ memberi elemen massa $dM=\delta\,dV$.
+        Untuk benda putar dengan luas penampang $A$, koordinat pada
+        sumbu putarnya berbentuk
+        \[
+            \bar x=\frac{\int_a^b xA(x)\,dx}{\int_a^b A(x)\,dx}
+            \quad\text{atau}\quad
+            \bar y=\frac{\int_c^d yA(y)\,dy}{\int_c^d A(y)\,dy}.
+        \]
+    \end{teorema}
+    Gunakan $A(x)=\pi[f(x)]^2$ untuk cakram tegak lurus sumbu $x$,
+    atau $A(y)=\pi[g(y)]^2$ untuk cakram tegak lurus sumbu $y$.
+    Setiap cakram memusatkan massanya di pusat lingkaran.
+    Pada cincin, luas penampangnya diganti dengan selisih dua luas cakram.
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Penampang lebih luas memberi bobot lebih besar}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{contoh}
+                Daerah $0\le y\le\sqrt{x}$ pada $0\le x\le3$
+                diputar terhadap sumbu $x$. Cari titik berat volume homogen itu.
+            \end{contoh}
+            \onslide<2->{Luas tiap cakram $\pi x$. Maka
+            \[
+                \bar x=\frac{\int_0^3 \pi x^2\,dx}{\int_0^3 \pi x\,dx}
+                      =\frac{9}{9/2}=2.
+            \]}
+            \onslide<3->{Karena simetri, titik berat pada bidang gambar adalah
+            $(2,0)$. Koordinatnya lebih dekat ke ujung yang lebih lebar.}
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}[>=stealth]
+                \fill[HIMAmuda!22] plot[domain=0:3,samples=64] (\x,{.8*sqrt(\x)})
+                    -- plot[domain=3:0,samples=64] (\x,{-.8*sqrt(\x)}) -- cycle;
+                \draw[batas daerah] plot[domain=0:3,samples=64] (\x,{.8*sqrt(\x)});
+                \draw[batas daerah] plot[domain=0:3,samples=64] (\x,{-.8*sqrt(\x)});
+                \draw[batas daerah] (3,0) ellipse[x radius=.31,y radius=1.38564];
+                \draw[->,gray,dashed] (-.31,0) -- (3.75,0) node[right] {$x$};
+                \only<3->{%
+                    \draw[teal!80!black,dashed] (2,0) ellipse[x radius=.23,y radius=1.13137];
+                    \fill[magenta] (2,0) circle[radius=2pt] node[above left] {$Z$};
+                }
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Kawat homogen membobot posisi dengan panjang busur}
+    \begin{teorema}[Titik berat busur homogen]
+        Untuk busur dengan panjang $L>0$ dan rapat massa linear tetap,
+        $dM=\delta\,ds$. Titik beratnya memenuhi
+        \[
+            \bar x=\frac{1}{L}\int x\,ds,\qquad
+            \bar y=\frac{1}{L}\int y\,ds,\qquad L=\int ds.
+        \]
+    \end{teorema}
+    Gunakan $ds=\sqrt{1+[f'(x)]^2}\,dx$ untuk grafik $y=f(x)$
+    atau bentuk terhadap $y$ yang sesuai. Setiap potongan menyumbang
+    massa menurut panjangnya.
+    \onslide<2->{Kawat yang membentuk satu lingkaran penuh memiliki titik
+    berat di pusat lingkaran. Titik berat dapat berada di luar material kawat.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Titik berat busur seperempat lingkaran}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{contoh}
+                Tentukan titik berat kawat pada busur berjari-jari $r$
+                di kuadran I.
+            \end{contoh}
+            \onslide<2->{Pada sudut $\theta$, $x=r\cos\theta$,
+            $y=r\sin\theta$, dan $ds=r\,d\theta$.
+            Panjang busur $L=\pi r/2$.}
+            \onslide<3->{%
+                \[
+                    \bar x=\frac{\int_0^{\pi/2} r^2\cos\theta\,d\theta}{\pi r/2}
+                          =\frac{2r}{\pi}.
+                \]
+                Simetri diagonal memberi $\bar y=\bar x$. Untuk $r=2$,
+                titiknya $(4/\pi,4/\pi)$.}
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}[>=stealth]
+                \draw[->,gray!90] (-.2,0) -- (2.48,0) node[right] {$x$};
+                \draw[->,gray!90] (0,-.2) -- (0,2.45) node[above] {$y$};
+                \draw[gray,dashed] (0,0) -- (1.8,1.8) node[right,font=\scriptsize] {$y=x$};
+                \draw[batas daerah] (2,0) arc[start angle=0,end angle=90,radius=2];
+                \node[below] at (2,0) {$r$};
+                \node[left] at (0,2) {$r$};
+                \draw[teal!80!black] (0,0) -- (27:2);
+                \draw[teal!80!black] (.49,0) arc[start angle=0,end angle=27,radius=.49];
+                \node[teal!80!black] at (.7,.17) {\scriptsize $\theta$};
+                \only<3->{%
+                    \fill[magenta] (1.27324,1.27324) circle[radius=2pt]
+                        node[above left] {$Z$};
+                }
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Untuk kulit benda putar, bobotnya adalah luas selimut}
+    \begin{teorema}[Titik berat kulit benda putar homogen]
+        Karena $dM=\delta\,dK$, koordinat di sepanjang sumbu putar
+        adalah rata-rata berbobot luas permukaan.
+        \[
+            \begin{array}{c|c|c}
+                \text{Sumbu putar} & \text{Elemen luas} & \text{Koordinat pusat massa}\\[2pt] \hline
+                x & dK=2\pi y\,ds & \bar x=\dfrac{\int xy\,ds}{\int y\,ds}\\[5pt]
+                y & dK=2\pi x\,ds & \bar y=\dfrac{\int yx\,ds}{\int x\,ds}
+            \end{array}
+        \]
+        Rumus memakai busur $y\ge0$ untuk sumbu $x$ dan $x\ge0$ untuk sumbu $y$.
+    \end{teorema}
+    Simetri menempatkan pusat massa pada sumbu. Potongan busur dengan
+    radius lebih besar menyapu luas yang lebih besar.
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Titik berat selimut kerucut bergeser menuju alas}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{contoh}
+                Putar $y=(r/h)x$ pada $[0,h]$ terhadap sumbu $x$.
+                Cari titik berat selimutnya.
+            \end{contoh}
+            \onslide<2->{Karena $ds=\sqrt{1+(r/h)^2}\,dx$, faktor konstan
+            saling habis dalam perbandingan momen terhadap luas.}
+            \onslide<3->{%
+                \[
+                    \bar x=\frac{\int_0^h x^2\,dx}{\int_0^h x\,dx}=\frac{2h}{3}.
+                \]
+                Untuk $h=4$, pusatnya $(8/3,0)$ pada bidang gambar.}
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}[>=stealth]
+                \fill[HIMAmuda!28] (0,0) -- (3.55,1.17)
+                    arc[start angle=90,end angle=-90,x radius=.29,y radius=1.17] -- cycle;
+                \draw[batas daerah] (0,0) -- (3.55,1.17) (0,0) -- (3.55,-1.17);
+                \draw[batas daerah] (3.55,0) ellipse[x radius=.29,y radius=1.17];
+                \draw[->,gray,dashed] (-.31,0) -- (4.1,0) node[right] {$x$};
+                \node[below] at (3.55,-1.24) {$x=h$};
+                \only<3->{%
+                    \fill[magenta] (2.3667,0) circle[radius=2pt] node[above left] {$Z$};
+                    \draw[magenta,dotted] (2.3667,0) -- (2.3667,-.79);
+                }
+            \end{tikzpicture}\par
+            \small Jarak $\bar x$ diukur dari ujung runcing.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Dalil Guldin II menghubungkan luas permukaan dan titik berat busur}
+    \begin{teorema}[Dalil Guldin II]
+        Busur datar dengan panjang $L$ diputar penuh terhadap garis sebidang.
+        Jika busur di satu sisi garis, dengan kemungkinan menyentuhnya di ujung,
+        luas permukaan hasil putarnya
+        \[
+            K=2\pi d\,L,
+        \]
+        dengan $d$ jarak titik berat busur homogen ke sumbu putar.
+    \end{teorema}
+    Untuk putaran terhadap sumbu $x$ dari busur $y\ge0$,
+    $K=2\pi\int y\,ds=2\pi\bar y\,L$.
+    \onslide<2->{Guldin I memakai luas daerah dan pusat bidang.
+    Guldin II memakai panjang kurva dan pusat busur.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Guldin II dapat menentukan titik berat busur}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{contoh}
+                Tentukan titik berat kawat berbentuk setengah lingkaran
+                bagian atas dengan radius $r$.
+            \end{contoh}
+            \onslide<2->{Simetri memberi $\bar x=0$. Perputaran busur
+            terhadap sumbu $x$ menghasilkan bola, sehingga $K=4\pi r^2$
+            dan $L=\pi r$.}
+            \onslide<3->{%
+                \[
+                    \bar y=\frac{K}{2\pi L}
+                          =\frac{4\pi r^2}{2\pi(\pi r)}
+                          =\frac{2r}{\pi}.
+                \]
+                Ini posisi pusat kawat yang rapat massanya seragam.}
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}[>=stealth]
+                \draw[->,gray!90] (-2.2,0) -- (2.25,0) node[right] {$x$};
+                \draw[->,gray!90] (0,-.23) -- (0,2.16) node[above] {$y$};
+                \draw[batas daerah] (1.78,0) arc[start angle=0,end angle=180,radius=1.78];
+                \node[below] at (-1.78,0) {$-r$};
+                \node[below] at (1.78,0) {$r$};
+                \only<3->{%
+                    \fill[magenta] (0,1.13318) circle[radius=2.1pt]
+                        node[above left] {$Z$};
+                    \draw[<->,magenta] (.38,0) -- (.38,1.13318)
+                        node[midway,right,black] {$d$};
+                }
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Latihan titik berat dan Dalil Guldin}
+    \begin{latihan}
+        Tentukan bobot massa sesuai bentuknya.
+        \begin{enumerate}
+            \item Cari titik berat bidang $0\le y\le2x$ pada $[0,1]$,
+                lalu volume putar terhadap sumbu $x$ dengan Guldin I.
+            \item Cari titik berat busur setengah lingkaran bagian atas berjari-jari $3$.
+            \item Cari titik berat selimut tabung dari putaran $y=2$ pada $[0,4]$
+                terhadap sumbu $x$.
+        \end{enumerate}
+    \end{latihan}
+    \onslide<2->{%
+        \begin{block}{Cek jawaban}
+            \begin{enumerate}
+                \item $Z=(2/3,2/3)$, $A=1$, dan $V=4\pi/3$.
+                \item $Z=(0,6/\pi)$ dari simetri dan Guldin II.
+                \item $Z=(2,0)$ karena setiap satuan panjang $x$ menyapu luas yang sama.
+            \end{enumerate}
+        \end{block}
+    }
+\end{frame}
+
+\end{document}

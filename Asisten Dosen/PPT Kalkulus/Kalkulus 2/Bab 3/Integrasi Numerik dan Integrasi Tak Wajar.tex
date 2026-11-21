@@ -1,0 +1,1392 @@
+\documentclass{../../kalkulus-ppt}
+
+\author[Tetew]{Teosofi Hidayah Agung}
+\date{\today}
+\title[Kalkulus 2 - Bab 3]{Integrasi Numerik dan Integrasi Tak Wajar}
+\institute[Matematika ITS]{Departemen Matematika\\ Institut Teknologi Sepuluh Nopember}
+\titlegraphic{{\includegraphics[scale=0.3]{ITS.png}$\quad$\includegraphics[scale=0.02]{M.png}}}
+
+\setbeamertemplate{itemize items}[circle]
+\pgfplotsset{
+    grafik integral/.style={
+        width=6.15cm,height=4.45cm,axis lines=middle,
+        xlabel={$x$},ylabel={$y$},samples=100,
+        ticklabel style={font=\scriptsize},label style={font=\scriptsize},
+        every axis plot/.append style={thick}
+    }
+}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Daftar isi}
+    \tableofcontents
+\end{frame}
+
+% KALKULUS 2 BAB 3.pdf, halaman PDF 1--15 (cetak 107--121).
+\section{Integrasi Numerik}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Mengganti luas dengan jumlah luas persegi panjang}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.53\textwidth}
+            \begin{definisi}[Hampiran jumlah Riemann]
+                Bagi $[a,b]$ menjadi $n$ subselang sama lebar
+                $h=(b-a)/n$. Tulis $x_i=a+ih$. Untuk setiap
+                $x_i^*\in[x_{i-1},x_i]$, gunakan
+                \[
+                    \int_a^b f(x)\,dx\approx h\sum_{i=1}^{n}f(x_i^*).
+                \]
+            \end{definisi}
+            Setiap titik sampel menentukan tinggi untuk satu subselang.
+            Jika $f$ kontinu, jumlah itu menuju integral saat $n\to\infty$.
+            Contohnya, $\int_0^1 e^{-x^2}\,dx$ dapat dihampiri dari nilai-nilai $f$.
+        \end{column}
+        \begin{column}{.43\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik integral,width=5.85cm,clip mode=individual,
+                    xmin=0,xmax=3.35,ymin=0,ymax=3.65,xtick={1,2,3},
+                    xticklabels={$x_1$,$x_2$,$x_3$},ytick=\empty]
+                    \filldraw[fill=HIMAmuda!30,draw=teal!70!black]
+                        (axis cs:0,0) rectangle (axis cs:1,.8125);
+                    \filldraw[fill=HIMAmuda!30,draw=teal!70!black]
+                        (axis cs:1,0) rectangle (axis cs:2,1.3125);
+                    \filldraw[fill=HIMAmuda!30,draw=teal!70!black]
+                        (axis cs:2,0) rectangle (axis cs:3,2.3125);
+                    \addplot[HIMAtua,very thick,domain=0:3] {.75+x^2/4};
+                    \addplot[only marks,mark=*,mark size=1.6pt,HIMAtua]
+                        coordinates {(.5,.8125) (1.5,1.3125) (2.5,2.3125)};
+                    \node[font=\scriptsize,below=3pt] at (axis cs:0,0) {$x_0$};
+                \end{axis}
+            \end{tikzpicture}\par
+            \small Tinggi persegi panjang diambil di titik tengah.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Tiga pilihan titik sampel pada partisi yang sama}
+    \begin{block}{Ujung kiri, ujung kanan, dan titik tengah}
+        Dengan $y_i=f(x_i)$ dan $m_i=(x_{i-1}+x_i)/2$,
+        \[
+            L_n=h\sum_{i=0}^{n-1}y_i,\qquad
+            R_n=h\sum_{i=1}^{n}y_i,\qquad
+            M_n=h\sum_{i=1}^{n} f(m_i).
+        \]
+    \end{block}
+    \begin{contoh}
+        Untuk fungsi yang naik, titik mana memberi tinggi terkecil dan terbesar
+        di setiap subselang?
+    \end{contoh}
+    \onslide<2->{$f(x_{i-1})$ adalah tinggi terkecil dan $f(x_i)$ tinggi terbesar.
+    Karena itu $L_n\le\int_a^b f(x)\,dx\le R_n$.
+    Pada fungsi yang turun, urutan $L_n$ dan $R_n$ terbalik.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Rata-rata dua ujung membentuk trapesium}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.53\textwidth}
+            \begin{teorema}[Aturan trapesium]
+                \[
+                    T_n=\tfrac12(L_n+R_n)
+                        =\frac h2\left[y_0+2\sum_{i=1}^{n-1}y_i+y_n\right].
+                \]
+            \end{teorema}
+            Pada $[x_{i-1},x_i]$, garis penghubung kedua ujung memberikan
+            luas bertanda $\tfrac h2(y_{i-1}+y_i)$. Titik interior dipakai
+            oleh dua trapesium, sehingga koefisiennya $2$.
+        \end{column}
+        \begin{column}{.43\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik integral,width=5.85cm,clip mode=individual,
+                    xmin=0,xmax=3.35,ymin=0,ymax=3.65,xtick={1,2,3},
+                    xticklabels={$x_1$,$x_2$,$x_3$},ytick=\empty]
+                    \filldraw[fill=HIMAmuda!30,draw=teal!80!black]
+                        (axis cs:0,0) -- (axis cs:0,.75)
+                        -- (axis cs:1,1) -- (axis cs:1,0) -- cycle;
+                    \filldraw[fill=HIMAmuda!22,draw=teal!80!black]
+                        (axis cs:1,0) -- (axis cs:1,1)
+                        -- (axis cs:2,1.75) -- (axis cs:2,0) -- cycle;
+                    \filldraw[fill=HIMAmuda!30,draw=teal!80!black]
+                        (axis cs:2,0) -- (axis cs:2,1.75)
+                        -- (axis cs:3,3) -- (axis cs:3,0) -- cycle;
+                    \addplot[HIMAtua,very thick,domain=0:3] {.75+x^2/4};
+                    \node[font=\scriptsize,below=3pt] at (axis cs:0,0) {$x_0$};
+                \end{axis}
+            \end{tikzpicture}\par
+            \small Tiap ruas hijau menghubungkan dua nilai ujung.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Luas garis singgung setara dengan hampiran titik tengah}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.52\textwidth}
+            Di subselang selebar $h$ dengan titik tengah $m$, garis singgungnya
+            $\ell(x)=f(m)+f'(m)(x-m)$.
+            \[
+                \int_{m-h/2}^{m+h/2}\ell(x)\,dx=h f(m).
+            \]
+            Suku $f'(m)(x-m)$ mempunyai integral nol karena kedua sisi $m$
+            sama lebar. Jadi garis singgung dan garis datar $y=f(m)$
+            memberi hampiran yang sama.
+        \end{column}
+        \begin{column}{.44\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik integral,width=5.95cm,xmin=0,xmax=2.25,
+                    ymin=0,ymax=5.65,xtick={0,1,2},
+                    xticklabels={$x_{i-1}$,$m$,$x_i$},ytick={2},yticklabels={$f(m)$}]
+                    \fill[HIMAmuda!35] (axis cs:0,0) -- (axis cs:0,2) -- (axis cs:1,2) -- cycle;
+                    \fill[HIMAmuda!35] (axis cs:1,2) -- (axis cs:2,2) -- (axis cs:2,4) -- cycle;
+                    \addplot[HIMAtua,very thick,domain=0:2] {1+x^2};
+                    \addplot[teal!85!black,domain=0:2] {2*x};
+                    \draw[gray,dashed,thick] (axis cs:0,2) -- (axis cs:2,2);
+                    \draw[gray,dashed] (axis cs:1,0) -- (axis cs:1,2);
+                    \fill[HIMAtua] (axis cs:1,2) circle[radius=1.6pt];
+                    \node[font=\scriptsize,HIMAtua,anchor=west] at (axis cs:.21,3.65) {$f(x)$};
+                    \node[font=\scriptsize,teal!80!black,anchor=east] at (axis cs:1.98,3.52) {$\ell(x)$};
+                \end{axis}
+            \end{tikzpicture}\par
+            \small Kedua segitiga berarsir memiliki luas yang sama.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Kecekungan menentukan arah galat}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{teorema}[Posisi hampiran terhadap integral]
+                Untuk $f$ kontinu dan $I=\int_a^b f(x)\,dx$,
+                \[
+                    \begin{array}{c|c}
+                        \text{Bentuk kurva di }[a,b] & \text{Urutan}\\ \hline
+                        \text{Cekung ke atas} & M_n\le I\le T_n\\
+                        \text{Cekung ke bawah} & T_n\le I\le M_n
+                    \end{array}
+                \]
+                Pada kecekungan tegas ketaksamaannya ketat.
+            \end{teorema}
+            Untuk cekung ke atas, tali busur berada di atas kurva.
+            Jika $f$ terdiferensialkan, garis singgung berada di bawah kurva.
+            Pada cekung ke bawah posisi keduanya terbalik.
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik integral,width=5.7cm,xmin=0,xmax=2.25,
+                    ymin=0,ymax=3.65,xtick={0,1,2},xticklabels={$x_{i-1}$,$m$,$x_i$},
+                    ytick=\empty]
+                    \addplot[magenta,densely dashed,domain=0:2] {x+1};
+                    \addplot[HIMAtua,very thick,domain=0:2] {1+x^2/2};
+                    \addplot[teal!80!black,densely dashed,domain=0:2] {x+.5};
+                    \addplot[only marks,mark=*,mark size=1.6pt,HIMAtua]
+                        coordinates {(0,1) (1,1.5) (2,3)};
+                    \node[font=\scriptsize,magenta,anchor=west] at (axis cs:.22,2.12) {tali busur};
+                    \node[font=\scriptsize,teal!80!black,anchor=west] at (axis cs:.53,.61) {singgung};
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Membandingkan ukuran galat titik tengah dan trapesium}
+    \begin{definisi}[Galat bertanda]
+        Untuk hampiran $A_n$ dari nilai eksak $I$, galatnya $E_A=I-A_n$.
+        Besar galat adalah $|E_A|$. Dengan demikian $E_M=I-M_n$
+        dan $E_T=I-T_n$.
+    \end{definisi}
+    \begin{teorema}[Perbandingan galat]
+        Jika $f$ kontinu dan arah kecekungannya tetap pada $[a,b]$,
+        maka $|E_M|\le |E_T|$.
+    \end{teorema}
+    \onslide<2->{Titik lama dan titik tengah menjadi titik ujung partisi baru.
+    Karena itu $T_{2n}=(T_n+M_n)/2$.
+    Untuk cekung ke atas, $I\le T_{2n}$, sehingga $I-M_n\le T_n-I$.
+    Untuk cekung ke bawah, $I\ge T_{2n}$ dan tanda galat terbalik.}
+    Uji arah kecekungan sebelum memakai perbandingan ini.
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Menghitung hampiran $\ln 3$ dengan empat subselang}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.39\textwidth}
+            \centering
+            \small
+            \renewcommand{\arraystretch}{1.25}
+            \begin{tabular}{c|c|c}
+                $i$ & $y_i=1/x_i$ & $f(m_i)$\\ \hline
+                $0$ & $1$ & ---\\
+                $1$ & $2/3$ & $4/5$\\
+                $2$ & $1/2$ & $4/7$\\
+                $3$ & $2/5$ & $4/9$\\
+                $4$ & $1/3$ & $4/11$
+            \end{tabular}
+        \end{column}
+        \begin{column}{.57\textwidth}
+            \begin{contoh}
+                Hampiri $I=\int_1^3 dx/x=\ln 3$ memakai $h=(3-1)/4=1/2$.
+                Titik tengah pertama $m_1=5/4$.
+            \end{contoh}
+            \onslide<2->{%
+                \[
+                    \begin{aligned}
+                        M_4&=\tfrac12(\tfrac45+\tfrac47+\tfrac49+\tfrac4{11})
+                            \approx 1{,}089755,\\
+                        T_4&=\tfrac14[1+2(\tfrac23+\tfrac12+\tfrac25)+\tfrac13]
+                            \approx 1{,}116667.
+                    \end{aligned}
+                \]
+                Karena $f''(x)=2/x^3>0$, nilai eksak $\ln 3\approx1{,}098612$
+                memang berada di antara keduanya.
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Simpson memakai satu parabola tiap dua subselang}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.51\textwidth}
+            Hampiri $f(x)$ pada $[m-h,m+h]$ dengan polinomial derajat
+            paling tinggi dua yang melalui tiga titik sampel.
+            Tulis $p(m+t)=A+Bt+Ct^2$.
+            \[
+                \int_{-h}^{h}(A+Bt+Ct^2)\,dt=2Ah+\frac{2Ch^3}{3}.
+            \]
+            Jika $y_0=p(m-h)$, $y_1=p(m)$, dan $y_2=p(m+h)$, maka
+            $y_0+4y_1+y_2=6A+2Ch^2$. Jadi luas bertandanya
+            $\tfrac h3(y_0+4y_1+y_2)$.
+        \end{column}
+        \begin{column}{.45\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik integral,width=6.05cm,clip mode=individual,
+                    xmin=0,xmax=2.25,ymin=0,ymax=8.4,xtick={1,2},
+                    xticklabels={$m$,$m+h$},ytick=\empty]
+                    \addplot[HIMAtua,very thick,domain=0:2] {exp(x)};
+                    \addplot[teal!80!black,dashed,domain=0:2] {1+.242036*x+1.476246*x^2};
+                    \draw[gray,dotted] (axis cs:1,0) -- (axis cs:1,2.718282);
+                    \draw[gray,dotted] (axis cs:2,0) -- (axis cs:2,7.389056);
+                    \addplot[only marks,mark=*,mark size=1.7pt,HIMAtua]
+                        coordinates {(0,1) (1,2.718282) (2,7.389056)};
+                    \node[font=\scriptsize,below=3pt] at (axis cs:0,0) {$m-h$};
+                    \node[font=\scriptsize,HIMAtua,anchor=west] at (axis cs:.27,6.8) {kurva $f$};
+                    \node[font=\scriptsize,teal!80!black,anchor=west] at (axis cs:.27,5.55) {parabola $p$};
+                \end{axis}
+            \end{tikzpicture}\par
+            \small Ketiga titik sampel terletak pada $f$ dan $p$.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Bobot Simpson berasal dari pasangan subselang}
+    \begin{teorema}[Aturan Simpson]
+        Untuk $n$ genap dan $h=(b-a)/n$,
+        \[
+            S_n=\frac h3\left[y_0+4y_1+2y_2+4y_3+\cdots+
+                            2y_{n-2}+4y_{n-1}+y_n\right].
+        \]
+        Untuk $n=2$, gunakan satu pasangan dengan bobot $1,4,1$.
+    \end{teorema}
+    \onslide<2->{%
+        Dua pasangan pertama menyumbang
+        \[
+            \underbrace{\tfrac h3(y_0+4y_1+y_2)}_{\text{pasangan pertama}}+
+            \underbrace{\tfrac h3(y_2+4y_3+y_4)}_{\text{pasangan kedua}}.
+        \]
+        Titik interior genap seperti $x_2$ menjadi batas dua pasangan.
+        Titik berindeks ganjil menjadi titik tengah satu pasangan.
+    }
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Aturan Simpson pada data $\ln 3$ yang sama}
+    \begin{contoh}
+        Gunakan kembali $y_0,\ldots,y_4$ dari $I=\int_1^3 dx/x$.
+        Kali ini pasangkan empat subselang untuk memakai Simpson.
+    \end{contoh}
+    \onslide<2->{%
+        \[
+            \begin{aligned}
+                S_4
+                &=\frac16\left[1+4(\tfrac23)+2(\tfrac12)+4(\tfrac25)+\tfrac13\right]\\
+                &=\frac{11}{10}=1{,}1.
+            \end{aligned}
+        \]
+    }
+    \onslide<3->{%
+        \begin{block}{Seberapa dekat hasilnya?}
+            $|E_S|=|\ln3-1{,}1|\approx0{,}001388$.
+            Pada contoh ini, galat Simpson lebih kecil daripada galat titik tengah
+            dan trapesium walaupun menggunakan partisi yang sama.
+        \end{block}
+    }
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Dua sumber galat saat menghitung secara numerik}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{block}{Galat pemotongan}
+                $I-A_n$ muncul karena rumus memakai sejumlah hingga sampel.
+                Galat ini tetap ada walaupun seluruh operasi dilakukan eksak.
+            \end{block}
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{block}{Galat pembulatan}
+                $A_n-\widetilde A_n$ muncul ketika nilai sampel atau
+                hasil operasi ditulis dengan digit terbatas.
+            \end{block}
+        \end{column}
+    \end{columns}
+    \[
+        I-\widetilde A_n=(I-A_n)+(A_n-\widetilde A_n).
+    \]
+    \onslide<2->{Batas galat berikut mengukur bagian $I-A_n$.
+    Perhitungan dengan banyak subselang dapat memerlukan lebih banyak digit
+    agar pembulatan tetap kecil.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Batas galat dari turunan fungsi}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.50\textwidth}
+            \begin{teorema}[Titik tengah dan trapesium]
+                Jika $f''$ kontinu dan $|f''(x)|\le K_2$ pada $[a,b]$, maka
+                \[
+                    \begin{aligned}
+                        |E_M|&\le\frac{(b-a)^3K_2}{24n^2},\\
+                        |E_T|&\le\frac{(b-a)^3K_2}{12n^2}.
+                    \end{aligned}
+                \]
+            \end{teorema}
+        \end{column}
+        \begin{column}{.46\textwidth}
+            \begin{teorema}[Simpson]
+                Jika $f^{(4)}$ kontinu dan $|f^{(4)}(x)|\le K_4$ pada $[a,b]$,
+                maka untuk $n$ genap,
+                \[
+                    |E_S|\le\frac{(b-a)^5K_4}{180n^4}.
+                \]
+            \end{teorema}
+        \end{column}
+    \end{columns}
+    Gunakan konstanta $K_2$ atau $K_4$ yang membatasi turunan di seluruh selang.
+    Batas itu menjamin toleransi sekalipun nilai eksak $I$ belum diketahui.
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Membandingkan batas dan galat aktual pada contoh yang sama}
+    Untuk $f(x)=1/x$ di $[1,3]$, berlaku $f''(x)=2/x^3$ dan
+    $f^{(4)}(x)=24/x^5$. Keduanya maksimum di $x=1$, jadi ambil
+    $K_2=2$ dan $K_4=24$.
+    \onslide<2->{%
+        \begin{center}
+            \renewcommand{\arraystretch}{1.25}
+            \begin{tabular}{l|c|c|c}
+                \textbf{Metode} & \textbf{Hampiran} & \textbf{Besar galat aktual}
+                                & \textbf{Batas atas}\\ \hline
+                Titik tengah & $1{,}089755$ & $\approx 0{,}008858$ & $1/24$\\
+                Trapesium    & $1{,}116667$ & $\approx 0{,}018054$ & $1/12$\\
+                Simpson      & $1{,}100000$ & $\approx 0{,}001388$ & $1/60$
+            \end{tabular}
+        \end{center}
+        Semua galat aktual, dihitung terhadap $\ln 3$, berada di bawah batasnya.
+        Misalnya batas Simpson adalah
+        $(3-1)^5(24)/(180\cdot4^4)=1/60$.
+    }
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Memilih jumlah subselang dari toleransi}
+    \begin{contoh}
+        Berapa $n$ genap terkecil yang dijamin oleh batas galat Simpson
+        agar hampiran $\int_1^3 dx/x$ memiliki besar galat $<10^{-6}$?
+    \end{contoh}
+    \onslide<2->{Untuk $K_4=24$ dan $b-a=2$, syarat yang cukup ialah
+    \[
+        \frac{2^5(24)}{180n^4}<10^{-6}
+        \quad\Longleftrightarrow\quad
+        n>\left(\frac{64\cdot10^6}{15}\right)^{1/4}
+            \approx45{,}449.
+    \]}
+    \onslide<3->{Bilangan genap terkecil yang melewati ambang ini adalah
+    $n=46$. Pilihan ini cukup untuk menjamin toleransi dari batas tersebut.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Batas yang mudah dihitung sudah dapat dipakai}
+    \begin{contoh}
+        Pilih $n$ agar aturan titik tengah untuk $\int_0^1\cos(x^2)\,dx$
+        memiliki besar galat $<2\cdot10^{-4}$.
+    \end{contoh}
+    \onslide<2->{%
+        \[
+            f''(x)=-2\sin(x^2)-4x^2\cos(x^2),\qquad
+            |f''(x)|\le 2+4x^2\le6.
+        \]
+        Maka $K_2=6$ sah sebagai batas atas, dengan
+        $|E_M|\le 6/(24n^2)=1/(4n^2)$.
+    }
+    \onslide<3->{Syarat $1/(4n^2)<2\cdot10^{-4}$ memberi
+    $n>\sqrt{1250}\approx35{,}355$, jadi $n=36$ cukup.
+    Ketaksamaan segitiga menghindari pencarian maksimum eksak $|f''|$.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Pengaruh membagi dua lebar subselang}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{block}{Tulis kembali dengan $h=(b-a)/n$}
+                \[
+                    \begin{aligned}
+                        |E_M|&\le\tfrac{K_2(b-a)}{24}h^2,\\
+                        |E_T|&\le\tfrac{K_2(b-a)}{12}h^2,\\
+                        |E_S|&\le\tfrac{K_4(b-a)}{180}h^4.
+                    \end{aligned}
+                \]
+            \end{block}
+        \end{column}
+        \begin{column}{.48\textwidth}
+            Jika $h$ menjadi $h/2$, batas titik tengah dan trapesium
+            menjadi $1/4$ kali semula. Batas Simpson menjadi $1/16$ kali semula.
+            \onslide<2->{%
+                \begin{block}{Kapan hasilnya eksak?}
+                    Untuk polinomial berderajat paling tinggi satu,
+                    $K_2=0$ membuat $M_n$ dan $T_n$ eksak.
+                    Untuk derajat paling tinggi tiga, $K_4=0$ membuat $S_n$ eksak.
+                \end{block}
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Menghampiri jarak dari data kecepatan}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.53\textwidth}
+            \begin{contoh}
+                Kecepatan benda diukur tiap $2$ detik. Pada $t=0,2,4,6,8$
+                detik, hasil ukurnya $0,3,5,6,6{,}5$ m/s.
+                Hampiri jarak selama $8$ detik.
+            \end{contoh}
+            \onslide<2->{Karena kecepatannya nonnegatif, jarak dihampiri dengan
+            Simpson pada $\int_0^8 v(t)\,dt$.
+            \[
+                \tfrac23[0+4(3)+2(5)+4(6)+6{,}5]=35\text{ m}.
+            \]
+            Lima titik ukur membentuk empat subselang.}
+        \end{column}
+        \begin{column}{.43\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik integral,width=5.8cm,xlabel={$t$ (s)},ylabel={$v$ (m/s)},
+                    xmin=0,xmax=9.2,ymin=0,ymax=7.8,xtick={0,2,4,6,8},ytick={3,5,6.5}]
+                    \draw[gray,dotted] (axis cs:2,0) -- (axis cs:2,3);
+                    \draw[gray,dotted] (axis cs:4,0) -- (axis cs:4,5);
+                    \draw[gray,dotted] (axis cs:6,0) -- (axis cs:6,6);
+                    \draw[gray,dotted] (axis cs:8,0) -- (axis cs:8,6.5);
+                    \addplot[only marks,mark=*,mark size=2pt,HIMAtua]
+                        coordinates {(0,0) (2,3) (4,5) (6,6) (8,6.5)};
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Latihan integrasi numerik}
+    \begin{latihan}
+        Gunakan $I=\int_0^2 x^2\,dx$.
+        \begin{enumerate}
+            \item Hitung $M_4$ dan $T_4$. Di mana posisi $I$?
+            \item Tentukan $S_4$ dan jelaskan mengapa hasilnya eksak.
+            \item Pilih $n$ agar batas galat titik tengah kurang dari $10^{-3}$.
+        \end{enumerate}
+    \end{latihan}
+    \onslide<2->{%
+        \begin{block}{Cek jawaban}
+            \begin{enumerate}
+                \item $M_4=21/8 < I=8/3 < T_4=11/4$ karena $f''=2>0$.
+                \item $S_4=8/3$ karena turunan keempat $x^2$ nol.
+                \item $|E_M|\le 2/(3n^2)$. Ambil $n=26$ agar batasnya $<10^{-3}$.
+            \end{enumerate}
+        \end{block}
+    }
+\end{frame}
+
+% KALKULUS 2 BAB 3.pdf, halaman PDF 15--24 (cetak 121--130).
+\section{Integral Tak Wajar}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Kapan integral perlu dibaca sebagai limit?}
+    \begin{definisi}[Integral tak wajar]
+        Integral tak wajar didefinisikan melalui limit integral pada subselang
+        berhingga yang menghindari titik singular. Integral itu \textbf{konvergen}
+        jika setiap limit yang diperlukan ada dan berhingga.
+        Jika ada limit yang tak berhingga atau tidak ada, integralnya \textbf{divergen}.
+    \end{definisi}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                $\int_2^\infty x^{-2}\,dx$ mempunyai batas atas tak berhingga.
+                Potong ekornya di $R$ lalu besarkan $R$.
+            \end{contoh}
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                $\int_0^1 x^{-1/2}\,dx$ mempunyai integran tak terbatas di $0$.
+                Mulai dari $s>0$ lalu dekatkan $s$ ke $0$.
+            \end{contoh}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Batas atas bergerak menuju tak hingga}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.52\textwidth}
+            \begin{definisi}[{Selang $[a,\infty)$}]
+                Jika $f$ kontinu pada $[a,\infty)$, tetapkan
+                \[
+                    \int_a^\infty f(x)\,dx
+                    =\lim_{R\to\infty}\int_a^R f(x)\,dx
+                \]
+                ketika limitnya berhingga.
+            \end{definisi}
+            Untuk $f\ge0$, bagian berarsir memberi luas hingga $R$.
+            Ketika $R$ dinaikkan, luasnya bertambah dan mungkin mendekati
+            suatu nilai hingga.
+        \end{column}
+        \begin{column}{.44\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik integral,width=5.9cm,xmin=0,xmax=7.6,
+                    ymin=0,ymax=.34,xtick={2,4.45},xticklabels={$a$,$R$},ytick=\empty]
+                    \addplot[draw=none,fill=HIMAmuda!36,domain=2:4.45] {1/x^2} \closedcycle;
+                    \addplot[HIMAtua,very thick,domain=2:7.4] {1/x^2};
+                    \draw[gray,dashed] (axis cs:4.45,0) -- (axis cs:4.45,.0505);
+                    \draw[->,teal!80!black] (axis cs:4.45,.1) -- (axis cs:6.75,.1);
+                    \node[font=\scriptsize,teal!80!black,anchor=south]
+                        at (axis cs:5.6,.1) {$R\to\infty$};
+                    \node[font=\scriptsize,HIMAtua,anchor=west] at (axis cs:2.55,.24) {$y=1/x^2$};
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Dua kurva menuju nol dengan luas berbeda}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                $\displaystyle\int_2^\infty \frac{dx}{x^2}$
+            \end{contoh}
+            \onslide<2->{%
+                \[
+                    \lim_{R\to\infty}\left[-\frac1x\right]_2^R
+                    =\lim_{R\to\infty}\left(\frac12-\frac1R\right)
+                    =\frac12.
+                \]
+                Luas totalnya berhingga.}
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                $\displaystyle\int_2^\infty \frac{dx}{x}$
+            \end{contoh}
+            \onslide<3->{%
+                \[
+                    \lim_{R\to\infty}[\ln x]_2^R
+                    =\lim_{R\to\infty}(\ln R-\ln2)=+\infty.
+                \]
+                Integral divergen karena luas terus bertambah tanpa batas.}
+        \end{column}
+    \end{columns}
+    \onslide<3->{Kedua integran menuju nol. Laju penurunan menentukan
+    apakah luas yang terakumulasi berhingga.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Batas bawah bergerak menuju negatif tak hingga}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.53\textwidth}
+            \begin{definisi}[{Selang $(-\infty,b]$}]
+                Jika $f$ kontinu pada $(-\infty,b]$,
+                \[
+                    \int_{-\infty}^{b}f(x)\,dx
+                       =\lim_{L\to-\infty}\int_L^{b}f(x)\,dx
+                \]
+                ketika limitnya berhingga.
+            \end{definisi}
+            \begin{contoh}
+                Karena $e^{2L}\to0$ ketika $L\to-\infty$,
+                $\int_{-\infty}^1e^{2x}\,dx=
+                \lim_{L\to-\infty}\tfrac12(e^2-e^{2L})=e^2/2$.
+            \end{contoh}
+        \end{column}
+        \begin{column}{.43\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik integral,width=5.85cm,xmin=-3.25,xmax=1.35,
+                    ymin=0,ymax=8.6,xtick={-1.3,1},xticklabels={$L$,$b$},ytick=\empty]
+                    \addplot[draw=none,fill=HIMAmuda!36,domain=-1.3:1] {exp(2*x)} \closedcycle;
+                    \addplot[HIMAtua,very thick,domain=-3.05:1] {exp(2*x)};
+                    \draw[<-,teal!80!black] (axis cs:-2.9,.9) -- (axis cs:-1.3,.9);
+                    \node[font=\scriptsize,teal!80!black,anchor=south]
+                        at (axis cs:-2.1,.9) {$L\to-\infty$};
+                    \draw[gray,dotted] (axis cs:1,0) -- (axis cs:1,7.389056);
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Dua ujung tak hingga memerlukan dua limit}
+    \begin{definisi}[Selang $(-\infty,\infty)$]
+        Untuk suatu titik pemisah $c\in\R$,
+        \[
+            \int_{-\infty}^\infty f(x)\,dx
+              =\int_{-\infty}^{c}f(x)\,dx+\int_c^\infty f(x)\,dx
+        \]
+        jika kedua integral di kanan konvergen. Titik $c$ dapat dipilih
+        agar perhitungan mudah, tanpa mengubah hasil.
+    \end{definisi}
+    \begin{contoh}
+        Untuk $f(x)=1/(4+x^2)$, pilih $c=0$.
+        \onslide<2->{Anti-turunannya $\tfrac12\arctan(x/2)$.
+        Integral di setiap sisi adalah $\pi/4$, sehingga totalnya $\pi/2$.}
+    \end{contoh}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Apa yang terjadi pada pemotongan simetris?}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.52\textwidth}
+            \begin{contoh}
+                Untuk $f(x)=x$, dua potongan simetris memberi
+                $\int_{-R}^R x\,dx=0$ untuk setiap $R>0$.
+            \end{contoh}
+            \onslide<2->{Dengan titik pemisah $0$, dua limit yang diperlukan ialah
+            \[
+                \begin{aligned}
+                    \lim_{L\to-\infty}\int_L^0 x\,dx&=-\infty,\\
+                    \lim_{R\to\infty}\int_0^R x\,dx&=+\infty.
+                \end{aligned}
+            \]
+            Jadi integral pada seluruh garis real divergen.}
+        \end{column}
+        \begin{column}{.44\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik integral,width=5.85cm,axis equal image,
+                    xmin=-2.25,xmax=2.25,ymin=-2.25,ymax=2.25,
+                    xtick={-1.7,1.7},xticklabels={$-R$,$R$},ytick=\empty]
+                    \filldraw[fill=magenta!20,draw=magenta!80!black]
+                        (axis cs:-1.7,0) -- (axis cs:-1.7,-1.7) -- (axis cs:0,0) -- cycle;
+                    \filldraw[fill=HIMAmuda!35,draw=teal!80!black]
+                        (axis cs:0,0) -- (axis cs:1.7,0) -- (axis cs:1.7,1.7) -- cycle;
+                    \addplot[HIMAtua,very thick,domain=-2:2] {x};
+                    \node[font=\scriptsize,magenta!80!black] at (axis cs:-1.29,-.45) {$-$};
+                    \node[font=\scriptsize,teal!80!black] at (axis cs:1.29,.45) {$+$};
+                \end{axis}
+            \end{tikzpicture}\par
+            \small Luas bertanda saling hapus pada setiap potongan simetris.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Dekati titik singular dari dalam selang}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{definisi}[Titik singular di ujung]
+                Jika $f$ kontinu kecuali di ujung yang ditunjukkan, gunakan
+                \[
+                    \begin{aligned}
+                        \text{di }a\colon\quad
+                        \int_a^b f(x)\,dx&=\lim_{s\to a^+}\int_s^b f(x)\,dx,\\
+                        \text{di }b\colon\quad
+                        \int_a^b f(x)\,dx&=\lim_{t\to b^-}\int_a^t f(x)\,dx.
+                    \end{aligned}
+                \]
+                Integral konvergen jika limit yang sesuai berhingga.
+            \end{definisi}
+            Pada gambar, $t$ mendekati $b$ dari kiri. Integral hingga $t$
+            masih berupa integral pada selang biasa.
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik integral,width=5.75cm,clip mode=individual,
+                    xmin=0,xmax=4.58,ymin=0,ymax=2.61,xtick={2.9,4},xticklabels={$t$,$b$},
+                    ytick=\empty]
+                    \addplot[draw=none,fill=HIMAmuda!36,domain=0:2.9] {1/sqrt(4-x)} \closedcycle;
+                    \addplot[HIMAtua,very thick,domain=0:3.86] {1/sqrt(4-x)};
+                    \draw[gray,dashed] (axis cs:4,0) -- (axis cs:4,2.48);
+                    \draw[gray,dotted] (axis cs:2.9,0) -- (axis cs:2.9,.95346);
+                    \node[font=\scriptsize,below=3pt] at (axis cs:0,0) {$a$};
+                    \node[font=\scriptsize,HIMAtua,anchor=west] at (axis cs:.31,1.75)
+                        {$y=(4-x)^{-1/2}$};
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Pangkat akar dapat memberi luas yang berhingga}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                $\displaystyle\int_0^4 \frac{dx}{\sqrt{4-x}}$
+            \end{contoh}
+            \onslide<2->{Potong sebelum $x=4$.
+            \[
+                \lim_{t\to4^-}\bigl[4-2\sqrt{4-t}\bigr]=4.
+            \]
+            Integral konvergen walaupun kurvanya meninggi tanpa batas.}
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                $\displaystyle\int_0^1-\frac1x\,dx$
+            \end{contoh}
+            \onslide<3->{Mulai dari $s>0$.
+            \[
+                \lim_{s\to0^+}[-\ln x]_s^1
+                    =\lim_{s\to0^+}\ln s=-\infty.
+            \]
+            Integral divergen karena limitnya tak berhingga.}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Titik singular di bagian dalam menjadi batas baru}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{definisi}[Titik singular $a<c<b$]
+                Jika $f$ kontinu pada $[a,b]$ kecuali di $c$, tetapkan
+                \[
+                    \int_a^b f(x)\,dx
+                    =\lim_{t\to c^-}\int_a^t f(x)\,dx+
+                     \lim_{s\to c^+}\int_s^b f(x)\,dx
+                \]
+                apabila kedua limit berhingga.
+            \end{definisi}
+            Dari kiri, batas atas mendekati $c$. Dari kanan, batas bawah
+            mendekati $c$. Jika ada beberapa titik singular, pisahkan
+            selang sehingga setiap limit satu sisi dapat diperiksa.
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik integral,width=5.75cm,xmin=0,xmax=4.43,
+                    ymin=0,ymax=4.44,xtick={0,1,4},xticklabels={$a$,$c$,$b$},
+                    ytick=\empty]
+                    \addplot[draw=none,fill=HIMAmuda!35,domain=0:.6]
+                        {1/(1-x)^(2/3)} \closedcycle;
+                    \addplot[draw=none,fill=PastelGreen!38,domain=1.42:4]
+                        {1/(x-1)^(2/3)} \closedcycle;
+                    \addplot[HIMAtua,very thick,domain=0:.892] {1/(1-x)^(2/3)};
+                    \addplot[HIMAtua,very thick,domain=1.108:4] {1/(x-1)^(2/3)};
+                    \draw[gray,dashed] (axis cs:1,0) -- (axis cs:1,4.34);
+                    \draw[->,teal!80!black] (axis cs:.6,2.65) -- (axis cs:.93,2.65);
+                    \draw[->,teal!80!black] (axis cs:1.42,2.65) -- (axis cs:1.07,2.65);
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Hitung kedua sisi secara terpisah}
+    \begin{contoh}
+        Tentukan $\int_0^9 |x-1|^{-2/3}\,dx$.
+    \end{contoh}
+    \onslide<2->{Pisahkan di $x=1$. Di sebelah kiri ambil $u=1-x$,
+    dan di sebelah kanan ambil $u=x-1$.
+    \[
+        \begin{aligned}
+            \int_0^1 \frac{dx}{(1-x)^{2/3}}
+              &=\lim_{\varepsilon\to0^+}[3u^{1/3}]_\varepsilon^1=3,\\
+            \int_1^9 \frac{dx}{(x-1)^{2/3}}
+              &=\lim_{\varepsilon\to0^+}[3u^{1/3}]_\varepsilon^8=6.
+        \end{aligned}
+    \]}
+    \onslide<3->{Kedua limit konvergen. Jadi nilai integralnya $3+6=9$.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Periksa titik singular sebelum memakai anti-turunan}
+    \begin{contoh}
+        Evaluasi $\int_{-2}^2 x^{-2}\,dx$. Apa yang terjadi jika
+        $\left[-1/x\right]_{-2}^2$ langsung dihitung?
+    \end{contoh}
+    \onslide<2->{Substitusi dua batas langsung memberi $-1$,
+    padahal integrannya positif. Teorema Fundamental Kalkulus memerlukan
+    perhitungan pada selang yang tidak melintasi $0$.}
+    \onslide<3->{Potong di sebelah kanan $0$, misalnya.
+    \[
+        \int_0^2 \frac{dx}{x^2}
+        =\lim_{s\to0^+}\left(\frac1s-\frac12\right)=+\infty.
+    \]
+    Satu sisi saja sudah divergen, sehingga integral pada $[-2,2]$ divergen.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Uji pangkat pada tak hingga dan pada nol}
+    \begin{teorema}[Integral $p$]
+        Untuk $p\in\R$,
+        \[
+            \begin{array}{c|c|c}
+                \text{Integral} & \text{Konvergen jika} & \text{Nilai saat konvergen}\\ \hline
+                \displaystyle\int_1^\infty x^{-p}\,dx & p>1 & 1/(p-1)\\[4pt]
+                \displaystyle\int_0^1 x^{-p}\,dx & p<1 & 1/(1-p)
+            \end{array}
+        \]
+    \end{teorema}
+    \onslide<2->{Untuk $p\ne1$, anti-turunannya $x^{1-p}/(1-p)$.
+    Suku $R^{1-p}$ menuju nol jika $p>1$, sedangkan $s^{1-p}$ menuju nol
+    saat $s\to0^+$ jika $p<1$. Pada $p=1$ kedua integral divergen
+    karena anti-turunannya $\ln x$.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Gunakan perbandingan untuk integran nonnegatif}
+    \begin{teorema}[Uji perbandingan langsung]
+        Jika $0\le f(x)\le g(x)$ untuk $x\ge a$ dan kedua fungsi kontinu, maka
+        \begin{itemize}
+            \item Konvergensi $\int_a^\infty g$ menjamin konvergensi $\int_a^\infty f$.
+            \item Divergensi $\int_a^\infty f$ menjamin divergensi $\int_a^\infty g$.
+        \end{itemize}
+    \end{teorema}
+    \onslide<2->{Integral potongan dari $f$ dan $g$ naik saat batas atas dinaikkan.
+    Jika integral potongan yang lebih besar tetap terbatas, keduanya punya
+    limit berhingga.}
+    \onslide<3->{%
+        \begin{contoh}
+            Karena $0<1/(x^2+5)\le 1/x^2$ untuk $x\ge1$,
+            $\int_1^\infty dx/(x^2+5)$ konvergen dan nilainya paling besar $1$.
+        \end{contoh}
+    }
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Perbandingan dari bawah dapat membuktikan divergensi}
+    \begin{contoh}
+        Tentukan konvergensi $\displaystyle\int_1^\infty\frac{dx}{\sqrt{x^2+3}}$.
+    \end{contoh}
+    \onslide<2->{Untuk $x\ge1$, berlaku $x^2+3\le4x^2$.
+    Setelah mengambil akar dan kebalikan,
+    \[
+        \frac{1}{\sqrt{x^2+3}}\ge\frac1{2x}.
+    \]}
+    \onslide<3->{Integral $\tfrac12\int_1^\infty dx/x$ divergen.
+    Maka integral yang ditanyakan juga divergen.
+    Pembanding yang divergen dipakai sebagai batas bawah.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Potong ekor sebelum menghitung secara numerik}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{contoh}
+                Hampiri $\int_0^\infty e^{-x^2}\,dx$ dengan memotong di $x=3$
+                dan menerapkan Simpson pada $[0,3]$.
+            \end{contoh}
+            \onslide<2->{Dengan $n=12$ dan $h=0{,}25$, diperoleh
+            $S_{12}\approx0{,}886207$ pada $[0,3]$.}
+            \onslide<3->{Untuk $x\ge3$, $e^{-x^2}\le (x/3)e^{-x^2}$.
+            Maka ekor yang dipotong memenuhi
+            \[
+                0<\int_3^\infty e^{-x^2}\,dx
+                  \le\frac{e^{-9}}6\approx2{,}057\cdot10^{-5}.
+            \]
+            Galat Simpson dan pembulatan pada $[0,3]$ dihitung tersendiri.}
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik integral,width=5.75cm,xmin=0,xmax=3.8,
+                    ymin=0,ymax=1.16,xtick={0,1,2,3},ytick={1}]
+                    \addplot[draw=none,fill=HIMAmuda!35,domain=0:3]
+                        {exp(-(x^2))} \closedcycle;
+                    \addplot[HIMAtua,very thick,domain=0:3.7] {exp(-(x^2))};
+                    \draw[magenta,dashed] (axis cs:3,0) -- (axis cs:3,.6);
+                    \node[font=\scriptsize,magenta,anchor=east] at (axis cs:2.92,.48) {batas potong};
+                    \node[font=\scriptsize,HIMAtua,anchor=west] at (axis cs:.72,.77)
+                        {$y=e^{-x^2}$};
+                \end{axis}
+            \end{tikzpicture}\par
+            \small Integral eksaknya $\sqrt{\pi}/2\approx0{,}886227$.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Syarat konvergensi pada transformasi Laplace}
+    \begin{definisi}[Transformasi Laplace]
+        Untuk $s\in\R$ yang membuat integralnya konvergen,
+        \[
+            \mathcal L\{f\}(s)=\int_0^\infty e^{-st}f(t)\,dt.
+        \]
+    \end{definisi}
+    \begin{contoh}
+        Tentukan transformasi $f(t)=e^{3t}$ beserta syarat pada $s$.
+    \end{contoh}
+    \onslide<2->{Integrannya $e^{-(s-3)t}$. Jika $s>3$, eksponensial meluruh dan
+    $\mathcal L\{e^{3t}\}(s)=1/(s-3)$.
+    Jika $s=3$, integrannya $1$. Jika $s<3$, integrannya tumbuh.
+    Kedua kasus terakhir memberi integral divergen.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Latihan integral tak wajar}
+    \begin{latihan}
+        Tentukan konvergensi. Hitung nilai integral jika konvergen.
+        \begin{enumerate}
+            \item $\int_0^\infty e^{-3x}\,dx$.
+            \item $\int_0^2 (x-1)^{-1}\,dx$.
+            \item $\int_0^\infty x^{-p}\,dx$ untuk $p\in\R$.
+        \end{enumerate}
+    \end{latihan}
+    \onslide<2->{%
+        \begin{block}{Cek jawaban}
+            \begin{enumerate}
+                \item Konvergen ke $1/3$ karena $e^{-3R}\to0$.
+                \item Divergen. Limit di sebelah kiri $1$ adalah $-\infty$
+                    dan di sebelah kanan adalah $+\infty$.
+                \item Pisahkan di $1$. Syarat $p<1$ di nol dan $p>1$
+                    di tak hingga tidak dapat dipenuhi bersamaan.
+            \end{enumerate}
+        \end{block}
+    }
+\end{frame}
+
+% KALKULUS 2 BAB 3.pdf, halaman PDF 25--37 (cetak 131--143).
+\section{Limit Bentuk Tak Tentu}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Bentuk limit yang sama dapat memberi hasil berbeda}
+    \begin{definisi}[Bentuk tak tentu $0/0$]
+        Pada limit hasil bagi $f(x)/g(x)$, bentuk $0/0$ berarti
+        $f(x)\to0$ dan $g(x)\to0$. Kedua informasi ini belum menentukan
+        limit hasil baginya.
+    \end{definisi}
+    \onslide<2->{%
+        \[
+            \lim_{x\to0^+}\frac{x^2}{x}=0,\qquad
+            \lim_{x\to0^+}\frac{3x}{x}=3,\qquad
+            \lim_{x\to0^+}\frac{x}{x^2}=+\infty.
+        \]
+        Pada ketiga contoh, pembilang dan penyebut sama-sama mendekati nol.
+        Laju masing-masing mendekati nol menghasilkan limit yang berbeda.
+    }
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Aturan L'Hôpital untuk hasil bagi $0/0$}
+    \begin{teorema}[Bentuk $0/0$]
+        Misalkan $f,g\to0$ saat $x\to a$, termasuk limit satu sisi
+        dan limit menuju $\pm\infty$. Anggap $f,g$ dapat diturunkan dan
+        $g'\ne0$ pada selang yang didekati, kecuali mungkin di titik limit.
+        Jika $\lim_{x\to a} f'(x)/g'(x)=L$ dengan $L$ berhingga atau $\pm\infty$, maka
+        \[
+            \lim_{x\to a}\frac{f(x)}{g(x)}
+              =\lim_{x\to a}\frac{f'(x)}{g'(x)}=L.
+        \]
+    \end{teorema}
+    \onslide<2->{Untuk $a$ berhingga, perpanjang $f(a)=g(a)=0$.
+    Teorema Nilai Rata-rata Cauchy memberi
+    $f(x)/g(x)=f'(\xi)/g'(\xi)$ dengan $\xi$ di antara $a$ dan $x$.
+    Ketika $x\to a$, $\xi$ juga mendekati $a$.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Turunkan pembilang dan penyebut secara terpisah}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.47\textwidth}
+            \begin{contoh}
+                $\displaystyle\lim_{x\to3}\frac{x^2-9}{x-3}$
+            \end{contoh}
+            \onslide<2->{Kedua bagian menuju nol. Dengan L'Hôpital,
+            \[
+                \lim_{x\to3}\frac{2x}{1}=6.
+            \]
+            Hasil ini sama dengan limit $x+3$ setelah faktornya disederhanakan.}
+        \end{column}
+        \begin{column}{.49\textwidth}
+            \begin{contoh}
+                $\displaystyle\lim_{x\to0}\frac{\sin(3x)}{\sin(5x)}$
+            \end{contoh}
+            \onslide<3->{Bentuknya $0/0$. Ambil turunan pada kedua bagian.
+            \[
+                \lim_{x\to0}\frac{3\cos(3x)}{5\cos(5x)}=\frac35.
+            \]
+            Faktor $3$ dan $5$ muncul dari aturan rantai.}
+        \end{column}
+    \end{columns}
+    \onslide<3->{L'Hôpital memakai hasil bagi $f'/g'$. Aturan turunan hasil
+    bagi menghitung suatu besaran lain, yaitu $(f/g)'$.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Periksa bentuknya lagi sebelum mengulang}
+    \begin{contoh}
+        Hitung $\displaystyle\lim_{x\to0}\frac{1-\cos(2x)}{x^2}$.
+    \end{contoh}
+    \onslide<2->{Bentuk awalnya $0/0$, jadi ambil turunan pembilang dan penyebut.
+    \[
+        \lim_{x\to0}\frac{1-\cos(2x)}{x^2}
+        =\lim_{x\to0}\frac{2\sin(2x)}{2x}.
+    \]}
+    \onslide<3->{Hasil antara masih $0/0$. Terapkan L'Hôpital sekali lagi.
+    \[
+        \lim_{x\to0}\frac{4\cos(2x)}{2}=2.
+    \]
+    Pemeriksaan tiap putaran menentukan kapan diferensiasi dapat dihentikan.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Bentuk $0/0$ juga muncul pada limit satu sisi dan tak hingga}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                $\displaystyle\lim_{x\to0^\pm}\frac{\tan(2x)}{x^2}$
+            \end{contoh}
+            \onslide<2->{L'Hôpital pada masing-masing sisi memberi limit
+            $\sec^2(2x)/x$. Dari kanan hasilnya $+\infty$, dari kiri
+            $-\infty$. Limit dua sisi tidak ada.}
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                $\displaystyle\lim_{x\to\infty}\frac{x^{-3/2}}{\sin(1/x)}$
+            \end{contoh}
+            \onslide<3->{Saat $x$ membesar, keduanya menuju nol.
+            \[
+                \begin{aligned}
+                    \lim_{x\to\infty}\frac{-(3/2)x^{-5/2}}{-x^{-2}\cos(1/x)}
+                        &=\lim_{x\to\infty}\frac{3}{2\sqrt{x}\cos(1/x)}\\
+                        &=0.
+                \end{aligned}
+            \]}
+        \end{column}
+    \end{columns}
+    \onslide<3->{Periksa perilaku fungsi pada arah limit yang diminta.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Kapan langsung memakai tanda atau apitan?}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.47\textwidth}
+            \begin{contoh}
+                $\displaystyle\lim_{x\to0}\frac{e^{2x}}{x^2}$
+            \end{contoh}
+            \onslide<2->{Pembilang menuju $1$ dan penyebut menuju $0$ dari
+            nilai positif. Karena $e^{2x}\ge 1/2$ untuk $x$ cukup dekat ke $0$,
+            hasil baginya menuju $+\infty$.}
+        \end{column}
+        \begin{column}{.49\textwidth}
+            \begin{contoh}
+                $\displaystyle\lim_{x\to\infty}\frac{x+\sin x}{x}$
+            \end{contoh}
+            \onslide<3->{Hasil bagi turunan $1+\cos x$ berosilasi.
+            Gunakan $\dfrac{x+\sin x}{x}=1+\dfrac{\sin x}{x}$.
+            Karena $|\sin x|/x\le1/x$ untuk $x>0$, limitnya $1$.}
+        \end{column}
+    \end{columns}
+    \onslide<3->{Jika syarat L'Hôpital gagal, bentuk atau batas fungsi
+    semula masih dapat menentukan limitnya.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Aturan L'Hôpital untuk hasil bagi tak hingga}
+    \begin{teorema}[Bentuk $\infty/\infty$]
+        Jika $f(x)$ dan $g(x)$ menuju $+\infty$ atau $-\infty$,
+        gunakan syarat keterdiferensialan dan $g'\ne0$ seperti pada kasus $0/0$.
+        Apabila $\lim f'/g'=L$ berhingga atau $\pm\infty$, maka $\lim f/g=L$.
+    \end{teorema}
+    \begin{contoh}
+        Untuk $x\to\infty$, baik $\ln x$ maupun $\sqrt{x}$ menuju $+\infty$.
+        \onslide<2->{%
+            \[
+                \lim_{x\to\infty}\frac{\ln x}{\sqrt{x}}
+                =\lim_{x\to\infty}\frac{1/x}{1/(2\sqrt{x})}
+                =\lim_{x\to\infty}\frac{2}{\sqrt{x}}=0.
+            \]
+            Pangkat $\sqrt{x}$ tumbuh lebih cepat daripada $\ln x$.}
+    \end{contoh}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Bentuk $0\cdot\infty$ dapat diubah menjadi hasil bagi}
+    Jika $f\to0$ dan $|g|\to\infty$, tulis $fg=f/(1/g)$ atau $g/(1/f)$
+    pada selang yang sesuai. Pilih bentuk dengan turunan yang lebih mudah.
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                $\displaystyle\lim_{x\to0^+}x^2\ln x$
+            \end{contoh}
+            \onslide<2->{Tulis $\ln x/x^{-2}$. Bentuk tak hingga per tak hingga memberi
+            \[
+                \lim_{x\to0^+}\frac{1/x}{-2x^{-3}}
+                  =\lim_{x\to0^+}-\frac{x^2}{2}=0.
+            \]}
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                $\displaystyle\lim_{x\to\infty}xe^{-2x}$
+            \end{contoh}
+            \onslide<3->{Tulis $x/e^{2x}$. Kini kedua bagian menuju tak hingga.
+            \[
+                \lim_{x\to\infty}\frac{1}{2e^{2x}}=0.
+            \]}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Bentuk $\infty-\infty$ dapat disatukan penyebutnya}
+    \begin{contoh}
+        Tentukan $\displaystyle\lim_{x\to0^+}
+        \left(\frac1x-\frac1{\ln(1+x)}\right)$.
+    \end{contoh}
+    \onslide<2->{Kedua suku menuju $+\infty$. Samakan penyebut agar terbentuk $0/0$.
+    \[
+        \frac1x-\frac1{\ln(1+x)}
+        =\frac{\ln(1+x)-x}{x\ln(1+x)}.
+    \]}
+    \onslide<3->{Gunakan L'Hôpital. Hasil antara masih berbentuk $0/0$, sehingga
+    dapat diulangi.
+    \[
+        \lim_{x\to0^+}\frac{-x/(1+x)}{\ln(1+x)+x/(1+x)}
+        =\lim_{x\to0^+}\frac{-1/(1+x)^2}{1/(1+x)+1/(1+x)^2}
+        =-\frac12.
+    \]}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Sekawan menyingkap selisih dua suku besar}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.53\textwidth}
+            \begin{contoh}
+                $\displaystyle\lim_{x\to\infty}(\sqrt{x^2+6x}-x)$
+            \end{contoh}
+            \onslide<2->{Kalikan dengan bentuk sekawan.
+            \[
+                \frac{6x}{\sqrt{x^2+6x}+x}
+                =\frac{6}{\sqrt{1+6/x}+1}\longrightarrow3.
+            \]}
+        \end{column}
+        \begin{column}{.43\textwidth}
+            \begin{block}{Perhatikan tanda tiap suku}
+                Saat $x\to0^+$, $1/x\to+\infty$ dan $\ln x\to-\infty$.
+                Jadi $1/x-\ln x$ adalah penjumlahan dua kontribusi positif
+                yang membesar. Limitnya $+\infty$.
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Bentuk pangkat ditangani dengan logaritma}
+    \begin{definisi}[Bentuk pangkat tak tentu]
+        Untuk $y=f(x)^{g(x)}$ dengan $f(x)>0$ di dekat titik limit,
+        bentuk $0^0$, $\infty^0$, dan $1^\infty$ menyatakan pasangan
+        limit basis dan pangkat yang belum menentukan limit $y$.
+    \end{definisi}
+    \[
+        \ln y=g(x)\ln f(x),\qquad y=\exp\bigl(g(x)\ln f(x)\bigr).
+    \]
+    \onslide<2->{Cari limit $\ln y$ melalui bentuk perkalian atau hasil bagi.
+    Jika limit $\ln y=L$ berhingga, maka $y\to e^L$.
+    Jika $\ln y\to+\infty$, maka $y\to+\infty$.
+    Jika $\ln y\to-\infty$, maka $y\to0$.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Dua pangkat yang sama-sama menuju nol}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.47\textwidth}
+            \begin{contoh}
+                $\displaystyle\lim_{x\to0^+}(2x)^x$
+            \end{contoh}
+            \onslide<2->{Bentuknya $0^0$. Logaritmanya
+            $x\ln(2x)=x\ln2+x\ln x$. Karena $x\ln x\to0$,
+            maka $\ln y\to0$ dan $y\to1$.}
+        \end{column}
+        \begin{column}{.49\textwidth}
+            \begin{contoh}
+                $\displaystyle\lim_{x\to\infty}(\sqrt{x})^{\,2/(1+\ln x)}$
+            \end{contoh}
+            \onslide<3->{Bentuknya $\infty^0$. Logaritmanya
+            \[
+                \frac{2\ln(\sqrt{x})}{1+\ln x}
+                  =\frac{\ln x}{1+\ln x}\longrightarrow1.
+            \]
+            Jadi $y\to e$.}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Bentuk $1^\infty$ dan limit yang menghasilkan $e$}
+    \begin{contoh}
+        Cari $\displaystyle\lim_{x\to0^+}(1+3x)^{2/x}$.
+    \end{contoh}
+    \onslide<2->{Ambil logaritma. Bentuknya sekarang $0/0$.
+    \[
+        \lim_{x\to0^+}\ln y
+         =\lim_{x\to0^+}\frac{2\ln(1+3x)}{x}
+         =\lim_{x\to0^+}\frac6{1+3x}=6.
+    \]}
+    \onslide<3->{Maka limit asalnya $e^6$.
+    Dengan cara yang sama, $\ln(1+x)/x\to1$ dari kedua sisi, sehingga
+    $(1+x)^{1/x}\to e$ saat $x\to0$.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Membandingkan dua luas yang menyusut}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.56\textwidth}
+            \begin{contoh}
+                Pada lingkaran berjari-jari $2$, bandingkan luas $T$ dari
+                segitiga $ABC$ dengan luas segmen $S$ antara tali busur $AB$
+                dan busur $AB$ saat $\theta\to0^+$.
+            \end{contoh}
+            \onslide<2->{%
+                $AC=2\sin\theta$ dan $CB=2(1-\cos\theta)$.
+                Luas segmen diperoleh dari juring $OAB$ dikurangi segitiga $OAB$.
+                \[
+                    \frac{T}{S}
+                    =\frac{2\sin\theta(1-\cos\theta)}{2(\theta-\sin\theta)}.
+                \]}
+            \onslide<3->{Ini bentuk $0/0$. Hasil bagi turunannya
+            $\cos\theta+\sin^2\theta/(1-\cos\theta)=1+2\cos\theta$.
+            Maka $\lim_{\theta\to0^+}T/S=3$.}
+        \end{column}
+        \begin{column}{.40\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \coordinate (O) at (0,0);
+                \coordinate (B) at (3.45,0);
+                \coordinate (A) at ({3.45*cos(53)},{3.45*sin(53)});
+                \coordinate (C) at ({3.45*cos(53)},0);
+                \fill[HIMAmuda!36] (A) -- (C) -- (B) -- cycle;
+                \fill[magenta!24] (B) arc[start angle=0,end angle=53,radius=3.45] -- cycle;
+                \draw[HIMAtua,very thick] (B) arc[start angle=0,end angle=53,radius=3.45];
+                \draw[HIMAtua,thick] (O) -- (A) -- (B) -- cycle;
+                \draw[HIMAtua,thick] (A) -- (C);
+                \draw (C) ++(.17,0) -- ++(0,.17) -- ++(-.17,0);
+                \draw[teal!80!black] (.69,0) arc[start angle=0,end angle=53,radius=.69];
+                \node at (.87,.37) {$\theta$};
+                \node[below left] at (O) {$O$};
+                \node[above] at (A) {$A$};
+                \node[below] at (B) {$B$};
+                \node[below] at (C) {$C$};
+                \node[teal!80!black] at (2.31,.53) {$T$};
+                \node[magenta!90!black] at (2.97,1.52) {$S$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Limit logaritmik menentukan nilai integral tak wajar}
+    \begin{contoh}
+        Hitung $\displaystyle\int_0^1 x\ln x\,dx$.
+    \end{contoh}
+    \onslide<2->{Pada $[s,1]$ dengan $s>0$, gunakan integrasi parsial
+    dengan $u=\ln x$ dan $dv=x\,dx$.
+    \[
+        \int_s^1 x\ln x\,dx
+           =\left[\frac{x^2}{2}\ln x-\frac{x^2}{4}\right]_s^1.
+    \]}
+    \onslide<3->{Dari $s^2\ln s\to0$ saat $s\to0^+$, suku di batas bawah
+    menuju nol. Maka integralnya konvergen ke $-1/4$.
+    Tanda negatif sesuai dengan $x\ln x<0$ pada $(0,1)$.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Fungsi Gamma diuji di dua ujung}
+    \begin{definisi}[Fungsi Gamma]
+        Untuk $s>0$, fungsi Gamma didefinisikan oleh
+        \[
+            \Gamma(s)=\int_0^\infty t^{s-1}e^{-t}\,dt.
+        \]
+    \end{definisi}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \onslide<2->{\textbf{Dekat nol.}
+            Pada $(0,1]$, $e^{-1}\le e^{-t}\le1$.
+            Maka konvergensi mengikuti $\int_0^1 t^{s-1}\,dt$,
+            yang konvergen tepat saat $s>0$.}
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \onslide<3->{\textbf{Dekat tak hingga.}
+            $t^{s+1}e^{-t}\to0$ karena eksponensial mengalahkan pangkat.
+            Jadi $t^{s-1}e^{-t}\le t^{-2}$ untuk $t$ cukup besar, dan
+            ekornya konvergen.}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Integrasi parsial menurunkan pangkat pada Gamma}
+    \begin{teorema}[Relasi rekursif Gamma]
+        Untuk $s>0$, $\Gamma(s+1)=s\Gamma(s)$ dan $\Gamma(1)=1$.
+    \end{teorema}
+    \onslide<2->{Integrasikan $t^se^{-t}$ secara parsial pada $[\varepsilon,R]$.
+    \[
+        \int_\varepsilon^R t^se^{-t}\,dt
+          =[-t^se^{-t}]_\varepsilon^R+
+            s\int_\varepsilon^R t^{s-1}e^{-t}\,dt.
+    \]
+    Suku batas menuju nol di kedua ujung. Untuk $s=1$ pada definisi
+    Gamma, $\int_0^\infty e^{-t}\,dt=1$.}
+    \onslide<3->{%
+        \begin{contoh}
+            $\Gamma(4)=3\Gamma(3)=3\cdot2\cdot1=6$.
+            Substitusi $t=x^2$ pada $\Gamma(1/2)$ memberi
+            $2\int_0^\infty e^{-x^2}\,dx=\sqrt{\pi}$.
+        \end{contoh}
+    }
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Latihan limit bentuk tak tentu}
+    \begin{latihan}
+        Tentukan bentuk awal dan nilai limit.
+        \begin{enumerate}
+            \item $\displaystyle\lim_{x\to0}\frac{\sin(4x)}{e^{2x}-1}$.
+            \item $\displaystyle\lim_{x\to\infty}\frac{x^2}{e^x}$.
+            \item $\displaystyle\lim_{x\to\infty}(1-2/x)^{3x}$.
+        \end{enumerate}
+    \end{latihan}
+    \onslide<2->{%
+        \begin{block}{Cek jawaban}
+            \begin{enumerate}
+                \item $0/0$. Hasil bagi turunan menuju $4/2=2$.
+                \item $\infty/\infty$. Dua penerapan L'Hôpital memberi
+                    limit $2/e^x\to0$.
+                \item $1^\infty$. Logaritmanya $3\ln(1-2/x)/(1/x)\to-6$,
+                    sehingga hasilnya $e^{-6}$.
+            \end{enumerate}
+        \end{block}
+    }
+\end{frame}
+
+\end{document}

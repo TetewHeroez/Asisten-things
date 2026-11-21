@@ -10,91 +10,1251 @@
 \newcommand{\rng}{\mathcal{R}}
 
 \renewcommand{\arraystretch}{1.5}
+% Tata letak mengikuti Beamer Bab 1 dan Bab 2.
+\setbeamertemplate{itemize items}[circle]
 
 \begin{document}
 \begin{frame}
     \titlepage
 \end{frame}
 
-\AtBeginSection{
-    {
-        \begin{frame}{Daftar isi}
-            \tableofcontents[currentsection]
-        \end{frame}}
-}
+\begin{frame}{Daftar isi}
+    \tableofcontents
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+% Sumber Bab 6: ../KALKULUS 1 BAB 6.pdf, PDF 1--62 = hlm. 209--270.
+% Seluruh definisi/teorema pokok 6.1, 6.4, 6.5, 6.6, 6.7 tercakup.
+% Penomoran mandiri mengikuti Bab 1--2. Ilustrasi seluruhnya TikZ/PGFPlots.
+\pgfplotsset{babsix/.style={width=6.3cm,height=4.1cm,axis lines=middle,
+xlabel={$x$},ylabel={$y$},tick label style={font=\scriptsize},
+label style={font=\scriptsize},samples=100,clip=true}}
 
 \section{Anti-turunan; Integral Taktentu}
+
 \begin{frame}
-    \frametitle{\insertsection}
-    \begin{definisi}[Anti-turunan]
-        Suatu fungsi $F$ disebut \textbf{anti-turunan} dari fungsi $f$ pada suatu interval $I$ jika 
-        \[F'(x) = f(x)\]
-        untuk semua $x$ dalam $I$.
-    \end{definisi}
-    \onslide<2->{
-        \begin{alertblock}{Integral Taktentu}
-            Himpunan semua anti-turunan dari $f$ dinotasikan dengan \textbf{integral taktentu}:
-            \[\int f(x) \,dx = F(x) + C\]
-            dengan $F$ adalah salah satu anti-turunan $f$ dan $C$ adalah konstanta sebarang.
-        \end{alertblock}
-    }
+\frametitle{\insertsection}
+\framesubtitle{Dari laju perubahan menuju luas}
+\begin{columns}[c]
+\begin{column}{.48\textwidth}
+
+\begin{teorema}[Turunan fungsi luas]
+Jika $f$ kontinu dan taknegatif pada $[a,b]$, serta $L(x)$ menyatakan luas di bawah $f$ dari $a$ sampai $x$, maka
+\[L'(x)=f(x),\qquad a<x<b.\]
+\end{teorema}
+\onslide<2->{Pita tipis selebar $h$ menambah luas kira-kira $f(x)h$. Jadi $\Delta L/h\to f(x)$.}
+\end{column}
+\begin{column}{.48\textwidth}
+\centering\begin{tikzpicture}\begin{axis}[babsix,xmin=0,xmax=3.4,ymin=0,ymax=4,domain=0:3,xtick={.4,2,2.4},xticklabels={$a$,$x$,$x+h$},ytick=\empty]
+
+\addplot[draw=none,fill=HIMAmuda!25,domain=.4:2] {0.3*x^2+.6}\closedcycle;
+\addplot[draw=none,fill=magenta!30,domain=2:2.4] {0.3*x^2+.6}\closedcycle;
+\node at (axis cs:1.2,.5) {$L(x)$};
+\node[font=\scriptsize] at (axis cs:2.7,3.5) {$y=f(x)$};
+\addplot[HIMAtua,very thick] {0.3*x^2+0.6};
+\end{axis}\end{tikzpicture}\par
+
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Mencari fungsi yang turunannya diketahui}
+
+\begin{definisi}[Anti-turunan]
+Fungsi $F$ adalah \textbf{anti-turunan} dari $f$ pada interval $I$ jika $F'(x)=f(x)$ untuk setiap $x$ di bagian dalam $I$ (dengan turunan satu sisi di ujung, jika diperlukan).
+\end{definisi}
+\begin{contoh}
+Jika $f(x)=3x^2$, maka $F(x)=x^3$, $G(x)=x^3+2$, dan $H(x)=x^3-5$ semuanya merupakan anti-turunan $f$.
+\end{contoh}
+\onslide<2->{\begin{alertblock}{Cara mengecek jawaban}
+Turunkan kembali fungsi hasil integrasi. Hasilnya harus sama dengan integran semula.
+\end{alertblock}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Mengapa selalu ada konstanta?}
+\begin{columns}[c]
+\begin{column}{.48\textwidth}
+
+\begin{teorema}[Keluarga anti-turunan]
+Jika $F$ suatu anti-turunan $f$ pada interval $I$, semua anti-turunan $f$ berbentuk
+\[G(x)=F(x)+C.\]
+\end{teorema}
+\onslide<2->{Sebab $(G-F)'=0$; Teorema Nilai Rata-rata menjamin $G-F$ konstan pada interval itu.}
+\end{column}
+\begin{column}{.48\textwidth}
+\centering\begin{tikzpicture}\begin{axis}[babsix,xmin=-1.4,xmax=1.4,ymin=-3,ymax=3,domain=-1.1:1.1,xtick={-1,1},ytick={-2,2}]
+
+\addplot[magenta,thick,domain=-1.1:1.1] {x^3+1.5};
+\addplot[teal,thick,domain=-1.1:1.1] {x^3-1.5};
+\node[font=\scriptsize] at (axis cs:-.65,2) {$C>0$};
+\node[font=\scriptsize] at (axis cs:.65,-2) {$C<0$};
+\addplot[HIMAtua,very thick] {x^3};
+\end{axis}\end{tikzpicture}\par
+
+\centering Pergeseran vertikal tidak mengubah kemiringan.
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Integral taktentu adalah keluarga fungsi}
+
+\begin{definisi}[Integral taktentu]
+Himpunan semua anti-turunan $f$ ditulis
+\[\int f(x)\,dx=F(x)+C,\qquad F'=f.\]
+$f(x)$ disebut \textbf{integran}, $x$ peubah integrasi, dan $C$ konstanta integrasi.
+\end{definisi}
+\onslide<2->{\begin{contoh}
+\[\int 4x^3\,dx=x^4+C,\qquad \int\cos t\,dt=\sin t+C.\]
+Huruf peubah boleh berbeda; prosesnya tetap membalik diferensiasi.
+\end{contoh}}
+Satu nilai awal akan memilih satu fungsi dari keluarga tersebut.
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Aturan dasar: pangkat dan konstanta}
+\begin{columns}[c]
+\begin{column}{.48\textwidth}
+
+\begin{block}{Pasangan turunan dan integral}
+\[\int 1\,dx=x+C\]
+\[\int x^n\,dx=\frac{x^{n+1}}{n+1}+C\quad(n\ne-1).\]
+Rumus berlaku pada interval tempat fungsi dan turunannya terdefinisi.
+\end{block}
+\begin{alertblock}{Pangkat $-1$ dikecualikan}
+Penyebut $n+1$ menjadi nol. Rumus pangkat ini tidak berlaku untuk $\int x^{-1}\,dx$.
+\end{alertblock}
+\end{column}
+\begin{column}{.48\textwidth}
+
+\begin{contoh}
+\[\int\sqrt{x}\,dx=\frac23x^{3/2}+C\]
+\[\int\frac1{x^3}\,dx=-\frac1{2x^2}+C\]
+\end{contoh}
+\onslide<2->{Untuk contoh kedua, pilih interval yang tidak melewati $0$.
+\[\frac{d}{dx}\left(-\frac1{2x^2}\right)=x^{-3}.\]}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Aturan dasar: fungsi trigonometri}
+
+\begin{columns}[t]
+\begin{column}{.47\textwidth}
+\begin{block}{Pasangan sinus dan cosinus}
+\[\int\cos x\,dx=\sin x+C\]
+\[\int\sin x\,dx=-\cos x+C\]
+\end{block}
+\begin{block}{Turunan tangen dan cotangen}
+\[\int\sec^2x\,dx=\tan x+C\]
+\[\int\csc^2x\,dx=-\cot x+C\]
+\end{block}
+\end{column}
+\begin{column}{.47\textwidth}
+\begin{block}{Turunan secan dan cosecan}
+\[\int\sec x\tan x\,dx=\sec x+C\]
+\[\int\csc x\cot x\,dx=-\csc x+C\]
+\end{block}
+\onslide<2->{\begin{alertblock}{Kenali tandanya}
+Turunan $\cos$, $\cot$, dan $\csc$ membawa tanda negatif. Periksa kembali dengan diferensiasi; gunakan interval tanpa singularitas.
+\end{alertblock}}
+\end{column}\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Mengintegralkan suku demi suku}
+
+\begin{teorema}[Linearitas integral taktentu]
+Jika $f$ dan $g$ mempunyai anti-turunan dan $\alpha,\beta$ konstanta, maka
+\[\int[\alpha f(x)+\beta g(x)]\,dx
+=\alpha F(x)+\beta G(x)+C,\quad F'=f,\ G'=g.\]
+\end{teorema}
+\onslide<2->{\begin{contoh}
+\[\int(6x^2-4x+3\cos x)\,dx=2x^3-2x^2+3\sin x+C.\]
+\end{contoh}}
+Cukup tulis satu $C$: jumlah beberapa konstanta tetap merupakan konstanta sebarang.
+\begin{alertblock}{Batas aturan}
+Tidak ada aturan umum $\int fg\,dx=(\int f\,dx)(\int g\,dx)$.
+\end{alertblock}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Sederhanakan integran sebelum mengintegralkan}
+
+\begin{contoh}
+Hitung $\displaystyle\int\frac{2x^4-3x^2+1}{x^2}\,dx$ dan $\displaystyle\int\frac{\cos x}{\sin^2x}\,dx$.
+\end{contoh}
+\onslide<2->{\begin{columns}[t]
+\begin{column}{.49\textwidth}
+\[\frac{2x^4-3x^2+1}{x^2}=2x^2-3+x^{-2}.\]
+Maka, pada interval tanpa $0$,
+hasil integralnya adalah
+\[\boxed{\frac23x^3-3x-\frac1x+C}.\]
+\end{column}
+\begin{column}{.47\textwidth}
+\[\frac{\cos x}{\sin^2x}=\csc x\cot x.\]
+Jadi, jika $\sin x\ne0$ pada intervalnya,
+\[\int\frac{\cos x}{\sin^2x}\,dx=-\csc x+C.\]
+\end{column}\end{columns}}
+\onslide<3->{Pecahan dapat diuraikan per suku, tetapi integral suatu hasil bagi tidak dapat dipisah menjadi hasil bagi integral.}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Kondisi awal menentukan konstanta}
+
+\begin{contoh}
+Kemiringan kurva adalah $y'=3x^2$. Tentukan kurva yang melalui $(1,4)$.
+\end{contoh}\begin{columns}[c]
+\begin{column}{.48\textwidth}
+\centering\begin{tikzpicture}\begin{axis}[babsix,xmin=-1.5,xmax=1.7,ymin=-1,ymax=7,domain=-1.4:1.5,xtick={1},ytick={3,4}]
+
+\addplot[gray,dashed,domain=-1.4:1.5] {x^3};
+\addplot[only marks,magenta] coordinates {(1,4)};
+\node[above left,font=\scriptsize] at (axis cs:1,4) {$(1,4)$};
+\addplot[HIMAtua,very thick] {x^3+3};
+\end{axis}\end{tikzpicture}\par
+
+\end{column}
+\begin{column}{.48\textwidth}
+
+\onslide<2->{\[y=\int3x^2\,dx=x^3+C.\]
+Karena $y(1)=4$,
+\[4=1+C\quad\Rightarrow\quad C=3.\]
+Jadi $\boxed{y=x^3+3}$.
+Periksa: turunannya $3x^2$ dan nilainya di $x=1$ adalah $4$.}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Mengintegralkan dua kali dan memperhatikan interval}
+\begin{columns}[c]
+\begin{column}{.48\textwidth}
+
+\begin{contoh}
+Jika $y''=6x$, $y'(0)=2$, dan $y(0)=-1$, tentukan $y$.
+\end{contoh}
+\onslide<2->{\[y'=3x^2+C_1,\qquad C_1=2.\]
+\[y=x^3+2x+C_2,\qquad C_2=-1.\]
+Jadi $y=x^3+2x-1$. Setiap integrasi membawa konstanta baru.}
+\end{column}
+\begin{column}{.48\textwidth}
+
+\begin{alertblock}{Mengapa harus pada interval?}
+Pada $\R\setminus\{0\}$, fungsi
+\[H(x)=\begin{cases}0,&x<0,\\1,&x>0\end{cases}\]
+mempunyai $H'(x)=0$, tetapi tidak konstan pada seluruh domainnya.
+\end{alertblock}
+Konstanta anti-turunan boleh berbeda pada dua komponen domain yang terpisah.
+\end{column}
+\end{columns}
 \end{frame}
 
 \section{Integrasi dengan Substitusi}
+
 \begin{frame}
-    \frametitle{\insertsection}
-    \begin{teorema}[Aturan Substitusi]
-        Misalkan $u = g(x)$ adalah fungsi yang dapat diturunkan dan daerah hasilnya merupakan suatu interval $I$. Misalkan $f$ kontinu pada $I$. Maka:
-        \[\int f(g(x))g'(x) \,dx = \int f(u) \,du\]
-    \end{teorema}
+\frametitle{\insertsection}
+\framesubtitle{Substitusi membalik aturan rantai}
+
+\begin{block}{Dari turunan komposisi}
+Jika $F'=f$ dan $u=g(x)$, maka
+\[\frac{d}{dx}F(g(x))=f(g(x))g'(x).\]
+Karena itu,
+\[\int f(g(x))g'(x)\,dx=\int f(u)\,du=F(u)+C.\]
+\end{block}
+\onslide<2->{\begin{exampleblock}{Apa yang perlu dicari?}
+Cari fungsi bagian dalam $g(x)$ beserta faktor turunannya $g'(x)$ pada integran. Faktor konstanta dapat disesuaikan.
+\end{exampleblock}}
+Pada integral taktentu, kembalikan jawaban akhir ke peubah semula.
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: fungsi bagian dalam berpangkat}
+
+\begin{contoh}
+Hitung $\displaystyle\int 3x(x^2+2)^4\,dx$.
+\end{contoh}
+\onslide<2->{Ambil $u=x^2+2$, sehingga $du=2x\,dx$ dan $3x\,dx=\tfrac32\,du$.
+\begin{align*}
+\int3x(x^2+2)^4\,dx&=\frac32\int u^4\,du
+=\frac3{10}u^5+C\\
+&=\boxed{\frac3{10}(x^2+2)^5+C}.
+\end{align*}}
+\onslide<3->{\begin{alertblock}{Faktor pengali tidak boleh hilang}
+Turunan $(x^2+2)^5$ adalah $10x(x^2+2)^4$. Koefisien $3/10$ mengembalikannya ke integran.
+\end{alertblock}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: perubahan linear dan trigonometri}
+\begin{columns}[c]
+\begin{column}{.48\textwidth}
+
+\begin{contoh}
+Hitung $\displaystyle\int(4x-1)^3\,dx$.
+\end{contoh}
+\onslide<2->{Ambil $u=4x-1$, $dx=du/4$.
+\[\frac14\int u^3\,du=\frac{u^4}{16}+C.\]
+Jadi hasilnya $\dfrac{(4x-1)^4}{16}+C$.}
+\end{column}
+\begin{column}{.48\textwidth}
+
+\begin{contoh}
+Hitung $\displaystyle\int\sin(3x+2)\,dx$.
+\end{contoh}
+\onslide<2->{Ambil $u=3x+2$, $dx=du/3$.
+\[\frac13\int\sin u\,du=-\frac13\cos u+C.\]
+Jadi hasilnya $-\dfrac13\cos(3x+2)+C$.}
+\end{column}
+\end{columns}
+\onslide<3->{Untuk $a\ne0$, polanya sama: $\displaystyle\int f(ax+b)\,dx=\frac1a F(ax+b)+C$ jika $F'=f$.}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: mengenali turunan yang tersembunyi}
+\begin{columns}[c]
+\begin{column}{.48\textwidth}
+
+\begin{contoh}
+Hitung $\displaystyle\int\sin^3x\cos x\,dx$.
+\end{contoh}
+\onslide<2->{Ambil $u=\sin x$, $du=\cos x\,dx$.
+\[\int u^3\,du=\frac14u^4+C.\]
+\[\boxed{\frac14\sin^4x+C}\]}
+\end{column}
+\begin{column}{.48\textwidth}
+
+\begin{contoh}
+Hitung $\displaystyle\int\frac{\cos\sqrt{x}}{\sqrt{x}}\,dx$, $x>0$.
+\end{contoh}
+\onslide<2->{Ambil $u=\sqrt{x}$, $du=\dfrac{dx}{2\sqrt{x}}$.
+\[2\int\cos u\,du=2\sin u+C.\]
+\[\boxed{2\sin\sqrt{x}+C}\]}
+\end{column}
+\end{columns}
+\onslide<3->{Pilihan $u$ yang baik mengganti \emph{seluruh} integran beserta diferensialnya, sehingga tidak ada campuran $x$ dan $u$.}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Kadang sisa faktor juga harus diubah}
+
+\begin{contoh}
+Hitung $\displaystyle\int x\sqrt{x-2}\,dx$ untuk $x>2$.
+\end{contoh}
+\onslide<2->{Ambil $u=x-2$, sehingga $x=u+2$ dan $dx=du$.
+\begin{align*}
+\int x\sqrt{x-2}\,dx
+&=\int(u+2)u^{1/2}\,du\\
+&=\frac25u^{5/2}+\frac43u^{3/2}+C\\
+&=\boxed{\frac25(x-2)^{5/2}+\frac43(x-2)^{3/2}+C}.
+\end{align*}}
+Jangan berhenti pada $\int x\sqrt{u}\,du$: ganti faktor $x$ dengan $u+2$ sebelum memakai aturan pangkat.
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Memilih substitusi dan memeriksa hasil}
+
+\begin{enumerate}
+\item Pilih $u$ dan hitung $du$ secara lengkap.
+\item Ganti semua faktor dan diferensial ke peubah $u$.
+\item Integralkan, lalu kembalikan ke peubah awal dan tambahkan $C$.
+\item Turunkan jawaban untuk memeriksa faktor dan tanda.
+\end{enumerate}
+\onslide<2->{\begin{alertblock}{Substitusi sederhana tidak selalu cukup}
+Pada $\int\sin(x^2)\,dx$, pilihan $u=x^2$ menghasilkan $du=2x\,dx$, tetapi faktor $x$ tidak tersedia. Ini belum menghasilkan bentuk dasar yang lebih sederhana.
+\end{alertblock}
+Kegagalan suatu pilihan substitusi tidak berarti fungsi tersebut tidak mempunyai anti-turunan.}
 \end{frame}
 
 \section{Luas Sebagai Limit}
+
 \begin{frame}
-    \frametitle{\insertsection}
-    \begin{definisi}[Luas Daerah]
-        Luas $A$ dari daerah $S$ yang terletak di bawah grafik fungsi kontinu $f$ yang tak-negatif pada interval $[a,b]$ adalah limit dari jumlah luas persegi panjang penghampir:
-        \[A = \lim_{n \to \infty} \sum_{i=1}^n f(x_i) \Delta x\]
-    \end{definisi}
+\frametitle{\insertsection}
+\framesubtitle{Menghampiri daerah dengan persegi panjang}
+
+Untuk $f(x)=x^2$ pada $[0,1]$, bagi interval menjadi $n$ bagian sama panjang. Tinggi persegi panjang diambil dari ujung kanan.\begin{columns}[c]
+\begin{column}{.48\textwidth}
+\centering\begin{tikzpicture}\begin{axis}[babsix,xmin=0,xmax=1.12,ymin=0,ymax=1.2,domain=0:1,xtick={0,1},ytick={1}]
+\draw[draw=HIMAtua!50,fill=HIMAmuda!25] (axis cs:0.0,0) rectangle (axis cs:0.25,0.0625);
+\draw[draw=HIMAtua!50,fill=HIMAmuda!25] (axis cs:0.25,0) rectangle (axis cs:0.5,0.25);
+\draw[draw=HIMAtua!50,fill=HIMAmuda!25] (axis cs:0.5,0) rectangle (axis cs:0.75,0.5625);
+\draw[draw=HIMAtua!50,fill=HIMAmuda!25] (axis cs:0.75,0) rectangle (axis cs:1.0,1.0);
+
+\addplot[HIMAtua,very thick] {x^2};
+\end{axis}\end{tikzpicture}\par
+\centering $n=4$, lebar $\Delta x=1/4$.
+\end{column}
+\begin{column}{.48\textwidth}
+\centering\begin{tikzpicture}\begin{axis}[babsix,xmin=0,xmax=1.12,ymin=0,ymax=1.2,domain=0:1,xtick={0,1},ytick={1}]
+\draw[draw=HIMAtua!50,fill=HIMAmuda!25] (axis cs:0.0,0) rectangle (axis cs:0.125,0.015625);
+\draw[draw=HIMAtua!50,fill=HIMAmuda!25] (axis cs:0.125,0) rectangle (axis cs:0.25,0.0625);
+\draw[draw=HIMAtua!50,fill=HIMAmuda!25] (axis cs:0.25,0) rectangle (axis cs:0.375,0.140625);
+\draw[draw=HIMAtua!50,fill=HIMAmuda!25] (axis cs:0.375,0) rectangle (axis cs:0.5,0.25);
+\draw[draw=HIMAtua!50,fill=HIMAmuda!25] (axis cs:0.5,0) rectangle (axis cs:0.625,0.390625);
+\draw[draw=HIMAtua!50,fill=HIMAmuda!25] (axis cs:0.625,0) rectangle (axis cs:0.75,0.5625);
+\draw[draw=HIMAtua!50,fill=HIMAmuda!25] (axis cs:0.75,0) rectangle (axis cs:0.875,0.765625);
+\draw[draw=HIMAtua!50,fill=HIMAmuda!25] (axis cs:0.875,0) rectangle (axis cs:1.0,1.0);
+
+\addplot[HIMAtua,very thick] {x^2};
+\end{axis}\end{tikzpicture}\par
+\centering $n=8$, lebar $\Delta x=1/8$.
+\end{column}
+\end{columns}
+\onslide<2->{Karena $x^2$ naik, persegi panjang kanan melebihi daerah kurva. Ketika lebarnya mengecil, selisih luas juga mengecil.}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Pilihan titik sampel}
+
+Pada $[a,b]$, gunakan $\Delta x=(b-a)/n$ dan $x_k=a+k\Delta x$.
+\begin{center}
+\begin{tabular}{lll}
+\rowcolor{HIMAtua!20}Pilihan & Titik sampel pada bagian ke-$k$ & Jumlah luas\\
+Ujung kiri & $a+(k-1)\Delta x$ & $L_n=\sum_{k=1}^n f(x_{k-1})\Delta x$\\
+Ujung kanan & $a+k\Delta x$ & $R_n=\sum_{k=1}^n f(x_k)\Delta x$\\
+Titik tengah & $a+(k-\tfrac12)\Delta x$ & $M_n=\sum_{k=1}^n f(\tfrac{x_{k-1}+x_k}{2})\Delta x$
+\end{tabular}
+\end{center}
+\onslide<2->{\begin{block}{Apa yang berubah dan apa yang tetap?}
+Untuk $n$ berhingga, hasil ketiganya umumnya berbeda. Untuk fungsi kontinu, ketiganya menuju integral yang sama saat $n\to\infty$.
+\end{block}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Definisi luas melalui limit}
+
+\begin{definisi}[Luas daerah di bawah kurva]
+Jika $f$ kontinu dan $f\ge0$ pada $[a,b]$, luas di bawah grafiknya adalah
+\[A=\lim_{n\to\infty}\sum_{k=1}^n f(x_k^*)\Delta x,
+\qquad \Delta x=\frac{b-a}{n},\quad x_k^*\in[x_{k-1},x_k].\]
+\end{definisi}
+\onslide<2->{\begin{block}{Makna setiap bagian}
+$f(x_k^*)$ adalah tinggi, $\Delta x$ lebar, dan jumlahnya menghimpun luas semua persegi panjang. Limit menghilangkan galat penghampiran.
+\end{block}}
+Jika kedua sumbu memakai satuan panjang, hasil luas memakai satuan panjang kuadrat. Definisi ini akan diperluas ke partisi dengan lebar berbeda.
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: menghitung luas langsung dari limit}
+
+\begin{contoh}
+Hitung luas di bawah $y=x^2$ pada $[0,1]$ menggunakan ujung kanan.
+\end{contoh}
+\onslide<2->{Dengan $x_k=k/n$ dan $\Delta x=1/n$,
+\begin{align*}
+R_n&=\sum_{k=1}^n\left(\frac{k}{n}\right)^2\frac1n
+=\frac1{n^3}\frac{n(n+1)(2n+1)}6\\
+&=\frac13+\frac1{2n}+\frac1{6n^2}
+\quad\Longrightarrow\quad A=\boxed{\frac13}.
+\end{align*}}
+\onslide<3->{Rumus jumlah yang digunakan: $\displaystyle\sum_{k=1}^n k^2=\frac{n(n+1)(2n+1)}6$.}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Seberapa baik penghampirannya?}
+
+Untuk $f(x)=x^2$ pada $[0,1]$, luas tepatnya $1/3\approx0{,}333333$.
+\begin{center}
+\begin{tabular}{rrrr}
+\rowcolor{HIMAtua!20}$n$ & $L_n$ (kiri) & $R_n$ (kanan) & $M_n$ (tengah)\\
+4 & $0{,}218750$ & $0{,}468750$ & $0{,}328125$\\
+10 & $0{,}285000$ & $0{,}385000$ & $0{,}332500$\\
+20 & $0{,}308750$ & $0{,}358750$ & $0{,}333125$
+\end{tabular}
+\end{center}
+\onslide<2->{\[L_n=\frac13-\frac1{2n}+\frac1{6n^2},\qquad
+M_n=\frac13-\frac1{12n^2}.\]
+\begin{block}{Baca pola galatnya}
+Untuk contoh ini, kiri memberi nilai kurang dan kanan memberi nilai lebih. Galat titik tengah berorde $1/n^2$, sehingga mengecil lebih cepat.
+\end{block}}
 \end{frame}
 
 \section{Integral Tertentu}
+
 \begin{frame}
-    \frametitle{\insertsection}
-    \begin{definisi}[Integral Tertentu]
-        Jika $f$ didefinisikan pada selang tertutup $[a,b]$, maka \textbf{integral tertentu} dari $f$ dari $a$ ke $b$ adalah
-        \[\int_a^b f(x) \,dx = \lim_{n \to \infty} \sum_{i=1}^n f(\bar{x}_i) \Delta x_i\]
-        asalkan limit ini ada. Jika limitnya ada, kita katakan bahwa $f$ \textbf{terintegralkan} pada $[a,b]$.
-    \end{definisi}
+\frametitle{\insertsection}
+\framesubtitle{Partisi tidak harus sama panjang}
+\begin{columns}[c]
+\begin{column}{.48\textwidth}
+
+\begin{block}{Partisi dan ukuran partisi}
+$P:\ a=x_0<x_1<\cdots<x_n=b$,
+\[\Delta x_k=x_k-x_{k-1},\qquad
+\|P\|=\max_k\Delta x_k.\]
+Ambil $x_k^*\in[x_{k-1},x_k]$. Jumlah Riemann adalah
+\[S(P)=\sum_{k=1}^n f(x_k^*)\Delta x_k.\]
+\end{block}
+\end{column}
+\begin{column}{.48\textwidth}
+
+\centering\begin{tikzpicture}[x=1.2cm,y=1cm]
+\draw[->] (-.2,0)--(4.6,0);
+\foreach \x/\lab in {0/a,.7/x_1,2.5/x_2,3.4/x_3,4.2/b}{
+\draw (\x,-.08)--(\x,.08) node[below=4pt] {$\lab$};}
+\draw[<->,HIMAtua] (0,.6)--(.7,.6) node[midway,above] {$\Delta x_1$};
+\draw[<->,magenta] (.7,1.2)--(2.5,1.2) node[midway,above] {$\|P\|$};
+\fill[magenta] (1.6,0) circle (2pt) node[above] {$x_2^*$};
+\end{tikzpicture}
+\onslide<2->{\begin{alertblock}{Syarat limit yang tepat}
+Gunakan $\|P\|\to0$. Menambah jumlah bagian saja belum cukup jika masih ada satu bagian yang tetap lebar.
+\end{alertblock}}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Integral tertentu dan keterintegralan}
+
+\begin{definisi}[Integral Riemann]
+Fungsi $f$ pada $[a,b]$ disebut \textbf{terintegralkan} jika jumlah Riemann mempunyai satu limit berhingga yang sama untuk semua pilihan partisi dan titik sampel saat $\|P\|\to0$. Nilainya ditulis
+\[\int_a^b f(x)\,dx=\lim_{\|P\|\to0}\sum_{k=1}^n f(x_k^*)\Delta x_k.\]
+\end{definisi}
+\onslide<2->{\begin{block}{Hubungannya dengan luas}
+Jika $f$ kontinu dan taknegatif, limit ini memberi luas daerah di bawah kurva. Jika $f$ dapat negatif, kontribusi setiap persegi panjang membawa tanda $f(x_k^*)$.
+\end{block}}
+$a$ adalah batas bawah dan $b$ batas atas. Untuk batas tetap, hasilnya sebuah bilangan.
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Luas bertanda dan luas geometris}
+\begin{columns}[c]
+\begin{column}{.48\textwidth}
+\centering\begin{tikzpicture}\begin{axis}[babsix,xmin=-.2,xmax=2.3,ymin=-1.4,ymax=1.4,domain=0:2,xtick={0,1,2},ytick={-1,1}]
+
+\addplot[draw=none,fill=magenta!30,domain=0:1] {x-1}\closedcycle;
+\addplot[draw=none,fill=HIMAmuda!30,domain=1:2] {x-1}\closedcycle;
+\node at (axis cs:.65,-.75) {$A_-$};
+\node at (axis cs:1.7,.3) {$A_+$};
+\addplot[HIMAtua,very thick] {x-1};
+\end{axis}\end{tikzpicture}\par
+
+\end{column}
+\begin{column}{.48\textwidth}
+
+\textbf{Tanda mengikuti posisi kurva.}
+\[\int_a^b f(x)\,dx=A_+-A_-.\]
+Luas geometris total:
+\[A_++A_-=\int_a^b|f(x)|\,dx.\]
+\onslide<2->{Untuk $f(x)=x-1$ pada $[0,2]$, kedua segitiga luasnya $1/2$.
+Jadi $\int_0^2(x-1)\,dx=0$, tetapi luas totalnya $1$.
+Integral nol tidak berarti daerahnya tidak ada.}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: geometri dapat menggantikan perhitungan limit}
+
+\begin{contoh}
+Hitung $\displaystyle\int_{-2}^2\sqrt{4-x^2}\,dx$ dan $\displaystyle\int_1^3(1-x)\,dx$ secara geometris.
+\end{contoh}\begin{columns}[c]
+\begin{column}{.48\textwidth}
+\centering\begin{tikzpicture}\begin{axis}[babsix,axis equal image,xmin=-2.4,xmax=2.4,ymin=0,ymax=2.6,domain=-2:2,xtick={-2,2},ytick={2}]
+
+\addplot[draw=none,fill=HIMAmuda!25,domain=-2:2] {sqrt(max(0,4-x^2))}\closedcycle;
+\draw[dashed] (axis cs:0,0)--(axis cs:1.414,1.414);
+\node at (axis cs:.8,.6) {$r=2$};
+\addplot[HIMAtua,very thick] {sqrt(max(0,4-x^2))};
+\end{axis}\end{tikzpicture}\par
+
+\end{column}
+\begin{column}{.48\textwidth}
+
+\onslide<2->{Integral pertama adalah luas setengah lingkaran:
+\[\frac12\pi(2)^2=\boxed{2\pi}.\]
+Integral kedua adalah negatif luas segitiga di bawah sumbu-$x$:
+\[-\frac12(3-1)\cdot2=\boxed{-2}.\]}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Orientasi batas dan peubah semu}
+
+\begin{definisi}[Batas sama dan batas terbalik]
+\[\int_a^a f(x)\,dx=0,\qquad
+\int_b^a f(x)\,dx=-\int_a^b f(x)\,dx.\]
+\end{definisi}
+\begin{columns}[t]
+\begin{column}{.47\textwidth}
+\begin{contoh}
+Jika $\int_1^4 f(x)\,dx=7$, maka
+\[\int_4^1 f(x)\,dx=-7.\]
+\end{contoh}
+\end{column}
+\begin{column}{.49\textwidth}
+\begin{block}{Peubah integrasi adalah peubah semu}
+\[\int_1^4 f(x)\,dx=\int_1^4 f(t)\,dt.\]
+Nama peubah boleh diganti secara konsisten; hasil integralnya tetap.
+\end{block}
+\end{column}\end{columns}
+\onslide<2->{Orientasi memengaruhi tanda integral, bukan tanda luas geometris.}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Linearitas dan pemisahan interval}
+
+\begin{teorema}[Linearitas integral tertentu]
+Jika $f,g$ terintegralkan pada $[a,b]$ dan $\alpha,\beta$ konstanta, maka
+\[\int_a^b(\alpha f+\beta g)\,dx
+=\alpha\int_a^b f\,dx+\beta\int_a^b g\,dx.\]
+\end{teorema}
+\begin{teorema}[Aditivitas interval]
+Jika $f$ terintegralkan pada interval yang memuat $a,b,c$, maka
+\[\int_a^b f\,dx=\int_a^c f\,dx+\int_c^b f\,dx.\]
+\end{teorema}
+\onslide<2->{Dengan aturan orientasi, hubungan kedua tetap berlaku walaupun $c$ berada di luar $[a,b]$.}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: menghitung dari informasi integral}
+
+\begin{contoh}
+Diketahui $\displaystyle\int_1^5 f(x)\,dx=2$, $\displaystyle\int_3^5 f(x)\,dx=-3$, dan $\displaystyle\int_3^5 g(x)\,dx=4$.
+Tentukan $\int_1^3 f(x)\,dx$ dan $\int_5^3[2f(x)-g(x)]\,dx$.
+\end{contoh}
+\onslide<2->{\begin{align*}
+\int_1^3 f(x)\,dx&=\int_1^5 f(x)\,dx-\int_3^5 f(x)\,dx=2-(-3)=\boxed5,\\
+\int_5^3(2f-g)\,dx&=-\left(2\int_3^5 f\,dx-\int_3^5 g\,dx\right)\\
+&=-[2(-3)-4]=\boxed{10}.
+\end{align*}}
+\onslide<3->{Kita tidak perlu mengetahui rumus $f$ atau $g$: sifat integral sudah cukup.}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Membandingkan integral tanpa mencari anti-turunan}
+
+\begin{teorema}[Positivitas dan perbandingan]
+Untuk $a<b$ dan fungsi-fungsi terintegralkan pada $[a,b]$:
+\begin{itemize}
+\item Jika $f(x)\ge0$, maka $\int_a^b f(x)\,dx\ge0$.
+\item Jika $f(x)\ge g(x)$, maka $\int_a^b f(x)\,dx\ge\int_a^b g(x)\,dx$.
+\end{itemize}
+\end{teorema}
+\onslide<2->{\begin{contoh}
+Pada $[0,1]$, $\cos x>0$ dan $2x^3-5<0$. Jadi
+\[\int_0^1\frac{\cos x}{2x^3-5}\,dx<0.\]
+\end{contoh}}
+Integran kontinu dan negatif, sehingga integralnya negatif.
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Fungsi terbatas dan batas nilai integral}
+
+\begin{definisi}[Fungsi terbatas]
+Fungsi $f$ terbatas pada $[a,b]$ jika ada bilangan $M\ge0$ sehingga $|f(x)|\le M$ untuk semua $x\in[a,b]$.
+\end{definisi}
+\onslide<2->{\textbf{Akibat perbandingan:}
+Jika $f$ terintegralkan, $a<b$, dan $m\le f(x)\le M$, maka
+\[m(b-a)\le\int_a^b f(x)\,dx\le M(b-a).\]
+\begin{contoh}
+Pada $[0,1]$, $1\le\sqrt{1+x^2}\le\sqrt2$, sehingga
+\[1\le\int_0^1\sqrt{1+x^2}\,dx\le\sqrt2.\]
+\end{contoh}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Kapan integral Riemann dijamin ada?}
+
+\begin{teorema}[Syarat keterintegralan]
+Untuk fungsi $f$ yang terdefinisi pada seluruh $[a,b]$:
+\begin{enumerate}
+\item Jika $f$ kontinu, maka $f$ terintegralkan.
+\item Jika $f$ terbatas dan hanya memiliki berhingga titik diskontinuitas, maka $f$ terintegralkan.
+\item Jika $f$ tidak terbatas, maka $f$ tidak terintegralkan dalam arti Riemann pada interval tersebut.
+\end{enumerate}
+\end{teorema}
+\onslide<2->{\begin{alertblock}{Syarat cukup dan syarat perlu}
+Kontinuitas cukup untuk menjamin keterintegralan, tetapi bukan syarat perlu. Keterbatasan perlu, tetapi keterbatasan saja belum cukup.
+\end{alertblock}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Diskontinuitas tidak selalu menghalangi integrasi}
+\begin{columns}[c]
+\begin{column}{.48\textwidth}
+
+\begin{contoh}
+\[f(x)=\begin{cases}x^2,&-1\le x<0,\\x+1,&0\le x\le1.\end{cases}\]
+\end{contoh}
+\onslide<2->{Fungsi terbatas dan hanya meloncat di $0$, sehingga terintegralkan.
+Integralnya dapat dipisah menjadi
+\[\int_{-1}^0x^2\,dx+\int_0^1(x+1)\,dx.\]}
+\end{column}
+\begin{column}{.48\textwidth}
+\centering\begin{tikzpicture}\begin{axis}[babsix,xmin=-1.2,xmax=1.2,ymin=-.2,ymax=2.4,domain=0:1,xtick={-1,1},ytick={1,2}]
+
+\addplot[HIMAtua,very thick,domain=-1:0] {x^2};
+\addplot[only marks,mark=*,mark options={fill=white}] coordinates {(0,0)};
+\addplot[only marks,mark=*] coordinates {(0,1)};
+\addplot[HIMAtua,very thick] {x+1};
+\end{axis}\end{tikzpicture}\par
+
+\end{column}
+\end{columns}
+\onslide<2->{Sebaliknya, $g(x)=1/x$ untuk $x\ne0$ dengan $g(0)=0$ tetap tidak terbatas pada $[-1,1]$. Menetapkan nilai di $0$ tidak menghilangkan singularitas di dekatnya.}
 \end{frame}
 
 \section{Teorema Fundamental Kalkulus Pertama}
+
 \begin{frame}
-    \frametitle{\insertsection}
-    \begin{teorema}[TFK Pertama]
-        Jika $f$ kontinu pada interval tertutup $[a,b]$ dan $x$ adalah sebarang titik pada $(a,b)$, maka fungsi $F$ yang didefinisikan oleh
-        \[F(x) = \int_a^x f(t) \,dt\]
-        dapat diturunkan pada $(a,b)$ dan $F'(x) = f(x)$. Secara ringkas:
-        \[\frac{d}{dx} \left[ \int_a^x f(t) \,dt \right] = f(x)\]
-    \end{teorema}
+\frametitle{\insertsection}
+\framesubtitle{Menghitung integral melalui anti-turunan}
+
+\begin{teorema}[Teorema Fundamental Kalkulus Pertama]
+Jika $f$ kontinu pada $[a,b]$ dan $F$ suatu anti-turunan $f$, maka
+\[\boxed{\int_a^b f(x)\,dx=F(b)-F(a)=\left[F(x)\right]_a^b}.\]
+\end{teorema}
+\onslide<2->{\begin{block}{Jembatan antara dua gagasan}
+Integral didefinisikan melalui limit jumlah Riemann. Teorema ini memberi cara menghitung nilai yang sama melalui anti-turunan.
+\end{block}}
+\begin{alertblock}{Urutan evaluasi}
+Nilai anti-turunan di batas atas dikurangi nilainya di batas bawah. Yang dievaluasi adalah $F$, bukan $f$.
+\end{alertblock}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Mengapa hanya nilai di kedua ujung yang tersisa?}
+
+Ambil partisi $a=x_0<x_1<\cdots<x_n=b$. Teorema Nilai Rata-rata memberikan $c_k\in(x_{k-1},x_k)$ sehingga
+\[F(x_k)-F(x_{k-1})=F'(c_k)\Delta x_k=f(c_k)\Delta x_k.\]
+\onslide<2->{Jumlahkan semua persamaan:
+\[\underbrace{[F(x_1)-F(a)]+[F(x_2)-F(x_1)]+\cdots+[F(b)-F(x_{n-1})]}_{\text{suku di titik-titik dalam saling menghapus}}
+=\sum_{k=1}^n f(c_k)\Delta x_k.\]
+\[F(b)-F(a)=\lim_{\|P\|\to0}\sum_{k=1}^n f(c_k)\Delta x_k
+=\int_a^b f(x)\,dx.\]}
+\onslide<3->{Kontinuitas $f$ memastikan limit jumlah Riemann tersebut ada.}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: polinomial dan batas terbalik}
+
+\begin{contoh}
+Hitung $\displaystyle\int_0^2(x^3-3x+2)\,dx$ dan $\displaystyle\int_2^0(x^3-3x+2)\,dx$.
+\end{contoh}
+\onslide<2->{Salah satu anti-turunannya adalah $F(x)=x^4/4-3x^2/2+2x$.
+\[\int_0^2(x^3-3x+2)\,dx
+=\left[\frac{x^4}{4}-\frac{3x^2}{2}+2x\right]_0^2
+=4-6+4=\boxed2.\]
+Membalik batas memberi $\displaystyle\int_2^0(x^3-3x+2)\,dx=\boxed{-2}$.}
+\onslide<3->{\begin{block}{Ke mana konstanta $C$?}
+$[F(b)+C]-[F(a)+C]=F(b)-F(a)$. Nilai integral tertentu tidak menyisakan konstanta integrasi.
+\end{block}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: fungsi yang didefinisikan sepotong-sepotong}
+
+\begin{contoh}
+Hitung $\displaystyle\int_0^3 f(x)\,dx$ jika
+$\displaystyle f(x)=\begin{cases}x^2,&0\le x<1,\\2x-1,&1\le x\le3.\end{cases}$
+\end{contoh}
+\onslide<2->{Pisahkan integral di tempat rumusnya berubah:
+\begin{align*}
+\int_0^3 f(x)\,dx
+&=\int_0^1 x^2\,dx+\int_1^3(2x-1)\,dx\\
+&=\left[\frac{x^3}{3}\right]_0^1+[x^2-x]_1^3
+=\frac13+6=\boxed{\frac{19}{3}}.
+\end{align*}}
+\onslide<3->{\begin{alertblock}{Gunakan rumus pada interval yang benar}
+Satu anti-turunan dari salah satu potongan tidak boleh langsung dipakai pada seluruh interval.
+\end{alertblock}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: nilai mutlak dan luas total}
+
+\begin{contoh}
+Hitung $\displaystyle\int_{-1}^3|x-1|\,dx$.
+\end{contoh}\begin{columns}[c]
+\begin{column}{.48\textwidth}
+\centering\begin{tikzpicture}\begin{axis}[babsix,xmin=-1.4,xmax=3.4,ymin=0,ymax=2.7,domain=-1:3,xtick={-1,1,3},ytick={2}]
+
+\addplot[draw=none,fill=HIMAmuda!25,domain=-1:3] {abs(x-1)}\closedcycle;
+\addplot[HIMAtua,very thick] {abs(x-1)};
+\end{axis}\end{tikzpicture}\par
+
+\end{column}
+\begin{column}{.48\textwidth}
+
+\onslide<2->{Titik pemisahnya $x=1$:
+\begin{align*}
+\int_{-1}^3|x-1|\,dx
+&=\int_{-1}^1(1-x)\,dx\\
+&\quad+\int_1^3(x-1)\,dx\\
+&=2+2=\boxed4.
+\end{align*}
+Hasil cocok dengan jumlah luas dua segitiga.}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Teorema Nilai Rata-rata untuk Integral}
+
+\begin{teorema}[Nilai rata-rata untuk integral]
+Jika $f$ kontinu pada $[a,b]$ dengan $a<b$, ada $c\in[a,b]$ sehingga
+\[\int_a^b f(x)\,dx=f(c)(b-a).\]
+\end{teorema}
+\onslide<2->{\begin{block}{Mengapa nilai $c$ itu ada?}
+Ambil $m=\min f$ dan $M=\max f$. Perbandingan integral memberi
+\[m\le\frac1{b-a}\int_a^b f(x)\,dx\le M.\]
+Teorema Nilai Antara menjamin nilai ini dicapai oleh $f(c)$.
+\end{block}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Nilai rata-rata sebagai tinggi persegi panjang}
+\begin{columns}[c]
+\begin{column}{.48\textwidth}
+
+\begin{definisi}[Nilai rata-rata fungsi]
+Untuk $f$ terintegralkan pada $[a,b]$, $a<b$, nilai rata-ratanya adalah
+\[f_{\text{rata}}=\frac1{b-a}\int_a^b f(x)\,dx.\]
+\end{definisi}
+Jika $f$ kontinu, ada $c$ dengan $f(c)=f_{\text{rata}}$. Nilai $c$ tidak harus unik atau tepat di tengah interval.
+\onslide<2->{Rata-rata ini mempertimbangkan seluruh interval, bukan hanya dua titik ujungnya.}
+\end{column}
+\begin{column}{.48\textwidth}
+\centering\begin{tikzpicture}\begin{axis}[babsix,xmin=0,xmax=2.35,ymin=0,ymax=4.7,domain=0:2,xtick={0,1.1547,2},xticklabels={$0$,$c$,$2$},ytick={1.3333,4},yticklabels={$4/3$,$4$}]
+
+\addplot[draw=none,fill=HIMAmuda!25,domain=0:2] {x^2}\closedcycle;
+\draw[magenta,thick,dashed] (axis cs:0,0) rectangle (axis cs:2,1.33333);
+\draw[dashed] (axis cs:1.1547,0)--(axis cs:1.1547,1.3333);
+\addplot[only marks,magenta] coordinates {(1.1547,1.3333)};
+\addplot[HIMAtua,very thick] {x^2};
+\end{axis}\end{tikzpicture}\par
+
+\centering Untuk $f=x^2$ pada $[0,2]$, persegi panjang dan daerah biru sama luasnya.
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: mencari nilai rata-rata dan titiknya}
+
+\begin{contoh}
+Untuk $f(x)=x^2$ pada $[0,2]$, tentukan $f_{\text{rata}}$ dan $c$ yang memenuhi Teorema Nilai Rata-rata untuk Integral.
+\end{contoh}
+\onslide<2->{\[f_{\text{rata}}=\frac1{2-0}\int_0^2x^2\,dx
+=\frac12\left[\frac{x^3}{3}\right]_0^2=\boxed{\frac43}.\]
+\[f(c)=\frac43\quad\Longrightarrow\quad c^2=\frac43
+\quad\Longrightarrow\quad\boxed{c=\frac2{\sqrt3}}.\]
+Akar negatif tidak berada dalam $[0,2]$.}
+\onslide<3->{\begin{alertblock}{Bukan rata-rata dua ujung}
+$[f(0)+f(2)]/2=2$, sedangkan nilai rata-rata fungsi adalah $4/3$.
+\end{alertblock}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Aplikasi: perubahan bersih dan nilai rata-rata laju}
+
+\begin{contoh}
+Kecepatan partikel adalah $v(t)=3t^2-2$ m/s pada $0\le t\le2$. Tentukan perpindahan dan kecepatan rata-ratanya.
+\end{contoh}
+\onslide<2->{\[s(2)-s(0)=\int_0^2v(t)\,dt=[t^3-2t]_0^2=\boxed{4\text{ m}}.\]
+\[v_{\text{rata}}=\frac{s(2)-s(0)}{2-0}=\frac12\int_0^2v(t)\,dt
+=\boxed{2\text{ m/s}}.\]}
+\onslide<3->{\begin{alertblock}{Perpindahan dan jarak tempuh}
+Karena $v$ berubah tanda di $t=\sqrt{2/3}$, jarak tempuh dihitung dengan $\int_0^2|v(t)|\,dt$, sehingga lebih besar daripada $4$ m.
+\end{alertblock}}
 \end{frame}
 
 \section{Integral Tertentu dengan Substitusi}
+
 \begin{frame}
-    \frametitle{\insertsection}
-    \begin{teorema}[Substitusi pada Integral Tertentu]
-        Jika $g'$ kontinu pada $[a,b]$ dan $f$ kontinu pada daerah hasil $g$, maka:
-        \[\int_a^b f(g(x))g'(x) \,dx = \int_{g(a)}^{g(b)} f(u) \,du\]
-    \end{teorema}
+\frametitle{\insertsection}
+\framesubtitle{Mengganti peubah berarti mengganti batas}
+
+\begin{teorema}[Substitusi integral tertentu]
+Jika $g'$ kontinu pada $[a,b]$, serta $f$ kontinu dan mempunyai anti-turunan pada interval yang memuat semua nilai $g(x)$ ($a\le x\le b$), maka
+\[\int_a^b f(g(x))g'(x)\,dx=\int_{g(a)}^{g(b)}f(u)\,du.\]
+\end{teorema}
+\onslide<2->{\begin{block}{Alasan dari aturan rantai}
+Ambil $F'=f$. Kedua ruas sama dengan $F(g(b))-F(g(a))$ menurut TFK Pertama.
+\end{block}}
+\begin{alertblock}{Batas melekat pada peubah}
+Jika $u=g(x)$, batas $x=a,b$ menjadi $u=g(a),g(b)$. Jangan memasangkan integran dalam $u$ dengan batas lama dalam $x$.
+\end{alertblock}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: dua cara yang menghasilkan nilai sama}
+
+\begin{contoh}
+Hitung $\displaystyle I=\int_0^1 2x(x^2+1)^3\,dx$ dengan $u=x^2+1$.
+\end{contoh}\begin{columns}[c]
+\begin{column}{.48\textwidth}
+
+\begin{block}{Cara 1: kembali ke $x$}
+\onslide<2->{\[\int2x(x^2+1)^3\,dx=\frac{(x^2+1)^4}{4}+C.\]
+\[I=\left[\frac{(x^2+1)^4}{4}\right]_0^1
+=\boxed{\frac{15}{4}}.\]}
+\end{block}
+\end{column}
+\begin{column}{.48\textwidth}
+
+\begin{block}{Cara 2: ganti batas ke $u$}
+\onslide<2->{$du=2x\,dx$; batas baru:
+\[x=0\Rightarrow u=1,\quad x=1\Rightarrow u=2.\]
+\[I=\int_1^2u^3\,du=\left[\frac{u^4}{4}\right]_1^2
+=\boxed{\frac{15}{4}}.\]}
+\end{block}
+\end{column}
+\end{columns}
+\onslide<3->{Pilih salah satu cara secara konsisten. Cara kedua tidak perlu kembali ke $x$.}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: substitusi yang membalik arah batas}
+
+\begin{contoh}
+Hitung $\displaystyle\int_0^{\pi/3}\cos(\pi-x)\,dx$.
+\end{contoh}
+\onslide<2->{Ambil $u=\pi-x$, $du=-dx$. Batas berubah menjadi
+\[x=0\Rightarrow u=\pi,\qquad x=\pi/3\Rightarrow u=2\pi/3.\]
+\begin{align*}
+\int_0^{\pi/3}\cos(\pi-x)\,dx
+&=-\int_\pi^{2\pi/3}\cos u\,du\\
+&=\int_{2\pi/3}^\pi\cos u\,du
+=[\sin u]_{2\pi/3}^\pi=\boxed{-\frac{\sqrt3}{2}}.
+\end{align*}}
+\onslide<3->{Hasil negatif masuk akal: $\cos(\pi-x)$ negatif pada seluruh interval yang diberikan.}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: substitusi trigonometri bagian dalam}
+
+\begin{contoh}
+Hitung $\displaystyle\int_0^{\pi/6}\sin^3(2x)\cos(2x)\,dx$.
+\end{contoh}
+\onslide<2->{Ambil $u=\sin(2x)$ dan $du=2\cos(2x)\,dx$.
+\[u(0)=0,\qquad u(\pi/6)=\frac{\sqrt3}{2}.\]
+\[\int_0^{\pi/6}\sin^3(2x)\cos(2x)\,dx
+=\frac12\int_0^{\sqrt3/2}u^3\,du
+=\left[\frac{u^4}{8}\right]_0^{\sqrt3/2}
+=\boxed{\frac9{128}}.\]}
+\onslide<3->{\begin{alertblock}{Dua hal yang sering tertinggal}
+Faktor $1/2$ berasal dari $du$, sedangkan batas atas $\sqrt3/2$ berasal dari $\sin(2\cdot\pi/6)$.
+\end{alertblock}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Substitusi juga membuka jalan ke geometri}
+
+\begin{contoh}
+Hitung $\displaystyle\int_0^1\sqrt{9-9x^2}\,dx$.
+\end{contoh}\begin{columns}[c]
+\begin{column}{.48\textwidth}
+
+\onslide<2->{Ambil $u=3x$, $dx=du/3$.
+Integralnya menjadi
+\[\frac13\int_0^3\sqrt{9-u^2}\,du.\]
+Luas seperempat lingkaran: $9\pi/4$.
+\[\frac13\cdot\frac{9\pi}{4}=\boxed{\frac{3\pi}{4}}.\]}
+\end{column}
+\begin{column}{.48\textwidth}
+\centering\begin{tikzpicture}\begin{axis}[babsix,axis equal image,xlabel={$u$},xmin=0,xmax=3.5,ymin=0,ymax=3.5,domain=0:3,xtick={3},ytick={3}]
+
+\addplot[draw=none,fill=HIMAmuda!25,domain=0:3] {sqrt(max(0,9-x^2))}\closedcycle;
+\node at (axis cs:1.3,1) {$9\pi/4$};
+\addplot[HIMAtua,very thick] {sqrt(max(0,9-x^2))};
+\end{axis}\end{tikzpicture}\par
+
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Simetri sebagai akibat substitusi}
+\begin{columns}[c]
+\begin{column}{.48\textwidth}
+
+\begin{block}{Pada interval simetris $[-a,a]$}
+Untuk $f$ terintegralkan dan $a>0$:
+\begin{itemize}
+\item Jika $f$ ganjil, $f(-x)=-f(x)$,
+\[\int_{-a}^a f(x)\,dx=0.\]
+\item Jika $f$ genap, $f(-x)=f(x)$,
+\[\int_{-a}^a f(x)\,dx=2\int_0^a f(x)\,dx.\]
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{.48\textwidth}
+\centering\begin{tikzpicture}\begin{axis}[babsix,xmin=-1.3,xmax=1.3,ymin=-1.4,ymax=1.4,domain=-1:1,xtick={-1,1},ytick={-1,1}]
+
+\addplot[draw=none,fill=magenta!25,domain=-1:0] {x^3}\closedcycle;
+\addplot[draw=none,fill=HIMAmuda!25,domain=0:1] {x^3}\closedcycle;
+\addplot[HIMAtua,very thick] {x^3};
+\end{axis}\end{tikzpicture}\par
+
+\onslide<2->{\centering $x^3$ ganjil: luas bertanda saling menghapus.}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Menggunakan simetri dengan syarat yang benar}
+
+\begin{contoh}
+Hitung $\displaystyle\int_{-2}^2(x^3+x^2)\,dx$.
+\end{contoh}
+\onslide<2->{\[\int_{-2}^2(x^3+x^2)\,dx
+=\underbrace{\int_{-2}^2x^3\,dx}_{0}
++2\int_0^2x^2\,dx=\boxed{\frac{16}{3}}.\]}
+\onslide<3->{\begin{alertblock}{Periksa keterintegralan sebelum memakai simetri}
+$1/x$ ganjil, tetapi tidak terbatas di sekitar $0$. Integral Riemann $\int_{-1}^1(1/x)\,dx$ tidak ada; jangan langsung menyatakannya nol.
+\end{alertblock}}
+Substitusi $x=1/u$ juga tidak kontinu pada interval yang melewati $u=0$.
 \end{frame}
 
 \section{Teorema Fundamental Kalkulus Kedua}
+
 \begin{frame}
-    \frametitle{\insertsection}
-    \begin{teorema}[TFK Kedua]
-        Jika $f$ kontinu pada interval tertutup $[a,b]$ dan $F$ adalah sebarang anti-turunan dari $f$ pada $[a,b]$, maka
-        \[\int_a^b f(x) \,dx = F(b) - F(a)\]
-    \end{teorema}
+\frametitle{\insertsection}
+\framesubtitle{Batas atas berubah: hasilnya menjadi fungsi}
+
+\begin{block}{Fungsi akumulasi}
+Jika $f$ terintegralkan dan $a$ tetap, tulis
+\[F(x)=\int_a^x f(t)\,dt.\]
+$t$ adalah peubah integrasi; $x$ menentukan sampai di mana akumulasi dihitung.
+\end{block}
+\onslide<2->{\begin{contoh}
+\[F(x)=\int_1^x t^2\,dt=\left[\frac{t^3}{3}\right]_1^x=\frac{x^3-1}{3}.\]
+Maka $F(1)=0$, $F(2)=7/3$, dan $F(0)=-1/3$.
+\end{contoh}}
+Walaupun $t^2\ge0$, nilai $F(x)$ negatif jika $x<1$ karena arah batasnya terbalik.
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Turunan akumulasi mengembalikan integran}
+
+\begin{teorema}[Teorema Fundamental Kalkulus Kedua]
+Jika $f$ kontinu pada interval $I$, $a\in I$, dan
+\[F(x)=\int_a^x f(t)\,dt,\]
+maka $F'(x)=f(x)$ untuk setiap titik dalam $I$. Di ujung interval, gunakan turunan satu sisi yang sesuai.
+\end{teorema}
+\onslide<2->{\begin{block}{Hubungan dengan fungsi luas}
+Untuk $f\ge0$ dan $x\ge a$, $F(x)$ adalah luas. Teorema ini juga berlaku ketika $f$ berubah tanda: yang diakumulasikan adalah luas bertanda.
+\end{block}}
+Tidak perlu mencari rumus eksplisit $F(x)$ terlebih dahulu untuk mendapatkan $F'(x)$.
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Ide bukti: laju perubahan akumulasi}
+
+Dari aditivitas interval,
+\[\frac{F(x+h)-F(x)}h=\frac1h\int_x^{x+h}f(t)\,dt.\]
+\onslide<2->{Teorema Nilai Rata-rata untuk Integral memberi titik $c_h$ di antara $x$ dan $x+h$ sehingga
+\[\int_x^{x+h}f(t)\,dt=f(c_h)h.\]
+Karena $h\to0$ mengakibatkan $c_h\to x$, kontinuitas $f$ memberikan
+\[F'(x)=\lim_{h\to0}f(c_h)=f(x).\]}
+\onslide<3->{\begin{block}{Makna geometrisnya}
+Rata-rata tinggi pada interval yang semakin pendek mendekati tinggi kurva di titik tersebut.
+\end{block}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Setiap fungsi kontinu mempunyai anti-turunan}
+
+\begin{block}{Akibat TFK Kedua}
+Untuk $f$ kontinu pada interval $I$ dan $a\in I$,
+\[F(x)=y_0+\int_a^x f(t)\,dt\]
+memenuhi $F'(x)=f(x)$ dan $F(a)=y_0$.
+\end{block}
+\onslide<2->{\begin{contoh}
+Anti-turunan $f(x)=\sin(x^2)$ dengan $F(0)=2$ dapat ditulis
+\[F(x)=2+\int_0^x\sin(t^2)\,dt.\]
+\end{contoh}}
+Anti-turunan ada walaupun rumus elementernya tidak tersedia.
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: nilai fungsi, turunan pertama, dan turunan kedua}
+
+\begin{contoh}
+Jika $\displaystyle F(x)=\int_0^x\frac{\sin t}{t^2+1}\,dt$, tentukan $F(0)$, $F'(0)$, dan $F''(0)$.
+\end{contoh}
+\onslide<2->{Integran kontinu di seluruh $\R$. Dengan TFK Kedua,
+\[F(0)=0,\qquad F'(x)=\frac{\sin x}{x^2+1},\qquad F'(0)=0.\]
+Turunkan sekali lagi dengan aturan hasil bagi:
+\[F''(x)=\frac{(x^2+1)\cos x-2x\sin x}{(x^2+1)^2}
+\quad\Longrightarrow\quad \boxed{F''(0)=1}.\]}
+\onslide<3->{Kita memperoleh ketiga nilai tersebut tanpa menghitung anti-turunan integrannya secara eksplisit.}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Batas atas berupa fungsi: gunakan aturan rantai}
+
+\begin{block}{Batas atas $g(x)$}
+Jika $f$ kontinu pada interval $I$, $a,g(x)\in I$, dan $g$ dapat diturunkan, maka
+\[\frac{d}{dx}\int_a^{g(x)} f(t)\,dt=f(g(x))g'(x).\]
+\end{block}
+\onslide<2->{\begin{contoh}
+Jika $\displaystyle H(x)=\int_1^{x^2}\sqrt{1+t^4}\,dt$, maka
+\[H'(x)=\sqrt{1+(x^2)^4}\,(2x)=\boxed{2x\sqrt{1+x^8}}.\]
+\end{contoh}}
+\onslide<3->{Faktor $g'(x)$ menyatakan laju gerak batas; tandanya di sini berubah saat $x=0$.}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Kedua batas boleh berubah}
+
+\begin{block}{Selisih dua fungsi akumulasi}
+Jika $f$ kontinu pada interval yang memuat kedua batas dan $g,h$ dapat diturunkan,
+\[\frac{d}{dx}\int_{h(x)}^{g(x)}f(t)\,dt
+=f(g(x))g'(x)-f(h(x))h'(x).\]
+Rumus diperoleh dari $\int_{h(x)}^{g(x)}f=\int_a^{g(x)}f-\int_a^{h(x)}f$.
+\end{block}
+\onslide<2->{\begin{contoh}
+\[\frac{d}{dx}\int_x^{x^2}\frac1{1+t^2}\,dt
+=\boxed{\frac{2x}{1+x^4}-\frac1{1+x^2}}.\]
+\end{contoh}}
+Untuk batas atas konstan $b$: $\frac{d}{dx}\int_x^b f(t)\,dt=-f(x)$.
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Membaca bentuk fungsi akumulasi dari integrannya}
+\begin{columns}[c]
+\begin{column}{.48\textwidth}
+\centering\begin{tikzpicture}\begin{axis}[babsix,xmin=-.3,xmax=3.3,ymin=-.8,ymax=1.9,domain=0:3,xtick={0,1,2,3},ytick={-.5,1.5}]
+
+\addplot[only marks,magenta] coordinates {(1,-.5)};
+\node[below right,font=\scriptsize] at (axis cs:1,-.5) {minimum};
+\node[font=\scriptsize] at (axis cs:2.5,1.5) {$F(x)$};
+\addplot[HIMAtua,very thick] {x^2/2-x};
+\end{axis}\end{tikzpicture}\par
+
+\end{column}
+\begin{column}{.48\textwidth}
+
+\begin{contoh}
+Misalkan $\displaystyle F(x)=\int_0^x(t-1)\,dt$, $0\le x\le3$.
+\end{contoh}
+\onslide<2->{Dari $F'(x)=x-1$:
+\begin{itemize}
+\item $F$ turun pada $(0,1)$;
+\item $F$ naik pada $(1,3)$;
+\item $F$ minimum di $x=1$.
+\end{itemize}
+Karena $F''(x)=1>0$, grafik selalu cekung ke atas.}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Domain fungsi integral tetap perlu diperiksa}
+
+\begin{contoh}
+Pada interval mana $\displaystyle F(x)=\int_2^x\frac1{t-1}\,dt$ mendefinisikan anti-turunan $1/(x-1)$?
+\end{contoh}
+\onslide<2->{Integran kontinu pada $(1,\infty)$, yang memuat titik awal $2$. Jadi
+\[F'(x)=\frac1{x-1}\quad(x>1),\qquad F(2)=0.\]
+Untuk $x\le1$, lintasan integrasi dari $2$ menjumpai singularitas di $t=1$, sehingga rumus tersebut tidak mendefinisikan integral Riemann biasa.}
+\onslide<3->{\begin{alertblock}{Pilih titik awal di interval yang sama}
+Untuk membuat anti-turunan pada $(-\infty,1)$, dapat dipakai $G(x)=\int_0^x\frac1{t-1}\,dt$. Kedua interval memiliki konstanta integrasi masing-masing.
+\end{alertblock}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Latihan terpadu}
+
+\begin{latihan}
+\begin{enumerate}
+\item Hitung $\displaystyle\int_0^1 6x(x^2+1)^2\,dx$.
+\item Tentukan nilai rata-rata $f(x)=2x+1$ pada $[0,2]$.
+\item Jika $\displaystyle G(x)=\int_0^{x^3}\cos(t^2)\,dt$, tentukan $G'(x)$.
+\end{enumerate}
+\end{latihan}
+\onslide<2->{\begin{block}{Pembahasan singkat}
+\begin{enumerate}
+\item $u=x^2+1$: $3\int_1^2u^2\,du=[u^3]_1^2=7$.
+\item $f_{\text{rata}}=\frac12[x^2+x]_0^2=3$.
+\item TFK Kedua dan aturan rantai: $G'(x)=3x^2\cos(x^6)$.
+\end{enumerate}
+\end{block}}
+\end{frame}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Menghubungkan seluruh Bab 6}
+
+\begin{center}
+\begin{tikzpicture}[every node/.style={font=\small,align=center},>=stealth]
+\node[draw=HIMAtua,fill=HIMAtua!12,rounded corners,text width=3.6cm,minimum height=1.1cm] (a) at (0,0) {Anti-turunan\\$F'=f$};
+\node[draw=HIMAtua,fill=HIMAmuda!15,rounded corners,text width=3.6cm,minimum height=1.1cm] (b) at (7,0) {Integral tertentu\\$\lim\sum f(x_k^*)\Delta x_k$};
+\draw[->,thick] (a)--node[above] {TFK Pertama} node[below] {$F(b)-F(a)$} (b);
+\node[draw=HIMAtua,fill=PastelGreen!25,rounded corners,text width=4.5cm,minimum height=1.1cm] (c) at (3.5,-2.3) {Fungsi akumulasi\\$A(x)=\int_a^x f(t)\,dt$};
+\draw[->,thick] (b.south)--node[right] {batas atas berubah} (c.east);
+\draw[->,thick] (c.west)--node[left] {TFK Kedua: $A'=f$} (a.south);
+\end{tikzpicture}
+\end{center}
+\begin{block}{Sebelum memilih cara menghitung}
+Periksa domain dan batas, kenali tanda integran, lalu pilih geometri, sifat integral, anti-turunan, atau substitusi sesuai bentuknya.
+\end{block}
 \end{frame}
 
 \end{document}

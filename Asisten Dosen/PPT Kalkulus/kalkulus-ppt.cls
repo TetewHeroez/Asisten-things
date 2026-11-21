@@ -1,4 +1,7 @@
-\ProvidesClass{../../kalkulus-ppt}
+\ProvidesClass{\@currpath kalkulus-ppt}
+
+% Simpan lokasi kelas untuk mencari aset bersama.
+\edef\kalkulus@graphicsdir{\@currpath Gambar & Logo/}
 
 \LoadClass[aspectratio=169]{beamer}
 
@@ -44,7 +47,7 @@
 \DeclareMathOperator{\sign}{sgn}
 
 % --- Graphics path ---
-\graphicspath{{C:/Users/teoso/Documents/Asisten Dosen & Lab/Asisten Dosen/PPT Kalkulus/Gambar & Logo/}{D:/Hada Touya/Asisten-things/Asisten Dosen/PPT Kalkulus/Gambar & Logo/}}
+\graphicspath{{\kalkulus@graphicsdir}}
 
 % --- Colors ---
 \definecolor{HIMAmuda}{HTML}{01D1FD}

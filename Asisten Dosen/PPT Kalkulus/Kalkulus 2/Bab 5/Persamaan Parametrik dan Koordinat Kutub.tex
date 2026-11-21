@@ -1,0 +1,1955 @@
+\documentclass{../../kalkulus-ppt}
+
+\author[Tetew]{Teosofi Hidayah Agung}
+\date{\today}
+\title[Kalkulus 2 - Bab 5]{Persamaan Parametrik dan Koordinat Kutub}
+\institute[Matematika ITS]{Departemen Matematika\\ Institut Teknologi Sepuluh Nopember}
+\titlegraphic{{\includegraphics[scale=0.3]{ITS.png}$\quad$\includegraphics[scale=0.02]{M.png}}}
+
+\setbeamertemplate{itemize items}[circle]
+\usetikzlibrary{arrows.meta,calc,decorations.markings}
+\tikzset{
+    sumbu/.style={-{Stealth[length=2mm]},gray!85!black},
+    kurva/.style={HIMAtua,very thick},
+    pembanding/.style={teal!80!black,thick},
+    bantu/.style={gray,densely dashed},
+    daerah/.style={fill=HIMAmuda!30},
+    arah kurva/.style={
+        postaction={decorate},
+        decoration={markings,mark=at position #1 with {\arrow{Stealth}}}
+    },
+    label grafik/.style={font=\scriptsize,inner sep=2pt}
+}
+\pgfplotsset{
+    bidang/.style={
+        width=6.1cm,height=4.45cm,axis lines=middle,
+        xlabel={$x$},ylabel={$y$},samples=91,
+        ticklabel style={font=\scriptsize},
+        every axis plot/.append style={thick}
+    }
+}
+\newcommand{\sumbubidang}[4]{%
+    \draw[sumbu] (#1,0) -- (#2,0) node[right,font=\scriptsize] {$x$};
+    \draw[sumbu] (0,#3) -- (0,#4) node[above,font=\scriptsize] {$y$};
+}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Daftar isi}
+    \tableofcontents
+\end{frame}
+
+% KALKULUS 2 BAB 5.pdf, subbab 5.1.
+\section{Persamaan Parametrik}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Satu parameter menentukan dua koordinat}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.55\textwidth}
+            \begin{definisi}[Persamaan parametrik]
+                Pasangan persamaan $x=f(t)$ dan $y=g(t)$ pada
+                suatu selang $I$ menyatakan kurva parametrik
+                yang ditelusuri oleh titik $P(t)=(f(t),g(t))$.
+                Variabel $t$ disebut \emph{parameter}.
+            \end{definisi}
+            Jika $t$ menyatakan waktu, persamaannya memberi posisi
+            partikel dan jejak titik-titiknya disebut \emph{trayektori}.
+        \end{column}
+        \begin{column}{.41\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.94]
+                \sumbubidang{-.5}{4.75}{-.35}{2.8}
+                \draw[kurva,arah kurva=.76] (.45,.55)
+                    .. controls (1.35,.25) and (2.65,2.25) .. (4.3,2.45)
+                    coordinate[pos=.58] (P);
+                \draw[bantu] (0,0 |- P) node[left,label grafik] {$g(t)$}
+                    -- (P) -- (P |- 0,0) node[below,label grafik] {$f(t)$};
+                \fill[HIMAtua] (P) circle (2pt)
+                    node[above left,label grafik] {$P(t)$};
+            \end{tikzpicture}\par
+            \small Nilai $t$ yang berbeda bisa memberi titik yang sama.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Tabel titik menunjukkan arah gerak}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                Sketsalah trayektori
+                \[
+                    x=t^3-3t,\quad y=t^2,\quad 0\le t\le2.
+                \]
+            \end{contoh}
+            \onslide<2->{{%
+                \centering
+                \renewcommand{\arraystretch}{1.16}
+                \begin{tabular}{c|rrrr}
+                    \(t\) & \(0\) & \(1\) & \(\sqrt3\) & \(2\)\\ \hline
+                    \(x\) & \(0\) & \(-2\) & \(0\) & \(2\)\\
+                    \(y\) & \(0\) & \(1\) & \(3\) & \(4\)
+                \end{tabular}\par
+            }}
+            \onslide<3->{Partikel bergerak naik. Pada $t=1$,
+            $x'(t)=3t^2-3$ berubah tanda dari negatif menjadi positif,
+            sehingga partikel berbelok ke kanan.}
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[bidang,xmin=-2.55,xmax=2.5,ymin=-.35,ymax=4.45,
+                    xtick={-2,2},ytick={1,3,4},clip mode=individual]
+                    \only<3->{%
+                        \addplot[kurva,domain=0:1,arah kurva=.63] ({x^3-3*x},{x^2});
+                        \addplot[kurva,domain=1:2,arah kurva=.76] ({x^3-3*x},{x^2});
+                    }
+                    \only<2->{%
+                        \addplot[only marks,mark=*,mark size=1.65pt,HIMAtua]
+                            coordinates {(0,0) (-2,1) (0,3) (2,4)};
+                    }
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Satu lingkaran dapat ditelusuri dalam dua arah}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.46\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.9]
+                \sumbubidang{-2}{2}{-1.55}{1.62}
+                \draw[kurva] (0,0) circle (1.31);
+                \draw[kurva,arah kurva=.55] (1.31,0)
+                    arc[start angle=0,end angle=100,radius=1.31];
+                \fill[HIMAtua] (1.31,0) circle (1.75pt)
+                    node[below right,label grafik] {$(a,0)$};
+            \end{tikzpicture}\par
+            $x=a\cos t,\quad y=a\sin t$\par
+            \small Berlawanan arah jarum jam.
+        \end{column}
+        \begin{column}{.46\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.9]
+                \sumbubidang{-2}{2}{-1.55}{1.62}
+                \draw[kurva] (0,0) circle (1.31);
+                \draw[kurva,arah kurva=.55] (1.31,0)
+                    arc[start angle=0,end angle=-100,radius=1.31];
+                \fill[HIMAtua] (1.31,0) circle (1.75pt)
+                    node[above right,label grafik] {$(a,0)$};
+            \end{tikzpicture}\par
+            $x=a\cos t,\quad y=-a\sin t$\par
+            \small Searah jarum jam.
+        \end{column}
+    \end{columns}
+    \smallskip
+    \begin{block}{Orientasi}
+        Arah penelusuran saat $t$ bertambah disebut \emph{orientasi}.
+        Untuk $a>0$, kedua grafik penuh saat $0\le t\le2\pi$.
+        Jika $0\le t\le\pi$, kurva kiri hanya separuh atas lingkaran.
+    \end{block}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Memilih parameter dari koordinat atau kemiringan}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{.44\textwidth}
+            \begin{block}{Parametrisasi grafik fungsi}
+                \[
+                    \begin{array}{c|cc}
+                        \text{Grafik} & x & y\\ \hline
+                        y=f(x) & t & f(t)\\
+                        x=g(y) & g(t) & t
+                    \end{array}
+                \]
+                Ambil $t$ dari domain fungsi yang dipakai.
+            \end{block}
+            Substitusi $t=s+1$ pada $x=t$, $y=3t^2-1$
+            menghasilkan $x=s+1$, $y=3(s+1)^2-1$.
+        \end{column}
+        \begin{column}{.52\textwidth}
+            \begin{contoh}
+                Parametrisasikan $y=3x^2-1$ dengan
+                kemiringan garis singgung $m$.
+            \end{contoh}
+            \onslide<2->{Dari $m=6x$, kita peroleh
+            \[
+                x=\frac m6,\qquad y=\frac{m^2}{12}-1.
+            \]
+            Nilai $m$ yang meningkat membuat $x$ meningkat,
+            sehingga kurva ditelusuri dari kiri ke kanan.}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Eliminasi parameter menyisakan bentuk kurva}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.5\textwidth}
+            \begin{contoh}[Ruas garis]
+                Untuk $x=2t-1$, $y=4t+2$, $0\le t\le2$,
+                substitusi $t=(x+1)/2$ memberi $y=2x+4$.
+                Ruasnya $-1\le x\le3$, dengan arah ke kanan.
+            \end{contoh}
+            \begin{contoh}[Elips]
+                Dari $x=3\cos t$ dan $y=2\sin t$, diperoleh
+                \[
+                    \frac{x^2}{9}+\frac{y^2}{4}=1.
+                \]
+                Saat $t$ dari $0$ ke $\pi/2$, titik bergerak
+                dari $(3,0)$ ke $(0,2)$.
+            \end{contoh}
+        \end{column}
+        \begin{column}{.46\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.76]
+                \sumbubidang{-3.45}{3.55}{-2.3}{2.4}
+                \draw[HIMAtua!40,thick] (0,0) ellipse [x radius=3,y radius=2];
+                \draw[kurva,arah kurva=.55] (3,0)
+                    arc[start angle=0,end angle=90,x radius=3,y radius=2];
+                \fill[HIMAtua] (3,0) circle (1.9pt)
+                    node[below right,label grafik] {$(3,0)$};
+                \fill[HIMAtua] (0,2) circle (1.9pt)
+                    node[above left,label grafik] {$(0,2)$};
+            \end{tikzpicture}\par
+            \small Satu putaran elips memerlukan selang $t$ sepanjang $2\pi$.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Selang parameter dan tanda koordinat menentukan cabang}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.53\textwidth}
+            \begin{contoh}
+                Sketsalah $x=2\cosh t$, $y=\sinh t$ untuk $t\in\R$.
+            \end{contoh}
+            \onslide<2->{Identitas $\cosh^2t-\sinh^2t=1$ memberi
+            \[
+                \frac{x^2}{4}-y^2=1.
+            \]
+            Karena $\cosh t\ge1$, kurva parametrik berada pada
+            cabang kanan dengan $x\ge2$.}
+            \onslide<3->{Nilai $\sinh t$ naik dari $-\infty$ ke $\infty$,
+            sehingga cabang kanan dilalui dari bawah ke atas.}
+        \end{column}
+        \begin{column}{.43\textwidth}
+            \centering
+            \begin{tikzpicture}[x=.68cm,y=.99cm]
+                \sumbubidang{-3.78}{3.85}{-1.85}{1.89}
+                \draw<2->[bantu] plot[domain=-1.48:1.48,variable=\u,samples=61]
+                    ({-2*sqrt(1+(\u)^2)},{\u});
+                \draw<2->[kurva] plot[domain=-1.48:1.48,variable=\u,samples=61]
+                    ({2*sqrt(1+(\u)^2)},{\u});
+                \draw<3->[kurva,arah kurva=.66]
+                    plot[domain=.2:1.48,variable=\u,samples=35]
+                    ({2*sqrt(1+(\u)^2)},{\u});
+                \fill<2->[HIMAtua] (2,0) circle (1.75pt)
+                    node[below right,label grafik] {$(2,0)$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Garis singgung dari laju perubahan koordinat}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.49\textwidth}
+            \begin{block}{Turunan pertama}
+                Jika $x'(t)$ dan $y'(t)$ kontinu di sekitar $t_0$
+                dan $x'(t_0)\ne0$, maka secara lokal $y$ fungsi
+                dari $x$. Aturan rantai memberi
+                \[
+                    \frac{dy}{dt}=\frac{dy}{dx}\frac{dx}{dt}
+                    \quad\Longrightarrow\quad
+                    \frac{dy}{dx}=\frac{y'(t)}{x'(t)}.
+                \]
+            \end{block}
+            Arah garis singgung ditentukan oleh vektor
+            $(x'(t),y'(t))$ selama vektor ini tak nol.
+        \end{column}
+        \begin{column}{.47\textwidth}
+            \begin{itemize}
+                \item $y'(t_0)=0$, $x'(t_0)\ne0$ memberi
+                garis singgung horizontal $y=y(t_0)$.
+                \item $x'(t_0)=0$, $y'(t_0)\ne0$ memberi
+                garis singgung vertikal $x=x(t_0)$.
+                \item Keduanya nol di \emph{titik singular}
+                untuk parametrisasi tersebut. Periksa limit arah
+                garis sekan untuk menentukan garis singgungnya.
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Parabola semikubik tetap mempunyai garis singgung di ujungnya}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.53\textwidth}
+            \begin{contoh}
+                Tentukan garis singgung di $(0,0)$ pada
+                $x=t^2$, $y=2t^3$.
+            \end{contoh}
+            \onslide<2->{Eliminasi memberi $y^2=4x^3$, $x\ge0$.
+            Saat $t\ne0$, $\displaystyle\frac{dy}{dx}
+            =\frac{6t^2}{2t}=3t$.}
+            \onslide<3->{Di $t=0$, kedua turunan koordinat nol.
+            Kemiringan sekan ke titik asal adalah
+            $\displaystyle\frac{2t^3}{t^2}=2t\to0$,
+            sehingga garis singgungnya $y=0$.}
+        \end{column}
+        \begin{column}{.43\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[bidang,width=5.7cm,xmin=-.27,xmax=1.85,
+                    ymin=-3.1,ymax=3.1,xtick={1},ytick={-2,2},
+                    clip mode=individual]
+                    \only<2->{%
+                        \addplot[kurva,domain=-1.12:1.12] ({x^2},{2*x^3});
+                        \addplot[only marks,mark=*,mark size=1.6pt,HIMAtua]
+                            coordinates {(0,0)};
+                    }
+                    \only<3->{\addplot[magenta,dashed,domain=0:1.52] {0};}
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Turunan kedua mengukur perubahan kemiringan terhadap $x$}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.49\textwidth}
+            \begin{block}{Turunan kedua}
+                Untuk $x'(t)\ne0$ dan turunan yang diperlukan ada,
+                terapkan aturan rantai pada $dy/dx$.
+                \[
+                    \frac{d^2y}{dx^2}
+                    =\frac{\displaystyle\frac{d}{dt}
+                    \left(\frac{y'(t)}{x'(t)}\right)}{x'(t)}.
+                \]
+            \end{block}
+            Cek tanda $x'(t)$ juga, terutama jika kurva bergerak ke kiri.
+        \end{column}
+        \begin{column}{.47\textwidth}
+            \begin{contoh}
+                Tentukan garis singgung dan kecekungan
+                $x=t^2$, $y=2t^3$ di $(1,2)$.
+            \end{contoh}
+            \onslide<2->{Di $t=1$, $dy/dx=3t=3$. Jadi,
+            $y-2=3(x-1)$.}
+            \onslide<3->{Turunan kedua adalah $3/(2t)$,
+            sehingga cabang atas cekung ke atas. Di $(1,-2)$,
+            $t=-1$ dan cabang bawah cekung ke bawah.}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Panjang kurva diperoleh dari panjang potongan yang makin pendek}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.56\textwidth}
+            \begin{teorema}[Panjang busur parametrik]
+                Jika $x'$ dan $y'$ kontinu pada $[a,b]$ dan
+                setiap bagian busur dilalui sekali, panjang kurva adalah
+                \[
+                    L=\int_a^b\sqrt{[x'(t)]^2+[y'(t)]^2}\,dt.
+                \]
+            \end{teorema}
+            Panjang sekan $\sqrt{(\Delta x)^2+(\Delta y)^2}$
+            mendekati panjang busur antar titik berdekatan.
+            Akar di dalam integral adalah kelajuan.
+        \end{column}
+        \begin{column}{.4\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=1.05]
+                \draw[kurva] (.08,.55) .. controls (1.4,2.35) and (2.8,2.45) .. (4.3,3)
+                    coordinate[pos=.28] (P) coordinate[pos=.76] (Q);
+                \draw[bantu] (P) -- (Q |- P) node[midway,below,label grafik] {$\Delta x$}
+                    -- (Q) node[midway,right,label grafik] {$\Delta y$};
+                \draw[pembanding] (P) -- (Q)
+                    node[midway,above left,label grafik] {sekan};
+                \fill[HIMAtua] (P) circle (1.75pt) node[above left,label grafik] {$P(t)$};
+                \fill[HIMAtua] (Q) circle (1.75pt) node[above left,label grafik] {$P(t+\Delta t)$};
+            \end{tikzpicture}\par
+            \small Jika busur diulang, integral ikut menghitung pengulangannya.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Bandingkan kelajuan pada lingkaran dan elips}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{.45\textwidth}
+            \begin{contoh}[Lingkaran]
+                Hitung panjang $x=2\cos t$, $y=2\sin t$
+                untuk $0\le t\le\pi/2$.
+            \end{contoh}
+            \onslide<2->{Kelajuannya $\sqrt{4\sin^2t+4\cos^2t}=2$.
+            \[
+                L=\int_0^{\pi/2}2\,dt=\pi.
+            \]
+            Itu seperempat dari keliling $4\pi$.}
+        \end{column}
+        \begin{column}{.51\textwidth}
+            \begin{contoh}[Elips]
+                Susun integral keliling $x=3\cos t$, $y=2\sin t$.
+            \end{contoh}
+            \onslide<3->{Keempat kuadran memberi panjang sama,
+            sehingga
+            \[
+                L=4\int_0^{\pi/2}\sqrt{9\sin^2t+4\cos^2t}\,dt.
+            \]
+            Kelajuan berubah terhadap $t$. Integral ini dapat
+            dihampiri secara numerik.}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Sikloida adalah lintasan titik pada pelek roda}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.44\textwidth}
+            \begin{definisi}[Sikloida]
+                Saat roda berjari-jari $a$ menggelinding tanpa
+                selip, titik tetap pada peleknya menelusuri
+                sebuah \emph{sikloida}.
+            \end{definisi}
+            Jika roda berputar $t$ radian dari posisi awal,
+            pusat roda berada di $C=(at,a)$. Dari pusat,
+            titik pelek berpindah relatif sebesar
+            $(-a\sin t,-a\cos t)$.
+        \end{column}
+        \begin{column}{.52\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.55]
+                \sumbubidang{-.45}{12.95}{-.38}{3.24}
+                \draw[kurva] plot[domain=0:720,variable=\u,samples=181]
+                    ({\u*pi/180-sin(\u)},{1-cos(\u)});
+                \draw[pembanding] ({2*pi/3},1) circle (1);
+                \draw[pembanding] ({2*pi/3},1)
+                    -- ({2*pi/3-sin(120)},{1-cos(120)});
+                \fill[teal!80!black] ({2*pi/3},1) circle (2pt)
+                    node[right,label grafik] {$C$};
+                \fill[HIMAtua] ({2*pi/3-sin(120)},{1-cos(120)}) circle (2.2pt)
+                    node[above left,label grafik] {$P$};
+                \node[below,label grafik] at ({2*pi},0) {$2\pi a$};
+                \node[below,label grafik] at ({4*pi},0) {$4\pi a$};
+            \end{tikzpicture}
+            \[
+                x=a(t-\sin t),\qquad y=a(1-\cos t).
+            \]
+            \small Satu putaran roda memberi satu busur, $0\le t\le2\pi$.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Panjang satu busur sikloida}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.53\textwidth}
+            \begin{contoh}
+                Tentukan panjang satu busur sikloida
+                untuk roda berjari-jari $a$.
+            \end{contoh}
+            \onslide<2->{Turunannya $x'=a(1-\cos t)$ dan $y'=a\sin t$.
+            \[
+                \sqrt{(x')^2+(y')^2}
+                =a\sqrt{2-2\cos t}=2a|\sin(t/2)|.
+            \]}
+            \onslide<3->{Pada $0\le t\le2\pi$, $\sin(t/2)\ge0$.
+            \[
+                L=\int_0^{2\pi}2a\sin(t/2)\,dt=8a.
+            \]}
+        \end{column}
+        \begin{column}{.43\textwidth}
+            \begin{block}{Dua masalah waktu tempuh}
+                Pada model tanpa gesekan, busur sikloida
+                terbalik muncul dalam dua masalah klasik.
+                \begin{itemize}
+                    \item Pada masalah \emph{brachistochrone},
+                    dicari lintasan turun dengan waktu terpendek.
+                    \item Pada masalah \emph{tautochrone},
+                    waktu turun ke dasar sama untuk
+                    benda yang dilepas dari titik awal berbeda.
+                \end{itemize}
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Panjang elemen busur juga menentukan luas permukaan putar}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.5\textwidth}
+            \begin{block}{Luas permukaan parametrik}
+                Tulis $ds=\sqrt{(x')^2+(y')^2}\,dt$.
+                Untuk kurva dengan turunan kontinu yang
+                membentuk permukaan sekali,
+                \[
+                    S_x=2\pi\int_a^b |y(t)|\,ds,\quad
+                    S_y=2\pi\int_a^b |x(t)|\,ds.
+                \]
+            \end{block}
+            Jarak titik ke sumbu putar menjadi jari-jari pita.
+            Lebar pita mengikuti panjang $ds$.
+        \end{column}
+        \begin{column}{.46\textwidth}
+            \begin{contoh}
+                Putar $x=a\cos t$, $y=a\sin t$,
+                $0\le t\le\pi$, terhadap sumbu $x$.
+            \end{contoh}
+            \onslide<2->{$ds=a\,dt$ dan $y=a\sin t\ge0$ pada selang itu.
+            \[
+                S_x=2\pi a^2\int_0^\pi\sin t\,dt=4\pi a^2.
+            \]
+            Setengah lingkaran sudah menyapu seluruh permukaan bola.}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Latihan penelusuran, garis singgung, dan panjang}
+    \begin{latihan}
+        Diberikan $x=t$, $y=t^2+1$ pada $-1\le t\le1$.
+        \begin{enumerate}
+            \item Sketsalah bagian parabola yang dilalui dan beri panah orientasi.
+            \item Tentukan garis singgung pada $t=-1/2$.
+            \item Tuliskan panjang busur sebagai integral dengan batas $0$ dan $1$.
+        \end{enumerate}
+    \end{latihan}
+    \onslide<2->{%
+        \begin{enumerate}
+            \item Busur $y=x^2+1$ dari $(-1,2)$ melalui $(0,1)$ ke $(1,2)$.
+            \item Di $(-1/2,5/4)$, $m=2t=-1$, sehingga $y=-x+3/4$.
+            \item Karena kelajuan $\sqrt{1+4t^2}$ genap, $L=2\int_0^1\sqrt{1+4t^2}\,dt$.
+        \end{enumerate}
+    }
+\end{frame}
+
+% KALKULUS 2 BAB 5.pdf, subbab 5.2.
+\section{Koordinat Kutub}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Jarak bertanda dan arah menempatkan titik di bidang}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.55\textwidth}
+            \begin{definisi}[Sistem koordinat kutub]
+                Pilih titik tetap $O$ sebagai \emph{kutub} dan sinar
+                dari $O$ sebagai \emph{sumbu kutub}. Pasangan
+                $(r,\theta)$ menyatakan koordinat radial $r$
+                dan sudut kutub $\theta$ dari sumbu tersebut.
+            \end{definisi}
+            Sudut positif diukur berlawanan arah jarum jam.
+            Jika $r>0$, maju sejauh $r$ pada sinar yang
+            dibentuk oleh $\theta$. Jika $r=0$, titiknya $O$
+            untuk semua sudut.
+        \end{column}
+        \begin{column}{.41\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=1.05]
+                \coordinate (O) at (0,0);
+                \coordinate (P) at (42:3.05);
+                \draw[sumbu] (O) -- (4.25,0)
+                    node[midway,below,label grafik] {sumbu kutub};
+                \draw[kurva] (O) -- (P)
+                    node[pos=.66,above left,label grafik] {$r$};
+                \draw[pembanding,arah kurva=.84] (.95,0)
+                    arc[start angle=0,end angle=42,radius=.95];
+                \node[teal!80!black,label grafik] at (22:1.24) {$\theta$};
+                \fill[HIMAtua] (O) circle (1.7pt)
+                    node[below left,label grafik] {$O$};
+                \fill[HIMAtua] (P) circle (1.9pt)
+                    node[above right,label grafik] {$P(r,\theta)$};
+            \end{tikzpicture}\par
+            \small Pada contoh ini $r>0$ dan $0<\theta<\pi/2$.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Sudut negatif dan jari-jari negatif punya peran berbeda}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{block}{Membaca tanda}
+                Sudut negatif diputar searah jarum jam.
+                Jika $r<0$, langkah sejauh $|r|$ diambil
+                ke arah yang berlawanan dengan sinar sudut
+                $\theta$.
+            \end{block}
+            \begin{contoh}
+                Plot $P=(3,-\pi/4)$ dan $Q=(-3,\pi/4)$.
+            \end{contoh}
+            \onslide<2->{Kedua titik berjarak $3$ dari $O$.
+            $P$ berada di kuadran IV. $Q$ berada di kuadran III,
+            sama dengan $(3,5\pi/4)$.}
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.82]
+                \sumbubidang{-2.8}{3.55}{-2.4}{2.55}
+                \draw[bantu] (0,0) -- (45:2.85);
+                \draw[pembanding,arah kurva=.85] (.88,0)
+                    arc[start angle=0,end angle=45,radius=.88];
+                \draw[kurva,arah kurva=.85] (1.25,0)
+                    arc[start angle=0,end angle=-45,radius=1.25];
+                \node[label grafik,teal!80!black] at (18:1.24) {$\pi/4$};
+                \node[label grafik,HIMAtua] at (-19:1.71) {$-\pi/4$};
+                \draw<2->[kurva] (0,0) -- (-45:3);
+                \draw<2->[pembanding] (0,0) -- (225:3);
+                \fill<2->[HIMAtua] (-45:3) circle (2pt)
+                    node[below right,label grafik] {$P$};
+                \fill<2->[teal!80!black] (225:3) circle (2pt)
+                    node[below left,label grafik] {$Q$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Satu titik mempunyai banyak pasangan koordinat kutub}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{.49\textwidth}
+            \begin{block}{Putaran penuh dan setengah putaran}
+                Untuk $k\in\mathbb{Z}$, ketiga bentuk berikut
+                mewakili titik yang sama.
+                \[
+                    (r,\theta),\quad (r,\theta+2k\pi),\quad
+                    (-r,\theta+(2k+1)\pi).
+                \]
+                Dalam derajat, satu putaran penuh adalah $360^\circ$.
+            \end{block}
+            Jika $P\ne O$, syarat $r>0$ dan
+            $0\le\theta<2\pi$ memilih satu wakil untuk $P$.
+        \end{column}
+        \begin{column}{.47\textwidth}
+            \begin{contoh}
+                Tulis $(-2,-5\pi/6)$ dengan $r>0$
+                dan $0\le\theta<2\pi$.
+            \end{contoh}
+            \onslide<2->{Ubah tanda $r$ sambil menambahkan $\pi$.
+            \[
+                \left(-2,-\frac{5\pi}{6}\right)
+                \ \longleftrightarrow\
+                \left(2,\frac{\pi}{6}\right).
+            \]
+            Titiknya berada di kuadran I.}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Proyeksi radial menghasilkan koordinat Kartesius}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.53\textwidth}
+            \begin{block}{Hubungan kedua sistem}
+                Letakkan sumbu $x$ positif pada sumbu kutub.
+                \[
+                    x=r\cos\theta,\quad y=r\sin\theta,\quad
+                    r^2=x^2+y^2.
+                \]
+                Jika $x\ne0$, maka $\tan\theta=y/x$.
+            \end{block}
+            Dengan $r>0$, tanda $x$ dan $y$ menentukan kuadran.
+            Untuk $x=0$, baca arah dari tanda $y$ dan tangani
+            $O$ tersendiri. Gunakan radian untuk turunan dan integral.
+        \end{column}
+        \begin{column}{.43\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.97]
+                \sumbubidang{-.38}{4.1}{-.35}{2.95}
+                \coordinate (P) at (3.1,2.15);
+                \draw[bantu] (P) -- (3.1,0)
+                    node[below,label grafik] {$r\cos\theta$};
+                \draw[bantu] (P) -- (0,2.15)
+                    node[left,label grafik] {$r\sin\theta$};
+                \draw[kurva] (0,0) -- (P)
+                    node[midway,above left,label grafik] {$r$};
+                \draw[pembanding] (.86,0) arc[start angle=0,end angle=34.75,radius=.86];
+                \node[teal!80!black,label grafik] at (17:1.07) {$\theta$};
+                \fill[HIMAtua] (P) circle (2pt)
+                    node[above right,label grafik] {$P(x,y)$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Konversi titik dan penentuan kuadran}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{.46\textwidth}
+            \begin{contoh}[Kutub ke Kartesius]
+                Tentukan koordinat Kartesius
+                dari $(-4,\pi/6)$.
+            \end{contoh}
+            \onslide<2->{%
+                \[
+                    \begin{aligned}
+                        x&=(-4)\cos(\pi/6)=-2\sqrt3,\\
+                        y&=(-4)\sin(\pi/6)=-2.
+                    \end{aligned}
+                \]
+                Nilai $r$ negatif memindahkan titik
+                dari arah kuadran I ke kuadran III.
+            }
+        \end{column}
+        \begin{column}{.5\textwidth}
+            \begin{contoh}[Kartesius ke kutub]
+                Ubah $(-3,3\sqrt3)$ ke koordinat kutub
+                dengan $r>0$ dan $0\le\theta<2\pi$.
+            \end{contoh}
+            \onslide<3->{Jarak ke $O$ adalah $\sqrt{9+27}=6$.
+            Dengan $\tan\theta=-\sqrt3$ dan posisi di
+            kuadran II, diperoleh $(6,2\pi/3)$.}
+            \onslide<4->{Wakil dengan $r<0$ pada rentang sudut
+            yang sama adalah $(-6,5\pi/3)$.}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Tabel $r(\theta)$ yang sama menghasilkan dua gambar berbeda}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.49\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[bidang,width=6.9cm,height=3.8cm,
+                    xmin=-15,xmax=390,ymin=-2.3,ymax=2.48,
+                    xlabel={$\theta$},ylabel={$r$},
+                    xtick={90,180,270,360},
+                    xticklabels={$\pi/2$,$\pi$,$3\pi/2$,$2\pi$},
+                    ytick={-2,2},clip mode=individual]
+                    \addplot[kurva,domain=0:360] {2*sin(x)};
+                    \addplot[only marks,mark=*,mark size=1.7pt,teal!80!black]
+                        coordinates {(30,1) (210,-1)};
+                \end{axis}
+            \end{tikzpicture}\par
+            \small Grafik fungsi $r=2\sin\theta$ di bidang $\theta r$.
+        \end{column}
+        \begin{column}{.45\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=1.28]
+                \sumbubidang{-1.45}{1.66}{-.42}{2.36}
+                \draw[kurva] (0,1) circle (1);
+                \draw[pembanding,arah kurva=.54] (0,0)
+                    arc[start angle=-90,end angle=10,radius=1];
+                \draw[bantu] (210:1.06) -- (30:1);
+                \fill[teal!80!black] (30:1) circle (1.8pt)
+                    node[right,label grafik] {$P$};
+            \end{tikzpicture}\par
+            \small Kurva $r=2\sin\theta$ di bidang $xy$.
+        \end{column}
+    \end{columns}
+    \onslide<2->{\small
+        Pada gambar kanan, $(1,\pi/6)$ dan $(-1,7\pi/6)$
+        jatuh pada $P$ yang sama. Selang $0\le\theta\le\pi$
+        sudah menelusuri seluruh lingkaran sekali.
+    }
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Ubah persamaan sambil menjaga domain dan titik asal}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{.49\textwidth}
+            \begin{contoh}[Kutub ke Kartesius]
+                Ubah persamaan $r=2\sin\theta$.
+            \end{contoh}
+            \onslide<2->{Kalikan dengan $r$ dan gunakan $y=r\sin\theta$.
+            \[
+                r^2=2r\sin\theta
+                \ \Longrightarrow\
+                x^2+(y-1)^2=1.
+            \]
+            $O$ memenuhi persamaan awal, misalnya saat $\theta=0$.
+            Untuk titik lainnya, $r\ne0$ sehingga langkahnya
+            bisa dibalik.}
+        \end{column}
+        \begin{column}{.47\textwidth}
+            \begin{contoh}[Kartesius ke kutub]
+                Nyatakan garis $y=3$ dalam koordinat
+                kutub dengan $r>0$.
+            \end{contoh}
+            \onslide<3->{Substitusi $y=r\sin\theta$ memberi
+            \[
+                r=\frac{3}{\sin\theta},\qquad 0<\theta<\pi.
+            \]
+            Sinar pada sudut $0$ atau $\pi$ sejajar garis
+            $y=3$, sehingga tidak memberi titik pada garis.}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Latihan konversi titik dan persamaan}
+    \begin{latihan}
+        \begin{enumerate}
+            \item Ubah $(2,-2)$ ke koordinat kutub dengan $r>0$ dan $0\le\theta<2\pi$.
+            \item Ubah $r=2\sec\theta\tan\theta$ ke koordinat Kartesius.
+                Periksa apakah $O$ merupakan bagian kurva.
+        \end{enumerate}
+    \end{latihan}
+    \onslide<2->{%
+        \begin{enumerate}
+            \item $r=2\sqrt2$. Titiknya di kuadran IV, sehingga $\theta=7\pi/4$.
+            \item Saat $\cos\theta\ne0$, $x=r\cos\theta=2\tan\theta$.
+                Untuk $x\ne0$, $x=2y/x$ memberi $y=x^2/2$.
+                Di $x=0$, sudut $\theta=0$ memberi $(r,\theta)=(0,0)$,
+                sehingga $O$ juga berada pada parabola.
+        \end{enumerate}
+    }
+\end{frame}
+
+% KALKULUS 2 BAB 5.pdf, subbab 5.3.
+\section{Grafik dalam Koordinat Kutub}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Garis dari proyeksi tetap atau sudut tetap}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.51\textwidth}
+            \begin{block}{Persamaan garis}
+                Bentuk umum $Ax+By+C=0$ menjadi
+                \[
+                    r(A\cos\theta+B\sin\theta)+C=0.
+                \]
+                Untuk garis melalui $O$ dengan arah $\alpha$,
+                tulis $\theta=\alpha$ dan izinkan $r$ positif
+                maupun negatif.
+            \end{block}
+            \begin{contoh}
+                $r\cos\theta=2$ adalah $x=2$ dan
+                $r\sin\theta=-1$ adalah $y=-1$.
+                Sudut tetap $\theta=3\pi/4$ memberi $y=-x$.
+            \end{contoh}
+        \end{column}
+        \begin{column}{.45\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.85]
+                \sumbubidang{-2.15}{3.55}{-2.22}{2.35}
+                \draw[kurva] (2,-2.03) -- (2,2.1)
+                    node[above,label grafik] {$r\cos\theta=2$};
+                \draw[pembanding] (-1.9,-1) -- (3.21,-1)
+                    node[below left,label grafik] {$r\sin\theta=-1$};
+                \draw[magenta,thick] (-1.98,1.98) -- (1.94,-1.94)
+                    node[below left,label grafik] {$\theta=3\pi/4$};
+                \draw[magenta,thin,arah kurva=.73] (.66,0)
+                    arc[start angle=0,end angle=135,radius=.66];
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Pada lingkaran melalui kutub, koefisien sinus atau kosinus adalah diameter bertanda}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.52\textwidth}
+            \begin{block}{Pusat dan jari-jari}
+                Untuk $c\ne0$, ubah persamaan ke Kartesius
+                dengan $r^2=x^2+y^2$.
+                \[
+                    \begin{array}{l|cc}
+                        \text{Persamaan} & \text{Pusat} & \text{Jari-jari}\\ \hline
+                        r=a,\ a>0 & O & a\\
+                        r=2c\cos\theta & (c,0) & |c|\\
+                        r=2c\sin\theta & (0,c) & |c|
+                    \end{array}
+                \]
+            \end{block}
+            Misalnya, $r=4\cos\theta$ memberi
+            $x^2+y^2=4x$, sehingga $(x-2)^2+y^2=4$.
+            Tanda koefisien menentukan sisi pusatnya.
+        \end{column}
+        \begin{column}{.44\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.76]
+                \sumbubidang{-2.28}{4.38}{-3.25}{2.31}
+                \draw[gray,thick,dashed] (0,0) circle (2);
+                \draw[kurva] (2,0) circle (2);
+                \draw[pembanding] (0,-1.5) circle (1.5);
+                \fill[HIMAtua] (2,0) circle (1.65pt);
+                \fill[teal!80!black] (0,-1.5) circle (1.65pt);
+                \node[gray!85!black,label grafik] at (-1.71,1.83) {$r=2$};
+                \node[HIMAtua,label grafik] at (2.75,2.28) {$r=4\cos\theta$};
+                \node[teal!80!black,anchor=west,label grafik] at (1.05,-2.72)
+                    {$r=-3\sin\theta$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Uji simetri menanyakan apakah titik hasil pencerminan juga ada}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.56\textwidth}
+            \begin{teorema}[Uji simetri kurva kutub]
+                Jika substitusi pada persamaan memberi persamaan
+                setara, berlaku simetri yang bersesuaian.
+                \[
+                    \begin{array}{l|l}
+                        \text{Terhadap} & \text{Ganti }(r,\theta)\text{ dengan}\\ \hline
+                        \text{Sumbu }x & (r,-\theta)\\
+                        \text{Sumbu }y & (r,\pi-\theta)\\
+                        \text{Kutub }O & (-r,\theta)
+                    \end{array}
+                \]
+            \end{teorema}
+            Uji ini memberi syarat cukup. Jika suatu substitusi
+            gagal, coba wakil lain untuk titik hasil pencerminan.
+            Untuk simetri terhadap $O$, misalnya, gunakan
+            $(r,\theta+\pi)$.
+        \end{column}
+        \begin{column}{.4\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.95]
+                \sumbubidang{-2.1}{2.45}{-1.63}{1.73}
+                \coordinate (P) at (1.65,1.18);
+                \draw[bantu] (P) -- (1.65,-1.18);
+                \draw[bantu] (P) -- (-1.65,1.18);
+                \draw[bantu] (P) -- (-1.65,-1.18);
+                \fill[HIMAtua] (P) circle (2pt) node[above right,label grafik] {$P$};
+                \fill[pembanding] (1.65,-1.18) circle (2pt)
+                    node[below right,label grafik] {$P_x$};
+                \fill[pembanding] (-1.65,1.18) circle (2pt)
+                    node[above left,label grafik] {$P_y$};
+                \fill[pembanding] (-1.65,-1.18) circle (2pt)
+                    node[below left,label grafik] {$P_O$};
+            \end{tikzpicture}\par
+            \small $P_O$ diperoleh dengan memutar $P$ sebesar $\pi$.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Perbandingan $a/b$ menentukan bentuk lima\c{c}on}
+    \begin{definisi}[Lima\c{c}on dan kardioida]
+        Persamaan $r=a\pm b\cos\theta$ atau $r=a\pm b\sin\theta$ dengan
+        $a,b>0$ menghasilkan \emph{lima\c{c}on}. Jika $a=b$, kurvanya
+        disebut \emph{kardioida}.
+    \end{definisi}
+    \centering
+    \begin{tikzpicture}[scale=.61]
+        \foreach \offset/\a/\rasio/\nama in {
+            0/1/{a/b<1}/{Loop dalam},
+            5.8/2/{a/b=1}/{Kardioida},
+            11.6/3/{1<a/b<2}/{Cekung},
+            17.4/4/{a/b\ge2}/{Cembung}
+        } {
+            \begin{scope}[shift={(\offset,0)}]
+                \sumbubidang{-1.54}{3.23}{-2.22}{2.34}
+                \draw[kurva] plot[domain=0:360,variable=\u,samples=151]
+                    ({3*(\a+2*cos(\u))/(\a+2)*cos(\u)},
+                     {3*(\a+2*cos(\u))/(\a+2)*sin(\u)});
+                \node[font=\small,align=center] at (.84,-2.7) {\nama\\$\rasio$};
+            \end{scope}
+        }
+    \end{tikzpicture}\par
+    \small Pada $r=a+b\cos\theta$, ujung terjauh ada di arah $+x$.
+    Ubah tanda atau ganti kosinus dengan sinus untuk memindah arah ujung itu.
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Sketsa kardioida dimulai dari nol, titik ujung, dan simetri}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.5\textwidth}
+            \begin{contoh}
+                Sketsalah $r=2(1-\cos\theta)$.
+            \end{contoh}
+            \onslide<2->{Karena $\cos(-\theta)=\cos\theta$,
+            kurva simetrik terhadap sumbu $x$.
+            Dari $\theta=0$ ke $\pi$, $r$ naik dari $0$ ke $4$.
+            \[
+                \begin{array}{c|rrrr}
+                    \theta & 0 & \pi/3 & \pi/2 & \pi\\ \hline
+                    r & 0 & 1 & 2 & 4
+                \end{array}
+            \]}
+            \onslide<3->{Hubungkan titik di atas sumbu $x$,
+            lalu cerminkan untuk mendapatkan bagian bawah.}
+        \end{column}
+        \begin{column}{.46\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.73]
+                \sumbubidang{-4.37}{1.45}{-2.83}{2.93}
+                \draw<2->[kurva,arah kurva=.63]
+                    plot[domain=0:180,variable=\u,samples=101]
+                    ({2*(1-cos(\u))*cos(\u)},{2*(1-cos(\u))*sin(\u)});
+                \draw<3->[pembanding]
+                    plot[domain=180:360,variable=\u,samples=101]
+                    ({2*(1-cos(\u))*cos(\u)},{2*(1-cos(\u))*sin(\u)});
+                \fill<2->[HIMAtua] (-4,0) circle (1.75pt)
+                    node[above left,label grafik] {$(-4,0)$};
+                \fill<2->[HIMAtua] (0,2) circle (1.75pt)
+                    node[above right,label grafik] {$(0,2)$};
+                \fill<2->[HIMAtua] (60:1) circle (1.75pt);
+                \fill<2->[HIMAtua] (0,0) circle (1.75pt)
+                    node[below right,label grafik] {$O$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Pada lemniskat, kuadrat radius membatasi sudut yang mungkin}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.53\textwidth}
+            \begin{definisi}[Lemniskat]
+                Untuk $a>0$, persamaan $r^2=\pm a^2\cos2\theta$
+                atau $r^2=\pm a^2\sin2\theta$ membentuk dua
+                daun yang bertemu di kutub. Tanda dan fungsi
+                trigonometrinya menentukan arah kedua daun.
+            \end{definisi}
+            \begin{contoh}
+                Pada $r^2=9\cos2\theta$, sudut yang mungkin
+                memenuhi $\cos2\theta\ge0$.
+            \end{contoh}
+            \onslide<2->{Untuk $-\pi/4\le\theta\le\pi/4$,
+            pilih $r=3\sqrt{\cos2\theta}$ untuk daun kanan
+            dan $r=-3\sqrt{\cos2\theta}$ untuk daun kiri.}
+        \end{column}
+        \begin{column}{.43\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.76]
+                \sumbubidang{-3.65}{3.64}{-1.72}{1.74}
+                \draw[bantu] (-1.35,-1.35) -- (1.35,1.35);
+                \draw[bantu] (-1.35,1.35) -- (1.35,-1.35);
+                \draw<2->[kurva] plot[domain=-45:45,variable=\u,samples=131]
+                    ({3*sqrt(max(0,cos(2*\u)))*cos(\u)},
+                     {3*sqrt(max(0,cos(2*\u)))*sin(\u)});
+                \draw<2->[pembanding] plot[domain=-45:45,variable=\u,samples=131]
+                    ({-3*sqrt(max(0,cos(2*\u)))*cos(\u)},
+                     {-3*sqrt(max(0,cos(2*\u)))*sin(\u)});
+                \node<2->[HIMAtua,label grafik] at (2.54,1.03) {$r\ge0$};
+                \node<2->[teal!80!black,label grafik] at (-2.54,1.03) {$r\le0$};
+            \end{tikzpicture}\par
+            \onslide<2->{\small Selang sudut yang sama cukup untuk kedua daun
+            jika kedua tanda $r$ dipakai.}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Spiral Archimedes bertambah jauh dengan laju radial tetap}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.5\textwidth}
+            \begin{definisi}[Spiral dan spiral Archimedes]
+                Spiral mengelilingi kutub sambil berubah jarak.
+                Pada spiral Archimedes $r=a\theta$ dengan $a>0$,
+                jarak antar lilitan pada sinar yang sama adalah $2\pi a$.
+            \end{definisi}
+            \begin{contoh}
+                Pada $r=\theta/4$, $\theta\ge0$, tandai
+                potongan dengan sumbu saat
+                $\theta=0,\pi/2,\pi,3\pi/2,2\pi,\ldots$.
+            \end{contoh}
+            Dari $O$, $\theta$ yang membesar memberi putaran
+            berlawanan arah jarum jam. Cabang $\theta\le0$,
+            jika ditelusuri dari $O$ ke luar, berputar searah jarum jam.
+        \end{column}
+        \begin{column}{.46\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.78]
+                \sumbubidang{-3.04}{3.5}{-3}{2.77}
+                \draw[kurva,arah kurva=.68]
+                    plot[domain=0:720,variable=\u,samples=181]
+                    ({\u*pi/720*cos(\u)},{\u*pi/720*sin(\u)});
+                \foreach \u in {0,90,180,270,360,450,540,630,720}
+                    \fill[HIMAtua] ({\u*pi/720*cos(\u)},{\u*pi/720*sin(\u)})
+                        circle (1.5pt);
+                \node[below,label grafik] at ({-pi/4},0) {$\theta=\pi$};
+                \node[above,label grafik] at ({pi/2},0) {$2\pi$};
+                \node[below,label grafik] at ({pi},0) {$4\pi$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Paritas $n$ menentukan jumlah daun kurva mawar}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.5\textwidth}
+            \begin{definisi}[Kurva mawar]
+                Persamaan $r=a\cos n\theta$ atau $r=a\sin n\theta$,
+                dengan $a\ne0$ dan $n$ bilangan bulat positif,
+                menghasilkan $n$ daun bila $n$ ganjil dan
+                $2n$ daun bila $n$ genap.
+            \end{definisi}
+            Antara dua nol berurutan, kurva berangkat
+            dari $O$, mencapai $|r|=|a|$, lalu kembali ke $O$.
+            Untuk $n$ ganjil, penelusuran terulang setelah
+            $\pi$ karena $r$ dan arah sinar sama-sama
+            terbalik. Untuk $n$ genap, setelah $\pi$ posisi
+            berseberangan dan satu putaran penuh perlu $2\pi$.
+        \end{column}
+        \begin{column}{.46\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.91]
+                \sumbubidang{-1.5}{1.53}{-1.42}{1.43}
+                \draw[kurva] plot[domain=0:180,variable=\u,samples=151]
+                    ({1.3*cos(3*\u)*cos(\u)},{1.3*cos(3*\u)*sin(\u)});
+                \node[below,font=\small] at (0,-1.58) {$r=\cos 3\theta$};
+                \begin{scope}[xshift=3.66cm]
+                    \sumbubidang{-1.5}{1.53}{-1.42}{1.43}
+                    \draw[pembanding] plot[domain=0:360,variable=\u,samples=181]
+                        ({1.3*sin(2*\u)*cos(\u)},{1.3*sin(2*\u)*sin(\u)});
+                    \node[below,font=\small] at (0,-1.58) {$r=\sin 2\theta$};
+                \end{scope}
+            \end{tikzpicture}\par
+            \small Kasus $n=1$ memberi satu lingkaran.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Cukup telusuri satu daun untuk mulai menggambar mawar}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.53\textwidth}
+            \begin{contoh}
+                Sketsalah mawar $r=2\cos4\theta$.
+            \end{contoh}
+            \onslide<2->{Daun di sekitar sumbu $x$ positif
+            ditelusuri untuk $-\pi/8\le\theta\le\pi/8$.
+            Ujungnya di $(2,0)$ dan kedua batas sudut
+            membawa kurva kembali ke $O$.}
+            \onslide<3->{Ada delapan daun dengan ujung pada
+            arah $k\pi/4$, $k=0,1,\ldots,7$.
+            Misalnya, $\theta=\pi/4$ memberi $r=-2$,
+            sehingga ujung yang dicapai berarah $5\pi/4$.}
+        \end{column}
+        \begin{column}{.43\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.88]
+                \sumbubidang{-2.22}{2.5}{-2.18}{2.25}
+                \draw<3->[HIMAtua!55,thick]
+                    plot[domain=0:360,variable=\u,samples=241]
+                    ({2*cos(4*\u)*cos(\u)},{2*cos(4*\u)*sin(\u)});
+                \draw<2->[bantu] (0,0) -- (-22.5:2.26);
+                \draw<2->[bantu] (0,0) -- (22.5:2.26)
+                    node[right,label grafik] {$\pi/8$};
+                \draw<2->[kurva,daerah,arah kurva=.31]
+                    plot[domain=-22.5:22.5,variable=\u,samples=91]
+                    ({2*cos(4*\u)*cos(\u)},{2*cos(4*\u)*sin(\u)}) -- cycle;
+                \fill<3->[magenta] (225:2) circle (2pt)
+                    node[below left,label grafik] {$(-2,\pi/4)$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Persamaan kutub irisan kerucut menempatkan fokus di $O$}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.53\textwidth}
+            \begin{block}{Fokus, direktriks, dan eksentrisitas}
+                Untuk fokus $F=O$ dan $D$ proyeksi $P$ pada
+                direktriks, berlaku $PF=e\,PD$. Nilai $e$ adalah
+                \emph{eksentrisitas}. Bentuk kutubnya, untuk $p>0$,
+                \[
+                    r=\frac{p}{1\pm e\cos\theta}
+                    \quad\text{atau}\quad
+                    r=\frac{p}{1\pm e\sin\theta}.
+                \]
+                Jika $0<e<1$ kurvanya elips, $e=1$ parabola,
+                dan $e>1$ hiperbola.
+            \end{block}
+            \begin{contoh}
+                Ambil direktriks $x=3$ dan $e=1/2$.
+                Maka $2r=3-r\cos\theta$, jadi $r=3/(2+\cos\theta)$.
+            \end{contoh}
+        \end{column}
+        \begin{column}{.43\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.81]
+                \sumbubidang{-3.36}{3.55}{-1.96}{2.17}
+                \draw[kurva] plot[domain=0:360,variable=\u,samples=121]
+                    ({3*cos(\u)/(2+cos(\u))},{3*sin(\u)/(2+cos(\u))});
+                \draw[bantu] (3,-1.87) -- (3,1.92)
+                    node[above,label grafik] {$x=3$};
+                \draw[pembanding] (0,0) -- (0,1.5) -- (3,1.5);
+                \draw[pembanding] (2.81,1.5) -- (2.81,1.31) -- (3,1.31);
+                \fill[HIMAtua] (0,0) circle (1.7pt)
+                    node[below left,label grafik] {$F$};
+                \fill[HIMAtua] (0,1.5) circle (1.7pt)
+                    node[above left,label grafik] {$P$};
+                \fill[teal!80!black] (3,1.5) circle (1.7pt)
+                    node[right,label grafik] {$D$};
+            \end{tikzpicture}\par
+            \small Pada contoh ini $PF=\tfrac12 PD$.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Latihan membaca bentuk, penelusuran, dan asimtot}
+    \begin{latihan}
+        \begin{enumerate}
+            \item Kenali bentuk $r=3-2\sin\theta$ dan arah ujung terjauhnya.
+            \item Tentukan selang sudut untuk satu daun kanan dari $r=4\cos3\theta$.
+            \item Untuk $r=1+3\sec\theta$, cari asimtot vertikal saat $\theta\to\pi/2^-$.
+        \end{enumerate}
+    \end{latihan}
+    \onslide<2->{%
+        \begin{enumerate}
+            \item Lima\c{c}on cekung karena $a/b=3/2$, dengan ujung di arah $-y$.
+            \item $-\pi/6\le\theta\le\pi/6$. Kedua batas memberi $r=0$.
+            \item $x=\cos\theta+3\to3$ dan
+                $y=\sin\theta+3\tan\theta\to+\infty$, sehingga asimtotnya $x=3$.
+        \end{enumerate}
+    }
+\end{frame}
+
+% KALKULUS 2 BAB 5.pdf, subbab 5.4.
+\section{Luas dan Volume dalam Koordinat Kutub}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Sektor kecil menggantikan strip persegi panjang}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{teorema}[Luas daerah kutub]
+                Misalkan $f$ kontinu dan tak negatif pada $[\alpha,\beta]$
+                dengan $0<\beta-\alpha\le2\pi$. Luas daerah yang
+                tersapu oleh ruas $0\le r\le f(\theta)$ adalah
+                \[
+                    A=\frac12\int_\alpha^\beta [f(\theta)]^2\,d\theta.
+                \]
+            \end{teorema}
+            Jika irisan bersudut $\Delta\theta_k$ cukup sempit,
+            luasnya mendekati $\frac12[f(\theta_k^*)]^2\Delta\theta_k$.
+            Jumlah luas sektor menuju integral saat lebar sudut
+            terbesar menuju nol.
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=1.05]
+                \pgfmathsetmacro{\radiuscontoh}{2.9+.35*cos(64)}
+                \fill[daerah] (0,0) -- plot[domain=12:139,variable=\u,samples=81]
+                    ({(2.9+.35*cos(\u))*cos(\u)},{(2.9+.35*cos(\u))*sin(\u)})
+                    -- cycle;
+                \fill[teal!40] (0,0) -- (50:\radiuscontoh)
+                    arc[start angle=50,end angle=78,radius=\radiuscontoh] -- cycle;
+                \draw[kurva] (0,0) -- plot[domain=12:139,variable=\u,samples=81]
+                    ({(2.9+.35*cos(\u))*cos(\u)},{(2.9+.35*cos(\u))*sin(\u)})
+                    -- cycle;
+                \foreach \u in {32,50,78,99,119}
+                    \draw[gray] (0,0) -- (\u:{2.9+.35*cos(\u)});
+                \draw[pembanding,dashed] (0,0) -- (64:\radiuscontoh);
+                \node[teal!80!black,above right,label grafik] at (62:1.42)
+                    {$f(\theta_k^*)$};
+                \draw[pembanding,<->] (50:.58)
+                    arc[start angle=50,end angle=78,radius=.58];
+                \node[teal!80!black,label grafik] at (64:1.05) {$\Delta\theta_k$};
+                \draw[sumbu] (0,0) -- (3.25,0)
+                    node[below left,label grafik] {sumbu kutub};
+                \node[above,label grafik] at (12:2.26) {$\alpha$};
+                \node[below,label grafik] at (139:1.72) {$\beta$};
+                \node[below,label grafik] at (0,0) {$O$};
+            \end{tikzpicture}\par
+            \small Sudut sektor diukur dalam radian.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Batas integral berasal dari sudut sapuan daerah}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.52\textwidth}
+            \begin{contoh}
+                Hitung luas di kuadran I di dalam kardioida
+                $r=2(1-\cos\theta)$.
+            \end{contoh}
+            \onslide<2->{Mulai dari sumbu $x$ positif dan putar
+            ruas radial sampai sumbu $y$ positif. Maka
+            $\alpha=0$ dan $\beta=\pi/2$.}
+            \onslide<3->{Dengan $\cos^2\theta=(1+\cos2\theta)/2$,
+            \[
+                \begin{aligned}
+                    A&=2\int_0^{\pi/2}(1-\cos\theta)^2\,d\theta\\
+                     &=2\left[\tfrac32\theta-2\sin\theta+
+                        \tfrac14\sin2\theta\right]_0^{\pi/2}
+                     =\frac{3\pi}{2}-4.
+                \end{aligned}
+            \]}
+        \end{column}
+        \begin{column}{.44\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.74]
+                \fill<2->[daerah] (0,0) --
+                    plot[domain=0:90,variable=\u,samples=81]
+                    ({2*(1-cos(\u))*cos(\u)},{2*(1-cos(\u))*sin(\u)})
+                    -- cycle;
+                \sumbubidang{-4.4}{1.7}{-2.88}{2.92}
+                \draw[kurva] plot[domain=0:360,variable=\u,samples=181]
+                    ({2*(1-cos(\u))*cos(\u)},{2*(1-cos(\u))*sin(\u)});
+                \draw<2->[pembanding,thick] (0,0) -- (72:{2*(1-cos(72))});
+                \node<2->[teal!80!black,anchor=west,label grafik] at (.37,1.2)
+                    {$0\le\theta\le\pi/2$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Gunakan simetri untuk luas keseluruhan}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{.47\textwidth}
+            \begin{contoh}[Kardioida]
+                Hitung luas seluruh kardioida
+                $r=2(1-\cos\theta)$.
+            \end{contoh}
+            \onslide<2->{Karena simetri terhadap sumbu $x$, cukup
+            hitung bagian atas dan gandakan.
+            \[
+                \begin{aligned}
+                    A&=4\int_0^\pi(1-\cos\theta)^2\,d\theta\\
+                     &=4\left[\tfrac32\theta-2\sin\theta+
+                         \tfrac14\sin2\theta\right]_0^\pi
+                     =6\pi.
+                \end{aligned}
+            \]}
+        \end{column}
+        \begin{column}{.49\textwidth}
+            \begin{contoh}[Mawar]
+                Hitung luas seluruh mawar $r=2\sin2\theta$.
+            \end{contoh}
+            \onslide<3->{Daun di kuadran I dilalui untuk
+            $0\le\theta\le\pi/2$. Pada selang ini $r\ge0$.
+            \[
+                A_1=2\int_0^{\pi/2}\sin^2 2\theta\,d\theta
+                    =\frac{\pi}{2}.
+            \]
+            Keempat daun kongruen, sehingga $A=4A_1=2\pi$.
+            Cukup gunakan selang dengan $r\ge0$ untuk
+            perhitungan satu daun.}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Daerah di antara dua kurva memakai selisih kuadrat radius}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.53\textwidth}
+            \begin{block}{Batas luar dan batas dalam}
+                Pada $\alpha\le\theta\le\beta$, misalkan
+                $0\le r_{\mathrm{dalam}}(\theta)
+                \le r_{\mathrm{luar}}(\theta)$.
+                Untuk satu sapuan daerah,
+                \[
+                    A=\frac12\int_\alpha^\beta
+                    \bigl(r_{\mathrm{luar}}^2-r_{\mathrm{dalam}}^2\bigr)
+                    \,d\theta.
+                \]
+            \end{block}
+            Pada tiap sudut, ruas yang dihitung mulai dari
+            batas dalam. Luasnya diperoleh dengan mengurangi
+            sektor dalam dari sektor luar.
+        \end{column}
+        \begin{column}{.43\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=1.06]
+                \fill[daerah] plot[domain=18:81,variable=\u,samples=55]
+                    ({(3.45+.35*cos(2*\u))*cos(\u)},
+                     {(3.45+.35*cos(2*\u))*sin(\u)})
+                    -- plot[domain=81:18,variable=\u,samples=55]
+                    ({(1.45+.24*sin(2*\u))*cos(\u)},
+                     {(1.45+.24*sin(2*\u))*sin(\u)}) -- cycle;
+                \draw[bantu] (0,0) -- (18:{3.45+.35*cos(36)});
+                \draw[bantu] (0,0) -- (81:{3.45+.35*cos(162)});
+                \draw[kurva] plot[domain=18:81,variable=\u,samples=55]
+                    ({(3.45+.35*cos(2*\u))*cos(\u)},
+                     {(3.45+.35*cos(2*\u))*sin(\u)});
+                \draw[pembanding] plot[domain=18:81,variable=\u,samples=55]
+                    ({(1.45+.24*sin(2*\u))*cos(\u)},
+                     {(1.45+.24*sin(2*\u))*sin(\u)});
+                \draw[magenta,thick,<->] (44:{1.45+.24*sin(88)})
+                    -- (44:{3.45+.35*cos(88)});
+                \node[HIMAtua,above right,label grafik] at (59:3.37)
+                    {$r_{\mathrm{luar}}$};
+                \node[teal!80!black,below left,label grafik] at (58:1.66)
+                    {$r_{\mathrm{dalam}}$};
+                \node[below left,label grafik] at (0,0) {$O$};
+            \end{tikzpicture}\par
+            \small Panah mengikuti satu ruas radial di daerah.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Sudut negatif dapat menyederhanakan satu daerah yang tersambung}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.53\textwidth}
+            \begin{contoh}
+                Hitung luas di dalam kardioida $r=2+2\cos\theta$
+                dan di luar lingkaran $r=3$.
+            \end{contoh}
+            \onslide<2->{Kurva berpotongan saat $\cos\theta=1/2$.
+            Radius kardioida lebih besar pada $(-\pi/3,\pi/3)$.}
+            \onslide<3->{Dengan simetri terhadap sumbu $x$,
+            \[
+                \begin{aligned}
+                    A&=\int_0^{\pi/3}[(2+2\cos\theta)^2-9]\,d\theta\\
+                     &=\left[-3\theta+8\sin\theta+\sin2\theta\right]_0^{\pi/3}
+                      =\frac{9\sqrt3}{2}-\pi.
+                \end{aligned}
+            \]}
+        \end{column}
+        \begin{column}{.43\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.68]
+                \fill<2->[daerah] plot[domain=-60:60,variable=\u,samples=81]
+                    ({(2+2*cos(\u))*cos(\u)},{(2+2*cos(\u))*sin(\u)})
+                    -- plot[domain=60:-60,variable=\u,samples=81]
+                    ({3*cos(\u)},{3*sin(\u)}) -- cycle;
+                \sumbubidang{-3.28}{4.28}{-3.22}{3.25}
+                \draw[pembanding] (0,0) circle (3);
+                \draw[kurva] plot[domain=0:360,variable=\u,samples=151]
+                    ({(2+2*cos(\u))*cos(\u)},{(2+2*cos(\u))*sin(\u)});
+                \draw<2->[bantu] (60:3) -- (0,0) -- (-60:3);
+                \fill<2->[HIMAtua] (60:3) circle (1.7pt)
+                    node[above right,label grafik] {$\pi/3$};
+                \fill<2->[HIMAtua] (-60:3) circle (1.7pt)
+                    node[below right,label grafik] {$-\pi/3$};
+                \node[teal!80!black,label grafik,anchor=west] at (-3.03,2.4) {$r=3$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Dua kurva dapat mencapai titik perpotongan dengan sudut berbeda}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{contoh}
+                Cari titik potong kardioida $r=1+\cos\theta$
+                dan $r=1-\cos\theta$.
+            \end{contoh}
+            \onslide<2->{Menyamakan kedua fungsi memberi
+            $\cos\theta=0$, sehingga titik potongnya
+            $(0,1)$ dan $(0,-1)$ dalam Kartesius.}
+            \onslide<3->{Kedua kurva juga melalui $O$.
+            Kurva pertama mencapai $O$ pada $\theta=\pi$,
+            sedangkan kurva kedua pada $\theta=0$.}
+            \onslide<4->{Untuk luas irisan, ruas di tiap sudut
+            berhenti pada radius yang lebih kecil.
+            Pada $\theta=\pi/2$ dan $3\pi/2$, kurva yang
+            memberi radius lebih kecil bertukar.}
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=1.08]
+                \fill<4->[daerah] plot[domain=0:360,variable=\u,samples=161]
+                    ({(1-abs(cos(\u)))*cos(\u)},
+                     {(1-abs(cos(\u)))*sin(\u)}) -- cycle;
+                \sumbubidang{-2.23}{2.23}{-1.48}{1.52}
+                \draw[kurva] plot[domain=0:360,variable=\u,samples=141]
+                    ({(1+cos(\u))*cos(\u)},{(1+cos(\u))*sin(\u)});
+                \draw[pembanding] plot[domain=0:360,variable=\u,samples=141]
+                    ({(1-cos(\u))*cos(\u)},{(1-cos(\u))*sin(\u)});
+                \fill<2->[magenta] (0,1) circle (2pt)
+                    node[above right,label grafik] {$(0,1)$};
+                \fill<2->[magenta] (0,-1) circle (2pt)
+                    node[below right,label grafik] {$(0,-1)$};
+                \fill<3->[magenta] (0,0) circle (2pt)
+                    node[below right,label grafik] {$O$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+    \onslide<4->{\small Jika kurva memakai $r$ bertanda, cek juga
+        wakil $(-r,\theta+\pi)$ saat mencari titik potong.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Loop dengan $r<0$ dapat ditulis kembali dengan radius positif}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{contoh}
+                Hitung luas loop dalam lima\c{c}on $r=1+2\cos\theta$.
+            \end{contoh}
+            \onslide<2->{Loop dalam dilalui pada
+            $2\pi/3\le\theta\le4\pi/3$, saat $r\le0$.}
+            \onslide<3->{Gunakan $\phi=\theta-\pi$, sehingga
+            $\rho=-r=2\cos\phi-1\ge0$ pada
+            $-\pi/3\le\phi\le\pi/3$.
+            \[
+                \begin{aligned}
+                    A&=\int_0^{\pi/3}(2\cos\phi-1)^2\,d\phi\\
+                     &=\left[3\phi+\sin2\phi-4\sin\phi\right]_0^{\pi/3}\\
+                     &=\pi-\frac{3\sqrt3}{2}.
+                \end{aligned}
+            \]}
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.98]
+                \fill<3->[daerah] plot[domain=-60:60,variable=\u,samples=65]
+                    ({(2*cos(\u)-1)*cos(\u)},{(2*cos(\u)-1)*sin(\u)})
+                    -- cycle;
+                \sumbubidang{-1.28}{3.34}{-1.92}{1.97}
+                \draw[kurva] plot[domain=0:360,variable=\u,samples=161]
+                    ({(1+2*cos(\u))*cos(\u)},{(1+2*cos(\u))*sin(\u)});
+                \draw<2->[pembanding,very thick,arah kurva=.32]
+                    plot[domain=120:240,variable=\u,samples=81]
+                    ({(1+2*cos(\u))*cos(\u)},{(1+2*cos(\u))*sin(\u)});
+                \draw<3->[bantu] (-60:1.12) -- (0,0) -- (60:1.12)
+                    node[above,label grafik] {$\phi=\pi/3$};
+            \end{tikzpicture}\par
+            \small Loop diarsir berada di kanan $O$.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Saat diputar, setiap irisan kecil menempuh satu keliling}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.55\textwidth}
+            \begin{block}{Volume putar daerah radial}
+                Jika daerah $0\le\rho\le f(\theta)$ tersapu
+                sekali dan berada pada satu sisi sumbu putar,
+                \[
+                    \begin{aligned}
+                        V_x&=\frac{2\pi}{3}\int_\alpha^\beta
+                            f(\theta)^3|\sin\theta|\,d\theta,\\
+                        V_y&=\frac{2\pi}{3}\int_\alpha^\beta
+                            f(\theta)^3|\cos\theta|\,d\theta.
+                    \end{aligned}
+                \]
+            \end{block}
+            Irisan kecil punya luas $dA=\rho\,d\rho\,d\theta$.
+            Untuk sumbu $x$, $dV=2\pi|\rho\sin\theta|\,dA$.
+            Mengintegralkan $\rho^2$ dari $0$ ke $f(\theta)$
+            memberi faktor $f(\theta)^3/3$.
+        \end{column}
+        \begin{column}{.41\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=1.15]
+                \fill[daerah] (0,0) -- plot[domain=0:90,variable=\u,samples=61]
+                    ({(3.15+.45*cos(1.2*\u))*cos(\u)},
+                     {(3.15+.45*cos(1.2*\u))*sin(\u)}) -- cycle;
+                \sumbubidang{-.35}{3.86}{-.34}{3.27}
+                \draw[kurva] plot[domain=0:90,variable=\u,samples=61]
+                    ({(3.15+.45*cos(1.2*\u))*cos(\u)},
+                     {(3.15+.45*cos(1.2*\u))*sin(\u)});
+                \draw[bantu] (0,0) -- (46:{3.15+.45*cos(1.2*46)});
+                \draw[pembanding,fill=teal!35] (40:2.25)
+                    arc[start angle=40,end angle=52,radius=2.25]
+                    -- (52:1.95) arc[start angle=52,end angle=40,radius=1.95] -- cycle;
+                \coordinate (P) at (46:2.1);
+                \draw[magenta,thick,<->] (P) -- (P |- 0,0)
+                    node[midway,right,label grafik] {$\rho\sin\theta$};
+                \node[teal!80!black,label grafik,anchor=west] at (48:2.45) {$dA$};
+                \draw[pembanding] (.59,0) arc[start angle=0,end angle=46,radius=.59];
+                \node[teal!80!black,label grafik] at (24:.81) {$\theta$};
+            \end{tikzpicture}\par
+            \small Panah menunjukkan jari-jari putar terhadap sumbu $x$.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Setengah cakram yang diputar terhadap diameternya membentuk bola}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.53\textwidth}
+            \begin{contoh}
+                Putar daerah $0\le r\le4\cos\theta$,
+                $0\le\theta\le\pi/2$, terhadap sumbu $x$.
+            \end{contoh}
+            \onslide<2->{Seluruh daerah di atas sumbu $x$,
+            sehingga jari-jari putarnya $\rho\sin\theta$.}
+            \onslide<3->{%
+                \[
+                    \begin{aligned}
+                        V_x&=\frac{2\pi}{3}\int_0^{\pi/2}
+                            (4\cos\theta)^3\sin\theta\,d\theta\\
+                           &=\frac{128\pi}{3}
+                             \left[-\frac{\cos^4\theta}{4}\right]_0^{\pi/2}
+                             =\frac{32\pi}{3}.
+                    \end{aligned}
+                \]
+                Nilai ini sama dengan volume bola berjari-jari $2$.
+            }
+        \end{column}
+        \begin{column}{.43\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=1.07]
+                \fill[daerah] (4,0) arc[start angle=0,end angle=180,radius=2] -- cycle;
+                \sumbubidang{-.46}{4.44}{-1.22}{2.4}
+                \draw[kurva] (4,0) arc[start angle=0,end angle=180,radius=2];
+                \draw[HIMAtua!50,densely dashed] (0,0)
+                    arc[start angle=180,end angle=360,x radius=2,y radius=.85];
+                \draw[pembanding] (3,0) ellipse [x radius=.43,y radius={sqrt(3)}];
+                \draw[pembanding,arah kurva=.67] (3.43,0)
+                    arc[start angle=0,end angle=135,x radius=.43,y radius={sqrt(3)}];
+                \fill[HIMAtua] (2,0) circle (1.7pt)
+                    node[below,label grafik] {$(2,0)$};
+                \node[HIMAtua,label grafik] at (2.36,2.24) {$r=4\cos\theta$};
+            \end{tikzpicture}\par
+            \small Penampang putar tegak lurus sumbu $x$ berupa cakram.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Latihan luas satu daun dan volume satu sektor}
+    \begin{latihan}
+        \begin{enumerate}
+            \item Hitung luas seluruh lemniskat $r^2=9\cos2\theta$.
+            \item Putar daerah $0\le r\le3$, $0\le\theta\le\pi/4$,
+                terhadap sumbu $y$. Tentukan volumenya.
+        \end{enumerate}
+    \end{latihan}
+    \onslide<2->{%
+        \begin{enumerate}
+            \item Daun kanan memakai $r\ge0$ pada $[-\pi/4,\pi/4]$.
+                Dua daun memberi
+                $\displaystyle A=2\cdot\frac12\int_{-\pi/4}^{\pi/4}
+                9\cos2\theta\,d\theta=9$.
+            \item Jarak ke sumbu $y$ adalah $\rho\cos\theta$, sehingga
+                $\displaystyle V_y=\frac{2\pi}{3}
+                \int_0^{\pi/4}27\cos\theta\,d\theta=9\pi\sqrt2$.
+        \end{enumerate}
+    }
+\end{frame}
+
+% KALKULUS 2 BAB 5.pdf, subbab 5.5.
+\section{Garis Singgung dan Panjang Busur di Koordinat Kutub}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Sudut kutub berperan sebagai parameter}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{.5\textwidth}
+            \begin{block}{Parametrisasi kurva kutub}
+                Dari $r=f(\theta)$, ambil
+                $x=r\cos\theta$ dan $y=r\sin\theta$.
+                Aturan hasil kali memberi
+                \[
+                    \begin{aligned}
+                        x'(\theta)&=r'\cos\theta-r\sin\theta,\\
+                        y'(\theta)&=r'\sin\theta+r\cos\theta.
+                    \end{aligned}
+                \]
+                Di sini aksen menandai turunan terhadap $\theta$.
+            \end{block}
+            Misalnya, kardioida $r=2(1-\cos\theta)$
+            memiliki $x=2(1-\cos\theta)\cos\theta$ dan
+            $y=2(1-\cos\theta)\sin\theta$.
+        \end{column}
+        \begin{column}{.46\textwidth}
+            \begin{block}{Kemiringan garis singgung}
+                Jika $x'\ne0$ dan $x',y'$ kontinu di sekitar titik,
+                \[
+                    \frac{dy}{dx}=\frac{y'}{x'}
+                    =\frac{r'\sin\theta+r\cos\theta}
+                          {r'\cos\theta-r\sin\theta}.
+                \]
+            \end{block}
+            \begin{itemize}
+                \item $y'=0$, $x'\ne0$ memberi garis horizontal.
+                \item $x'=0$, $y'\ne0$ memberi garis vertikal.
+                \item Jika $x'=y'=0$, periksa limit arah sekan.
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Kemiringan garis singgung pada lingkaran}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.53\textwidth}
+            \begin{contoh}
+                Tentukan kemiringan garis singgung pada
+                $r=6\cos\theta$ di $\theta=\pi/6$.
+            \end{contoh}
+            \onslide<2->{Dengan $r'=-6\sin\theta$,
+            \[
+                x'=-6\sin2\theta,\qquad y'=6\cos2\theta.
+            \]
+            Maka $dy/dx=-\cot2\theta$ saat $x'\ne0$.}
+            \onslide<3->{Pada $\theta=\pi/6$, $m=-1/\sqrt3$.
+            Titik singgungnya $(9/2,3\sqrt3/2)$.
+            Garis singgung tegak lurus jari-jari dari pusat $(3,0)$.}
+        \end{column}
+        \begin{column}{.43\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.64]
+                \sumbubidang{-.38}{6.48}{-3.15}{3.58}
+                \draw[kurva] (3,0) circle (3);
+                \coordinate (P) at (30:{3*sqrt(3)});
+                \draw[bantu] (0,0) -- (P);
+                \draw[pembanding] (.9,0) arc[start angle=0,end angle=30,radius=.9];
+                \node[teal!80!black,label grafik] at (18:1.25) {$\pi/6$};
+                \draw<3->[pembanding] (3,0) -- (P);
+                \draw<3->[magenta,very thick]
+                    (3.32,{3*sqrt(3)-3.32/sqrt(3)}) --
+                    (6.09,{3*sqrt(3)-6.09/sqrt(3)});
+                \fill[HIMAtua] (P) circle (2pt) node[above right,label grafik] {$P$};
+                \fill[HIMAtua] (3,0) circle (1.7pt)
+                    node[below,label grafik] {$(3,0)$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Periksa kedua turunan saat $x'(\theta)=0$}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{contoh}
+                Untuk $r=2(1-\cos\theta)$, cari garis
+                singgung vertikal dan titik singular.
+            \end{contoh}
+            \onslide<2->{%
+                \[
+                    \begin{aligned}
+                        x'&=2\sin\theta(2\cos\theta-1),\\
+                        y'&=2(1-\cos\theta)(1+2\cos\theta).
+                    \end{aligned}
+                \]
+                Pada $[0,2\pi)$, $x'=0$ ketika
+                $\theta=0,\pi/3,\pi,5\pi/3$.
+            }
+            \onslide<3->{Pada tiga sudut selain $0$, $y'\ne0$.
+            Garisnya $x=-4$ dan $x=1/2$. Di $\theta=0$,
+            kedua turunan nol dan $P=O$ adalah titik singular.}
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.75]
+                \sumbubidang{-4.42}{1.37}{-2.83}{2.88}
+                \draw[kurva] plot[domain=0:360,variable=\u,samples=151]
+                    ({2*(1-cos(\u))*cos(\u)},{2*(1-cos(\u))*sin(\u)});
+                \draw<3->[magenta,densely dashed,thick] (-4,-1.98) -- (-4,2.02)
+                    node[above,label grafik] {$x=-4$};
+                \draw<3->[magenta,densely dashed,thick] (.5,-1.98) -- (.5,2.02)
+                    node[above,label grafik] {$x=1/2$};
+                \foreach \u in {60,180,300}
+                    \fill<3->[magenta] (\u:{2*(1-cos(\u))}) circle (2pt);
+                \fill<3->[HIMAtua] (0,0) circle (2pt)
+                    node[below left,label grafik] {$O$};
+            \end{tikzpicture}\par
+            \onslide<3->{\small Garis $x=1/2$ menyinggung di dua titik.}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Di kutub, garis singgung mengikuti limit sudut cabang}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{block}{Lewat kutub pada sudut $\theta_0$}
+                Jika $r(\theta_0)=0$ dan $r'(\theta_0)\ne0$,
+                vektor singgungnya
+                $r'(\theta_0)(\cos\theta_0,\sin\theta_0)$.
+                Garis singgungnya $\theta=\theta_0$, termasuk
+                garis vertikal bila $\cos\theta_0=0$.
+            \end{block}
+            Jika $r'(\theta_0)=0$, gunakan sekan $OP(\theta)$.
+            Untuk $r(\theta)\ne0$, garis sekan berarah $\theta$
+            modulo $\pi$. Jadi, di ujung kardioida sebelumnya,
+            limit $\theta\to0$ memberi garis singgung $y=0$.
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=1.48]
+                \sumbubidang{-1.29}{1.34}{-1.28}{1.32}
+                \draw[magenta,thick,densely dashed] (-.89,-.89) -- (.89,.89);
+                \draw[magenta,thick,densely dashed] (-.89,.89) -- (.89,-.89);
+                \draw[kurva] plot[domain=0:360,variable=\u,samples=181]
+                    ({cos(2*\u)*cos(\u)},{cos(2*\u)*sin(\u)});
+                \fill[HIMAtua] (0,0) circle (1.65pt);
+            \end{tikzpicture}\par
+            \small Mawar $r=\cos2\theta$ mencapai $O$ melalui
+            beberapa sudut dan memiliki dua garis singgung di $O$.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Panjang busur menggabungkan perubahan radial dan perubahan arah}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.55\textwidth}
+            \begin{teorema}[Panjang busur kurva kutub]
+                Jika $r'$ kontinu dan setiap bagian busur
+                $r=f(\theta)$ dilalui sekali pada $[\alpha,\beta]$, maka
+                \[
+                    L=\int_\alpha^\beta\sqrt{r^2+(r')^2}\,d\theta.
+                \]
+            \end{teorema}
+            Vektor $(x',y')$ merupakan jumlah komponen radial
+            $r'(\cos\theta,\sin\theta)$ dan komponen tegak lurus
+            $r(-\sin\theta,\cos\theta)$.
+            Karena kedua arah saling tegak lurus, $(x')^2+(y')^2=(r')^2+r^2$.
+        \end{column}
+        \begin{column}{.41\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=1.01]
+                \sumbubidang{-.36}{4.02}{-.32}{3.55}
+                \coordinate (P) at (36:2.33);
+                \coordinate (R) at ($(P)+(36:1.35)$);
+                \coordinate (T) at ($(P)+(126:1.42)$);
+                \coordinate (Q) at ($(R)+(T)-(P)$);
+                \draw[bantu] (0,0) -- (P);
+                \draw[bantu] (R) -- (Q) -- (T);
+                \draw[pembanding,-{Stealth}] (P) -- (R)
+                    node[midway,below right,label grafik] {radial};
+                \draw[pembanding,-{Stealth}] (P) -- (T)
+                    node[midway,left,label grafik,align=right] {tegak lurus\\arah radial};
+                \draw[kurva,-{Stealth}] (P) -- (Q)
+                    node[above,label grafik] {$(x',y')$};
+                \fill[HIMAtua] (P) circle (1.8pt) node[below right,label grafik] {$P$};
+            \end{tikzpicture}\par
+            \small Komponen radial dan putaran sama-sama menyumbang panjang.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Pada spiral eksponensial, laju radial sebanding dengan radius}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.53\textwidth}
+            \begin{contoh}
+                Hitung panjang $r=e^{2\theta}$ dari $\theta=0$
+                sampai $\theta=1/2$.
+            \end{contoh}
+            \onslide<2->{Karena $r'=2e^{2\theta}$,
+            \[
+                \sqrt{r^2+(r')^2}=\sqrt5\,e^{2\theta}.
+            \]}
+            \onslide<3->{%
+                \[
+                    L=\sqrt5\int_0^{1/2}e^{2\theta}\,d\theta
+                    =\frac{\sqrt5}{2}(e-1).
+                \]
+                Radius naik dari $1$ ke $e$ pada sapuan
+                sebesar setengah radian.
+            }
+        \end{column}
+        \begin{column}{.43\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=1.28]
+                \sumbubidang{-.31}{3.25}{-.36}{1.9}
+                \draw[bantu] (0,0) -- ({90/pi}:2.85);
+                \draw[pembanding,arah kurva=.83] (.52,0)
+                    arc[start angle=0,end angle={90/pi},radius=.52];
+                \node[teal!80!black,label grafik] at (14:.72) {$1/2$};
+                \draw[kurva,arah kurva=.58]
+                    plot[domain=0:28.64789,variable=\u,samples=81]
+                    ({exp(\u*pi/90)*cos(\u)},{exp(\u*pi/90)*sin(\u)});
+                \fill[HIMAtua] (1,0) circle (1.85pt)
+                    node[below,label grafik] {$r=1$};
+                \fill[HIMAtua] ({90/pi}:{exp(1)}) circle (1.85pt)
+                    node[above right,label grafik] {$r=e$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Nilai mutlak menjaga panjang elemen busur tetap nonnegatif}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.53\textwidth}
+            \begin{contoh}
+                Hitung panjang seluruh kardioida
+                $r=2(1+\cos\theta)$.
+            \end{contoh}
+            \onslide<2->{Dari $r'=-2\sin\theta$,
+            \[
+                \sqrt{r^2+(r')^2}
+                   =2\sqrt{2+2\cos\theta}=4|\cos(\theta/2)|.
+            \]}
+            \onslide<3->{Kurva penuh dilalui pada $[0,2\pi]$.
+            Gunakan simetri dan hitung busur atas pada $[0,\pi]$,
+            ketika $\cos(\theta/2)\ge0$.
+            \[
+                L=2\int_0^\pi4\cos(\theta/2)\,d\theta=16.
+            \]}
+        \end{column}
+        \begin{column}{.43\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.74]
+                \sumbubidang{-1.2}{4.4}{-2.89}{2.95}
+                \draw[kurva,arah kurva=.57]
+                    plot[domain=0:180,variable=\u,samples=111]
+                    ({2*(1+cos(\u))*cos(\u)},{2*(1+cos(\u))*sin(\u)});
+                \draw[pembanding]
+                    plot[domain=180:360,variable=\u,samples=111]
+                    ({2*(1+cos(\u))*cos(\u)},{2*(1+cos(\u))*sin(\u)});
+                \fill[HIMAtua] (0,0) circle (1.8pt)
+                    node[below right,label grafik] {$\theta=\pi$};
+                \fill[HIMAtua] (4,0) circle (1.8pt)
+                    node[below right,label grafik] {$\theta=0$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Gerak radial dan sudut yang berubah terhadap waktu}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.53\textwidth}
+            \begin{contoh}
+                Batang berputar dari $\theta=0$ dengan laju
+                $0{,}4$ rad/s. Seekor kutu bermula $8$ mm
+                dari $O$ dan bergerak menjauh sepanjang batang
+                dengan laju $1{,}2$ mm/s. Berapa jarak tempuh
+                dalam $5$ s pertama?
+            \end{contoh}
+            \onslide<2->{$\theta=0{,}4t$ dan $r=8+1{,}2t$.
+            Eliminasi $t$ memberi $r=8+3\theta$,
+            $0\le\theta\le2$.}
+            \onslide<3->{%
+                \[
+                    L=\int_0^2\sqrt{(8+3\theta)^2+9}\,d\theta
+                    \approx 22{,}82\ \mathrm{mm}.
+                \]
+            }
+        \end{column}
+        \begin{column}{.43\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.32]
+                \sumbubidang{-6.8}{10.4}{-1.27}{14.1}
+                \draw[bantu] (0,0) -- ({360/pi}:14);
+                \draw[bantu] (0,0) -- (8,0);
+                \draw[kurva,arah kurva=.58]
+                    plot[domain=0:114.59156,variable=\u,samples=91]
+                    ({(8+\u*pi/60)*cos(\u)},{(8+\u*pi/60)*sin(\u)});
+                \draw[pembanding,arah kurva=.9] (3.4,0)
+                    arc[start angle=0,end angle={360/pi},radius=3.4];
+                \fill[HIMAtua] (8,0) circle (1.85pt)
+                    node[below,label grafik] {$t=0$};
+                \fill[HIMAtua] ({360/pi}:14) circle (1.85pt)
+                    node[above,label grafik] {$t=5$ s};
+                \node[teal!80!black,label grafik] at (61:4.54) {$2$ rad};
+            \end{tikzpicture}\par
+            \small Jejaknya berupa bagian spiral Archimedes.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Latihan membedakan kemiringan, panjang, dan luas}
+    \begin{latihan}
+        \begin{enumerate}
+            \item Tentukan kemiringan garis singgung $r=2\sin\theta$
+                pada $\theta=\pi/3$.
+            \item Susun integral panjang satu daun kanan dari $r=\cos2\theta$.
+            \item Jika seluruh kurva diperbesar dengan $r$ diganti $2r$,
+                bagaimana panjang busur dan luas daerah berubah?
+        \end{enumerate}
+    \end{latihan}
+    \onslide<2->{%
+        \begin{block}{Cek jawaban}
+            \begin{enumerate}
+                \item $x'=2\cos2\theta=-1$ dan $y'=2\sin2\theta=\sqrt3$,
+                    sehingga $m=-\sqrt3$.
+                \item $\displaystyle L=2\int_0^{\pi/4}\sqrt{1+3\sin^2 2\theta}\,d\theta
+                    \approx2{,}42$.
+                \item $L$ menjadi dua kali lipat dan $A$ menjadi empat kali lipat.
+            \end{enumerate}
+        \end{block}
+    }
+\end{frame}
+
+\end{document}

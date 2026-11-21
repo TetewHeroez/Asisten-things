@@ -1,0 +1,1194 @@
+\documentclass{../../kalkulus-ppt}
+
+\author[Tetew]{Teosofi Hidayah Agung}
+\date{\today}
+\title[Kalkulus 2 - Bab 2]{Teknik Integrasi}
+\institute[Matematika ITS]{Departemen Matematika\\ Institut Teknologi Sepuluh Nopember}
+\titlegraphic{{\includegraphics[scale=0.3]{ITS.png}$\quad$\includegraphics[scale=0.02]{M.png}}}
+
+\setbeamertemplate{itemize items}[circle]
+\DeclareMathOperator{\arcsec}{arcsec}
+
+\pgfplotsset{
+    grafik integrasi/.style={
+        width=6.2cm,height=4.4cm,axis lines=middle,
+        xlabel={$x$},ylabel={$y$},samples=100,
+        ticklabel style={font=\scriptsize},label style={font=\scriptsize},
+        every axis plot/.append style={thick}
+    }
+}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Daftar isi}
+    \tableofcontents
+\end{frame}
+
+% Kalkulus 2 Bab 2.pdf, halaman PDF 1--16 (cetak 69--86).
+% Halaman cetak 70--71 terlewat. Langkah awal integrasi parsial dikembangkan
+% dari aturan hasil kali dan pola soal latihan yang tersedia.
+\section[Integrasi Parsial dan Trigonometri]{Integrasi Parsial dan Integrasi Fungsi Trigonometri}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Membalik aturan turunan hasil kali}
+    \begin{teorema}[Integrasi parsial]
+        Untuk $u=u(x)$ dan $v=v(x)$ dengan turunan kontinu pada suatu selang,
+        \[
+            \int u\,dv=uv-\int v\,du.
+        \]
+        Di sini $du=u'(x)\,dx$ dan $dv=v'(x)\,dx$.
+        Konstanta integrasi ditulis sekali pada hasil akhir.
+    \end{teorema}
+    \onslide<2->{Dari $(uv)'=u'v+uv'$, ambil integral dan pindahkan suku
+    $\int u'v\,dx$ ke ruas lain.}
+    \onslide<3->{%
+        \begin{block}{Apa yang kita pilih?}
+            Pada integran $x e^{2x}\,dx$, ambil $u=x$ dan $dv=e^{2x}\,dx$.
+            Faktor $x$ menjadi $1$ saat diturunkan, sedangkan $e^{2x}$ mudah
+            diintegralkan menjadi $\tfrac12 e^{2x}$.
+        \end{block}
+    }
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Dua integral menyusun satu persegi}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.53\textwidth}
+            \begin{teorema}[Integrasi parsial tentu]
+                \[
+                    \int_a^b u(x)v'(x)\,dx
+                    =[u(x)v(x)]_a^b-\int_a^b v(x)u'(x)\,dx.
+                \]
+            \end{teorema}
+            Ambil $u=x$ dan $v=x^2$ pada $[0,1]$. Irisan tegak memberi luas
+            $\int_0^1 v\,du=\tfrac13$ dan irisan mendatar memberi luas
+            $\int_0^1 u\,dv=\tfrac23$.
+            Keduanya menjumlah ke $[uv]_0^1=1$.
+        \end{column}
+        \begin{column}{.43\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik integrasi,width=5.75cm,height=4.75cm,
+                    axis equal image,xlabel={$u$},ylabel={$v$},xmin=0,xmax=1.14,
+                    ymin=0,ymax=1.14,xtick={1},ytick={1},domain=0:1]
+                    \fill[PastelGreen!42] (axis cs:0,0) rectangle (axis cs:1,1);
+                    \addplot[draw=none,fill=HIMAmuda!37] {x^2} \closedcycle;
+                    \draw[gray] (axis cs:1,0) -- (axis cs:1,1) -- (axis cs:0,1);
+                    \addplot[HIMAtua,very thick] {x^2};
+                    \node[font=\small] at (axis cs:.38,.67) {$\displaystyle\int_0^1 u\,dv$};
+                    \node[font=\scriptsize] at (axis cs:.74,.23) {$\displaystyle\int_0^1 v\,du$};
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Pilih $u$ yang lebih sederhana setelah diturunkan}
+    \begin{contoh}
+        Tentukan $\displaystyle\int xe^{2x}\,dx$.
+    \end{contoh}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.33\textwidth}
+            \onslide<2->{%
+                \begin{block}{Pasangkan diferensialnya}
+                    \[
+                        \begin{aligned}
+                            u&=x,& dv&=e^{2x}\,dx,\\
+                            du&=dx,& v&=\tfrac12 e^{2x}.
+                        \end{aligned}
+                    \]
+                \end{block}
+            }
+        \end{column}
+        \begin{column}{.63\textwidth}
+            \onslide<3->{%
+                \[
+                    \begin{aligned}
+                        \int xe^{2x}\,dx
+                        &=\tfrac12xe^{2x}-\tfrac12\int e^{2x}\,dx\\
+                        &=e^{2x}\left(\tfrac x2-\tfrac14\right)+C.
+                    \end{aligned}
+                \]
+                Sisa integral hanya memuat fungsi eksponensial.
+                Saat menentukan $v$, satu anti-turunan sudah cukup.
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Logaritma tunggal dan integral berbatas}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.49\textwidth}
+            \begin{contoh}
+                Hitung $\int\ln(2x)\,dx$ untuk $x>0$.
+            \end{contoh}
+            \onslide<2->{Anggap integran sebagai hasil kali $\ln(2x)$ dengan $1$.
+            Pilih $u=\ln(2x)$ dan $dv=dx$. Maka $du=dx/x$ dan $v=x$.
+            \[
+                \int\ln(2x)\,dx=x\ln(2x)-x+C.
+            \]}
+        \end{column}
+        \begin{column}{.47\textwidth}
+            \begin{contoh}
+                Hitung $\int_0^1 xe^{2x}\,dx$.
+            \end{contoh}
+            \onslide<3->{Gunakan anti-turunan dari contoh sebelumnya, dengan
+            selisih nilai di kedua batas.
+            \[
+                \left[e^{2x}\left(\tfrac{x}{2}-\tfrac14\right)\right]_0^1
+                =\frac{e^2+1}{4}.
+            \]}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Integrasi parsial lebih dari sekali}
+    \begin{contoh}
+        Hitung $\int x^2\sin x\,dx$. Bagaimana pangkat $x$ berubah setiap putaran?
+    \end{contoh}
+    \onslide<2->{Dengan $u=x^2$ dan $dv=\sin x\,dx$, diperoleh
+    \[
+        \int x^2\sin x\,dx=-x^2\cos x+2\int x\cos x\,dx.
+    \]}
+    \onslide<3->{Pilih lagi $u=x$ dengan $dv=\cos x\,dx$.
+    Karena $\int x\cos x\,dx=x\sin x+\cos x+C$, hasil akhirnya
+    \[
+        \boxed{-x^2\cos x+2x\sin x+2\cos x+C}.
+    \]
+    Derajat faktor polinomial turun dari $2$ ke $1$, lalu ke $0$.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Ketika integral semula muncul lagi}
+    \begin{contoh}
+        Tentukan $I=\int e^{2x}\cos x\,dx$.
+    \end{contoh}
+    \onslide<2->{Ambil $u=e^{2x}$ pada dua putaran. Dengan $J=\int e^{2x}\sin x\,dx$,
+    \[
+        I=e^{2x}\sin x-2J,\qquad J=-e^{2x}\cos x+2I.
+    \]}
+    \onslide<3->{Substitusi $J$ ke persamaan pertama menghasilkan
+    $I=e^{2x}(\sin x+2\cos x)-4I$. Kumpulkan $I$ pada satu ruas.
+    \[
+        \int e^{2x}\cos x\,dx
+          =\frac{e^{2x}}{5}\bigl(\sin x+2\cos x\bigr)+C.
+    \]}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Rumus reduksi menurunkan pangkat dua tingkat}
+    Tulis $S_n=\int\sin^n x\,dx$ dan $K_n=\int\cos^n x\,dx$.
+    \begin{teorema}[Reduksi pangkat sinus dan cosinus]
+        Untuk $n\ge2$ bilangan bulat,
+        \[
+            \begin{aligned}
+                S_n&=-\frac{\sin^{n-1}x\cos x}{n}+\frac{n-1}{n}S_{n-2},\\
+                K_n&=\phantom{-}\frac{\cos^{n-1}x\sin x}{n}+\frac{n-1}{n}K_{n-2}.
+            \end{aligned}
+        \]
+    \end{teorema}
+    \onslide<2->{Untuk $K_n$, pilih $u=\cos^{n-1}x$ dan $dv=\cos x\,dx$.
+    Sisa integralnya $(n-1)\int\cos^{n-2}x\sin^2x\,dx$.
+    Tulis $\sin^2x=1-\cos^2x$ dan kumpulkan semua $K_n$.
+    Ulangi sampai pangkat $0$ atau $1$, lalu beri satu konstanta $C$.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Reduksi setelah menyamakan sudut}
+    \begin{contoh}
+        Hitung $\int\cos^4(2x)\,dx$ dengan rumus reduksi.
+    \end{contoh}
+    \onslide<2->{Pilih $t=2x$ agar integral menjadi $\tfrac12\int\cos^4t\,dt$.
+    \[
+        K_4(t)=\frac14\cos^3t\sin t+\frac34 K_2(t),\qquad
+        K_2(t)=\frac12\cos t\sin t+\frac t2.
+    \]}
+    \onslide<3->{Kalikan hasil reduksi dengan $\tfrac12$ dan kembalikan $t=2x$.
+    \[
+        \int \cos^4(2x)\,dx
+          =\frac18\cos^3(2x)\sin(2x)
+           +\frac{3}{16}\cos(2x)\sin(2x)+\frac{3x}{8}+C.
+    \]}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Baca paritas pada $\sin^m x\cos^n x$}
+    \begin{block}{Aturan untuk $m,n$ bilangan bulat taknegatif}
+        \renewcommand{\arraystretch}{1.25}
+        \begin{tabularx}{\linewidth}{@{}lXl@{}}
+            \textbf{Pangkat} & \textbf{Penataan faktor} & \textbf{Langkah berikutnya}\\ \hline
+            $m$ ganjil & Sisakan $\sin x\,dx$. Ganti sisa $\sin^2x$ dengan $1-\cos^2x$. &
+                $u=\cos x$\\
+            $n$ ganjil & Sisakan $\cos x\,dx$. Ganti sisa $\cos^2x$ dengan $1-\sin^2x$. &
+                $u=\sin x$\\
+            Keduanya genap & Turunkan pangkat dengan identitas sudut ganda. &
+                Kembangkan hasil kali
+        \end{tabularx}
+    \end{block}
+    \[
+        \sin^2x=\frac{1-\cos(2x)}{2},\qquad
+        \cos^2x=\frac{1+\cos(2x)}{2}.
+    \]
+    Jika keduanya ganjil, pilih salah satu faktor untuk menjadi $du$.
+    Pangkat nol berarti faktor itu bernilai $1$.
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Sisakan faktor untuk diferensial}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                $\displaystyle\int \sin^3x\cos^2x\,dx$
+            \end{contoh}
+            \onslide<2->{Ambil $u=\cos x$ dan $du=-\sin x\,dx$.
+            \[
+                \begin{aligned}
+                    I&=-\int (1-u^2)u^2\,du\\
+                     &=-\frac{\cos^3x}{3}+\frac{\cos^5x}{5}+C.
+                \end{aligned}
+            \]}
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                $\displaystyle\int\sin^2x\cos^3x\,dx$
+            \end{contoh}
+            \onslide<3->{Ambil $u=\sin x$ dan $du=\cos x\,dx$.
+            \[
+                \begin{aligned}
+                    I&=\int u^2(1-u^2)\,du\\
+                     &=\frac{\sin^3x}{3}-\frac{\sin^5x}{5}+C.
+                \end{aligned}
+            \]}
+        \end{column}
+    \end{columns}
+    \onslide<3->{Tanda minus pada contoh kiri berasal dari turunan cosinus.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Dua pangkat genap menjadi satu sudut ganda}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.52\textwidth}
+            \begin{contoh}
+                Hitung luas di bawah $y=\sin^2x\cos^2x$ pada $[0,\pi/2]$.
+            \end{contoh}
+            \onslide<2->{%
+                Karena $\sin(2x)=2\sin x\cos x$,
+                \[
+                    \sin^2x\cos^2x=\tfrac14\sin^2(2x)
+                                  =\tfrac18(1-\cos(4x)).
+                \]
+            }
+            \onslide<3->{Maka luasnya
+            \[
+                \left[\frac{x}{8}-\frac{\sin(4x)}{32}\right]_0^{\pi/2}
+                =\frac{\pi}{16}.
+            \]}
+        \end{column}
+        \begin{column}{.45\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik integrasi,width=6cm,xmin=0,xmax=1.75,ymin=0,
+                    ymax=.32,xtick={.785398,1.570796},xticklabels={$\pi/4$,$\pi/2$},
+                    ytick={.25},yticklabels={$1/4$},domain=0:pi/2]
+                    \addplot[draw=none,fill=HIMAmuda!32] {(.25)*(sin(deg(2*x)))^2} \closedcycle;
+                    \addplot[HIMAtua,very thick] {(.25)*(sin(deg(2*x)))^2};
+                    \draw[gray,dashed] (axis cs:.785398,0) -- (axis cs:.785398,.25);
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Hasil kali dengan dua sudut berbeda}
+    \begin{block}{Identitas hasil kali ke jumlah}
+        \[
+            \begin{aligned}
+                2\sin A\cos B&=\sin(A+B)+\sin(A-B),\\
+                2\cos A\sin B&=\sin(A+B)-\sin(A-B),\\
+                2\cos A\cos B&=\cos(A+B)+\cos(A-B),\\
+                2\sin A\sin B&=\cos(A-B)-\cos(A+B).
+            \end{aligned}
+        \]
+    \end{block}
+    \begin{contoh}
+        Ubah $\sin(7x)\cos(3x)$ menjadi $\tfrac12[\sin(10x)+\sin(4x)]$.
+        \onslide<2->{Integralnya $-\cos(10x)/20-\cos(4x)/8+C$.}
+    \end{contoh}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Identitas sudut ganda dan rangkap tiga}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.50\textwidth}
+            \begin{block}{Ubah sudut, lalu periksa bentuknya}
+                \[
+                    \begin{aligned}
+                        \sin(2x)&=2\sin x\cos x,\\
+                        \cos(2x)&=\cos^2x-\sin^2x,\\
+                        \tan(2x)&=\frac{2\tan x}{1-\tan^2x},\\
+                        \sin(3x)&=3\sin x-4\sin^3x,\\
+                        \cos(3x)&=4\cos^3x-3\cos x.
+                    \end{aligned}
+                \]
+                Gunakan bentuk tangen saat penyebut dan kedua tangen terdefinisi.
+            \end{block}
+        \end{column}
+        \begin{column}{.46\textwidth}
+            \begin{contoh}
+                Tentukan $\int\sin(3x)\cos x\,dx$ dengan $u=\sin x$.
+            \end{contoh}
+            \onslide<2->{Identitas rangkap tiga mengubah integran menjadi
+            polinomial dalam $u$, dengan $du=\cos x\,dx$.
+            \[
+                \int(3u-4u^3)\,du
+                =\tfrac32\sin^2x-\sin^4x+C.
+            \]}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Integral dasar tangen dan secan}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.47\textwidth}
+            \begin{block}{Tangen}
+                \[
+                    \int\tan x\,dx=-\ln|\cos x|+C.
+                \]
+            \end{block}
+            Tulis $\tan x=\sin x/\cos x$, lalu pilih $u=\cos x$.
+            Maka $\sin x\,dx=-du$. Karena $\sec x=1/\cos x$, hasilnya
+            dapat ditulis $\ln|\sec x|+C$.
+        \end{column}
+        \begin{column}{.49\textwidth}
+            \begin{block}{Secan}
+                \[
+                    \int\sec x\,dx=\ln|\sec x+\tan x|+C.
+                \]
+            \end{block}
+            \onslide<2->{Ambil $u=\sec x+\tan x$.
+            Karena $u'=\sec x(\sec x+\tan x)$, berlaku $\sec x\,dx=du/u$.
+            Identitas $(\sec x+\tan x)(\sec x-\tan x)=1$ menjamin $u\ne0$.}
+        \end{column}
+    \end{columns}
+    Gunakan rumus pada setiap selang dengan $\cos x\ne0$.
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Reduksi pangkat tangen dan secan}
+    Tulis $T_n=\int\tan^n x\,dx$ dan $E_n=\int\sec^n x\,dx$.
+    \begin{teorema}[Reduksi tangen dan secan]
+        Untuk $n\ge2$ bilangan bulat, pada selang dengan $\cos x\ne0$,
+        \[
+            \begin{aligned}
+                T_n&=\frac{\tan^{n-1}x}{n-1}-T_{n-2},\\
+                E_n&=\frac{\sec^{n-2}x\tan x}{n-1}+\frac{n-2}{n-1}E_{n-2}.
+            \end{aligned}
+        \]
+    \end{teorema}
+    \onslide<2->{Untuk $T_n$, tulis $\tan^n x=\tan^{n-2}x(\sec^2x-1)$.
+    Untuk $E_n$ dengan $n>2$, pilih $u=\sec^{n-2}x$ dan $dv=\sec^2x\,dx$,
+    lalu gunakan $\tan^2x=\sec^2x-1$ pada integral sisa.
+    Kasus dasar $T_0=x$ dan $E_2=\tan x$.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Pangkat ganjil berakhir pada integral logaritmik}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.47\textwidth}
+            \begin{contoh}
+                Hitung $\int\tan^5 x\,dx$.
+            \end{contoh}
+            \onslide<2->{Gunakan $T_5=\tan^4 x/4-T_3$ dan $T_3=\tan^2x/2-T_1$.
+            \[
+                T_5=\frac{\tan^4x}{4}-\frac{\tan^2x}{2}
+                    +\ln|\sec x|+C.
+            \]}
+        \end{column}
+        \begin{column}{.49\textwidth}
+            \begin{contoh}
+                Hitung $\int\sec^3(2x)\,dx$.
+            \end{contoh}
+            \onslide<3->{Dengan $t=2x$, hasilnya $\tfrac12E_3(t)$.
+            Karena $E_3(t)=\tfrac12\sec t\tan t+\tfrac12 E_1(t)$,
+            \[
+                \tfrac14\sec t\tan t+\tfrac14\ln|\sec t+\tan t|+C,
+                \quad t=2x.
+            \]}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Baca paritas pada $\tan^m x\sec^n x$}
+    \begin{block}{Aturan untuk pangkat taknegatif}
+        \renewcommand{\arraystretch}{1.4}
+        \begin{tabularx}{\linewidth}{@{}lXl@{}}
+            \textbf{Pangkat} & \textbf{Penataan faktor} & \textbf{Langkah berikutnya}\\ \hline
+            $n\ge2$ genap & Sisakan $\sec^2x\,dx$. Ubah sisa $\sec^2x$ menjadi $1+\tan^2x$. &
+                $u=\tan x$\\
+            $m$ ganjil dan $n\ge1$ & Sisakan $\sec x\tan x\,dx$. Ubah sisa $\tan^2x$ menjadi $\sec^2x-1$. &
+                $u=\sec x$\\
+            $m$ genap dan $n$ ganjil & Ubah seluruh faktor tangen memakai $\tan^2x=\sec^2x-1$. &
+                Reduksi pangkat $\sec x$
+        \end{tabularx}
+    \end{block}
+    Jika $n=0$, hitung pangkat tangen saja dengan $T_m$.
+    Bila dua pilihan tersedia, pilih yang memberi polinomial paling singkat.
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Dua cara menyediakan diferensial yang diperlukan}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                $\displaystyle\int\tan^2x\sec^6x\,dx$
+            \end{contoh}
+            \onslide<2->{Sisakan $\sec^2x\,dx$. Dengan $u=\tan x$,
+            \[
+                \begin{aligned}
+                    I&=\int u^2(1+u^2)^2\,du\\
+                     &=\frac{u^3}{3}+\frac{2u^5}{5}+\frac{u^7}{7}+C.
+                \end{aligned}
+            \]}
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                $\displaystyle\int\tan^3x\sec^3x\,dx$
+            \end{contoh}
+            \onslide<3->{Sisakan $\sec x\tan x\,dx$. Dengan $u=\sec x$,
+            \[
+                \begin{aligned}
+                    I&=\int (u^2-1)u^2\,du\\
+                     &=\frac{u^5}{5}-\frac{u^3}{3}+C.
+                \end{aligned}
+            \]}
+        \end{column}
+    \end{columns}
+    \onslide<3->{Kembalikan $u$ ke fungsi trigonometri yang dipilih.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Ketika tidak ada faktor diferensial yang langsung tersedia}
+    \begin{contoh}
+        Hitung $\int\tan^2(2x)\sec(2x)\,dx$.
+    \end{contoh}
+    \onslide<2->{Untuk $t=2x$, pangkat tangen genap dan pangkat secan ganjil.
+    Gunakan $\tan^2t=\sec^2t-1$ sehingga integral menjadi
+    $\tfrac12\int(\sec^3t-\sec t)\,dt$.}
+    \onslide<3->{Masukkan hasil reduksi $E_3$.
+    \[
+        \tfrac12(E_3(t)-E_1(t))
+        =\tfrac14\sec t\tan t-\tfrac14\ln|\sec t+\tan t|+C,
+        \quad t=2x.
+    \]
+    Faktor tangen berubah menjadi selisih dua pangkat secan yang sudah dikenal.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Cotangen dan cosecan mengikuti pola yang sama}
+    \begin{block}{Tanda berubah karena turunannya negatif}
+        \[
+            \begin{aligned}
+                (\cot x)'&=-\csc^2x,&
+                \int\cot x\,dx&=\ln|\sin x|+C,\\
+                (\csc x)'&=-\csc x\cot x,&
+                \int\csc x\,dx&=\ln|\csc x-\cot x|+C.
+            \end{aligned}
+        \]
+    \end{block}
+    Gunakan $1+\cot^2x=\csc^2x$ pada selang yang memenuhi $\sin x\ne0$.
+    Sisakan $\csc^2x\,dx$ untuk $u=\cot x$ atau $\csc x\cot x\,dx$
+    untuk $u=\csc x$.
+    \onslide<2->{Misalnya $\int\cot x\csc^4x\,dx=-\tfrac14\csc^4x+C$ karena
+    $du=-\csc x\cot x\,dx$.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Reduksi pangkat cotangen dan cosecan}
+    \begin{teorema}[Reduksi cotangen dan cosecan]
+        Untuk $n\ge2$ bilangan bulat dan $\sin x\ne0$,
+        \[
+            \begin{aligned}
+                \int\cot^n x\,dx
+                    &=-\frac{\cot^{n-1}x}{n-1}-\int\cot^{n-2}x\,dx,\\
+                \int\csc^n x\,dx
+                    &=-\frac{\csc^{n-2}x\cot x}{n-1}
+                      +\frac{n-2}{n-1}\int\csc^{n-2}x\,dx.
+            \end{aligned}
+        \]
+    \end{teorema}
+    \onslide<2->{Ambil $t=\pi/2-x$. Maka $\tan t=\cot x$ dan $\sec t=\csc x$.
+    Terapkan rumus reduksi tangen dan secan dengan $dx=-dt$.
+    Tanda pada suku tanpa integral berubah karena arah substitusi terbalik.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Latihan integrasi parsial dan trigonometri}
+    \begin{latihan}
+        Tentukan anti-turunan dan sebutkan teknik yang dipakai.
+        \begin{enumerate}
+            \item $\int xe^{-x}\,dx$
+            \item $\int\sin^2(3x)\,dx$
+            \item $\int\cot x\csc^3x\,dx$
+        \end{enumerate}
+    \end{latihan}
+    \onslide<2->{%
+        \begin{block}{Cek jawaban}
+            \begin{enumerate}
+                \item $-(x+1)e^{-x}+C$ dari integrasi parsial dengan $u=x$.
+                \item $\tfrac{x}{2}-\tfrac{\sin(6x)}{12}+C$ dari identitas sudut ganda.
+                \item $-\tfrac13\csc^3x+C$ dari substitusi $u=\csc x$.
+            \end{enumerate}
+        \end{block}
+    }
+\end{frame}
+
+% Kalkulus 2 Bab 2.pdf, halaman PDF 16--24 (cetak 86--96).
+% Halaman cetak 90--91 terlewat. Contoh faktor linear berulang dan kuadratik
+% dilengkapi dari aturan dekomposisi dan contoh lanjutan yang tersedia.
+\section[Integrasi Fungsi Rasional]{Integrasi Fungsi Rasional dan Pecahan Parsial}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Bandingkan derajat sebelum memfaktorkan}
+    \begin{definisi}[Fungsi rasional sejati dan tak sejati]
+        Fungsi rasional berbentuk $P(x)/Q(x)$ dengan $P,Q$ polinomial
+        dan $Q(x)\ne0$ pada domainnya. Pecahan \textbf{sejati} memenuhi
+        $\deg P<\deg Q$, sedangkan pecahan \textbf{tak sejati} memenuhi
+        $\deg P\ge\deg Q$.
+    \end{definisi}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                $\dfrac{x+3}{x^2-1}$ sejati karena $1<2$.
+                Faktorkan penyebut untuk mencari pecahan parsialnya.
+            \end{contoh}
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                $\dfrac{x^2+3}{x^2-1}$ tak sejati. Bagi dahulu
+                untuk memperoleh $1+4/(x^2-1)$.
+            \end{contoh}
+        \end{column}
+    \end{columns}
+    \onslide<2->{Pembagian memberi $P/Q=S+R/Q$ dengan $R=0$ atau $\deg R<\deg Q$.
+    Integral $S$ dihitung suku demi suku.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Akar memberi faktor penyebut}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.46\textwidth}
+            \begin{teorema}[Faktor polinomial]
+                Untuk polinomial $p$,
+                $p(r)=0$ tepat ketika $x-r$ adalah faktor $p(x)$.
+            \end{teorema}
+            Pembagian oleh $x-r$ memberi $p(x)=(x-r)S(x)+p(r)$.
+            Jika $p(r)=0$, sisanya nol.
+        \end{column}
+        \begin{column}{.50\textwidth}
+            \begin{teorema}[Kandidat akar rasional]
+                Misalkan koefisien $p(x)=a_nx^n+\cdots+a_0$ bilangan bulat
+                dan $a_0\ne0$. Jika $c/d$ adalah akar dalam bentuk paling sederhana,
+                maka $c\mid a_0$ dan $d\mid a_n$. Akar bulat membagi $a_0$.
+            \end{teorema}
+            Kandidat harus diuji pada $p$. Jika $a_0=0$, keluarkan faktor $x$
+            terlebih dahulu.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Dari kandidat akar ke pembagian sintetis}
+    \begin{contoh}
+        Faktorkan $p(x)=2x^3+x^2-8x-4$.
+    \end{contoh}
+    \onslide<2->{Kandidat akar rasionalnya $\pm\tfrac12,\pm1,\pm2,\pm4$.
+    Substitusi $x=-\tfrac12$ menghasilkan $p(-\tfrac12)=0$.}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.43\textwidth}
+            \onslide<3->{%
+                \[
+                    \begin{array}{c|rrrr}
+                        -1/2 & 2 & 1 & -8 & -4\\
+                             &   & -1 & 0 & 4\\ \hline
+                             & 2 & 0 & -8 & 0
+                    \end{array}
+                \]
+            }
+        \end{column}
+        \begin{column}{.53\textwidth}
+            \onslide<3->{Hasil bagi oleh $x+\tfrac12$ ialah $2x^2-8$.
+            Jadi $p(x)=(2x+1)(x-2)(x+2)$.
+            Tiga faktor linear ini masing-masing memberi satu pecahan parsial.}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Setiap faktor menyumbang sederet pecahan}
+    \begin{teorema}[Dekomposisi pecahan parsial]
+        Pecahan rasional sejati mempunyai dekomposisi unik setelah penyebut
+        difaktorkan ke faktor linear dan kuadratik tak tereduksi dengan koefisien real.
+        \[
+            \begin{aligned}
+                (x-r)^m &\quad\longmapsto\quad
+                    \frac{A_1}{x-r}+\cdots+\frac{A_m}{(x-r)^m},\\
+                q(x)^m &\quad\longmapsto\quad
+                    \frac{B_1x+C_1}{q(x)}+\cdots+\frac{B_mx+C_m}{q(x)^m},
+                    \qquad \deg q=2.
+            \end{aligned}
+        \]
+    \end{teorema}
+    Kuadratik $q=ax^2+bx+c$ tak tereduksi atas $\R$ jika $b^2-4ac<0$.
+    Untuk setiap faktor berpangkat $m$, tulis semua pangkat penyebut dari $1$ sampai $m$.
+    Pembilang pada tiap pecahan berderajat lebih rendah daripada faktor dasarnya.
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Faktor linear berbeda dan interval domain}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.56\textwidth}
+            \begin{contoh}
+                Hitung $\int dx/[(x-2)(x+1)]$.
+            \end{contoh}
+            \onslide<2->{Setelah menyamakan penyebut, persamaan
+            $\frac{1}{(x-2)(x+1)}=\frac A{x-2}+\frac B{x+1}$ memberi
+            \[
+                1=A(x+1)+B(x-2).
+            \]
+            Pada identitas polinomial ini, $x=2$ memberi $A=1/3$
+            dan $x=-1$ memberi $B=-1/3$.}
+            \onslide<3->{Jadi hasilnya $\tfrac13\ln\left|\tfrac{x-2}{x+1}\right|+C$.}
+        \end{column}
+        \begin{column}{.41\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik integrasi,width=5.5cm,height=4cm,xmin=-3.9,xmax=4.6,
+                    ymin=-2.65,ymax=2.65,xtick={-1,2},ytick=\empty]
+                    \draw[gray,dashed,thick] (axis cs:-1,-2.65) -- (axis cs:-1,2.55);
+                    \draw[gray,dashed,thick] (axis cs:2,-2.65) -- (axis cs:2,2.55);
+                    \addplot[HIMAtua,domain=-3.7:-1.055] {1/((x-2)*(x+1))};
+                    \addplot[HIMAtua,domain=-.945:1.945] {1/((x-2)*(x+1))};
+                    \addplot[HIMAtua,domain=2.055:4.4] {1/((x-2)*(x+1))};
+                \end{axis}
+            \end{tikzpicture}\par
+            \small Kedua asimtot memisahkan domain menjadi tiga selang.
+            Konstanta $C$ dapat berbeda pada tiap selang.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Faktor linear berulang memerlukan semua pangkat}
+    \begin{contoh}
+        Tentukan $\displaystyle\int\frac{4x+1}{x^2(x+1)}\,dx$.
+    \end{contoh}
+    \onslide<2->{Tulis $\dfrac{A}{x}+\dfrac{B}{x^2}+\dfrac{D}{x+1}$, lalu kalikan
+    dengan $x^2(x+1)$.
+    \[
+        4x+1=Ax(x+1)+B(x+1)+Dx^2
+             =(A+D)x^2+(A+B)x+B.
+    \]}
+    \onslide<3->{Koefisien konstanta memberi $B=1$, koefisien $x$ memberi $A=3$,
+    dan koefisien $x^2$ memberi $D=-3$. Maka hasilnya
+    \[
+        3\ln|x|-\frac1x-3\ln|x+1|+C.
+    \]}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Faktor kuadratik menampung pembilang linear}
+    \begin{contoh}
+        Hitung $\int dx/[(x+1)(x^2+1)]$.
+    \end{contoh}
+    \onslide<2->{%
+        Bentuknya $\dfrac A{x+1}+\dfrac{Bx+D}{x^2+1}$. Kalikan penyebutnya.
+        \[
+            1=A(x^2+1)+(Bx+D)(x+1).
+        \]
+        Substitusi $x=-1$ memberi $A=1/2$. Dari koefisien $x^2$ dan
+        konstanta, diperoleh $B=-1/2$ dan $D=1/2$.
+    }
+    \onslide<3->{Pisahkan $(-x+1)/(2(x^2+1))$ menjadi suku untuk logaritma
+    dan suku untuk invers tangen.
+    \[
+        \frac12\ln|x+1|-\frac14\ln(x^2+1)+\frac12\arctan x+C.
+    \]}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Pisahkan turunan penyebut dari sisanya}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.46\textwidth}
+            \begin{block}{Pembilang $\lambda q'(x)+\mu$}
+                Untuk penyebut kuadratik $q$, bagian $\lambda q'/q$
+                memberi $\lambda\ln|q|$.
+                Untuk bagian $\mu/q$, lengkapi kuadrat pada $q$
+                agar rumus invers tangen dapat dipakai.
+            \end{block}
+            Jika pangkat penyebut $k>1$, bagian $q'/q^k$ dapat langsung
+            disubstitusi dengan $u=q$.
+        \end{column}
+        \begin{column}{.50\textwidth}
+            \begin{contoh}
+                $\displaystyle\int\frac{3x+7}{x^2+4x+13}\,dx$
+            \end{contoh}
+            \onslide<2->{Ambil $q=x^2+4x+13=(x+2)^2+9$.
+            Karena $3x+7=\tfrac32q'+1$, hasilnya
+            \[
+                \tfrac32\ln q+\tfrac13\arctan\!\left(\frac{x+2}{3}\right)+C.
+            \]}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Memecah faktor kuadratik yang berulang}
+    \begin{contoh}
+        Dengan $q=x^2+1$ dan $N=3x^4+2x^3+6x^2+4x+1$,
+        hitung $\int N/[(x+1)q^2]\,dx$.
+    \end{contoh}
+    \onslide<2->{Setelah menyamakan penyebut, $N=Aq^2+(x+1)[(Bx+D)q+(Ex+F)]$.
+    Di $x=-1$, $N=4$ dan $q^2=4$, sehingga $A=1$.
+    Sisa pembagian $(N-q^2)/(x+1)=2x(q+1)$ memberi
+    \[
+        \frac{N}{(x+1)q^2}=\frac1{x+1}+\frac{2x}{q}+\frac{2x}{q^2}.
+    \]}
+    \onslide<3->{Karena $q'=2x$, dua pecahan terakhir mudah diintegralkan.
+    \[
+        \ln|x+1|+\ln(x^2+1)-\frac1{x^2+1}+C.
+    \]}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Jika sisa pembilangnya konstan}
+    \begin{contoh}
+        Hitung $\int du/(1+u^2)^2$ yang muncul pada faktor kuadratik berulang.
+    \end{contoh}
+    \onslide<2->{Turunan hasil bagi memberi
+    \[
+        \frac{d}{du}\left(\frac{u}{1+u^2}\right)=\frac{1-u^2}{(1+u^2)^2}.
+    \]
+    Tambahkan $1/(1+u^2)$ untuk memperoleh $2/(1+u^2)^2$.}
+    \onslide<3->{Ambil setengah dari jumlah tadi lalu integralkan.
+    \[
+        \int\frac{du}{(1+u^2)^2}
+            =\frac{u}{2(1+u^2)}+\tfrac12\arctan u+C.
+    \]
+    Untuk $k>2$, gunakan $u=\tan\theta$ agar
+    $du/(1+u^2)^k=\cos^{2k-2}\theta\,d\theta$.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Integral rasional tak sejati dimulai dari pembagian}
+    \begin{contoh}
+        Hitung $\int (x^3-3x-1)/(x^2-x-2)\,dx$.
+    \end{contoh}
+    \onslide<2->{Pembagian polinomial menghasilkan
+    \[
+        x^3-3x-1=(x+1)(x^2-x-2)+1.
+    \]
+    Jadi integrannya $x+1+1/[(x-2)(x+1)]$.}
+    \onslide<3->{Hanya suku sisanya yang memerlukan pecahan parsial.
+    Dengan hasil contoh faktor linear berbeda, diperoleh
+    \[
+        \frac{x^2}{2}+x+\frac13\ln\!\left|\frac{x-2}{x+1}\right|+C.
+    \]}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Substitusi dapat menghasilkan fungsi rasional}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{contoh}
+                Tentukan luas di bawah $y=1/(1+e^x)$ dari $\ln 2$ hingga $\ln 4$.
+            \end{contoh}
+            \onslide<2->{Ambil $u=e^x$. Maka $dx=du/u$ dan batas baru $2$ serta $4$.
+            \[
+                \int_2^4\frac{du}{u(1+u)}
+                  =\int_2^4\left(\frac1u-\frac1{u+1}\right)du.
+            \]}
+            \onslide<3->{Luasnya $\ln(4/5)-\ln(2/3)=\ln(6/5)$.}
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik integrasi,width=5.75cm,xmin=0,xmax=1.93,
+                    ymin=0,ymax=.59,xtick={.693147,1.386294},xticklabels={$\ln 2$,$\ln 4$},
+                    ytick={.2,.333333},yticklabels={$1/5$,$1/3$}]
+                    \addplot[draw=none,fill=HIMAmuda!36,domain=ln(2):ln(4)]
+                        {1/(1+exp(x))} \closedcycle;
+                    \addplot[HIMAtua,very thick,domain=0:1.87] {1/(1+exp(x))};
+                    \draw[dashed,gray] (axis cs:.693147,0) -- (axis cs:.693147,.333333);
+                    \draw[dashed,gray] (axis cs:1.386294,0) -- (axis cs:1.386294,.2);
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Latihan integrasi fungsi rasional}
+    \begin{latihan}
+        \begin{enumerate}
+            \item Tulis bentuk pecahan parsial dari $\dfrac{1}{x^2(x^2+4)}$.
+            \item Hitung $\int dx/[x(x-2)]$.
+            \item Hitung $\int (x^2+5)/(x^2+1)\,dx$.
+        \end{enumerate}
+    \end{latihan}
+    \onslide<2->{%
+        \begin{block}{Cek jawaban}
+            \begin{enumerate}
+                \item $\dfrac A{x}+\dfrac B{x^2}+\dfrac{Dx+E}{x^2+4}$.
+                \item $\tfrac12\ln\left|\dfrac{x-2}{x}\right|+C$.
+                \item $x+4\arctan x+C$ setelah pembagian.
+            \end{enumerate}
+        \end{block}
+    }
+\end{frame}
+
+% Kalkulus 2 Bab 2.pdf, halaman PDF 25--32 (cetak 97--106).
+% Halaman cetak 100--101 terlewat. Contoh secan, kuadrat sempurna,
+% dan substitusi akar menyambung pilihan substitusi pada halaman 97--99 dan 102.
+\section{Teknik Integrasi Lain}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Pilih substitusi dari tanda di dalam akar}
+    \begin{block}{Substitusi trigonometri untuk $a>0$}
+        \renewcommand{\arraystretch}{1.35}
+        \[
+            \begin{array}{c|c|c|c}
+                \text{Akar} & x & dx & \text{Akar setelah substitusi}\\ \hline
+                \sqrt{a^2-x^2} & a\sin\theta & a\cos\theta\,d\theta & a\cos\theta\\
+                \sqrt{a^2+x^2} & a\tan\theta & a\sec^2\theta\,d\theta & a\sec\theta\\
+                \sqrt{x^2-a^2} & a\sec\theta & a\sec\theta\tan\theta\,d\theta & a\tan\theta
+            \end{array}
+        \]
+    \end{block}
+    \begin{itemize}
+        \item Untuk sinus, $\theta\in[-\pi/2,\pi/2]$ sehingga $\cos\theta\ge0$.
+        \item Untuk tangen, $\theta\in(-\pi/2,\pi/2)$ sehingga $\sec\theta>0$.
+        \item Untuk secan, ambil $\theta\in[0,\pi/2)$ jika $x\ge a$ atau
+            $\theta\in[\pi,3\pi/2)$ jika $x\le-a$. Keduanya memberi $\tan\theta\ge0$.
+    \end{itemize}
+    \onslide<2->{Misalnya $\sqrt{a^2-a^2\sin^2\theta}=a|\cos\theta|=a\cos\theta$
+    karena pilihan cabang sinus.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Substitusi sinus untuk $\sqrt{a^2-x^2}$}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{contoh}
+                Hitung $\int dx/(x^2\sqrt{9-x^2})$ untuk $0<|x|<3$.
+            \end{contoh}
+            \onslide<2->{Ambil $x=3\sin\theta$ dan
+            $dx=3\cos\theta\,d\theta$. Akar menjadi $3\cos\theta$, lalu saling
+            hapus dengan faktor pada $dx$.
+            \[
+                \frac19\int\csc^2\theta\,d\theta=-\frac19\cot\theta+C.
+            \]}
+            \onslide<3->{Karena $\cot\theta=\sqrt{9-x^2}/x$, hasilnya
+            $-\dfrac{\sqrt{9-x^2}}{9x}+C$.}
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \draw[HIMAtua,very thick] (0,0) -- (3.4,0)
+                    node[midway,below] {$\sqrt{9-x^2}$}
+                    -- (3.4,2.25) node[midway,right] {$x$}
+                    -- cycle node[midway,above left] {$3$};
+                \draw (3.2,0) -- (3.2,.20) -- (3.4,.20);
+                \draw[teal!80!black] (.94,0) arc[start angle=0,end angle=33.5,radius=.94];
+                \node at (1.24,.33) {$\theta$};
+            \end{tikzpicture}\par
+            \small Segitiga untuk $x>0$. Untuk $x<0$, tandanya mengikuti
+            $\sin\theta=x/3$ dan $\cos\theta>0$.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Substitusi tangen untuk $\sqrt{x^2+a^2}$}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{contoh}
+                Hitung $\int dx/\sqrt{x^2+4}$.
+            \end{contoh}
+            \onslide<2->{Ambil $x=2\tan\theta$. Karena $dx=2\sec^2\theta\,d\theta$
+            dan $\sqrt{x^2+4}=2\sec\theta$, tersisa $\int\sec\theta\,d\theta$,
+            dengan hasil $\ln|\sec\theta+\tan\theta|+C$.}
+            \onslide<3->{Gunakan $\sec\theta=\sqrt{x^2+4}/2$ dan $\tan\theta=x/2$,
+            lalu serap $-\ln 2$ ke dalam $C$.
+            \[
+                \ln\bigl(x+\sqrt{x^2+4}\bigr)+C.
+            \]
+            Argumen logaritma positif karena $\sqrt{x^2+4}>|x|$.}
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \draw[HIMAtua,very thick] (0,0) -- (3.4,0)
+                    node[midway,below] {$2$}
+                    -- (3.4,2.3) node[midway,right] {$x$}
+                    -- cycle node[midway,above left] {$\sqrt{x^2+4}$};
+                \draw (3.2,0) -- (3.2,.20) -- (3.4,.20);
+                \draw[teal!80!black] (.94,0) arc[start angle=0,end angle=34,radius=.94];
+                \node at (1.24,.33) {$\theta$};
+            \end{tikzpicture}\par
+            \small Untuk $x>0$, $\tan\theta$ adalah rasio sisi depan terhadap sisi samping.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Substitusi secan untuk $\sqrt{x^2-a^2}$}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{contoh}
+                Hitung $\int \sqrt{x^2-16}/x\,dx$ untuk $|x|>4$.
+            \end{contoh}
+            \onslide<2->{Ambil $x=4\sec\theta$ pada cabang secan Bab 1.
+            Lalu $\sqrt{x^2-16}=4\tan\theta$ dan
+            $dx=4\sec\theta\tan\theta\,d\theta$.
+            \[
+                4\int\tan^2\theta\,d\theta=4(\tan\theta-\theta)+C.
+            \]}
+            \onslide<3->{Hasilnya
+            \[
+                \sqrt{x^2-16}-4\arcsec(x/4)+C.
+            \]
+            Pada cabang $x<-4$, $\theta$ berada di kuadran III
+            dan $\tan\theta$ tetap positif.}
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \draw[HIMAtua,very thick] (0,0) -- (3.25,0)
+                    node[midway,below] {$4$}
+                    -- (3.25,2.45) node[midway,right] {$\sqrt{x^2-16}$}
+                    -- cycle node[midway,above left] {$x$};
+                \draw (3.05,0) -- (3.05,.20) -- (3.25,.20);
+                \draw[teal!80!black] (.94,0) arc[start angle=0,end angle=37,radius=.94];
+                \node at (1.21,.38) {$\theta$};
+            \end{tikzpicture}\par
+            \small Segitiga menunjukkan cabang $x>4$ dengan $\sec\theta=x/4$.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Lengkapi kuadrat untuk menemukan pola akar}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.53\textwidth}
+            \begin{contoh}
+                Hitung $\int dx/\sqrt{8+4x-x^2}$.
+            \end{contoh}
+            \onslide<2->{Tulis $8+4x-x^2=12-(x-2)^2$.
+            Dengan $u=x-2$, pusat bergeser ke $u=0$ dan akarnya
+            menjadi $\sqrt{12-u^2}$.}
+            \onslide<3->{Gunakan $u=2\sqrt3\sin\theta$ atau rumus integral
+            invers sinus dari Bab 1.
+            \[
+                \arcsin\!\left(\frac{x-2}{2\sqrt3}\right)+C,
+                \qquad |x-2|<2\sqrt3.
+            \]}
+        \end{column}
+        \begin{column}{.43\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik integrasi,width=5.85cm,height=4.1cm,axis equal image,
+                    xmin=-2.45,xmax=6.4,ymin=-.2,ymax=4.25,
+                    xtick={-1.464102,2,5.464102},xticklabels={$2-2\sqrt3$,$2$,$2+2\sqrt3$},
+                    ytick=\empty]
+                    \addplot[HIMAtua,very thick,domain=0:180]
+                        ({2+2*sqrt(3)*cos(x)},{2*sqrt(3)*sin(x)});
+                    \draw[gray,dashed] (axis cs:2,0) -- (axis cs:2,3.464102);
+                    \fill[HIMAtua] (axis cs:2,3.464102) circle[radius=1.7pt];
+                \end{axis}
+            \end{tikzpicture}\par
+            \small Kurva akar berpusat di $x=2$ dengan jari-jari $2\sqrt3$.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Jadikan akar sebagai peubah}
+    \begin{contoh}
+        Tentukan $\int dx/(3+\sqrt{x})$ untuk $x>0$.
+    \end{contoh}
+    \onslide<2->{Ambil $u=\sqrt{x}$. Maka $x=u^2$ dan $dx=2u\,du$,
+    sehingga integral menjadi rasional dalam $u$.
+    \[
+        \int\frac{2u}{3+u}\,du=\int\left(2-\frac{6}{3+u}\right)du.
+    \]}
+    \onslide<3->{Integralkan lalu kembalikan peubahnya.
+    \[
+        2u-6\ln(3+u)+C=2\sqrt{x}-6\ln(3+\sqrt{x})+C.
+    \]
+    Untuk satu akar pangkat $n$, coba $x=u^n$ agar akar menjadi $u$
+    pada cabang yang sesuai.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Satu substitusi untuk dua pangkat pecahan}
+    \begin{contoh}
+        Hitung $\int dx/(x^{1/3}+x^{1/2})$ untuk $x>0$.
+    \end{contoh}
+    \onslide<2->{Penyebut eksponen $2$ dan $3$ mempunyai KPK $6$.
+    Ambil $u=x^{1/6}$, sehingga $x^{1/3}=u^2$, $x^{1/2}=u^3$, dan $dx=6u^5\,du$.
+    \[
+        \int \frac{6u^5}{u^2+u^3}\,du
+          =6\int\frac{u^3}{1+u}\,du
+          =6\int\left(u^2-u+1-\frac1{1+u}\right)du.
+    \]}
+    \onslide<3->{Hasilnya $2u^3-3u^2+6u-6\ln(1+u)+C$ dengan $u=x^{1/6}$.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Substitusi akar dapat diikuti pecahan parsial}
+    \begin{contoh}
+        Selesaikan $\int \sqrt{4+e^x}\,dx$.
+    \end{contoh}
+    \onslide<2->{Dengan $u=\sqrt{4+e^x}>2$, diperoleh $e^x=u^2-4$ dan
+    $dx=\dfrac{2u}{u^2-4}\,du$. Tulis integran baru dengan pembagian
+    dan pecahan parsial.
+    \[
+        \int\frac{2u^2}{u^2-4}\,du
+            =\int\left(2+\frac{2}{u-2}-\frac{2}{u+2}\right)du.
+    \]}
+    \onslide<3->{Karena $u>2$, kedua argumen logaritma positif. Hasilnya
+    \[
+        2u+2\ln\!\left(\frac{u-2}{u+2}\right)+C,
+        \qquad u=\sqrt{4+e^x}.
+    \]}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Tangen setengah sudut membuat integran rasional}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.55\textwidth}
+            \begin{definisi}[Fungsi rasional dalam sinus dan cosinus]
+                Bentuk $R(\sin x,\cos x)$ adalah hasil bagi dua polinomial
+                dalam $\sin x$ dan $\cos x$ pada domain penyebut tak nol.
+                Contohnya $1/(2+\cos x)$.
+            \end{definisi}
+            Dengan $u=\tan(x/2)$, identitas sudut ganda memberi
+            \[
+                \sin x=\frac{2u}{1+u^2},\quad
+                \cos x=\frac{1-u^2}{1+u^2},\quad
+                dx=\frac{2\,du}{1+u^2}.
+            \]
+            Untuk $(2k-1)\pi<x<(2k+1)\pi$ dengan $k$ bulat,
+            berlaku $x=2\arctan u+2k\pi$.
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \draw[HIMAtua,very thick] (0,0) -- (3.6,0)
+                    node[midway,below] {$1$}
+                    -- (3.6,2.1) node[midway,right] {$u$}
+                    -- cycle node[midway,above left] {$\sqrt{1+u^2}$};
+                \draw (3.4,0) -- (3.4,.20) -- (3.6,.20);
+                \draw[teal!80!black] (1.04,0) arc[start angle=0,end angle=30.3,radius=1.04];
+                \node[font=\small] at (1.42,.32) {$x/2$};
+            \end{tikzpicture}\par
+            \small Segitiga pada $0<x<\pi$. Identitas
+            $2\tan(x/2)/(1+\tan^2(x/2))=\sin x$ memberi rumus yang sama
+            di seluruh domain substitusi.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Dari cosinus ke penyebut kuadratik}
+    \begin{contoh}
+        Selesaikan $\int dx/(2+\cos x)$ dengan $u=\tan(x/2)$.
+    \end{contoh}
+    \onslide<2->{Ganti $\cos x$ dan $dx$ dengan bentuk rasional dalam $u$.
+    \[
+        \frac{dx}{2+\cos x}
+        =\frac{2\,du}{2(1+u^2)+1-u^2}
+        =\frac{2\,du}{3+u^2}.
+    \]}
+    \onslide<3->{Rumus integral invers tangen memberi
+    \[
+        \frac{2}{\sqrt3}\arctan\!\left(\frac{\tan(x/2)}{\sqrt3}\right)+C.
+    \]
+    Ini berlaku pada tiap selang tempat $u$ terdefinisi.
+    Untuk menyambung anti-turunan melewati $x=(2k+1)\pi$, sesuaikan konstanta
+    agar kedua limit bertemu.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Substitusi hiperbolik juga menghilangkan akar}
+    \begin{block}{Gunakan $\cosh^2t-\sinh^2t=1$}
+        \begin{itemize}
+            \item Jika $x=a\sinh t$, maka $\sqrt{x^2+a^2}=a\cosh t$ untuk semua $t$.
+            \item Jika $x=a\cosh t$ dengan $t>0$, maka $\sqrt{x^2-a^2}=a\sinh t$.
+                Untuk cabang $x<-a$, gunakan $x=-a\cosh t$ dengan $t>0$.
+        \end{itemize}
+        Di sini $a>0$. Cek tanda sebelum menyederhanakan akar kuadrat.
+    \end{block}
+    \begin{contoh}
+        Untuk $\int dx/\sqrt{x^2+4}$, pilih $x=2\sinh t$.
+        \onslide<2->{Faktor $2\cosh t$ saling hapus, sehingga hasilnya
+        $\sinh^{-1}(x/2)+C$. Bentuk logaritmik dari Bab 1 menunjukkan
+        $\sinh^{-1}(x/2)=\ln(x+\sqrt{x^2+4})-\ln 2$.}
+    \end{contoh}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Substitusi setengah sudut untuk fungsi hiperbolik}
+    \begin{block}{Ambil $u=\tanh(x/2)$}
+        Karena $\cosh^2(x/2)-\sinh^2(x/2)=1$, identitas sudut ganda memberi
+        \[
+            \sinh x=\frac{2u}{1-u^2},\qquad
+            \cosh x=\frac{1+u^2}{1-u^2},\qquad
+            dx=\frac{2\,du}{1-u^2},\qquad |u|<1.
+        \]
+    \end{block}
+    \begin{contoh}
+        Hitung $\int dx/(5\cosh x+3\sinh x)$.
+        \onslide<2->{Setelah substitusi, lengkapi kuadrat pada penyebut.
+        \[
+            \int\frac{2\,du}{5u^2+6u+5}
+                =\frac12\arctan\!\left(\frac{5u+3}{4}\right)+C,
+                \qquad u=\tanh(x/2).
+        \]}
+    \end{contoh}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Latihan memilih substitusi}
+    \begin{latihan}
+        Sebutkan substitusi beserta anti-turunannya.
+        \begin{enumerate}
+            \item $\int x^2/\sqrt{9-x^2}\,dx$ untuk $|x|<3$.
+            \item $\int dx/(1+\sqrt[3]{x})$ untuk $x>0$.
+            \item $\int dx/(1-\sin x)$ pada selang tempat integran dan
+                $u=\tan(x/2)$ terdefinisi.
+        \end{enumerate}
+    \end{latihan}
+    \onslide<2->{%
+        \begin{block}{Cek jawaban}
+            \begin{enumerate}
+                \item $x=3\sin\theta$ memberi
+                    $\tfrac92\arcsin(x/3)-\tfrac x2\sqrt{9-x^2}+C$.
+                \item $u=\sqrt[3]{x}$ memberi $\tfrac32u^2-3u+3\ln(1+u)+C$.
+                \item $u=\tan(x/2)$ memberi $\int 2\,du/(u-1)^2=-2/(u-1)+C$.
+            \end{enumerate}
+        \end{block}
+    }
+\end{frame}
+
+\end{document}

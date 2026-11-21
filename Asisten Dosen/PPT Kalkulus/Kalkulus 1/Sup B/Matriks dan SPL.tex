@@ -6,91 +6,1703 @@
 \institute[Matematika ITS]{Departemen Matematika\\ Institut Teknologi Sepuluh Nopember}
 \titlegraphic{{\includegraphics[scale=0.3]{ITS.png}$\quad$\includegraphics[scale=0.02]{M.png}}}
 
-\newcommand{\dom}{\mathcal{D}}
-\newcommand{\rng}{\mathcal{R}}
+\DeclareMathOperator{\Tr}{tr}
+\DeclareMathOperator{\Adj}{adj}
+\DeclareMathOperator{\Cof}{cof}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\aug}[2]{\left(\begin{array}{#1}#2\end{array}\right)}
 
-\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.22}
+% Tata letak mengikuti Beamer Bab 1 dan Bab 2.
+\setbeamertemplate{itemize items}[circle]
+
+% Sumber: ../KALKULUS 1 SUPLEMEN B.pdf, hlm. 287--332.
+\usetikzlibrary{backgrounds}
+\tikzset{
+    matrix grid/.style={
+        matrix of math nodes,ampersand replacement=\&,
+        nodes={minimum width=7mm,minimum height=6mm,inner sep=1.5pt},
+        row sep=1pt,column sep=1pt
+    },
+    graph axis/.style={->,>=stealth,semithick,black!75}
+}
+
+% Latar kelas ditempatkan pada kanvas tetap untuk seluruh overlay.
+\usebackgroundtemplate{%
+    \begin{tikzpicture}
+        \path[use as bounding box] (0,0) rectangle (\paperwidth,\paperheight);
+        \clip (0,0) rectangle (\paperwidth,\paperheight);
+        \node[inner sep=0pt,opacity=0.1] at (.5\paperwidth,.5\paperheight)
+            {\includegraphics[width=\paperwidth]{arona class}};
+    \end{tikzpicture}%
+}
 
 \begin{document}
 \begin{frame}
     \titlepage
 \end{frame}
 
-\AtBeginSection{
-    {
-        \begin{frame}{Daftar isi}
-            \tableofcontents[currentsection]
-        \end{frame}}
-}
-
-\section{Matriks dan Operasi Matriks}
-\begin{frame}
-    \frametitle{\insertsection}
-    \begin{definisi}
-        \textbf{Matriks} adalah susunan bilangan berbentuk persegi panjang yang diatur dalam baris dan kolom. Bilangan-bilangan dalam matriks disebut entri atau elemen matriks.
-    \end{definisi}
-    \begin{block}{Operasi Matriks}
-        Beberapa operasi dasar pada matriks antara lain:
-        \begin{itemize}
-            \item Penjumlahan matriks
-            \item Perkalian skalar dengan matriks
-            \item Perkalian dua matriks
-            \item Transpos matriks
-        \end{itemize}
-    \end{block}
+\begin{frame}{Daftar isi}
+    \tableofcontents
 \end{frame}
 
-\section{Operasi Baris Elementer dan Matriks Invers}
+\section{Matriks dan Operasi Matriks}
+
+% Jenis dan entri matriks (hlm. 287--290).
 \begin{frame}
     \frametitle{\insertsection}
-    \begin{block}{Operasi Baris Elementer (OBE)}
-        Tiga operasi baris elementer pada suatu matriks:
-        \begin{enumerate}
-            \item Menukar posisi dua baris.
-            \item Mengalikan suatu baris dengan skalar tak-nol.
-            \item Menambahkan kelipatan suatu baris ke baris yang lain.
-        \end{enumerate}
-    \end{block}
-    \onslide<2->{
-        \begin{definisi}[Matriks Invers]
-            Jika $A$ adalah matriks persegi, dan jika terdapat matriks $B$ yang berukuran sama sedemikian sehingga $AB = BA = I$, maka $A$ dikatakan \textbf{dapat dibalik} (invertible) dan $B$ disebut \textbf{invers} dari $A$ ($A^{-1}$).
-        \end{definisi}
+    \framesubtitle{Baca ukuran dan indeks dengan urutan baris, lalu kolom}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.52\textwidth}
+            \begin{definisi}[Matriks]
+                Matriks adalah susunan entri dalam $m$ baris dan $n$ kolom.
+                Matriks $A=(a_{ij})$ berukuran $m\times n$ dan $a_{ij}$ berada pada baris $i$, kolom $j$.
+                Entri yang dibahas di sini adalah bilangan real.
+            \end{definisi}
+            \onslide<2->{%
+                \begin{contoh}
+                    Matriks di samping berukuran $2\times3$.
+                    Pada perpotongan baris $2$ dan kolom $3$, diperoleh $a_{23}=5$.
+                \end{contoh}
+            }
+        \end{column}
+        \begin{column}{.44\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \matrix[matrix grid,left delimiter=(,right delimiter=)] (a) {
+                    3 \& -1 \& 4\\
+                    2 \& 0  \& 5\\
+                };
+                \onslide<2->{%
+                    \begin{scope}[on background layer]
+                        \node[fill=HIMAmuda!24,rounded corners,fit=(a-2-1)(a-2-3),inner sep=1pt] {};
+                        \node[fill=PastelGreen!38,rounded corners,fit=(a-1-3)(a-2-3),inner sep=1pt] {};
+                        \node[fill=magenta!28,rounded corners,fit=(a-2-3),inner sep=1pt] {};
+                    \end{scope}
+                    \node[font=\small,above=3mm of a-1-3] {kolom $3$};
+                    \node[font=\small,left=5mm of a-2-1] {baris $2$};
+                }
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Satu baris dan satu kolom}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{definisi}[Matriks baris]
+                Matriks dengan satu baris berukuran $1\times n$.
+            \end{definisi}
+            \onslide<2->{%
+                \begin{contoh}
+                    $u=\begin{pmatrix}4&-2&1\end{pmatrix}$ berukuran $1\times3$.
+                \end{contoh}
+                Entri terakhirnya adalah $u_{13}=1$.
+            }
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{definisi}[Matriks kolom]
+                Matriks dengan satu kolom berukuran $m\times1$.
+            \end{definisi}
+            \onslide<2->{%
+                \begin{contoh}
+                    $v=\begin{pmatrix}4\\-2\\1\end{pmatrix}$ berukuran $3\times1$.
+                \end{contoh}
+                Entri terakhirnya adalah $v_{31}=1$.
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Matriks nol, matriks persegi, dan diagonal utama}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{definisi}[Matriks nol]
+                Matriks $O_{m\times n}$ mempunyai entri nol di semua posisi.
+            \end{definisi}
+            \begin{contoh}
+                \[
+                    O_{2\times3}=\begin{pmatrix}0&0&0\\0&0&0\end{pmatrix}.
+                \]
+            \end{contoh}
+            Ukuran matriks nol mengikuti operasi yang melibatkannya.
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{definisi}[Matriks persegi]
+                Matriks dengan jumlah baris dan kolom sama disebut matriks persegi. Untuk ukuran $n\times n$, ordenya $n$.
+            \end{definisi}
+            \onslide<2->{%
+                \[
+                    A=\begin{pmatrix}
+                        \color{HIMAtua}{2}&1&4\\
+                        3&\color{HIMAtua}{-1}&0\\
+                        2&5&\color{HIMAtua}{6}
+                    \end{pmatrix}
+                \]
+                Diagonal utama berisi $a_{11},a_{22},a_{33}$, yaitu $2,-1,6$.
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Matriks segitiga mengikuti letak entri nol}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{definisi}[Segitiga atas]
+                Matriks persegi $U$ dengan $u_{ij}=0$ untuk $i>j$.
+            \end{definisi}
+            \onslide<2->{%
+                \[
+                    U=\begin{pmatrix}
+                        2&-1&3\\
+                        \color{teal}{0}&4&2\\
+                        \color{teal}{0}&\color{teal}{0}&5
+                    \end{pmatrix}.
+                \]
+                Semua entri di bawah diagonal utama bernilai nol.
+            }
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{definisi}[Segitiga bawah]
+                Matriks persegi $L$ dengan $\ell_{ij}=0$ untuk $i<j$.
+            \end{definisi}
+            \onslide<2->{%
+                \[
+                    L=\begin{pmatrix}
+                        1&\color{teal}{0}&\color{teal}{0}\\
+                        3&2&\color{teal}{0}\\
+                        -1&4&0
+                    \end{pmatrix}.
+                \]
+                Semua entri di atas diagonal utama bernilai nol. Entri diagonal boleh nol.
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Diagonal dan identitas}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{definisi}[Matriks diagonal]
+                Matriks persegi $D$ dengan $d_{ij}=0$ untuk $i\ne j$.
+            \end{definisi}
+            \begin{contoh}
+                \[
+                    D=\begin{pmatrix}4&0&0\\0&0&0\\0&0&-2\end{pmatrix}.
+                \]
+                Matriks nol persegi juga diagonal.
+            \end{contoh}
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{definisi}[Matriks identitas]
+                Matriks diagonal $I_n$ berorde $n$ yang setiap entri diagonal utamanya $1$.
+            \end{definisi}
+            \begin{contoh}
+                \[
+                    I_3=\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\end{pmatrix}.
+                \]
+            \end{contoh}
+        \end{column}
+    \end{columns}
+    \par\smallskip
+    \onslide<2->{Sebuah matriks diagonal memenuhi kedua syarat matriks segitiga sekaligus.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Transpos memindahkan baris menjadi kolom}
+    \begin{definisi}[Transpos]
+        Jika $A$ berukuran $m\times n$, maka $A^T$ berukuran $n\times m$ dengan $(A^T)_{ji}=a_{ij}$.
+    \end{definisi}
+    \onslide<2->{%
+        \begin{center}
+            \begin{tikzpicture}
+                \matrix[matrix grid,left delimiter=(,right delimiter=)] (a) {
+                    3 \& -1 \& 4\\ 2 \& 0 \& 5\\
+                };
+                \matrix[matrix grid,left delimiter=(,right delimiter=),right=2.1cm of a] (t) {
+                    3 \& 2\\ -1 \& 0\\ 4 \& 5\\
+                };
+                \begin{scope}[on background layer]
+                    \node[fill=HIMAmuda!30,rounded corners,fit=(a-2-1)(a-2-3),inner sep=1pt] {};
+                    \node[fill=HIMAmuda!30,rounded corners,fit=(t-1-2)(t-3-2),inner sep=1pt] {};
+                \end{scope}
+                \node[left=3mm of a] {$A=$};
+                \node[right=3mm of t] {$=A^T$};
+                \draw[graph axis,HIMAtua] ([xshift=4mm]a.east)--([xshift=-4mm]t.west)
+                    node[midway,above,font=\small] {transpos};
+            \end{tikzpicture}
+        \end{center}
+        Baris kedua $(2,\ 0,\ 5)$ menjadi kolom kedua. Perhatikan perpindahan $a_{23}=5$ ke $(A^T)_{32}=5$.
     }
 \end{frame}
 
-\section{Sistem Persamaan Linier}
 \begin{frame}
     \frametitle{\insertsection}
-    \begin{definisi}[Sistem Persamaan Linier]
-        Sistem Persamaan Linier (SPL) dengan $m$ persamaan dan $n$ variabel $x_1, x_2, \dots, x_n$ dituliskan sebagai:
-        \begin{align*}
-            a_{11}x_1 + a_{12}x_2 + \dots + a_{1n}x_n &= b_1 \\
-            a_{21}x_1 + a_{22}x_2 + \dots + a_{2n}x_n &= b_2 \\
-            \vdots \qquad \qquad \qquad &= \vdots \\
-            a_{m1}x_1 + a_{m2}x_2 + \dots + a_{mn}x_n &= b_m
-        \end{align*}
-        Dapat ditulis dalam bentuk matriks $AX = B$.
+    \framesubtitle{Simetri dan simetri miring terlihat dari transpos}
+    \begin{definisi}[Simetri dan simetri miring]
+        Matriks persegi $A$ disebut \textbf{simetris} jika $A^T=A$ dan disebut
+        \textbf{simetris miring} jika $A^T=-A$.
     \end{definisi}
+    \onslide<2->{%
+        \begin{columns}[T,onlytextwidth]
+            \begin{column}{.48\textwidth}
+                \begin{contoh}
+                    $S=\begin{pmatrix}2&-3\\-3&4\end{pmatrix}$ simetris.
+                \end{contoh}
+                Posisi $(i,j)$ dan $(j,i)$ berisi nilai yang sama.
+            \end{column}
+            \begin{column}{.48\textwidth}
+                \begin{contoh}
+                    $K=\begin{pmatrix}0&5\\-5&0\end{pmatrix}$ simetris miring.
+                \end{contoh}
+                Posisi yang berpasangan memenuhi $k_{ji}=-k_{ij}$. Pada diagonal, $k_{ii}=-k_{ii}$ memaksa $k_{ii}=0$.
+            \end{column}
+        \end{columns}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Membandingkan entri dan menjumlahkan diagonal}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{definisi}[Kesamaan matriks]
+                $A=B$ jika ukurannya sama dan $a_{ij}=b_{ij}$ di setiap posisi.
+            \end{definisi}
+            \begin{contoh}
+                Jika $\begin{pmatrix}x&-2\\4&y\end{pmatrix}=\begin{pmatrix}3&-2\\4&5\end{pmatrix}$, tentukan $x$ dan $y$.
+            \end{contoh}
+            \onslide<2->{Dari posisi $(1,1)$ dan $(2,2)$, diperoleh $x=3$ dan $y=5$.}
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{definisi}[Trace]
+                Untuk matriks persegi $A_{n\times n}$,
+                \[
+                    \Tr(A)=a_{11}+a_{22}+\cdots+a_{nn}.
+                \]
+            \end{definisi}
+            \onslide<2->{%
+                \begin{contoh}
+                    Trace matriks di samping adalah $3+5=8$.
+                \end{contoh}
+                Transpos mempertahankan entri diagonal, sehingga $\Tr(A^T)=\Tr(A)$.
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+% Operasi dan sifatnya (hlm. 292--298).
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Penjumlahan dan pengurangan dikerjakan per posisi}
+    \begin{definisi}[Penjumlahan dan pengurangan]
+        Jika $A$ dan $B$ berukuran sama, $A\pm B=(a_{ij}\pm b_{ij})$.
+    \end{definisi}
+    \begin{contoh}
+        Untuk $A=\begin{pmatrix}2&-1\\3&0\end{pmatrix}$ dan
+        $B=\begin{pmatrix}1&4\\-2&5\end{pmatrix}$, tentukan $A+B$ dan $A-B$.
+    \end{contoh}
+    \onslide<2->{%
+        \[
+            A+B=\begin{pmatrix}3&3\\1&5\end{pmatrix},
+            \qquad
+            A-B=\begin{pmatrix}1&-5\\5&-5\end{pmatrix}.
+        \]
+        Misalnya $(A-B)_{21}=3-(-2)=5$. Setiap posisi hasil memakai pasangan entri pada posisi itu.
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Skalar mengalikan setiap entri}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.42\textwidth}
+            \begin{definisi}[Perkalian dengan skalar]
+                Untuk $k\in\R$, definisikan $kA=Ak=(ka_{ij})$. Ukuran hasil sama dengan ukuran $A$.
+            \end{definisi}
+            \onslide<2->{%
+                \begin{contoh}
+                    $-2\begin{pmatrix}2&-1\\3&0\end{pmatrix}=\begin{pmatrix}-4&2\\-6&0\end{pmatrix}$.
+                \end{contoh}
+            }
+        \end{column}
+        \begin{column}{.54\textwidth}
+            \begin{block}{Sifat tambah dan skalar}
+                Untuk $A,B,C$ berukuran sama,
+                \[
+                    \begin{aligned}
+                        A+B&=B+A,\\
+                        A+(B+C)&=(A+B)+C,\\
+                        A+O&=O+A=A,\qquad A-A=O,\\
+                        k(A+B)&=kA+kB,\\
+                        (k+\ell)A&=kA+\ell A,\\
+                        (k\ell)A&=k(\ell A)=\ell(kA).
+                    \end{aligned}
+                \]
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Perkalian matriks memasangkan baris dengan kolom}
+    \begin{definisi}[Perkalian dua matriks]
+        Untuk $A_{m\times n}$ dan $B_{n\times p}$, hasil $C=AB$ berukuran $m\times p$ dengan
+        \[
+            c_{ij}=\sum_{k=1}^{n} a_{ik}b_{kj}.
+        \]
+    \end{definisi}
+    \onslide<2->{%
+        \begin{center}
+            \begin{tikzpicture}[every node/.style={rounded corners,align=center,minimum height=9mm}]
+                \node[draw=HIMAtua,fill=HIMAmuda!16,minimum width=3.15cm] (a) at (0,0)
+                    {$A_{\textcolor{HIMAtua}{m}\times\textcolor{magenta}{n}}$};
+                \node[draw=HIMAtua,fill=HIMAmuda!16,minimum width=3.15cm] (b) at (4,0)
+                    {$B_{\textcolor{magenta}{n}\times\textcolor{HIMAtua}{p}}$};
+                \node[draw=teal,fill=PastelGreen!25,minimum width=3.15cm] (c) at (8.65,0)
+                    {$C_{m\times p}$};
+                \node at (2,0) {$\times$};
+                \draw[graph axis] (b.east)--(c.west);
+            \end{tikzpicture}
+        \end{center}
+        Banyak kolom $A$ harus sama dengan banyak baris $B$. Untuk mengisi posisi $(i,j)$, kalikan pasangan entri dari baris $i$ dan kolom $j$, lalu jumlahkan.
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Satu entri memakai satu baris dan satu kolom}
+    \begin{contoh}
+        Untuk $A=\begin{pmatrix}1&2&0\\-1&1&3\end{pmatrix}$ dan
+        $B=\begin{pmatrix}2&1\\0&-1\\1&2\end{pmatrix}$, tentukan $AB$ dan $BA$.
+    \end{contoh}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.49\textwidth}
+            \onslide<2->{%
+                Entri $(1,2)$ dari $AB$ berasal dari
+                \[
+                    \textcolor{HIMAtua}{(1,\ 2,\ 0)}
+                    \textcolor{teal}{(1,\ -1,\ 2)^T}
+                    =1-2+0=-1.
+                \]
+                Maka $AB=\begin{pmatrix}2&-1\\1&4\end{pmatrix}$.
+            }
+        \end{column}
+        \begin{column}{.47\textwidth}
+            \onslide<3->{%
+                Urutan sebaliknya menghasilkan
+                \[
+                    BA=\begin{pmatrix}1&5&3\\1&-1&-3\\-1&4&6\end{pmatrix}.
+                \]
+                Ukuran $AB$ adalah $2\times2$, sedangkan $BA$ berukuran $3\times3$.
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Kurung dapat dipindahkan tanpa menukar urutan faktor}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{block}{Sifat perkalian}
+                Jika ukuran matriks sesuai,
+                \[
+                    \begin{aligned}
+                        A(BC)&=(AB)C,\\
+                        A(B+C)&=AB+AC,\\
+                        (A+B)C&=AC+BC,\\
+                        I_m A&=A I_n=A\quad(A_{m\times n}).
+                    \end{aligned}
+                \]
+            \end{block}
+            Bahkan keberadaan $AB$ belum menjamin $BA$ ada. Contohnya ukuran $3\times2$ dikali $2\times2$.
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                Ambil $P=\begin{pmatrix}1&1\\0&1\end{pmatrix}$ dan
+                $Q=\begin{pmatrix}1&0\\1&1\end{pmatrix}$.
+            \end{contoh}
+            \onslide<2->{%
+                \[
+                    PQ=\begin{pmatrix}2&1\\1&1\end{pmatrix},
+                    \quad
+                    QP=\begin{pmatrix}1&1\\1&2\end{pmatrix}.
+                \]
+                Hasilnya berbeda meskipun ukuran kedua faktor sama.
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Transpos hasil kali membalik urutan faktor}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.46\textwidth}
+            \begin{block}{Sifat transpos}
+                \[
+                    \begin{aligned}
+                        (A^T)^T&=A,\\
+                        (kA)^T&=kA^T,\\
+                        (A\pm B)^T&=A^T\pm B^T,\\
+                        (AB)^T&=B^T A^T.
+                    \end{aligned}
+                \]
+                Syarat ukuran mengikuti operasi asal.
+            \end{block}
+        \end{column}
+        \begin{column}{.5\textwidth}
+            \onslide<2->{%
+                \begin{block}{Perhatikan posisi $(j,i)$}
+                    \[
+                        \begin{aligned}
+                            ((AB)^T)_{ji}
+                                &=\sum_k a_{ik}b_{kj}\\
+                                &=\sum_k (B^T)_{jk}(A^T)_{ki}\\
+                                &=(B^T A^T)_{ji}.
+                        \end{aligned}
+                    \]
+                \end{block}
+                Jika $AB$ berukuran $m\times p$, urutan $B^T A^T$ memberi ukuran $p\times m$.
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Memisahkan bagian simetris dan simetris miring}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.5\textwidth}
+            \begin{block}{Untuk setiap matriks persegi $A$}
+                \[
+                    A=\underbrace{\tfrac12(A+A^T)}_{S}
+                     +\underbrace{\tfrac12(A-A^T)}_{K}.
+                \]
+                Karena $(A^T)^T=A$, berlaku $S^T=S$ dan $K^T=-K$.
+            \end{block}
+            \onslide<2->{%
+                \begin{contoh}
+                    $\begin{pmatrix}1&4\\2&3\end{pmatrix}
+                      =\begin{pmatrix}1&3\\3&3\end{pmatrix}
+                       +\begin{pmatrix}0&1\\-1&0\end{pmatrix}$.
+                \end{contoh}
+            }
+        \end{column}
+        \begin{column}{.46\textwidth}
+            \onslide<3->{%
+                \begin{block}{Operasi yang mempertahankan simetri}
+                    Penjumlahan dua matriks simetris berukuran sama menghasilkan matriks simetris. Perkalian skalar mempertahankan sifat simetris atau simetris miring.
+                \end{block}
+                Jika $S,T$ simetris, $(ST)^T=TS$. Jadi $ST$ simetris tepat ketika $ST=TS$.
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\section{Operasi Baris Elementer dan Matriks Invers}
+
+% OBE, eselon, dan invers (hlm. 298--306).
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Tiga operasi baris yang dapat dibalik}
+    \begin{definisi}[Operasi baris elementer]
+        Dengan $B_i$ menyatakan baris ke-$i$, operasi baris elementer (OBE) meliputi
+        \begin{enumerate}
+            \item menukar $B_i\leftrightarrow B_j$,
+            \item mengganti $B_i\gets kB_i$ dengan $k\ne0$,
+            \item mengganti $B_i\gets B_i+kB_j$ dengan $i\ne j$.
+        \end{enumerate}
+    \end{definisi}
+    \onslide<2->{%
+        \[
+            \begin{pmatrix}0&2\\1&3\end{pmatrix}
+            \xrightarrow{\ B_1\leftrightarrow B_2\ }
+            \begin{pmatrix}1&3\\0&2\end{pmatrix}
+            \xrightarrow{\ B_2\gets B_2/2\ }
+            \begin{pmatrix}1&3\\0&1\end{pmatrix}
+            \xrightarrow{\ B_1\gets B_1-3B_2\ }
+            I_2.
+        \]
+        Untuk membalik langkah terakhir, tambahkan kembali $3B_2$ pada $B_1$.
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Pivot membentuk tangga ke kanan}
+    Pivot adalah entri pertama yang taknol pada setiap baris taknol. Pada konvensi di sini, pivot dinormalkan menjadi $1$.
+    \par\smallskip
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{definisi}[Eselon baris]
+                Baris nol berada di bawah. Tiap pivot bernilai $1$ dan terletak lebih ke kanan dari pivot pada baris sebelumnya.
+            \end{definisi}
+            \onslide<2->{%
+                \[
+                    E=\begin{pmatrix}
+                        \color{HIMAtua}{1}&2&\color{magenta}{1}&3\\
+                        0&0&\color{HIMAtua}{1}&1\\
+                        0&0&0&0
+                    \end{pmatrix}.
+                \]
+                Kolom pivotnya $1$ dan $3$.
+            }
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{definisi}[Eselon baris tereduksi]
+                Selain memenuhi syarat eselon baris, setiap kolom pivot bernilai nol di semua posisi selain pivotnya.
+            \end{definisi}
+            \onslide<2->{%
+                \[
+                    R=\begin{pmatrix}
+                        \color{HIMAtua}{1}&2&0&2\\
+                        0&0&\color{HIMAtua}{1}&1\\
+                        0&0&0&0
+                    \end{pmatrix}.
+                \]
+                Entri di atas pivot kolom $3$ sudah nol.
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Reduksi maju memilih pivot dari kiri ke kanan}
+    \begin{contoh}
+        Ubah $C$ menjadi eselon baris.
+    \end{contoh}
+    \[
+        C=\begin{pmatrix}0&0&2&4\\1&3&-1&2\\2&6&2&12\end{pmatrix}
+        \onslide<2->{%
+            \xrightarrow[\ B_3\gets B_3-2B_1\ ]{\ B_1\leftrightarrow B_2\ }
+            \begin{pmatrix}1&3&-1&2\\0&0&2&4\\0&0&4&8\end{pmatrix}
+        }
+        \onslide<3->{%
+            \xrightarrow[\ B_2\gets B_2/2\ ]{\ B_3\gets B_3-2B_2\ }
+            \begin{pmatrix}1&3&-1&2\\0&0&1&2\\0&0&0&0\end{pmatrix}.
+        }
+    \]
+    \onslide<2->{%
+        Pindahkan entri $1$ ke posisi pivot pertama, lalu buat nol di bawahnya.
+    }
+    \onslide<3->{%
+        Karena kolom $2$ sudah nol pada baris tersisa, pivot berikutnya berada di kolom $3$.
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Reduksi balik membersihkan bagian atas pivot}
+    Eselon baris contoh sebelumnya mempunyai pivot di kolom $1$ dan $3$.
+    Entri $-1$ di atas pivot kolom $3$ masih perlu dihapus.
+    \[
+        \begin{pmatrix}
+            \color{HIMAtua}{1}&3&\color{magenta}{-1}&2\\
+            0&0&\color{HIMAtua}{1}&2\\
+            0&0&0&0
+        \end{pmatrix}
+        \onslide<2->{%
+            \xrightarrow{\ B_1\gets B_1+B_2\ }
+            \begin{pmatrix}1&3&0&4\\0&0&1&2\\0&0&0&0\end{pmatrix}.
+        }
+    \]
+    \onslide<2->{%
+        \begin{block}{Periksa kolom pivot}
+            Kolom $1$ dan $3$ sekarang hanya memiliki satu entri taknol, yaitu pivotnya. Kolom $2$ dan $4$ boleh memuat entri lain.
+        \end{block}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Dua kemungkinan untuk matriks persegi}
+    \begin{teorema}[Bentuk eselon tereduksi matriks persegi]
+        Bentuk eselon baris tereduksi matriks $n\times n$ adalah $I_n$ atau mempunyai setidaknya satu baris nol.
+    \end{teorema}
+    \onslide<2->{%
+        Jika semua $n$ baris taknol, ada $n$ pivot di kolom yang berbeda. Setiap kolom menjadi kolom pivot, sehingga hasilnya $I_n$.
+        \begin{contoh}
+            \[
+                \begin{pmatrix}1&2\\2&5\end{pmatrix}
+                \xrightarrow{\mathrm{OBE}} I_2,
+                \qquad
+                \begin{pmatrix}1&2\\2&4\end{pmatrix}
+                \xrightarrow{\mathrm{OBE}} \begin{pmatrix}1&2\\0&0\end{pmatrix}.
+            \]
+            Pada matriks kedua, baris kedua awal hanyalah dua kali baris pertama.
+        \end{contoh}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Invers mengembalikan hasil perkalian ke identitas}
+    \begin{definisi}[Matriks invers]
+        Untuk $A,B$ persegi dengan orde sama, jika $AB=BA=I$, maka $B=A^{-1}$ dan $A$ disebut invertibel.
+    \end{definisi}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.51\textwidth}
+            \begin{block}{Rumus untuk ukuran $2\times2$}
+                Jika $A=\begin{pmatrix}a&b\\c&d\end{pmatrix}$ dan $ad-bc\ne0$,
+                \[
+                    A^{-1}=\frac{1}{ad-bc}\begin{pmatrix}d&-b\\-c&a\end{pmatrix}.
+                \]
+            \end{block}
+        \end{column}
+        \begin{column}{.45\textwidth}
+            \onslide<2->{%
+                \begin{contoh}
+                    Untuk $A=\begin{pmatrix}2&1\\3&2\end{pmatrix}$, $ad-bc=1$, sehingga
+                    $A^{-1}=\begin{pmatrix}2&-1\\-3&2\end{pmatrix}$.
+                \end{contoh}
+                Kalikan $A$ dengan matriks pada pembilang untuk mendapat $(ad-bc)I_2$.
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{OBE yang sama diterapkan pada kedua blok}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{block}{Algoritma invers}
+                Susun matriks diperbesar $[A\mid I_n]$.
+                Lakukan OBE pada seluruh baris sampai blok kiri menjadi $I_n$.
+                \[
+                    [A\mid I_n]\xrightarrow{\mathrm{OBE}}[I_n\mid A^{-1}].
+                \]
+            \end{block}
+            Jika bentuk eselon tereduksi blok kiri memiliki baris nol, $A$ tidak invertibel.
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \onslide<2->{%
+                \begin{block}{Mengapa blok kanan menjadi invers?}
+                    Rangkaian OBE setara dengan mengalikan dari kiri oleh suatu matriks invertibel $E$.
+                    \[
+                        E[A\mid I_n]=[EA\mid E].
+                    \]
+                    Jika $EA=I_n$, maka $A=E^{-1}$ dan blok kanan $E$ adalah $A^{-1}$.
+                \end{block}
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Contoh mencari invers matriks orde tiga dengan OBE}
+    \begin{contoh}
+        Tentukan invers dari matriks $A$ pada blok kiri awal.
+    \end{contoh}
+    \[
+        \aug{rrr|rrr}{1&2&1&1&0&0\\2&5&2&0&1&0\\1&2&2&0&0&1}
+        \onslide<2->{%
+            \xrightarrow[\ B_3\gets B_3-B_1\ ]{\ B_2\gets B_2-2B_1\ }
+            \aug{rrr|rrr}{1&2&1&1&0&0\\0&1&0&-2&1&0\\0&0&1&-1&0&1}
+        }
+    \]
+    \onslide<3->{%
+        Gunakan $B_1\gets B_1-2B_2-B_3$ untuk membersihkan entri di atas kedua pivot terakhir.
+        \[
+            [I_3\mid A^{-1}]
+              =\aug{rrr|rrr}{1&0&0&6&-2&-1\\0&1&0&-2&1&0\\0&0&1&-1&0&1},
+            \qquad
+            A^{-1}=\begin{pmatrix}6&-2&-1\\-2&1&0\\-1&0&1\end{pmatrix}.
+        \]
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Invers tunggal dan urutan perkalian terbalik}
+    \begin{teorema}[Sifat invers]
+        Invers suatu matriks invertibel tunggal. Untuk $A,B$ invertibel berorde sama,
+        $n\ge1$ bilangan bulat, dan $k\ne0$,
+        \[
+            \begin{aligned}
+                (A^{-1})^{-1}&=A, & (A^n)^{-1}&=(A^{-1})^n,\\
+                (kA)^{-1}&=k^{-1}A^{-1}, & (A^T)^{-1}&=(A^{-1})^T,\\
+                (AB)^{-1}&=B^{-1}A^{-1}. &&
+            \end{aligned}
+        \]
+    \end{teorema}
+    \onslide<2->{%
+        \begin{columns}[T,onlytextwidth]
+            \begin{column}{.48\textwidth}
+                \textbf{Ketunggalan.} Jika $U$ dan $V$ sama-sama invers $A$, maka
+                $U=U(AV)=(UA)V=V$.
+            \end{column}
+            \begin{column}{.48\textwidth}
+                \textbf{Urutan.} Pada $(AB)(B^{-1}A^{-1})$, faktor $BB^{-1}$ bersebelahan sehingga menghasilkan $I$.
+            \end{column}
+        \end{columns}
+    }
+\end{frame}
+
+\section{Sistem Persamaan Linear}
+
+% Persamaan, himpunan solusi, dan bentuk matriks (hlm. 306--310).
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Persamaan linear membatasi kombinasi variabel}
+    \begin{definisi}[Persamaan linear]
+        Dalam variabel $x_1,\ldots,x_n$, bentuknya $a_1x_1+\cdots+a_nx_n=b$ dengan $a_1,\ldots,a_n,b$ konstanta.
+        Sebuah solusi adalah tupel nilai variabel yang membuat persamaan benar.
+    \end{definisi}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                Nyatakan semua solusi $2x+y=5$.
+            \end{contoh}
+            \onslide<2->{Ambil $x=t$. Maka $(x,y)=(t,5-2t)$ untuk setiap $t\in\R$.}
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \onslide<2->{%
+                \begin{block}{Uji bentuknya}
+                    $x+3y-2z=7$ linear. Bentuk $xy=2$ dan $4\sin x-y=5$ tidak linear karena memuat perkalian variabel atau fungsi sinus dari variabel.
+                \end{block}
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Satu baris matriks mewakili satu persamaan}
+    \begin{definisi}[Sistem persamaan linear]
+        SPL terdiri dari persamaan linear yang harus dipenuhi serentak.
+        Untuk $m$ persamaan dan $n$ variabel, tulis $A\vect{x}=\vect{b}$ dengan $A_{m\times n}$ matriks koefisien,
+        $\vect{x}$ kolom variabel, dan $\vect{b}$ kolom ruas kanan.
+    \end{definisi}
+    \onslide<2->{%
+        \begin{contoh}
+            \[
+                \begin{cases}x-y=0,\\x+y=2\end{cases}
+                \quad\longleftrightarrow\quad
+                \begin{pmatrix}1&-1\\1&1\end{pmatrix}
+                \begin{pmatrix}x\\y\end{pmatrix}=
+                \begin{pmatrix}0\\2\end{pmatrix}
+                \quad\longleftrightarrow\quad
+                [A\mid\vect{b}]=\aug{rr|r}{1&-1&0\\1&1&2}.
+            \]
+        \end{contoh}
+        Himpunan solusi memuat semua tupel yang memenuhi setiap baris.
+        Pada matriks diperbesar, kolom setelah garis pemisah menyimpan ruas kanan.
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Tiga kemungkinan dari perpotongan dua garis}
+    Untuk SPL dua variabel, solusi adalah titik yang terletak pada kedua garis.
+    \par\smallskip
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{.31\textwidth}
+            \begin{block}{Satu solusi}
+                \centering
+                \begin{tikzpicture}[scale=1.04]
+                    \draw[graph axis] (-.38,0)--(2.32,0) node[right] {$x$};
+                    \draw[graph axis] (0,-.35)--(0,2.48) node[above] {$y$};
+                    \draw[HIMAtua,thick] (-.25,-.25)--(2,2);
+                    \draw[teal,thick] (-.18,2.18)--(2.18,-.18);
+                    \fill[magenta] (1,1) circle[radius=2pt] node[above=2pt,font=\scriptsize] {$(1,1)$};
+                \end{tikzpicture}
+                \par $y=x$ dan $y=2-x$.
+            \end{block}
+        \end{column}
+        \begin{column}{.32\textwidth}
+            \onslide<2->{%
+                \begin{block}{Tak hingga solusi}
+                    \centering
+                    \begin{tikzpicture}[scale=1.04]
+                        \draw[graph axis] (-.38,0)--(2.32,0) node[right] {$x$};
+                        \draw[graph axis] (0,-.35)--(0,2.48) node[above] {$y$};
+                        \draw[teal,line width=2.4pt] (-.25,-.25)--(2,2);
+                        \draw[HIMAtua,densely dashed,line width=1.2pt] (-.25,-.25)--(2,2);
+                    \end{tikzpicture}
+                    \par $y=x$ dan $2y=2x$.
+                \end{block}
+            }
+        \end{column}
+        \begin{column}{.31\textwidth}
+            \onslide<3->{%
+                \begin{block}{Tidak ada solusi}
+                    \centering
+                    \begin{tikzpicture}[scale=1.04]
+                        \draw[graph axis] (-.38,0)--(2.32,0) node[right] {$x$};
+                        \draw[graph axis] (0,-.35)--(0,2.48) node[above] {$y$};
+                        \draw[HIMAtua,thick] (-.25,-.25)--(2,2);
+                        \draw[teal,thick] (-.3,.7)--(1.2,2.2);
+                    \end{tikzpicture}
+                    \par $y=x$ dan $y=x+1$.
+                \end{block}
+            }
+        \end{column}
+    \end{columns}
+    \par\smallskip
+    Untuk tiga variabel, persamaan dengan koefisien tak semuanya nol menggambarkan bidang. Solusinya berada pada irisan bidang-bidang tersebut.
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Metode invers mengalikan kedua ruas dari kiri}
+    \begin{block}{Jika matriks koefisien invertibel}
+        Dari $A\vect{x}=\vect{b}$ diperoleh $A^{-1}A\vect{x}=A^{-1}\vect{b}$, sehingga solusi tunggalnya $\vect{x}=A^{-1}\vect{b}$.
+    \end{block}
+    \begin{contoh}
+        Gunakan $A$ dari contoh invers orde tiga dengan $\vect{b}=(1,1,2)^T$.
+    \end{contoh}
+    \onslide<2->{%
+        \[
+            \vect{x}=
+                \begin{pmatrix}6&-2&-1\\-2&1&0\\-1&0&1\end{pmatrix}
+                \begin{pmatrix}1\\1\\2\end{pmatrix}
+                =\boxed{\begin{pmatrix}2\\-1\\1\end{pmatrix}}.
+        \]
+        Substitusi pada baris pertama memberi $2+2(-1)+1=1$.
+    }
+\end{frame}
+
+% Gauss, Gauss--Jordan, dan jenis solusi (hlm. 311--316).
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Eliminasi Gauss berhenti pada eselon baris}
+    \begin{contoh}
+        Gunakan eliminasi Gauss untuk menyelesaikan
+        $\begin{cases}
+            x+2y-z=1,\\
+            2x+5y+z=9,\\
+            -x-y+3z=4.
+        \end{cases}$
+    \end{contoh}
+    \onslide<2->{%
+        Terapkan OBE pada seluruh matriks diperbesar. Langkah pertama membuat nol di bawah pivot kolom $1$.
+        \[
+            \aug{rrr|r}{1&2&-1&1\\2&5&1&9\\-1&-1&3&4}
+            \xrightarrow[\ B_3\gets B_3+B_1\ ]{\ B_2\gets B_2-2B_1\ }
+            \aug{rrr|r}{1&2&-1&1\\0&1&3&7\\0&1&2&5}
+            \onslide<3->{%
+                \xrightarrow[\ B_3\gets -B_3\ ]{\ B_3\gets B_3-B_2\ }
+                \aug{rrr|r}{1&2&-1&1\\0&1&3&7\\0&0&1&2}.
+            }
+        \]
+    }
+    \onslide<3->{Ketiga pivot sudah bernilai $1$ dan bagian di bawahnya nol. Lanjutkan dengan substitusi balik.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Substitusi balik membaca persamaan dari bawah}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.45\textwidth}
+            \begin{block}{Persamaan dari bentuk eselon}
+                \[
+                    \begin{cases}
+                        x+2y-z=1,\\
+                        y+3z=7,\\
+                        z=2.
+                    \end{cases}
+                \]
+            \end{block}
+        \end{column}
+        \begin{column}{.51\textwidth}
+            \onslide<2->{%
+                \begin{align*}
+                    z&=2,\\
+                    y&=7-3(2)=1,\\
+                    x&=1-2(1)+2=1.
+                \end{align*}
+                Solusinya $\boxed{(x,y,z)=(1,1,2)}$.
+            }
+            \onslide<3->{%
+                Pada persamaan ketiga awal, $-1-1+3(2)=4$.
+                OBE mempertahankan himpunan solusi karena setiap langkah dapat dibalik.
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Gauss--Jordan meneruskan eliminasi sampai tereduksi}
+    Untuk sistem yang sama, pivot pada bentuk eselon sudah siap dipakai untuk membuat nol di atasnya.
+    \onslide<2->{%
+        \[
+            \aug{rrr|r}{1&2&-1&1\\0&1&3&7\\0&0&1&2}
+            \xrightarrow[\ B_1\gets B_1+B_3\ ]{\ B_2\gets B_2-3B_3\ }
+            \aug{rrr|r}{1&2&0&3\\0&1&0&1\\0&0&1&2}
+            \onslide<3->{%
+                \xrightarrow{\ B_1\gets B_1-2B_2\ }
+                \aug{rrr|r}{1&0&0&1\\0&1&0&1\\0&0&1&2}.
+            }
+        \]
+    }
+    \onslide<3->{%
+        \begin{block}{Baca solusi langsung}
+            Blok koefisien sudah menjadi $I_3$. Ketiga baris langsung menyatakan $x=1$, $y=1$, dan $z=2$.
+        \end{block}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Baris terakhir dan kolom pivot menentukan jenis solusi}
+    Setelah mereduksi $[A\mid\vect{b}]$, periksa ada tidaknya baris kontradiksi. Jika sistem konsisten, hitung kolom variabel yang mempunyai pivot.
+    \par\medskip
+    \begin{center}
+        \begin{tabular}{p{7.4cm}p{5.0cm}}
+            \rowcolor{HIMAtua!18}
+            \textbf{Yang terlihat pada hasil reduksi} & \textbf{Jenis solusi}\\
+            Baris $[0\ \cdots\ 0\mid c]$ dengan $c\ne0$ & Tidak ada solusi\\
+            Konsisten, setiap kolom variabel berpivot & Satu solusi\\
+            Konsisten, ada kolom variabel tanpa pivot & Tak hingga banyak solusi
+        \end{tabular}
+    \end{center}
+    \onslide<2->{%
+        \begin{block}{Kolom tanpa pivot memberi variabel bebas}
+            Beri setiap variabel bebas nilai parameter real. Persamaan yang tersisa menentukan variabel berpivot dalam parameter itu.
+        \end{block}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Contoh SPL dengan parameter pada koefisien}
+    \begin{contoh}
+        Tentukan jenis solusi ketika $a$ berubah pada sistem
+        $\begin{cases}
+            x-y+z=2,\\
+            2x-y+3z=5,\\
+            x-2y+(a^2-4)z=a-1.
+        \end{cases}$
+    \end{contoh}
+    \onslide<2->{%
+        Lakukan $B_2\gets B_2-2B_1$, $B_3\gets B_3-B_1$, lalu $B_3\gets B_3+B_2$.
+        \[
+            \aug{rrc|c}{1&-1&1&2\\2&-1&3&5\\1&-2&a^2-4&a-1}
+            \xrightarrow{\ \mathrm{OBE}\ }
+            \aug{rrc|c}{1&-1&1&2\\0&1&1&1\\0&0&a^2-4&a-2}.
+        \]
+    }
+    \onslide<3->{Jenis solusi berubah ketika koefisien $z$ pada baris terakhir menjadi nol.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Periksa nilai parameter sebelum membagi}
+    Baris terakhir menghasilkan $(a^2-4)z=a-2$. Kandidat nilai khusus adalah $a=2$ dan $a=-2$.
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{.31\textwidth}
+            \begin{block}{$a\ne\pm2$}
+                Pivot terakhir ada. Dari baris terakhir, $z=1/(a+2)$, lalu $y$ dan $x$ ditentukan oleh dua baris sebelumnya.
+                \par\smallskip
+                \textbf{Satu solusi.}
+            \end{block}
+        \end{column}
+        \begin{column}{.34\textwidth}
+            \onslide<2->{%
+                \begin{block}{$a=2$}
+                    Baris terakhir menjadi $0=0$. Dengan $z=t$,
+                    \[
+                        (x,y,z)=(3-2t,1-t,t).
+                    \]
+                    \textbf{Tak hingga solusi.}
+                \end{block}
+            }
+        \end{column}
+        \begin{column}{.31\textwidth}
+            \onslide<3->{%
+                \begin{alertblock}{$a=-2$}
+                    Baris terakhir menjadi $0=-4$, suatu kontradiksi.
+                    \par\smallskip
+                    \textbf{Tidak ada solusi.}
+                \end{alertblock}
+            }
+        \end{column}
+    \end{columns}
+    \par\smallskip
+    \onslide<3->{Faktor $a-2$ hanya boleh dicoret ketika $a\ne2$. Pada $a=2$, justru muncul satu variabel bebas.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{SPL homogen selalu memiliki solusi nol}
+    \begin{definisi}[SPL homogen]
+        Sistem $A\vect{x}=\vect{0}$ disebut homogen. Solusi $\vect{x}=\vect{0}$ disebut trivial, sedangkan solusi taknol disebut nontrivial.
+    \end{definisi}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.42\textwidth}
+            \begin{contoh}
+                Selesaikan $A\vect{x}=\vect{0}$ untuk variabel $(x,y,z,w)$ dengan
+                \[
+                    A=\begin{pmatrix}1&1&-1&0\\2&2&-1&1\\-1&-1&2&1\end{pmatrix}.
+                \]
+            \end{contoh}
+        \end{column}
+        \begin{column}{.54\textwidth}
+            \onslide<2->{%
+                Lakukan $B_2\gets B_2-2B_1$ dan $B_3\gets B_3+B_1$. Kedua baris itu memberi $z+w=0$.
+                Dengan $y=s$ dan $w=t$, baris pertama menentukan $x=-s-t$.
+                \[
+                    (x,y,z,w)=(-s-t,s,-t,t),\quad s,t\in\R.
+                \]
+            }
+            \onslide<3->{Untuk $(s,t)=(1,0)$, solusinya $(-1,1,0,0)$, yaitu nontrivial.}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Invers, pivot, dan solusi homogen saling terkait}
+    \begin{teorema}[Karakterisasi matriks invertibel]
+        Untuk matriks persegi $A_{n\times n}$, ketiga pernyataan berikut ekuivalen.
+        \begin{enumerate}
+            \item $A$ mempunyai invers.
+            \item $A\vect{x}=\vect{0}$ hanya mempunyai solusi trivial.
+            \item Bentuk eselon baris tereduksi dari $A$ adalah $I_n$.
+        \end{enumerate}
+    \end{teorema}
+    \onslide<2->{%
+        Bentuk $I_n$ berarti semua variabel berpivot. Jika bentuk tereduksi memiliki baris nol, ada variabel bebas yang dapat dipilih taknol.
+        \begin{contoh}
+            Untuk $A=\begin{pmatrix}1&2\\2&4\end{pmatrix}$, solusi nontrivial $(-2,1)$ langsung menunjukkan $A$ tidak invertibel.
+        \end{contoh}
+    }
 \end{frame}
 
 \section{Determinan}
+
+% Determinan ukuran kecil, Sarrus, dan sifat (hlm. 316--320).
 \begin{frame}
     \frametitle{\insertsection}
-    \begin{definisi}[Determinan]
-        Untuk matriks persegi $A$ berukuran $2 \times 2$:
-        \[A = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \implies \det(A) = ad - bc\]
-        Untuk matriks berukuran $n \times n$, determinan dihitung menggunakan ekspansi kofaktor atau menggunakan OBE.
+    \framesubtitle{Determinan adalah skalar dengan tanda}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.5\textwidth}
+            \begin{definisi}[Determinan]
+                Determinan matriks persegi $A$ ditulis $\det(A)$ atau $|A|$. Untuk orde $1$ dan $2$,
+                \[
+                    \det\begin{pmatrix}a\end{pmatrix}=a,\qquad
+                    \begin{vmatrix}a&b\\c&d\end{vmatrix}=ad-bc.
+                \]
+            \end{definisi}
+            \onslide<2->{%
+                \begin{contoh}
+                    Untuk kolom $(2,1)^T$ dan $(1,3)^T$, determinannya $2\cdot3-1\cdot1=5$.
+                \end{contoh}
+                Luas jajargenjangnya $|\det(A)|=5$.
+            }
+        \end{column}
+        \begin{column}{.46\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.94]
+                \fill[HIMAmuda!25] (0,0)--(2,1)--(3,4)--(1,3)--cycle;
+                \draw[graph axis] (-.28,0)--(3.82,0) node[right] {$x$};
+                \draw[graph axis] (0,-.28)--(0,4.36) node[above] {$y$};
+                \draw[->,>=stealth,very thick,HIMAtua] (0,0)--(2,1)
+                    node[below right] {$(2,1)$};
+                \draw[->,>=stealth,very thick,teal] (0,0)--(1,3)
+                    node[above left] {$(1,3)$};
+                \draw[densely dashed,black!65] (2,1)--(3,4)--(1,3);
+                \onslide<2->{\node at (1.5,2) {$5$};}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Sarrus mengelompokkan enam hasil kali diagonal}
+    Untuk matriks $3\times3$, tuliskan ulang kolom pertama dan kedua di kanan. Kalikan tiga entri pada setiap jalur yang ditandai.
+    \par\smallskip
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \matrix[matrix grid] (d) {
+                    a\&b\&c\&a\&b\\
+                    d\&e\&f\&d\&e\\
+                    g\&h\&i\&g\&h\\
+                };
+                \begin{scope}[on background layer]
+                    \foreach \start/\finish in {1/3,2/4,3/5}{
+                        \draw[HIMAmuda!40,line width=7pt,line cap=round]
+                            (d-1-\start.center)--(d-3-\finish.center);
+                    }
+                \end{scope}
+                \path (d-1-3.east)--coordinate[midway] (sep) (d-1-4.west);
+                \draw[densely dashed] (sep|-d.north)--(sep|-d.south);
+            \end{tikzpicture}
+            \par Diagonal turun dijumlahkan.
+            \[
+                aei+bfg+cdh
+            \]
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \centering
+            \onslide<2->{%
+                \begin{tikzpicture}
+                    \matrix[matrix grid] (u) {
+                        a\&b\&c\&a\&b\\
+                        d\&e\&f\&d\&e\\
+                        g\&h\&i\&g\&h\\
+                    };
+                    \begin{scope}[on background layer]
+                        \foreach \start/\finish in {1/3,2/4,3/5}{
+                            \draw[magenta!26,line width=7pt,line cap=round]
+                                (u-3-\start.center)--(u-1-\finish.center);
+                        }
+                    \end{scope}
+                    \path (u-1-3.east)--coordinate[midway] (sep) (u-1-4.west);
+                    \draw[densely dashed] (sep|-u.north)--(sep|-u.south);
+                \end{tikzpicture}
+                \par Diagonal naik dikurangkan.
+                \[
+                    ceg+afh+bdi
+                \]
+            }
+        \end{column}
+    \end{columns}
+    \onslide<2->{Ambil jumlah turun dikurangi jumlah naik. Aturan Sarrus khusus untuk orde $3$.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Contoh menghitung tiga suku turun dan tiga suku naik}
+    \begin{contoh}
+        Hitung $\det(S)$ untuk $S=\begin{pmatrix}2&3&0\\1&1&-2\\-1&2&4\end{pmatrix}$.
+    \end{contoh}
+    \onslide<2->{%
+        \begin{align*}
+            \text{Jumlah turun}
+                &=2(1)(4)+3(-2)(-1)+0(1)(2)=8+6+0=14,\\
+            \text{Jumlah naik}
+                &=0(1)(-1)+2(-2)(2)+3(1)(4)=0-8+12=4.
+        \end{align*}
+    }
+    \onslide<3->{%
+        Maka $\boxed{\det(S)=14-4=10}$.
+        Suku $2(-2)(2)$ bernilai negatif sebelum jumlah naik dikurangkan.
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Baca struktur matriks sebelum menghitung}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.51\textwidth}
+            \begin{block}{Sifat determinan}
+                Untuk matriks persegi, berlaku
+                \begin{itemize}
+                    \item baris atau kolom nol memberi determinan $0$,
+                    \item dua baris atau dua kolom sebanding memberi determinan $0$,
+                    \item pada matriks segitiga, determinan adalah hasil kali diagonal utama,
+                    \item $\det(A^T)=\det(A)$ dan $\det(AB)=\det(A)\det(B)$ untuk $A,B$ seorde.
+                \end{itemize}
+            \end{block}
+        \end{column}
+        \begin{column}{.45\textwidth}
+            \onslide<2->{%
+                \begin{contoh}
+                    Untuk $U=\begin{pmatrix}2&5&1\\0&-3&2\\0&0&4\end{pmatrix}$,
+                    \[
+                        \det(U)=2(-3)(4)=-24.
+                    \]
+                \end{contoh}
+                Jika $\det(S)=10$, $\det(SU)=10(-24)=-240$. Kita dapat memakai sifat perkalian tanpa menghitung entri $SU$.
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Catat perubahan determinan pada setiap OBE}
+    \begin{center}
+        \begin{tabular}{p{8.2cm}l}
+            \rowcolor{HIMAtua!18}
+            \textbf{Operasi pada satu baris atau kolom} & \textbf{Pengaruh pada determinan}\\
+            Menukar dua baris atau kolom & Tanda berbalik\\
+            Mengalikan satu baris atau kolom dengan $k$ & Nilai dikalikan $k$\\
+            Menambah kelipatan baris atau kolom lain & Nilai tetap
+        \end{tabular}
+    \end{center}
+    \onslide<2->{%
+        \begin{block}{Dari satu baris ke seluruh matriks}
+            Jika $A$ berorde $n$, mengalikan semua $n$ baris dengan $k$ memberi
+            $\det(kA)=k^n\det(A)$.
+            Jika $A$ invertibel, $\det(A^{-1})=1/\det(A)$ karena $AA^{-1}=I_n$.
+        \end{block}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Contoh membentuk segitiga dengan satu pertukaran baris}
+    \begin{contoh}
+        Hitung $\det(D)$ dengan membentuk matriks segitiga.
+    \end{contoh}
+    \[
+        D=\begin{pmatrix}0&2&1\\2&1&3\\4&-1&5\end{pmatrix}
+        \onslide<2->{%
+            \xrightarrow{\ B_1\leftrightarrow B_2\ }
+            \begin{pmatrix}2&1&3\\0&2&1\\4&-1&5\end{pmatrix}
+        }
+        \onslide<3->{%
+            \xrightarrow[\ B_3\gets B_3+\frac32 B_2\ ]{\ B_3\gets B_3-2B_1\ }
+            \begin{pmatrix}2&1&3\\0&2&1\\0&0&\tfrac12\end{pmatrix}.
+        }
+    \]
+    \onslide<3->{%
+        Dua penambahan baris mempertahankan determinan dan satu pertukaran membalik tandanya.
+        Jadi $\det(D)=-\bigl(2\cdot2\cdot\tfrac12\bigr)=\boxed{-2}$.
+    }
+\end{frame}
+
+% Minor, kofaktor, adjoin, dan invers (hlm. 320--323).
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Minor menghapus satu baris dan satu kolom}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.52\textwidth}
+            \begin{definisi}[Minor dan kofaktor]
+                Untuk $A$ persegi, minor $M_{ij}$ adalah determinan submatriks setelah baris $i$ dan kolom $j$ dihapus.
+                Kofaktor $C_{ij}$ adalah $(-1)^{i+j}M_{ij}$.
+            \end{definisi}
+            \onslide<2->{%
+                \begin{contoh}
+                    Pada matriks $S$ dari contoh Sarrus,
+                    \[
+                        M_{21}=\begin{vmatrix}3&0\\2&4\end{vmatrix}=12,
+                        \qquad C_{21}=-12.
+                    \]
+                \end{contoh}
+            }
+        \end{column}
+        \begin{column}{.44\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \matrix[matrix grid,left delimiter=(,right delimiter=)] (m) {
+                    2\&3\&0\\
+                    1\&1\&-2\\
+                    -1\&2\&4\\
+                };
+                \onslide<2->{%
+                    \begin{scope}[on background layer]
+                        \node[fill=magenta!22,rounded corners,inner sep=1pt,fit=(m-2-1)(m-2-3)] {};
+                        \node[fill=magenta!22,rounded corners,inner sep=1pt,fit=(m-1-1)(m-3-1)] {};
+                    \end{scope}
+                    \node[above=3mm of m,font=\small] {hapus baris $2$ dan kolom $1$};
+                }
+            \end{tikzpicture}
+            \par\medskip
+            Pola tanda kofaktor dimulai dengan $+$ di kiri atas.
+            \[
+                \begin{pmatrix}+&-&+\\-&+&-\\+&-&+\end{pmatrix}
+            \]
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Satu baris atau kolom cukup untuk ekspansi}
+    \begin{teorema}[Ekspansi kofaktor]
+        Untuk matriks persegi $A$ berorde $n\ge2$, determinan dapat dihitung melalui baris $i$ mana pun atau kolom $j$ mana pun.
+        \[
+            \det(A)=\sum_{k=1}^{n}a_{ik}C_{ik}
+                   =\sum_{k=1}^{n}a_{kj}C_{kj}.
+        \]
+    \end{teorema}
+    \onslide<2->{%
+        \begin{contoh}
+            Kolom $3$ dari matriks $S$ pada contoh Sarrus berisi $0,-2,4$. Suku pertama gugur, sehingga cukup hitung
+            $C_{23}=-(2\cdot2-3(-1))=-7$ dan $C_{33}=2\cdot1-3\cdot1=-1$.
+        \end{contoh}
+    }
+    \onslide<3->{Jadi $\det(S)=0+(-2)(-7)+4(-1)=10$, sama dengan hasil Sarrus.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Gabungkan OBE dan kofaktor untuk matriks orde empat}
+    \begin{contoh}
+        Hitung $\det(G)$ dengan membuat nol pada kolom pertama.
+    \end{contoh}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \[
+                G=\begin{pmatrix}1&2&1&3\\2&5&2&5\\3&7&3&7\\1&2&2&5\end{pmatrix}
+                \onslide<2->{%
+                    \xrightarrow{\mathrm{OBE}}
+                    \begin{pmatrix}1&2&1&3\\0&1&0&-1\\0&1&0&-2\\0&0&1&2\end{pmatrix}.
+                }
+            \]
+            \onslide<2->{Lakukan $B_i\gets B_i-g_{i1}B_1$ untuk $i=2,3,4$. Determinan tetap.}
+        \end{column}
+        \begin{column}{.42\textwidth}
+            \onslide<3->{%
+                Ekspansi kolom pertama menyisakan minor orde tiga. Ekspansi kolom kedua pada minor itu memberi
+                \[
+                    \begin{aligned}
+                        \det(G)&=\begin{vmatrix}1&0&-1\\1&0&-2\\0&1&2\end{vmatrix}\\
+                               &=-\begin{vmatrix}1&-1\\1&-2\end{vmatrix}=\boxed{1}.
+                    \end{aligned}
+                \]
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Adjoin adalah transpos matriks kofaktor}
+    \begin{definisi}[Matriks kofaktor dan adjoin]
+        Untuk $A$ persegi, kumpulkan kofaktor menjadi $\Cof(A)=(C_{ij})$.
+        Adjoin klasik didefinisikan sebagai $\Adj(A)=\Cof(A)^T$.
     \end{definisi}
+    \onslide<2->{%
+        \begin{contoh}
+            Untuk $S$ pada contoh sebelumnya,
+            \[
+                \Cof(S)=\begin{pmatrix}8&-2&3\\-12&8&-7\\-6&4&-1\end{pmatrix},
+                \qquad
+                \Adj(S)=\begin{pmatrix}8&-12&-6\\-2&8&4\\3&-7&-1\end{pmatrix}.
+            \]
+        \end{contoh}
+        Misalnya $C_{21}=-12$ berpindah ke entri $(1,2)$ pada $\Adj(S)$.
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Adjoin memberi invers ketika determinan taknol}
+    \begin{teorema}[Invers dari adjoin]
+        Matriks persegi $A$ invertibel tepat ketika $\det(A)\ne0$. Dalam hal ini,
+        \[
+            A^{-1}=\frac{1}{\det(A)}\Adj(A).
+        \]
+    \end{teorema}
+    \onslide<2->{%
+        Perkalian $A\Adj(A)$ memberi $\det(A)I$. Pada diagonal, entri hasil adalah ekspansi kofaktor. Di luar diagonal, ekspansinya setara dengan determinan yang memiliki dua baris sama.
+    }
+    \onslide<3->{%
+        \begin{contoh}
+            Karena $\det(S)=10$, didapat
+            $\displaystyle S^{-1}=\frac1{10}\begin{pmatrix}8&-12&-6\\-2&8&4\\3&-7&-1\end{pmatrix}$.
+        \end{contoh}
+    }
+\end{frame}
+
+% Aturan Cramer (hlm. 323--327).
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Aturan Cramer mengganti satu kolom koefisien}
+    \begin{teorema}[Aturan Cramer]
+        Untuk $A\vect{x}=\vect{b}$ dengan $A$ persegi dan $\det(A)\ne0$, bentuk $A_j$ dengan mengganti kolom $j$ dari $A$ dengan $\vect{b}$. Solusi komponen ke-$j$ adalah
+        \[
+            x_j=\frac{\det(A_j)}{\det(A)}.
+        \]
+    \end{teorema}
+    \onslide<2->{%
+        \begin{block}{Mengapa penggantian kolom bekerja?}
+            Karena $\vect{b}=\sum_i x_i\vect{a}_i$ dengan $\vect{a}_i$ kolom $A$, ekspansi linear pada kolom $j$ memberi beberapa suku. Semua suku dengan $i\ne j$ mengandung kolom yang sama dan bernilai nol. Tinggal $\det(A_j)=x_j\det(A)$.
+        \end{block}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Contoh menghitung satu komponen dengan Cramer}
+    \begin{contoh}
+        Gunakan aturan Cramer untuk $S\vect{x}=\vect{b}$ dengan
+        $S=\begin{pmatrix}2&3&0\\1&1&-2\\-1&2&4\end{pmatrix}$ dan
+        $\vect{b}=\begin{pmatrix}-1\\-4\\5\end{pmatrix}$.
+    \end{contoh}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.46\textwidth}
+            \onslide<2->{%
+                Untuk $x_2$, ganti kolom kedua.
+                \[
+                    S_2=\begin{pmatrix}
+                        2&\color{teal}{-1}&0\\
+                        1&\color{teal}{-4}&-2\\
+                        -1&\color{teal}{5}&4
+                    \end{pmatrix}.
+                \]
+                Ekspansi baris pertama memberi
+                $\det(S_2)=2(-16+10)+(4-2)=-10$.
+            }
+        \end{column}
+        \begin{column}{.5\textwidth}
+            \onslide<3->{%
+                Penggantian kolom $1$ dan $3$ memberi $\det(S_1)=10$ serta $\det(S_3)=20$.
+                Karena $\det(S)=10$,
+                \[
+                    (x_1,x_2,x_3)
+                        =\left(\frac{10}{10},\frac{-10}{10},\frac{20}{10}\right)
+                        =\boxed{(1,-1,2)}.
+                \]
+                Untuk sistem dengan $\det(A)=0$, gunakan eliminasi untuk memeriksa konsistensi.
+            }
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \section{Nilai Eigen dan Vektor Eigen}
+
+% Definisi, persamaan karakteristik, dan contoh (hlm. 327--332).
 \begin{frame}
     \frametitle{\insertsection}
-    \begin{definisi}[Nilai Eigen dan Vektor Eigen]
-        Misalkan $A$ adalah matriks persegi $n \times n$. Sebuah skalar $\lambda$ disebut \textbf{nilai eigen} (eigenvalue) dari $A$ jika terdapat vektor tak-nol $\mathbf{x}$ di $\mathbb{R}^n$ sedemikian sehingga
-        \[A\mathbf{x} = \lambda \mathbf{x}\]
-        Vektor $\mathbf{x}$ tersebut disebut \textbf{vektor eigen} (eigenvector) dari $A$ yang berkorespondensi dengan $\lambda$.
-    \end{definisi}
+    \framesubtitle{Matriks mengalikan vektor eigen dengan skalar}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.52\textwidth}
+            \begin{definisi}[Nilai eigen dan vektor eigen]
+                Untuk $A$ persegi berorde $n$, vektor $\vect{v}\in\R^n$ dengan $\vect{v}\ne\vect{0}$ disebut vektor eigen jika
+                \[
+                    A\vect{v}=\lambda\vect{v}
+                \]
+                untuk suatu $\lambda\in\R$. Bilangan $\lambda$ disebut nilai eigen yang bersesuaian.
+            \end{definisi}
+            \onslide<2->{%
+                Jika $\lambda>0$, arah tetap. Jika $\lambda<0$, arah berbalik.
+                Jika $\lambda=0$, hasilnya vektor nol.
+            }
+        \end{column}
+        \begin{column}{.44\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.98]
+                \draw[graph axis] (-.35,0)--(3.73,0) node[right] {$x$};
+                \draw[graph axis] (0,-.35)--(0,3.63) node[above] {$y$};
+                \draw[black!40,densely dashed] (-.28,-.28)--(3.38,3.38);
+                \onslide<2->{%
+                    \draw[->,>=stealth,very thick,HIMAtua] (0,0)--(3,3)
+                        node[above left] {$A\vect{v}=3\vect{v}$};
+                }
+                \draw[->,>=stealth,very thick,magenta] (0,0)--(1,1)
+                    node[above left] {$\vect{v}$};
+            \end{tikzpicture}
+            \par\smallskip
+            \onslide<2->{$\lambda=3$ memperpanjang vektor tiga kali.}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Uji apakah hasil kali merupakan kelipatan skalar}
+    \begin{contoh}
+        Untuk $A=\begin{pmatrix}3&0\\4&-1\end{pmatrix}$, periksa
+        $\vect{u}=\binom{0}{1}$ dan $\vect{w}=\binom{1}{2}$.
+    \end{contoh}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \onslide<2->{%
+                \begin{block}{Vektor $\vect{u}$}
+                    \[
+                        A\vect{u}=\binom{0}{-1}=-\vect{u}.
+                    \]
+                    Jadi $\vect{u}$ vektor eigen dengan $\lambda=-1$. Arah vektor berbalik.
+                \end{block}
+            }
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \onslide<3->{%
+                \begin{block}{Vektor $\vect{w}$}
+                    \[
+                        A\vect{w}=\binom{3}{2}.
+                    \]
+                    Komponen pertama memerlukan $\lambda=3$, sedangkan komponen kedua memerlukan $\lambda=1$. Jadi $\vect{w}$ bukan vektor eigen.
+                \end{block}
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Persamaan karakteristik mencari nilai eigen}
+    \[
+        A\vect{v}=\lambda\vect{v}
+        \quad\Longleftrightarrow\quad
+        (A-\lambda I_n)\vect{v}=\vect{0}.
+    \]
+    \onslide<2->{%
+        Agar SPL homogen ini memiliki solusi taknol, $A-\lambda I_n$ harus tak invertibel. Maka
+        \[
+            \boxed{\det(A-\lambda I_n)=0}.
+        \]
+        \begin{block}{Dua tahap perhitungan}
+            Cari akar real persamaan karakteristik untuk memperoleh nilai eigen.
+            Untuk setiap nilai eigen, selesaikan SPL homogen $(A-\lambda I_n)\vect{v}=\vect{0}$ dan ambil solusi taknol.
+        \end{block}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Contoh menemukan nilai dan vektor eigen orde dua}
+    Untuk $A=\begin{pmatrix}3&0\\4&-1\end{pmatrix}$,
+    \[
+        \det(A-\lambda I_2)
+        =\begin{vmatrix}3-\lambda&0\\4&-1-\lambda\end{vmatrix}
+        =(3-\lambda)(-1-\lambda).
+    \]
+    \onslide<2->{Jadi nilai eigennya $3$ dan $-1$.}
+    \par\smallskip
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \onslide<3->{%
+                \begin{block}{$\lambda=3$}
+                    $(A-3I_2)\vect{v}=\vect{0}$ memberi $4x-4y=0$. Jadi $y=x$ dan
+                    \[
+                        \vect{v}=t\binom11,\qquad t\ne0.
+                    \]
+                \end{block}
+            }
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \onslide<3->{%
+                \begin{block}{$\lambda=-1$}
+                    $(A+I_2)\vect{v}=\vect{0}$ memberi $4x=0$. Jadi $x=0$ dan
+                    \[
+                        \vect{v}=s\binom01,\qquad s\ne0.
+                    \]
+                \end{block}
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Contoh nilai eigen dengan akar karakteristik berulang}
+    \begin{contoh}
+        Cari nilai dan vektor eigen dari $E=\begin{pmatrix}4&0&2\\2&2&2\\0&0&2\end{pmatrix}$.
+    \end{contoh}
+    \onslide<2->{%
+        Kurangi hanya diagonal utama dengan $\lambda$, lalu ekspansi melalui baris ketiga.
+        \[
+            \det(E-\lambda I_3)=
+              \begin{vmatrix}4-\lambda&0&2\\2&2-\lambda&2\\0&0&2-\lambda\end{vmatrix}
+              =(4-\lambda)(2-\lambda)^2.
+        \]
+    }
+    \onslide<3->{%
+        Nilai eigennya $\lambda=4$ dan $\lambda=2$. Akar $2$ muncul dua kali pada polinom karakteristik.
+        Jumlah variabel bebas untuk tiap nilai eigen diperoleh dari SPL homogennya.
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Vektor eigen diperoleh dari variabel bebas}
+    Lanjutkan contoh matriks $E$ dengan menyelesaikan $(E-\lambda I_3)\vect{v}=\vect{0}$.
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{.47\textwidth}
+            \onslide<2->{%
+                \begin{block}{$\lambda=4$}
+                    Baris terakhir memberi $z=0$. Baris kedua menjadi $2x-2y=0$.
+                    \[
+                        \vect{v}=t\begin{pmatrix}1\\1\\0\end{pmatrix},
+                        \qquad t\ne0.
+                    \]
+                \end{block}
+            }
+        \end{column}
+        \begin{column}{.49\textwidth}
+            \onslide<3->{%
+                \begin{block}{$\lambda=2$}
+                    Dua baris pertama sama-sama memberi $2x+2z=0$.
+                    Ambil $x=t$ dan $y=s$.
+                    \[
+                        \vect{v}=t\begin{pmatrix}1\\0\\-1\end{pmatrix}
+                                 +s\begin{pmatrix}0\\1\\0\end{pmatrix},
+                        \qquad (t,s)\ne(0,0).
+                    \]
+                \end{block}
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Akar berulang tetap perlu diperiksa lewat SPL}
+    \begin{contoh}
+        Tentukan seluruh vektor eigen dari $H=\begin{pmatrix}2&1\\0&2\end{pmatrix}$.
+    \end{contoh}
+    \onslide<2->{%
+        \[
+            \det(H-\lambda I_2)=(2-\lambda)^2
+            \quad\Longrightarrow\quad \lambda=2.
+        \]
+        Sistem $(H-2I_2)\vect{v}=\vect{0}$ memberi $y=0$ dan $x$ bebas.
+        Jadi seluruh vektor eigennya berbentuk $t\binom10$ dengan $t\ne0$.
+    }
+    \onslide<3->{%
+        \begin{block}{Bandingkan dengan matriks $E$}
+            Pada kedua contoh, $2$ adalah akar ganda. Untuk $E$ terdapat dua variabel bebas saat $\lambda=2$, sedangkan untuk $H$ hanya satu.
+        \end{block}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Pangkat matriks pada vektor eigen cukup memakai skalar}
+    Jika $A\vect{v}=\lambda\vect{v}$, maka
+    \[
+        A^2\vect{v}=A(A\vect{v})=A(\lambda\vect{v})
+           =\lambda A\vect{v}=\lambda^2\vect{v}.
+    \]
+    Dengan cara yang sama, $A^k\vect{v}=\lambda^k\vect{v}$ untuk bilangan bulat $k\ge1$.
+    \begin{contoh}
+        Jika $A=\begin{pmatrix}3&0\\4&-1\end{pmatrix}$, hitung $A^3\binom11$.
+    \end{contoh}
+    \onslide<2->{%
+        Karena $A\binom11=3\binom11$, hasilnya $3^3\binom11=\boxed{\binom{27}{27}}$.
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Invers, determinan, dan nilai eigen nol}
+    Untuk matriks persegi $A$, hasil-hasil dari bagian sebelumnya memberi hubungan berikut.
+    \begin{center}
+        \begin{tikzpicture}[every node/.style={align=center,font=\small}]
+            \node[draw=HIMAtua,fill=HIMAmuda!15,rounded corners,minimum width=3.5cm,minimum height=1.0cm]
+                (det) at (0,0) {$\det(A)=0$};
+            \node[draw=HIMAtua,fill=HIMAmuda!15,rounded corners,minimum width=3.5cm,minimum height=1.0cm]
+                (inv) at (5.1,0) {$A$ tak invertibel};
+            \node[draw=HIMAtua,fill=HIMAmuda!15,rounded corners,minimum width=3.5cm,minimum height=1.0cm]
+                (hom) at (5.1,-1.6) {$A\vect{v}=\vect{0}$ punya\\solusi taknol};
+            \node[draw=HIMAtua,fill=PastelGreen!25,rounded corners,minimum width=3.5cm,minimum height=1.0cm]
+                (eig) at (0,-1.6) {$0$ adalah nilai eigen $A$};
+            \draw[<->,thick,HIMAtua] (det)--(inv);
+            \draw[<->,thick,HIMAtua] (inv)--(hom);
+            \draw[<->,thick,HIMAtua] (hom)--(eig);
+        \end{tikzpicture}
+    \end{center}
+    \onslide<2->{%
+        \begin{contoh}
+            Kolom-kolom $A=\begin{pmatrix}1&2\\2&4\end{pmatrix}$ sebanding, jadi $\det(A)=0$.
+            Vektor $\binom{-2}{1}$ menjadi vektor eigen untuk $\lambda=0$.
+        \end{contoh}
+    }
 \end{frame}
 
 \end{document}

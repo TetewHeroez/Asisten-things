@@ -10,193 +10,767 @@
 \newcommand{\rng}{\mathcal{R}}
 
 \renewcommand{\arraystretch}{1.5}
+% Tata letak mengikuti Beamer Bab 1 dan Bab 2.
+\setbeamertemplate{itemize items}[circle]
 
+
+% Sumber utama: ../KALKULUS 1 BAB 4.pdf (25 halaman pindai).
+% Halaman buku 110--111 tidak ada dalam PDF: halaman PDF 1 = buku 109,
+% halaman PDF 2 = buku 112. Pengantar laju/kecepatan dilengkapi dari konsep limit.
+% Cakupan: 4.1 (109,112--114), 4.2 (114--122), 4.3 (122--129), 4.4 (129--135).
+% Definisi 4.2.1--2; Teorema 4.2.1, 4.3.1--6, 4.4.1.
+% Penomoran otomatis mengikuti template Bab 1--2; rujukan buku hanya dalam komentar.
 \begin{document}
-\begin{frame}
-    \titlepage
-\end{frame}
-
-\AtBeginSection{
-    {
-        \begin{frame}{Daftar isi}
-            \tableofcontents[currentsection]
-        \end{frame}}
-}
+\begin{frame}\titlepage\end{frame}
+\begin{frame}{Daftar isi}\tableofcontents\end{frame}
 
 \section{Garis Singgung dan Laju Perubahan}
-\begin{frame}
-    \frametitle{\insertsection}
-    \begin{definisi}[Garis Singgung]
-        Misalkan kurva $C$ memiliki persamaan $y = f(x)$ dan $P(a, f(a))$ adalah sebuah titik pada $C$. Garis singgung pada kurva $C$ di titik $P$ adalah garis yang melalui $P$ dengan gradien
-        \[m = \lim_{x \to a} \frac{f(x) - f(a)}{x - a}\]
-        asalkan limit ini ada.
-    \end{definisi}
-    \onslide<2->{
-        \begin{alertblock}{Bentuk Alternatif}
-            Misalkan $h = x - a$, maka $x = a + h$. Ketika $x \to a$, maka $h \to 0$. Gradien garis singgung juga dapat dituliskan sebagai:
-            \[m = \lim_{h \to 0} \frac{f(a+h) - f(a)}{h}\]
-        \end{alertblock}
-    }
-\end{frame}
 
 \begin{frame}
-    \frametitle{\insertsection}
-    \begin{contoh}
-        Tentukan persamaan garis singgung pada kurva $y = x^2$ di titik $(1, 1)$.
-    \end{contoh}
-    \onslide<2->{
-        \textbf{Jawab:}
-        Gradien garis singgung di titik $(1, 1)$ adalah:
-        \begin{align*}
-            m &= \lim_{x \to 1} \frac{f(x) - f(1)}{x - 1} \\
-              &= \lim_{x \to 1} \frac{x^2 - 1}{x - 1} \\
-              &= \lim_{x \to 1} \frac{(x - 1)(x + 1)}{x - 1} \\
-              &= \lim_{x \to 1} (x + 1) = 2
-        \end{align*}
-        Persamaan garis singgung: $y - y_1 = m(x - x_1) \implies y - 1 = 2(x - 1) \implies y = 2x - 1$.
-    }
+\frametitle{\insertsection}
+\framesubtitle{Dari dua titik ke satu titik}
+
+\begin{block}{Motivasi}
+Kemiringan garis dapat dihitung dari dua titik. Bagaimana mengukur kemiringan kurva tepat di satu titik?
+\end{block}
+\begin{columns}[c]
+\begin{column}{.43\textwidth}
+
+% Digambar ulang dengan TikZ, berdasarkan gagasan Gambar 4.1.
+\centering
+\begin{tikzpicture}[x=1.05cm,y=.82cm,font=\scriptsize]
+    \draw[->] (-.2,0)--(4.3,0) node[right] {$x$};
+    \draw[->] (0,-.15)--(0,3.6) node[above] {$y$};
+    \draw[HIMAtua,very thick,domain=0:4,samples=60]
+        plot (\x,{.2+1.2*\x-.15*\x*\x});
+    \draw[red,thick,domain=0:3.5] plot (\x,{.35+.9*\x});
+    \draw[HIMAmuda!60!black,thick,domain=0:4] plot (\x,{.65+.6*\x});
+    \draw[dashed,gray] (1,0) node[below] {$a$}--(1,1.25)--(0,1.25);
+    \draw[dashed,gray] (3,0) node[below] {$a+h$}--(3,2.45);
+    \draw[densely dotted] (1,1.25)--(3,1.25);
+    \draw[<->] (3.12,1.25)--(3.12,2.45) node[midway,right] {$\Delta y$};
+    \fill[HIMAtua] (1,1.25) circle (2pt) node[above left] {$P$};
+    \fill[HIMAtua] (3,2.45) circle (2pt) node[above left] {$Q$};
+    \node[red,anchor=west] at (.1,3.65) {garis singgung};
+    \node[HIMAmuda!60!black,anchor=west] at (2.3,.4) {garis potong};
+\end{tikzpicture}
+\end{column}
+\begin{column}{.53\textwidth}
+Untuk $P(a,f(a))$ dan $Q(a+h,f(a+h))$,
+\[m_{PQ}=\frac{f(a+h)-f(a)}h,\quad h\ne0.\]
+\onslide<2->{Saat $Q$ mendekati $P$, kemiringan garis potong mendekati kemiringan garis singgung, jika limitnya ada.}
+\end{column}
+\end{columns}
 \end{frame}
 
+
 \begin{frame}
-    \frametitle{\insertsection}
-    \begin{definisi}[Laju Perubahan Kecepatan]
-        Misalkan sebuah benda bergerak sepanjang garis lurus sesuai dengan persamaan gerak $s = f(t)$, dengan $s$ adalah perpindahan yang diukur dari titik asal pada waktu $t$. Kecepatan sesaat dari benda tersebut pada waktu $t = a$ adalah:
-        \[v(a) = \lim_{h \to 0} \frac{f(a+h) - f(a)}{h}\]
-    \end{definisi}
-    \onslide<2->{
-        Secara umum, limit dari nilai perbandingan
-        \[\lim_{\Delta x \to 0} \frac{\Delta y}{\Delta x} = \lim_{x_2 \to x_1} \frac{f(x_2) - f(x_1)}{x_2 - x_1}\]
-        disebut \textbf{laju perubahan sesaat} dari $y$ terhadap $x$.
-    }
+\frametitle{\insertsection}
+\framesubtitle{Garis singgung sebagai limit}
+
+\begin{block}{Pengertian Garis Singgung}
+Jika limit berikut ada dan berhingga, gradien garis singgung di $P(a,f(a))$ adalah
+\[m=\lim_{h\to0}\frac{f(a+h)-f(a)}h
+=\lim_{x\to a}\frac{f(x)-f(a)}{x-a}.\]
+Persamaan garisnya: $y-f(a)=m(x-a)$.
+\end{block}
+\onslide<2->{\begin{alertblock}{Mengapa tidak langsung mengambil $h=0$?}
+Hasil bagi menjadi $0/0$. Kita menghitung kemiringan untuk $h\ne0$, lalu mengambil limitnya. Garis singgung juga dapat memotong kurva di titik lain.
+\end{alertblock}}
 \end{frame}
+
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: gradien dan persamaan garis}
+
+% Adaptasi latihan 4.1 nomor 6, hlm. 112.
+\begin{contoh}
+Tentukan garis singgung $f(x)=2x^2-1$ di titik dengan absis $a=2$.
+\end{contoh}
+\onslide<2->{
+\begin{align*}
+m&=\lim_{h\to0}\frac{2(2+h)^2-1-7}{h}
+=\lim_{h\to0}(8+2h)=8,\\
+y-7&=8(x-2)\quad\Longrightarrow\quad y=8x-9.
+\end{align*}
+\begin{block}{Cek hasil}
+Garis melewati $(2,7)$. Untuk perubahan kecil $\Delta x$ di dekat $2$,
+perubahan tinggi kurva kira-kira $8\Delta x$.
+\end{block}}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Laju rata-rata dan laju sesaat}
+
+\begin{columns}[t]
+\begin{column}{.48\textwidth}
+\begin{block}{Selama suatu interval}
+\[v_{\mathrm{rata}}=\frac{s(t_1)-s(t_0)}{t_1-t_0}.\]
+Ini adalah gradien garis potong pada grafik posisi terhadap waktu.
+\end{block}
+\end{column}
+\begin{column}{.48\textwidth}
+\begin{block}{Pada suatu saat}
+\[v(t_0)=\lim_{h\to0}\frac{s(t_0+h)-s(t_0)}h.\]
+Ini adalah gradien garis singgung pada waktu $t_0$.
+\end{block}
+\end{column}
+\end{columns}
+\onslide<2->{\begin{alertblock}{Makna tanda dan satuan}
+Jika posisi dalam meter dan waktu dalam detik, satuan kecepatan adalah m/s.
+Kecepatan negatif menunjukkan arah gerak; kelajuan adalah $|v(t)|$.
+Konsep yang sama berlaku untuk laju perubahan suhu, populasi, atau biaya.
+\end{alertblock}}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: dua laju yang berbeda}
+
+% Adaptasi Contoh 4.1.3, hlm. 112.
+\begin{contoh}
+Posisi benda adalah $s(t)=t^2-3$ meter. Bandingkan kecepatan rata-rata pada $[1,3]$ dengan kecepatan saat $t=3$.
+\end{contoh}
+\onslide<2->{
+\[v_{\mathrm{rata}}=\frac{6-(-2)}{3-1}=4\text{ m/s},\qquad
+v(3)=\lim_{h\to0}\frac{(3+h)^2-9}{h}=6\text{ m/s}.\]
+\begin{block}{Apa yang berbeda?}
+Rata-rata merangkum perubahan selama dua detik, sedangkan laju sesaat menggambarkan gerak tepat di ujung interval. Keduanya tidak harus sama.
+\end{block}}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Latihan: membaca laju dan garis singgung}
+
+% Modifikasi latihan 4.1, hlm. 112--114.
+\begin{exampleblock}{Latihan}
+\begin{enumerate}
+\item Untuk $s(t)=2t^2-t+1$, tentukan laju rata-rata pada $[0,2]$ dan laju sesaat pada $t=2$ menggunakan limit.
+\item Tentukan garis singgung $y=x-\sqrt{x}$ di $x=9$ menggunakan definisi gradien.
+\item Benarkah garis singgung hanya boleh berpotongan dengan kurva di satu titik? Coba periksa $y=x^3$ dan garis singgungnya di $x=1$.
+\end{enumerate}
+\end{exampleblock}
+\onslide<2->{\textbf{Petunjuk:} bedakan nilai fungsi, kemiringan, dan persamaan garis. Untuk soal ketiga, cari perpotongan garis dengan kurva.}
+\end{frame}
+
 
 \section{Fungsi Turunan}
-\begin{frame}
-    \frametitle{\insertsection}
-    \begin{definisi}[Turunan]
-        Turunan dari fungsi $f$ pada suatu titik $x$, dinotasikan dengan $f'(x)$, didefinisikan sebagai:
-        \[f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}\]
-        asalkan limit ini ada. Jika limit ada, maka fungsi $f$ dikatakan memiliki turunan (\textit{differentiable}) di $x$.
-    \end{definisi}
-    \onslide<2->{
-        \begin{alertblock}{Notasi Leibniz}
-            Notasi lain untuk turunan fungsi $y=f(x)$ adalah
-            \[y' = f'(x) = \frac{dy}{dx} = \frac{d}{dx}f(x) = D_x f(x)\]
-        \end{alertblock}
-    }
-\end{frame}
 
 \begin{frame}
-    \frametitle{\insertsection}
-    \begin{contoh}
-        Jika $f(x) = \sqrt{x}$, carilah turunan dari $f$.
-    \end{contoh}
-    \onslide<2->{
-        \textbf{Jawab:}
-        \begin{align*}
-            f'(x) &= \lim_{h \to 0} \frac{f(x+h) - f(x)}{h} = \lim_{h \to 0} \frac{\sqrt{x+h} - \sqrt{x}}{h} \\
-                  &= \lim_{h \to 0} \frac{\sqrt{x+h} - \sqrt{x}}{h} \cdot \frac{\sqrt{x+h} + \sqrt{x}}{\sqrt{x+h} + \sqrt{x}} \\
-                  &= \lim_{h \to 0} \frac{(x+h) - x}{h(\sqrt{x+h} + \sqrt{x})} \\
-                  &= \lim_{h \to 0} \frac{h}{h(\sqrt{x+h} + \sqrt{x})} \\
-                  &= \lim_{h \to 0} \frac{1}{\sqrt{x+h} + \sqrt{x}} = \frac{1}{2\sqrt{x}}
-        \end{align*}
-    }
+\frametitle{\insertsection}
+\framesubtitle{Turunan adalah fungsi baru}
+
+% Definisi 4.2.1, hlm. 114.
+\begin{definisi}
+Turunan fungsi $f$ adalah fungsi $f'$ yang diberikan oleh
+\[f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}h.\]
+Domain $f'$ terdiri atas titik dalam domain $f$ tempat limit tersebut ada dan berhingga.
+\end{definisi}
+\onslide<2->{\begin{block}{Bedakan $f(x)$ dan $f'(x)$}
+$f(x)$ menyatakan tinggi grafik, sedangkan $f'(x)$ menyatakan kemiringannya.
+Misalnya $f(x)=x^2$ memiliki $f'(x)=2x$: satu rumus memberikan gradien di setiap titik.
+\end{block}}
 \end{frame}
+
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: domain turunan dapat lebih kecil}
+
+% Adaptasi Contoh 4.2.1, hlm. 114--115.
+\begin{contoh}
+Jika $f(x)=\sqrt{x}$, tentukan $f'(x)$ dan garis singgungnya di $x=4$.
+\end{contoh}
+\onslide<2->{
+\begin{align*}
+f'(x)&=\lim_{h\to0}\frac{\sqrt{x+h}-\sqrt{x}}h
+=\lim_{h\to0}\frac1{\sqrt{x+h}+\sqrt{x}}=\frac1{2\sqrt{x}},\quad x>0.
+\end{align*}
+\[f'(4)=\frac14,\qquad y-2=\frac14(x-4).\]
+\begin{alertblock}{Perhatikan domainnya}
+$f$ terdefinisi pada $[0,\infty)$, tetapi turunan berhingga hanya ada untuk $x>0$. Di $0$, hasil bagi kanan $1/\sqrt h$ tidak memiliki limit berhingga.
+\end{alertblock}}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Membaca grafik fungsi dan grafik turunannya}
+
+\begin{columns}[c]
+\begin{column}{.52\textwidth}
+
+% Grafik fungsi dan turunan, digambar ulang dari Gambar 4.3.
+\centering
+\begin{tikzpicture}
+    \begin{axis}[width=3.65cm,height=4.1cm,scale only axis=false,
+        axis lines=middle,xmin=0,xmax=9.8,ymin=0,ymax=3.6,
+        xtick={4,9},ytick={1,2,3},tick label style={font=\tiny},
+        xlabel={$x$},ylabel={$y$},label style={font=\scriptsize},
+        title={$f(x)=\sqrt{x}$},title style={font=\scriptsize}]
+        % Parametrisasi x=t^2 menghindari segmen kasar dekat nol.
+        \addplot[HIMAtua,very thick,domain=0:3,samples=80] ({x^2},{x});
+    \end{axis}
+    \begin{axis}[at={(3.65cm,0)},anchor=south west,
+        width=3.65cm,height=4.1cm,scale only axis=false,
+        axis lines=middle,xmin=0,xmax=9.8,ymin=0,ymax=3.6,
+        xtick={4,9},ytick={1,2,3},tick label style={font=\tiny},
+        xlabel={$x$},ylabel={$y$},label style={font=\scriptsize},
+        title={$f'(x)=\frac1{2\sqrt{x}}$},title style={font=\scriptsize}]
+        \addplot[red,very thick,domain=.0204:9,samples=180] {1/(2*sqrt(x))};
+    \end{axis}
+\end{tikzpicture}
+\end{column}
+\begin{column}{.44\textwidth}
+\begin{block}{Untuk $f(x)=\sqrt{x}$}
+\[f'(x)=\frac1{2\sqrt{x}}>0.\]
+Grafik terus naik, tetapi semakin landai.
+\end{block}
+\onslide<2->{
+\[\lim_{x\to0^+}f'(x)=+\infty,\quad
+\lim_{x\to\infty}f'(x)=0.\]
+Nilai fungsi terus membesar meskipun kemiringannya mendekati nol.}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Dapat diturunkan di sebuah titik}
+
+% Definisi 4.2.2, hlm. 115.
+\begin{definisi}
+$f$ dapat diturunkan di $a$ jika
+\[f'(a)=\lim_{h\to0}\frac{f(a+h)-f(a)}h\]
+ada dan berhingga. $f$ dapat diturunkan pada $(a,b)$ jika hal itu berlaku di setiap titik interval tersebut.
+\end{definisi}
+\onslide<2->{\begin{block}{Cara memeriksa}
+Jangan cukup memeriksa rumus di satu sisi. Di titik sambungan fungsi sepotong-sepotong, bandingkan kemiringan dari kiri dan kanan dengan nilai fungsi di titik sambungan.
+\end{block}}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Tiga penyebab turunan gagal ada}
+
+\begin{center}
+
+% Tiga jenis kegagalan turunan; grafik sesuai contoh pada blok di bawah.
+\begin{tikzpicture}[x=.95cm,y=.8cm,font=\scriptsize]
+    \begin{scope}
+        \draw[->] (-1.7,0)--(1.8,0) node[right] {$x$};
+        \draw[->] (0,-.35)--(0,1.9) node[above] {$y$};
+        \draw[HIMAtua,very thick] (-1.5,1.5)--(0,0)--(1.5,1.5);
+        \node[below left] at (0,0) {$0$};
+    \end{scope}
+    \begin{scope}[xshift=4.7cm]
+        \draw[->] (-1.7,0)--(1.8,0) node[right] {$x$};
+        \draw[->] (0,-1.5)--(0,1.9) node[above] {$y$};
+        \draw[red,dashed] (0,-1.35)--(0,1.4);
+        \draw[HIMAtua,very thick,domain=-1.15:1.15,samples=80]
+            plot ({\x*\x*\x},{\x});
+        \node[below right] at (0,0) {$0$};
+    \end{scope}
+    \begin{scope}[xshift=9.4cm]
+        \draw[->] (-1.7,0)--(1.8,0) node[right] {$x$};
+        \draw[->] (0,-1.5)--(0,1.9) node[above] {$y$};
+        \draw[HIMAtua,very thick] (-1.5,-.65)--(0,-.65);
+        \draw[HIMAtua,very thick] (0,1)--(1.5,1);
+        \filldraw[draw=HIMAtua,fill=white,thick] (0,-.65) circle (2.5pt);
+        \fill[HIMAtua] (0,1) circle (2.5pt);
+        \node[below right] at (0,0) {$0$};
+    \end{scope}
+\end{tikzpicture}
+\end{center}
+\begin{columns}[t]
+\begin{column}{.31\textwidth}\begin{block}{Sudut}
+Kemiringan kiri dan kanan berbeda, seperti $|x|$ di $0$.
+\end{block}\end{column}
+\begin{column}{.31\textwidth}\begin{block}{Singgung vertikal}
+Kemiringan tidak berhingga, seperti $\sqrt[3]{x}$ di $0$.
+\end{block}\end{column}
+\begin{column}{.31\textwidth}\begin{block}{Diskontinuitas}
+Fungsi yang tidak kontinu di suatu titik tidak dapat diturunkan di titik itu.
+\end{block}\end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Diferensiabilitas menjamin kekontinuan}
+
+% Teorema 4.2.1, hlm. 116.
+\begin{teorema}
+Jika $f$ dapat diturunkan di $a$, maka $f$ kontinu di $a$.
+\end{teorema}
+\onslide<2->{\textbf{Mengapa?} Untuk $h\ne0$,
+\[f(a+h)-f(a)=\frac{f(a+h)-f(a)}h\,h
+\longrightarrow f'(a)\cdot0=0.\]
+Jadi $\lim_{h\to0}f(a+h)=f(a)$.
+\begin{alertblock}{Arah implikasinya penting}
+Kontinu belum tentu dapat diturunkan. Grafik $y=|x|$ tersambung di $0$, tetapi memiliki sudut di sana.
+\end{alertblock}}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Turunan satu sisi dan titik ujung}
+
+% Hlm. 118--119, termasuk Contoh 4.2.2.
+\begin{block}{Turunan Kiri dan Kanan}
+\[f'_-(a)=\lim_{h\to0^-}\frac{f(a+h)-f(a)}h,\qquad
+f'_+(a)=\lim_{h\to0^+}\frac{f(a+h)-f(a)}h.\]
+Di titik interior, $f'(a)$ ada jika kedua limit berhingga dan sama.
+Pada $[a,b]$, gunakan turunan kanan di $a$ dan turunan kiri di $b$.
+\end{block}
+\onslide<2->{\begin{contoh}
+Untuk $f(x)=|x|$, hasil bagi di $0$ adalah $|h|/h$.
+\[f'_-(0)=-1\ne1=f'_+(0),\qquad
+f'(x)=\begin{cases}-1,&x<0,\\1,&x>0.\end{cases}\]
+\end{contoh}}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Notasi dan makna pertambahan}
+
+% Hlm. 119, persamaan 4.7--4.9.
+\begin{block}{Satu Konsep, Beberapa Notasi}
+Untuk $y=f(x)$,
+\[f'(x)=y'=\frac{dy}{dx}=\frac{d}{dx}[f(x)]=D_xf(x).\]
+Jika $\Delta x$ adalah pertambahan input, maka
+\[\Delta y=f(x+\Delta x)-f(x),\qquad
+\frac{dy}{dx}=\lim_{\Delta x\to0}\frac{\Delta y}{\Delta x}.\]
+\end{block}
+\onslide<2->{\begin{alertblock}{Bukan sekadar hasil bagi biasa}
+$\Delta y/\Delta x$ adalah laju rata-rata; $dy/dx$ adalah limitnya.
+Notasi $f'(a)$ berarti rumus turunan dievaluasi di $a$.
+\end{alertblock}}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: kontinu tetapi apakah mulus?}
+
+% Modifikasi latihan 4.2 nomor 16, hlm. 121.
+\begin{contoh}
+Tentukan $p$ dan $q$ agar $f(x)=\begin{cases}x^2+1,&x\le2,\\px+q,&x>2\end{cases}$
+dapat diturunkan di $2$.
+\end{contoh}
+\onslide<2->{\textbf{Kontinu:} $2p+q=5$. Dengan syarat ini,
+\[f'_-(2)=\lim_{h\to0^-}\frac{(2+h)^2+1-5}{h}=4,\qquad f'_+(2)=p.\]
+Jadi $p=4$ dan $q=-3$.
+\begin{block}{Dua pemeriksaan}
+Kekontinuan menyambungkan tinggi grafik; kesamaan turunan menyambungkan kemiringannya.
+\end{block}}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Latihan: nilai fungsi versus gradien}
+
+\begin{exampleblock}{Latihan}
+\begin{enumerate}
+\item Jika $f(2)=3$ dan $f'(2)=-2$, tentukan garis singgung di $(2,3)$ tanpa mencari rumus $f$.
+\item Periksa kekontinuan dan turunan di $1$ dari
+$f(x)=\begin{cases}x^2+1,&x\le1,\\x+1,&x>1.\end{cases}$
+\item Apakah $f'(a)=0$ berarti $f(a)=0$? Berikan contoh penyangkal.
+\end{enumerate}
+\end{exampleblock}
+\onslide<2->{\textbf{Petunjuk:} fungsi konstan tak nol sudah cukup untuk menjawab soal ketiga.}
+\end{frame}
+
 
 \section{Diferensiasi}
-\begin{frame}
-    \frametitle{\insertsection}
-    \begin{teorema}[Aturan-aturan Diferensiasi]
-        Misalkan $c$ adalah suatu konstanta, $n$ bilangan rasional, dan $f$ serta $g$ adalah fungsi yang terturunkan, maka:
-        \begin{enumerate}
-            \item \textbf{Aturan Konstanta:} $\frac{d}{dx}(c) = 0$
-            \item \textbf{Aturan Pangkat:} $\frac{d}{dx}(x^n) = nx^{n-1}$
-            \item \textbf{Aturan Kelipatan Konstanta:} $\frac{d}{dx}[cf(x)] = c \frac{d}{dx}f(x)$
-            \item \textbf{Aturan Penjumlahan:} $\frac{d}{dx}[f(x) \pm g(x)] = \frac{d}{dx}f(x) \pm \frac{d}{dx}g(x)$
-        \end{enumerate}
-    \end{teorema}
-\end{frame}
 
 \begin{frame}
-    \frametitle{\insertsection}
-    \begin{teorema}[Aturan Perkalian dan Pembagian]
-        \begin{enumerate}
-            \item \textbf{Aturan Perkalian:} 
-            \[\frac{d}{dx}[f(x)g(x)] = f'(x)g(x) + f(x)g'(x)\]
-            \item \textbf{Aturan Pembagian:} 
-            \[\frac{d}{dx}\left[\frac{f(x)}{g(x)}\right] = \frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2}\]
-        \end{enumerate}
-    \end{teorema}
+\frametitle{\insertsection}
+\framesubtitle{Aturan konstanta dan pangkat}
+
+% Teorema 4.3.1--2, hlm. 122--123.
+\begin{columns}[t]
+\begin{column}{.48\textwidth}
+\begin{teorema}
+Jika $k$ konstanta real, maka
+\[\frac{d}{dx}k=0.\]
+\end{teorema}
+Grafiknya horizontal: perubahan input tidak mengubah output.
+\end{column}
+\begin{column}{.48\textwidth}
+\begin{teorema}
+Untuk bilangan bulat positif $n$,
+\[\frac{d}{dx}x^n=nx^{n-1}.\]
+\end{teorema}
+Untuk $x^2$, hasil bagi selisih adalah $2x+h$, yang limitnya $2x$.
+\end{column}
+\end{columns}
+\onslide<2->{\begin{contoh}
+$\displaystyle\frac{d}{dx}(7)=0,\quad\frac{d}{dx}(x)=1,\quad
+\frac{d}{dx}(x^5)=5x^4.$\quad Pangkat turun satu setelah menjadi koefisien.
+\end{contoh}}
 \end{frame}
 
-\begin{frame}
-    \frametitle{\insertsection}
-    \begin{teorema}[Turunan Fungsi Trigonometri]
-        \begin{itemize}
-            \item $\frac{d}{dx}(\sin x) = \cos x$
-            \item $\frac{d}{dx}(\cos x) = -\sin x$
-            \item $\frac{d}{dx}(\tan x) = \sec^2 x$
-            \item $\frac{d}{dx}(\cot x) = -\csc^2 x$
-            \item $\frac{d}{dx}(\sec x) = \sec x \tan x$
-            \item $\frac{d}{dx}(\csc x) = -\csc x \cot x$
-        \end{itemize}
-    \end{teorema}
-\end{frame}
-
-\section{Aturan rantai dan Diferensiasi implisit}
-\begin{frame}
-    \frametitle{\insertsection}
-    \begin{teorema}[Aturan Rantai]
-        Jika $g$ dapat diturunkan di $x$ dan $f$ dapat diturunkan di $g(x)$, maka fungsi komposit $F = f \circ g$ yang didefinisikan dengan $F(x) = f(g(x))$ dapat diturunkan di $x$ dan $F'$ diberikan oleh hasil kali
-        \[F'(x) = f'(g(x)) \cdot g'(x)\]
-        Dalam Notasi Leibniz, jika $y = f(u)$ dan $u = g(x)$ dapat diturunkan, maka
-        \[\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}\]
-    \end{teorema}
-\end{frame}
 
 \begin{frame}
-    \frametitle{\insertsection}
-    \begin{contoh}
-        Carilah turunan dari fungsi $F(x) = \sqrt{x^2 + 1}$.
-    \end{contoh}
-    \onslide<2->{
-        \textbf{Jawab:}
-        Misalkan $u = x^2 + 1$ dan $y = \sqrt{u} = u^{1/2}$.
-        Maka $\frac{du}{dx} = 2x$ dan $\frac{dy}{du} = \frac{1}{2}u^{-1/2} = \frac{1}{2\sqrt{u}}$.
-        Dengan Aturan Rantai:
-        \begin{align*}
-            \frac{dy}{dx} &= \frac{dy}{du} \cdot \frac{du}{dx} \\
-                          &= \frac{1}{2\sqrt{u}} \cdot 2x \\
-                          &= \frac{x}{\sqrt{x^2 + 1}}
-        \end{align*}
-    }
+\frametitle{\insertsection}
+\framesubtitle{Kelipatan konstanta, jumlah, dan selisih}
+
+% Teorema 4.3.3--4, hlm. 123--124.
+\begin{teorema}
+Jika $f$ dapat diturunkan dan $k\in\mathbb R$, maka $(kf)'=kf'$.
+\end{teorema}
+\begin{teorema}
+Jika $f$ dan $g$ dapat diturunkan, maka $(f\pm g)'=f'\pm g'$.
+\end{teorema}
+\onslide<2->{\begin{contoh}
+\[\frac{d}{dx}(4x^5-3x^2+8)=20x^4-6x.\]
+Kita boleh menurunkan suku demi suku. Konstanta penjumlahan hilang, tetapi konstanta pengali tetap ikut.
+\end{contoh}}
 \end{frame}
 
-\begin{frame}
-    \frametitle{\insertsection}
-    \begin{alertblock}{Diferensiasi Implisit}
-        Beberapa fungsi tidak didefinisikan secara eksplisit sebagai $y = f(x)$, melainkan secara implisit melalui suatu persamaan, misalnya $x^2 + y^2 = 25$ atau $x^3 + y^3 = 6xy$. 
-        \\~\\
-        Untuk mencari $\frac{dy}{dx}$, kita mendiferensiasikan kedua ruas persamaan terhadap $x$ (dengan mengingat bahwa $y$ adalah fungsi dari $x$ dan menerapkan Aturan Rantai), kemudian kita selesaikan persamaan hasilnya untuk $\frac{dy}{dx}$.
-    \end{alertblock}
-\end{frame}
 
 \begin{frame}
-    \frametitle{\insertsection}
-    \begin{contoh}
-        Carilah $y'$ jika $x^3 + y^3 = 6xy$.
-    \end{contoh}
-    \onslide<2->{
-        \textbf{Jawab:}
-        Diferensiasikan kedua ruas terhadap $x$:
-        \begin{align*}
-            \frac{d}{dx}(x^3 + y^3) &= \frac{d}{dx}(6xy) \\
-            3x^2 + 3y^2 y' &= 6y + 6x y' \quad \text{(Gunakan Aturan Perkalian di ruas kanan)} \\
-            3y^2 y' - 6x y' &= 6y - 3x^2 \\
-            y'(3y^2 - 6x) &= 6y - 3x^2 \\
-            y' &= \frac{6y - 3x^2}{3y^2 - 6x} = \frac{2y - x^2}{y^2 - 2x}
-        \end{align*}
-    }
+\frametitle{\insertsection}
+\framesubtitle{Contoh: garis singgung horizontal}
+
+% Modifikasi Contoh 4.3.4, hlm. 124.
+\begin{contoh}
+Di titik mana kurva $y=12x-x^3$ mempunyai garis singgung horizontal?
+\end{contoh}
+\onslide<2->{\[y'=12-3x^2=0\quad\Longrightarrow\quad x=\pm2.\]
+Karena $f(2)=16$ dan $f(-2)=-16$, titiknya $(2,16)$ dan $(-2,-16)$.
+\begin{alertblock}{Yang dicari adalah titik pada kurva}
+Persamaan $f'(x)=0$ hanya memberikan absis. Substitusikan kembali ke $f$, bukan ke $f'$, untuk memperoleh ordinatnya.
+\end{alertblock}}
 \end{frame}
+
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Aturan perkalian}
+
+% Teorema 4.3.5, hlm. 125.
+\begin{teorema}
+Jika $f$ dan $g$ dapat diturunkan di $x$, maka
+\[(fg)'(x)=f'(x)g(x)+f(x)g'(x).\]
+\end{teorema}
+\onslide<2->{\begin{block}{Mengapa ada dua suku?}
+Kedua faktor dapat berubah. Identitas
+\[\Delta(fg)=f(x+h)\bigl(g(x+h)-g(x)\bigr)+g(x)\bigl(f(x+h)-f(x)\bigr)\]
+menghasilkan dua suku setelah dibagi $h$ dan diambil limitnya.
+\end{block}
+\textbf{Cek cepat:} $(x\cdot x)'=2x$, sedangkan $x'\cdot x'=1$. Jadi $(fg)'\ne f'g'$ secara umum.}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: dua cara, hasil sama}
+
+% Modifikasi Contoh 4.3.5.
+\begin{contoh}
+Tentukan turunan $y=(2x^2-1)(3-x^3)$.
+\end{contoh}
+\onslide<2->{\begin{align*}
+y'&=4x(3-x^3)+(2x^2-1)(-3x^2)\\
+&=-10x^4+3x^2+12x.
+\end{align*}
+\begin{block}{Cara memeriksa}
+Kembangkan $y=-2x^5+x^3+6x^2-3$, lalu turunkan setiap suku. Cara ini menghasilkan jawaban yang sama.
+\end{block}}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Aturan pembagian}
+
+% Teorema 4.3.6, hlm. 126; contoh modifikasi 4.3.6.
+\begin{teorema}
+Jika $f,g$ dapat diturunkan di $x$ dan $g(x)\ne0$, maka
+\[\left(\frac fg\right)'=\frac{gf'-fg'}{g^2}.\]
+\end{teorema}
+\onslide<2->{\begin{contoh}
+Untuk $y=(x^2+1)/(x+2)$, $x\ne-2$,
+\[y'=\frac{(x+2)(2x)-(x^2+1)}{(x+2)^2}
+=\frac{x^2+4x-1}{(x+2)^2}.\]
+\end{contoh}
+\textbf{Perhatikan:} urutan pengurangan pada pembilang menentukan tanda; penyebut harus tetap tidak nol.}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Pangkat negatif dan turunan tingkat tinggi}
+
+% Hlm. 126--127, Contoh 4.3.7--8.
+\begin{block}{Perluasan Aturan Pangkat}
+Dari aturan pembagian, untuk $n$ bulat positif dan $x\ne0$,
+\[\frac{d}{dx}x^{-n}=\frac{d}{dx}\frac1{x^n}=-nx^{-n-1}.\]
+Jadi aturan pangkat juga berlaku untuk pangkat bulat negatif.
+\end{block}
+\onslide<2->{\begin{block}{Turunan dari Turunan}
+\[f''=(f')',\quad f^{(3)}=(f'')',\quad
+f^{(n)}=\frac{d^ny}{dx^n}.\]
+Jika $s(t)$ menyatakan posisi, $s'(t)$ adalah kecepatan dan $s''(t)$ percepatan. Turunan kedua mengukur perubahan kemiringan, bukan tinggi grafik.
+\end{block}}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: menurunkan berulang kali}
+
+% Modifikasi Contoh 4.3.8, hlm. 127.
+\begin{contoh}
+Tentukan semua turunan dari $f(x)=2x^4-3x^3+x^2-5x+7$.
+\end{contoh}
+\onslide<2->{\begin{align*}
+f'(x)&=8x^3-9x^2+2x-5,& f''(x)&=24x^2-18x+2,\\
+f^{(3)}(x)&=48x-18,&f^{(4)}(x)&=48,\\
+f^{(n)}(x)&=0\quad(n\ge5).
+\end{align*}
+\begin{block}{Pola yang terlihat}
+Setiap diferensiasi mengurangi derajat polinomial satu tingkat. Polinomial derajat $m$ mempunyai turunan ke-$m$ konstan dan turunan berikutnya nol.
+\end{block}}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Latihan: memilih aturan yang sesuai}
+
+% Adaptasi latihan 4.3, hlm. 127--129.
+\begin{exampleblock}{Latihan}
+\begin{enumerate}
+\item Tentukan $y'$ untuk $y=(x^2-2)(2x^3+1)$.
+\item Tentukan garis singgung $y=(x+4)/(x+1)$ yang tegak lurus garis $y=x$.
+\item Tentukan $f''(x)$ jika $f(x)=x^3+2/x$, $x\ne0$.
+\item Pendapatan $P(r)=rf(r)$. Jika $f(100)=500$ dan $f'(100)=-3$, hitung $P'(100)$ dan jelaskan tandanya.
+\end{enumerate}
+\end{exampleblock}
+\onslide<2->{\textbf{Petunjuk:} dua garis dengan gradien berhingga yang tegak lurus memenuhi $m_1m_2=-1$. Pada soal terakhir, kedua faktor bergantung pada $r$.}
+\end{frame}
+
+
+\section{Aturan Rantai dan Diferensiasi Implisit}
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Mengapa laju perubahan dikalikan?}
+
+% Adaptasi motivasi hlm. 129--130.
+\begin{block}{Motivasi}
+Satu liter bahan bakar menjalankan mesin selama 8 jam. Harga bahan bakar adalah 4 ribu rupiah per liter. Berapa tambahan waktu kerja per tambahan seribu rupiah?
+\end{block}
+\[\underbrace{x}_{\text{ribu rupiah}}\longmapsto
+\underbrace{u}_{\text{liter}}\longmapsto
+\underbrace{y}_{\text{jam}}.\]
+\onslide<2->{\[\frac{dy}{dx}=\frac{dy}{du}\frac{du}{dx}
+=\frac{8\text{ jam}}{\text{liter}}\frac{1\text{ liter}}{4\text{ ribu rupiah}}
+=2\text{ jam per ribu rupiah}.\]
+Perubahan $x$ memengaruhi $u$, lalu perubahan $u$ memengaruhi $y$. Inilah gagasan aturan rantai.}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Turunan fungsi komposisi}
+
+% Teorema 4.4.1, hlm. 130.
+\begin{teorema}[Aturan Rantai]
+Jika $g$ dapat diturunkan di $x$ dan $f$ dapat diturunkan di $g(x)$, maka
+\[(f\circ g)'(x)=f'(g(x))g'(x).\]
+Dengan $y=f(u)$ dan $u=g(x)$, ditulis $dy/dx=(dy/du)(du/dx)$.
+\end{teorema}
+\onslide<2->{\begin{contoh}
+Untuk $y=(2x+1)^4$, fungsi luar $u^4$ dan fungsi dalam $u=2x+1$ memberi
+\[y'=4(2x+1)^3\cdot2=8(2x+1)^3.\]
+\end{contoh}
+\textbf{Jangan terlewat:} turunan fungsi dalam tetap menjadi faktor.}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: perubahan melalui variabel perantara}
+
+% Modifikasi Contoh 4.4.1--3, hlm. 130--131.
+\begin{contoh}
+Jika $s=3x^2$ dan $x=t^2-t$, tentukan $ds/dt$.
+\end{contoh}
+\onslide<2->{\[\frac{ds}{dt}=6x(2t-1)=6(t^2-t)(2t-1).\]}
+\begin{contoh}
+Tentukan $h'(x)$ untuk $h(x)=(2x^2+3x-1)^{-4}$.
+\end{contoh}
+\onslide<3->{\[h'(x)=-4(2x^2+3x-1)^{-5}(4x+3).\]
+Rumus berlaku ketika $2x^2+3x-1\ne0$. Dalam kedua contoh, identifikasi lapisan luar dan dalam sebelum menurunkan.}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Fungsi eksplisit dan persamaan implisit}
+
+% Hlm. 131--132, persamaan 4.13--4.16.
+\begin{block}{Dua Penyajian Relasi yang Sama}
+$xy=1$ menyajikan hubungan secara implisit; untuk $x\ne0$, bentuk eksplisitnya adalah $y=1/x$.
+\end{block}
+\onslide<2->{Anggap $y=y(x)$, lalu turunkan kedua ruas:
+\[\frac{d}{dx}(xy)=0\quad\Longrightarrow\quad y+xy'=0
+\quad\Longrightarrow\quad y'=-\frac yx=-\frac1{x^2}.\]
+\begin{alertblock}{Mengapa muncul $y'$?}
+$y$ juga berubah ketika $x$ berubah. Karena itu $\frac{d}{dx}(y^2)=2yy'$, bukan $2y$. Kita memakai aturan rantai.
+\end{alertblock}}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Contoh: mengumpulkan suku yang memuat turunan}
+
+% Modifikasi Contoh 4.4.4, hlm. 132.
+\begin{contoh}
+Tentukan $dy/dx$ dari $xy^2+x^2y=2x$.
+\end{contoh}
+\onslide<2->{\begin{align*}
+y^2+2xyy'+2xy+x^2y'&=2,\\
+(2xy+x^2)y'&=2-y^2-2xy,\\
+y'&=\frac{2-y^2-2xy}{2xy+x^2},\quad 2xy+x^2\ne0.
+\end{align*}
+\begin{block}{Urutan kerja}
+Turunkan kedua ruas, kumpulkan suku yang memuat $y'$, lalu selesaikan untuk $y'$. Tidak perlu mencari rumus eksplisit $y$ terlebih dahulu.
+\end{block}}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Satu persamaan dapat mempunyai beberapa cabang}
+
+% Modifikasi Contoh 4.4.5, hlm. 132--133.
+\begin{contoh}
+Untuk $y^2-x+1=0$, bandingkan gradien di $(5,2)$ dan $(5,-2)$.
+\end{contoh}
+\onslide<2->{\[2yy'-1=0\quad\Longrightarrow\quad y'=\frac1{2y}.
+\qquad m_{(5,2)}=\frac14,\quad m_{(5,-2)}=-\frac14.\]
+\begin{alertblock}{Syarat penggunaan}
+Diferensiasi implisit mengasumsikan adanya cabang $y(x)$ yang dapat diturunkan.
+Persamaan $x^2+y^2+1=0$ tidak mempunyai titik real, sehingga manipulasi turunannya tidak menghasilkan gradien kurva real.
+\end{alertblock}}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Folium Descartes: turunan dan garis singgung}
+
+% Contoh 4.4.6 dan Gambar 4.11, hlm. 133--134.
+\begin{columns}[c]
+\begin{column}{.45\textwidth}
+
+% Folium x^3+y^3=3xy: parametrisasi eksak, dua cabang simetris.
+\centering
+\begin{tikzpicture}
+    \begin{axis}[width=6.2cm,height=4.1cm,axis equal image,
+        axis lines=middle,xmin=-2.2,xmax=3.3,ymin=-2.2,ymax=3.3,
+        xtick={-2,1,2,3},ytick={-2,1,2,3},
+        tick label style={font=\tiny},label style={font=\scriptsize},
+        xlabel={$x$},ylabel={$y$},clip=true]
+        \addplot[HIMAtua,very thick,domain=-.86:1,samples=180]
+            ({3*x/(1+x^3)},{3*x^2/(1+x^3)});
+        \addplot[HIMAtua,very thick,domain=-.86:1,samples=180]
+            ({3*x^2/(1+x^3)},{3*x/(1+x^3)});
+        \addplot[red,thick,domain=-.3:3.3] {3-x};
+        \addplot[only marks,mark=*,mark size=2pt,HIMAtua]
+            coordinates {(1.5,1.5)};
+        \node[font=\scriptsize,anchor=south west] at (axis cs:1.5,1.5) {$P$};
+        \node[font=\scriptsize,red,anchor=west] at (axis cs:.3,2.9) {$y=3-x$};
+    \end{axis}
+\end{tikzpicture}
+\begin{contoh}
+$x^3+y^3=3xy$ di $(3/2,3/2)$.
+\end{contoh}
+\end{column}
+\begin{column}{.51\textwidth}
+\onslide<2->{\begin{align*}
+3x^2+3y^2y'&=3y+3xy',\\
+y'&=\frac{y-x^2}{y^2-x}.
+\end{align*}
+Di titik tersebut, $m=-1$, sehingga
+\[y-\frac32=-\left(x-\frac32\right),\]
+atau $y=3-x$.}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Garis singgung horizontal: hati-hati pada titik singular}
+
+\begin{block}{Pada Folium $x^3+y^3=3xy$}
+Di titik dengan $y^2-x\ne0$, turunan nol jika $y=x^2$.
+Substitusi memberi $x^3(x^3-2)=0$.
+\end{block}
+\onslide<2->{\begin{itemize}
+\item Untuk $x=\sqrt[3]2$, diperoleh titik $(\sqrt[3]2,\sqrt[3]4)$ dengan garis singgung horizontal.
+\item Di $(0,0)$, rumus turunan menjadi $0/0$, sehingga perlu pemeriksaan cabang.
+\end{itemize}
+\begin{alertblock}{Penjelasan untuk titik asal}
+Parametrisasi $x=3t/(1+t^3)$, $y=3t^2/(1+t^3)$ memberi $dx/dt=3$, $dy/dt=0$ saat $t=0$: satu cabang mempunyai garis singgung $y=0$.
+Cabang lainnya mempunyai garis singgung vertikal $x=0$.
+\end{alertblock}}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Latihan: komposisi dan turunan implisit}
+
+% Adaptasi latihan 4.4, hlm. 134--135.
+\begin{exampleblock}{Latihan}
+\begin{enumerate}
+\item Jika $f'(u)=2u^2$ dan $g(x)=x^2+1$, tentukan $(f\circ g)'(x)$ tanpa mencari $f$.
+\item Tentukan turunan $y=((x-2)/(2x+1))^3$.
+\item Pada lingkaran $x^2+y^2=25$, tentukan garis singgung di $(3,4)$ dan jelaskan apa yang terjadi pada rumus $y'$ saat $y=0$.
+\item Tentukan $y''$ dari $x^3+y^3=8$ pada cabang dengan $y\ne0$.
+\end{enumerate}
+\end{exampleblock}
+\onslide<2->{\textbf{Petunjuk:} pada soal terakhir, turunkan sekali lagi dan gantikan $y'=-x^2/y^2$. Ingat bahwa $y$ masih merupakan fungsi $x$.}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\insertsection}
+\framesubtitle{Peta konsep: memilih alat yang tepat}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{p{.36\textwidth}|p{.54\textwidth}}
+\rowcolor{HIMAmuda} Pertanyaan & Alat yang digunakan\\
+Kemiringan di satu titik & Limit hasil bagi selisih; garis $y-f(a)=f'(a)(x-a)$\\
+Turunan ada atau tidak? & Periksa domain, kekontinuan, dan turunan satu sisi\\
+Bentuk aljabar & Konstanta, pangkat, jumlah, hasil kali, hasil bagi\\
+Fungsi bertingkat & Aturan rantai: turunan luar dikali turunan dalam\\
+$x$ dan $y$ bercampur & Diferensiasi implisit dengan menganggap $y=y(x)$
+\end{tabular}
+\end{center}
+\onslide<2->{\textbf{Pertanyaan penutup:} apakah hasil perhitungan Anda menyatakan nilai fungsi, laju perubahan, atau persamaan sebuah garis?}
+\end{frame}
+
 
 \end{document}

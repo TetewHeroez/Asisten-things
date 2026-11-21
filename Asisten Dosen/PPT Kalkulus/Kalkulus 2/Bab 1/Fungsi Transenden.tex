@@ -1,0 +1,1613 @@
+\documentclass{../../kalkulus-ppt}
+
+\author[Tetew]{Teosofi Hidayah Agung}
+\date{\today}
+\title[Kalkulus 2 - Bab 1]{Fungsi Transenden}
+\institute[Matematika ITS]{Departemen Matematika\\ Institut Teknologi Sepuluh Nopember}
+\titlegraphic{{\includegraphics[scale=0.3]{ITS.png}$\quad$\includegraphics[scale=0.02]{M.png}}}
+
+\setbeamertemplate{itemize items}[circle]
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccsc}{arccsc}
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}
+
+\pgfplotsset{
+    grafik transenden/.style={
+        width=6.3cm,height=4.4cm,axis lines=middle,
+        xlabel={$x$},ylabel={$y$},samples=90,
+        ticklabel style={font=\scriptsize},label style={font=\scriptsize},
+        every axis plot/.append style={thick}
+    }
+}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Daftar isi}
+    \tableofcontents
+\end{frame}
+
+% Sumber bagian ini: ../KALKULUS 2 BAB 1.pdf, halaman PDF 1--31.
+% Pindaian melompat dari halaman cetak 17 ke 20. Aturan pangkat real dan
+% diferensiasi logaritmik mengikuti pembuktian lanjutan dan latihan yang tersedia.
+\section{Fungsi Eksponensial dan Logaritma}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Dari perkalian berulang ke akar}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.53\textwidth}
+            \begin{definisi}[Pangkat bulat dan rasional]
+                Untuk $a>0$ dan $n$ bilangan bulat positif,
+                \[
+                    a^n=\underbrace{a\cdot a\cdots a}_{n\text{ faktor}}.
+                \]
+                Tetapkan $a^0=1$ dan $a^{-n}=1/a^n$. Untuk $m$ bilangan bulat,
+                $a^{m/n}=(\sqrt[n]{a})^m$.
+            \end{definisi}
+        \end{column}
+        \begin{column}{.43\textwidth}
+            \begin{contoh}
+                Hitung $27^{2/3}$ dan $16^{-3/4}$.
+                \onslide<2->{\[
+                    \begin{aligned}
+                        27^{2/3}&=3^2=9,\\
+                        16^{-3/4}&=\frac{1}{2^3}=\frac18.
+                    \end{aligned}
+                \]}
+            \end{contoh}
+            Apa yang dapat kita gunakan untuk memberi arti pada $2^{\sqrt 2}$?
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Logaritma natural sebagai luas bertanda}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.50\textwidth}
+            \begin{definisi}[Logaritma natural]
+                Untuk $x>0$, definisikan
+                \[
+                    \ln x=\int_{1}^{x}\frac{dt}{t}.
+                \]
+            \end{definisi}
+            \begin{itemize}
+                \item $\ln 1=0$ karena kedua batasnya sama.
+                \item Jika $0<x<1$, arah integrasi terbalik dan $\ln x<0$.
+                \item Teorema Fundamental Kalkulus memberi $\dfrac{d}{dx}\ln x=\dfrac{1}{x}>0$.
+            \end{itemize}
+        \end{column}
+        \begin{column}{.47\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik transenden,xlabel={$t$},xmin=0,xmax=4.2,
+                    ymin=0,ymax=2.55,xtick={1,3},xticklabels={$1$,$x$},
+                    ytick={1},domain=.41:4]
+                    \addplot[draw=none,fill=HIMAmuda!32,domain=1:3] {1/x} \closedcycle;
+                    \addplot[HIMAtua] {1/x};
+                    \draw[dashed] (axis cs:3,0) -- (axis cs:3,.33333);
+                    \node[font=\scriptsize] at (axis cs:2,.19) {$\ln x$};
+                    \node[font=\small,HIMAtua,anchor=west] at (axis cs:.66,1.78) {$y=1/t$};
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Perkalian berubah menjadi penjumlahan}
+    \begin{teorema}[Sifat logaritma natural]
+        Jika $b,c>0$ dan $r$ rasional, maka
+        \[
+            \begin{aligned}
+                \ln(bc)&=\ln b+\ln c, & \ln(b/c)&=\ln b-\ln c,\\
+                \ln(1/c)&=-\ln c,     & \ln(b^r)&=r\ln b.
+            \end{aligned}
+        \]
+    \end{teorema}
+    \onslide<2->{%
+        \textbf{Dari mana aturan hasil kali berasal?}
+        Bagi integral di $t=b$, lalu substitusi $t=bu$ pada bagian kedua.
+        \[
+            \ln(bc)=\int_1^b\frac{dt}{t}+\int_b^{bc}\frac{dt}{t}
+                   =\ln b+\int_1^c\frac{du}{u}.
+        \]
+        Untuk pangkat bulat positif, ulangi aturan hasil kali. Untuk akar,
+        $n\ln(\sqrt[n]{b})=\ln b$.
+    }
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Mengapa $\ln$ dapat dibalik?}
+    \begin{teorema}[Monoton dan limit $\ln$]
+        $\ln x$ kontinu dan naik tegas pada $(0,\infty)$, dengan
+        \[
+            \lim_{x\to 0^+}\ln x=-\infty,\qquad
+            \lim_{x\to\infty}\ln x=\infty.
+        \]
+        Jadi, daerah hasilnya $\R$ dan setiap nilai di $\R$ dicapai tepat sekali.
+    \end{teorema}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \onslide<2->{\textbf{Saat $x$ membesar.}
+            Karena $\ln 2>0$, nilai $\ln(2^n)=n\ln 2$ tumbuh tanpa batas.
+            Sifat naik memperluas kesimpulan ini ke semua $x\to\infty$.}
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \onslide<3->{\textbf{Saat $x$ mendekati nol.}
+            Gunakan $\ln x=-\ln(1/x)$.
+            Ketika $x\to0^+$, kebalikannya $1/x\to\infty$.}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{$e^x$ dan $\ln x$ saling membalik}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.51\textwidth}
+            \begin{definisi}[Eksponensial natural]
+                Bilangan $e\approx2{,}718282$ memenuhi $\ln e=1$.
+                Invers dari $\ln$ ditulis $\exp x=e^x$.
+            \end{definisi}
+            \[
+                \ln(e^x)=x\quad(x\in\R),\qquad
+                e^{\ln x}=x\quad(x>0).
+            \]
+            Grafik saling tercermin terhadap $y=x$. Titik $(0,1)$ pada $y=e^x$
+            berpasangan dengan $(1,0)$ pada $y=\ln x$.
+        \end{column}
+        \begin{column}{.46\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik transenden,width=6.1cm,height=5.15cm,
+                    axis equal image,xmin=-1.5,xmax=3.6,ymin=-1.5,ymax=3.6,
+                    xtick={1},ytick={1}]
+                    \addplot[gray,dashed,domain=-1.45:3.55] {x};
+                    \addplot[HIMAtua,domain=-1.4:1.2] {exp(x)};
+                    \addplot[teal!80!black,domain=.24:3.5] {ln(x)};
+                    \fill[HIMAtua] (axis cs:0,1) circle[radius=1.6pt];
+                    \fill[teal!80!black] (axis cs:1,0) circle[radius=1.6pt];
+                    \node[font=\scriptsize,HIMAtua,anchor=east] at (axis cs:.75,2.8) {$y=e^x$};
+                    \node[font=\scriptsize,teal!80!black,anchor=south] at (axis cs:2.85,1.08) {$y=\ln x$};
+                    \node[font=\scriptsize,gray,anchor=south east] at (axis cs:2.88,2.88) {$y=x$};
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Arti pangkat bilangan real}
+    \begin{definisi}[Pangkat real dan fungsi eksponensial]
+        Untuk $a>0$ dan $x\in\R$, definisikan $a^x=\exp(x\ln a)$.
+        Fungsi $x\mapsto a^x$ disebut fungsi eksponensial berbasis $a$.
+    \end{definisi}
+    \begin{teorema}[Logaritma suatu pangkat]
+        Dari hubungan invers $\ln$ dan $\exp$, diperoleh
+        $\ln(a^x)=x\ln a$ untuk semua $x\in\R$.
+    \end{teorema}
+    \begin{contoh}
+        $\displaystyle 2^{\sqrt 2}=\exp(\sqrt 2\ln 2)\approx2{,}6651$.
+        Jika bilangan rasional $r$ mendekati $\sqrt 2$, nilai $2^r$ mendekati
+        hasil yang sama karena $\exp$ kontinu.
+    \end{contoh}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Hukum pangkat tetap berlaku}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.58\textwidth}
+            \begin{teorema}[Hukum pangkat real]
+                Untuk $a,b>0$ dan $r,s\in\R$,
+                \[
+                    \begin{aligned}
+                        a^0&=1, & a^1&=a,\\
+                        a^ra^s&=a^{r+s}, & a^{-s}&=\frac1{a^s},\\
+                        \frac{a^r}{a^s}&=a^{r-s}, & (a^r)^s&=a^{rs},\\
+                        a^rb^r&=(ab)^r, & \frac{a^r}{b^r}&=\left(\frac ab\right)^r.
+                    \end{aligned}
+                \]
+            \end{teorema}
+        \end{column}
+        \begin{column}{.39\textwidth}
+            \onslide<2->{%
+                \textbf{Cek aturan hasil kali.}
+                \[
+                    \begin{aligned}
+                        \ln(a^ra^s)&=r\ln a+s\ln a\\
+                                   &=\ln(a^{r+s}).
+                    \end{aligned}
+                \]
+                Karena $\ln$ satu-satu, $a^ra^s=a^{r+s}$.
+                Untuk $r$ rasional, definisi baru cocok dengan aturan akar
+                karena keduanya memberikan logaritma $r\ln a$.
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Basis menentukan arah pertumbuhan}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.50\textwidth}
+            \begin{block}{Membaca grafik $y=a^x$}
+                \begin{itemize}
+                    \item $a>1$ memberi grafik naik, $0<a<1$ memberi grafik turun.
+                    \item Untuk $a\ne1$, domainnya $\R$ dan daerah hasilnya $(0,\infty)$.
+                    \item Jika $a=1$, grafiknya $y=1$.
+                \end{itemize}
+            \end{block}
+            Semua kurva melalui $(0,1)$.
+            Untuk $a\ne1$, garis $y=0$ adalah asimtot datar pada salah satu ujung.
+            Refleksi $x\mapsto -x$ mengubah $a^x$ menjadi $(1/a)^x$.
+        \end{column}
+        \begin{column}{.46\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik transenden,xmin=-2.5,xmax=2.5,ymin=0,ymax=5,
+                    xtick={-2,-1,1,2},ytick={1,2,4},domain=-2.25:2.25]
+                    \addplot[HIMAtua] {2^x};
+                    \addplot[teal!80!black] {2^(-x)};
+                    \fill (axis cs:0,1) circle[radius=1.6pt];
+                    \node[font=\small,HIMAtua,anchor=east] at (axis cs:2.1,4.5) {$2^x$};
+                    \node[font=\small,teal!80!black,anchor=west] at (axis cs:-2.1,4.5) {$2^{-x}$};
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Logaritma menjawab pertanyaan tentang pangkat}
+    \begin{definisi}[Logaritma berbasis $a$]
+        Untuk $a>0$, $a\ne1$, dan $x>0$,
+        \[
+            y=\log_a x\quad\Longleftrightarrow\quad a^y=x,
+            \qquad \log_a x=\frac{\ln x}{\ln a}.
+        \]
+        Buku menulis $\log_a x$ sebagai \({}^a\!\log x\). Basis $e$ memberi $\ln x$,
+        sedangkan $\log x$ menyatakan logaritma basis $10$.
+    \end{definisi}
+    \begin{teorema}[Invers untuk setiap basis $a\ne1$]
+        $a^{\log_a x}=x$ untuk $x>0$ dan $\log_a(a^x)=x$ untuk $x\in\R$.
+        Domain $\log_a$ adalah $(0,\infty)$ dan daerah hasilnya $\R$.
+    \end{teorema}
+    \onslide<2->{Misalnya, $\log_3(1/27)=-3$ karena $3^{-3}=1/27$.
+    Basis $1$ tidak memberi invers karena $1^y$ selalu sama dengan $1$.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Mengurai dan menggabungkan logaritma}
+    \begin{teorema}[Aturan logaritma]
+        Untuk basis $a>0$, $a\ne1$, $b,c>0$, dan $r\in\R$,
+        \[
+            \begin{aligned}
+                \log_a 1&=0,& \log_a a&=1,\\
+                \log_a(bc)&=\log_a b+\log_a c,&
+                \log_a(b/c)&=\log_a b-\log_a c,\\
+                \log_a(b^r)&=r\log_a b,& \log_a(1/c)&=-\log_a c.
+            \end{aligned}
+        \]
+    \end{teorema}
+    \begin{contoh}
+        Untuk $x>0$ dan $y>1$, gabungkan $2\ln x+\ln(y-1)-\tfrac12\ln y$.
+        \onslide<2->{\[
+            2\ln x+\ln(y-1)-\tfrac12\ln y=\ln\!\left(\frac{x^2(y-1)}{\sqrt y}\right).
+        \]}
+    \end{contoh}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Mengganti basis logaritma}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{teorema}[Perubahan basis]
+                Jika $a,b>0$, $a,b\ne1$, dan $x>0$, maka
+                \[
+                    \log_a x=\frac{\log_b x}{\log_b a}.
+                \]
+            \end{teorema}
+            Ambil $y=\log_a x$, sehingga $x=a^y$.
+            Maka $\log_b x=y\log_b a$.
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                Hitung $\log_3 7$ menggunakan tombol $\ln$.
+                \onslide<2->{\[
+                    \log_3 7=\frac{\ln 7}{\ln 3}\approx1{,}7712.
+                \]}
+            \end{contoh}
+            \onslide<2->{Karena $3<7<9$, hasilnya harus berada di antara $1$ dan $2$.}
+            Untuk $0<a<1$, $\ln a<0$, sehingga $\log_a x$ turun.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Mencari peubah di dalam logaritma atau pangkat}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.47\textwidth}
+            \begin{contoh}
+                Selesaikan $\ln(2x-3)=2$.
+            \end{contoh}
+            \onslide<2->{%
+                Domainnya $x>3/2$. Eksponensialkan kedua ruas.
+                \[
+                    2x-3=e^2\quad\Longrightarrow\quad x=\frac{3+e^2}{2}.
+                \]
+                Nilai ini memenuhi syarat $2x-3>0$.
+            }
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                Selesaikan $e^x-e^{-x}=3/2$.
+            \end{contoh}
+            \onslide<3->{%
+                Dengan $t=e^x>0$, kalikan $t-1/t=3/2$ dengan $2t$.
+                \[
+                    2t^2-3t-2=(2t+1)(t-2)=0.
+                \]
+                Akar yang memenuhi $t>0$ ialah $t=2$, jadi $x=\ln 2$.
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Kapan daya turun menjadi setengah?}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.49\textwidth}
+            \begin{contoh}
+                Daya suatu perangkat dimodelkan oleh
+                $P(t)=80e^{-t/100}$ watt, dengan $t$ dalam hari.
+                Tentukan $P(100)$ dan waktu saat daya mencapai $40$ watt.
+            \end{contoh}
+            \onslide<2->{$P(100)=80/e\approx29{,}4$ watt.}
+            \onslide<3->{\[
+                e^{-t/100}=\tfrac12
+                \quad\Longrightarrow\quad t=100\ln 2\approx69{,}3\text{ hari}.
+            \]}
+        \end{column}
+        \begin{column}{.47\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik transenden,xlabel={$t$},ylabel={$P(t)$},
+                    xmin=0,xmax=255,ymin=0,ymax=94,domain=0:241,
+                    xtick={69.3147,200},xticklabels={$100\ln 2$,$200$},ytick={40,80}]
+                    \addplot[HIMAtua] {80*exp(-x/100)};
+                    \only<3->{%
+                        \draw[magenta,dashed,thick] (axis cs:0,40) -- (axis cs:69.3147,40)
+                            -- (axis cs:69.3147,0);
+                        \fill[magenta] (axis cs:69.3147,40) circle[radius=1.8pt];
+                    }
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Pencerminan, pergeseran, dan asimtot}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \centering
+            \textbf{$f(x)=2-3^x$}\par
+            \begin{tikzpicture}
+                \begin{axis}[grafik transenden,height=4.05cm,xmin=-2.7,xmax=1.8,
+                    ymin=-3,ymax=4,xtick={-2,1},ytick={1,2}]
+                    \addplot[gray,dashed,domain=-2.6:1.24] {3^x};
+                    \addplot[gray,dotted,domain=-2.7:1.7] {2};
+                    \addplot[HIMAtua,domain=-2.6:1.43] {2-3^x};
+                    \node[font=\scriptsize,gray,anchor=south west] at (axis cs:-2.55,2) {$y=2$};
+                \end{axis}
+            \end{tikzpicture}\par
+            Cerminkan $3^x$ pada sumbu $x$, lalu naikkan dua satuan.
+            Daerah hasilnya $(-\infty,2)$.
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \centering
+            \textbf{$g(x)=-\ln(x-2)$}\par
+            \begin{tikzpicture}
+                \begin{axis}[grafik transenden,height=4.05cm,xmin=0,xmax=6.8,
+                    ymin=-2,ymax=4,xtick={1,2,3,5},ytick={-1,1,2}]
+                    \addplot[gray,dashed,domain=.16:6.7] {ln(x)};
+                    \draw[gray,dotted,thick] (axis cs:2,-2) -- (axis cs:2,3.85);
+                    \addplot[teal!80!black,domain=2.024:6.65] {-ln(x-2)};
+                    \node[font=\scriptsize,gray,anchor=west] at (axis cs:.35,2.55) {$x=2$};
+                \end{axis}
+            \end{tikzpicture}\par
+            Cerminkan $\ln x$ pada sumbu $x$, lalu geser dua satuan ke kanan.
+            Domainnya $(2,\infty)$.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Turunan logaritma dan peran nilai mutlak}
+    \begin{teorema}[Aturan rantai untuk logaritma]
+        Jika $u=u(x)$ dapat diturunkan dan $a>0$, $a\ne1$, maka
+        \[
+            (\ln u)'=\frac{u'}{u},\qquad
+            (\log_a u)'=\frac{u'}{u\ln a}\quad(u>0),\qquad
+            (\ln|u|)'=\frac{u'}{u}\quad(u\ne0).
+        \]
+    \end{teorema}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.47\textwidth}
+            Jika $u<0$, tulis $\ln|u|=\ln(-u)$.
+            Aturan rantai memberi $(-u')/(-u)=u'/u$.
+        \end{column}
+        \begin{column}{.49\textwidth}
+            \begin{contoh}
+                Turunkan $\ln|x^3-8|$.
+                \onslide<2->{\[
+                    \frac{d}{dx}\ln|x^3-8|=\frac{3x^2}{x^3-8},\qquad x\ne2.
+                \]}
+            \end{contoh}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Mengenali integral dengan pola $u'/u$}
+    \begin{block}{Anti-turunan logaritmik}
+        \[
+            \int\frac{du}{u}=\ln|u|+C,\qquad
+            \int\frac{u'(x)}{u(x)}\,dx=\ln|u(x)|+C.
+        \]
+        Gunakan rumus pada setiap selang yang tidak memuat nol dari $u$.
+    \end{block}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.49\textwidth}
+            \begin{contoh}
+                $\displaystyle\int\frac{6x^2-4x}{2x^3-2x^2+5}\,dx$
+            \end{contoh}
+            \onslide<2->{Pilih penyebut sebagai $u$. Pembilangnya tepat $u'$, sehingga
+            hasilnya $\ln|2x^3-2x^2+5|+C$.}
+        \end{column}
+        \begin{column}{.47\textwidth}
+            \begin{contoh}
+                $\displaystyle\int \tan x\,dx$
+            \end{contoh}
+            \onslide<3->{Tulis $\tan x=\sin x/\cos x$ dan gunakan $u=\cos x$,
+            $du=-\sin x\,dx$. Hasilnya $-\ln|\cos x|+C$.}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Turunan eksponensial dan fungsi pangkat}
+    \begin{teorema}[Turunan eksponensial dan pangkat real]
+        Untuk $a>0$, $r\in\R$, dan $u=u(x)$ yang dapat diturunkan,
+        \[
+            (e^u)'=e^u u',\qquad (a^u)'=a^u(\ln a)u',
+            \qquad (x^r)'=rx^{r-1}\quad(x>0).
+        \]
+    \end{teorema}
+    \onslide<2->{Jika $y=e^x$, aturan turunan fungsi invers memberi
+    $y'=1/(\ln)'(y)=y$. Bentuk $a^x=e^{x\ln a}$ dan $x^r=e^{r\ln x}$
+    kemudian dapat diturunkan dengan aturan rantai.}
+    \onslide<3->{%
+        \begin{contoh}
+            Pada $x>0$, $\displaystyle(x^{3/2})'=\tfrac32 x^{1/2}$, sedangkan
+            $\bigl((3/2)^x\bigr)'=(3/2)^x\ln(3/2)$.
+            Pada fungsi pertama basisnya berubah. Pada fungsi kedua pangkatnya berubah.
+        \end{contoh}
+    }
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Diferensiasi logaritmik saat pangkat berubah}
+    \begin{contoh}
+        Turunkan $y=(1+x^2)^x$. Apa yang terjadi ketika kedua ruas diambil $\ln$?
+    \end{contoh}
+    \onslide<2->{%
+        Basisnya positif, sehingga $y>0$ dan
+        \[
+            \ln y=x\ln(1+x^2).
+        \]
+    }
+    \onslide<3->{%
+        Turunkan kedua ruas terhadap $x$.
+        \[
+            \frac{y'}{y}=\ln(1+x^2)+\frac{2x^2}{1+x^2}.
+        \]
+        Kalikan kembali dengan $y$ untuk memperoleh
+        \[
+            y'=(1+x^2)^x\left[\ln(1+x^2)+\frac{2x^2}{1+x^2}\right].
+        \]
+    }
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Integral eksponensial dan perubahan batas}
+    \begin{block}{Bentuk dasar}
+        \[
+            \int e^u\,du=e^u+C,\qquad
+            \int a^u\,du=\frac{a^u}{\ln a}+C\quad(a>0,\ a\ne1).
+        \]
+    \end{block}
+    \begin{contoh}
+        Tentukan $\displaystyle\int_0^{\ln 4} e^x\sqrt{5+e^x}\,dx$.
+    \end{contoh}
+    \onslide<2->{Dengan $u=5+e^x$, diperoleh $du=e^x\,dx$.
+    Batas $x=0$ dan $x=\ln 4$ berubah menjadi $u=6$ dan $u=9$.}
+    \onslide<3->{\[
+        \int_6^9\sqrt u\,du=\left[\frac23u^{3/2}\right]_6^9=18-4\sqrt6.
+    \]}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Tiga bentuk limit yang menghasilkan $e$}
+    \begin{teorema}[Limit dasar eksponensial]
+        \[
+            \lim_{h\to0}(1+h)^{1/h}=e,\qquad
+            \lim_{x\to+\infty}(1+1/x)^x=e,\qquad
+            \lim_{x\to-\infty}(1+1/x)^x=e.
+        \]
+    \end{teorema}
+    \onslide<2->{%
+        Karena turunan $\ln x$ di $x=1$ adalah $1$, maka
+        \[
+            \lim_{h\to0}\ln\!\big((1+h)^{1/h}\big)
+                =\lim_{h\to0}\frac{\ln(1+h)-\ln 1}{h}=1.
+        \]
+        Terapkan $\exp$ pada limit. Kedua limit lainnya diperoleh dengan $h=1/x$.
+    }
+    \onslide<3->{\begin{contoh}
+        $\displaystyle\lim_{x\to\infty}(1+3/x)^{2x}=e^6$ karena
+        $(1+3/x)^{2x}=\big[(1+3/x)^{x/3}\big]^6$.
+    \end{contoh}}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Tanda, kecekungan, dan asimtot}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{block}{$y=e^x$ selalu positif}
+                $y'=y''=e^x>0$, jadi kurvanya naik dan cekung ke atas.
+                \[
+                    \lim_{x\to-\infty}e^x=0,\qquad
+                    \lim_{x\to\infty}e^x=\infty.
+                \]
+            \end{block}
+            Di ujung kiri, kurva mendekati sumbu $x$.
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{block}{$y=\ln x$ berubah tanda di $x=1$}
+                $y'=1/x>0$ dan $y''=-1/x^2<0$, jadi kurvanya naik dan cekung ke bawah.
+                \[
+                    \lim_{x\to0^+}\ln x=-\infty,\qquad
+                    \lim_{x\to\infty}\ln x=\infty.
+                \]
+            \end{block}
+            Di ujung kiri, kurva mendekati sumbu $y$.
+        \end{column}
+    \end{columns}
+    \onslide<2->{Saat kedua grafik saling dicerminkan terhadap $y=x$, asimtot
+    datar $y=0$ berubah menjadi asimtot tegak $x=0$.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Membandingkan laju pertumbuhan}
+    \begin{teorema}[Eksponensial, pangkat, dan logaritma]
+        Untuk setiap $n$ bilangan bulat positif,
+        \[
+            \lim_{x\to\infty}\frac{e^x}{x^n}=\infty,\qquad
+            \lim_{x\to\infty}\frac{\ln x}{x^n}=0,\qquad
+            \lim_{x\to0^+}x^n\ln x=0.
+        \]
+    \end{teorema}
+    \onslide<2->{%
+        Ketaksamaan $e^t\ge 1+t$ untuk $t\ge0$ mengikuti dari
+        $(e^t-1-t)'=e^t-1\ge0$. Gunakan $t=x/(n+1)$.
+        \[
+            e^x=(e^t)^{n+1}\ge t^{n+1}=\frac{x^{n+1}}{(n+1)^{n+1}}.
+        \]
+        Jadi $e^x/x^n$ tumbuh tanpa batas. Untuk limit kedua gunakan $x=e^t$,
+        dan untuk limit ketiga gunakan $x=1/t$.
+    }
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Sketsa kurva lonceng dengan turunan}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.51\textwidth}
+            \begin{contoh}
+                Sketsalah $f(x)=e^{-x^2}$ dan cari titik beloknya.
+            \end{contoh}
+            \onslide<2->{%
+                Karena $f$ genap, grafiknya simetris pada sumbu $y$.
+                \[
+                    f'(x)=-2xe^{-x^2},\qquad
+                    f''(x)=(4x^2-2)e^{-x^2}.
+                \]
+                $f'$ berganti dari positif ke negatif di $0$, sehingga
+                $(0,1)$ adalah titik maksimum.
+                $f''$ berubah tanda di $x=\pm1/\sqrt2$.
+            }
+        \end{column}
+        \begin{column}{.46\textwidth}
+            \onslide<2->{\centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik transenden,xmin=-2.6,xmax=2.6,ymin=0,ymax=1.18,
+                    xtick={-.707107,.707107},xticklabels={$-1/\sqrt2$,$1/\sqrt2$},
+                    ytick={1},domain=-2.5:2.5]
+                    \addplot[HIMAtua,very thick] {exp(-(x^2))};
+                    \draw[gray,dashed] (axis cs:-.707107,0) -- (axis cs:-.707107,.606531);
+                    \draw[gray,dashed] (axis cs:.707107,0) -- (axis cs:.707107,.606531);
+                    \fill[magenta] (axis cs:-.707107,.606531) circle[radius=1.8pt];
+                    \fill[magenta] (axis cs:.707107,.606531) circle[radius=1.8pt];
+                    \node[font=\scriptsize,magenta,anchor=west] at (axis cs:1.04,.7) {titik belok};
+                \end{axis}
+            \end{tikzpicture}\par
+            \small $y=0$ adalah asimtot datar di kedua ujung.}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Sketsa hasil bagi yang memuat logaritma}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.51\textwidth}
+            \begin{contoh}
+                Untuk $g(x)=\ln(2x)/x$, cari titik potong sumbu $x$,
+                titik maksimum, dan letak titik belok.
+            \end{contoh}
+            \onslide<2->{%
+                Domainnya $x>0$ dan $g(1/2)=0$.
+                \[
+                    g'(x)=\frac{1-\ln(2x)}{x^2},\qquad
+                    g''(x)=\frac{2\ln(2x)-3}{x^3}.
+                \]
+                Penyebutnya positif. Pembilang menentukan maksimum di
+                $x=e/2$ dan titik belok di $x=e^{3/2}/2$.
+            }
+        \end{column}
+        \begin{column}{.46\textwidth}
+            \onslide<2->{\centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik transenden,xmin=0,xmax=5.7,ymin=-2.35,ymax=1.02,
+                    xtick={.5,1.359141,2.240845},xticklabels={$1/2$,$e/2$,$e^{3/2}/2$},
+                    ytick=\empty,domain=.29:5.55]
+                    \addplot[HIMAtua,samples=170] {ln(2*x)/x};
+                    \draw[dashed,gray] (axis cs:1.359141,0) -- (axis cs:1.359141,.735759);
+                    \draw[dashed,gray] (axis cs:2.240845,0) -- (axis cs:2.240845,.66939);
+                    \fill[magenta] (axis cs:1.359141,.735759) circle[radius=1.7pt];
+                    \fill[teal!80!black] (axis cs:2.240845,.66939) circle[radius=1.7pt];
+                \end{axis}
+            \end{tikzpicture}\par
+            \small $x=0$ dan $y=0$ masing-masing asimtot tegak dan datar.}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Latihan eksponensial dan logaritma}
+    \begin{latihan}
+        \begin{enumerate}
+            \item Tentukan domain $f(x)=\ln(9-4x^2)$.
+            \item Tentukan turunan $g(x)=\ln|\sin(2x)|$ pada domainnya.
+            \item Hitung $\displaystyle\int_0^{\ln 2} e^{2x}\,dx$.
+        \end{enumerate}
+    \end{latihan}
+    \onslide<2->{%
+        \begin{block}{Cek jawaban}
+            \begin{enumerate}
+                \item $9-4x^2>0$ memberi $-\tfrac32<x<\tfrac32$.
+                \item $g'(x)=2\cot(2x)$ untuk $\sin(2x)\ne0$.
+                \item $\left[\tfrac12e^{2x}\right]_0^{\ln 2}=\tfrac32$.
+            \end{enumerate}
+        \end{block}
+    }
+\end{frame}
+
+% Sumber bagian ini: ../KALKULUS 2 BAB 1.pdf, halaman PDF 31--52.
+\section{Fungsi Invers Trigonometri}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Garis horizontal menguji keberadaan invers}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.53\textwidth}
+            \begin{teorema}[Keberadaan dan kekontinuan invers]
+                Fungsi yang naik tegas atau turun tegas pada suatu selang $I$
+                adalah satu-satu, sehingga mempunyai invers pada daerah hasilnya.
+                Jika $f$ kontinu dan satu-satu pada $I$, maka $f^{-1}$ kontinu pada $f(I)$.
+            \end{teorema}
+            Jika $f$ naik tegas, $x_1<x_2$ memberi $f(x_1)<f(x_2)$.
+            Setiap tinggi hanya punya satu titik asal. Untuk fungsi turun tegas,
+            urutan nilai $f$ terbalik.
+        \end{column}
+        \begin{column}{.44\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik transenden,width=5.9cm,xmin=-2.2,xmax=2.2,
+                    ymin=-2.4,ymax=2.4,xtick=\empty,ytick=\empty,domain=-1.8:1.8]
+                    \addplot[HIMAtua,very thick] {x^3/4+x/2};
+                    \draw[teal!80!black,dashed,thick] (axis cs:-2,.75) -- (axis cs:2,.75);
+                    \fill[magenta] (axis cs:1,.75) circle[radius=2pt];
+                    \node[font=\scriptsize,magenta,below right] at (axis cs:1,.75) {satu titik};
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Kemiringan invers adalah kebalikan}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.53\textwidth}
+            \begin{teorema}[Turunan fungsi invers]
+                Misalkan $f$ kontinu dan satu-satu pada suatu selang.
+                Jika $f'(x_0)$ ada dan tidak nol di titik interior $x_0$,
+                maka untuk $g=f^{-1}$ dan $y_0=f(x_0)$,
+                \[
+                    g'(y_0)=\frac1{f'(x_0)}=\frac1{f'(g(y_0))}.
+                \]
+            \end{teorema}
+            Pencerminan menukar perubahan horizontal dan vertikal.
+            Dengan $y=f(x)$, hasil bagi untuk $g$ ialah
+            $(x-x_0)/(f(x)-f(x_0))$. Ambil limit $y\to y_0$.
+        \end{column}
+        \begin{column}{.44\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik transenden,width=6cm,height=4.95cm,axis equal image,
+                    xmin=0,xmax=3.4,ymin=0,ymax=3.4,xtick={1},ytick={1}]
+                    \addplot[gray,dashed,domain=0:3.2] {x};
+                    \addplot[HIMAtua,domain=0:1.78] {x^2};
+                    \addplot[teal!80!black,domain=0:3.2] {sqrt(x)};
+                    \addplot[magenta,densely dashed,domain=1.24:1.775] {2.25+3*(x-1.5)};
+                    \addplot[magenta,densely dashed,domain=1.57:3.05] {1.5+(x-2.25)/3};
+                    \fill[HIMAtua] (axis cs:1.5,2.25) circle[radius=1.8pt];
+                    \fill[teal!80!black] (axis cs:2.25,1.5) circle[radius=1.8pt];
+                    \node[font=\scriptsize,HIMAtua,anchor=east] at (axis cs:1.6,2.7) {$m=3$};
+                    \node[font=\scriptsize,teal!80!black,anchor=north] at (axis cs:2.6,1.37) {$m=1/3$};
+                \end{axis}
+            \end{tikzpicture}\par
+            \small $f(x)=x^2$ pada $x\ge0$ dan $g(x)=\sqrt x$.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Turunan invers dari nilai yang diketahui}
+    \begin{contoh}
+        Misalkan $f(x)=x^5+3x^3+2x+1$. Tunjukkan bahwa $f$ mempunyai invers $g$
+        dan tentukan $g'(1)$.
+    \end{contoh}
+    \onslide<2->{%
+        \begin{block}{Keberadaan invers}
+            $f'(x)=5x^4+9x^2+2>0$, sehingga $f$ naik tegas.
+            Karena $f(0)=1$, kita tahu $g(1)=0$.
+        \end{block}
+    }
+    \onslide<3->{%
+        Jadi $g'(1)=1/f'(0)=1/2$.
+        Rumus yang sama dapat diperoleh dengan mendiferensialkan
+        $x=g(x)^5+3g(x)^3+2g(x)+1$ secara implisit.
+        Syarat $f'(x_0)\ne0$ penting. Invers $x^3$, yaitu $\sqrt[3]{x}$,
+        mempunyai garis singgung tegak di $0$.
+    }
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Invers sinus dimulai dari satu cabang}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{definisi}[Invers sinus]
+                Fungsi $\arcsin=\sin^{-1}$ adalah invers sinus
+                pada $[-\pi/2,\pi/2]$. Dengan demikian
+                \[
+                    y=\arcsin x
+                    \quad\Longleftrightarrow\quad
+                    \begin{cases}
+                        \sin y=x,\\
+                        -\pi/2\le y\le\pi/2,
+                    \end{cases}
+                \]
+                dengan $-1\le x\le1$.
+            \end{definisi}
+            Pada cabang biru, sinus naik dari $-1$ ke $1$.
+            Pencerminannya menghasilkan kurva hijau.
+        \end{column}
+        \begin{column}{.49\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik transenden,axis equal image,width=6.65cm,height=4.8cm,
+                    xmin=-2.85,xmax=2.85,ymin=-2.1,ymax=2.1,
+                    xtick={-1.570796,1.570796},xticklabels={$-\pi/2$,$\pi/2$},
+                    ytick={-1,1}]
+                    \addplot[gray,dotted,domain=-2.83:2.83] {sin(deg(x))};
+                    \addplot[gray,dashed,domain=-2:2] {x};
+                    \addplot[HIMAtua,very thick,domain=-pi/2:pi/2] {sin(deg(x))};
+                    \addplot[teal!80!black,very thick,domain=-pi/2:pi/2] ({sin(deg(x))},{x});
+                    \node[HIMAtua,font=\scriptsize,anchor=north] at (axis cs:1.95,.95) {$y=\sin x$};
+                    \node[teal!80!black,font=\scriptsize,anchor=east] at (axis cs:1,1.76) {$y=\arcsin x$};
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Sudut keluaran mengikuti cabang utama}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                Tentukan $\arcsin(-1/2)$ dan $\arcsin(\sin(5\pi/6))$.
+            \end{contoh}
+            \onslide<2->{%
+                Sudut dengan sinus $-1/2$ dalam $[-\pi/2,\pi/2]$ adalah $-\pi/6$.
+                Karena $\sin(5\pi/6)=1/2$, maka
+                \[
+                    \arcsin(\sin(5\pi/6))=\pi/6.
+                \]
+            }
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{block}{Dua urutan komposisi}
+                \begin{itemize}
+                    \item $\sin(\arcsin x)=x$ untuk $x\in[-1,1]$.
+                    \item $\arcsin(\sin y)=y$ untuk $y\in[-\pi/2,\pi/2]$.
+                \end{itemize}
+            \end{block}
+            $\sin^{-1}x$ menyatakan $\arcsin x$. Kebalikan nilai sinus ditulis
+            $1/\sin x=\csc x$.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Invers cosinus dan tangen}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.51\textwidth}
+            \begin{definisi}[Cabang cosinus dan tangen]
+                \begin{itemize}
+                    \item Untuk $x\in[-1,1]$, $y=\arccos x$ memenuhi
+                        $\cos y=x$ dengan $y\in[0,\pi]$.
+                    \item Untuk $x\in\R$, $y=\arctan x$ memenuhi
+                        $\tan y=x$ dengan $y\in(-\pi/2,\pi/2)$.
+                \end{itemize}
+            \end{definisi}
+            \begin{contoh}
+                Di $[0,\pi]$, sudut dengan cosinus $-1/2$ berada
+                di kuadran II. Jadi $\arccos(-1/2)=2\pi/3$.
+            \end{contoh}
+        \end{column}
+        \begin{column}{.46\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik transenden,height=3.95cm,xmin=-5.3,xmax=5.3,
+                    ymin=-2.04,ymax=2.15,xtick=\empty,
+                    ytick={-1.570796,1.570796},yticklabels={$-\pi/2$,$\pi/2$}]
+                    \addplot[gray,dashed,domain=-5.1:5.1] {pi/2};
+                    \addplot[gray,dashed,domain=-5.1:5.1] {-pi/2};
+                    \addplot[HIMAtua,very thick,domain=-5.1:5.1] {rad(atan(x))};
+                    \node[font=\scriptsize,HIMAtua,anchor=north] at (axis cs:2.9,1.19) {$y=\arctan x$};
+                \end{axis}
+            \end{tikzpicture}\par
+            \small $\arctan x\to\pi/2$ saat $x\to\infty$
+            dan $\arctan x\to-\pi/2$ saat $x\to-\infty$.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Cabang secan, cotangen, dan cosecan}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.53\textwidth}
+            \begin{definisi}[Tiga invers lainnya]
+                Tuliskan $J=(-\infty,-1]\cup[1,\infty)$.
+                Pada cabang $y$ yang diberikan, persamaan
+                $\sec y=x$, $\cot y=x$, dan $\csc y=x$
+                menentukan nilai invers yang unik.
+                \[
+                    \begin{array}{l|c|c}
+                        \text{Invers} & \text{Domain }x & \text{Daerah hasil }y\\ \hline
+                        \arcsec x & J & [0,\pi/2)\cup[\pi,3\pi/2)\\[2pt]
+                        \arccot x & \R & (0,\pi)\\[2pt]
+                        \arccsc x & J & (-\pi,-\pi/2]\cup(0,\pi/2]
+                    \end{array}
+                \]
+            \end{definisi}
+            Untuk $\arcsec$, nilai $x\le-1$ memilih sudut
+            di $[\pi,3\pi/2)$. Contohnya $\arcsec(-2)=4\pi/3$.
+        \end{column}
+        \begin{column}{.44\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik transenden,width=5.95cm,xmin=-5.25,xmax=5.25,
+                    ymin=-.42,ymax=5.34,xtick={-1,1},
+                    ytick={1.570796,3.141593,4.712389},yticklabels={$\pi/2$,$\pi$,$3\pi/2$}]
+                    \addplot[gray,dashed,domain=0:5] {pi/2};
+                    \addplot[gray,dashed,domain=-5:0] {3*pi/2};
+                    \addplot[HIMAtua,domain=1:5] {rad(acos(1/x))};
+                    \addplot[HIMAtua,domain=-5:-1] {2*pi-rad(acos(1/x))};
+                    \fill[HIMAtua] (axis cs:1,0) circle[radius=1.7pt];
+                    \fill[HIMAtua] (axis cs:-1,3.141593) circle[radius=1.7pt];
+                    \node[font=\scriptsize,HIMAtua] at (axis cs:2.9,3.36) {$y=\arcsec x$};
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Identitas sudut komplemen}
+    \begin{teorema}[Pasangan invers trigonometri]
+        \[
+            \begin{aligned}
+                \arcsin x+\arccos x&=\frac{\pi}{2}, && -1\le x\le1,\\
+                \arctan x+\arccot x&=\frac{\pi}{2}, && x\in\R,\\
+                \arcsec x+\arccsc x&=\frac{\pi}{2}, && |x|\ge1.
+            \end{aligned}
+        \]
+    \end{teorema}
+    \onslide<2->{%
+        Ambil $\theta=\arcsin x$. Karena
+        $\cos(\pi/2-\theta)=\sin\theta=x$ dan $\pi/2-\theta\in[0,\pi]$,
+        sudut $\pi/2-\theta$ tepat sama dengan $\arccos x$.
+        Untuk dua pasangan lain, gunakan identitas kofungsi dan cek cabangnya.
+    }
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Komposisi dengan bantuan segitiga siku-siku}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.47\textwidth}
+            \centering
+            \textbf{$\theta=\arcsin x$ dengan $0<x<1$}\par
+            \medskip
+            \begin{tikzpicture}
+                \draw[HIMAtua,thick] (0,0) -- (3.45,0)
+                    node[midway,below] {$\sqrt{1-x^2}$}
+                    -- (3.45,1.91) node[midway,right] {$x$}
+                    -- cycle node[midway,above left] {$1$};
+                \draw (3.25,0) -- (3.25,.2) -- (3.45,.2);
+                \draw[teal!80!black] (.9,0) arc[start angle=0,end angle=29,radius=.9];
+                \node at (1.16,.24) {$\theta$};
+            \end{tikzpicture}
+            \[
+                \cos(\arcsin x)=\sqrt{1-x^2}.
+            \]
+        \end{column}
+        \begin{column}{.47\textwidth}
+            \centering
+            \textbf{$\phi=\arctan x$ dengan $x>0$}\par
+            \medskip
+            \begin{tikzpicture}
+                \draw[HIMAtua,thick] (0,0) -- (3.45,0)
+                    node[midway,below] {$1$}
+                    -- (3.45,1.91) node[midway,right] {$x$}
+                    -- cycle node[midway,above left] {$\sqrt{1+x^2}$};
+                \draw (3.25,0) -- (3.25,.2) -- (3.45,.2);
+                \draw[teal!80!black] (.9,0) arc[start angle=0,end angle=29,radius=.9];
+                \node at (1.16,.24) {$\phi$};
+            \end{tikzpicture}
+            \[
+                \sec(\arctan x)=\sqrt{1+x^2}.
+            \]
+        \end{column}
+    \end{columns}
+    \onslide<2->{Kedua identitas berlaku di seluruh domain masing-masing.
+    Cabang utama menjamin $\cos(\arcsin x)\ge0$ dan $\sec(\arctan x)>0$,
+    sehingga akar kuadratnya diambil dengan tanda positif.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Turunan invers sinus, cosinus, tangen, dan cotangen}
+    \begin{teorema}[Turunan empat invers]
+        \[
+            \begin{aligned}
+                (\arcsin x)'&=\frac{1}{\sqrt{1-x^2}},&
+                (\arccos x)'&=-\frac{1}{\sqrt{1-x^2}} && (|x|<1),\\
+                (\arctan x)'&=\frac{1}{1+x^2},&
+                (\arccot x)'&=-\frac{1}{1+x^2} && (x\in\R).
+            \end{aligned}
+        \]
+    \end{teorema}
+    \onslide<2->{%
+        Jika $y=\arcsin x$, maka $x=\sin y$ dan $1=\cos y\,y'$.
+        Pada cabang utama, $\cos y=\sqrt{1-x^2}>0$ untuk $|x|<1$.
+        Untuk tangen, $x=\tan y$ memberi $1=\sec^2 y\,y'=(1+x^2)y'$.
+        Turunan pasangan komplemennya bertanda kebalikan.
+    }
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Cabang invers secan menentukan tanda turunan}
+    \begin{teorema}[Turunan invers secan dan cosecan]
+        Dengan cabang yang dipakai pada bab ini, untuk $|x|>1$,
+        \[
+            (\arcsec x)'=\frac{1}{x\sqrt{x^2-1}},
+            \qquad
+            (\arccsc x)'=-\frac{1}{x\sqrt{x^2-1}}.
+        \]
+    \end{teorema}
+    \onslide<2->{%
+        Jika $y=\arcsec x$, maka $x=\sec y$, sehingga
+        $1=\sec y\tan y\,y'$. Pada kedua cabang secan yang dipilih,
+        $\tan y\ge0$, jadi $\tan y=\sqrt{x^2-1}$.
+    }
+    \onslide<3->{%
+        \begin{block}{Membaca tanda dari grafik}
+            Jika $x<-1$, $\sec y=x<0$ dan $\tan y>0$ di kuadran III.
+            Maka kemiringan $\arcsec x$ negatif di cabang kiri.
+            Identitas $\arcsec x+\arccsc x=\pi/2$ memberi rumus untuk $\arccsc$.
+        \end{block}
+    }
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Aturan rantai pada invers trigonometri}
+    Untuk fungsi invers $F$ dan $u=u(x)$, kalikan rumus $F'(u)$ dengan $u'$.
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                Turunkan $y=\arcsin(x^2)$.
+            \end{contoh}
+            \onslide<2->{%
+                Ambil $u=x^2$ dan $u'=2x$.
+                \[
+                    y'=\frac{2x}{\sqrt{1-x^4}}\quad (|x|<1).
+                \]
+            }
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                Turunkan $y=\arcsec(2x)$.
+            \end{contoh}
+            \onslide<3->{%
+                Ambil $u=2x$ dan $u'=2$.
+                \[
+                    y'=\frac{1}{x\sqrt{4x^2-1}}\quad (|x|>1/2).
+                \]
+            }
+        \end{column}
+    \end{columns}
+    \onslide<3->{Periksa syarat untuk $u$ dulu, kemudian terjemahkan menjadi syarat untuk $x$.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Seberapa cepat kamera harus mendongak?}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.52\textwidth}
+            \begin{contoh}
+                Kamera berjarak $60$ m dari garis gerak vertikal balon.
+                Ketika balon berada $80$ m di atas tinggi kamera, balon
+                naik $5$ m/s. Tentukan laju sudut elevasi $\theta$.
+            \end{contoh}
+            \onslide<2->{%
+                Karena $\tan\theta=h/60$, diperoleh $\theta=\arctan(h/60)$.
+                \[
+                    \frac{d\theta}{dt}
+                    =\frac{60}{3600+h^2}\frac{dh}{dt}.
+                \]
+            }
+            \onslide<3->{Maka $\theta'=(60\cdot5)/(3600+6400)=0{,}03$ rad/s.}
+        \end{column}
+        \begin{column}{.45\textwidth}
+            \centering
+            \begin{tikzpicture}[>=stealth]
+                \draw[gray,thick] (-.45,0) -- (3.5,0);
+                \draw[HIMAtua,thick] (0,0) -- (2.4,3.2);
+                \draw[gray,dashed] (2.4,0) -- (2.4,3.2);
+                \draw (2.22,0) -- (2.22,.18) -- (2.4,.18);
+                \draw[teal!80!black,thick] (.82,0) arc[start angle=0,end angle=53.13,radius=.82];
+                \node at (1.03,.4) {$\theta$};
+                \fill[HIMAtua] (0,0) circle[radius=1.8pt] node[below] {kamera};
+                \filldraw[fill=HIMAmuda!40,draw=HIMAtua] (2.4,3.48)
+                    ellipse[x radius=.2,y radius=.28];
+                \draw[<->,teal!80!black] (2.83,0) -- (2.83,3.2)
+                    node[midway,right] {$h(t)$};
+                \draw[<->] (0,-.53) -- (2.4,-.53) node[midway,below] {$60$ m};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Integral yang menghasilkan invers trigonometri}
+    \begin{teorema}[Bentuk integral dengan parameter $a>0$]
+        \[
+            \begin{aligned}
+                \int\frac{du}{\sqrt{a^2-u^2}}
+                    &=\arcsin(u/a)+C && (|u|<a),\\
+                \int\frac{du}{a^2+u^2}
+                    &=\frac1a\arctan(u/a)+C && (u\in\R),\\
+                \int\frac{du}{u\sqrt{u^2-a^2}}
+                    &=\frac1a\arcsec(u/a)+C && (|u|>a).
+            \end{aligned}
+        \]
+    \end{teorema}
+    \onslide<2->{%
+        Untuk $a=1$, ketiganya langsung terbaca dari tabel turunan.
+        Jika $a>0$, substitusi $v=u/a$ menormalkan penyebut.
+        Pada integral kedua, $du=a\,dv$ dan $a^2+u^2=a^2(1+v^2)$,
+        sehingga muncul faktor $1/a$.
+    }
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Ubah integran menjadi salah satu bentuk dasar}
+    \begin{columns}[t,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                $\displaystyle\int\frac{x^2}{9+x^6}\,dx$
+            \end{contoh}
+            \onslide<2->{%
+                Ambil $u=x^3$, $du=3x^2\,dx$.
+                \[
+                    \begin{aligned}
+                        \frac13\int\frac{du}{9+u^2}
+                            &=\frac19\arctan(u/3)+C\\
+                            &=\frac19\arctan(x^3/3)+C.
+                    \end{aligned}
+                \]
+            }
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                $\displaystyle\int\frac{2x}{\sqrt{16-(x^2-1)^2}}\,dx$
+            \end{contoh}
+            \onslide<3->{%
+                Ambil $u=x^2-1$, $du=2x\,dx$.
+                \[
+                    \begin{aligned}
+                        \int\frac{du}{\sqrt{16-u^2}}
+                            &=\arcsin(u/4)+C\\
+                            &=\arcsin((x^2-1)/4)+C.
+                    \end{aligned}
+                \]
+                Rumus berlaku ketika $|x^2-1|<4$.
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Latihan invers trigonometri}
+    \begin{latihan}
+        \begin{enumerate}
+            \item Hitung $\arccos(\cos(5\pi/3))$.
+            \item Tentukan turunan $\arctan(e^{-x})$.
+            \item Hitung $\displaystyle\int\frac{dx}{4+9x^2}$.
+        \end{enumerate}
+    \end{latihan}
+    \onslide<2->{%
+        \begin{block}{Cek jawaban}
+            \begin{enumerate}
+                \item $\pi/3$ karena cosinusnya $1/2$ dan $\pi/3\in[0,\pi]$.
+                \item $\displaystyle-\frac{e^{-x}}{1+e^{-2x}}$.
+                \item $\displaystyle\frac16\arctan(3x/2)+C$ dengan $u=3x$.
+            \end{enumerate}
+        \end{block}
+    }
+\end{frame}
+
+% Sumber bagian ini: ../KALKULUS 2 BAB 1.pdf, halaman PDF 52--65.
+\section{Fungsi Hiperbolik}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Dua kombinasi dari $e^x$ dan $e^{-x}$}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.50\textwidth}
+            \begin{definisi}[Sinus dan cosinus hiperbolik]
+                Untuk setiap $x\in\R$,
+                \[
+                    \sinh x=\frac{e^x-e^{-x}}{2},\qquad
+                    \cosh x=\frac{e^x+e^{-x}}{2}.
+                \]
+            \end{definisi}
+            Mengganti $x$ dengan $-x$ menukar kedua suku eksponensial.
+            Maka $\sinh$ ganjil dan $\cosh$ genap.
+            \[
+                \sinh 0=0,\qquad \cosh 0=1.
+            \]
+            Dari $e^x+e^{-x}\ge2$ diperoleh $\cosh x\ge1$.
+        \end{column}
+        \begin{column}{.46\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik transenden,xmin=-2.05,xmax=2.05,
+                    ymin=-3.6,ymax=4.4,xtick={-1,1},ytick={1},domain=-1.96:1.96]
+                    \addplot[HIMAtua,very thick] {(exp(x)+exp(-x))/2};
+                    \addplot[teal!80!black,very thick] {(exp(x)-exp(-x))/2};
+                    \fill[HIMAtua] (axis cs:0,1) circle[radius=1.7pt];
+                    \node[font=\scriptsize,HIMAtua,anchor=west] at (axis cs:-1.94,3.8) {$\cosh x$};
+                    \node[font=\scriptsize,teal!80!black,anchor=west] at (axis cs:.31,.12) {$\sinh x$};
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Hasil bagi dan kebalikan nilai}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.50\textwidth}
+            \begin{definisi}[Empat fungsi hiperbolik lainnya]
+                \[
+                    \begin{aligned}
+                        \tanh x&=\frac{\sinh x}{\cosh x}, &
+                        \sech x&=\frac1{\cosh x},\\
+                        \coth x&=\frac{\cosh x}{\sinh x}, &
+                        \csch x&=\frac1{\sinh x}.
+                    \end{aligned}
+                \]
+            \end{definisi}
+            $\cosh$ tidak nol, sehingga $\tanh$ dan $\sech$ terdefinisi
+            di $\R$. Karena $\sinh 0=0$, domain $\coth$ dan $\csch$
+            adalah $\R\setminus\{0\}$.
+        \end{column}
+        \begin{column}{.46\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik transenden,xmin=-3.1,xmax=3.1,
+                    ymin=-2.7,ymax=2.7,xtick=\empty,ytick={-1,1}]
+                    \addplot[gray,dashed,domain=-3:3] {1};
+                    \addplot[gray,dashed,domain=-3:3] {-1};
+                    \addplot[HIMAtua,domain=-3:3] {(exp(2*x)-1)/(exp(2*x)+1)};
+                    \addplot[teal!80!black,domain=-3:-.39] {(exp(2*x)+1)/(exp(2*x)-1)};
+                    \addplot[teal!80!black,domain=.39:3] {(exp(2*x)+1)/(exp(2*x)-1)};
+                    \node[font=\scriptsize,HIMAtua,anchor=east] at (axis cs:2.9,.48) {$\tanh x$};
+                    \node[font=\scriptsize,teal!80!black,anchor=east] at (axis cs:2.9,1.59) {$\coth x$};
+                \end{axis}
+            \end{tikzpicture}\par
+            \small $\tanh x$ berada di antara $-1$ dan $1$.
+            Grafik $\coth x$ memiliki dua cabang.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Kurva kabel gantung}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.51\textwidth}
+            Kabel homogen yang menggantung bebas membentuk
+            \textbf{katenaria}. Jika titik terendahnya $(0,a)$, modelnya
+            \[
+                y=a\cosh(x/a),\qquad a>0.
+            \]
+            \begin{contoh}
+                Jika $a=2$ m dan tumpuan berada di $x=\pm2$ m,
+                berapa selisih tinggi tumpuan dan titik terendah?
+                \onslide<2->{\[
+                    2\cosh(1)-2\approx1{,}09\text{ m}.
+                \]}
+            \end{contoh}
+        \end{column}
+        \begin{column}{.46\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik transenden,xmin=-2.65,xmax=2.65,
+                    ymin=0,ymax=3.95,xtick={-2,2},ytick={2},
+                    xlabel={$x$ (m)},ylabel={$y$ (m)}]
+                    \draw[gray,very thick] (axis cs:-2,0) -- (axis cs:-2,3.09);
+                    \draw[gray,very thick] (axis cs:2,0) -- (axis cs:2,3.09);
+                    \addplot[HIMAtua,very thick,domain=-2:2] {exp(x/2)+exp(-x/2)};
+                    \fill[HIMAtua] (axis cs:-2,3.08616) circle[radius=1.7pt];
+                    \fill[HIMAtua] (axis cs:2,3.08616) circle[radius=1.7pt];
+                    \fill[teal!80!black] (axis cs:0,2) circle[radius=1.7pt];
+                    \draw[gray,dashed] (axis cs:.03,3.08616) -- (axis cs:2,3.08616);
+                    \draw[<->,magenta,thick] (axis cs:.46,2) -- (axis cs:.46,3.08616);
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Dari identitas ke hiperbola satuan}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.54\textwidth}
+            \begin{teorema}[Identitas dasar hiperbolik]
+                \[
+                    \cosh^2 t-\sinh^2 t=1.
+                \]
+                Dengan membagi oleh $\cosh^2 t$ atau $\sinh^2 t$,
+                diperoleh $1-\tanh^2 t=\sech^2 t$ dan
+                $\coth^2 t-1=\csch^2 t$ (untuk $t\ne0$).
+            \end{teorema}
+            Faktorkan selisih kuadrat. Faktornya $\cosh t+\sinh t=e^t$
+            dan $\cosh t-\sinh t=e^{-t}$, dengan hasil kali $1$.
+            Maka $(\cosh t,\sinh t)$ terletak pada $x^2-y^2=1$.
+        \end{column}
+        \begin{column}{.43\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik transenden,width=5.7cm,height=4.8cm,axis equal image,
+                    xmin=-1.35,xmax=2.75,ymin=-1.97,ymax=2.1,xtick=\empty,ytick=\empty]
+                    \addplot[gray,domain=0:360] ({cos(x)},{sin(x)});
+                    \addplot[HIMAtua,very thick,domain=-1.36:1.36]
+                        ({(exp(x)+exp(-x))/2},{(exp(x)-exp(-x))/2});
+                    \fill[gray] (axis cs:.707107,.707107) circle[radius=1.6pt];
+                    \fill[HIMAtua] (axis cs:1.543081,1.175201) circle[radius=1.7pt];
+                    \node[font=\scriptsize,gray,anchor=south] at (axis cs:.1,.98) {$x^2+y^2=1$};
+                    \node[font=\scriptsize,HIMAtua,anchor=west] at (axis cs:1.19,-.58) {$x^2-y^2=1$};
+                \end{axis}
+            \end{tikzpicture}\par
+            \small Lingkaran satuan memuat $(\cos t,\sin t)$.
+            Cabang kanan hiperbola memuat $(\cosh t,\sinh t)$.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Identitas jumlah, selisih, dan sudut ganda}
+    \begin{teorema}[Penjumlahan dan pengurangan]
+        \[
+            \begin{aligned}
+                \sinh(x\pm y)&=\sinh x\cosh y\pm\cosh x\sinh y,\\
+                \cosh(x\pm y)&=\cosh x\cosh y\pm\sinh x\sinh y.
+            \end{aligned}
+        \]
+    \end{teorema}
+    \onslide<2->{Kembangkan $e^{x+y}=e^xe^y$ dan $e^{-(x+y)}=e^{-x}e^{-y}$
+    dengan $e^{\pm x}=\cosh x\pm\sinh x$. Untuk selisih, gunakan
+    $\cosh(-y)=\cosh y$ dan $\sinh(-y)=-\sinh y$.}
+    \onslide<3->{%
+        \begin{block}{Ambil $y=x$}
+            \[
+                \begin{aligned}
+                    \sinh(2x)&=2\sinh x\cosh x,\\
+                    \cosh(2x)&=\cosh^2x+\sinh^2x
+                              =2\cosh^2x-1=1+2\sinh^2x.
+                \end{aligned}
+            \]
+        \end{block}
+    }
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Turunan fungsi hiperbolik}
+    \begin{teorema}[Aturan rantai]
+        Untuk $u=u(x)$ yang dapat diturunkan,
+        \[
+            \begin{aligned}
+                (\sinh u)'&=\cosh u\,u',&
+                (\cosh u)'&=\sinh u\,u',\\
+                (\tanh u)'&=\sech^2u\,u',&
+                (\coth u)'&=-\csch^2u\,u',\\
+                (\sech u)'&=-\sech u\tanh u\,u',&
+                (\csch u)'&=-\csch u\coth u\,u'.
+            \end{aligned}
+        \]
+        Rumus $\coth$ dan $\csch$ dipakai untuk $u\ne0$.
+    \end{teorema}
+    \onslide<2->{%
+        Untuk $\tanh$, aturan hasil bagi memberi
+        $(\cosh^2u-\sinh^2u)u'/\cosh^2u=\sech^2u\,u'$.
+        Turunan $\cosh$ dapat dibaca langsung dari $(e^u+e^{-u})/2$.
+        Misalnya $(\cosh(x^2))'=2x\sinh(x^2)$.
+    }
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Mencari anti-turunan hiperbolik}
+    \begin{block}{Pasangan turunan dan integral}
+        \[
+            \begin{aligned}
+                \int\cosh u\,du&=\sinh u+C,&
+                \int\sinh u\,du&=\cosh u+C,\\
+                \int\sech^2u\,du&=\tanh u+C,&
+                \int\csch^2u\,du&=-\coth u+C,\\
+                \int\sech u\tanh u\,du&=-\sech u+C,&
+                \int\csch u\coth u\,du&=-\csch u+C.
+            \end{aligned}
+        \]
+    \end{block}
+    \begin{contoh}
+        Hitung $\int\tanh(2x)\,dx$.
+        \onslide<2->{Ambil $u=\cosh(2x)>0$ sehingga
+        $du=2\sinh(2x)\,dx$. Integral menjadi
+        $\tfrac12\int du/u=\tfrac12\ln(\cosh(2x))+C$.}
+    \end{contoh}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Memilih cabang untuk invers hiperbolik}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.51\textwidth}
+            \begin{definisi}[Pembatasan domain]
+                $\sinh$, $\tanh$, $\coth$, dan $\csch$ satu-satu pada domain
+                alaminya. Untuk $\cosh$ dan $\sech$, ambil cabang $x\ge0$
+                agar keduanya mempunyai invers.
+            \end{definisi}
+            Kurva tebal $y=\cosh x$ memakai $x\ge0$. Setelah dicerminkan
+            terhadap $y=x$, daerah hasil $\cosh^{-1}$ menjadi $[0,\infty)$.
+            \onslide<2->{Karena $\cosh(-2)=\cosh 2$, diperoleh
+            $\cosh^{-1}(\cosh(-2))=2$.}
+        \end{column}
+        \begin{column}{.46\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[grafik transenden,width=6.1cm,height=4.85cm,axis equal image,
+                    xmin=-1.6,xmax=3.6,ymin=-.2,ymax=3.6,xtick={1},ytick={1}]
+                    \addplot[gray,dotted,domain=-1.6:0] {(exp(x)+exp(-x))/2};
+                    \addplot[gray,dashed,domain=0:3.46] {x};
+                    \addplot[HIMAtua,very thick,domain=0:1.9] {(exp(x)+exp(-x))/2};
+                    \addplot[teal!80!black,very thick,domain=0:1.9]
+                        ({(exp(x)+exp(-x))/2},{x});
+                    \fill[HIMAtua] (axis cs:0,1) circle[radius=1.6pt];
+                    \fill[teal!80!black] (axis cs:1,0) circle[radius=1.6pt];
+                    \node[font=\scriptsize,HIMAtua,anchor=east] at (axis cs:1.43,2.35) {$\cosh x$};
+                    \node[font=\scriptsize,teal!80!black,anchor=north] at (axis cs:2.45,1.33) {$\cosh^{-1}x$};
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Domain dan daerah hasil keenam invers}
+    \begin{teorema}[Karakterisasi invers hiperbolik]
+        $y=f^{-1}(x)$ tepat ketika $f(y)=x$ dan $(x,y)$ memenuhi
+        domain serta daerah hasil pada tabel.
+        \[
+            \begin{array}{l|c|c}
+                f^{-1}(x)&\text{Domain }x&\text{Daerah hasil }y\\ \hline
+                \sinh^{-1}x&\R&\R\\
+                \cosh^{-1}x&[1,\infty)&[0,\infty)\\
+                \tanh^{-1}x&(-1,1)&\R\\
+                \coth^{-1}x&(-\infty,-1)\cup(1,\infty)&\R\setminus\{0\}\\
+                \sech^{-1}x&(0,1]&[0,\infty)\\
+                \csch^{-1}x&\R\setminus\{0\}&\R\setminus\{0\}
+            \end{array}
+        \]
+    \end{teorema}
+    Domain invers adalah daerah hasil fungsi asal. Misalnya
+    $|\tanh y|<1$ untuk semua $y$, sehingga $\tanh^{-1}(1)$ tidak terdefinisi.
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Mengubah invers hiperbolik menjadi logaritma}
+    \begin{teorema}[Bentuk logaritmik untuk $\sinh^{-1}$ dan $\cosh^{-1}$]
+        \[
+            \begin{aligned}
+                \sinh^{-1}x&=\ln\!\bigl(x+\sqrt{x^2+1}\bigr) &&(x\in\R),\\
+                \cosh^{-1}x&=\ln\!\bigl(x+\sqrt{x^2-1}\bigr) &&(x\ge1).
+            \end{aligned}
+        \]
+    \end{teorema}
+    \onslide<2->{Ambil $y=\sinh^{-1}x$ dan $z=e^y>0$.
+    Persamaan $2x=z-1/z$ menjadi $z^2-2xz-1=0$.
+    Akar positifnya $z=x+\sqrt{x^2+1}$, sehingga $y=\ln z$.}
+    \onslide<3->{Untuk $\cosh^{-1}$, persamaannya $2x=z+1/z$.
+    Cabang $y\ge0$ meminta $z\ge1$, sehingga dipilih $x+\sqrt{x^2-1}$.
+    Sebagai cek, $\cosh^{-1}(5/3)=\ln(5/3+4/3)=\ln 3$.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Bentuk logaritmik dari hasil bagi dan kebalikan}
+    \begin{teorema}[Empat bentuk logaritmik lainnya]
+        \[
+            \begin{aligned}
+                \tanh^{-1}x&=\frac12\ln\!\left(\frac{1+x}{1-x}\right)
+                    &&(|x|<1),\\
+                \coth^{-1}x&=\frac12\ln\!\left(\frac{x+1}{x-1}\right)
+                    &&(|x|>1),\\
+                \sech^{-1}x&=\ln\!\left(\frac{1+\sqrt{1-x^2}}{x}\right)
+                    &&(0<x\le1),\\
+                \csch^{-1}x&=\ln\!\left(\frac1x+\frac{\sqrt{1+x^2}}{|x|}\right)
+                    &&(x\ne0).
+            \end{aligned}
+        \]
+    \end{teorema}
+    \onslide<2->{Dari $x=\tanh y=(e^{2y}-1)/(e^{2y}+1)$ diperoleh
+    $e^{2y}=(1+x)/(1-x)$. Untuk tiga fungsi lainnya, gunakan masing-masing
+    $\tanh^{-1}(1/x)$, $\cosh^{-1}(1/x)$, dan $\sinh^{-1}(1/x)$.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Turunan keenam invers hiperbolik}
+    \begin{teorema}[Turunan invers hiperbolik]
+        \[
+            \begin{aligned}
+                (\sinh^{-1}x)'&=\frac1{\sqrt{1+x^2}} &&(x\in\R),&
+                (\coth^{-1}x)'&=\frac1{1-x^2} &&(|x|>1),\\
+                (\cosh^{-1}x)'&=\frac1{\sqrt{x^2-1}} &&(x>1),&
+                (\sech^{-1}x)'&=-\frac1{x\sqrt{1-x^2}} &&(0<x<1),\\
+                (\tanh^{-1}x)'&=\frac1{1-x^2} &&(|x|<1),&
+                (\csch^{-1}x)'&=-\frac1{|x|\sqrt{1+x^2}} &&(x\ne0).
+            \end{aligned}
+        \]
+    \end{teorema}
+    \onslide<2->{Untuk $y=\sinh^{-1}x$, diferensiasi $x=\sinh y$ memberi
+    $y'=1/\cosh y$. Identitas dasar memberi $\cosh y=\sqrt{1+\sinh^2y}=\sqrt{1+x^2}$.
+    Pada $\tanh^{-1}$ dan $\coth^{-1}$, perhatikan domain masing-masing
+    walaupun rumus turunannya sama.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Integral dengan $\sqrt{1+u^2}$ atau $\sqrt{u^2-1}$}
+    \begin{teorema}[Integral yang menghasilkan $\sinh^{-1}$ dan $\cosh^{-1}$]
+        \[
+            \begin{aligned}
+                \int\frac{du}{\sqrt{1+u^2}}&=\sinh^{-1}u+C,\\
+                \int\frac{du}{\sqrt{u^2-1}}
+                    &=\begin{cases}
+                        \cosh^{-1}u+C,&u>1,\\
+                        -\cosh^{-1}(-u)+C,&u<-1.
+                    \end{cases}
+            \end{aligned}
+        \]
+    \end{teorema}
+    \begin{contoh}
+        Hitung $\int dx/\sqrt{9+4x^2}$.
+        \onslide<2->{Dengan $u=2x/3$ dan $dx=\tfrac32\,du$,
+        \[
+            \int\frac{dx}{\sqrt{9+4x^2}}
+                =\frac12\int\frac{du}{\sqrt{1+u^2}}
+                =\frac12\sinh^{-1}(2x/3)+C.
+        \]}
+    \end{contoh}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Penyebut sama, interval berbeda}
+    \begin{teorema}[Integral dengan penyebut $1-u^2$]
+        \[
+            \int\frac{du}{1-u^2}=
+            \begin{cases}
+                \tanh^{-1}u+C,& |u|<1,\\
+                \coth^{-1}u+C,& |u|>1.
+            \end{cases}
+        \]
+    \end{teorema}
+    Bentuk $\tfrac12\ln\left|\dfrac{1+u}{1-u}\right|+C$ mencakup ketiga selang
+    yang dipisahkan oleh $u=\pm1$. Konstanta integrasi dapat berbeda antarselang.
+    \begin{contoh}
+        Hitung $\displaystyle\int\frac{2\,dx}{1-4x^2}$ untuk $x>\tfrac12$.
+        \onslide<2->{Dengan $u=2x>1$, pilih $\coth^{-1}(2x)+C$.}
+    \end{contoh}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Faktor $u$ dan nilai mutlak di dalam invers}
+    \begin{teorema}[Integral yang menghasilkan $\sech^{-1}$ dan $\csch^{-1}$]
+        \[
+            \begin{aligned}
+                \int\frac{du}{u\sqrt{1-u^2}}
+                    &=-\sech^{-1}|u|+C &&(0<|u|<1),\\
+                \int\frac{du}{u\sqrt{1+u^2}}
+                    &=-\csch^{-1}|u|+C &&(u\ne0).
+            \end{aligned}
+        \]
+    \end{teorema}
+    \onslide<2->{Pada rumus pertama, $|u|$ masuk ke domain $\sech^{-1}$.
+    Karena $(|u|)'=u/|u|$ untuk $u\ne0$, aturan rantai memberi
+    \[
+        \frac{d}{du}\bigl(-\sech^{-1}|u|\bigr)
+        =\frac{u/|u|}{|u|\sqrt{1-u^2}}
+        =\frac1{u\sqrt{1-u^2}}.
+    \]
+    Langkah yang sama berlaku untuk $\csch^{-1}$ dengan akar $\sqrt{1+u^2}$.}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \framesubtitle{Latihan fungsi hiperbolik}
+    \begin{latihan}
+        \begin{enumerate}
+            \item Tentukan nilai eksak $\sinh(\ln 4)$.
+            \item Tentukan turunan $y=\ln(\tanh(2x))$ untuk $x>0$.
+            \item Hitung $\displaystyle\int\frac{dx}{\sqrt{x^2-4}}$ untuk $x>2$.
+        \end{enumerate}
+    \end{latihan}
+    \onslide<2->{%
+        \begin{block}{Cek jawaban}
+            \begin{enumerate}
+                \item $\tfrac12(4-\tfrac14)=\tfrac{15}{8}$.
+                \item $\displaystyle y'=\frac{2\sech^2(2x)}{\tanh(2x)}$.
+                \item $\cosh^{-1}(x/2)+C$ dengan $u=x/2>1$.
+            \end{enumerate}
+        \end{block}
+    }
+\end{frame}
+
+\end{document}

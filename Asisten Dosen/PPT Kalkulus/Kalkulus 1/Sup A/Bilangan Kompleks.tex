@@ -6,42 +6,1001 @@
 \institute[Matematika ITS]{Departemen Matematika\\ Institut Teknologi Sepuluh Nopember}
 \titlegraphic{{\includegraphics[scale=0.3]{ITS.png}$\quad$\includegraphics[scale=0.02]{M.png}}}
 
-\newcommand{\dom}{\mathcal{D}}
-\newcommand{\rng}{\mathcal{R}}
+\newcommand{\C}{\mathbb{C}}
+\DeclareMathOperator{\Real}{Re}
+\DeclareMathOperator{\Imag}{Im}
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\cis}{cis}
 
 \renewcommand{\arraystretch}{1.5}
+% Tata letak mengikuti Beamer Bab 1 dan Bab 2.
+\setbeamertemplate{itemize items}[circle]
+
+% Sumber: ../KALKULUS 1 SUPLEMEN A.pdf, hlm. 271--285.
+\tikzset{
+    argand axis/.style={->,>=stealth,semithick},
+    argand vector/.style={->,>=stealth,very thick,HIMAtua},
+    argand guide/.style={densely dashed,black!50},
+    argand point/.style={circle,fill=HIMAtua,inner sep=1.6pt}
+}
+
+% Letakkan latar kelas pada kanvas berukuran tetap untuk setiap overlay.
+\usebackgroundtemplate{%
+    \begin{tikzpicture}
+        \path[use as bounding box] (0,0) rectangle (\paperwidth,\paperheight);
+        \clip (0,0) rectangle (\paperwidth,\paperheight);
+        \node[inner sep=0pt,opacity=0.1] at (.5\paperwidth,.5\paperheight)
+            {\includegraphics[width=\paperwidth]{arona class}};
+    \end{tikzpicture}%
+}
 
 \begin{document}
 \begin{frame}
     \titlepage
 \end{frame}
 
-\AtBeginSection{
-    {
-        \begin{frame}{Daftar isi}
-            \tableofcontents[currentsection]
-        \end{frame}}
-}
+\begin{frame}{Daftar isi}
+    \tableofcontents
+\end{frame}
 
 \section{Bilangan Kompleks}
+
+% Bentuk aljabar, bidang Argand, dan operasi (hlm. 271--273).
 \begin{frame}
     \frametitle{\insertsection}
-    \begin{definisi}[Bilangan Kompleks]
-        Bilangan kompleks $z$ ditulis dalam bentuk
-        \[z = a + bi\]
-        di mana $a, b \in \mathbb{R}$ dan $i = \sqrt{-1}$ (satuan imajiner, sehingga $i^2 = -1$).\\
-        $a$ disebut \textbf{bagian real} dari $z$, dinotasikan $\mathrm{Re}(z)$.\\
-        $b$ disebut \textbf{bagian imajiner} dari $z$, dinotasikan $\mathrm{Im}(z)$.
+    \framesubtitle{Satuan imajiner dan bagian-bagian bilangan kompleks}
+    Pada bilangan real, $x^2+1=0$ tidak mempunyai solusi. Dengan memperkenalkan satuan imajiner $i$, kita mendapatkan dua solusi, yaitu $i$ dan $-i$.
+    \begin{definisi}[Bilangan kompleks]
+        \[
+            \C=\{a+bi\mid a,b\in\R\},\qquad i^2=-1.
+        \]
+        Untuk $z=a+bi$, $\Real(z)=a$ adalah \textbf{bagian real} dan
+        $\Imag(z)=b$ adalah \textbf{bagian imajiner}.
     \end{definisi}
+    \onslide<2->{%
+        \begin{contoh}
+            Jika $z=4-3i$, maka $\Real(z)=4$ dan $\Imag(z)=-3$.
+            Bilangan $-2=-2+0i$ adalah real, sedangkan $3i=0+3i$ adalah imajiner murni.
+        \end{contoh}
+    }
+    Setiap bilangan real dapat ditulis sebagai $a+0i$, sehingga $\R\subset\C$.
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Setiap bilangan kompleks menentukan satu titik}
+    \begin{columns}[c]
+        \begin{column}{.48\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.72]
+                \draw[argand axis] (-3.6,0)--(3.7,0) node[right] {$\Real$};
+                \draw[argand axis] (0,-1.8)--(0,3.8) node[above] {$\Imag$};
+                \node[below right] at (0,0) {$0$};
+                \draw[argand guide] (2,0) node[below] {$2$} -- (2,3) -- (0,3) node[left] {$3$};
+                \node[argand point,label=above right:{$2+3i$}] at (2,3) {};
+                \node[argand point,label=above left:{$-1+2i$}] at (-1,2) {};
+                \node[argand point,label=below right:{$-3-i$}] at (-3,-1) {};
+            \end{tikzpicture}
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{block}{Bidang kompleks atau bidang Argand}
+                \[a+bi\ \longleftrightarrow\ (a,b).\]
+                Sumbu mendatar menyatakan bagian real dan sumbu tegak menyatakan bagian imajiner.
+            \end{block}
+            \onslide<2->{%
+                \begin{block}{Kesamaan bilangan kompleks}
+                    \[
+                        a+bi=c+di\iff a=c\ \text{dan}\ b=d.
+                    \]
+                    Keduanya menunjuk titik yang sama.
+                \end{block}
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Empat operasi dalam bentuk $a+bi$}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.6\textwidth}
+            \begin{definisi}[Operasi pada bilangan kompleks]
+                Untuk $z_1=a+bi$ dan $z_2=c+di$,
+                \[
+                    \begin{aligned}
+                        z_1+z_2&=(a+c)+(b+d)i,\\
+                        z_1-z_2&=(a-c)+(b-d)i,\\
+                        z_1z_2&=(ac-bd)+(ad+bc)i,\\
+                        \frac{z_1}{z_2}&=\frac{ac+bd}{c^2+d^2}
+                        +\frac{bc-ad}{c^2+d^2}i,\quad z_2\ne0.
+                    \end{aligned}
+                \]
+            \end{definisi}
+        \end{column}
+        \begin{column}{.37\textwidth}
+            \onslide<2->{%
+                \begin{block}{Asal suku $-bd$}
+                    Hasil kali dua suku imajiner menjadi real karena
+                    $(bi)(di)=bd\,i^2=-bd$.
+                \end{block}
+                Pada pembagian, $z_2\ne0$ memastikan $c^2+d^2>0$.
+                Penyebut ini diperoleh dengan mengalikan $z_2$ dengan sekawannya.
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Jumlah dan selisih dihitung per komponen}
+    \begin{contoh}
+        Untuk $z_1=2+i$ dan $z_2=-1+2i$, tentukan $z_1+z_2$ dan $z_1-z_2$.
+    \end{contoh}
+    \begin{columns}[c]
+        \begin{column}{.48\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.93]
+                \draw[argand axis] (-1.5,0)--(3.1,0) node[right] {$\Real$};
+                \draw[argand axis] (0,-.35)--(0,3.45) node[above] {$\Imag$};
+                \node[below left] at (0,0) {$0$};
+                \draw[argand vector] (0,0)--(2,1) node[right] {$z_1$};
+                \draw[argand vector,teal] (0,0)--(-1,2) node[above left] {$z_2$};
+                \onslide<2->{%
+                    \draw[argand guide] (2,1)--(1,3)--(-1,2);
+                    \draw[argand vector,magenta] (0,0)--(1,3) node[above right] {$z_1+z_2$};
+                }
+            \end{tikzpicture}
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \onslide<2->{%
+                \begin{align*}
+                    z_1+z_2&=(2-1)+(1+2)i=1+3i,\\
+                    z_1-z_2&=(2+1)+(1-2)i=3-i.
+                \end{align*}
+                Di bidang Argand, jumlah adalah diagonal jajargenjang yang dibentuk kedua vektor.
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Perkalian dan pola pangkat $i$}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.52\textwidth}
+            \begin{contoh}
+                Hitung $(2-3i)(3+i)$ dan $i^{37}$.
+            \end{contoh}
+            \onslide<2->{%
+                \begin{align*}
+                    (2-3i)(3+i)&=6+2i-9i-3i^2\\
+                               &=\boxed{9-7i}.
+                \end{align*}
+            }
+            \onslide<3->{%
+                Karena $i^4=1$ dan $37=4\cdot9+1$,
+                \[
+                    i^{37}=(i^4)^9i=\boxed{i}.
+                \]
+            }
+        \end{column}
+        \begin{column}{.43\textwidth}
+            \centering
+            \onslide<3->{%
+                \begin{tikzpicture}
+                    \draw[HIMAmuda!60] (0,0) circle[radius=1.35];
+                    \foreach \ang/\valueat/\pos in {0/1/right,90/i/above,180/{-1}/left,270/{-i}/below} {
+                        \node[argand point,label=\pos:{$\valueat$}] at (\ang:1.35) {};
+                        \draw[argand vector] ({\ang+12}:1.35)
+                            arc[start angle=\ang+12,end angle=\ang+78,radius=1.35];
+                    }
+                    \node at (0,0) {$\times\,i$};
+                \end{tikzpicture}
+                \par Setiap empat langkah, pangkat $i$ kembali ke nilai semula.
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+% Sekawan dan pembagian (hlm. 274).
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Sekawan adalah pencerminan pada sumbu real}
+    \begin{columns}[c]
+        \begin{column}{.48\textwidth}
+            \begin{definisi}[Sekawan atau konjugat]
+                Untuk $z=a+bi$, sekawannya adalah $\bar z=a-bi$.
+            \end{definisi}
+            \onslide<2->{%
+                \begin{contoh}
+                    Jika $z=-2+3i$, maka $\bar z=-2-3i$.
+                \end{contoh}
+                Pencerminan dua kali menghasilkan $\overline{\bar z}=z$.
+                Jika $b=0$, titik berada pada sumbu real dan $\bar z=z$.
+            }
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.65]
+                \draw[argand axis] (-3.8,0)--(2.5,0) node[right] {$\Real$};
+                \draw[argand axis] (0,-3.45)--(0,3.45) node[above] {$\Imag$};
+                \draw[argand guide] (-2,-3)--(-2,3);
+                \draw[argand vector] (0,0)--(-2,3);
+                \node[argand point,label=above left:{$z$}] at (-2,3) {};
+                \onslide<2->{%
+                    \draw[argand vector,magenta] (0,0)--(-2,-3);
+                    \node[argand point,fill=magenta,label=below left:{$\bar z$}] at (-2,-3) {};
+                }
+                \node[below right] at (0,0) {$0$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Mengambil bagian real dan imajiner dengan sekawan}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{block}{Untuk $z=a+bi$}
+                \[
+                    \begin{aligned}
+                        z+\bar z&=2a, &
+                        \Real(z)&=\frac{z+\bar z}{2},\\
+                        z-\bar z&=2bi, &
+                        \Imag(z)&=\frac{z-\bar z}{2i}.
+                    \end{aligned}
+                \]
+            \end{block}
+            \onslide<2->{Penjumlahan menghapus suku imajiner, sedangkan pengurangan menghapus suku real.}
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{block}{Hasil kali dengan sekawan}
+                \[
+                    z\bar z=(a+bi)(a-bi)=a^2+b^2.
+                \]
+                Nilainya real dan taknegatif.
+            \end{block}
+            \onslide<2->{%
+                \begin{contoh}
+                    Untuk $z=-2+3i$, berlaku $z+\bar z=-4$, $z-\bar z=6i$,
+                    dan $z\bar z=13$.
+                \end{contoh}
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Sekawan pada hasil operasi}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.46\textwidth}
+            \begin{block}{Sifat sekawan}
+                \[
+                    \begin{aligned}
+                        \overline{z_1+z_2}&=\bar z_1+\bar z_2,\\
+                        \overline{z_1-z_2}&=\bar z_1-\bar z_2,\\
+                        \overline{z_1z_2}&=\bar z_1\bar z_2,\\[2pt]
+                        \overline{\left(\frac{z_1}{z_2}\right)}
+                        &=\frac{\bar z_1}{\bar z_2},\quad z_2\ne0.
+                    \end{aligned}
+                \]
+            \end{block}
+        \end{column}
+        \begin{column}{.5\textwidth}
+            % Adaptasi soal latihan hlm. 276.
+            \begin{contoh}
+                Mengapa $\displaystyle\frac{2+3i}{1-i}+\frac{2-3i}{1+i}$ real?
+            \end{contoh}
+            \onslide<2->{%
+                Kedua suku saling bersekawan. Jika suku pertama $u$, jumlahnya
+                $u+\bar u=2\Real(u)\in\R$.
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Membagi dengan membuat penyebut real}
+    \begin{contoh}
+        Nyatakan $\dfrac{4-i}{1+2i}$ dalam bentuk $a+bi$.
+    \end{contoh}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.56\textwidth}
+            \onslide<2->{%
+                \begin{align*}
+                    \frac{4-i}{1+2i}
+                    &=\frac{4-i}{1+2i}\cdot\frac{1-2i}{1-2i}\\
+                    &=\frac{2-9i}{1^2+2^2}
+                      =\boxed{\frac25-\frac95i}.
+                \end{align*}
+            }
+        \end{column}
+        \begin{column}{.4\textwidth}
+            \begin{block}{Penyebut kali sekawannya}
+                Faktor $(1-2i)/(1-2i)$ bernilai $1$. Penyebut yang baru menjadi
+                $(1+2i)(1-2i)=5$.
+            \end{block}
+            \onslide<3->{Periksa dengan mengalikan hasilnya kembali dengan $1+2i$.}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+% Modulus, jarak, dan ketaksamaan (hlm. 275--277).
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Modulus mengukur jarak ke titik asal}
+    \begin{columns}[c]
+        \begin{column}{.49\textwidth}
+            \begin{definisi}[Modulus atau nilai mutlak]
+                Untuk $z=a+bi$, modulusnya adalah
+                \[
+                    |z|=\sqrt{a^2+b^2}.
+                \]
+            \end{definisi}
+            \onslide<2->{%
+                \begin{contoh}
+                    Dengan Pythagoras, $|-3+4i|=\sqrt{9+16}=5$.
+                \end{contoh}
+                Jaraknya sama setelah pencerminan, sehingga $|\bar z|=|z|$.
+                Jarak ini nol tepat ketika $z=0$.
+            }
+        \end{column}
+        \begin{column}{.47\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.87]
+                \fill[HIMAmuda!20] (0,0)--(-3,0)--(-3,4)--cycle;
+                \draw[argand axis] (-3.6,0)--(1.65,0) node[right] {$\Real$};
+                \draw[argand axis] (0,-.5)--(0,4.35) node[above] {$\Imag$};
+                \draw[argand guide] (-3,0) node[below] {$-3$} -- (-3,4)
+                    -- (0,4) node[right] {$4$};
+                \draw[HIMAtua,very thick] (0,0)--(-3,4)
+                    node[midway,above right] {$|z|$};
+                \node[argand point,label=above left:{$z=-3+4i$}] at (-3,4) {};
+                \draw[thin] (-3,.25)--(-2.75,.25)--(-2.75,0);
+                \node[below right] at (0,0) {$0$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Modulus hasil kali dan hasil bagi}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{block}{Sifat modulus}
+                \[
+                    \begin{aligned}
+                        |z|^2&=z\bar z,\\
+                        |z_1z_2|&=|z_1||z_2|,\\
+                        \left|\frac{z_1}{z_2}\right|
+                            &=\frac{|z_1|}{|z_2|},\quad z_2\ne0.
+                    \end{aligned}
+                \]
+            \end{block}
+            \onslide<2->{Untuk hasil kali, kuadrat modulusnya adalah
+                $(z_1\bar z_1)(z_2\bar z_2)$. Ambil akar taknegatif kedua ruas.}
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                Hitung $\left|\dfrac{2+i}{1-2i}\right|$.
+            \end{contoh}
+            \onslide<2->{%
+                \[
+                    \left|\frac{2+i}{1-2i}\right|
+                        =\frac{\sqrt{4+1}}{\sqrt{1+4}}
+                        =\boxed{1}.
+                \]
+                Rasio jarak memberi jawabannya langsung.
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Ketaksamaan segitiga dan batas bawah jarak}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.56\textwidth}
+            \begin{block}{Batas untuk jumlah dan selisih}
+                \[
+                    \begin{gathered}
+                        |z_1+z_2|\le |z_1|+|z_2|,\\
+                        \bigl||z_1|-|z_2|\bigr|
+                        \le |z_1-z_2|\le |z_1|+|z_2|.
+                    \end{gathered}
+                \]
+            \end{block}
+            \onslide<2->{%
+                Tulis $z_1=(z_1-z_2)+z_2$ untuk mendapat
+                $|z_1|-|z_2|\le |z_1-z_2|$. Tukar peran $z_1$ dan $z_2$
+                untuk memperoleh batas bawah dengan nilai mutlak.
+            }
+        \end{column}
+        \begin{column}{.4\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=1.08]
+                \fill[HIMAmuda!18] (0,0)--(2.9,.35)--(2.05,2.25)--cycle;
+                \draw[argand vector] (0,0)--(2.9,.35) node[midway,below] {$|z_1|$};
+                \draw[argand vector,teal] (2.9,.35)--(2.05,2.25)
+                    node[midway,right] {$|z_2|$};
+                \draw[argand vector,magenta] (0,0)--(2.05,2.25)
+                    node[midway,left] {$|z_1+z_2|$};
+            \end{tikzpicture}
+            \par\vspace{.5ex}
+            Sisi langsung panjangnya paling banyak sama dengan jumlah dua sisi lainnya.
+        \end{column}
+    \end{columns}
+    \par\smallskip
+    \onslide<2->{\small Ketaksamaan membandingkan modulus yang bernilai real. Tidak ada urutan pada $\C$ yang serasi dengan operasi aritmetika seperti pada $\R$.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Modulus selisih membentuk lingkaran}
+    \begin{columns}[c]
+        \begin{column}{.49\textwidth}
+            \begin{contoh}
+                Gambarkan semua $z$ yang memenuhi $|z-(1+i)|=2$.
+            \end{contoh}
+            \onslide<2->{%
+                Jika $z=x+yi$, persamaan tersebut setara dengan
+                \[
+                    (x-1)^2+(y-1)^2=4.
+                \]
+                Ini lingkaran berpusat di titik $(1,1)$ dengan jari-jari $2$.
+            }
+        \end{column}
+        \begin{column}{.47\textwidth}
+            \centering
+            \onslide<2->{%
+                \begin{tikzpicture}[scale=.89]
+                    \draw[argand axis] (-1.45,0)--(3.7,0) node[right] {$\Real$};
+                    \draw[argand axis] (0,-1.35)--(0,3.4) node[above] {$\Imag$};
+                    \draw[very thick,HIMAtua] (1,1) circle[radius=2];
+                    \draw[argand guide] (1,1)--(3,1) node[midway,above] {$2$};
+                    \node[argand point,label=below:{$1+i$}] at (1,1) {};
+                    \node[argand point,label=above right:{$3+i$}] at (3,1) {};
+                \end{tikzpicture}
+            }
+        \end{column}
+    \end{columns}
+    \par\smallskip
+    \onslide<3->{Secara umum, $|z-z_0|$ adalah jarak titik $z$ ke titik $z_0$.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Latihan operasi dan modulus}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                Tentukan $x,y\in\R$ jika
+                \[
+                    x+2y+(x-y)i=7+i.
+                \]
+            \end{contoh}
+            \onslide<2->{%
+                Samakan bagian real dan imajiner.
+                \[
+                    x+2y=7,\qquad x-y=1.
+                \]
+                Dengan $x=y+1$, diperoleh $\boxed{x=3,\ y=2}$.
+            }
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                Untuk $z_1=1+2i$ dan $z_2=3-i$, hitung $|2z_1-z_2|$.
+            \end{contoh}
+            \onslide<3->{%
+                Selesaikan operasi di dalam modulus terlebih dahulu.
+                \[
+                    2z_1-z_2=(2+4i)-(3-i)=-1+5i,
+                \]
+                sehingga $|2z_1-z_2|=\boxed{\sqrt{26}}$.
+            }
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \section{Teorema De Moivre}
+
+% Bentuk kutub dan argumen (hlm. 277--279).
 \begin{frame}
     \frametitle{\insertsection}
-    \begin{teorema}[Teorema De Moivre]
-        Jika $z = r(\cos \theta + i \sin \theta)$ adalah bilangan kompleks dalam bentuk polar, maka untuk setiap bilangan bulat $n$, berlaku:
-        \[z^n = r^n (\cos(n\theta) + i \sin(n\theta))\]
+    \framesubtitle{Bentuk kutub memakai jarak dan arah}
+    \begin{columns}[c]
+        \begin{column}{.47\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=1.12]
+                \fill[HIMAmuda!15] (0,0)--(2.65,0)--(2.65,1.9)--cycle;
+                \draw[argand axis] (-.55,0)--(3.4,0) node[right] {$\Real$};
+                \draw[argand axis] (0,-.55)--(0,2.6) node[above] {$\Imag$};
+                \draw[argand guide] (2.65,0) node[below] {$a$}
+                    -- (2.65,1.9) -- (0,1.9) node[left] {$b$};
+                \draw[argand vector] (0,0)--(2.65,1.9) node[midway,above left] {$r$};
+                \node[argand point,label=above:{$z=a+bi$}] at (2.65,1.9) {};
+                \draw[->,>=stealth,magenta,thick] (.95,0) arc (0:35.64:.95);
+                \node[magenta] at (19:1.2) {$\theta$};
+            \end{tikzpicture}
+        \end{column}
+        \begin{column}{.49\textwidth}
+            \begin{definisi}[Bentuk kutub]
+                Untuk $z=a+bi\ne0$, ambil $r=|z|$. Jika $\theta$ adalah sudut berarah dari sumbu real positif ke vektor $z$, maka
+                \[
+                    z=r(\cos\theta+i\sin\theta).
+                \]
+                Sudut $\theta$ disebut \textbf{argumen} dari $z$.
+            \end{definisi}
+            \onslide<2->{%
+                Proyeksi memberi $a=r\cos\theta$ dan $b=r\sin\theta$.
+                Notasi lain adalah $z=r\cis\theta=re^{i\theta}$, dengan $\theta$ dalam radian untuk eksponen.
+            }
+        \end{column}
+    \end{columns}
+    \par\smallskip
+    \onslide<2->{Untuk $z=0$, modulusnya nol dan argumennya tidak terdefinisi.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Argumen utama ditentukan oleh kuadran}
+    Untuk $z=a+bi\ne0$, pilih argumen utama $\Arg(z)$ dalam interval $(0,2\pi]$.
+    Semua argumen $z$ berbentuk $\theta=\Arg(z)+2k\pi$ dengan $k\in\mathbb Z$.
+    \par\smallskip
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.49\textwidth}
+            \centering
+            \begin{tabular}{cccl}
+                \rowcolor{HIMAtua!20}
+                $a$ & $b$ & Kuadran & $\Arg(z)$\\
+                $+$ & $+$ & I   & $(0,\pi/2)$\\
+                $-$ & $+$ & II  & $(\pi/2,\pi)$\\
+                $-$ & $-$ & III & $(\pi,3\pi/2)$\\
+                $+$ & $-$ & IV  & $(3\pi/2,2\pi)$
+            \end{tabular}
+        \end{column}
+        \begin{column}{.47\textwidth}
+            \onslide<2->{%
+                \begin{block}{Titik di sumbu}
+                    \begin{itemize}
+                        \item Sumbu real positif dan negatif memberi $2\pi$ dan $\pi$.
+                        \item Sumbu imajiner positif dan negatif memberi $\pi/2$ dan $3\pi/2$.
+                    \end{itemize}
+                \end{block}
+            }
+        \end{column}
+    \end{columns}
+    \par\smallskip
+    \onslide<2->{Jika $a\ne0$, hitung $\tan\theta=b/a$. Pilih sudut yang cocok dengan tanda $a$ dan $b$.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Rasio yang sama dapat memberi kuadran berbeda}
+    \begin{contoh}
+        Tulis $z_1=-\sqrt3+i$ dan $z_2=\sqrt3-i$ dalam bentuk kutub dengan argumen utama.
+    \end{contoh}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.96]
+                \draw[argand axis] (-2.45,0)--(2.5,0) node[right] {$\Real$};
+                \draw[argand axis] (0,-1.55)--(0,1.68) node[above] {$\Imag$};
+                \node[below left] at (0,0) {$0$};
+                \draw[argand vector] (0,0)--(150:2) node[above] {$z_1$};
+                \draw[argand vector,teal] (0,0)--(330:2) node[below] {$z_2$};
+                \onslide<2->{%
+                    \draw[->,>=stealth,magenta,thick] (.9,0) arc (0:150:.9);
+                    \node[magenta,above right] at (44:.95) {$150^\circ$};
+                }
+                \onslide<3->{%
+                    \draw[->,>=stealth,teal,thick] (1.05,0) arc (0:-30:1.05);
+                    \node[teal,below] at (.67,-.58) {$-30^\circ$};
+                }
+            \end{tikzpicture}
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \onslide<2->{%
+                Keduanya punya modulus $2$ dan $\tan\theta=-1/\sqrt3$.
+                Untuk $z_1$ di kuadran II,
+                \[
+                    \Arg(z_1)=\tfrac{5\pi}{6},\qquad
+                    z_1=2\cis\!\bigl(\tfrac{5\pi}{6}\bigr).
+                \]
+            }
+            \onslide<3->{%
+                Untuk $z_2$ di kuadran IV, $-\pi/6$ menjadi $11\pi/6$ setelah ditambah $2\pi$.
+                \[
+                    z_2=2\cis\!\bigl(\tfrac{11\pi}{6}\bigr).
+                \]
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Dari bentuk kutub ke koordinat}
+    \begin{columns}[c]
+        \begin{column}{.49\textwidth}
+            \begin{contoh}
+                Gambar $z=4\cis(240^\circ)$ dan nyatakan sebagai $a+bi$.
+            \end{contoh}
+            \onslide<2->{%
+                Dari sumbu real positif, putar $240^\circ$ berlawanan arah jarum jam.
+                Vektornya sepanjang $4$ dan berada di kuadran III.
+                \[
+                    \begin{aligned}
+                        a&=4\cos(240^\circ)=-2,\\
+                        b&=4\sin(240^\circ)=-2\sqrt3.
+                    \end{aligned}
+                \]
+                Jadi $z=\boxed{-2-2\sqrt3\,i}$.
+            }
+        \end{column}
+        \begin{column}{.47\textwidth}
+            \centering
+            \onslide<2->{%
+                \begin{tikzpicture}[scale=.79]
+                    \draw[argand axis] (-2.85,0)--(2.1,0) node[right] {$\Real$};
+                    \draw[argand axis] (0,-3.95)--(0,1.95) node[above] {$\Imag$};
+                    \draw[argand guide] (-2,0) node[above left] {$-2$}
+                        -- (240:4) -- (0,{-2*sqrt(3)}) node[right] {$-2\sqrt3$};
+                    \draw[argand vector] (0,0)--(240:4) node[midway,right] {$4$};
+                    \node[argand point,label=below left:{$z$}] at (240:4) {};
+                    \draw[->,>=stealth,magenta,thick] (1.15,0) arc (0:240:1.15);
+                    \node[magenta,above left] at (125:1.17) {$240^\circ$};
+                \end{tikzpicture}
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+% Operasi dalam bentuk kutub (hlm. 280).
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Aturan untuk kali, bagi, dan pangkat}
+    \begin{teorema}[De Moivre]
+        Misalkan $z_j=r_j\cis\theta_j$ untuk $j=1,\ldots,m$ ($m\ge2$) dan
+        $z=r\cis\theta$, dengan semua modulus positif.
+        \[
+            \begin{aligned}
+                z_1z_2&=r_1r_2\cis(\theta_1+\theta_2), &
+                \frac{z_1}{z_2}&=\frac{r_1}{r_2}\cis(\theta_1-\theta_2),\\
+                z_1\cdots z_m&=(r_1\cdots r_m)\cis(\theta_1+\cdots+\theta_m),&
+                z^n&=r^n\cis(n\theta),\quad n\in\mathbb Z.
+            \end{aligned}
+        \]
     \end{teorema}
+    \onslide<2->{%
+        \begin{block}{Arti perkalian di bidang kompleks}
+            Mengalikan dengan $r_2\cis\theta_2$ mengubah jarak dari titik asal dengan faktor $r_2$ dan memutar arah sebesar $\theta_2$.
+            Pembagian membalik kedua perubahan itu.
+        \end{block}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Identitas trigonometri menjelaskan aturan sudut}
+    Mulai dengan bentuk bermodulus $1$. Distribusikan suku, lalu pakai $i^2=-1$.
+    \[
+        \begin{aligned}
+            (\cis\alpha)(\cis\beta)
+                &= (\cos\alpha\cos\beta-\sin\alpha\sin\beta)\\
+                &\quad+i(\sin\alpha\cos\beta+\cos\alpha\sin\beta)\\
+                &=\cos(\alpha+\beta)+i\sin(\alpha+\beta).
+        \end{aligned}
+    \]
+    \onslide<2->{%
+        \begin{columns}[T,onlytextwidth]
+            \begin{column}{.48\textwidth}
+                \begin{block}{Membagi}
+                    $\cis\beta\cdot\cis(-\beta)=1$.
+                    Jadi membagi dengan $r_2\cis\beta$ sama dengan mengalikan oleh $(1/r_2)\cis(-\beta)$.
+                \end{block}
+            \end{column}
+            \begin{column}{.48\textwidth}
+                \begin{block}{Memangkatkan}
+                    Untuk $n>0$, kalikan berulang. Untuk $n<0$, gunakan $z^n=1/z^{-n}$.
+                    Untuk $n=0$, rumus memberi $1$.
+                \end{block}
+            \end{column}
+        \end{columns}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Perkalian sebagai perubahan panjang dan rotasi}
+    \begin{contoh}
+        Untuk $z_1=2\cis(30^\circ)$ dan $z_2=3\cis(60^\circ)$, hitung $z_1z_2$ dan $z_1/z_2$.
+    \end{contoh}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.46\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=.66]
+                \draw[argand axis] (-1.5,0)--(4.15,0) node[right] {$\Real$};
+                \draw[argand axis] (0,-.4)--(0,6.45) node[above] {$\Imag$};
+                \draw[argand vector] (0,0)--(30:2) node[right] {$z_1$};
+                \onslide<2->{%
+                    \draw[argand vector,teal] (0,0)--(0,6) node[left] {$z_1z_2$};
+                    \draw[->,>=stealth,magenta,thick] (30:1.3) arc (30:90:1.3);
+                    \node[magenta,above right] at (59:1.45) {$60^\circ$};
+                }
+            \end{tikzpicture}
+        \end{column}
+        \begin{column}{.5\textwidth}
+            \onslide<2->{%
+                \[
+                    z_1z_2=6\cis(90^\circ)=\boxed{6i}.
+                \]
+                Panjang vektor menjadi tiga kali semula, dengan arah berputar $60^\circ$.
+            }
+            \onslide<3->{%
+                \[
+                    \frac{z_1}{z_2}=\frac23\cis(-30^\circ)
+                        =\boxed{\frac{\sqrt3}{3}-\frac13i}.
+                \]
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Menggabungkan pangkat dan pembagian}
+    \begin{contoh}
+        Nyatakan $I=\dfrac{\bigl(2\cis(30^\circ)\bigr)^5}{\bigl(4\cis(90^\circ)\bigr)^2}$ dalam bentuk $a+bi$.
+    \end{contoh}
+    \onslide<2->{%
+        \[
+            I=\frac{2^5\cis(5\cdot30^\circ)}{4^2\cis(2\cdot90^\circ)}
+                =\frac{32}{16}\cis(150^\circ-180^\circ)
+                =2\cis(-30^\circ).
+        \]
+    }
+    \onslide<3->{%
+        \[
+            I=2\left(\frac{\sqrt3}{2}-\frac12i\right)=\boxed{\sqrt3-i}.
+        \]
+        Sudut $-30^\circ$ langsung bisa dipakai untuk menghitung sinus dan cosinus.
+        Argumen utamanya adalah $330^\circ$.
+    }
+\end{frame}
+
+% Akar dan persamaan kuadrat (hlm. 281--285).
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Semua akar pangkat $n$ dari satu bilangan}
+    \begin{definisi}[Akar pangkat $n$]
+        Untuk bilangan bulat $n\ge1$, $w$ disebut akar pangkat $n$ dari $z$ jika $w^n=z$.
+        Jika $z=r\cis\theta$ dengan $r>0$, akar-akarnya adalah
+        \[
+            w_k=r^{1/n}\cis\!\left(\frac{\theta+2k\pi}{n}\right),
+            \qquad k=0,1,\ldots,n-1.
+        \]
+    \end{definisi}
+    \onslide<2->{%
+        \begin{block}{Letak akar di bidang Argand}
+            Semua akar berjarak $r^{1/n}$ dari titik asal. Dari satu akar ke akar berikutnya,
+            sudut bertambah $2\pi/n$. Untuk $n\ge3$, akar merupakan titik sudut segi-$n$ beraturan.
+        \end{block}
+    }
+    Untuk $z=0$, satu-satunya akar pangkat $n$ adalah $w=0$.
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Mengapa jumlahnya tepat $n$?}
+    Jika $w=\rho\cis\varphi$ dan $z=r\cis\theta\ne0$, Teorema De Moivre mengubah $w^n=z$ menjadi
+    \[
+        \rho^n=r,\qquad n\varphi=\theta+2k\pi,\quad k\in\mathbb Z.
+    \]
+    \onslide<2->{%
+        Syarat pertama menetapkan $\rho=r^{1/n}$. Syarat kedua memberi
+        $\varphi=(\theta+2k\pi)/n$, karena sudut yang berbeda $2\pi$ menunjuk arah yang sama.
+        \begin{block}{Satu putaran memuat $n$ akar berbeda}
+            Kenaikan $k$ sebesar $1$ menggeser sudut sebesar $2\pi/n$.
+            Setelah $n$ langkah, sudut bertambah $2\pi$ dan titiknya kembali ke akar pertama.
+        \end{block}
+    }
+    \onslide<3->{Pemeriksaan dengan pemangkatan memberi $w_k^n=r\cis(\theta+2k\pi)=z$.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Lima akar membentuk segi lima beraturan}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.51\textwidth}
+            \begin{contoh}
+                Cari semua solusi $w^5=32i$ dan gambarkan posisinya.
+            \end{contoh}
+            \onslide<2->{%
+                Tulis $32i=32\cis(\pi/2)$. Dengan $32^{1/5}=2$, diperoleh
+                \[
+                    w_k=2\cis\!\left(\frac{\pi}{10}+\frac{2k\pi}{5}\right)
+                    \quad(k=0,\ldots,4).
+                \]
+                Akar berurutan berjarak sudut $2\pi/5$.
+                Untuk $k=1$, diperoleh $w_1=2i$.
+            }
+            \onslide<3->{Misalnya, $(2i)^5=32i$ karena $i^5=i$.}
+        \end{column}
+        \begin{column}{.45\textwidth}
+            \centering
+            \onslide<2->{%
+                \begin{tikzpicture}[scale=.98]
+                    \foreach \k [evaluate=\k as \ang using 18+72*\k] in {0,...,4}
+                        \coordinate (w\k) at (\ang:2);
+                    \fill[HIMAmuda!16] (w0)--(w1)--(w2)--(w3)--(w4)--cycle;
+                    \draw[gray] (0,0) circle[radius=2];
+                    \draw[argand axis] (-2.6,0)--(2.67,0) node[right] {$\Real$};
+                    \draw[argand axis] (0,-2.38)--(0,2.7) node[above] {$\Imag$};
+                    \draw[thick,HIMAtua] (w0)--(w1)--(w2)--(w3)--(w4)--cycle;
+                    \foreach \k in {0,...,4} {
+                        \draw[argand guide] (0,0)--(w\k);
+                        \node[argand point] at (w\k) {};
+                    }
+                    \node[above right] at (w0) {$w_0$};
+                    \node[above left] at (w1) {$w_1$};
+                    \node[above left] at (w2) {$w_2$};
+                    \node[below left] at (w3) {$w_3$};
+                    \node[below right] at (w4) {$w_4$};
+                    \draw[->,>=stealth,magenta,thick] (18:.78) arc (18:90:.78);
+                    \node[magenta,right] at (57:.88) {$72^\circ$};
+                \end{tikzpicture}
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Akar kuadrat dari komponen real dan imajiner}
+    Jika $z=r\cis\theta\ne0$, dua akarnya adalah $\pm\sqrt r\,\cis(\theta/2)$.
+    Untuk mencari langsung dari $z=a+bi$, tulis $w=p+qi$.
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.46\textwidth}
+            \begin{block}{Persamaan dari $w^2=z$}
+                \[
+                    p^2-q^2=a,\qquad 2pq=b.
+                \]
+                Dari modulus diperoleh $p^2+q^2=|w|^2=r$.
+                Gabungkan persamaan jumlah dan selisih untuk mendapatkan $p^2$ dan $q^2$.
+            \end{block}
+        \end{column}
+        \begin{column}{.5\textwidth}
+            \onslide<2->{%
+                \begin{block}{Memilih tanda saat $b\ne0$}
+                    Ambil akar positif untuk $p$,
+                    \[
+                        p=\sqrt{\frac{r+a}{2}},\qquad
+                        |q|=\sqrt{\frac{r-a}{2}}.
+                    \]
+                    Gunakan $q=b/(2p)$, sehingga tanda $q$ mengikuti tanda $b$.
+                    Kedua akar adalah $w$ dan $-w$.
+                \end{block}
+            }
+        \end{column}
+    \end{columns}
+    \par\smallskip
+    \onslide<3->{Untuk $b=0$, akarnya $\pm\sqrt a$ jika $a\ge0$ dan $\pm i\sqrt{-a}$ jika $a<0$.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Contoh akar kuadrat dengan bagian imajiner negatif}
+    \begin{contoh}
+        Cari kedua solusi $w^2=5-12i$.
+    \end{contoh}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \onslide<2->{%
+                Modulus $5-12i$ adalah $\sqrt{25+144}=13$. Dengan $w=p+qi$,
+                \[
+                    p^2=\frac{13+5}{2}=9,\qquad
+                    q^2=\frac{13-5}{2}=4.
+                \]
+                Saat $p=3$, syarat $2pq=-12$ memberi $q=-2$.
+                Jadi $\boxed{w=\pm(3-2i)}$.
+            }
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \onslide<3->{%
+                \begin{block}{Pemeriksaan}
+                    $(3-2i)^2=9-4-12i=5-12i$.
+                    Akar kedua adalah lawannya, sehingga kuadratnya sama.
+                \end{block}
+                Kedua akar terpisah sudut $\pi$, sesuai jarak sudut $2\pi/n$ untuk $n=2$.
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Rumus kuadrat berlaku untuk koefisien kompleks}
+    Misalkan $az^2+bz+c=0$ dengan $a,b,c\in\C$ dan $a\ne0$.
+    Lengkapi kuadrat untuk memperoleh
+    \[
+        \left(z+\frac{b}{2a}\right)^2=\frac{b^2-4ac}{4a^2}
+        \quad\Longleftrightarrow\quad (2az+b)^2=\Delta,
+        \qquad \Delta=b^2-4ac.
+    \]
+    \onslide<2->{%
+        \begin{block}{Rumus kuadrat}
+            Ambil salah satu akar kuadrat $s$ dari $\Delta$. Kedua solusi diberikan oleh
+            \[
+                z=\frac{-b\pm s}{2a},\qquad s^2=\Delta.
+            \]
+            Jika $\Delta=0$, kedua tanda memberi akar kembar yang sama.
+        \end{block}
+    }
+    \onslide<3->{Untuk koefisien real, mengambil sekawan pada persamaan menunjukkan bahwa akar nonreal muncul berpasangan sekawan.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Dua solusi dari diskriminan kompleks}
+    \begin{contoh}
+        Selesaikan $z^2+(1+4i)z-5+5i=0$.
+    \end{contoh}
+    \onslide<2->{%
+        Dengan rumus kuadrat,
+        \[
+            \Delta=(1+4i)^2-4(-5+5i)
+                =(-15+8i)+(20-20i)=5-12i.
+        \]
+        Dari contoh sebelumnya, kita dapat memilih $s=3-2i$.
+        \[
+            z=\frac{-(1+4i)\pm(3-2i)}{2}
+            \quad\Longrightarrow\quad
+            \boxed{z_1=1-3i,\quad z_2=-2-i}.
+        \]
+    }
+    \onslide<3->{%
+        Periksa lewat jumlah $z_1+z_2=-1-4i$ dan hasil kali $z_1z_2=-5+5i$,
+        sesuai koefisien persamaan.
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{\insertsection}
+    \framesubtitle{Latihan pangkat bulat dan rasional}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                Hitung $(\sqrt3+i)^{-3}$.
+            \end{contoh}
+            \onslide<2->{%
+                Tulis $\sqrt3+i=2\cis(\pi/6)$. Maka
+                \[
+                    \bigl(2\cis(\tfrac{\pi}{6})\bigr)^{-3}
+                        =\tfrac18\cis(-\tfrac{\pi}{2})
+                        =\boxed{-\tfrac18i}.
+                \]
+                Pangkat negatif membalik faktor modulus dan mengubah tanda sudut.
+            }
+        \end{column}
+        \begin{column}{.48\textwidth}
+            \begin{contoh}
+                Cari semua nilai $(4i)^{3/2}$ dengan menyelesaikan $w^2=(4i)^3$.
+            \end{contoh}
+            \onslide<3->{%
+                Karena $(4i)^3=-64i=64\cis(-\pi/2)$,
+                \[
+                    w_k=8\cis\!\bigl(-\tfrac{\pi}{4}+k\pi\bigr),
+                    \qquad k=0,1.
+                \]
+                Kedua nilainya $\boxed{\pm4\sqrt2(1-i)}$.
+            }
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \end{document}
